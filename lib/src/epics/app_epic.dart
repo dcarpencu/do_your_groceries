@@ -1,13 +1,15 @@
 import 'package:do_you_groceries/src/actions/index.dart';
+import 'package:do_you_groceries/src/data/auchan_api.dart';
 import 'package:do_you_groceries/src/data/auth_api.dart';
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:redux_epics/redux_epics.dart';
 import 'package:rxdart/transformers.dart';
 
 class AppEpic {
-  AppEpic(this._authApi);
+  AppEpic(this._authApi, this._auchanApi);
 
   final AuthApi _authApi;
+  final AuchanApi _auchanApi;
 
   Epic<AppState> getEpics() {
     return combineEpics(<Epic<AppState>>[
@@ -15,6 +17,7 @@ class AppEpic {
       TypedEpic<AppState, GetCurrentUserStart>(_getCurrentUserStart),
       TypedEpic<AppState, CreateUserStart>(_createUserStart),
       TypedEpic<AppState, LogoutStart>(_logoutStart),
+      TypedEpic<AppState, GetProductsStart>(_getProductsStart),
     ]);
   }
 
@@ -53,6 +56,16 @@ class AppEpic {
           .asyncMap((_) => _authApi.logout())
           .mapTo(const Logout.successful())
           .onErrorReturnWith(Logout.error);
+    });
+  }
+
+  Stream<AppAction> _getProductsStart(Stream<GetProductsStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((GetProductsStart action) {
+      return Stream<void>.value(null)
+          .asyncMap((_) => _auchanApi.getProducts())
+          .map<GetProducts>(GetProducts.successful)
+          .onErrorReturnWith(GetProducts.error)
+      .doOnData(action.onResult);
     });
   }
 }

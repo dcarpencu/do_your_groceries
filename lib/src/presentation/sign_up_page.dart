@@ -71,6 +71,7 @@ class _SignupPageState extends State<SignupPage> {
                   ),
                   TextFormField(
                     controller: _email,
+                    focusNode: _emailNode,
                     keyboardType: TextInputType.emailAddress,
                     textInputAction: TextInputAction.next,
                     decoration: const InputDecoration(hintText: 'email'),
@@ -88,6 +89,8 @@ class _SignupPageState extends State<SignupPage> {
                   ),
                   TextFormField(
                     controller: _password,
+                    focusNode: _passwordNode,
+                    keyboardType: TextInputType.visiblePassword,
                     decoration: const InputDecoration(hintText: 'password'),
                     textInputAction: TextInputAction.done,
                     validator: (String? value) {

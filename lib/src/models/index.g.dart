@@ -8,6 +8,11 @@ part of 'index.dart';
 
 _$AppState$Impl _$$AppState$ImplFromJson(Map<String, dynamic> json) =>
     _$AppState$Impl(
+      products: (json['products'] as List<dynamic>?)
+              ?.map((e) => Auchan.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const <Auchan>[],
+      isLoading: json['isLoading'] as bool? ?? true,
       user: json['user'] == null
           ? null
           : AppUser.fromJson(json['user'] as Map<String, dynamic>),
@@ -15,6 +20,8 @@ _$AppState$Impl _$$AppState$ImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$AppState$ImplToJson(_$AppState$Impl instance) =>
     <String, dynamic>{
+      'products': instance.products,
+      'isLoading': instance.isLoading,
       'user': instance.user,
     };
 
@@ -30,4 +37,18 @@ Map<String, dynamic> _$$AppUser$ImplToJson(_$AppUser$Impl instance) =>
       'uid': instance.uid,
       'email': instance.email,
       'username': instance.username,
+    };
+
+_$Auchan$Impl _$$Auchan$ImplFromJson(Map<String, dynamic> json) =>
+    _$Auchan$Impl(
+      title: json['title'] as String,
+      image: json['image'] as String,
+      price: (json['price'] as num).toDouble(),
+    );
+
+Map<String, dynamic> _$$Auchan$ImplToJson(_$Auchan$Impl instance) =>
+    <String, dynamic>{
+      'title': instance.title,
+      'image': instance.image,
+      'price': instance.price,
     };

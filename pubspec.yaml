@@ -11,6 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
   cupertino_icons: ^1.0.6
   http: ^1.2.1
   flutter_redux: ^0.10.0
@@ -23,6 +24,8 @@ dependencies:
   firebase_core: ^2.24.2
   json_annotation: ^4.8.1
   shared_preferences: ^2.2.2
+  carousel_slider: ^4.2.1
+  html: ^0.15.4
 
 
 dev_dependencies:
@@ -36,3 +39,6 @@ dev_dependencies:
 flutter:
 
   uses-material-design: true
+  assets:
+    - lib/src/assets/burger_king.png
+    - lib/src/assets/michi.png

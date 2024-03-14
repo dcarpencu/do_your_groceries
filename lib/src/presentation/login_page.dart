@@ -49,6 +49,9 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
+                  Image.asset('lib/src/assets/michi.png',
+                  width: 200,
+                  height: 200,),
                   TextFormField(
                     controller: _email,
                     keyboardType: TextInputType.emailAddress,
@@ -69,6 +72,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   TextFormField(
                     controller: _password,
+                    focusNode: _passwordNode,
                     decoration: const InputDecoration(hintText: 'password'),
                     textInputAction: TextInputAction.done,
                     validator: (String? value) {

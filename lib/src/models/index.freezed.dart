@@ -20,6 +20,8 @@ AppState _$AppStateFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AppState {
+  List<Auchan> get products => throw _privateConstructorUsedError;
+  bool get isLoading => throw _privateConstructorUsedError;
   AppUser? get user => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -33,7 +35,7 @@ abstract class $AppStateCopyWith<$Res> {
   factory $AppStateCopyWith(AppState value, $Res Function(AppState) then) =
       _$AppStateCopyWithImpl<$Res, AppState>;
   @useResult
-  $Res call({AppUser? user});
+  $Res call({List<Auchan> products, bool isLoading, AppUser? user});
 
   $AppUserCopyWith<$Res>? get user;
 }
@@ -51,9 +53,19 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? products = null,
+    Object? isLoading = null,
     Object? user = freezed,
   }) {
     return _then(_value.copyWith(
+      products: null == products
+          ? _value.products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<Auchan>,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -82,7 +94,7 @@ abstract class _$$AppState$ImplCopyWith<$Res>
       __$$AppState$ImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({AppUser? user});
+  $Res call({List<Auchan> products, bool isLoading, AppUser? user});
 
   @override
   $AppUserCopyWith<$Res>? get user;
@@ -99,9 +111,19 @@ class __$$AppState$ImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? products = null,
+    Object? isLoading = null,
     Object? user = freezed,
   }) {
     return _then(_$AppState$Impl(
+      products: null == products
+          ? _value._products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<Auchan>,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -113,17 +135,33 @@ class __$$AppState$ImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AppState$Impl implements AppState$ {
-  const _$AppState$Impl({this.user});
+  const _$AppState$Impl(
+      {final List<Auchan> products = const <Auchan>[],
+      this.isLoading = true,
+      this.user})
+      : _products = products;
 
   factory _$AppState$Impl.fromJson(Map<String, dynamic> json) =>
       _$$AppState$ImplFromJson(json);
 
+  final List<Auchan> _products;
+  @override
+  @JsonKey()
+  List<Auchan> get products {
+    if (_products is EqualUnmodifiableListView) return _products;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_products);
+  }
+
+  @override
+  @JsonKey()
+  final bool isLoading;
   @override
   final AppUser? user;
 
   @override
   String toString() {
-    return 'AppState(user: $user)';
+    return 'AppState(products: $products, isLoading: $isLoading, user: $user)';
   }
 
   @override
@@ -131,12 +169,16 @@ class _$AppState$Impl implements AppState$ {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AppState$Impl &&
+            const DeepCollectionEquality().equals(other._products, _products) &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
             (identical(other.user, user) || other.user == user));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, user);
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_products), isLoading, user);
 
   @JsonKey(ignore: true)
   @override
@@ -153,11 +195,18 @@ class _$AppState$Impl implements AppState$ {
 }
 
 abstract class AppState$ implements AppState {
-  const factory AppState$({final AppUser? user}) = _$AppState$Impl;
+  const factory AppState$(
+      {final List<Auchan> products,
+      final bool isLoading,
+      final AppUser? user}) = _$AppState$Impl;
 
   factory AppState$.fromJson(Map<String, dynamic> json) =
       _$AppState$Impl.fromJson;
 
+  @override
+  List<Auchan> get products;
+  @override
+  bool get isLoading;
   @override
   AppUser? get user;
   @override
@@ -333,5 +382,173 @@ abstract class AppUser$ implements AppUser {
   @override
   @JsonKey(ignore: true)
   _$$AppUser$ImplCopyWith<_$AppUser$Impl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Auchan _$AuchanFromJson(Map<String, dynamic> json) {
+  return Auchan$.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Auchan {
+  String get title => throw _privateConstructorUsedError;
+  String get image => throw _privateConstructorUsedError;
+  double get price => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $AuchanCopyWith<Auchan> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AuchanCopyWith<$Res> {
+  factory $AuchanCopyWith(Auchan value, $Res Function(Auchan) then) =
+      _$AuchanCopyWithImpl<$Res, Auchan>;
+  @useResult
+  $Res call({String title, String image, double price});
+}
+
+/// @nodoc
+class _$AuchanCopyWithImpl<$Res, $Val extends Auchan>
+    implements $AuchanCopyWith<$Res> {
+  _$AuchanCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? title = null,
+    Object? image = null,
+    Object? price = null,
+  }) {
+    return _then(_value.copyWith(
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      image: null == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
+      price: null == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as double,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$Auchan$ImplCopyWith<$Res> implements $AuchanCopyWith<$Res> {
+  factory _$$Auchan$ImplCopyWith(
+          _$Auchan$Impl value, $Res Function(_$Auchan$Impl) then) =
+      __$$Auchan$ImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String title, String image, double price});
+}
+
+/// @nodoc
+class __$$Auchan$ImplCopyWithImpl<$Res>
+    extends _$AuchanCopyWithImpl<$Res, _$Auchan$Impl>
+    implements _$$Auchan$ImplCopyWith<$Res> {
+  __$$Auchan$ImplCopyWithImpl(
+      _$Auchan$Impl _value, $Res Function(_$Auchan$Impl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? title = null,
+    Object? image = null,
+    Object? price = null,
+  }) {
+    return _then(_$Auchan$Impl(
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      image: null == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
+      price: null == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$Auchan$Impl implements Auchan$ {
+  const _$Auchan$Impl(
+      {required this.title, required this.image, required this.price});
+
+  factory _$Auchan$Impl.fromJson(Map<String, dynamic> json) =>
+      _$$Auchan$ImplFromJson(json);
+
+  @override
+  final String title;
+  @override
+  final String image;
+  @override
+  final double price;
+
+  @override
+  String toString() {
+    return 'Auchan(title: $title, image: $image, price: $price)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$Auchan$Impl &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.price, price) || other.price == price));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, title, image, price);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$Auchan$ImplCopyWith<_$Auchan$Impl> get copyWith =>
+      __$$Auchan$ImplCopyWithImpl<_$Auchan$Impl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$Auchan$ImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class Auchan$ implements Auchan {
+  const factory Auchan$(
+      {required final String title,
+      required final String image,
+      required final double price}) = _$Auchan$Impl;
+
+  factory Auchan$.fromJson(Map<String, dynamic> json) = _$Auchan$Impl.fromJson;
+
+  @override
+  String get title;
+  @override
+  String get image;
+  @override
+  double get price;
+  @override
+  @JsonKey(ignore: true)
+  _$$Auchan$ImplCopyWith<_$Auchan$Impl> get copyWith =>
       throw _privateConstructorUsedError;
 }
