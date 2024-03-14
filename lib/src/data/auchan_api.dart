@@ -31,8 +31,8 @@ class AuchanApi {
       } else {
         price = foodInfo?.querySelector('div.price-container > span.price.red');
       }
-      final String priceText = price?.text ?? "";
-      final double priceD = double.tryParse(priceText.replaceAll(RegExp(r'[^\d.]'), '')) ?? 0.0;
+      final String priceText = price?.text ?? '';
+      final double priceD = double.tryParse(priceText.replaceAll(RegExp('[^0-9.]'), '')) ?? 0.0;
       // var oldPrice = foodInfo?.querySelector('div.price-container > span.old-price');
       final Element? title = foodInfo?.querySelector('div.title');
 
