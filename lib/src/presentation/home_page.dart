@@ -46,57 +46,59 @@ class _HomePageState extends State<HomePage> {
               title: const Text('DoYourGroceries'),
               actions: const <Widget>[],
             ),
-            body: Column(
-              children: <Widget>[
-                // const Center(
-                //   child: Card(
-                //     child: SizedBox(
-                //       width: 350,
-                //       height: 150,
-                //       child: Center(child: Text('Select one of your grocery lists')),
-                //     ),
-                //   ),
-                // ),
-                const Center(
-                  child: Padding(
-                    padding: EdgeInsets.all(8),
-                    // child: Card(
-                    //   child: SizedBox(
-                    //     width: MediaQuery.of(context).size.width,
-                    //     height: 200,
-                    //     child: const Center(child: Text('User greet message', style: TextStyle(fontSize: 16,),)),
-                    //   ),
-                    // ),
-                    child: CardWidget(),
+            body: SafeArea(
+              child: Column(
+                children: <Widget>[
+                  // const Center(
+                  //   child: Card(
+                  //     child: SizedBox(
+                  //       width: 350,
+                  //       height: 150,
+                  //       child: Center(child: Text('Select one of your grocery lists')),
+                  //     ),
+                  //   ),
+                  // ),
+                  const Center(
+                    child: Padding(
+                      padding: EdgeInsets.all(8),
+                      // child: Card(
+                      //   child: SizedBox(
+                      //     width: MediaQuery.of(context).size.width,
+                      //     height: 200,
+                      //     child: const Center(child: Text('User greet message', style: TextStyle(fontSize: 16,),)),
+                      //   ),
+                      // ),
+                      child: CardWidget(),
+                    ),
                   ),
-                ),
-                const SizedBox(height: 40,),
-                const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Padding(
-                    padding: EdgeInsets.all(8),
-                    child: Text('Your lists. Here.', style: TextStyle(fontSize: 16,), textAlign: TextAlign.left,),
+                  const SizedBox(height: 40,),
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: EdgeInsets.all(8),
+                      child: Text('Your lists. Here.', style: TextStyle(fontSize: 16,), textAlign: TextAlign.left,),
+                    ),
                   ),
-                ),
-                CarouselSlider(
-                  options: CarouselOptions(height: 200),
-                  items: <int>[1,2,3,4,5].map((int i) {
-                    return Builder(
-                      builder: (BuildContext context) {
-                        return Container(
-                            width: MediaQuery.of(context).size.width,
-                            margin: const EdgeInsets.symmetric(horizontal: 5),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(16),
-                                color: Colors.green,
-                            ),
-                            child: Center(child: Text('shopping list $i', style: const TextStyle(fontSize: 16),)),
-                        );
-                      },
-                    );
-                  }).toList(),
-                ),
-              ],
+                  CarouselSlider(
+                    options: CarouselOptions(height: 200),
+                    items: <int>[1,2,3,4,5].map((int i) {
+                      return Builder(
+                        builder: (BuildContext context) {
+                          return Container(
+                              width: MediaQuery.of(context).size.width,
+                              margin: const EdgeInsets.symmetric(horizontal: 5),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(16),
+                                  color: Colors.green,
+                              ),
+                              child: Center(child: Text('shopping list $i', style: const TextStyle(fontSize: 16),)),
+                          );
+                        },
+                      );
+                    }).toList(),
+                  ),
+                ],
+              ),
             ),
             floatingActionButton: FloatingActionButton(
               onPressed: () {},
@@ -121,7 +123,7 @@ class _HomePageState extends State<HomePage> {
                       tooltip: 'Search',
                       icon: const Icon(Icons.search),
                       onPressed: () {
-                        Navigator.pushNamed(context, '/productsSearch');
+                        Navigator.pushNamed(context, '/markets');
                       },
                     ),
                     IconButton(

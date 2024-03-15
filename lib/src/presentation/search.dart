@@ -35,7 +35,7 @@ class _SearchProductsState extends State<SearchProducts> {
           builder: (BuildContext context, AppState state) {
           return Scaffold(
             appBar: AppBar(
-              title: const Text('Movie App'),
+              title: const Text('Auchan products'),
             ),
             body: SearchProductsContainer(builder: (BuildContext context, List<Auchan> products) {
               if (state.isLoading && products.isEmpty) {
