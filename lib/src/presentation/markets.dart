@@ -31,7 +31,7 @@ class Markets extends StatelessWidget {
                   children: [
                     TextButton(
                       onPressed: () {
-                        // Perform some action
+                        Navigator.of(context).pushNamed('/productsSearch');
                       },
                       child: const Text('Check products'),
                     ),

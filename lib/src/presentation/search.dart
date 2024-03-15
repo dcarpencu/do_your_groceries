@@ -30,33 +30,38 @@ class _SearchProductsState extends State<SearchProducts> {
 
   @override
   Widget build(BuildContext context) {
-        return StoreConnector<AppState, AppState>(
-          converter: (Store<AppState> store) => store.state,
-          builder: (BuildContext context, AppState state) {
-          return Scaffold(
-            appBar: AppBar(
-              title: const Text('Auchan products'),
-            ),
-            body: SearchProductsContainer(builder: (BuildContext context, List<Auchan> products) {
+    return StoreConnector<AppState, AppState>(
+      converter: (Store<AppState> store) => store.state,
+      builder: (BuildContext context, AppState state) {
+        return Scaffold(
+          appBar: AppBar(
+            title: const Text('Auchan products'),
+          ),
+          body: SearchProductsContainer(
+            builder: (BuildContext context, List<Auchan> products) {
               if (state.isLoading && products.isEmpty) {
                 return const Center(child: CircularProgressIndicator());
               }
-                return ListView.builder(
-                    itemCount: products.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      final Auchan product = products[index];
+              return ListView.builder(
+                itemCount: products.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final Auchan product = products[index];
 
-                      return Column(
-                        children: <Widget>[
-                          Image.network(product.image),
-                          Text(product.title),
-                          Text('${product.price}'),
-                        ],
-                      );
-                    },
+                  return Column(
+                    children: <Widget>[
+                      SizedBox(
+                          height: 320,
+                          child: Image.network(product.image)),
+                      Text(product.title),
+                      Text('${product.price}'),
+                    ],
                   );
                 },
-              ),);
-            },);
+              );
+            },
+          ),
+        );
+      },
+    );
   }
 }
