@@ -1,9 +1,11 @@
 import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/containers/home_page_container.dart';
 import 'package:do_you_groceries/src/models/index.dart';
+import 'package:do_you_groceries/src/presentation/shopping_list.dart';
 import 'package:do_you_groceries/src/ui_elements/card_design.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -70,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   SizedBox(
-                    height: 150,
+                    height: 240,
                     child: ListView.separated(
                       itemCount: lists.length,
                       scrollDirection: Axis.horizontal,
@@ -80,7 +82,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       itemBuilder: (BuildContext context, int index) {
                         return Container(
-                          width: 120,
+                          width: 210,
                           decoration: BoxDecoration(
                             color: Colors.greenAccent,
                             borderRadius: BorderRadius.circular(16),
@@ -88,19 +90,56 @@ class _HomePageState extends State<HomePage> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
-                              Container(
-                                height: 50,
-                                width: 50,
-                                decoration: const BoxDecoration(
-                                  color: Colors.white,
-                                  shape: BoxShape.circle,
+                              SizedBox(
+                                width: 120,
+                                height: 120,
+                                child: SvgPicture.asset('lib/src/assets/scissors-svgrepo-com.svg'),
+                              ),
+                              Text(
+                                lists[index],
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black,
+                                  fontSize: 16,
                                 ),
                               ),
-                              Text(lists[index], style: const TextStyle(
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black,
-                                fontSize: 16,
-                              ),),
+                              const Text(
+                                'short description',
+                                style: TextStyle(color: Colors.grey),
+                              ),
+                              const SizedBox(height: 10,),
+                                  Container(
+                                    height: 45,
+                                    width: 130,
+                                    decoration: BoxDecoration(
+                                      gradient: const LinearGradient(colors: <Color>[Colors.green, Colors.teal]),
+                                      borderRadius: BorderRadius.circular(16),
+                                    ),
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.transparent,
+                                        shadowColor: Colors.transparent,
+                                        elevation: 0,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(16),
+                                        ),
+
+                                      ),
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          // ignore: always_specify_types
+                                          MaterialPageRoute(builder: (BuildContext context) => const ShoppingList()),
+                                        );
+                                      },
+                                      child: const Center(
+                                          child: Text(
+                                        'View',
+                                        style:
+                                            TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600),
+                                      ),),),
+                              ),
+                              const SizedBox(height: 10,)
                             ],
                           ),
                         );
@@ -108,7 +147,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   const SizedBox(
-                    height: 40,
+                    height: 20,
                   ),
                   const Center(
                     child: Padding(
@@ -126,6 +165,7 @@ class _HomePageState extends State<HomePage> {
             ),
             floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
             bottomNavigationBar: BottomAppBar(
+              height: 60,
               shape: const CircularNotchedRectangle(),
               color: Colors.green,
               child: IconTheme(
