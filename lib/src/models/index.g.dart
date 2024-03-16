@@ -30,6 +30,12 @@ _$AppUser$Impl _$$AppUser$ImplFromJson(Map<String, dynamic> json) =>
       uid: json['uid'] as String,
       email: json['email'] as String,
       username: json['username'] as String,
+      userProductLists: (json['userProductLists'] as List<dynamic>?)
+              ?.map((e) => (e as List<dynamic>)
+                  .map((e) => Product.fromJson(e as Map<String, dynamic>))
+                  .toList())
+              .toList() ??
+          const <List<Product>>[],
     );
 
 Map<String, dynamic> _$$AppUser$ImplToJson(_$AppUser$Impl instance) =>
@@ -37,6 +43,7 @@ Map<String, dynamic> _$$AppUser$ImplToJson(_$AppUser$Impl instance) =>
       'uid': instance.uid,
       'email': instance.email,
       'username': instance.username,
+      'userProductLists': instance.userProductLists,
     };
 
 _$Auchan$Impl _$$Auchan$ImplFromJson(Map<String, dynamic> json) =>
@@ -51,4 +58,22 @@ Map<String, dynamic> _$$Auchan$ImplToJson(_$Auchan$Impl instance) =>
       'title': instance.title,
       'image': instance.image,
       'price': instance.price,
+    };
+
+_$Product$Impl _$$Product$ImplFromJson(Map<String, dynamic> json) =>
+    _$Product$Impl(
+      name: json['name'] as String,
+      price: (json['price'] as num).toDouble(),
+      description: json['description'] as String,
+      image: json['image'] as String?,
+      quantity: json['quantity'] as int? ?? 0,
+    );
+
+Map<String, dynamic> _$$Product$ImplToJson(_$Product$Impl instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'price': instance.price,
+      'description': instance.description,
+      'image': instance.image,
+      'quantity': instance.quantity,
     };

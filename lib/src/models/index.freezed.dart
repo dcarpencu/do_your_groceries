@@ -224,6 +224,8 @@ mixin _$AppUser {
   String get uid => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get username => throw _privateConstructorUsedError;
+  List<List<Product>> get userProductLists =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -235,7 +237,11 @@ abstract class $AppUserCopyWith<$Res> {
   factory $AppUserCopyWith(AppUser value, $Res Function(AppUser) then) =
       _$AppUserCopyWithImpl<$Res, AppUser>;
   @useResult
-  $Res call({String uid, String email, String username});
+  $Res call(
+      {String uid,
+      String email,
+      String username,
+      List<List<Product>> userProductLists});
 }
 
 /// @nodoc
@@ -254,6 +260,7 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
     Object? uid = null,
     Object? email = null,
     Object? username = null,
+    Object? userProductLists = null,
   }) {
     return _then(_value.copyWith(
       uid: null == uid
@@ -268,6 +275,10 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
+      userProductLists: null == userProductLists
+          ? _value.userProductLists
+          : userProductLists // ignore: cast_nullable_to_non_nullable
+              as List<List<Product>>,
     ) as $Val);
   }
 }
@@ -279,7 +290,11 @@ abstract class _$$AppUser$ImplCopyWith<$Res> implements $AppUserCopyWith<$Res> {
       __$$AppUser$ImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String uid, String email, String username});
+  $Res call(
+      {String uid,
+      String email,
+      String username,
+      List<List<Product>> userProductLists});
 }
 
 /// @nodoc
@@ -296,6 +311,7 @@ class __$$AppUser$ImplCopyWithImpl<$Res>
     Object? uid = null,
     Object? email = null,
     Object? username = null,
+    Object? userProductLists = null,
   }) {
     return _then(_$AppUser$Impl(
       uid: null == uid
@@ -310,6 +326,10 @@ class __$$AppUser$ImplCopyWithImpl<$Res>
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
+      userProductLists: null == userProductLists
+          ? _value._userProductLists
+          : userProductLists // ignore: cast_nullable_to_non_nullable
+              as List<List<Product>>,
     ));
   }
 }
@@ -318,7 +338,11 @@ class __$$AppUser$ImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AppUser$Impl implements AppUser$ {
   const _$AppUser$Impl(
-      {required this.uid, required this.email, required this.username});
+      {required this.uid,
+      required this.email,
+      required this.username,
+      final List<List<Product>> userProductLists = const <List<Product>>[]})
+      : _userProductLists = userProductLists;
 
   factory _$AppUser$Impl.fromJson(Map<String, dynamic> json) =>
       _$$AppUser$ImplFromJson(json);
@@ -329,10 +353,19 @@ class _$AppUser$Impl implements AppUser$ {
   final String email;
   @override
   final String username;
+  final List<List<Product>> _userProductLists;
+  @override
+  @JsonKey()
+  List<List<Product>> get userProductLists {
+    if (_userProductLists is EqualUnmodifiableListView)
+      return _userProductLists;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_userProductLists);
+  }
 
   @override
   String toString() {
-    return 'AppUser(uid: $uid, email: $email, username: $username)';
+    return 'AppUser(uid: $uid, email: $email, username: $username, userProductLists: $userProductLists)';
   }
 
   @override
@@ -343,12 +376,15 @@ class _$AppUser$Impl implements AppUser$ {
             (identical(other.uid, uid) || other.uid == uid) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.username, username) ||
-                other.username == username));
+                other.username == username) &&
+            const DeepCollectionEquality()
+                .equals(other._userProductLists, _userProductLists));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, uid, email, username);
+  int get hashCode => Object.hash(runtimeType, uid, email, username,
+      const DeepCollectionEquality().hash(_userProductLists));
 
   @JsonKey(ignore: true)
   @override
@@ -368,7 +404,8 @@ abstract class AppUser$ implements AppUser {
   const factory AppUser$(
       {required final String uid,
       required final String email,
-      required final String username}) = _$AppUser$Impl;
+      required final String username,
+      final List<List<Product>> userProductLists}) = _$AppUser$Impl;
 
   factory AppUser$.fromJson(Map<String, dynamic> json) =
       _$AppUser$Impl.fromJson;
@@ -379,6 +416,8 @@ abstract class AppUser$ implements AppUser {
   String get email;
   @override
   String get username;
+  @override
+  List<List<Product>> get userProductLists;
   @override
   @JsonKey(ignore: true)
   _$$AppUser$ImplCopyWith<_$AppUser$Impl> get copyWith =>
@@ -550,5 +589,226 @@ abstract class Auchan$ implements Auchan {
   @override
   @JsonKey(ignore: true)
   _$$Auchan$ImplCopyWith<_$Auchan$Impl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Product _$ProductFromJson(Map<String, dynamic> json) {
+  return Product$.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Product {
+  String get name => throw _privateConstructorUsedError;
+  double get price => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+  String? get image => throw _privateConstructorUsedError;
+  int get quantity => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ProductCopyWith<Product> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProductCopyWith<$Res> {
+  factory $ProductCopyWith(Product value, $Res Function(Product) then) =
+      _$ProductCopyWithImpl<$Res, Product>;
+  @useResult
+  $Res call(
+      {String name,
+      double price,
+      String description,
+      String? image,
+      int quantity});
+}
+
+/// @nodoc
+class _$ProductCopyWithImpl<$Res, $Val extends Product>
+    implements $ProductCopyWith<$Res> {
+  _$ProductCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? price = null,
+    Object? description = null,
+    Object? image = freezed,
+    Object? quantity = null,
+  }) {
+    return _then(_value.copyWith(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      price: null == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as double,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
+      quantity: null == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$Product$ImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
+  factory _$$Product$ImplCopyWith(
+          _$Product$Impl value, $Res Function(_$Product$Impl) then) =
+      __$$Product$ImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String name,
+      double price,
+      String description,
+      String? image,
+      int quantity});
+}
+
+/// @nodoc
+class __$$Product$ImplCopyWithImpl<$Res>
+    extends _$ProductCopyWithImpl<$Res, _$Product$Impl>
+    implements _$$Product$ImplCopyWith<$Res> {
+  __$$Product$ImplCopyWithImpl(
+      _$Product$Impl _value, $Res Function(_$Product$Impl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? price = null,
+    Object? description = null,
+    Object? image = freezed,
+    Object? quantity = null,
+  }) {
+    return _then(_$Product$Impl(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      price: null == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as double,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
+      quantity: null == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$Product$Impl implements Product$ {
+  const _$Product$Impl(
+      {required this.name,
+      required this.price,
+      required this.description,
+      this.image,
+      this.quantity = 0});
+
+  factory _$Product$Impl.fromJson(Map<String, dynamic> json) =>
+      _$$Product$ImplFromJson(json);
+
+  @override
+  final String name;
+  @override
+  final double price;
+  @override
+  final String description;
+  @override
+  final String? image;
+  @override
+  @JsonKey()
+  final int quantity;
+
+  @override
+  String toString() {
+    return 'Product(name: $name, price: $price, description: $description, image: $image, quantity: $quantity)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$Product$Impl &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.price, price) || other.price == price) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.quantity, quantity) ||
+                other.quantity == quantity));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, name, price, description, image, quantity);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$Product$ImplCopyWith<_$Product$Impl> get copyWith =>
+      __$$Product$ImplCopyWithImpl<_$Product$Impl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$Product$ImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class Product$ implements Product {
+  const factory Product$(
+      {required final String name,
+      required final double price,
+      required final String description,
+      final String? image,
+      final int quantity}) = _$Product$Impl;
+
+  factory Product$.fromJson(Map<String, dynamic> json) =
+      _$Product$Impl.fromJson;
+
+  @override
+  String get name;
+  @override
+  double get price;
+  @override
+  String get description;
+  @override
+  String? get image;
+  @override
+  int get quantity;
+  @override
+  @JsonKey(ignore: true)
+  _$$Product$ImplCopyWith<_$Product$Impl> get copyWith =>
       throw _privateConstructorUsedError;
 }
