@@ -26,7 +26,6 @@ Future<void> main() async {
   final Client client = Client();
   final AuchanApi _auchanApi = AuchanApi(client);
 
-
   final AuthApi _authApi = AuthApi(auth);
   final AppEpic epic = AppEpic(_authApi, _auchanApi);
 

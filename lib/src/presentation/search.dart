@@ -51,7 +51,7 @@ class _SearchProductsState extends State<SearchProducts> {
                     children: <Widget>[
                       SizedBox(
                           height: 320,
-                          child: Image.network(product.image)),
+                          child: Image.network(product.image),),
                       Text(product.title),
                       Text('${product.price}'),
                     ],

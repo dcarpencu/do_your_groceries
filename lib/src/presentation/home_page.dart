@@ -1,4 +1,3 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/containers/home_page_container.dart';
 import 'package:do_you_groceries/src/models/index.dart';
@@ -14,12 +13,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  static const List<String> lists = <String>['Personal list', 'Shared list', 'Auchan list', 'new list', 'Teo"s list'];
+
   @override
   void initState() {
     super.initState();
     StoreProvider.of<AppState>(context, listen: false).dispatch(GetProducts(_onResult));
   }
-
 
   void _onResult(AppAction action) {
     if (action is GetProductsSuccessful) {
@@ -35,6 +35,7 @@ class _HomePageState extends State<HomePage> {
     return HomePageContainer(
       builder: (BuildContext context, AppState state) {
         return MaterialApp(
+          debugShowCheckedModeBanner: false,
           home: Scaffold(
             appBar: AppBar(
               leading: IconButton(
@@ -43,59 +44,77 @@ class _HomePageState extends State<HomePage> {
                 },
                 icon: const Icon(Icons.logout),
               ),
-              title: const Text('DoYourGroceries'),
+              title: const Text(
+                'DoYourGroceries',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
               actions: const <Widget>[],
             ),
             body: SafeArea(
               child: Column(
                 children: <Widget>[
-                  // const Center(
-                  //   child: Card(
-                  //     child: SizedBox(
-                  //       width: 350,
-                  //       height: 150,
-                  //       child: Center(child: Text('Select one of your grocery lists')),
-                  //     ),
-                  //   ),
-                  // ),
-                  const Center(
-                    child: Padding(
-                      padding: EdgeInsets.all(8),
-                      // child: Card(
-                      //   child: SizedBox(
-                      //     width: MediaQuery.of(context).size.width,
-                      //     height: 200,
-                      //     child: const Center(child: Text('User greet message', style: TextStyle(fontSize: 16,),)),
-                      //   ),
-                      // ),
-                      child: CardWidget(),
-                    ),
+                  const SizedBox(
+                    height: 16,
                   ),
-                  const SizedBox(height: 40,),
                   const Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
                       padding: EdgeInsets.all(8),
-                      child: Text('Your lists. Here.', style: TextStyle(fontSize: 16,), textAlign: TextAlign.left,),
+                      child: Text(
+                        'Your lists. Here.',
+                        style: TextStyle(
+                          fontSize: 16,
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
                     ),
                   ),
-                  CarouselSlider(
-                    options: CarouselOptions(height: 200),
-                    items: <int>[1,2,3,4,5].map((int i) {
-                      return Builder(
-                        builder: (BuildContext context) {
-                          return Container(
-                              width: MediaQuery.of(context).size.width,
-                              margin: const EdgeInsets.symmetric(horizontal: 5),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(16),
-                                  color: Colors.green,
+                  SizedBox(
+                    height: 150,
+                    child: ListView.separated(
+                      itemCount: lists.length,
+                      scrollDirection: Axis.horizontal,
+                      padding: const EdgeInsets.only(left: 20, right: 20),
+                      separatorBuilder: (BuildContext context, int index) => const SizedBox(
+                        width: 16,
+                      ),
+                      itemBuilder: (BuildContext context, int index) {
+                        return Container(
+                          width: 120,
+                          decoration: BoxDecoration(
+                            color: Colors.greenAccent,
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              Container(
+                                height: 50,
+                                width: 50,
+                                decoration: const BoxDecoration(
+                                  color: Colors.white,
+                                  shape: BoxShape.circle,
+                                ),
                               ),
-                              child: Center(child: Text('shopping list $i', style: const TextStyle(fontSize: 16),)),
-                          );
-                        },
-                      );
-                    }).toList(),
+                              Text(lists[index], style: const TextStyle(
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black,
+                                fontSize: 16,
+                              ),),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  const Center(
+                    child: Padding(
+                      padding: EdgeInsets.all(8),
+                      child: CardWidget(),
+                    ),
                   ),
                 ],
               ),
@@ -140,5 +159,4 @@ class _HomePageState extends State<HomePage> {
       },
     );
   }
-
 }

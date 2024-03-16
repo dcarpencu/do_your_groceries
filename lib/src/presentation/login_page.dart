@@ -49,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  Image.asset('lib/src/assets/michi.png',
+                  Image.asset('lib/src/assets/checklist.png',
                   width: 200,
                   height: 200,),
                   TextFormField(

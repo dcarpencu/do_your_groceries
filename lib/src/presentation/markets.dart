@@ -28,7 +28,7 @@ class Markets extends StatelessWidget {
                   ),
                 ),
                 Row(
-                  children: [
+                  children: <Widget>[
                     TextButton(
                       onPressed: () {
                         Navigator.of(context).pushNamed('/productsSearch');
