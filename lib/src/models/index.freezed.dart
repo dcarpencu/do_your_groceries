@@ -224,8 +224,7 @@ mixin _$AppUser {
   String get uid => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get username => throw _privateConstructorUsedError;
-  List<List<Product>> get userProductLists =>
-      throw _privateConstructorUsedError;
+  List<Product> get userProductList => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -241,7 +240,7 @@ abstract class $AppUserCopyWith<$Res> {
       {String uid,
       String email,
       String username,
-      List<List<Product>> userProductLists});
+      List<Product> userProductList});
 }
 
 /// @nodoc
@@ -260,7 +259,7 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
     Object? uid = null,
     Object? email = null,
     Object? username = null,
-    Object? userProductLists = null,
+    Object? userProductList = null,
   }) {
     return _then(_value.copyWith(
       uid: null == uid
@@ -275,10 +274,10 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
-      userProductLists: null == userProductLists
-          ? _value.userProductLists
-          : userProductLists // ignore: cast_nullable_to_non_nullable
-              as List<List<Product>>,
+      userProductList: null == userProductList
+          ? _value.userProductList
+          : userProductList // ignore: cast_nullable_to_non_nullable
+              as List<Product>,
     ) as $Val);
   }
 }
@@ -294,7 +293,7 @@ abstract class _$$AppUser$ImplCopyWith<$Res> implements $AppUserCopyWith<$Res> {
       {String uid,
       String email,
       String username,
-      List<List<Product>> userProductLists});
+      List<Product> userProductList});
 }
 
 /// @nodoc
@@ -311,7 +310,7 @@ class __$$AppUser$ImplCopyWithImpl<$Res>
     Object? uid = null,
     Object? email = null,
     Object? username = null,
-    Object? userProductLists = null,
+    Object? userProductList = null,
   }) {
     return _then(_$AppUser$Impl(
       uid: null == uid
@@ -326,10 +325,10 @@ class __$$AppUser$ImplCopyWithImpl<$Res>
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
-      userProductLists: null == userProductLists
-          ? _value._userProductLists
-          : userProductLists // ignore: cast_nullable_to_non_nullable
-              as List<List<Product>>,
+      userProductList: null == userProductList
+          ? _value._userProductList
+          : userProductList // ignore: cast_nullable_to_non_nullable
+              as List<Product>,
     ));
   }
 }
@@ -341,8 +340,11 @@ class _$AppUser$Impl implements AppUser$ {
       {required this.uid,
       required this.email,
       required this.username,
-      final List<List<Product>> userProductLists = const <List<Product>>[]})
-      : _userProductLists = userProductLists;
+      final List<Product> userProductList = const <Product>[
+        Product(name: 'David', price: 11, description: 'sad'),
+        Product(name: 'name', price: 1, description: 'description')
+      ]})
+      : _userProductList = userProductList;
 
   factory _$AppUser$Impl.fromJson(Map<String, dynamic> json) =>
       _$$AppUser$ImplFromJson(json);
@@ -353,19 +355,18 @@ class _$AppUser$Impl implements AppUser$ {
   final String email;
   @override
   final String username;
-  final List<List<Product>> _userProductLists;
+  final List<Product> _userProductList;
   @override
   @JsonKey()
-  List<List<Product>> get userProductLists {
-    if (_userProductLists is EqualUnmodifiableListView)
-      return _userProductLists;
+  List<Product> get userProductList {
+    if (_userProductList is EqualUnmodifiableListView) return _userProductList;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_userProductLists);
+    return EqualUnmodifiableListView(_userProductList);
   }
 
   @override
   String toString() {
-    return 'AppUser(uid: $uid, email: $email, username: $username, userProductLists: $userProductLists)';
+    return 'AppUser(uid: $uid, email: $email, username: $username, userProductList: $userProductList)';
   }
 
   @override
@@ -378,13 +379,13 @@ class _$AppUser$Impl implements AppUser$ {
             (identical(other.username, username) ||
                 other.username == username) &&
             const DeepCollectionEquality()
-                .equals(other._userProductLists, _userProductLists));
+                .equals(other._userProductList, _userProductList));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, uid, email, username,
-      const DeepCollectionEquality().hash(_userProductLists));
+      const DeepCollectionEquality().hash(_userProductList));
 
   @JsonKey(ignore: true)
   @override
@@ -405,7 +406,7 @@ abstract class AppUser$ implements AppUser {
       {required final String uid,
       required final String email,
       required final String username,
-      final List<List<Product>> userProductLists}) = _$AppUser$Impl;
+      final List<Product> userProductList}) = _$AppUser$Impl;
 
   factory AppUser$.fromJson(Map<String, dynamic> json) =
       _$AppUser$Impl.fromJson;
@@ -417,7 +418,7 @@ abstract class AppUser$ implements AppUser {
   @override
   String get username;
   @override
-  List<List<Product>> get userProductLists;
+  List<Product> get userProductList;
   @override
   @JsonKey(ignore: true)
   _$$AppUser$ImplCopyWith<_$AppUser$Impl> get copyWith =>

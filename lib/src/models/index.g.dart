@@ -30,12 +30,13 @@ _$AppUser$Impl _$$AppUser$ImplFromJson(Map<String, dynamic> json) =>
       uid: json['uid'] as String,
       email: json['email'] as String,
       username: json['username'] as String,
-      userProductLists: (json['userProductLists'] as List<dynamic>?)
-              ?.map((e) => (e as List<dynamic>)
-                  .map((e) => Product.fromJson(e as Map<String, dynamic>))
-                  .toList())
+      userProductList: (json['userProductList'] as List<dynamic>?)
+              ?.map((e) => Product.fromJson(e as Map<String, dynamic>))
               .toList() ??
-          const <List<Product>>[],
+          const <Product>[
+            Product(name: 'David', price: 11, description: 'sad'),
+            Product(name: 'name', price: 1, description: 'description')
+          ],
     );
 
 Map<String, dynamic> _$$AppUser$ImplToJson(_$AppUser$Impl instance) =>
@@ -43,7 +44,7 @@ Map<String, dynamic> _$$AppUser$ImplToJson(_$AppUser$Impl instance) =>
       'uid': instance.uid,
       'email': instance.email,
       'username': instance.username,
-      'userProductLists': instance.userProductLists,
+      'userProductList': instance.userProductList,
     };
 
 _$Auchan$Impl _$$Auchan$ImplFromJson(Map<String, dynamic> json) =>

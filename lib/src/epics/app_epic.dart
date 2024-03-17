@@ -18,6 +18,7 @@ class AppEpic {
       TypedEpic<AppState, CreateUserStart>(_createUserStart),
       TypedEpic<AppState, LogoutStart>(_logoutStart),
       TypedEpic<AppState, GetProductsStart>(_getProductsStart),
+      TypedEpic<AppState, GetUserProductsStart>(_getUserProductsStart),
     ]);
   }
 
@@ -65,7 +66,17 @@ class AppEpic {
           .asyncMap((_) => _auchanApi.getProducts())
           .map<GetProducts>(GetProducts.successful)
           .onErrorReturnWith(GetProducts.error)
-      .doOnData(action.onResult);
+          .doOnData(action.onResult);
+    });
+  }
+
+  Stream<AppAction> _getUserProductsStart(Stream<GetUserProducts> actions, EpicStore<AppState> store) {
+    return actions.flatMap((GetUserProducts action) {
+      return Stream<void>.value(null)
+          .asyncMap((_) => _authApi.getCurrentProductList())
+          .map<GetUserProducts>(GetUserProducts.successful)
+          .onErrorReturnWith(GetUserProducts.error);
+          //.doOnData(action.onRes);
     });
   }
 }

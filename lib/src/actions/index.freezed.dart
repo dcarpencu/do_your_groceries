@@ -2539,3 +2539,932 @@ abstract class GetProductsError implements GetProducts, ErrorAction {
   _$$GetProductsErrorImplCopyWith<_$GetProductsErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$UpdateUserProductsList {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function() successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function()? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function()? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(UpdateUserProductsListStart value) $default, {
+    required TResult Function(UpdateUserProductsListSuccessful value)
+        successful,
+    required TResult Function(UpdateUserProductsListError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(UpdateUserProductsListStart value)? $default, {
+    TResult? Function(UpdateUserProductsListSuccessful value)? successful,
+    TResult? Function(UpdateUserProductsListError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(UpdateUserProductsListStart value)? $default, {
+    TResult Function(UpdateUserProductsListSuccessful value)? successful,
+    TResult Function(UpdateUserProductsListError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UpdateUserProductsListCopyWith<$Res> {
+  factory $UpdateUserProductsListCopyWith(UpdateUserProductsList value,
+          $Res Function(UpdateUserProductsList) then) =
+      _$UpdateUserProductsListCopyWithImpl<$Res, UpdateUserProductsList>;
+}
+
+/// @nodoc
+class _$UpdateUserProductsListCopyWithImpl<$Res,
+        $Val extends UpdateUserProductsList>
+    implements $UpdateUserProductsListCopyWith<$Res> {
+  _$UpdateUserProductsListCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$UpdateUserProductsListStartImplCopyWith<$Res> {
+  factory _$$UpdateUserProductsListStartImplCopyWith(
+          _$UpdateUserProductsListStartImpl value,
+          $Res Function(_$UpdateUserProductsListStartImpl) then) =
+      __$$UpdateUserProductsListStartImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$UpdateUserProductsListStartImplCopyWithImpl<$Res>
+    extends _$UpdateUserProductsListCopyWithImpl<$Res,
+        _$UpdateUserProductsListStartImpl>
+    implements _$$UpdateUserProductsListStartImplCopyWith<$Res> {
+  __$$UpdateUserProductsListStartImplCopyWithImpl(
+      _$UpdateUserProductsListStartImpl _value,
+      $Res Function(_$UpdateUserProductsListStartImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$UpdateUserProductsListStartImpl implements UpdateUserProductsListStart {
+  const _$UpdateUserProductsListStartImpl();
+
+  @override
+  String toString() {
+    return 'UpdateUserProductsList()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateUserProductsListStartImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function() successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return $default();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function()? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return $default?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function()? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(UpdateUserProductsListStart value) $default, {
+    required TResult Function(UpdateUserProductsListSuccessful value)
+        successful,
+    required TResult Function(UpdateUserProductsListError value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(UpdateUserProductsListStart value)? $default, {
+    TResult? Function(UpdateUserProductsListSuccessful value)? successful,
+    TResult? Function(UpdateUserProductsListError value)? error,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(UpdateUserProductsListStart value)? $default, {
+    TResult Function(UpdateUserProductsListSuccessful value)? successful,
+    TResult Function(UpdateUserProductsListError value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UpdateUserProductsListStart implements UpdateUserProductsList {
+  const factory UpdateUserProductsListStart() =
+      _$UpdateUserProductsListStartImpl;
+}
+
+/// @nodoc
+abstract class _$$UpdateUserProductsListSuccessfulImplCopyWith<$Res> {
+  factory _$$UpdateUserProductsListSuccessfulImplCopyWith(
+          _$UpdateUserProductsListSuccessfulImpl value,
+          $Res Function(_$UpdateUserProductsListSuccessfulImpl) then) =
+      __$$UpdateUserProductsListSuccessfulImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$UpdateUserProductsListSuccessfulImplCopyWithImpl<$Res>
+    extends _$UpdateUserProductsListCopyWithImpl<$Res,
+        _$UpdateUserProductsListSuccessfulImpl>
+    implements _$$UpdateUserProductsListSuccessfulImplCopyWith<$Res> {
+  __$$UpdateUserProductsListSuccessfulImplCopyWithImpl(
+      _$UpdateUserProductsListSuccessfulImpl _value,
+      $Res Function(_$UpdateUserProductsListSuccessfulImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$UpdateUserProductsListSuccessfulImpl
+    implements UpdateUserProductsListSuccessful {
+  const _$UpdateUserProductsListSuccessfulImpl();
+
+  @override
+  String toString() {
+    return 'UpdateUserProductsList.successful()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateUserProductsListSuccessfulImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function() successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return successful();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function()? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return successful?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function()? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(UpdateUserProductsListStart value) $default, {
+    required TResult Function(UpdateUserProductsListSuccessful value)
+        successful,
+    required TResult Function(UpdateUserProductsListError value) error,
+  }) {
+    return successful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(UpdateUserProductsListStart value)? $default, {
+    TResult? Function(UpdateUserProductsListSuccessful value)? successful,
+    TResult? Function(UpdateUserProductsListError value)? error,
+  }) {
+    return successful?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(UpdateUserProductsListStart value)? $default, {
+    TResult Function(UpdateUserProductsListSuccessful value)? successful,
+    TResult Function(UpdateUserProductsListError value)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UpdateUserProductsListSuccessful
+    implements UpdateUserProductsList {
+  const factory UpdateUserProductsListSuccessful() =
+      _$UpdateUserProductsListSuccessfulImpl;
+}
+
+/// @nodoc
+abstract class _$$UpdateUserProductsListErrorImplCopyWith<$Res> {
+  factory _$$UpdateUserProductsListErrorImplCopyWith(
+          _$UpdateUserProductsListErrorImpl value,
+          $Res Function(_$UpdateUserProductsListErrorImpl) then) =
+      __$$UpdateUserProductsListErrorImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Object error, StackTrace stackTrace});
+}
+
+/// @nodoc
+class __$$UpdateUserProductsListErrorImplCopyWithImpl<$Res>
+    extends _$UpdateUserProductsListCopyWithImpl<$Res,
+        _$UpdateUserProductsListErrorImpl>
+    implements _$$UpdateUserProductsListErrorImplCopyWith<$Res> {
+  __$$UpdateUserProductsListErrorImplCopyWithImpl(
+      _$UpdateUserProductsListErrorImpl _value,
+      $Res Function(_$UpdateUserProductsListErrorImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+    Object? stackTrace = null,
+  }) {
+    return _then(_$UpdateUserProductsListErrorImpl(
+      null == error ? _value.error : error,
+      null == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateUserProductsListErrorImpl implements UpdateUserProductsListError {
+  const _$UpdateUserProductsListErrorImpl(this.error, this.stackTrace);
+
+  @override
+  final Object error;
+  @override
+  final StackTrace stackTrace;
+
+  @override
+  String toString() {
+    return 'UpdateUserProductsList.error(error: $error, stackTrace: $stackTrace)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateUserProductsListErrorImpl &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateUserProductsListErrorImplCopyWith<_$UpdateUserProductsListErrorImpl>
+      get copyWith => __$$UpdateUserProductsListErrorImplCopyWithImpl<
+          _$UpdateUserProductsListErrorImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function() successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return error(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function()? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return error?.call(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function()? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error, stackTrace);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(UpdateUserProductsListStart value) $default, {
+    required TResult Function(UpdateUserProductsListSuccessful value)
+        successful,
+    required TResult Function(UpdateUserProductsListError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(UpdateUserProductsListStart value)? $default, {
+    TResult? Function(UpdateUserProductsListSuccessful value)? successful,
+    TResult? Function(UpdateUserProductsListError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(UpdateUserProductsListStart value)? $default, {
+    TResult Function(UpdateUserProductsListSuccessful value)? successful,
+    TResult Function(UpdateUserProductsListError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UpdateUserProductsListError
+    implements UpdateUserProductsList, ErrorAction {
+  const factory UpdateUserProductsListError(
+          final Object error, final StackTrace stackTrace) =
+      _$UpdateUserProductsListErrorImpl;
+
+  Object get error;
+  StackTrace get stackTrace;
+  @JsonKey(ignore: true)
+  _$$UpdateUserProductsListErrorImplCopyWith<_$UpdateUserProductsListErrorImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$GetUserProducts {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function(List<Product> products) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function(List<Product> products)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function(List<Product> products)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetUserProductsStart value) $default, {
+    required TResult Function(GetUserProductsSuccessful value) successful,
+    required TResult Function(GetUserProductsError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(GetUserProductsStart value)? $default, {
+    TResult? Function(GetUserProductsSuccessful value)? successful,
+    TResult? Function(GetUserProductsError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetUserProductsStart value)? $default, {
+    TResult Function(GetUserProductsSuccessful value)? successful,
+    TResult Function(GetUserProductsError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GetUserProductsCopyWith<$Res> {
+  factory $GetUserProductsCopyWith(
+          GetUserProducts value, $Res Function(GetUserProducts) then) =
+      _$GetUserProductsCopyWithImpl<$Res, GetUserProducts>;
+}
+
+/// @nodoc
+class _$GetUserProductsCopyWithImpl<$Res, $Val extends GetUserProducts>
+    implements $GetUserProductsCopyWith<$Res> {
+  _$GetUserProductsCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$GetUserProductsStartImplCopyWith<$Res> {
+  factory _$$GetUserProductsStartImplCopyWith(_$GetUserProductsStartImpl value,
+          $Res Function(_$GetUserProductsStartImpl) then) =
+      __$$GetUserProductsStartImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GetUserProductsStartImplCopyWithImpl<$Res>
+    extends _$GetUserProductsCopyWithImpl<$Res, _$GetUserProductsStartImpl>
+    implements _$$GetUserProductsStartImplCopyWith<$Res> {
+  __$$GetUserProductsStartImplCopyWithImpl(_$GetUserProductsStartImpl _value,
+      $Res Function(_$GetUserProductsStartImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$GetUserProductsStartImpl implements GetUserProductsStart {
+  const _$GetUserProductsStartImpl();
+
+  @override
+  String toString() {
+    return 'GetUserProducts()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetUserProductsStartImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function(List<Product> products) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return $default();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function(List<Product> products)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return $default?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function(List<Product> products)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetUserProductsStart value) $default, {
+    required TResult Function(GetUserProductsSuccessful value) successful,
+    required TResult Function(GetUserProductsError value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(GetUserProductsStart value)? $default, {
+    TResult? Function(GetUserProductsSuccessful value)? successful,
+    TResult? Function(GetUserProductsError value)? error,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetUserProductsStart value)? $default, {
+    TResult Function(GetUserProductsSuccessful value)? successful,
+    TResult Function(GetUserProductsError value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetUserProductsStart implements GetUserProducts {
+  const factory GetUserProductsStart() = _$GetUserProductsStartImpl;
+}
+
+/// @nodoc
+abstract class _$$GetUserProductsSuccessfulImplCopyWith<$Res> {
+  factory _$$GetUserProductsSuccessfulImplCopyWith(
+          _$GetUserProductsSuccessfulImpl value,
+          $Res Function(_$GetUserProductsSuccessfulImpl) then) =
+      __$$GetUserProductsSuccessfulImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<Product> products});
+}
+
+/// @nodoc
+class __$$GetUserProductsSuccessfulImplCopyWithImpl<$Res>
+    extends _$GetUserProductsCopyWithImpl<$Res, _$GetUserProductsSuccessfulImpl>
+    implements _$$GetUserProductsSuccessfulImplCopyWith<$Res> {
+  __$$GetUserProductsSuccessfulImplCopyWithImpl(
+      _$GetUserProductsSuccessfulImpl _value,
+      $Res Function(_$GetUserProductsSuccessfulImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? products = null,
+  }) {
+    return _then(_$GetUserProductsSuccessfulImpl(
+      null == products
+          ? _value._products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<Product>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetUserProductsSuccessfulImpl implements GetUserProductsSuccessful {
+  const _$GetUserProductsSuccessfulImpl(final List<Product> products)
+      : _products = products;
+
+  final List<Product> _products;
+  @override
+  List<Product> get products {
+    if (_products is EqualUnmodifiableListView) return _products;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_products);
+  }
+
+  @override
+  String toString() {
+    return 'GetUserProducts.successful(products: $products)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetUserProductsSuccessfulImpl &&
+            const DeepCollectionEquality().equals(other._products, _products));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_products));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetUserProductsSuccessfulImplCopyWith<_$GetUserProductsSuccessfulImpl>
+      get copyWith => __$$GetUserProductsSuccessfulImplCopyWithImpl<
+          _$GetUserProductsSuccessfulImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function(List<Product> products) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return successful(products);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function(List<Product> products)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return successful?.call(products);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function(List<Product> products)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(products);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetUserProductsStart value) $default, {
+    required TResult Function(GetUserProductsSuccessful value) successful,
+    required TResult Function(GetUserProductsError value) error,
+  }) {
+    return successful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(GetUserProductsStart value)? $default, {
+    TResult? Function(GetUserProductsSuccessful value)? successful,
+    TResult? Function(GetUserProductsError value)? error,
+  }) {
+    return successful?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetUserProductsStart value)? $default, {
+    TResult Function(GetUserProductsSuccessful value)? successful,
+    TResult Function(GetUserProductsError value)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetUserProductsSuccessful implements GetUserProducts {
+  const factory GetUserProductsSuccessful(final List<Product> products) =
+      _$GetUserProductsSuccessfulImpl;
+
+  List<Product> get products;
+  @JsonKey(ignore: true)
+  _$$GetUserProductsSuccessfulImplCopyWith<_$GetUserProductsSuccessfulImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetUserProductsErrorImplCopyWith<$Res> {
+  factory _$$GetUserProductsErrorImplCopyWith(_$GetUserProductsErrorImpl value,
+          $Res Function(_$GetUserProductsErrorImpl) then) =
+      __$$GetUserProductsErrorImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Object error, StackTrace stackTrace});
+}
+
+/// @nodoc
+class __$$GetUserProductsErrorImplCopyWithImpl<$Res>
+    extends _$GetUserProductsCopyWithImpl<$Res, _$GetUserProductsErrorImpl>
+    implements _$$GetUserProductsErrorImplCopyWith<$Res> {
+  __$$GetUserProductsErrorImplCopyWithImpl(_$GetUserProductsErrorImpl _value,
+      $Res Function(_$GetUserProductsErrorImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+    Object? stackTrace = null,
+  }) {
+    return _then(_$GetUserProductsErrorImpl(
+      null == error ? _value.error : error,
+      null == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetUserProductsErrorImpl implements GetUserProductsError {
+  const _$GetUserProductsErrorImpl(this.error, this.stackTrace);
+
+  @override
+  final Object error;
+  @override
+  final StackTrace stackTrace;
+
+  @override
+  String toString() {
+    return 'GetUserProducts.error(error: $error, stackTrace: $stackTrace)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetUserProductsErrorImpl &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetUserProductsErrorImplCopyWith<_$GetUserProductsErrorImpl>
+      get copyWith =>
+          __$$GetUserProductsErrorImplCopyWithImpl<_$GetUserProductsErrorImpl>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function(List<Product> products) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return error(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function(List<Product> products)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return error?.call(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function(List<Product> products)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error, stackTrace);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetUserProductsStart value) $default, {
+    required TResult Function(GetUserProductsSuccessful value) successful,
+    required TResult Function(GetUserProductsError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(GetUserProductsStart value)? $default, {
+    TResult? Function(GetUserProductsSuccessful value)? successful,
+    TResult? Function(GetUserProductsError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetUserProductsStart value)? $default, {
+    TResult Function(GetUserProductsSuccessful value)? successful,
+    TResult Function(GetUserProductsError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetUserProductsError implements GetUserProducts, ErrorAction {
+  const factory GetUserProductsError(
+          final Object error, final StackTrace stackTrace) =
+      _$GetUserProductsErrorImpl;
+
+  Object get error;
+  StackTrace get stackTrace;
+  @JsonKey(ignore: true)
+  _$$GetUserProductsErrorImplCopyWith<_$GetUserProductsErrorImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}

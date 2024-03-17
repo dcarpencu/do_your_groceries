@@ -7,6 +7,8 @@ part 'get_current_user.dart';
 part 'login.dart';
 part 'logout.dart';
 part 'get_products.dart';
+part 'get_user_product_lists.dart';
+part 'get_user_products.dart';
 
 
 abstract class AppAction {}

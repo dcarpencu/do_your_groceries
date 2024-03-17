@@ -26,6 +26,8 @@ Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   TypedReducer<AppState, GetProductsStart>(_getProductsStart),
   TypedReducer<AppState, GetProductsSuccessful>(_getProductsSuccessful),
   TypedReducer<AppState, GetProductsError>(_getProductsError),
+  TypedReducer<AppState, GetUserProductsSuccessful>(_getUserProductsSuccessful),
+  TypedReducer<AppState, GetUserProductsError>(_getUserProductsError),
   TypedReducer<AppState, LogoutSuccessful>(_logoutSuccessful),
 ]);
 
@@ -46,5 +48,12 @@ AppState _getProductsSuccessful(AppState state, GetProductsSuccessful action) {
 }
 
 AppState _getProductsError(AppState state, GetProductsError action) {
+  return state.copyWith(isLoading: true);
+}
+
+AppState _getUserProductsSuccessful(AppState state, GetUserProductsSuccessful action) {
+  return state.copyWith(isLoading: false, user: state.user?.copyWith(userProductList: action.products));
+}
+AppState _getUserProductsError(AppState state, GetUserProductsError action) {
   return state.copyWith(isLoading: true);
 }

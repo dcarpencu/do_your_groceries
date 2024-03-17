@@ -17,6 +17,7 @@ import 'package:http/http.dart';
 
 import 'package:redux/redux.dart';
 import 'package:redux_epics/redux_epics.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +27,9 @@ Future<void> main() async {
   final Client client = Client();
   final AuchanApi _auchanApi = AuchanApi(client);
 
-  final AuthApi _authApi = AuthApi(auth);
+  final SharedPreferences preferences = await SharedPreferences.getInstance();
+
+  final AuthApi _authApi = AuthApi(auth, preferences);
   final AppEpic epic = AppEpic(_authApi, _auchanApi);
 
   final Store<AppState> store = Store<AppState>(
