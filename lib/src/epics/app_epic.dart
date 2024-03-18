@@ -18,7 +18,7 @@ class AppEpic {
       TypedEpic<AppState, CreateUserStart>(_createUserStart),
       TypedEpic<AppState, LogoutStart>(_logoutStart),
       TypedEpic<AppState, GetProductsStart>(_getProductsStart),
-      // TypedEpic<AppState, GetUserProductsStart>(_getUserProductsStart),
+      //TypedEpic<AppState, UpdateUserProductsListStart>(_updateUserProductsListStart),
     ]);
   }
 
@@ -78,5 +78,12 @@ class AppEpic {
   //         .onErrorReturnWith(GetUserProducts.error);
   //         //.doOnData(action.onRes);
   //   });
+  // }
+
+  // Stream<AppAction> _updateUserProductsListStart(Stream<UpdateUserProductsListStart> actions, EpicStore<AppState> store) {
+  //   return actions.flatMap((GetUserProducts action) {
+  //     return Stream<void>.value(null)
+  //         .asyncMap((_) => )
+  //   })
   // }
 }

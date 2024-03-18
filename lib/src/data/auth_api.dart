@@ -47,51 +47,20 @@ class AuthApi {
     return user;
   }
 
-  // Future<void> updateFavoriteMovies(Product product, {required bool add}) async {
-  //   final List<Product> products = getCurrentProductList();
+  Future<void> updateUserProductsList(String uid, Product product, {required bool add}) async {
+    await _firestore.runTransaction((Transaction transaction) async {
+      final DocumentSnapshot<Map<String, dynamic>> snapshot = await transaction.get(_firestore.doc('users/$uid'));
+      AppUser user = AppUser.fromJson(snapshot.data()!);
+      if (add) {
+        user = user.copyWith(userProductList: <Product>[...user.userProductList, product]);
+      } else {
+        user = user.copyWith(userProductList: <Product>[...user.userProductList]..remove(product));
+      }
+      transaction.set(_firestore.doc('/users/$uid'), user.toJson());
+    });
+  }
+
+  // Future<List<Product>> getUserProductsList() async{
   //
-  //   if (add) {
-  //     products.add(product);
-  //   } else {
-  //     products.remove(product);
-  //   }
-  //
-  //   await _preferences.setString(_kUserProductListString, jsonEncode(products));
   // }
-
-  // Future<List<Product>> getUserProducts() async {
-  //   final User? currentUser = _auth.currentUser;
-  //   if (currentUser != null) {
-  //     final DocumentSnapshot<Map<String, dynamic>> snapshot = await _firestore.doc('users/${currentUser.uid}').get();
-  //
-  //     if (snapshot.exists) {
-  //       return AppUser.fromJson(snapshot.data()!);
-  //     } else {
-  //       final AppUser user =
-  //       AppUser(uid: currentUser.uid, email: currentUser.email!, username: currentUser.displayName!);
-  //
-  //       await _firestore.doc('users/${user.uid}').set(user.toJson());
-  //       return user;
-  //     }
-  //   }
-  //   return null;
-  // }
-  // }
-
-
-  // Future<void> updateFavorite(String uid, int id, {required bool add}) async {
-  //   await _firestore.runTransaction((Transaction transaction) async {
-  //     final DocumentSnapshot<Map<String, dynamic>> snapshot = await transaction.get(_firestore.doc('users/$uid'));
-  //     AppUser user = AppUser.fromJson(snapshot.data()!);
-  //     if (add) {
-  //       user = user.copyWith(favoriteMovies: <int>[...user.favoriteMovies, id]);
-  //     } else {
-  //       user = user.copyWith(favoriteMovies: <int>[...user.favoriteMovies]..remove(id));
-  //     }
-  //
-  //     transaction.set(_firestore.doc('/users/$uid'), user.toJson());
-  //   });
-  // }
-
-
 }
