@@ -20,13 +20,11 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    StoreProvider.of<AppState>(context, listen: false).dispatch(GetProducts(_onResult));
+    //StoreProvider.of<AppState>(context, listen: false).dispatch(GetProducts(_onResult));
   }
 
   void _onResult(AppAction action) {
-    if (action is GetProductsSuccessful) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Page loaded.')));
-    } else if (action is GetProductsError) {
+    if (action is GetProductsError) {
       final Object error = action.error;
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('An error has occurred $error')));
     }
@@ -149,12 +147,12 @@ class _HomePageState extends State<HomePage> {
                   const SizedBox(
                     height: 20,
                   ),
-                  const Center(
-                    child: Padding(
-                      padding: EdgeInsets.all(8),
-                      child: CardWidget(),
-                    ),
-                  ),
+                  // const Center(
+                  //   child: Padding(
+                  //     padding: EdgeInsets.all(8),
+                  //     child: CardWidget(),
+                  //   ),
+                  // ),
                 ],
               ),
             ),

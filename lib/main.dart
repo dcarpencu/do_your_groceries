@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/data/auchan_api.dart';
 import 'package:do_you_groceries/src/data/auth_api.dart';
@@ -23,13 +24,14 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final FirebaseApp app = await Firebase.initializeApp();
   final FirebaseAuth auth = FirebaseAuth.instanceFor(app: app);
+  final FirebaseFirestore firestore = FirebaseFirestore.instanceFor(app: app);
 
   final Client client = Client();
   final AuchanApi _auchanApi = AuchanApi(client);
 
   final SharedPreferences preferences = await SharedPreferences.getInstance();
 
-  final AuthApi _authApi = AuthApi(auth, preferences);
+  final AuthApi _authApi = AuthApi(auth, firestore);
   final AppEpic epic = AppEpic(_authApi, _auchanApi);
 
   final Store<AppState> store = Store<AppState>(

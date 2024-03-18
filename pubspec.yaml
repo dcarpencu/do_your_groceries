@@ -12,6 +12,7 @@ dependencies:
 
   carousel_slider: ^4.2.1
   cupertino_icons: ^1.0.6
+  cloud_firestore: ^4.15.9
   firebase_auth: ^4.16.0
   firebase_core: ^2.24.2
   flutter:
@@ -40,7 +41,6 @@ flutter:
 
   uses-material-design: true
   assets:
-    - lib/src/assets/burger_king.png
     - lib/src/assets/michi.png
     - lib/src/assets/checklist.png
     - lib/src/assets/scissors-svgrepo-com.svg

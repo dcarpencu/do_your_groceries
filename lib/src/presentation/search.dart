@@ -16,7 +16,7 @@ class _SearchProductsState extends State<SearchProducts> {
   @override
   void initState() {
     super.initState();
-    StoreProvider.of<AppState>(context, listen: false).dispatch(GetProducts(_onResult));
+    // StoreProvider.of<AppState>(context, listen: false).dispatch(GetProducts(_onResult));
   }
 
   void _onResult(AppAction action) {

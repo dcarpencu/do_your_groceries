@@ -8,21 +8,21 @@ part of 'index.dart';
 
 _$AppState$Impl _$$AppState$ImplFromJson(Map<String, dynamic> json) =>
     _$AppState$Impl(
+      user: json['user'] == null
+          ? null
+          : AppUser.fromJson(json['user'] as Map<String, dynamic>),
+      isLoading: json['isLoading'] as bool? ?? true,
       products: (json['products'] as List<dynamic>?)
               ?.map((e) => Auchan.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const <Auchan>[],
-      isLoading: json['isLoading'] as bool? ?? true,
-      user: json['user'] == null
-          ? null
-          : AppUser.fromJson(json['user'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$AppState$ImplToJson(_$AppState$Impl instance) =>
     <String, dynamic>{
-      'products': instance.products,
-      'isLoading': instance.isLoading,
       'user': instance.user,
+      'isLoading': instance.isLoading,
+      'products': instance.products,
     };
 
 _$AppUser$Impl _$$AppUser$ImplFromJson(Map<String, dynamic> json) =>
@@ -33,10 +33,7 @@ _$AppUser$Impl _$$AppUser$ImplFromJson(Map<String, dynamic> json) =>
       userProductList: (json['userProductList'] as List<dynamic>?)
               ?.map((e) => Product.fromJson(e as Map<String, dynamic>))
               .toList() ??
-          const <Product>[
-            Product(name: 'David', price: 11, description: 'sad'),
-            Product(name: 'name', price: 1, description: 'description')
-          ],
+          const <Product>[],
     );
 
 Map<String, dynamic> _$$AppUser$ImplToJson(_$AppUser$Impl instance) =>
@@ -65,7 +62,6 @@ _$Product$Impl _$$Product$ImplFromJson(Map<String, dynamic> json) =>
     _$Product$Impl(
       name: json['name'] as String,
       price: (json['price'] as num).toDouble(),
-      description: json['description'] as String,
       image: json['image'] as String?,
       quantity: json['quantity'] as int? ?? 0,
     );
@@ -74,7 +70,6 @@ Map<String, dynamic> _$$Product$ImplToJson(_$Product$Impl instance) =>
     <String, dynamic>{
       'name': instance.name,
       'price': instance.price,
-      'description': instance.description,
       'image': instance.image,
       'quantity': instance.quantity,
     };

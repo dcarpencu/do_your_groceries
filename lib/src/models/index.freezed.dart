@@ -20,9 +20,9 @@ AppState _$AppStateFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AppState {
-  List<Auchan> get products => throw _privateConstructorUsedError;
-  bool get isLoading => throw _privateConstructorUsedError;
   AppUser? get user => throw _privateConstructorUsedError;
+  bool get isLoading => throw _privateConstructorUsedError;
+  List<Auchan> get products => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +35,7 @@ abstract class $AppStateCopyWith<$Res> {
   factory $AppStateCopyWith(AppState value, $Res Function(AppState) then) =
       _$AppStateCopyWithImpl<$Res, AppState>;
   @useResult
-  $Res call({List<Auchan> products, bool isLoading, AppUser? user});
+  $Res call({AppUser? user, bool isLoading, List<Auchan> products});
 
   $AppUserCopyWith<$Res>? get user;
 }
@@ -53,23 +53,23 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? products = null,
-    Object? isLoading = null,
     Object? user = freezed,
+    Object? isLoading = null,
+    Object? products = null,
   }) {
     return _then(_value.copyWith(
-      products: null == products
-          ? _value.products
-          : products // ignore: cast_nullable_to_non_nullable
-              as List<Auchan>,
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as AppUser?,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      products: null == products
+          ? _value.products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<Auchan>,
     ) as $Val);
   }
 
@@ -94,7 +94,7 @@ abstract class _$$AppState$ImplCopyWith<$Res>
       __$$AppState$ImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Auchan> products, bool isLoading, AppUser? user});
+  $Res call({AppUser? user, bool isLoading, List<Auchan> products});
 
   @override
   $AppUserCopyWith<$Res>? get user;
@@ -111,23 +111,23 @@ class __$$AppState$ImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? products = null,
-    Object? isLoading = null,
     Object? user = freezed,
+    Object? isLoading = null,
+    Object? products = null,
   }) {
     return _then(_$AppState$Impl(
-      products: null == products
-          ? _value._products
-          : products // ignore: cast_nullable_to_non_nullable
-              as List<Auchan>,
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as AppUser?,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      products: null == products
+          ? _value._products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<Auchan>,
     ));
   }
 }
@@ -136,14 +136,19 @@ class __$$AppState$ImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AppState$Impl implements AppState$ {
   const _$AppState$Impl(
-      {final List<Auchan> products = const <Auchan>[],
+      {this.user,
       this.isLoading = true,
-      this.user})
+      final List<Auchan> products = const <Auchan>[]})
       : _products = products;
 
   factory _$AppState$Impl.fromJson(Map<String, dynamic> json) =>
       _$$AppState$ImplFromJson(json);
 
+  @override
+  final AppUser? user;
+  @override
+  @JsonKey()
+  final bool isLoading;
   final List<Auchan> _products;
   @override
   @JsonKey()
@@ -154,14 +159,8 @@ class _$AppState$Impl implements AppState$ {
   }
 
   @override
-  @JsonKey()
-  final bool isLoading;
-  @override
-  final AppUser? user;
-
-  @override
   String toString() {
-    return 'AppState(products: $products, isLoading: $isLoading, user: $user)';
+    return 'AppState(user: $user, isLoading: $isLoading, products: $products)';
   }
 
   @override
@@ -169,16 +168,16 @@ class _$AppState$Impl implements AppState$ {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AppState$Impl &&
-            const DeepCollectionEquality().equals(other._products, _products) &&
+            (identical(other.user, user) || other.user == user) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
-            (identical(other.user, user) || other.user == user));
+            const DeepCollectionEquality().equals(other._products, _products));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_products), isLoading, user);
+  int get hashCode => Object.hash(runtimeType, user, isLoading,
+      const DeepCollectionEquality().hash(_products));
 
   @JsonKey(ignore: true)
   @override
@@ -196,19 +195,19 @@ class _$AppState$Impl implements AppState$ {
 
 abstract class AppState$ implements AppState {
   const factory AppState$(
-      {final List<Auchan> products,
+      {final AppUser? user,
       final bool isLoading,
-      final AppUser? user}) = _$AppState$Impl;
+      final List<Auchan> products}) = _$AppState$Impl;
 
   factory AppState$.fromJson(Map<String, dynamic> json) =
       _$AppState$Impl.fromJson;
 
   @override
-  List<Auchan> get products;
+  AppUser? get user;
   @override
   bool get isLoading;
   @override
-  AppUser? get user;
+  List<Auchan> get products;
   @override
   @JsonKey(ignore: true)
   _$$AppState$ImplCopyWith<_$AppState$Impl> get copyWith =>
@@ -340,10 +339,7 @@ class _$AppUser$Impl implements AppUser$ {
       {required this.uid,
       required this.email,
       required this.username,
-      final List<Product> userProductList = const <Product>[
-        Product(name: 'David', price: 11, description: 'sad'),
-        Product(name: 'name', price: 1, description: 'description')
-      ]})
+      final List<Product> userProductList = const <Product>[]})
       : _userProductList = userProductList;
 
   factory _$AppUser$Impl.fromJson(Map<String, dynamic> json) =>
@@ -601,7 +597,6 @@ Product _$ProductFromJson(Map<String, dynamic> json) {
 mixin _$Product {
   String get name => throw _privateConstructorUsedError;
   double get price => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
 
@@ -615,12 +610,7 @@ abstract class $ProductCopyWith<$Res> {
   factory $ProductCopyWith(Product value, $Res Function(Product) then) =
       _$ProductCopyWithImpl<$Res, Product>;
   @useResult
-  $Res call(
-      {String name,
-      double price,
-      String description,
-      String? image,
-      int quantity});
+  $Res call({String name, double price, String? image, int quantity});
 }
 
 /// @nodoc
@@ -638,7 +628,6 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
   $Res call({
     Object? name = null,
     Object? price = null,
-    Object? description = null,
     Object? image = freezed,
     Object? quantity = null,
   }) {
@@ -651,10 +640,6 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as double,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -674,12 +659,7 @@ abstract class _$$Product$ImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
       __$$Product$ImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String name,
-      double price,
-      String description,
-      String? image,
-      int quantity});
+  $Res call({String name, double price, String? image, int quantity});
 }
 
 /// @nodoc
@@ -695,7 +675,6 @@ class __$$Product$ImplCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? price = null,
-    Object? description = null,
     Object? image = freezed,
     Object? quantity = null,
   }) {
@@ -708,10 +687,6 @@ class __$$Product$ImplCopyWithImpl<$Res>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as double,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -728,11 +703,7 @@ class __$$Product$ImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$Product$Impl implements Product$ {
   const _$Product$Impl(
-      {required this.name,
-      required this.price,
-      required this.description,
-      this.image,
-      this.quantity = 0});
+      {required this.name, required this.price, this.image, this.quantity = 0});
 
   factory _$Product$Impl.fromJson(Map<String, dynamic> json) =>
       _$$Product$ImplFromJson(json);
@@ -742,8 +713,6 @@ class _$Product$Impl implements Product$ {
   @override
   final double price;
   @override
-  final String description;
-  @override
   final String? image;
   @override
   @JsonKey()
@@ -751,7 +720,7 @@ class _$Product$Impl implements Product$ {
 
   @override
   String toString() {
-    return 'Product(name: $name, price: $price, description: $description, image: $image, quantity: $quantity)';
+    return 'Product(name: $name, price: $price, image: $image, quantity: $quantity)';
   }
 
   @override
@@ -761,8 +730,6 @@ class _$Product$Impl implements Product$ {
             other is _$Product$Impl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.price, price) || other.price == price) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
             (identical(other.image, image) || other.image == image) &&
             (identical(other.quantity, quantity) ||
                 other.quantity == quantity));
@@ -770,8 +737,7 @@ class _$Product$Impl implements Product$ {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, name, price, description, image, quantity);
+  int get hashCode => Object.hash(runtimeType, name, price, image, quantity);
 
   @JsonKey(ignore: true)
   @override
@@ -791,7 +757,6 @@ abstract class Product$ implements Product {
   const factory Product$(
       {required final String name,
       required final double price,
-      required final String description,
       final String? image,
       final int quantity}) = _$Product$Impl;
 
@@ -802,8 +767,6 @@ abstract class Product$ implements Product {
   String get name;
   @override
   double get price;
-  @override
-  String get description;
   @override
   String? get image;
   @override

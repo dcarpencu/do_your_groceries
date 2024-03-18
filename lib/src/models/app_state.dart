@@ -3,9 +3,9 @@ part of 'index.dart';
 @freezed
 class AppState with _$AppState {
   const factory AppState({
-    @Default(<Auchan>[]) final List<Auchan> products,
-    @Default(true) final bool isLoading,
     AppUser? user,
+    @Default(true) final bool isLoading,
+    @Default(<Auchan>[]) final List<Auchan> products,
 }) = AppState$;
 
   factory AppState.fromJson(Map<dynamic, dynamic> json) => _$AppStateFromJson(Map<String, dynamic>.from(json));

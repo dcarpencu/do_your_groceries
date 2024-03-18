@@ -5,7 +5,6 @@ class Product with _$Product {
   const factory Product({
     required String name,
     required double price,
-    required String description,
     final String? image,
     @Default(0) final int quantity,
 }) = Product$;
