@@ -2,6 +2,7 @@ import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/containers/grocery_lists_container.dart';
 import 'package:do_you_groceries/src/containers/home_page_container.dart';
 import 'package:do_you_groceries/src/models/index.dart';
+import 'package:do_you_groceries/src/presentation/create_list_page.dart';
 import 'package:do_you_groceries/src/presentation/shopping_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -161,7 +162,12 @@ class _HomePageState extends State<HomePage> {
                 ),
                 floatingActionButton: FloatingActionButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/createList');
+                    Navigator.push(
+                      context,
+                      // ignore: always_specify_types
+                      MaterialPageRoute(builder: (BuildContext context) => const CreateListPage()),
+                    );
+                    //Navigator.pushNamed(context, '/createList');
                   },
                   tooltip: 'Create',
                   child: const Icon(Icons.playlist_add),
