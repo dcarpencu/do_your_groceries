@@ -42,8 +42,17 @@ class _ShoppingListState extends State<ShoppingList> {
           body:  UserContainer(
            builder: (BuildContext context, AppUser? user) {
              print(user!.userProductList);
-             return Text('Dada');
 
+             return Column(
+               children: <Widget>[
+                 IconButton(onPressed: (){
+                   final Product product = Product(name: 'Rosi', price: 15);
+                   print(product);
+                   StoreProvider.of<AppState>(context).dispatch(
+                   UpdateUserProductsList(product, add: true),);
+                 }, icon: Icon(Icons.add)),
+               ],
+             );
            },
           ),
           // ListView.builder(

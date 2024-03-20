@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -18,7 +17,7 @@ class AuthApi {
         return AppUser.fromJson(snapshot.data()!);
       } else {
         final AppUser user =
-        AppUser(uid: currentUser.uid, email: currentUser.email!, username: currentUser.displayName!);
+            AppUser(uid: currentUser.uid, email: currentUser.email!, username: currentUser.displayName!);
 
         await _firestore.doc('users/${user.uid}').set(user.toJson());
         return user;
@@ -30,7 +29,7 @@ class AuthApi {
   Future<AppUser> login({required String email, required String password}) async {
     await _auth.signInWithEmailAndPassword(email: email, password: password);
     final DocumentSnapshot<Map<String, dynamic>> snapshot =
-    await _firestore.doc('users/${_auth.currentUser!.uid}').get();
+        await _firestore.doc('users/${_auth.currentUser!.uid}').get();
     return AppUser.fromJson(snapshot.data()!);
   }
 
@@ -47,20 +46,46 @@ class AuthApi {
     return user;
   }
 
-  Future<void> updateUserProductsList(String uid, Product product, {required bool add}) async {
-    await _firestore.runTransaction((Transaction transaction) async {
-      final DocumentSnapshot<Map<String, dynamic>> snapshot = await transaction.get(_firestore.doc('users/$uid'));
-      AppUser user = AppUser.fromJson(snapshot.data()!);
-      if (add) {
-        user = user.copyWith(userProductList: <Product>[...user.userProductList, product]);
-      } else {
-        user = user.copyWith(userProductList: <Product>[...user.userProductList]..remove(product));
-      }
-      transaction.set(_firestore.doc('/users/$uid'), user.toJson());
-    });
-  }
+  // Future<List<Product>?> updateUserProductsList(String uid, Product product, {required bool add}) async {
+  //   await _firestore.runTransaction((Transaction transaction) async {
+  //     final DocumentSnapshot<Map<String, dynamic>> snapshot = await transaction.get(_firestore.doc('users/$uid'));
+  //     AppUser user = AppUser.fromJson(snapshot.data()!);
+  //     productMap = product.toMap()
+  //     if (add) {
+  //
+  //       user = user.copyWith(userProductList: <Map>[...user.userProductList, product]);
+  //     } else {
+  //       user = user.copyWith(userProductList: <Product>[...user.userProductList]..remove(product));
+  //     }
+  //     transaction.set(_firestore.doc('/users/$uid'), user.toJson());
+  //
+  //     return user.userProductList;
+  //   });
+  //
+  //   return null;
+  // }
 
   // Future<List<Product>> getUserProductsList() async{
   //
   // }
+
+  Future<List<GroceryList>> getLists() async {
+    final QuerySnapshot<Map<String, dynamic>> snapshot =
+        await _firestore.collection('lists').where('uid', isEqualTo: _auth.currentUser!.uid).get();
+
+    return snapshot.docs
+        .map(
+          (QueryDocumentSnapshot<Map<String, dynamic>> doc) => GroceryList.fromJson(doc.data()),
+        )
+        .toList();
+  }
+
+  Future<void> createGroceryList({
+    required String title,
+  }) async {
+    final DocumentReference<Map<String, dynamic>> ref = _firestore.collection('lists').doc();
+    final GroceryList groceryList = GroceryList(uid: _auth.currentUser!.uid, title: title);
+
+    await ref.set(groceryList.toJson());
+  }
 }

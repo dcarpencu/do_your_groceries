@@ -7,3 +7,4 @@ part 'app_state.dart';
 part 'app_user.dart';
 part 'auchan.dart';
 part 'product.dart';
+part 'grocery_list.dart';

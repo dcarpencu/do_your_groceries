@@ -19,6 +19,8 @@ class AppEpic {
       TypedEpic<AppState, LogoutStart>(_logoutStart),
       TypedEpic<AppState, GetProductsStart>(_getProductsStart),
       //TypedEpic<AppState, UpdateUserProductsListStart>(_updateUserProductsListStart),
+      TypedEpic<AppState, GetGroceryListsStart>(_getGroceryListsStart),
+      TypedEpic<AppState, CreateGroceryListStart>(_createGroceryListStart),
     ]);
   }
 
@@ -81,9 +83,29 @@ class AppEpic {
   // }
 
   // Stream<AppAction> _updateUserProductsListStart(Stream<UpdateUserProductsListStart> actions, EpicStore<AppState> store) {
-  //   return actions.flatMap((GetUserProducts action) {
+  //   return actions.flatMap((UpdateUserProductsListStart action) {
   //     return Stream<void>.value(null)
-  //         .asyncMap((_) => )
-  //   })
+  //         .asyncMap((_) => _authApi.updateUserProductsList(store.state.user!.uid, action.product, add: action.add))
+  //         .map<UpdateUserProductsList>(UpdateUserProductsList.successful)
+  //         .onErrorReturnWith(UpdateUserProductsList.error);
+  //   });
   // }
+
+  Stream<AppAction> _getGroceryListsStart(Stream<GetGroceryListsStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((GetGroceryListsStart action) {
+      return Stream<void>.value(null)
+          .asyncMap((_) => _authApi.getLists())
+          .map<GetGroceryLists>(GetGroceryLists.successful)
+          .onErrorReturnWith(GetGroceryLists.error);
+    });
+  }
+
+  Stream<AppAction> _createGroceryListStart(Stream<CreateGroceryListStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((CreateGroceryListStart action) {
+      return Stream<void>.value(null)
+          .asyncMap((_) => _authApi.createGroceryList(title: action.title))
+          .mapTo(const CreateGroceryList.successful())
+          .onErrorReturnWith(CreateGroceryList.error);
+    });
+  }
 }

@@ -4,6 +4,7 @@ import 'package:do_you_groceries/src/data/auchan_api.dart';
 import 'package:do_you_groceries/src/data/auth_api.dart';
 import 'package:do_you_groceries/src/epics/app_epic.dart';
 import 'package:do_you_groceries/src/models/index.dart';
+import 'package:do_you_groceries/src/presentation/create_list_page.dart';
 import 'package:do_you_groceries/src/presentation/home.dart';
 import 'package:do_you_groceries/src/presentation/login_page.dart';
 import 'package:do_you_groceries/src/presentation/markets.dart';
@@ -62,6 +63,7 @@ class MovieApp extends StatelessWidget {
           '/login': (BuildContext context) => const LoginPage(),
           '/productsSearch': (BuildContext context) => const SearchProducts(),
           '/markets': (BuildContext context) => const Markets(),
+          '/createList': (BuildContext context) => const CreateListPage(),
         },
       ),
     );

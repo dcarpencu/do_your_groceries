@@ -9,6 +9,8 @@ part 'logout.dart';
 part 'get_products.dart';
 part 'update_user_products_list.dart';
 part 'get_user_products.dart';
+part 'get_grocery_lists.dart';
+part 'create_grocery_list.dart';
 
 
 abstract class AppAction {}
