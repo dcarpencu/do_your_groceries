@@ -88,4 +88,7 @@ class AuthApi {
 
     await ref.set(groceryList.toJson());
   }
+
+  // ignore: flutter_style_todos
+  // TODO: Remove duplicates from firestore
 }

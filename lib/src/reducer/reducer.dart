@@ -68,5 +68,5 @@ AppState _updateUserProductsListSuccessful(AppState state, UpdateUserProductsLis
 }
 
 AppState _getGroceryListsSuccessful(AppState state, GetGroceryListsSuccessful action) {
-  return state.copyWith(groceryLists: <GroceryList>{...state.groceryLists, ...action.groceryLists}.toList());
+  return state.copyWith(groceryLists: <GroceryList>{...state.groceryLists, ...action.groceryLists});
 }

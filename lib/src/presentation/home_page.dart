@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           home: GroceryListsContainer(
-            builder: (BuildContext context, List<GroceryList> groceryLists) {
+            builder: (BuildContext context, Set<GroceryList> groceryLists) {
               return Scaffold(
                 appBar: AppBar(
                   leading: IconButton(
@@ -97,7 +97,7 @@ class _HomePageState extends State<HomePage> {
                                       child: SvgPicture.asset('lib/src/assets/scissors-svgrepo-com.svg'),
                                     ),
                                     Text(
-                                      groceryLists[index].title,
+                                      groceryLists.elementAt(index).title,
                                       style: const TextStyle(
                                         fontWeight: FontWeight.w400,
                                         color: Colors.black,

@@ -18,8 +18,8 @@ _$AppState$Impl _$$AppState$ImplFromJson(Map<String, dynamic> json) =>
           const <Auchan>[],
       groceryLists: (json['groceryLists'] as List<dynamic>?)
               ?.map((e) => GroceryList.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const <GroceryList>[],
+              .toSet() ??
+          const <GroceryList>{},
     );
 
 Map<String, dynamic> _$$AppState$ImplToJson(_$AppState$Impl instance) =>
@@ -27,7 +27,7 @@ Map<String, dynamic> _$$AppState$ImplToJson(_$AppState$Impl instance) =>
       'user': instance.user,
       'isLoading': instance.isLoading,
       'products': instance.products,
-      'groceryLists': instance.groceryLists,
+      'groceryLists': instance.groceryLists.toList(),
     };
 
 _$AppUser$Impl _$$AppUser$ImplFromJson(Map<String, dynamic> json) =>
@@ -65,12 +65,14 @@ Map<String, dynamic> _$$Auchan$ImplToJson(_$Auchan$Impl instance) =>
 
 _$Product$Impl _$$Product$ImplFromJson(Map<String, dynamic> json) =>
     _$Product$Impl(
+      groceryListTitle: json['groceryListTitle'] as String,
       name: json['name'] as String,
       price: (json['price'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$$Product$ImplToJson(_$Product$Impl instance) =>
     <String, dynamic>{
+      'groceryListTitle': instance.groceryListTitle,
       'name': instance.name,
       'price': instance.price,
     };

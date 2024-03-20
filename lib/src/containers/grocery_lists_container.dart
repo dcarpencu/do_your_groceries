@@ -6,11 +6,11 @@ import 'package:redux/redux.dart';
 class GroceryListsContainer extends StatelessWidget {
   const GroceryListsContainer({Key? key, required this.builder}) : super(key: key);
 
-  final ViewModelBuilder<List<GroceryList>> builder;
+  final ViewModelBuilder<Set<GroceryList>> builder;
 
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, List<GroceryList>>(
+    return StoreConnector<AppState, Set<GroceryList>>(
       converter: (Store<AppState> store) => store.state.groceryLists,
       builder: builder,
     );

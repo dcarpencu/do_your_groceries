@@ -3,6 +3,7 @@ part of 'index.dart';
 @freezed
 class Product with _$Product {
   const factory Product({
+    required String groceryListTitle,
     required String name,
     required double price,
     //final String? image,

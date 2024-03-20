@@ -46,11 +46,7 @@ class _ShoppingListState extends State<ShoppingList> {
              return Column(
                children: <Widget>[
                  IconButton(onPressed: (){
-                   final Product product = Product(name: 'Rosi', price: 15);
-                   print(product);
-                   StoreProvider.of<AppState>(context).dispatch(
-                   UpdateUserProductsList(product, add: true),);
-                 }, icon: Icon(Icons.add)),
+                 }, icon: const Icon(Icons.add),),
                ],
              );
            },
