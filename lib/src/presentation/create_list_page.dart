@@ -23,9 +23,6 @@ class _CreateListPageState extends State<CreateListPage> {
     StoreProvider.of<AppState>(context).dispatch(
       CreateGroceryList(_titleController.text),
     );
-    StoreProvider.of<AppState>(context).dispatch(
-      const GetGroceryLists(),
-    );
     Navigator.pop(context);
   }
 

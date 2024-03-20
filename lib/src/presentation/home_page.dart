@@ -7,6 +7,7 @@ import 'package:do_you_groceries/src/presentation/shopping_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:redux/redux.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -16,11 +17,20 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late Store<AppState> _store;
 
   @override
   void initState() {
     super.initState();
-    StoreProvider.of<AppState>(context, listen: false).dispatch(const GetGroceryLists());
+    _store = StoreProvider.of<AppState>(context, listen: false);
+    _store.dispatch(ListenForGroceryListsStart(_store.state.user!.uid));
+  }
+
+  @override
+  void dispose() {
+    _store.dispatch(ListenForGroceryListsDone(_store.state.user!.uid));
+
+    super.dispose();
   }
 
   void _onResult(AppAction action) {
@@ -43,6 +53,7 @@ class _HomePageState extends State<HomePage> {
                   leading: IconButton(
                     onPressed: () {
                       StoreProvider.of<AppState>(context).dispatch(const Logout());
+                      StoreProvider.of<AppState>(context).dispatch(ListenForGroceryListsDone(_store.state.user!.uid));
                     },
                     icon: const Icon(Icons.logout),
                   ),
