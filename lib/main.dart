@@ -4,6 +4,7 @@ import 'package:do_you_groceries/src/data/auchan_api.dart';
 import 'package:do_you_groceries/src/data/auth_api.dart';
 import 'package:do_you_groceries/src/epics/app_epic.dart';
 import 'package:do_you_groceries/src/models/index.dart';
+import 'package:do_you_groceries/src/presentation/auth2.dart';
 import 'package:do_you_groceries/src/presentation/create_list_page.dart';
 import 'package:do_you_groceries/src/presentation/home.dart';
 import 'package:do_you_groceries/src/presentation/login_page.dart';
