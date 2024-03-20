@@ -69,7 +69,7 @@ class AuthApi {
   //
   // }
 
-  Future<List<GroceryList>> getLists() async {
+  Future<Set<GroceryList>> getLists() async {
     final QuerySnapshot<Map<String, dynamic>> snapshot =
         await _firestore.collection('lists').where('uid', isEqualTo: _auth.currentUser!.uid).get();
 
@@ -77,7 +77,7 @@ class AuthApi {
         .map(
           (QueryDocumentSnapshot<Map<String, dynamic>> doc) => GroceryList.fromJson(doc.data()),
         )
-        .toList();
+        .toSet();
   }
 
   Future<void> createGroceryList({

@@ -4,7 +4,7 @@ part of 'index.dart';
 class GetGroceryLists with _$GetGroceryLists implements AppAction {
   const factory GetGroceryLists() = GetGroceryListsStart;
 
-  const factory GetGroceryLists.successful(List<GroceryList> groceryLists) = GetGroceryListsSuccessful;
+  const factory GetGroceryLists.successful(Set<GroceryList> groceryLists) = GetGroceryListsSuccessful;
 
   @Implements<ErrorAction>()
   const factory GetGroceryLists.error(Object error, StackTrace stackTrace) = GetGroceryListsError;
