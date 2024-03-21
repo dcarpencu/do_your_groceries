@@ -16,10 +16,15 @@ _$AppState$Impl _$$AppState$ImplFromJson(Map<String, dynamic> json) =>
               ?.map((e) => Auchan.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const <Auchan>[],
+      productsList: (json['productsList'] as List<dynamic>?)
+              ?.map((e) => Product.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const <Product>[],
       groceryLists: (json['groceryLists'] as List<dynamic>?)
               ?.map((e) => GroceryList.fromJson(e as Map<String, dynamic>))
               .toSet() ??
           const <GroceryList>{},
+      selectedListTitle: json['selectedListTitle'] as String?,
     );
 
 Map<String, dynamic> _$$AppState$ImplToJson(_$AppState$Impl instance) =>
@@ -27,7 +32,9 @@ Map<String, dynamic> _$$AppState$ImplToJson(_$AppState$Impl instance) =>
       'user': instance.user,
       'isLoading': instance.isLoading,
       'products': instance.products,
+      'productsList': instance.productsList,
       'groceryLists': instance.groceryLists.toList(),
+      'selectedListTitle': instance.selectedListTitle,
     };
 
 _$AppUser$Impl _$$AppUser$ImplFromJson(Map<String, dynamic> json) =>

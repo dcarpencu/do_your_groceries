@@ -53,7 +53,10 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   fit: BoxFit.cover,
                   colorFilter: ColorFilter.mode(
-                    Colors.black.withOpacity(0.5), BlendMode.dstATop,),),
+                    Colors.black.withOpacity(0.5),
+                    BlendMode.dstATop,
+                  ),
+                ),
               ),
               padding: const EdgeInsets.all(25),
               child: Center(
@@ -64,7 +67,8 @@ class _LoginPageState extends State<LoginPage> {
                         height: 150,
                         width: 150,
                         child: Image.asset(
-                          'lib/src/assets/checklist.png',),
+                          'lib/src/assets/checklist.png',
+                        ),
                       ),
                       Container(
                         margin: const EdgeInsets.only(bottom: 50),
@@ -75,8 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       Container(
                         padding: const EdgeInsets.only(top: 10, bottom: 10),
-                        child:
-                        TextFormField(
+                        child: TextFormField(
                           controller: _email,
                           keyboardType: TextInputType.emailAddress,
                           textInputAction: TextInputAction.next,
@@ -84,15 +87,17 @@ class _LoginPageState extends State<LoginPage> {
                           decoration: const InputDecoration(
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.white),
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(10)),),
+                              borderRadius: BorderRadius.all(Radius.circular(10)),
+                            ),
                             enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.white),
-                                borderRadius:
-                                BorderRadius.all(Radius.circular(10)),),
+                              borderSide: BorderSide(color: Colors.white),
+                              borderRadius: BorderRadius.all(Radius.circular(10)),
+                            ),
                             // hintText: 'Enter your product title',
                             labelStyle: TextStyle(color: Colors.white),
-                            labelText: 'Email Address', floatingLabelBehavior: FloatingLabelBehavior.auto,),
+                            labelText: 'Email Address',
+                            floatingLabelBehavior: FloatingLabelBehavior.auto,
+                          ),
                           validator: (String? value) {
                             if (value == null || value.isEmpty) {
                               return 'please provide an email';
@@ -114,15 +119,18 @@ class _LoginPageState extends State<LoginPage> {
                         focusNode: _passwordNode,
                         decoration: const InputDecoration(
                           focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white),
-                              borderRadius: BorderRadius.all(Radius.circular(10))),
+                            borderSide: BorderSide(color: Colors.white),
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                          ),
                           enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white),
-                              borderRadius: BorderRadius.all(Radius.circular(10))),
+                            borderSide: BorderSide(color: Colors.white),
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                          ),
                           // hintText: 'Enter your product description',
                           labelStyle: TextStyle(color: Colors.white),
-                          labelText: 'Password', floatingLabelBehavior: FloatingLabelBehavior.auto,),
-
+                          labelText: 'Password',
+                          floatingLabelBehavior: FloatingLabelBehavior.auto,
+                        ),
                         textInputAction: TextInputAction.done,
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
@@ -137,9 +145,7 @@ class _LoginPageState extends State<LoginPage> {
                         },
                       ),
                       GestureDetector(
-                        onTap: () {
-
-                        },
+                        onTap: () {},
                         child: Container(
                           alignment: Alignment.centerRight,
                           margin: const EdgeInsets.only(top: 25, right: 5),
@@ -149,23 +155,13 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                       ),
-
-                      // SwitchListTile(
-                      //   title: Text('I accept the Terms & Conditions'),
-                      //   value: _acceptTerms,
-                      //   onChanged: (bool value) {
-                      //     setState(() {
-                      //       _acceptTerms = value;
-                      //     });
-                      //   },
-                      // ),
                       const SizedBox(
                         height: 25,
                       ),
                       TextButton(onPressed: () => _onNext(context), child: const Text('Login')),
                       TextButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, '/auth2');
+                          Navigator.pushNamed(context, '/signUp');
                         },
                         child: const Text('Sign up', style: TextStyle(color: Colors.black)),
                       ),

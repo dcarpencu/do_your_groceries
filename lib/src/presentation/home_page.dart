@@ -4,6 +4,7 @@ import 'package:do_you_groceries/src/containers/home_page_container.dart';
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:do_you_groceries/src/presentation/create_list_page.dart';
 import 'package:do_you_groceries/src/presentation/shopping_list.dart';
+import 'package:do_you_groceries/src/presentation/user_products_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -128,10 +129,11 @@ class _HomePageState extends State<HomePage> {
                                           ),
                                         ),
                                         onPressed: () {
+                                          StoreProvider.of<AppState>(context).dispatch(SetSelectedList(groceryLists.elementAt(index).title));
                                           Navigator.push(
                                             context,
                                             // ignore: always_specify_types
-                                            MaterialPageRoute(builder: (BuildContext context) => const ShoppingList()),
+                                            MaterialPageRoute(builder: (BuildContext context) => const UserProductsPage()),
                                           );
                                         },
                                         child: const Center(

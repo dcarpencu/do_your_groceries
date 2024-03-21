@@ -1,15 +1,17 @@
 import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/data/auchan_api.dart';
 import 'package:do_you_groceries/src/data/auth_api.dart';
+import 'package:do_you_groceries/src/data/products_api.dart';
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:redux_epics/redux_epics.dart';
 import 'package:rxdart/transformers.dart';
 
 class AppEpic {
-  AppEpic(this._authApi, this._auchanApi);
+  AppEpic(this._authApi, this._auchanApi, this._productsApi);
 
   final AuthApi _authApi;
   final AuchanApi _auchanApi;
+  final ProductsApi _productsApi;
 
   Epic<AppState> getEpics() {
     return combineEpics(<Epic<AppState>>[
@@ -21,6 +23,8 @@ class AppEpic {
       //TypedEpic<AppState, UpdateUserProductsListStart>(_updateUserProductsListStart),
       TypedEpic<AppState, GetGroceryListsStart>(_getGroceryListsStart),
       TypedEpic<AppState, CreateGroceryListStart>(_createGroceryListStart),
+      _listenForProducts,
+      TypedEpic<AppState, CreateProductStart>(_createProductStart),
     ]);
   }
 
@@ -106,6 +110,26 @@ class AppEpic {
           .asyncMap((_) => _authApi.createGroceryList(title: action.title))
           .mapTo(const CreateGroceryList.successful())
           .onErrorReturnWith(CreateGroceryList.error);
+    });
+  }
+
+  Stream<AppAction> _listenForProducts(Stream<dynamic> actions, EpicStore<AppState> store) {
+    return actions.whereType<ListenForProductsStart>().flatMap((ListenForProductsStart action) {
+      return _productsApi
+          .listenForProducts(action.groceryListTitle)
+          .map<ListenForProducts>(ListenForProducts.event)
+          .takeUntil<dynamic>(actions.where((dynamic event) {
+        return event is ListenForProductsDone && event.groceryListTitle == action.groceryListTitle;
+      }),).onErrorReturnWith(ListenForProducts.error);
+    });
+  }
+
+  Stream<AppAction> _createProductStart(Stream<CreateProductStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((CreateProductStart action) {
+      return Stream<void>.value(null)
+          .asyncMap((_) => _productsApi.createProduct(groceryListTitle: store.state.selectedListTitle!, name: action.name, price: action.price))
+          .mapTo(const CreateProduct.successful())
+          .onErrorReturnWith(CreateProduct.error);
     });
   }
 }

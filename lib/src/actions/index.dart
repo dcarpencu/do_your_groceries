@@ -11,6 +11,9 @@ part 'update_user_products_list.dart';
 part 'get_user_products.dart';
 part 'get_grocery_lists.dart';
 part 'create_grocery_list.dart';
+part 'listen_for_products.dart';
+part 'set.dart';
+part 'create_product.dart';
 
 
 abstract class AppAction {}

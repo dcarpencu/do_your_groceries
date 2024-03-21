@@ -31,6 +31,8 @@ Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   TypedReducer<AppState, LogoutSuccessful>(_logoutSuccessful),
   TypedReducer<AppState, UpdateUserProductsListSuccessful>(_updateUserProductsListSuccessful),
   TypedReducer<AppState, GetGroceryListsSuccessful>(_getGroceryListsSuccessful),
+  TypedReducer<AppState, SetSelectedList>(_setSelectedList),
+  TypedReducer<AppState, OnProductsEvent>(_onProductsEvent),
 ]);
 
 AppState _userAction(AppState state, UserAction action) {
@@ -69,4 +71,12 @@ AppState _updateUserProductsListSuccessful(AppState state, UpdateUserProductsLis
 
 AppState _getGroceryListsSuccessful(AppState state, GetGroceryListsSuccessful action) {
   return state.copyWith(groceryLists: action.groceryLists);
+}
+
+AppState _setSelectedList(AppState state, SetSelectedList action) {
+  return state.copyWith(selectedListTitle: action.groceryListTitle);
+}
+
+AppState _onProductsEvent(AppState state, OnProductsEvent action) {
+  return state.copyWith(productsList: <Product>{...state.productsList, ...action.products}.toList());
 }

@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/data/auchan_api.dart';
 import 'package:do_you_groceries/src/data/auth_api.dart';
+import 'package:do_you_groceries/src/data/products_api.dart';
 import 'package:do_you_groceries/src/epics/app_epic.dart';
 import 'package:do_you_groceries/src/models/index.dart';
-import 'package:do_you_groceries/src/presentation/auth2.dart';
 import 'package:do_you_groceries/src/presentation/create_list_page.dart';
 import 'package:do_you_groceries/src/presentation/home.dart';
 import 'package:do_you_groceries/src/presentation/login_page.dart';
@@ -20,7 +20,6 @@ import 'package:http/http.dart';
 
 import 'package:redux/redux.dart';
 import 'package:redux_epics/redux_epics.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,11 +29,10 @@ Future<void> main() async {
 
   final Client client = Client();
   final AuchanApi _auchanApi = AuchanApi(client);
-
-  final SharedPreferences preferences = await SharedPreferences.getInstance();
+  final ProductsApi _productApi = ProductsApi(firestore);
 
   final AuthApi _authApi = AuthApi(auth, firestore);
-  final AppEpic epic = AppEpic(_authApi, _auchanApi);
+  final AppEpic epic = AppEpic(_authApi, _auchanApi, _productApi);
 
   final Store<AppState> store = Store<AppState>(
     reducer,
