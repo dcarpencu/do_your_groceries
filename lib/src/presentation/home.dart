@@ -1,7 +1,7 @@
 import 'package:do_you_groceries/src/containers/user_container.dart';
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:do_you_groceries/src/presentation/home_page.dart';
-import 'package:do_you_groceries/src/presentation/login_page.dart';
+import 'package:do_you_groceries/src/presentation/login/login_page.dart';
 import 'package:flutter/material.dart';
 
 

@@ -26,10 +26,7 @@ Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   TypedReducer<AppState, GetProductsStart>(_getProductsStart),
   TypedReducer<AppState, GetProductsSuccessful>(_getProductsSuccessful),
   TypedReducer<AppState, GetProductsError>(_getProductsError),
-  TypedReducer<AppState, GetUserProductsSuccessful>(_getUserProductsSuccessful),
-  TypedReducer<AppState, GetUserProductsError>(_getUserProductsError),
   TypedReducer<AppState, LogoutSuccessful>(_logoutSuccessful),
-  TypedReducer<AppState, UpdateUserProductsListSuccessful>(_updateUserProductsListSuccessful),
   TypedReducer<AppState, GetGroceryListsSuccessful>(_getGroceryListsSuccessful),
   TypedReducer<AppState, SetSelectedList>(_setSelectedList),
   TypedReducer<AppState, OnProductsEvent>(_onProductsEvent),
@@ -53,20 +50,6 @@ AppState _getProductsSuccessful(AppState state, GetProductsSuccessful action) {
 
 AppState _getProductsError(AppState state, GetProductsError action) {
   return state.copyWith(isLoading: true);
-}
-
-AppState _getUserProductsSuccessful(AppState state, GetUserProductsSuccessful action) {
-  return state.copyWith(isLoading: false, user: state.user?.copyWith(userProductList: action.products));
-}
-
-AppState _getUserProductsError(AppState state, GetUserProductsError action) {
-  return state.copyWith(isLoading: true);
-}
-
-AppState _updateUserProductsListSuccessful(AppState state, UpdateUserProductsListSuccessful action) {
-  final AppUser user = state.user!.copyWith(userProductList: action.userProductsList!);
-
-  return state.copyWith(user: user);
 }
 
 AppState _getGroceryListsSuccessful(AppState state, GetGroceryListsSuccessful action) {

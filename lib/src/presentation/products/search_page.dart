@@ -5,18 +5,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
-class SearchProducts extends StatefulWidget {
-  const SearchProducts({Key? key}) : super(key: key);
+class SearchProductsPage extends StatefulWidget {
+  const SearchProductsPage({Key? key}) : super(key: key);
 
   @override
-  State<SearchProducts> createState() => _SearchProductsState();
+  State<SearchProductsPage> createState() => _SearchProductsPageState();
 }
 
-class _SearchProductsState extends State<SearchProducts> {
+class _SearchProductsPageState extends State<SearchProductsPage> {
   @override
   void initState() {
     super.initState();
-    // StoreProvider.of<AppState>(context, listen: false).dispatch(GetProducts(_onResult));
+    StoreProvider.of<AppState>(context, listen: false).dispatch(GetProducts(_onResult));
   }
 
   void _onResult(AppAction action) {

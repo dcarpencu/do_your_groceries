@@ -21,10 +21,11 @@ class ProductsApi {
   Future<void> createProduct({
     required String groceryListTitle,
     required String name,
+    required String uid,
     required double price,
   }) async {
     final DocumentReference<Map<String, dynamic>> ref = _firestore.collection('products').doc();
-    final Product product = Product(groceryListTitle: groceryListTitle, name: name, price: price);
+    final Product product = Product(groceryListTitle: groceryListTitle, name: name, price: price, uid: uid);
 
     await ref.set(product.toJson());
   }

@@ -5,19 +5,18 @@ import 'package:do_you_groceries/src/data/auth_api.dart';
 import 'package:do_you_groceries/src/data/products_api.dart';
 import 'package:do_you_groceries/src/epics/app_epic.dart';
 import 'package:do_you_groceries/src/models/index.dart';
-import 'package:do_you_groceries/src/presentation/create_list_page.dart';
 import 'package:do_you_groceries/src/presentation/home.dart';
-import 'package:do_you_groceries/src/presentation/login_page.dart';
-import 'package:do_you_groceries/src/presentation/markets.dart';
-import 'package:do_you_groceries/src/presentation/search.dart';
-import 'package:do_you_groceries/src/presentation/sign_up_page.dart';
+import 'package:do_you_groceries/src/presentation/login/login_page.dart';
+import 'package:do_you_groceries/src/presentation/login/sign_up_page.dart';
+import 'package:do_you_groceries/src/presentation/products/create_list_page.dart';
+import 'package:do_you_groceries/src/presentation/products/markets_page.dart';
+import 'package:do_you_groceries/src/presentation/products/search_page.dart';
 import 'package:do_you_groceries/src/reducer/reducer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:http/http.dart';
-
 import 'package:redux/redux.dart';
 import 'package:redux_epics/redux_epics.dart';
 
@@ -60,8 +59,8 @@ class MovieApp extends StatelessWidget {
           '/': (BuildContext context) => const Home(),
           '/signUp': (BuildContext context) => const SignupPage(),
           '/login': (BuildContext context) => const LoginPage(),
-          '/productsSearch': (BuildContext context) => const SearchProducts(),
-          '/markets': (BuildContext context) => const Markets(),
+          '/productsSearch': (BuildContext context) => const SearchProductsPage(),
+          '/markets': (BuildContext context) => const MarketsPage(),
           '/createList': (BuildContext context) => const CreateListPage(),
         },
       ),

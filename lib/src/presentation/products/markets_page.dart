@@ -1,7 +1,8 @@
+import 'package:do_you_groceries/src/presentation/products/search_page.dart';
 import 'package:flutter/material.dart';
 
-class Markets extends StatelessWidget {
-  const Markets({Key? key}) : super(key: key);
+class MarketsPage extends StatelessWidget {
+  const MarketsPage({Key? key}) : super(key: key);
 
   static const List<String> marketsNames = <String>['Auchan', 'Lidl', 'Kaufland', 'Penny'];
 
@@ -31,7 +32,11 @@ class Markets extends StatelessWidget {
                   children: <Widget>[
                     TextButton(
                       onPressed: () {
-                        Navigator.of(context).pushNamed('/productsSearch');
+                        Navigator.push(
+                          context,
+                          // ignore: always_specify_types
+                          MaterialPageRoute(builder: (BuildContext context) => const SearchProductsPage()),
+                        );
                       },
                       child: const Text('Check products'),
                     ),

@@ -18,7 +18,7 @@ class _ShoppingListState extends State<ShoppingList> {
   @override
   void initState() {
     super.initState();
-    StoreProvider.of<AppState>(context, listen: false).dispatch(const GetUserProducts());
+    // StoreProvider.of<AppState>(context, listen: false).dispatch(const GetUserProducts());
   }
 
   void _onResult(AppAction action) {
@@ -41,8 +41,6 @@ class _ShoppingListState extends State<ShoppingList> {
           ),
           body:  UserContainer(
            builder: (BuildContext context, AppUser? user) {
-             print(user!.userProductList);
-
              return Column(
                children: <Widget>[
                  IconButton(onPressed: (){
@@ -51,11 +49,6 @@ class _ShoppingListState extends State<ShoppingList> {
              );
            },
           ),
-          // ListView.builder(
-          //   itemCount: 6,
-          //   itemBuilder: (BuildContext context, int index) {
-          //     //Text(state.user!.userProductList[index].name);
-          // },),
           floatingActionButton: FloatingActionButton(
             onPressed: () {},
             tooltip: 'Create',

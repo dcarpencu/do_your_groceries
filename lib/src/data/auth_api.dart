@@ -46,29 +46,6 @@ class AuthApi {
     return user;
   }
 
-  // Future<List<Product>?> updateUserProductsList(String uid, Product product, {required bool add}) async {
-  //   await _firestore.runTransaction((Transaction transaction) async {
-  //     final DocumentSnapshot<Map<String, dynamic>> snapshot = await transaction.get(_firestore.doc('users/$uid'));
-  //     AppUser user = AppUser.fromJson(snapshot.data()!);
-  //     productMap = product.toMap()
-  //     if (add) {
-  //
-  //       user = user.copyWith(userProductList: <Map>[...user.userProductList, product]);
-  //     } else {
-  //       user = user.copyWith(userProductList: <Product>[...user.userProductList]..remove(product));
-  //     }
-  //     transaction.set(_firestore.doc('/users/$uid'), user.toJson());
-  //
-  //     return user.userProductList;
-  //   });
-  //
-  //   return null;
-  // }
-
-  // Future<List<Product>> getUserProductsList() async{
-  //
-  // }
-
   Future<Set<GroceryList>> getLists() async {
     final QuerySnapshot<Map<String, dynamic>> snapshot =
         await _firestore.collection('lists').where('uid', isEqualTo: _auth.currentUser!.uid).get();
@@ -88,7 +65,4 @@ class AuthApi {
 
     await ref.set(groceryList.toJson());
   }
-
-  // ignore: flutter_style_todos
-  // TODO: Remove duplicates from firestore
 }

@@ -1,9 +1,13 @@
+import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/containers/products_container.dart';
 import 'package:do_you_groceries/src/containers/selected_list_container.dart';
 import 'package:do_you_groceries/src/models/index.dart';
+import 'package:do_you_groceries/src/presentation/products/create_product_page.dart';
+import 'package:do_you_groceries/src/presentation/products/markets_page.dart';
+import 'package:do_you_groceries/src/ui_elements/bottom_app_bar.dart';
 import 'package:flutter/material.dart';
-
-import 'create_product_page.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:redux/redux.dart';
 
 class UserProductsPage extends StatefulWidget {
   const UserProductsPage({Key? key}) : super(key: key);
@@ -13,6 +17,23 @@ class UserProductsPage extends StatefulWidget {
 }
 
 class _UserProductsPageState extends State<UserProductsPage> {
+  late Store<AppState> _store;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _store = StoreProvider.of<AppState>(context, listen: false);
+    _store.dispatch(ListenForProductsStart(_store.state.selectedListTitle!));
+  }
+
+  @override
+  void dispose() {
+    _store.dispatch(ListenForProductsDone(_store.state.selectedListTitle!));
+
+    super.dispose();
+  }
+  
   @override
   Widget build(BuildContext context) {
     return SelectedListContainer(
@@ -59,37 +80,7 @@ class _UserProductsPageState extends State<UserProductsPage> {
             child: const Icon(Icons.add),
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-          bottomNavigationBar: BottomAppBar(
-            height: 60,
-            shape: const CircularNotchedRectangle(),
-            color: Colors.green,
-            child: IconTheme(
-              data: IconThemeData(color: Theme.of(context).colorScheme.onPrimary),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  IconButton(
-                    tooltip: 'Open navigation menu',
-                    icon: const Icon(Icons.menu),
-                    onPressed: () {},
-                  ),
-                  IconButton(
-                    tooltip: 'Search',
-                    icon: const Icon(Icons.search),
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/markets');
-                    },
-                  ),
-                  IconButton(
-                    tooltip: 'Favorite',
-                    icon: const Icon(Icons.favorite),
-                    onPressed: () {},
-                  ),
-                  //const Spacer(),
-                ],
-              ),
-            ),
-          ),
+          bottomNavigationBar: const BottomAppBarWidget(route: MarketsPage(),),
         );
       },
     );

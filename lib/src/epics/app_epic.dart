@@ -127,7 +127,7 @@ class AppEpic {
   Stream<AppAction> _createProductStart(Stream<CreateProductStart> actions, EpicStore<AppState> store) {
     return actions.flatMap((CreateProductStart action) {
       return Stream<void>.value(null)
-          .asyncMap((_) => _productsApi.createProduct(groceryListTitle: store.state.selectedListTitle!, name: action.name, price: action.price))
+          .asyncMap((_) => _productsApi.createProduct(groceryListTitle: store.state.selectedListTitle!, name: action.name, price: action.price, uid: store.state.user!.uid))
           .mapTo(const CreateProduct.successful())
           .onErrorReturnWith(CreateProduct.error);
     });

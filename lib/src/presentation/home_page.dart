@@ -2,9 +2,9 @@ import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/containers/grocery_lists_container.dart';
 import 'package:do_you_groceries/src/containers/home_page_container.dart';
 import 'package:do_you_groceries/src/models/index.dart';
-import 'package:do_you_groceries/src/presentation/create_list_page.dart';
-import 'package:do_you_groceries/src/presentation/shopping_list.dart';
-import 'package:do_you_groceries/src/presentation/user_products_page.dart';
+import 'package:do_you_groceries/src/presentation/products/create_list_page.dart';
+import 'package:do_you_groceries/src/presentation/products/markets_page.dart';
+import 'package:do_you_groceries/src/presentation/products/user_products_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -24,12 +24,12 @@ class _HomePageState extends State<HomePage> {
     StoreProvider.of<AppState>(context, listen: false).dispatch(const GetGroceryLists());
   }
 
-  void _onResult(AppAction action) {
-    if (action is GetProductsError) {
-      final Object error = action.error;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('An error has occurred $error')));
-    }
-  }
+  // void _onResult(AppAction action) {
+  //   if (action is GetProductsError) {
+  //     final Object error = action.error;
+  //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('An error has occurred $error')));
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -192,7 +192,11 @@ class _HomePageState extends State<HomePage> {
                           tooltip: 'Search',
                           icon: const Icon(Icons.search),
                           onPressed: () {
-                            Navigator.pushNamed(context, '/markets');
+                            Navigator.push(
+                              context,
+                              // ignore: always_specify_types
+                              MaterialPageRoute(builder: (BuildContext context) => const MarketsPage()),
+                            );
                           },
                         ),
                         IconButton(
