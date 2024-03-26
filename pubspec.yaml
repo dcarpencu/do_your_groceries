@@ -11,8 +11,8 @@ environment:
 dependencies:
 
   carousel_slider: ^4.2.1
-  cupertino_icons: ^1.0.6
   cloud_firestore: ^4.15.9
+  cupertino_icons: ^1.0.6
   firebase_auth: ^4.16.0
   firebase_core: ^2.24.2
   flutter:
@@ -28,6 +28,7 @@ dependencies:
   redux_epics: ^0.15.1
   rxdart: ^0.27.7
   shared_preferences: ^2.2.2
+  rive: ^0.13.1
 
 dev_dependencies:
   build_runner: ^2.4.8
@@ -41,7 +42,8 @@ flutter:
 
   uses-material-design: true
   assets:
-    - lib/src/assets/michi.png
-    - lib/src/assets/checklist.png
-    - lib/src/assets/scissors-svgrepo-com.svg
-    - lib/src/assets/miles.jpg
+    - assets/avaters/
+    - assets/Backgrounds/
+    - assets/icons/
+    - assets/RiveAssets/
+    - assets/base/

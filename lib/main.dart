@@ -8,6 +8,7 @@ import 'package:do_you_groceries/src/models/index.dart';
 import 'package:do_you_groceries/src/presentation/home.dart';
 import 'package:do_you_groceries/src/presentation/login/login_page.dart';
 import 'package:do_you_groceries/src/presentation/login/sign_up_page.dart';
+import 'package:do_you_groceries/src/presentation/login/temp_login.dart';
 import 'package:do_you_groceries/src/presentation/products/create_list_page.dart';
 import 'package:do_you_groceries/src/presentation/products/markets_page.dart';
 import 'package:do_you_groceries/src/presentation/products/search_page.dart';
@@ -58,10 +59,11 @@ class MovieApp extends StatelessWidget {
         routes: <String, WidgetBuilder>{
           '/': (BuildContext context) => const Home(),
           '/signUp': (BuildContext context) => const SignupPage(),
-          '/login': (BuildContext context) => const LoginPage(),
+          '/login2': (BuildContext context) => const LoginPage(),
           '/productsSearch': (BuildContext context) => const SearchProductsPage(),
           '/markets': (BuildContext context) => const MarketsPage(),
           '/createList': (BuildContext context) => const CreateListPage(),
+          '/login': (BuildContext context) => const TempLogin(),
         },
       ),
     );

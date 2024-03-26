@@ -95,7 +95,7 @@ class _HomePageState extends State<HomePage> {
                                     SizedBox(
                                       width: 120,
                                       height: 120,
-                                      child: SvgPicture.asset('lib/src/assets/scissors-svgrepo-com.svg'),
+                                      child: SvgPicture.asset('assets/scissors-svgrepo-com.svg'),
                                     ),
                                     Text(
                                       groceryLists.elementAt(index).title,
