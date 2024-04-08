@@ -64,11 +64,11 @@ Future<Object?> customSigninDialog(BuildContext context, {required ValueChanged 
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
+                  children: <Widget>[
                     IconButton(
                       padding: EdgeInsets.zero,
                       onPressed: () {
-                        // return SignUpForm();
+                        Navigator.pushNamed(context, '/signUp');
                       },
                       icon: SvgPicture.asset(
                         "assets/icons/email_box.svg",
