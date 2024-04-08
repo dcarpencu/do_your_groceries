@@ -2,7 +2,7 @@ import 'package:do_you_groceries/src/presentation/products/search_page.dart';
 import 'package:flutter/material.dart';
 
 class MarketsPage extends StatelessWidget {
-  const MarketsPage({Key? key}) : super(key: key);
+  const MarketsPage({super.key});
 
   static const List<String> marketsNames = <String>['Auchan', 'Lidl', 'Kaufland', 'Penny'];
 

@@ -6,7 +6,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
 class SearchProductsPage extends StatefulWidget {
-  const SearchProductsPage({Key? key}) : super(key: key);
+  const SearchProductsPage({super.key});
 
   @override
   State<SearchProductsPage> createState() => _SearchProductsPageState();

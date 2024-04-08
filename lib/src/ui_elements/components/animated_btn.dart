@@ -3,10 +3,8 @@ import 'package:rive/rive.dart';
 
 class AnimatedBtn extends StatelessWidget {
   const AnimatedBtn({
-    super.key,
     // ignore: always_specify_types
-    required RiveAnimationController btnAnimationController,
-    required this.press,
+    required RiveAnimationController btnAnimationController, required this.press, super.key,
   }) : _btnAnimationController = btnAnimationController;
 
   // ignore: always_specify_types

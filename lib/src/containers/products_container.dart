@@ -4,7 +4,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
 class ProductsContainer extends StatelessWidget {
-  const ProductsContainer({Key? key, required this.builder}) : super(key: key);
+  const ProductsContainer({required this.builder, super.key});
 
   final ViewModelBuilder<List<Product>> builder;
 

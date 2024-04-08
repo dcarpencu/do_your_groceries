@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
 class CreateProductPage extends StatefulWidget {
-  const CreateProductPage({Key? key}) : super(key: key);
+  const CreateProductPage({super.key});
 
   @override
   State<CreateProductPage> createState() => _CreateProductPageState();

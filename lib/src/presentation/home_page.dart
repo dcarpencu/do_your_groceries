@@ -10,7 +10,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -133,7 +133,7 @@ class _HomePageState extends State<HomePage> {
                                           Navigator.push(
                                             context,
                                             // ignore: always_specify_types
-                                            MaterialPageRoute(builder: (BuildContext context) => const UserProductsPage()),
+                                            MaterialPageRoute(builder: (BuildContext context) =>  const UserProductsPage()),
                                           );
                                         },
                                         child: const Center(

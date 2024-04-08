@@ -4,7 +4,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
 class HomePageContainer extends StatelessWidget {
-  const HomePageContainer({Key? key, required this.builder}) : super(key: key);
+  const HomePageContainer({required this.builder, super.key});
 
   final ViewModelBuilder<AppState> builder;
 

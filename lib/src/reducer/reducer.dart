@@ -22,14 +22,14 @@ AppState reducer(AppState state, dynamic action) {
 }
 
 Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
-  TypedReducer<AppState, UserAction>(_userAction),
-  TypedReducer<AppState, GetProductsStart>(_getProductsStart),
-  TypedReducer<AppState, GetProductsSuccessful>(_getProductsSuccessful),
-  TypedReducer<AppState, GetProductsError>(_getProductsError),
-  TypedReducer<AppState, LogoutSuccessful>(_logoutSuccessful),
-  TypedReducer<AppState, GetGroceryListsSuccessful>(_getGroceryListsSuccessful),
-  TypedReducer<AppState, SetSelectedList>(_setSelectedList),
-  TypedReducer<AppState, OnProductsEvent>(_onProductsEvent),
+  TypedReducer<AppState, UserAction>(_userAction).call,
+  TypedReducer<AppState, GetProductsStart>(_getProductsStart).call,
+  TypedReducer<AppState, GetProductsSuccessful>(_getProductsSuccessful).call,
+  TypedReducer<AppState, GetProductsError>(_getProductsError).call,
+  TypedReducer<AppState, LogoutSuccessful>(_logoutSuccessful).call,
+  TypedReducer<AppState, GetGroceryListsSuccessful>(_getGroceryListsSuccessful).call,
+  TypedReducer<AppState, SetSelectedList>(_setSelectedList).call,
+  TypedReducer<AppState, OnProductsEvent>(_onProductsEvent).call,
 ]);
 
 AppState _userAction(AppState state, UserAction action) {

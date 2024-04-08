@@ -15,16 +15,16 @@ class AppEpic {
 
   Epic<AppState> getEpics() {
     return combineEpics(<Epic<AppState>>[
-      TypedEpic<AppState, LoginStart>(_loginStart),
-      TypedEpic<AppState, GetCurrentUserStart>(_getCurrentUserStart),
-      TypedEpic<AppState, CreateUserStart>(_createUserStart),
-      TypedEpic<AppState, LogoutStart>(_logoutStart),
-      TypedEpic<AppState, GetProductsStart>(_getProductsStart),
+      TypedEpic<AppState, LoginStart>(_loginStart).call,
+      TypedEpic<AppState, GetCurrentUserStart>(_getCurrentUserStart).call,
+      TypedEpic<AppState, CreateUserStart>(_createUserStart).call,
+      TypedEpic<AppState, LogoutStart>(_logoutStart).call,
+      TypedEpic<AppState, GetProductsStart>(_getProductsStart).call,
       //TypedEpic<AppState, UpdateUserProductsListStart>(_updateUserProductsListStart),
-      TypedEpic<AppState, GetGroceryListsStart>(_getGroceryListsStart),
-      TypedEpic<AppState, CreateGroceryListStart>(_createGroceryListStart),
+      TypedEpic<AppState, GetGroceryListsStart>(_getGroceryListsStart).call,
+      TypedEpic<AppState, CreateGroceryListStart>(_createGroceryListStart).call,
       _listenForProducts,
-      TypedEpic<AppState, CreateProductStart>(_createProductStart),
+      TypedEpic<AppState, CreateProductStart>(_createProductStart).call,
     ]);
   }
 

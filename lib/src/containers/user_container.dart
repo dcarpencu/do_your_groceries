@@ -5,7 +5,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
 class UserContainer extends StatelessWidget {
-  const UserContainer({Key? key, required this.builder}) : super(key: key);
+  const UserContainer({required this.builder, super.key});
 
   final ViewModelBuilder<AppUser?> builder;
 

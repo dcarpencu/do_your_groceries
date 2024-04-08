@@ -107,12 +107,11 @@ class _SignInFormState extends State<SignInForm> {
                         controller: _email,
                         keyboardType: TextInputType.emailAddress,
                         textInputAction: TextInputAction.next,
-                        autofocus: false,
                         decoration: InputDecoration(
                             prefixIcon: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                              child: SvgPicture.asset("assets/icons/email.svg"),
-                            )),
+                              padding: const EdgeInsets.symmetric(horizontal: 8),
+                              child: SvgPicture.asset('assets/icons/email.svg'),
+                            ),),
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
                             return 'please provide an email';
@@ -124,13 +123,13 @@ class _SignInFormState extends State<SignInForm> {
                         onFieldSubmitted: (String value) {
                           FocusScope.of(context).requestFocus(_passwordNode);
                         },
-                      )),
+                      ),),
                   const Text(
-                    "Password",
+                    'Password',
                     style: TextStyle(color: Colors.black54),
                   ),
                   Padding(
-                      padding: const EdgeInsets.only(top: 8.0, bottom: 16),
+                      padding: const EdgeInsets.only(top: 8, bottom: 16),
                       child: TextFormField(
                         controller: _password,
                         focusNode: _passwordNode,
@@ -138,9 +137,9 @@ class _SignInFormState extends State<SignInForm> {
                         obscureText: true,
                         decoration: InputDecoration(
                             prefixIcon: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                              child: SvgPicture.asset("assets/icons/password.svg"),
-                            )),
+                              padding: const EdgeInsets.symmetric(horizontal: 8),
+                              child: SvgPicture.asset('assets/icons/password.svg'),
+                            ),),
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
                             return 'please provide a valid password';
@@ -152,9 +151,9 @@ class _SignInFormState extends State<SignInForm> {
                         onFieldSubmitted: (String value) {
                           _onNext(context);
                         },
-                      )),
+                      ),),
                   Padding(
-                    padding: const EdgeInsets.only(top: 8.0, bottom: 24),
+                    padding: const EdgeInsets.only(top: 8, bottom: 24),
                     child: ElevatedButton.icon(
                         onPressed: () {
                           final FocusScopeNode currentFocus = FocusScope.of(context);
@@ -174,28 +173,28 @@ class _SignInFormState extends State<SignInForm> {
                                     topLeft: Radius.circular(10),
                                     topRight: Radius.circular(25),
                                     bottomRight: Radius.circular(25),
-                                    bottomLeft: Radius.circular(25)))),
+                                    bottomLeft: Radius.circular(25),),),),
                         icon: const Icon(
                           CupertinoIcons.arrow_right,
                           color: Color(0xFFFE0037),
                         ),
-                        label: const Text("Sign In")),
-                  )
+                        label: const Text('Sign In'),),
+                  ),
                 ],
               );
-            },)
+            },),
         ),
         if (isShowLoading)
           CustomPositioned(
               child: RiveAnimation.asset(
-            "assets/RiveAssets/check.riv",
+            'assets/RiveAssets/check.riv',
             onInit: (Artboard artboard) {
               final StateMachineController controller = getRiveController(artboard);
-              check = controller.findSMI("Check") as SMITrigger;
-              error = controller.findSMI("Error") as SMITrigger;
-              reset = controller.findSMI("Reset") as SMITrigger;
+              check = controller.findSMI('Check') as SMITrigger;
+              error = controller.findSMI('Error') as SMITrigger;
+              reset = controller.findSMI('Reset') as SMITrigger;
             },
-          ))
+          ),)
         else
           const SizedBox(),
         if (isShowConfetti)
@@ -203,22 +202,22 @@ class _SignInFormState extends State<SignInForm> {
               child: Transform.scale(
             scale: 6,
             child: RiveAnimation.asset(
-              "assets/RiveAssets/confetti.riv",
-              onInit: (artboard) {
+              'assets/RiveAssets/confetti.riv',
+              onInit: (Artboard artboard) {
                 final StateMachineController controller = getRiveController(artboard);
-                confetti = controller.findSMI("Trigger explosion") as SMITrigger;
+                confetti = controller.findSMI('Trigger explosion') as SMITrigger;
               },
             ),
-          ))
+          ),)
         else
-          const SizedBox()
+          const SizedBox(),
       ],
     );
   }
 }
 
 class CustomPositioned extends StatelessWidget {
-  const CustomPositioned({super.key, required this.child, this.size = 100});
+  const CustomPositioned({required this.child, super.key, this.size = 100});
 
   final Widget child;
   final double size;

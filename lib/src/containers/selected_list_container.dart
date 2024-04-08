@@ -4,7 +4,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
 class SelectedListContainer extends StatelessWidget {
-  const SelectedListContainer({Key? key, required this.builder}) : super(key: key);
+  const SelectedListContainer({required this.builder, super.key});
 
   final ViewModelBuilder<GroceryList> builder;
 

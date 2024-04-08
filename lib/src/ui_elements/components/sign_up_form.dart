@@ -4,7 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:rive/rive.dart';
 
 class SignUpForm extends StatefulWidget {
@@ -146,11 +145,11 @@ class _SignUpFormState extends State<SignUpForm> {
                         },
                       ),),
                   const Text(
-                    "Password",
+                    'Password',
                     style: TextStyle(color: Colors.black54),
                   ),
                   Padding(
-                      padding: const EdgeInsets.only(top: 8.0, bottom: 16),
+                      padding: const EdgeInsets.only(top: 8, bottom: 16),
                       child:                   TextFormField(
                         controller: _password,
                         focusNode: _passwordNode,
@@ -184,13 +183,13 @@ class _SignUpFormState extends State<SignUpForm> {
                                     topLeft: Radius.circular(10),
                                     topRight: Radius.circular(25),
                                     bottomRight: Radius.circular(25),
-                                    bottomLeft: Radius.circular(25)))),
+                                    bottomLeft: Radius.circular(25),),),),
                         icon: const Icon(
                           CupertinoIcons.arrow_right,
                           color: Color(0xFFFE0037),
                         ),
-                        label: const Text("Sign Up")),
-                  )
+                        label: const Text('Sign Up'),),
+                  ),
                 ],
               );
             },),
@@ -198,14 +197,14 @@ class _SignUpFormState extends State<SignUpForm> {
         if (isShowLoading)
           CustomPositioned(
               child: RiveAnimation.asset(
-            "assets/RiveAssets/check.riv",
+            'assets/RiveAssets/check.riv',
             onInit: (Artboard artboard) {
               final StateMachineController controller = getRiveController(artboard);
-              check = controller.findSMI("Check") as SMITrigger;
-              error = controller.findSMI("Error") as SMITrigger;
-              reset = controller.findSMI("Reset") as SMITrigger;
+              check = controller.findSMI('Check') as SMITrigger;
+              error = controller.findSMI('Error') as SMITrigger;
+              reset = controller.findSMI('Reset') as SMITrigger;
             },
-          ))
+          ),)
         else
           const SizedBox(),
         if (isShowConfetti)
@@ -213,22 +212,22 @@ class _SignUpFormState extends State<SignUpForm> {
               child: Transform.scale(
             scale: 6,
             child: RiveAnimation.asset(
-              "assets/RiveAssets/confetti.riv",
-              onInit: (artboard) {
+              'assets/RiveAssets/confetti.riv',
+              onInit: (Artboard artboard) {
                 final StateMachineController controller = getRiveController(artboard);
-                confetti = controller.findSMI("Trigger explosion") as SMITrigger;
+                confetti = controller.findSMI('Trigger explosion') as SMITrigger;
               },
             ),
-          ))
+          ),)
         else
-          const SizedBox()
+          const SizedBox(),
       ],
     );
   }
 }
 
 class CustomPositioned extends StatelessWidget {
-  const CustomPositioned({super.key, required this.child, this.size = 100});
+  const CustomPositioned({required this.child, super.key, this.size = 100});
 
   final Widget child;
   final double size;

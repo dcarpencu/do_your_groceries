@@ -10,7 +10,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
 class UserProductsPage extends StatefulWidget {
-  const UserProductsPage({Key? key}) : super(key: key);
+  const UserProductsPage({super.key});
 
   @override
   State<UserProductsPage> createState() => _UserProductsPageState();
@@ -72,9 +72,9 @@ class _UserProductsPageState extends State<UserProductsPage> {
             onPressed: () {
               Navigator.push(
                 context,
-                // ignore: always_specify_types
                 MaterialPageRoute(builder: (BuildContext context) => const CreateProductPage()),
               );
+              // Navigator.pushNamed(context, '/login');
             },
             tooltip: 'Create',
             child: const Icon(Icons.add),

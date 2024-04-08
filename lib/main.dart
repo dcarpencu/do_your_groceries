@@ -9,6 +9,7 @@ import 'package:do_you_groceries/src/presentation/home.dart';
 import 'package:do_you_groceries/src/presentation/login/login_page.dart';
 import 'package:do_you_groceries/src/presentation/login/sign_up_page.dart';
 import 'package:do_you_groceries/src/presentation/products/create_list_page.dart';
+import 'package:do_you_groceries/src/presentation/products/create_product_page.dart';
 import 'package:do_you_groceries/src/presentation/products/markets_page.dart';
 import 'package:do_you_groceries/src/presentation/products/search_page.dart';
 import 'package:do_you_groceries/src/reducer/reducer.dart';
@@ -27,17 +28,17 @@ Future<void> main() async {
   final FirebaseFirestore firestore = FirebaseFirestore.instanceFor(app: app);
 
   final Client client = Client();
-  final AuchanApi _auchanApi = AuchanApi(client);
-  final ProductsApi _productApi = ProductsApi(firestore);
+  final AuchanApi auchanApi = AuchanApi(client);
+  final ProductsApi productApi = ProductsApi(firestore);
 
-  final AuthApi _authApi = AuthApi(auth, firestore);
-  final AppEpic epic = AppEpic(_authApi, _auchanApi, _productApi);
+  final AuthApi authApi = AuthApi(auth, firestore);
+  final AppEpic epic = AppEpic(authApi, auchanApi, productApi);
 
   final Store<AppState> store = Store<AppState>(
     reducer,
     initialState: const AppState(),
     middleware: <Middleware<AppState>>[
-      EpicMiddleware<AppState>(epic.getEpics()),
+      EpicMiddleware<AppState>(epic.getEpics()).call,
     ],
   )..dispatch(const GetCurrentUser());
 
@@ -45,7 +46,7 @@ Future<void> main() async {
 }
 
 class MovieApp extends StatelessWidget {
-  const MovieApp({Key? key, required this.store}) : super(key: key);
+  const MovieApp({required this.store, super.key});
 
   final Store<AppState> store;
 
@@ -61,6 +62,7 @@ class MovieApp extends StatelessWidget {
           '/productsSearch': (BuildContext context) => const SearchProductsPage(),
           '/markets': (BuildContext context) => const MarketsPage(),
           '/createList': (BuildContext context) => const CreateListPage(),
+          '/createProductPage': (BuildContext context) => const CreateProductPage(),
         },
       ),
     );

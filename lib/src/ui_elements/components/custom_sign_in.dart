@@ -1,19 +1,18 @@
 import 'package:do_you_groceries/src/ui_elements/components/sign_in_form.dart';
-import 'package:do_you_groceries/src/ui_elements/components/sign_up_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 Future<Object?> customSigninDialog(BuildContext context, {required ValueChanged onClosed}) {
   return showGeneralDialog(
     barrierDismissible: true,
-    barrierLabel: "Sign up",
+    barrierLabel: 'Sign up',
     context: context,
     transitionDuration: const Duration(milliseconds: 400),
     transitionBuilder:
         (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
       final Tween<Offset> tween = Tween(begin: const Offset(0, -1), end: Offset.zero);
       return SlideTransition(
-          position: tween.animate(CurvedAnimation(parent: animation, curve: Curves.easeInOut)), child: child);
+          position: tween.animate(CurvedAnimation(parent: animation, curve: Curves.easeInOut)), child: child,);
     },
     pageBuilder: (BuildContext context, _, __) => Center(
       child: Container(
@@ -30,13 +29,13 @@ Future<Object?> customSigninDialog(BuildContext context, {required ValueChanged 
             children: <Widget>[
               Column(children: <Widget>[
                 const Text(
-                  "Login",
-                  style: TextStyle(fontSize: 28, fontFamily: "Poppins"),
+                  'Login',
+                  style: TextStyle(fontSize: 28, fontFamily: 'Poppins'),
                 ),
                 const Padding(
                   padding: EdgeInsets.symmetric(vertical: 16),
                   child: Text(
-                    "Welcome! Please sign up in order to get access to our smart shopping ecosystem",
+                    'Welcome! Please sign up in order to get access to our smart shopping ecosystem',
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -59,8 +58,8 @@ Future<Object?> customSigninDialog(BuildContext context, {required ValueChanged 
                   ],
                 ),
                 const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 20.0),
-                  child: Text("Sign up with Email, Apple or Google", style: TextStyle(color: Colors.black54)),
+                  padding: EdgeInsets.symmetric(vertical: 20),
+                  child: Text('Sign up with Email, Apple or Google', style: TextStyle(color: Colors.black54)),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -71,7 +70,7 @@ Future<Object?> customSigninDialog(BuildContext context, {required ValueChanged 
                         Navigator.pushNamed(context, '/signUp');
                       },
                       icon: SvgPicture.asset(
-                        "assets/icons/email_box.svg",
+                        'assets/icons/email_box.svg',
                         height: 64,
                         width: 64,
                       ),
@@ -80,21 +79,21 @@ Future<Object?> customSigninDialog(BuildContext context, {required ValueChanged 
                         padding: EdgeInsets.zero,
                         onPressed: () {},
                         icon: SvgPicture.asset(
-                          "assets/icons/apple_box.svg",
+                          'assets/icons/apple_box.svg',
                           height: 64,
                           width: 64,
-                        )),
+                        ),),
                     IconButton(
                         padding: EdgeInsets.zero,
                         onPressed: () {},
                         icon: SvgPicture.asset(
-                          "assets/icons/google_box.svg",
+                          'assets/icons/google_box.svg',
                           height: 64,
                           width: 64,
-                        ))
+                        ),),
                   ],
-                )
-              ]),
+                ),
+              ],),
               const Positioned(
                 left: 0,
                 right: 0,

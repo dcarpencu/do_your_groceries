@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class BottomAppBarWidget extends StatelessWidget {
 
   const BottomAppBarWidget({
-    super.key, required this.route,});
-  final dynamic route;
+    required this.route, super.key,});
+  final Widget route;
 
   @override
   Widget build(BuildContext context) {

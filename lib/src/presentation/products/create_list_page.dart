@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
 class CreateListPage extends StatefulWidget {
-  const CreateListPage({Key? key}) : super(key: key);
+  const CreateListPage({super.key});
 
   @override
   State<CreateListPage> createState() => _CreateListPageState();

@@ -1,13 +1,12 @@
 import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/containers/user_container.dart';
 import 'package:do_you_groceries/src/models/index.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
 class ShoppingList extends StatefulWidget {
-  const ShoppingList({Key? key}) : super(key: key);
+  const ShoppingList({super.key});
 
 
   @override
