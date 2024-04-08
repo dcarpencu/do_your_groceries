@@ -2,7 +2,7 @@ import 'package:do_you_groceries/src/ui_elements/components/sign_in_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-Future<Object?> customSigninDialog(BuildContext context, {required ValueChanged onClosed}) {
+Future<Object?> customSigninDialog(BuildContext context, {required ValueChanged<dynamic> onClosed}) {
   return showGeneralDialog(
     barrierDismissible: true,
     barrierLabel: 'Sign up',
@@ -10,7 +10,7 @@ Future<Object?> customSigninDialog(BuildContext context, {required ValueChanged 
     transitionDuration: const Duration(milliseconds: 400),
     transitionBuilder:
         (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
-      final Tween<Offset> tween = Tween(begin: const Offset(0, -1), end: Offset.zero);
+      final Tween<Offset> tween = Tween<Offset>(begin: const Offset(0, -1), end: Offset.zero);
       return SlideTransition(
           position: tween.animate(CurvedAnimation(parent: animation, curve: Curves.easeInOut)), child: child,);
     },

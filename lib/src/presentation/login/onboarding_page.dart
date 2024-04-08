@@ -15,7 +15,7 @@ class OnboardingScreen extends StatefulWidget {
 class _OnboardingScreenState extends State<OnboardingScreen> {
   bool isSignInDialogShown = false;
   // ignore: always_specify_types
-  late RiveAnimationController _btnAnimationController;
+  late RiveAnimationController<dynamic> _btnAnimationController;
 
   @override
   void initState() {
@@ -104,7 +104,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       btnAnimationController: _btnAnimationController,
                       press: () {
                         _btnAnimationController.isActive = true;
-                        Future.delayed(const Duration(milliseconds: 800), () {
+                        Future<void>.delayed(const Duration(milliseconds: 800), () {
                           setState(() {
                             isSignInDialogShown = true;
                           });

@@ -4,8 +4,8 @@ part of 'index.dart';
 class AppState with _$AppState {
   const factory AppState({
     AppUser? user,
-    @Default(true) final bool isLoading,
-    @Default(<Auchan>[]) final List<Auchan> products,
+    @Default(true) bool isLoading,
+    @Default(<Auchan>[]) List<Auchan> products,
     @Default(<Product>[]) List<Product> productsList,
     @Default(<GroceryList>{}) Set<GroceryList> groceryLists,
     String? selectedListTitle,

@@ -31,7 +31,7 @@ class BottomAppBarWidget extends StatelessWidget {
                     Navigator.push(
                       context,
                       // ignore: always_specify_types
-                      MaterialPageRoute(builder: (BuildContext context) => route),
+                      MaterialPageRoute<Widget>(builder: (BuildContext context) => route),
                     );
                   },
                 ),

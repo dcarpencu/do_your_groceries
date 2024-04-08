@@ -4,11 +4,11 @@ import 'package:rive/rive.dart';
 class AnimatedBtn extends StatelessWidget {
   const AnimatedBtn({
     // ignore: always_specify_types
-    required RiveAnimationController btnAnimationController, required this.press, super.key,
+    required RiveAnimationController<dynamic> btnAnimationController, required this.press, super.key,
   }) : _btnAnimationController = btnAnimationController;
 
   // ignore: always_specify_types
-  final RiveAnimationController _btnAnimationController;
+  final RiveAnimationController<dynamic> _btnAnimationController;
   final VoidCallback press;
 
   @override
@@ -22,7 +22,7 @@ class AnimatedBtn extends StatelessWidget {
           RiveAnimation.asset(
             'assets/RiveAssets/button.riv',
             // ignore: always_specify_types
-            controllers: <RiveAnimationController>[_btnAnimationController],
+            controllers: <RiveAnimationController<dynamic>>[_btnAnimationController],
           ),
           const Positioned.fill(
               top: 8,

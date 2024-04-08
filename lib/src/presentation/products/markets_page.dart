@@ -35,7 +35,7 @@ class MarketsPage extends StatelessWidget {
                         Navigator.push(
                           context,
                           // ignore: always_specify_types
-                          MaterialPageRoute(builder: (BuildContext context) => const SearchProductsPage()),
+                          MaterialPageRoute<Widget>(builder: (BuildContext context) => const SearchProductsPage()),
                         );
                       },
                       child: const Text('Check products'),

@@ -70,9 +70,8 @@ class _UserProductsPageState extends State<UserProductsPage> {
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (BuildContext context) => const CreateProductPage()),
+              Navigator.of(context).push(
+                MaterialPageRoute<Widget>(builder: (BuildContext context) => const CreateProductPage()),
               );
               // Navigator.pushNamed(context, '/login');
             },

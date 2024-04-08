@@ -67,11 +67,11 @@ class _SignUpFormState extends State<SignUpForm> {
       isShowLoading = true;
       isShowConfetti = true;
     });
-    Future.delayed(const Duration(seconds: 1), () {
+    Future<void>.delayed(const Duration(seconds: 1), () {
       if (_formKey.currentState!.validate()) {
         // show success
         check.fire();
-        Future.delayed(const Duration(seconds: 2), () {
+        Future<void>.delayed(const Duration(seconds: 2), () {
           setState(() {
             isShowLoading = false;
           });
@@ -79,7 +79,7 @@ class _SignUpFormState extends State<SignUpForm> {
         });
       } else {
         error.fire();
-        Future.delayed(const Duration(seconds: 2), () {
+        Future<void>.delayed(const Duration(seconds: 2), () {
           setState(() {
             isShowLoading = false;
           });

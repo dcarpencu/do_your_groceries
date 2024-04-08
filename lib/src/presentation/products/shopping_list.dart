@@ -1,4 +1,3 @@
-import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/containers/user_container.dart';
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +6,6 @@ import 'package:redux/redux.dart';
 
 class ShoppingList extends StatefulWidget {
   const ShoppingList({super.key});
-
 
   @override
   State<ShoppingList> createState() => _ShoppingListState();
@@ -20,14 +18,14 @@ class _ShoppingListState extends State<ShoppingList> {
     // StoreProvider.of<AppState>(context, listen: false).dispatch(const GetUserProducts());
   }
 
-  void _onResult(AppAction action) {
-    if (action is GetCurrentUserSuccessful) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Page loaded.')));
-    } else if (action is GetProductsError) {
-      final Object error = action.error;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('An error has occurred $error')));
-    }
-  }
+  // void _onResult(AppAction action) {
+  //   if (action is GetCurrentUserSuccessful) {
+  //     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Page loaded.')));
+  //   } else if (action is GetProductsError) {
+  //     final Object error = action.error;
+  //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('An error has occurred $error')));
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -38,15 +36,17 @@ class _ShoppingListState extends State<ShoppingList> {
           appBar: AppBar(
             title: const Text('Shopping list'),
           ),
-          body:  UserContainer(
-           builder: (BuildContext context, AppUser? user) {
-             return Column(
-               children: <Widget>[
-                 IconButton(onPressed: (){
-                 }, icon: const Icon(Icons.add),),
-               ],
-             );
-           },
+          body: UserContainer(
+            builder: (BuildContext context, AppUser? user) {
+              return Column(
+                children: <Widget>[
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.add),
+                  ),
+                ],
+              );
+            },
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {},

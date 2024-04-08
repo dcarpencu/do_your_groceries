@@ -5,7 +5,7 @@ class GroceryList with _$GroceryList {
   const factory GroceryList({
     required String uid,
     required String title,
-    @Default('') final String description,
+    @Default('') String description,
     // ignore: flutter_style_todos
     //TODO: Add icons for users to choose
 }) = GroceryList$;

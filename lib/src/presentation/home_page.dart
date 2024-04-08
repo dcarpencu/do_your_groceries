@@ -133,7 +133,7 @@ class _HomePageState extends State<HomePage> {
                                           Navigator.push(
                                             context,
                                             // ignore: always_specify_types
-                                            MaterialPageRoute(builder: (BuildContext context) =>  const UserProductsPage()),
+                                            MaterialPageRoute<Widget>(builder: (BuildContext context) =>  const UserProductsPage()),
                                           );
                                         },
                                         child: const Center(
@@ -164,10 +164,9 @@ class _HomePageState extends State<HomePage> {
                 ),
                 floatingActionButton: FloatingActionButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
+                    Navigator.of(context).push(
                       // ignore: always_specify_types
-                      MaterialPageRoute(builder: (BuildContext context) => const CreateListPage()),
+                      MaterialPageRoute<Widget>(builder: (BuildContext context) => const CreateListPage()),
                     );
                     //Navigator.pushNamed(context, '/createList');
                   },
@@ -195,7 +194,7 @@ class _HomePageState extends State<HomePage> {
                             Navigator.push(
                               context,
                               // ignore: always_specify_types
-                              MaterialPageRoute(builder: (BuildContext context) => const MarketsPage()),
+                              MaterialPageRoute<Widget>(builder: (BuildContext context) => const MarketsPage()),
                             );
                           },
                         ),
