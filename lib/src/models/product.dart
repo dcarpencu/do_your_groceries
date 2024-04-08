@@ -9,7 +9,7 @@ class Product with _$Product {
     required double price,
     //final String? image,
     // @Default(0) final int quantity,
-}) = Product$;
+  }) = Product$;
 
   factory Product.fromJson(Map<dynamic, dynamic> json) => _$ProductFromJson(Map<String, dynamic>.from(json));
 }

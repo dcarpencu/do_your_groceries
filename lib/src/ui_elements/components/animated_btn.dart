@@ -4,7 +4,9 @@ import 'package:rive/rive.dart';
 class AnimatedBtn extends StatelessWidget {
   const AnimatedBtn({
     // ignore: always_specify_types
-    required RiveAnimationController<dynamic> btnAnimationController, required this.press, super.key,
+    required RiveAnimationController<dynamic> btnAnimationController,
+    required this.press,
+    super.key,
   }) : _btnAnimationController = btnAnimationController;
 
   // ignore: always_specify_types
@@ -18,13 +20,14 @@ class AnimatedBtn extends StatelessWidget {
       child: SizedBox(
         height: 64,
         width: 260,
-        child: Stack(children: <Widget>[
-          RiveAnimation.asset(
-            'assets/RiveAssets/button.riv',
-            // ignore: always_specify_types
-            controllers: <RiveAnimationController<dynamic>>[_btnAnimationController],
-          ),
-          const Positioned.fill(
+        child: Stack(
+          children: <Widget>[
+            RiveAnimation.asset(
+              'assets/RiveAssets/button.riv',
+              // ignore: always_specify_types
+              controllers: <RiveAnimationController<dynamic>>[_btnAnimationController],
+            ),
+            const Positioned.fill(
               top: 8,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -33,11 +36,15 @@ class AnimatedBtn extends StatelessWidget {
                   SizedBox(
                     width: 8,
                   ),
-                  Text('Start now',
-                      style: TextStyle(fontWeight: FontWeight.w600),),
+                  Text(
+                    'Start now',
+                    style: TextStyle(fontWeight: FontWeight.w600),
+                  ),
                 ],
-              ),),
-        ],),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

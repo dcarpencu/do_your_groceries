@@ -50,8 +50,9 @@ class _SearchProductsPageState extends State<SearchProductsPage> {
                   return Column(
                     children: <Widget>[
                       SizedBox(
-                          height: 320,
-                          child: Image.network(product.image),),
+                        height: 320,
+                        child: Image.network(product.image),
+                      ),
                       Text(product.title),
                       Text('${product.price}'),
                     ],

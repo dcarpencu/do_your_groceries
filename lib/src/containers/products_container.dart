@@ -11,7 +11,9 @@ class ProductsContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, List<Product>>(
-      converter: (Store<AppState> store) => store.state.productsList.where((Product product) => product.groceryListTitle == store.state.selectedListTitle).toList(),
+      converter: (Store<AppState> store) => store.state.productsList
+          .where((Product product) => product.groceryListTitle == store.state.selectedListTitle)
+          .toList(),
       builder: builder,
     );
   }

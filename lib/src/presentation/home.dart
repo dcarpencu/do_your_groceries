@@ -4,7 +4,6 @@ import 'package:do_you_groceries/src/presentation/home_page.dart';
 import 'package:do_you_groceries/src/presentation/login/login_page.dart';
 import 'package:flutter/material.dart';
 
-
 class Home extends StatelessWidget {
   const Home({super.key});
 
@@ -12,7 +11,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return UserContainer(
       builder: (BuildContext context, AppUser? user) {
-        if(user != null) {
+        if (user != null) {
           return const HomePage();
         } else {
           return const LoginPage();

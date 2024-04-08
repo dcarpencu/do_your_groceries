@@ -17,7 +17,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   @override
   void initState() {
     super.initState();
@@ -129,18 +128,23 @@ class _HomePageState extends State<HomePage> {
                                           ),
                                         ),
                                         onPressed: () {
-                                          StoreProvider.of<AppState>(context).dispatch(SetSelectedList(groceryLists.elementAt(index).title));
+                                          StoreProvider.of<AppState>(context)
+                                              .dispatch(SetSelectedList(groceryLists.elementAt(index).title));
                                           Navigator.push(
                                             context,
                                             // ignore: always_specify_types
-                                            MaterialPageRoute<Widget>(builder: (BuildContext context) =>  const UserProductsPage()),
+                                            MaterialPageRoute<Widget>(
+                                                builder: (BuildContext context) => const UserProductsPage()),
                                           );
                                         },
                                         child: const Center(
                                           child: Text(
                                             'View',
                                             style: TextStyle(
-                                                color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600,),
+                                              color: Colors.white,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600,
+                                            ),
                                           ),
                                         ),
                                       ),

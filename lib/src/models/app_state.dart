@@ -9,7 +9,7 @@ class AppState with _$AppState {
     @Default(<Product>[]) List<Product> productsList,
     @Default(<GroceryList>{}) Set<GroceryList> groceryLists,
     String? selectedListTitle,
-}) = AppState$;
+  }) = AppState$;
 
   factory AppState.fromJson(Map<dynamic, dynamic> json) => _$AppStateFromJson(Map<String, dynamic>.from(json));
 }

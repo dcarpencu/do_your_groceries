@@ -14,7 +14,6 @@ part 'listen_for_products.dart';
 part 'set.dart';
 part 'create_product.dart';
 
-
 abstract class AppAction {}
 
 abstract class ErrorAction implements AppAction {

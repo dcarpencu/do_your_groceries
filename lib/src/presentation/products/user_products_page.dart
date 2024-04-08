@@ -33,7 +33,7 @@ class _UserProductsPageState extends State<UserProductsPage> {
 
     super.dispose();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return SelectedListContainer(
@@ -79,7 +79,9 @@ class _UserProductsPageState extends State<UserProductsPage> {
             child: const Icon(Icons.add),
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-          bottomNavigationBar: const BottomAppBarWidget(route: MarketsPage(),),
+          bottomNavigationBar: const BottomAppBarWidget(
+            route: MarketsPage(),
+          ),
         );
       },
     );

@@ -12,7 +12,10 @@ class CardWidget extends StatelessWidget {
           children: <Widget>[
             const ListTile(
               leading: Icon(Icons.notification_important),
-              title: Text('Home - Notifications', style: TextStyle(fontSize: 24),),
+              title: Text(
+                'Home - Notifications',
+                style: TextStyle(fontSize: 24),
+              ),
               subtitle: Column(
                 children: <Widget>[
                   SizedBox(height: 16),

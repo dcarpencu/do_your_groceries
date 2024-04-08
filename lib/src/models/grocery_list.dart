@@ -8,7 +8,7 @@ class GroceryList with _$GroceryList {
     @Default('') String description,
     // ignore: flutter_style_todos
     //TODO: Add icons for users to choose
-}) = GroceryList$;
+  }) = GroceryList$;
 
   factory GroceryList.fromJson(Map<dynamic, dynamic> json) => _$GroceryListFromJson(Map<String, dynamic>.from(json));
 }

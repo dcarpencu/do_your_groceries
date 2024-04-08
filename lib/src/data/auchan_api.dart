@@ -4,14 +4,13 @@ import 'package:html/parser.dart'; // Contains HTML parsers to generate a Docume
 import 'package:http/http.dart'; // Contains a client for making API calls
 
 class AuchanApi {
-
   AuchanApi(this._client);
 
   final Client _client;
 
   Future<List<Auchan>> getProducts() async {
     final Response response = await _client.get(
-        Uri.parse('https://tazz.ro/timisoara/auchan-hypermarket-timisoara/legume-si-fructe/9063/2355527/dpt'),
+      Uri.parse('https://tazz.ro/timisoara/auchan-hypermarket-timisoara/legume-si-fructe/9063/2355527/dpt'),
     );
 
     final Document document = parse(response.body);
@@ -46,7 +45,7 @@ class AuchanApi {
 
     final List<Auchan> list = <Auchan>[];
 
-    for(int i = 0; i < linkMap.length; i++) {
+    for (int i = 0; i < linkMap.length; i++) {
       list.add(Auchan.fromJson(linkMap[i]));
     }
 
