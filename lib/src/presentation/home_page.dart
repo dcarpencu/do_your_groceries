@@ -134,7 +134,8 @@ class _HomePageState extends State<HomePage> {
                                             context,
                                             // ignore: always_specify_types
                                             MaterialPageRoute<Widget>(
-                                                builder: (BuildContext context) => const UserProductsPage(),),
+                                              builder: (BuildContext context) => const UserProductsPage(),
+                                            ),
                                           );
                                         },
                                         child: const Center(
