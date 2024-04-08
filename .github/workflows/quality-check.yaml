@@ -17,7 +17,7 @@ jobs:
         run: flutter pub get
 
       - name: check format
-        run: flutter format --line-length 120 --set-exit-if-changed ./lib
+        run: flutter pub run dart_style:format --line-length 120 --set-exit-if-changed ./lib
 
       - name: check code
         run: flutter analyze
