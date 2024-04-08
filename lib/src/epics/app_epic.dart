@@ -133,7 +133,7 @@ class AppEpic {
               groceryListTitle: store.state.selectedListTitle!,
               name: action.name,
               price: action.price,
-              uid: store.state.user!.uid))
+              uid: store.state.user!.uid,),)
           .mapTo(const CreateProduct.successful())
           .onErrorReturnWith(CreateProduct.error);
     });
