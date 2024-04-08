@@ -157,6 +157,12 @@ class _SignInFormState extends State<SignInForm> {
                     padding: const EdgeInsets.only(top: 8.0, bottom: 24),
                     child: ElevatedButton.icon(
                         onPressed: () {
+                          final FocusScopeNode currentFocus = FocusScope.of(context);
+
+                          if (!currentFocus.hasPrimaryFocus) {
+                            currentFocus.unfocus();
+                          }
+
                           signIn(context);
                           _onNext(context);
                         },
