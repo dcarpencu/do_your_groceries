@@ -14,6 +14,7 @@ class OnboardingScreen extends StatefulWidget {
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
   bool isSignInDialogShown = false;
+  // ignore: always_specify_types
   late RiveAnimationController _btnAnimationController;
 
   @override
@@ -29,19 +30,19 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         children: <Widget>[
           Positioned(
             width: MediaQuery.of(context).size.width,
-            bottom: 300,
+            bottom: 0,
             left: 0,
-            child: Image.asset('assets/Backgrounds/penis.png'),
+            child: Image.asset('assets/Backgrounds/deadpool.png'),
           ),
           Positioned.fill(
             child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 20, sigmaY: 10),
+              filter: ImageFilter.blur(sigmaX: 10, sigmaY: 5),
             ),
           ),
           const RiveAnimation.asset('assets/RiveAssets/shapes.riv'),
           Positioned.fill(
             child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 20, sigmaY: 10),
+              filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
               child: const SizedBox(),
             ),
           ),

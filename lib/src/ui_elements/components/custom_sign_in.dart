@@ -20,7 +20,7 @@ Future<Object?> customSigninDialog(BuildContext context, {required ValueChanged 
         margin: const EdgeInsets.symmetric(horizontal: 16),
         padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 16),
         decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.95), borderRadius: const BorderRadius.all(Radius.circular(40))),
+            color: Colors.white.withOpacity(0.95), borderRadius: const BorderRadius.all(Radius.circular(40)),),
         child: Scaffold(
           backgroundColor: Colors.transparent,
           resizeToAvoidBottomInset: false, // avoid overflow error when keyboard shows up
@@ -30,7 +30,7 @@ Future<Object?> customSigninDialog(BuildContext context, {required ValueChanged 
               Column(children: <Widget>[
                 const Text(
                   "Login",
-                  style: TextStyle(fontSize: 20, fontFamily: "Poppins"),
+                  style: TextStyle(fontSize: 28, fontFamily: "Poppins"),
                 ),
                 const Padding(
                   padding: EdgeInsets.symmetric(vertical: 16),
@@ -101,7 +101,7 @@ Future<Object?> customSigninDialog(BuildContext context, {required ValueChanged 
                   backgroundColor: Colors.white,
                   child: Icon(Icons.close, color: Colors.black),
                 ),
-              )
+              ),
             ],
           ),
         ),
