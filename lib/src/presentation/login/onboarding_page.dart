@@ -26,6 +26,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.orange,
       body: Stack(
         children: <Widget>[
           Positioned(
@@ -122,7 +123,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       padding: EdgeInsets.symmetric(vertical: 24),
                       child: Text(
                         'Start using the smartest grocery list there is ',
-                        style: TextStyle(),
+                        style: TextStyle(color: Colors.white70),
                       ),
                     ),
                   ],

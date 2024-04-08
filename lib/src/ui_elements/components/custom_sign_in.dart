@@ -1,4 +1,5 @@
 import 'package:do_you_groceries/src/ui_elements/components/sign_in_form.dart';
+import 'package:do_you_groceries/src/ui_elements/components/sign_up_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -41,14 +42,14 @@ Future<Object?> customSigninDialog(BuildContext context, {required ValueChanged 
                 ),
                 const SignInForm(),
                 const Row(
-                  children: [
+                  children: <Widget>[
                     Expanded(
                       child: Divider(),
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 16),
                       child: Text(
-                        "OR",
+                        'OR',
                         style: TextStyle(color: Colors.black26),
                       ),
                     ),
@@ -66,7 +67,9 @@ Future<Object?> customSigninDialog(BuildContext context, {required ValueChanged 
                   children: [
                     IconButton(
                       padding: EdgeInsets.zero,
-                      onPressed: () {},
+                      onPressed: () {
+                        // return SignUpForm();
+                      },
                       icon: SvgPicture.asset(
                         "assets/icons/email_box.svg",
                         height: 64,
