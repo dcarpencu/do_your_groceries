@@ -4731,7 +4731,7 @@ mixin _$ListenForLists {
   TResult when<TResult extends Object?>({
     required TResult Function() start,
     required TResult Function() done,
-    required TResult Function(List<GroceryList> groceryLists) event,
+    required TResult Function(Set<GroceryList> groceryLists) event,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -4739,7 +4739,7 @@ mixin _$ListenForLists {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? start,
     TResult? Function()? done,
-    TResult? Function(List<GroceryList> groceryLists)? event,
+    TResult? Function(Set<GroceryList> groceryLists)? event,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -4747,7 +4747,7 @@ mixin _$ListenForLists {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? start,
     TResult Function()? done,
-    TResult Function(List<GroceryList> groceryLists)? event,
+    TResult Function(Set<GroceryList> groceryLists)? event,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) =>
@@ -4838,7 +4838,7 @@ class _$ListenForListsStartImpl implements ListenForListsStart {
   TResult when<TResult extends Object?>({
     required TResult Function() start,
     required TResult Function() done,
-    required TResult Function(List<GroceryList> groceryLists) event,
+    required TResult Function(Set<GroceryList> groceryLists) event,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
     return start();
@@ -4849,7 +4849,7 @@ class _$ListenForListsStartImpl implements ListenForListsStart {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? start,
     TResult? Function()? done,
-    TResult? Function(List<GroceryList> groceryLists)? event,
+    TResult? Function(Set<GroceryList> groceryLists)? event,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
     return start?.call();
@@ -4860,7 +4860,7 @@ class _$ListenForListsStartImpl implements ListenForListsStart {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? start,
     TResult Function()? done,
-    TResult Function(List<GroceryList> groceryLists)? event,
+    TResult Function(Set<GroceryList> groceryLists)? event,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
@@ -4952,7 +4952,7 @@ class _$ListenForListsDoneImpl implements ListenForListsDone {
   TResult when<TResult extends Object?>({
     required TResult Function() start,
     required TResult Function() done,
-    required TResult Function(List<GroceryList> groceryLists) event,
+    required TResult Function(Set<GroceryList> groceryLists) event,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
     return done();
@@ -4963,7 +4963,7 @@ class _$ListenForListsDoneImpl implements ListenForListsDone {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? start,
     TResult? Function()? done,
-    TResult? Function(List<GroceryList> groceryLists)? event,
+    TResult? Function(Set<GroceryList> groceryLists)? event,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
     return done?.call();
@@ -4974,7 +4974,7 @@ class _$ListenForListsDoneImpl implements ListenForListsDone {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? start,
     TResult Function()? done,
-    TResult Function(List<GroceryList> groceryLists)? event,
+    TResult Function(Set<GroceryList> groceryLists)? event,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
@@ -5032,7 +5032,7 @@ abstract class _$$OnListsEventImplCopyWith<$Res> {
           _$OnListsEventImpl value, $Res Function(_$OnListsEventImpl) then) =
       __$$OnListsEventImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<GroceryList> groceryLists});
+  $Res call({Set<GroceryList> groceryLists});
 }
 
 /// @nodoc
@@ -5052,7 +5052,7 @@ class __$$OnListsEventImplCopyWithImpl<$Res>
       null == groceryLists
           ? _value._groceryLists
           : groceryLists // ignore: cast_nullable_to_non_nullable
-              as List<GroceryList>,
+              as Set<GroceryList>,
     ));
   }
 }
@@ -5060,15 +5060,15 @@ class __$$OnListsEventImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$OnListsEventImpl implements OnListsEvent {
-  const _$OnListsEventImpl(final List<GroceryList> groceryLists)
+  const _$OnListsEventImpl(final Set<GroceryList> groceryLists)
       : _groceryLists = groceryLists;
 
-  final List<GroceryList> _groceryLists;
+  final Set<GroceryList> _groceryLists;
   @override
-  List<GroceryList> get groceryLists {
-    if (_groceryLists is EqualUnmodifiableListView) return _groceryLists;
+  Set<GroceryList> get groceryLists {
+    if (_groceryLists is EqualUnmodifiableSetView) return _groceryLists;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_groceryLists);
+    return EqualUnmodifiableSetView(_groceryLists);
   }
 
   @override
@@ -5100,7 +5100,7 @@ class _$OnListsEventImpl implements OnListsEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() start,
     required TResult Function() done,
-    required TResult Function(List<GroceryList> groceryLists) event,
+    required TResult Function(Set<GroceryList> groceryLists) event,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
     return event(groceryLists);
@@ -5111,7 +5111,7 @@ class _$OnListsEventImpl implements OnListsEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? start,
     TResult? Function()? done,
-    TResult? Function(List<GroceryList> groceryLists)? event,
+    TResult? Function(Set<GroceryList> groceryLists)? event,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
     return event?.call(groceryLists);
@@ -5122,7 +5122,7 @@ class _$OnListsEventImpl implements OnListsEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? start,
     TResult Function()? done,
-    TResult Function(List<GroceryList> groceryLists)? event,
+    TResult Function(Set<GroceryList> groceryLists)? event,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
@@ -5171,10 +5171,10 @@ class _$OnListsEventImpl implements OnListsEvent {
 }
 
 abstract class OnListsEvent implements ListenForLists {
-  const factory OnListsEvent(final List<GroceryList> groceryLists) =
+  const factory OnListsEvent(final Set<GroceryList> groceryLists) =
       _$OnListsEventImpl;
 
-  List<GroceryList> get groceryLists;
+  Set<GroceryList> get groceryLists;
   @JsonKey(ignore: true)
   _$$OnListsEventImplCopyWith<_$OnListsEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -5254,7 +5254,7 @@ class _$ListenForListsErrorImpl implements _ListenForListsError {
   TResult when<TResult extends Object?>({
     required TResult Function() start,
     required TResult Function() done,
-    required TResult Function(List<GroceryList> groceryLists) event,
+    required TResult Function(Set<GroceryList> groceryLists) event,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
     return error(this.error, stackTrace);
@@ -5265,7 +5265,7 @@ class _$ListenForListsErrorImpl implements _ListenForListsError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? start,
     TResult? Function()? done,
-    TResult? Function(List<GroceryList> groceryLists)? event,
+    TResult? Function(Set<GroceryList> groceryLists)? event,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
     return error?.call(this.error, stackTrace);
@@ -5276,7 +5276,7 @@ class _$ListenForListsErrorImpl implements _ListenForListsError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? start,
     TResult Function()? done,
-    TResult Function(List<GroceryList> groceryLists)? event,
+    TResult Function(Set<GroceryList> groceryLists)? event,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {

@@ -60,36 +60,30 @@ class AuthApi {
       final Set<GroceryList> groceryLists =
           groceryListsData.map((dynamic data) => GroceryList.fromJson(data as Map<String, dynamic>)).toSet();
 
+      print('\nLISTEN FOR LISTS\n');
+      print(groceryLists);
       return groceryLists;
     } else {
       return <GroceryList>{};
     }
   }
 
-  // Stream<List<GroceryList>> listenForLists() {
-  //   final User? user = _auth.currentUser;
-  //   return _firestore
-  //       .collection('users/${user!.uid}/groceryLists')
-  //       .snapshots()
-  //       .map((snapshot) {
-  //     return snapshot.docs
-  //         .map(doc) => GroceryList.fromJson(doc.data()))
-  //         .toList();
-  //   });
-  // }
-
-  Stream<List<GroceryList>> listenForLists() {
+  Stream<Set<GroceryList>> listenForLists() {
     final User? user = _auth.currentUser;
 
     return _firestore
         .collection('users/${user!.uid}/groceryLists')
         .snapshots()
         .map((QuerySnapshot<Map<String, dynamic>> snapshot) {
-      return snapshot.docs
+      final Set<GroceryList> snap = snapshot.docs
           .map((QueryDocumentSnapshot<Map<String, dynamic>> doc) => GroceryList.fromJson(doc.data()))
-          .toList();
+          .toSet();
+      print('\nLISTEN FOR LISTS\n');
+      print(snap);
+      return snap;
     });
   }
+
 
   Future<void> createGroceryList({
     required String title,

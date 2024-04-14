@@ -6,7 +6,7 @@ abstract class ListenForLists with _$ListenForLists implements AppAction {
 
   const factory ListenForLists.done() = ListenForListsDone;
 
-  const factory ListenForLists.event(List<GroceryList> groceryLists) = OnListsEvent;
+  const factory ListenForLists.event(Set<GroceryList> groceryLists) = OnListsEvent;
 
   @Implements<ErrorAction>()
   const factory ListenForLists.error(Object error, StackTrace stackTrace) = _ListenForListsError;
