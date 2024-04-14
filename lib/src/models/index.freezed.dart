@@ -22,6 +22,7 @@ AppState _$AppStateFromJson(Map<String, dynamic> json) {
 mixin _$AppState {
   AppUser? get user => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
+  Set<GroceryList> get groceryLists => throw _privateConstructorUsedError;
   List<Auchan> get products => throw _privateConstructorUsedError;
   List<Product> get productsList => throw _privateConstructorUsedError;
   String? get selectedListTitle => throw _privateConstructorUsedError;
@@ -40,6 +41,7 @@ abstract class $AppStateCopyWith<$Res> {
   $Res call(
       {AppUser? user,
       bool isLoading,
+      Set<GroceryList> groceryLists,
       List<Auchan> products,
       List<Product> productsList,
       String? selectedListTitle});
@@ -62,6 +64,7 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
   $Res call({
     Object? user = freezed,
     Object? isLoading = null,
+    Object? groceryLists = null,
     Object? products = null,
     Object? productsList = null,
     Object? selectedListTitle = freezed,
@@ -75,6 +78,10 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      groceryLists: null == groceryLists
+          ? _value.groceryLists
+          : groceryLists // ignore: cast_nullable_to_non_nullable
+              as Set<GroceryList>,
       products: null == products
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
@@ -114,6 +121,7 @@ abstract class _$$AppState$ImplCopyWith<$Res>
   $Res call(
       {AppUser? user,
       bool isLoading,
+      Set<GroceryList> groceryLists,
       List<Auchan> products,
       List<Product> productsList,
       String? selectedListTitle});
@@ -135,6 +143,7 @@ class __$$AppState$ImplCopyWithImpl<$Res>
   $Res call({
     Object? user = freezed,
     Object? isLoading = null,
+    Object? groceryLists = null,
     Object? products = null,
     Object? productsList = null,
     Object? selectedListTitle = freezed,
@@ -148,6 +157,10 @@ class __$$AppState$ImplCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      groceryLists: null == groceryLists
+          ? _value._groceryLists
+          : groceryLists // ignore: cast_nullable_to_non_nullable
+              as Set<GroceryList>,
       products: null == products
           ? _value._products
           : products // ignore: cast_nullable_to_non_nullable
@@ -170,10 +183,12 @@ class _$AppState$Impl implements AppState$ {
   const _$AppState$Impl(
       {this.user,
       this.isLoading = true,
+      final Set<GroceryList> groceryLists = const <GroceryList>{},
       final List<Auchan> products = const <Auchan>[],
       final List<Product> productsList = const <Product>[],
       this.selectedListTitle})
-      : _products = products,
+      : _groceryLists = groceryLists,
+        _products = products,
         _productsList = productsList;
 
   factory _$AppState$Impl.fromJson(Map<String, dynamic> json) =>
@@ -184,6 +199,15 @@ class _$AppState$Impl implements AppState$ {
   @override
   @JsonKey()
   final bool isLoading;
+  final Set<GroceryList> _groceryLists;
+  @override
+  @JsonKey()
+  Set<GroceryList> get groceryLists {
+    if (_groceryLists is EqualUnmodifiableSetView) return _groceryLists;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(_groceryLists);
+  }
+
   final List<Auchan> _products;
   @override
   @JsonKey()
@@ -207,7 +231,7 @@ class _$AppState$Impl implements AppState$ {
 
   @override
   String toString() {
-    return 'AppState(user: $user, isLoading: $isLoading, products: $products, productsList: $productsList, selectedListTitle: $selectedListTitle)';
+    return 'AppState(user: $user, isLoading: $isLoading, groceryLists: $groceryLists, products: $products, productsList: $productsList, selectedListTitle: $selectedListTitle)';
   }
 
   @override
@@ -218,6 +242,8 @@ class _$AppState$Impl implements AppState$ {
             (identical(other.user, user) || other.user == user) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
+            const DeepCollectionEquality()
+                .equals(other._groceryLists, _groceryLists) &&
             const DeepCollectionEquality().equals(other._products, _products) &&
             const DeepCollectionEquality()
                 .equals(other._productsList, _productsList) &&
@@ -231,6 +257,7 @@ class _$AppState$Impl implements AppState$ {
       runtimeType,
       user,
       isLoading,
+      const DeepCollectionEquality().hash(_groceryLists),
       const DeepCollectionEquality().hash(_products),
       const DeepCollectionEquality().hash(_productsList),
       selectedListTitle);
@@ -253,6 +280,7 @@ abstract class AppState$ implements AppState {
   const factory AppState$(
       {final AppUser? user,
       final bool isLoading,
+      final Set<GroceryList> groceryLists,
       final List<Auchan> products,
       final List<Product> productsList,
       final String? selectedListTitle}) = _$AppState$Impl;
@@ -264,6 +292,8 @@ abstract class AppState$ implements AppState {
   AppUser? get user;
   @override
   bool get isLoading;
+  @override
+  Set<GroceryList> get groceryLists;
   @override
   List<Auchan> get products;
   @override

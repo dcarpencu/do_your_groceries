@@ -50,21 +50,45 @@ class AuthApi {
   Future<Set<GroceryList>> getLists() async {
     final User? user = _auth.currentUser;
     final DocumentSnapshot<Map<String, dynamic>> userSnapshot =
-    await _firestore.collection('users').doc(user!.uid).get();
+        await _firestore.collection('users').doc(user!.uid).get();
 
     // Get the 'groceryLists' field from the document/**/
     final dynamic groceryListsData = userSnapshot.data()?['groceryLists'];
 
     if (groceryListsData is List) {
       // Convert the groceryLists array to a Set of GroceryList objects
-      final Set<GroceryList> groceryLists = groceryListsData
-          .map((data) => GroceryList.fromJson(data as Map<String, dynamic>))
-          .toSet();
+      final Set<GroceryList> groceryLists =
+          groceryListsData.map((dynamic data) => GroceryList.fromJson(data as Map<String, dynamic>)).toSet();
 
       return groceryLists;
     } else {
       return <GroceryList>{};
     }
+  }
+
+  // Stream<List<GroceryList>> listenForLists() {
+  //   final User? user = _auth.currentUser;
+  //   return _firestore
+  //       .collection('users/${user!.uid}/groceryLists')
+  //       .snapshots()
+  //       .map((snapshot) {
+  //     return snapshot.docs
+  //         .map(doc) => GroceryList.fromJson(doc.data()))
+  //         .toList();
+  //   });
+  // }
+
+  Stream<List<GroceryList>> listenForLists() {
+    final User? user = _auth.currentUser;
+
+    return _firestore
+        .collection('users/${user!.uid}/groceryLists')
+        .snapshots()
+        .map((QuerySnapshot<Map<String, dynamic>> snapshot) {
+      return snapshot.docs
+          .map((QueryDocumentSnapshot<Map<String, dynamic>> doc) => GroceryList.fromJson(doc.data()))
+          .toList();
+    });
   }
 
   Future<void> createGroceryList({

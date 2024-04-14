@@ -24,6 +24,7 @@ class AppEpic {
       TypedEpic<AppState, GetGroceryListsStart>(_getGroceryListsStart).call,
       TypedEpic<AppState, CreateGroceryListStart>(_createGroceryListStart).call,
       _listenForProducts,
+      _listenForLists,
       TypedEpic<AppState, CreateProductStart>(_createProductStart).call,
     ]);
   }
@@ -104,15 +105,6 @@ class AppEpic {
     });
   }
 
-  Stream<AppAction> _createGroceryListStart(Stream<CreateGroceryListStart> actions, EpicStore<AppState> store) {
-    return actions.flatMap((CreateGroceryListStart action) {
-      return Stream<void>.value(null)
-          .asyncMap((_) => _authApi.createGroceryList(title: action.title))
-          .mapTo(const CreateGroceryList.successful())
-          .onErrorReturnWith(CreateGroceryList.error);
-    });
-  }
-
   Stream<AppAction> _listenForProducts(Stream<dynamic> actions, EpicStore<AppState> store) {
     return actions.whereType<ListenForProductsStart>().flatMap((ListenForProductsStart action) {
       return _productsApi
@@ -123,6 +115,19 @@ class AppEpic {
           return event is ListenForProductsDone && event.groceryListTitle == action.groceryListTitle;
         }),
       ).onErrorReturnWith(ListenForProducts.error);
+    });
+  }
+
+  Stream<AppAction> _listenForLists(Stream<dynamic> actions, EpicStore<AppState> store) {
+    return actions.whereType<ListenForListsStart>().flatMap((ListenForListsStart action) {
+      return _authApi
+          .listenForLists()
+          .map<ListenForLists>(ListenForLists.event)
+          .takeUntil<dynamic>(
+        actions.where((dynamic event) {
+          return event is ListenForListsDone;
+        }),
+      ).onErrorReturnWith(ListenForLists.error);
     });
   }
 
@@ -139,6 +144,15 @@ class AppEpic {
           )
           .mapTo(const CreateProduct.successful())
           .onErrorReturnWith(CreateProduct.error);
+    });
+  }
+
+  Stream<AppAction> _createGroceryListStart(Stream<CreateGroceryListStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((CreateGroceryListStart action) {
+      return Stream<void>.value(null)
+          .asyncMap((_) => _authApi.createGroceryList(title: action.title))
+          .mapTo(const CreateGroceryList.successful())
+          .onErrorReturnWith(CreateGroceryList.error);
     });
   }
 }

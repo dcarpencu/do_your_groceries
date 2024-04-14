@@ -10,6 +10,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:redux/redux.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -19,10 +20,20 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late Store<AppState> _store;
+
   @override
   void initState() {
     super.initState();
-    StoreProvider.of<AppState>(context, listen: false).dispatch(const GetGroceryLists());
+    _store = StoreProvider.of<AppState>(context, listen: false);
+    _store.dispatch(const ListenForListsStart());
+  }
+
+  @override
+  void dispose() {
+    _store.dispatch(const ListenForListsDone());
+
+    super.dispose();
   }
 
   // void _onResult(AppAction action) {

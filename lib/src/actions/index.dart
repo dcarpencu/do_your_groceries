@@ -11,6 +11,7 @@ part 'update_user_products_list.dart';
 part 'get_grocery_lists.dart';
 part 'create_grocery_list.dart';
 part 'listen_for_products.dart';
+part 'listen_for_lists.dart';
 part 'set.dart';
 part 'create_product.dart';
 

@@ -5,6 +5,7 @@ class AppState with _$AppState {
   const factory AppState({
     AppUser? user,
     @Default(true) bool isLoading,
+    @Default(<GroceryList>{}) Set<GroceryList> groceryLists,
     @Default(<Auchan>[]) List<Auchan> products,
     @Default(<Product>[]) List<Product> productsList,
     String? selectedListTitle,
