@@ -11,7 +11,7 @@ class GroceryListsContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, Set<GroceryList>>(
-      converter: (Store<AppState> store) => store.state.groceryLists,
+      converter: (Store<AppState> store) => store.state.user!.groceryLists,
       builder: builder,
     );
   }

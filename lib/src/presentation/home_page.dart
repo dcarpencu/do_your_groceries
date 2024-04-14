@@ -1,10 +1,12 @@
 import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/containers/grocery_lists_container.dart';
 import 'package:do_you_groceries/src/containers/home_page_container.dart';
+import 'package:do_you_groceries/src/containers/user_container.dart';
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:do_you_groceries/src/presentation/products/create_list_page.dart';
 import 'package:do_you_groceries/src/presentation/products/markets_page.dart';
 import 'package:do_you_groceries/src/presentation/products/user_products_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -36,8 +38,8 @@ class _HomePageState extends State<HomePage> {
       builder: (BuildContext context, AppState state) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: GroceryListsContainer(
-            builder: (BuildContext context, Set<GroceryList> groceryLists) {
+          home: UserContainer(
+            builder: (BuildContext context, AppUser? user) {
               return Scaffold(
                 appBar: AppBar(
                   leading: IconButton(
@@ -71,11 +73,11 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ),
-                      if (groceryLists.isNotEmpty)
+                      if (user!.groceryLists.isNotEmpty)
                         SizedBox(
                           height: 240,
                           child: ListView.separated(
-                            itemCount: groceryLists.length,
+                            itemCount: user.groceryLists.length,
                             scrollDirection: Axis.horizontal,
                             padding: const EdgeInsets.only(left: 20, right: 20),
                             separatorBuilder: (BuildContext context, int index) => const SizedBox(
@@ -97,7 +99,7 @@ class _HomePageState extends State<HomePage> {
                                       child: SvgPicture.asset('assets/base/scissors-svgrepo-com.svg'),
                                     ),
                                     Text(
-                                      groceryLists.elementAt(index).title,
+                                      user.groceryLists.elementAt(index).title,
                                       style: const TextStyle(
                                         fontWeight: FontWeight.w400,
                                         color: Colors.black,
@@ -129,7 +131,7 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                         onPressed: () {
                                           StoreProvider.of<AppState>(context)
-                                              .dispatch(SetSelectedList(groceryLists.elementAt(index).title));
+                                              .dispatch(SetSelectedList(user.groceryLists.elementAt(index).title));
                                           Navigator.push(
                                             context,
                                             // ignore: always_specify_types

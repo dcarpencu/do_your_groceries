@@ -7,7 +7,6 @@ class AppState with _$AppState {
     @Default(true) bool isLoading,
     @Default(<Auchan>[]) List<Auchan> products,
     @Default(<Product>[]) List<Product> productsList,
-    @Default(<GroceryList>{}) Set<GroceryList> groceryLists,
     String? selectedListTitle,
   }) = AppState$;
 
