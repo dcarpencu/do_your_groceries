@@ -7,8 +7,8 @@ class AppState with _$AppState {
     @Default(true) bool isLoading,
     @Default(<Auchan>[]) List<Auchan> products,
     @Default(<Product>[]) List<Product> productsList,
-    @Default(<GroceryList>{}) Set<GroceryList> groceryLists,
     String? selectedListTitle,
+    @Default(<GroceryList>{}) Set<GroceryList> groceryLists,
   }) = AppState$;
 
   factory AppState.fromJson(Map<dynamic, dynamic> json) => _$AppStateFromJson(Map<String, dynamic>.from(json));

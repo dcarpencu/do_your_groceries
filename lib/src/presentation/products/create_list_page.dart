@@ -74,6 +74,7 @@ class _CreateListPageState extends State<CreateListPage> {
                       TextButton(onPressed: () => _onNext(context), child: const Text('Create list')),
                       TextButton(
                         onPressed: () {
+                          StoreProvider.of<AppState>(context).dispatch(const GetGroceryLists());
                           Navigator.pop(context);
                         },
                         child: const Text('Cancel', style: TextStyle(color: Colors.black)),
