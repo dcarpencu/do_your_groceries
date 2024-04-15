@@ -57,7 +57,7 @@ AppState _getGroceryListsSuccessful(AppState state, GetGroceryListsSuccessful ac
 }
 
 AppState _setSelectedList(AppState state, SetSelectedList action) {
-  return state.copyWith(selectedListTitle: action.groceryListTitle);
+  return state.copyWith(selectedGroceryList: action.selectedGroceryList);
 }
 
 AppState _onProductsEvent(AppState state, OnProductsEvent action) {

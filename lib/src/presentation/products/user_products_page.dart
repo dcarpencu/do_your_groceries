@@ -24,12 +24,12 @@ class _UserProductsPageState extends State<UserProductsPage> {
     super.initState();
 
     _store = StoreProvider.of<AppState>(context, listen: false);
-    _store.dispatch(ListenForProductsStart(_store.state.selectedListTitle!));
+    _store.dispatch(ListenForProductsStart(_store.state.selectedGroceryList!));
   }
 
   @override
   void dispose() {
-    _store.dispatch(ListenForProductsDone(_store.state.selectedListTitle!));
+    _store.dispatch(ListenForProductsDone(_store.state.selectedGroceryList!));
 
     super.dispose();
   }
@@ -53,10 +53,48 @@ class _UserProductsPageState extends State<UserProductsPage> {
                         itemCount: products.length,
                         itemBuilder: (BuildContext context, int index) {
                           final Product product = products[index];
-                          return ListTile(
-                            title: Text(product.name),
-                            subtitle: Text('${product.price} RON'),
-                          );
+                          return
+                          // Card(
+                          // child: ListTile(
+                          // leading: FlutterLogo(size: 72.0),
+                          // title: Text(product.name),
+                          // subtitle: Text('${product.price} RON'))
+                          // );
+                            Hero(
+                              tag: product.productId,
+                              child: Material(
+                                child: ListTile(
+                                  title: Text(product.name),
+                                  subtitle: Text('${product.price} RON'),
+                                  tileColor: Colors.cyan,
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute<Widget>(builder: (BuildContext context) {
+                                        return Scaffold(
+                                          appBar: AppBar(title: Text(product.name)),
+                                          body: Center(
+                                            child: Hero(
+                                              tag: 'ListTile-Hero',
+                                              child: Material(
+                                                child: ListTile(
+                                                  title: const Text('ListTile with Hero'),
+                                                  subtitle: const Text('Tap here to go back'),
+                                                  tileColor: Colors.blue[700],
+                                                  onTap: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      }),
+                                    );
+                                  },
+                                ),
+                              ),
+                            );
                         },
                       ),
                     )

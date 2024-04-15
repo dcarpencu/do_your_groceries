@@ -3,6 +3,7 @@ part of 'index.dart';
 @freezed
 class GroceryList with _$GroceryList {
   const factory GroceryList({
+    required String groceryListId,
     required String uid,
     required String title,
     @Default('') String description,

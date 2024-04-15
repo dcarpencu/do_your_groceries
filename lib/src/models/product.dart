@@ -3,8 +3,8 @@ part of 'index.dart';
 @freezed
 class Product with _$Product {
   const factory Product({
-    required String uid,
-    required String groceryListTitle,
+    required String productId,
+    required String groceryListId,
     required String name,
     required double price,
     //final String? image,

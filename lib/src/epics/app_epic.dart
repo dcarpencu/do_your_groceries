@@ -131,7 +131,7 @@ class AppEpic {
       return Stream<void>.value(null)
           .asyncMap(
             (_) => _productsApi.createProduct(
-              groceryListTitle: store.state.selectedListTitle!,
+              groceryListId: store.state.selectedGroceryList!,
               name: action.name,
               price: action.price,
               uid: store.state.user!.uid,

@@ -6,10 +6,10 @@ class ProductsApi {
 
   final FirebaseFirestore _firestore;
 
-  Stream<List<Product>> listenForProducts(String groceryListTitle) {
+  Stream<List<Product>> listenForProducts(String groceryListId) {
     return _firestore
         .collection('products')
-        .where('groceryListTitle', isEqualTo: groceryListTitle)
+        .where('groceryListId', isEqualTo: groceryListId)
         .snapshots()
         .map((QuerySnapshot<Map<String, dynamic>> snapshot) {
       return snapshot.docs
@@ -19,13 +19,13 @@ class ProductsApi {
   }
 
   Future<void> createProduct({
-    required String groceryListTitle,
+    required String groceryListId,
     required String name,
     required String uid,
     required double price,
   }) async {
     final DocumentReference<Map<String, dynamic>> ref = _firestore.collection('products').doc();
-    final Product product = Product(groceryListTitle: groceryListTitle, name: name, price: price, uid: uid);
+    final Product product = Product(productId: ref.id, name: name, price: price, groceryListId: groceryListId);
 
     await ref.set(product.toJson());
   }
