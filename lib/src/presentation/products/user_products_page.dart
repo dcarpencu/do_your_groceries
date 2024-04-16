@@ -63,35 +63,38 @@ class _UserProductsPageState extends State<UserProductsPage> {
                             Hero(
                               tag: product.productId,
                               child: Material(
-                                child: ListTile(
-                                  title: Text(product.name),
-                                  subtitle: Text('${product.price} RON'),
-                                  tileColor: Colors.cyan,
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute<Widget>(builder: (BuildContext context) {
-                                        return Scaffold(
-                                          appBar: AppBar(title: Text(product.name)),
-                                          body: Center(
-                                            child: Hero(
-                                              tag: 'ListTile-Hero',
-                                              child: Material(
-                                                child: ListTile(
-                                                  title: const Text('ListTile with Hero'),
-                                                  subtitle: const Text('Tap here to go back'),
-                                                  tileColor: Colors.blue[700],
-                                                  onTap: () {
-                                                    Navigator.pop(context);
-                                                  },
+                                child: Card(
+                                  child: ListTile(
+                                    leading: const FlutterLogo(size: 72),
+                                    title: Text(product.name),
+                                    subtitle: Text('${product.price} RON'),
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute<Widget>(builder: (BuildContext context) {
+                                          return Scaffold(
+                                            appBar: AppBar(title: const Text('')),
+                                            body: Center(
+                                              child: Hero(
+                                                tag: '${product.productId} tag',
+                                                child: Material(
+                                                  child: Column(
+                                                    children: <Widget>[
+                                                      Text(product.name, style: const TextStyle(fontSize: 36),),
+                                                      const SizedBox(
+                                                        height: 16,
+                                                      ),
+                                                    Text('${product.price} Lei', style: const TextStyle(fontSize: 28),),
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
                                             ),
-                                          ),
-                                        );
-                                      }),
-                                    );
-                                  },
+                                          );
+                                        },),
+                                      );
+                                    },
+                                  ),
                                 ),
                               ),
                             );
