@@ -60,6 +60,10 @@ AppState _setSelectedList(AppState state, SetSelectedList action) {
   return state.copyWith(selectedGroceryList: action.selectedGroceryList);
 }
 
+// AppState _setCreatedGroceryList(AppState state, SetCreatedGroceryList action) {
+//   return state.copyWith(user: action.user)
+// }
+
 AppState _onProductsEvent(AppState state, OnProductsEvent action) {
   return state.copyWith(productsList: <Product>{...state.productsList, ...action.products}.toList());
 }

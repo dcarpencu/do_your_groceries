@@ -4,9 +4,9 @@ part of 'index.dart';
 class GroceryList with _$GroceryList {
   const factory GroceryList({
     required String groceryListId,
-    required String uid,
     required String title,
     @Default('') String description,
+    @Default(<String>[]) List<String> productIds,
     // ignore: flutter_style_todos
     //TODO: Add icons for users to choose
   }) = GroceryList$;

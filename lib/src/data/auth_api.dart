@@ -37,6 +37,29 @@ class AuthApi {
     await _auth.signOut();
   }
 
+  Future<AppUser> addGroceryListToUser({required String groceryListId}) async {
+    final User? currentUser = _auth.currentUser;
+
+    if (currentUser == null) {
+      throw Exception('User not authenticated!');
+    }
+
+    final DocumentReference<Map<String, dynamic>> userRef = _firestore.doc('users/${currentUser.uid}');
+    final DocumentSnapshot<Map<String, dynamic>> snapshot = await userRef.get();
+
+    if (!snapshot.exists) {
+      throw Exception('User document not found!');
+    }
+
+    final Map<String, dynamic> userData = snapshot.data()!;
+    final List<String> groceryListIds = (userData['groceryListIds'] as List<String>)..add(groceryListId);
+    userData['groceryListIds'] = groceryListIds;
+
+    await userRef.update(userData);
+
+    return AppUser.fromJson(userData);
+  }
+
   Future<AppUser> create({required String email, required String password, required String username}) async {
     final UserCredential credential = await _auth.createUserWithEmailAndPassword(email: email, password: password);
     final AppUser user = AppUser(uid: credential.user!.uid, email: email, username: username);
@@ -61,9 +84,7 @@ class AuthApi {
     required String title,
   }) async {
     final DocumentReference<Map<String, dynamic>> ref = _firestore.collection('lists').doc();
-    final GroceryList groceryList = GroceryList(groceryListId: ref.id, uid: _auth.currentUser!.uid, title: title);
-    print('GROCERY LISt');
-    print(groceryList);
+    final GroceryList groceryList = GroceryList(groceryListId: ref.id, title: title);
 
     await ref.set(groceryList.toJson());
   }

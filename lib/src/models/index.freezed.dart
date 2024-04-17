@@ -315,6 +315,7 @@ mixin _$AppUser {
   String get uid => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get username => throw _privateConstructorUsedError;
+  List<String> get groceryListIds => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -326,7 +327,8 @@ abstract class $AppUserCopyWith<$Res> {
   factory $AppUserCopyWith(AppUser value, $Res Function(AppUser) then) =
       _$AppUserCopyWithImpl<$Res, AppUser>;
   @useResult
-  $Res call({String uid, String email, String username});
+  $Res call(
+      {String uid, String email, String username, List<String> groceryListIds});
 }
 
 /// @nodoc
@@ -345,6 +347,7 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
     Object? uid = null,
     Object? email = null,
     Object? username = null,
+    Object? groceryListIds = null,
   }) {
     return _then(_value.copyWith(
       uid: null == uid
@@ -359,6 +362,10 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
+      groceryListIds: null == groceryListIds
+          ? _value.groceryListIds
+          : groceryListIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -370,7 +377,8 @@ abstract class _$$AppUser$ImplCopyWith<$Res> implements $AppUserCopyWith<$Res> {
       __$$AppUser$ImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String uid, String email, String username});
+  $Res call(
+      {String uid, String email, String username, List<String> groceryListIds});
 }
 
 /// @nodoc
@@ -387,6 +395,7 @@ class __$$AppUser$ImplCopyWithImpl<$Res>
     Object? uid = null,
     Object? email = null,
     Object? username = null,
+    Object? groceryListIds = null,
   }) {
     return _then(_$AppUser$Impl(
       uid: null == uid
@@ -401,6 +410,10 @@ class __$$AppUser$ImplCopyWithImpl<$Res>
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
+      groceryListIds: null == groceryListIds
+          ? _value._groceryListIds
+          : groceryListIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -409,7 +422,11 @@ class __$$AppUser$ImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AppUser$Impl implements AppUser$ {
   const _$AppUser$Impl(
-      {required this.uid, required this.email, required this.username});
+      {required this.uid,
+      required this.email,
+      required this.username,
+      final List<String> groceryListIds = const <String>[]})
+      : _groceryListIds = groceryListIds;
 
   factory _$AppUser$Impl.fromJson(Map<String, dynamic> json) =>
       _$$AppUser$ImplFromJson(json);
@@ -420,10 +437,18 @@ class _$AppUser$Impl implements AppUser$ {
   final String email;
   @override
   final String username;
+  final List<String> _groceryListIds;
+  @override
+  @JsonKey()
+  List<String> get groceryListIds {
+    if (_groceryListIds is EqualUnmodifiableListView) return _groceryListIds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_groceryListIds);
+  }
 
   @override
   String toString() {
-    return 'AppUser(uid: $uid, email: $email, username: $username)';
+    return 'AppUser(uid: $uid, email: $email, username: $username, groceryListIds: $groceryListIds)';
   }
 
   @override
@@ -434,12 +459,15 @@ class _$AppUser$Impl implements AppUser$ {
             (identical(other.uid, uid) || other.uid == uid) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.username, username) ||
-                other.username == username));
+                other.username == username) &&
+            const DeepCollectionEquality()
+                .equals(other._groceryListIds, _groceryListIds));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, uid, email, username);
+  int get hashCode => Object.hash(runtimeType, uid, email, username,
+      const DeepCollectionEquality().hash(_groceryListIds));
 
   @JsonKey(ignore: true)
   @override
@@ -459,7 +487,8 @@ abstract class AppUser$ implements AppUser {
   const factory AppUser$(
       {required final String uid,
       required final String email,
-      required final String username}) = _$AppUser$Impl;
+      required final String username,
+      final List<String> groceryListIds}) = _$AppUser$Impl;
 
   factory AppUser$.fromJson(Map<String, dynamic> json) =
       _$AppUser$Impl.fromJson;
@@ -470,6 +499,8 @@ abstract class AppUser$ implements AppUser {
   String get email;
   @override
   String get username;
+  @override
+  List<String> get groceryListIds;
   @override
   @JsonKey(ignore: true)
   _$$AppUser$ImplCopyWith<_$AppUser$Impl> get copyWith =>
@@ -845,9 +876,9 @@ GroceryList _$GroceryListFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$GroceryList {
   String get groceryListId => throw _privateConstructorUsedError;
-  String get uid => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
+  List<String> get productIds => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -862,7 +893,10 @@ abstract class $GroceryListCopyWith<$Res> {
       _$GroceryListCopyWithImpl<$Res, GroceryList>;
   @useResult
   $Res call(
-      {String groceryListId, String uid, String title, String description});
+      {String groceryListId,
+      String title,
+      String description,
+      List<String> productIds});
 }
 
 /// @nodoc
@@ -879,18 +913,14 @@ class _$GroceryListCopyWithImpl<$Res, $Val extends GroceryList>
   @override
   $Res call({
     Object? groceryListId = null,
-    Object? uid = null,
     Object? title = null,
     Object? description = null,
+    Object? productIds = null,
   }) {
     return _then(_value.copyWith(
       groceryListId: null == groceryListId
           ? _value.groceryListId
           : groceryListId // ignore: cast_nullable_to_non_nullable
-              as String,
-      uid: null == uid
-          ? _value.uid
-          : uid // ignore: cast_nullable_to_non_nullable
               as String,
       title: null == title
           ? _value.title
@@ -900,6 +930,10 @@ class _$GroceryListCopyWithImpl<$Res, $Val extends GroceryList>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      productIds: null == productIds
+          ? _value.productIds
+          : productIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -913,7 +947,10 @@ abstract class _$$GroceryList$ImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String groceryListId, String uid, String title, String description});
+      {String groceryListId,
+      String title,
+      String description,
+      List<String> productIds});
 }
 
 /// @nodoc
@@ -928,18 +965,14 @@ class __$$GroceryList$ImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? groceryListId = null,
-    Object? uid = null,
     Object? title = null,
     Object? description = null,
+    Object? productIds = null,
   }) {
     return _then(_$GroceryList$Impl(
       groceryListId: null == groceryListId
           ? _value.groceryListId
           : groceryListId // ignore: cast_nullable_to_non_nullable
-              as String,
-      uid: null == uid
-          ? _value.uid
-          : uid // ignore: cast_nullable_to_non_nullable
               as String,
       title: null == title
           ? _value.title
@@ -949,6 +982,10 @@ class __$$GroceryList$ImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      productIds: null == productIds
+          ? _value._productIds
+          : productIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -958,9 +995,10 @@ class __$$GroceryList$ImplCopyWithImpl<$Res>
 class _$GroceryList$Impl implements GroceryList$ {
   const _$GroceryList$Impl(
       {required this.groceryListId,
-      required this.uid,
       required this.title,
-      this.description = ''});
+      this.description = '',
+      final List<String> productIds = const <String>[]})
+      : _productIds = productIds;
 
   factory _$GroceryList$Impl.fromJson(Map<String, dynamic> json) =>
       _$$GroceryList$ImplFromJson(json);
@@ -968,16 +1006,22 @@ class _$GroceryList$Impl implements GroceryList$ {
   @override
   final String groceryListId;
   @override
-  final String uid;
-  @override
   final String title;
   @override
   @JsonKey()
   final String description;
+  final List<String> _productIds;
+  @override
+  @JsonKey()
+  List<String> get productIds {
+    if (_productIds is EqualUnmodifiableListView) return _productIds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_productIds);
+  }
 
   @override
   String toString() {
-    return 'GroceryList(groceryListId: $groceryListId, uid: $uid, title: $title, description: $description)';
+    return 'GroceryList(groceryListId: $groceryListId, title: $title, description: $description, productIds: $productIds)';
   }
 
   @override
@@ -987,16 +1031,17 @@ class _$GroceryList$Impl implements GroceryList$ {
             other is _$GroceryList$Impl &&
             (identical(other.groceryListId, groceryListId) ||
                 other.groceryListId == groceryListId) &&
-            (identical(other.uid, uid) || other.uid == uid) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
-                other.description == description));
+                other.description == description) &&
+            const DeepCollectionEquality()
+                .equals(other._productIds, _productIds));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, groceryListId, uid, title, description);
+  int get hashCode => Object.hash(runtimeType, groceryListId, title,
+      description, const DeepCollectionEquality().hash(_productIds));
 
   @JsonKey(ignore: true)
   @override
@@ -1015,9 +1060,9 @@ class _$GroceryList$Impl implements GroceryList$ {
 abstract class GroceryList$ implements GroceryList {
   const factory GroceryList$(
       {required final String groceryListId,
-      required final String uid,
       required final String title,
-      final String description}) = _$GroceryList$Impl;
+      final String description,
+      final List<String> productIds}) = _$GroceryList$Impl;
 
   factory GroceryList$.fromJson(Map<String, dynamic> json) =
       _$GroceryList$Impl.fromJson;
@@ -1025,11 +1070,11 @@ abstract class GroceryList$ implements GroceryList {
   @override
   String get groceryListId;
   @override
-  String get uid;
-  @override
   String get title;
   @override
   String get description;
+  @override
+  List<String> get productIds;
   @override
   @JsonKey(ignore: true)
   _$$GroceryList$ImplCopyWith<_$GroceryList$Impl> get copyWith =>

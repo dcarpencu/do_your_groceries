@@ -13,6 +13,7 @@ part 'create_grocery_list.dart';
 part 'listen_for_products.dart';
 part 'set.dart';
 part 'create_product.dart';
+part 'add_grocery_list_to_user.dart';
 
 abstract class AppAction {}
 

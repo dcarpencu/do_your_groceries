@@ -42,6 +42,10 @@ _$AppUser$Impl _$$AppUser$ImplFromJson(Map<String, dynamic> json) =>
       uid: json['uid'] as String,
       email: json['email'] as String,
       username: json['username'] as String,
+      groceryListIds: (json['groceryListIds'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const <String>[],
     );
 
 Map<String, dynamic> _$$AppUser$ImplToJson(_$AppUser$Impl instance) =>
@@ -49,6 +53,7 @@ Map<String, dynamic> _$$AppUser$ImplToJson(_$AppUser$Impl instance) =>
       'uid': instance.uid,
       'email': instance.email,
       'username': instance.username,
+      'groceryListIds': instance.groceryListIds,
     };
 
 _$Auchan$Impl _$$Auchan$ImplFromJson(Map<String, dynamic> json) =>
@@ -84,15 +89,18 @@ Map<String, dynamic> _$$Product$ImplToJson(_$Product$Impl instance) =>
 _$GroceryList$Impl _$$GroceryList$ImplFromJson(Map<String, dynamic> json) =>
     _$GroceryList$Impl(
       groceryListId: json['groceryListId'] as String,
-      uid: json['uid'] as String,
       title: json['title'] as String,
       description: json['description'] as String? ?? '',
+      productIds: (json['productIds'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const <String>[],
     );
 
 Map<String, dynamic> _$$GroceryList$ImplToJson(_$GroceryList$Impl instance) =>
     <String, dynamic>{
       'groceryListId': instance.groceryListId,
-      'uid': instance.uid,
       'title': instance.title,
       'description': instance.description,
+      'productIds': instance.productIds,
     };

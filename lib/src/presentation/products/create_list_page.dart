@@ -2,6 +2,7 @@ import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:redux/redux.dart';
 
 class CreateListPage extends StatefulWidget {
   const CreateListPage({super.key});
@@ -39,9 +40,12 @@ class _CreateListPageState extends State<CreateListPage> {
       CreateGroceryList(_titleController.text),
     );
     StoreProvider.of<AppState>(context).dispatch(
+      const AddGroceryListToUser(groceryListId: ),
+    );
+    StoreProvider.of<AppState>(context).dispatch(
       const GetGroceryLists(),
     );
-    Navigator.pop(context);
+    Navigator.pushNamedAndRemoveUntil(context, '/', (_) => false);
   }
 
   @override
@@ -54,6 +58,7 @@ class _CreateListPageState extends State<CreateListPage> {
               child: Padding(
                 padding: const EdgeInsets.all(16),
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     TextFormField(
                       controller: _titleController,
@@ -84,23 +89,23 @@ class _CreateListPageState extends State<CreateListPage> {
                     const SizedBox(
                       height: 16,
                     ),
-                    ListView.builder(
-                      itemCount: _options.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        final String item = _options[index];
-
-                        return RadioListTile(
-                          title: Text(item),
-                          value: index,
-                          groupValue: _selected,
-                          onChanged: (int? value) {
-                            setState(() {
-                              _selected = value;
-                            });
-                          },
-                        );
-                      },
-                    ),
+                    // ListView.builder(
+                    //   itemCount: _options.length,
+                    //   itemBuilder: (BuildContext context, int index) {
+                    //     final String item = _options[index];
+                    //
+                    //     return RadioListTile(
+                    //       title: Text(item),
+                    //       value: index,
+                    //       groupValue: _selected,
+                    //       onChanged: (int? value) {
+                    //         setState(() {
+                    //           _selected = value;
+                    //         });
+                    //       },
+                    //     );
+                    //   },
+                    // ),
                     TextButton(onPressed: () => _onNext(context), child: const Text('Create list')),
                     TextButton(
                       onPressed: () {
