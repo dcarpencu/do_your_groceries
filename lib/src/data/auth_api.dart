@@ -64,50 +64,55 @@ class AuthApi {
 
     final Map<String, dynamic> userData = snapshot.data()!;
 
-    final groceryListIds = userData['groceryListIds'];
+    final List<dynamic>? groceryListIds =
+    (snapshot.data()?['groceryListIds'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
 
-    groceryListIds..add(groceryListId);
+    groceryListIds?.add(groceryListId);
     userData['groceryListIds'] = groceryListIds;
     await userRef.update(userData);
+
+    print('\n--------------- USER DATA CHECK');
+    print(userData);
+    print('\n');
 
     return AppUser.fromJson(userData);
   }
 
   Future<Set<GroceryList>> getLists() async {
     final User? currentUser = _auth.currentUser;
-    final DocumentReference<Map<String, dynamic>> userRef = _firestore.doc('users/${currentUser?.uid}');
+    final DocumentReference<Map<String, dynamic>> userRef =
+    _firestore.doc('users/${currentUser?.uid}');
     final DocumentSnapshot<Map<String, dynamic>> snapshot = await userRef.get();
-
-    print(snapshot);
-    final AppUser currentUserObj = AppUser.fromJson(snapshot.data()!);
-    print(currentUserObj);
 
     if (!snapshot.exists) {
       throw Exception('User document not found!');
     }
 
-    final Map<String, dynamic> userData = snapshot.data()!;
-    print(userData.values);
     final List<dynamic>? groceryListIds =
-    snapshot.data()?['groceryListIds'] as List<dynamic>?;
+    (snapshot.data()?['groceryListIds'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
+
+
+    print('\n\n PLEASE WORK DEAR GOD');
+    print(groceryListIds);
+    print('\n');
 
     final Set<GroceryList> result = <GroceryList>{};
 
     if (groceryListIds != null && groceryListIds.isNotEmpty) {
-      final QuerySnapshot<Map<String, dynamic>> querySnapshot = await _firestore
-          .collection('lists')
-          .where(FieldPath.documentId, whereIn: groceryListIds)
-          .get();
+      for (final String listId in groceryListIds as List<String>) {
+        final DocumentSnapshot<Map<String, dynamic>> listSnapshot =
+        await _firestore.collection('lists').doc(listId).get();
+        // print('\n---------- \nAICIAI BUBA\n');
+        // print(listSnapshot.data());
 
-      final List<DocumentSnapshot<Map<String, dynamic>>> listSnapshots = querySnapshot.docs;
-
-      for (final DocumentSnapshot<Map<String, dynamic>> listSnapshot in listSnapshots) {
-        final groceryList = GroceryList.fromJson(listSnapshot.data()!);
-        result.add(groceryList);
+        if (listSnapshot.exists) {
+          final groceryList =
+          GroceryList.fromJson(listSnapshot.data()!);
+          result.add(groceryList);
+        }
       }
     }
-    print('\n-------------------------------- ollaaaaa');
-    print(result);
+
     return result;
   }
 
