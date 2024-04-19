@@ -1,5 +1,6 @@
 import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/models/index.dart';
+import 'package:do_you_groceries/src/presentation/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
@@ -41,13 +42,20 @@ class _CreateListPageState extends State<CreateListPage> {
     _store..dispatch(
       CreateGroceryList(_titleController.text),
     )
-    ..dispatch(
-      AddGroceryListToUser(groceryListId: _store.state.groceryLists.last.groceryListId),
-    )
+    // ..dispatch(
+    //   AddGroceryListToUser(groceryListId: _store.state.groceryLists.last.groceryListId),
+    // )
     ..dispatch(
       const GetGroceryLists(),
     );
-    Navigator.pushNamedAndRemoveUntil(context, '/', (_) => false);
+    //Navigator.pushNamedAndRemoveUntil(context, '/', (_) => false);
+
+    Navigator.pop(context);
+    // MaterialPageRoute<Widget>(builder: (BuildContext context) => const HomePage());
+
+    MaterialPageRoute<Widget>(
+      builder: (BuildContext context) => const HomePage(),
+    );
   }
 
   @override

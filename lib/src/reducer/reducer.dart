@@ -70,5 +70,5 @@ AppState _onProductsEvent(AppState state, OnProductsEvent action) {
 }
 
 AppState _createGroceryListSuccessful(AppState state, CreateGroceryListSuccessful action) {
-  return state.copyWith(groceryLists: <GroceryList>{...state.groceryLists, action.groceryList});
+  return state.copyWith(user: action.user);
 }

@@ -46,7 +46,7 @@ class AuthApi {
     return user;
   }
 
-  Future<GroceryList> createGroceryList({
+  Future<AppUser> createGroceryList({
     required String title,
   }) async {
     final DocumentReference<Map<String, dynamic>> ref = _firestore.collection('lists').doc();
@@ -54,7 +54,24 @@ class AuthApi {
 
     await ref.set(groceryList.toJson());
 
-    return groceryList;
+    final User? currentUser = _auth.currentUser;
+    final DocumentReference<Map<String, dynamic>> userRef = _firestore.doc('users/${currentUser?.uid}');
+    final DocumentSnapshot<Map<String, dynamic>> snapshot = await userRef.get();
+
+    final Map<String, dynamic> userData = snapshot.data()!;
+
+    final List<dynamic>? groceryListIds =
+    (snapshot.data()?['groceryListIds'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
+
+    groceryListIds?.add(ref.id);
+    userData['groceryListIds'] = groceryListIds;
+    await userRef.update(userData);
+
+    print('\n--------------- USER DATA CHECK');
+    print(userData);
+    print('\n');
+
+    return AppUser.fromJson(userData);
   }
 
   Future<AppUser> addGroceryListToUser({required String groceryListId}) async {
@@ -102,8 +119,8 @@ class AuthApi {
       for (final String listId in groceryListIds as List<String>) {
         final DocumentSnapshot<Map<String, dynamic>> listSnapshot =
         await _firestore.collection('lists').doc(listId).get();
-        // print('\n---------- \nAICIAI BUBA\n');
-        // print(listSnapshot.data());
+        print('\n---------- \nAICIAI BUBA\n');
+        print(listSnapshot.data());
 
         if (listSnapshot.exists) {
           final groceryList =
@@ -112,6 +129,8 @@ class AuthApi {
         }
       }
     }
+    print('\n------------- RESULT');
+    print(result);
 
     return result;
   }
