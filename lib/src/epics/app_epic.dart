@@ -105,15 +105,6 @@ class AppEpic {
     });
   }
 
-  Stream<AppAction> _createGroceryListStart(Stream<CreateGroceryListStart> actions, EpicStore<AppState> store) {
-    return actions.flatMap((CreateGroceryListStart action) {
-      return Stream<void>.value(null)
-          .asyncMap((_) => _authApi.createGroceryList(title: action.title))
-          .mapTo(const CreateGroceryList.successful())
-          .onErrorReturnWith(CreateGroceryList.error);
-    });
-  }
-
   Stream<AppAction> _listenForProducts(Stream<dynamic> actions, EpicStore<AppState> store) {
     return actions.whereType<ListenForProductsStart>().flatMap((ListenForProductsStart action) {
       return _productsApi
@@ -153,6 +144,15 @@ class AppEpic {
       )
           .map<AddGroceryListToUser>(AddGroceryListToUser.successful)
           .onErrorReturnWith(AddGroceryListToUser.error);
+    });
+  }
+
+  Stream<AppAction> _createGroceryListStart(Stream<CreateGroceryListStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((CreateGroceryListStart action) {
+      return Stream<void>.value(null)
+          .asyncMap((_) => _authApi.createGroceryList(title: action.title))
+          .map<CreateGroceryList>(CreateGroceryList.successful)
+          .onErrorReturnWith(CreateGroceryList.error);
     });
   }
 }

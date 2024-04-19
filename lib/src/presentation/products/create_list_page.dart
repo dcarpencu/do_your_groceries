@@ -15,6 +15,7 @@ class _CreateListPageState extends State<CreateListPage> {
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
   final FocusScopeNode _descriptionFocusNode = FocusScopeNode();
+  late Store<AppState> _store;
   final List<String> _options = const <String>[
     'cocktail.svg',
     'milk-tea.svg',
@@ -36,13 +37,14 @@ class _CreateListPageState extends State<CreateListPage> {
       return;
     }
 
-    StoreProvider.of<AppState>(context).dispatch(
+    _store = StoreProvider.of<AppState>(context, listen: false);
+    _store..dispatch(
       CreateGroceryList(_titleController.text),
-    );
-    StoreProvider.of<AppState>(context).dispatch(
-      const AddGroceryListToUser(groceryListId: ),
-    );
-    StoreProvider.of<AppState>(context).dispatch(
+    )
+    ..dispatch(
+      AddGroceryListToUser(groceryListId: _store.state.groceryLists.last.groceryListId),
+    )
+    ..dispatch(
       const GetGroceryLists(),
     );
     Navigator.pushNamedAndRemoveUntil(context, '/', (_) => false);

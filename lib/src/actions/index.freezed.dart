@@ -3094,21 +3094,21 @@ mixin _$GetGroceryLists {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
-    required TResult Function(GroceryList groceryList) successful,
+    required TResult Function(Set<GroceryList> groceryLists) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function()? $default, {
-    TResult? Function(GroceryList groceryList)? successful,
+    TResult? Function(Set<GroceryList> groceryLists)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function(GroceryList groceryList)? successful,
+    TResult Function(Set<GroceryList> groceryLists)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) =>
@@ -3195,7 +3195,7 @@ class _$GetGroceryListsStartImpl implements GetGroceryListsStart {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
-    required TResult Function(GroceryList groceryList) successful,
+    required TResult Function(Set<GroceryList> groceryLists) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
     return $default();
@@ -3205,7 +3205,7 @@ class _$GetGroceryListsStartImpl implements GetGroceryListsStart {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function()? $default, {
-    TResult? Function(GroceryList groceryList)? successful,
+    TResult? Function(Set<GroceryList> groceryLists)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
     return $default?.call();
@@ -3215,7 +3215,7 @@ class _$GetGroceryListsStartImpl implements GetGroceryListsStart {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function(GroceryList groceryList)? successful,
+    TResult Function(Set<GroceryList> groceryLists)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
@@ -3271,9 +3271,7 @@ abstract class _$$GetGroceryListsSuccessfulImplCopyWith<$Res> {
           $Res Function(_$GetGroceryListsSuccessfulImpl) then) =
       __$$GetGroceryListsSuccessfulImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({GroceryList groceryList});
-
-  $GroceryListCopyWith<$Res> get groceryList;
+  $Res call({Set<GroceryList> groceryLists});
 }
 
 /// @nodoc
@@ -3288,36 +3286,34 @@ class __$$GetGroceryListsSuccessfulImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? groceryList = null,
+    Object? groceryLists = null,
   }) {
     return _then(_$GetGroceryListsSuccessfulImpl(
-      null == groceryList
-          ? _value.groceryList
-          : groceryList // ignore: cast_nullable_to_non_nullable
-              as GroceryList,
+      null == groceryLists
+          ? _value._groceryLists
+          : groceryLists // ignore: cast_nullable_to_non_nullable
+              as Set<GroceryList>,
     ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $GroceryListCopyWith<$Res> get groceryList {
-    return $GroceryListCopyWith<$Res>(_value.groceryList, (value) {
-      return _then(_value.copyWith(groceryList: value));
-    });
   }
 }
 
 /// @nodoc
 
 class _$GetGroceryListsSuccessfulImpl implements GetGroceryListsSuccessful {
-  const _$GetGroceryListsSuccessfulImpl(this.groceryList);
+  const _$GetGroceryListsSuccessfulImpl(final Set<GroceryList> groceryLists)
+      : _groceryLists = groceryLists;
 
+  final Set<GroceryList> _groceryLists;
   @override
-  final GroceryList groceryList;
+  Set<GroceryList> get groceryLists {
+    if (_groceryLists is EqualUnmodifiableSetView) return _groceryLists;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(_groceryLists);
+  }
 
   @override
   String toString() {
-    return 'GetGroceryLists.successful(groceryList: $groceryList)';
+    return 'GetGroceryLists.successful(groceryLists: $groceryLists)';
   }
 
   @override
@@ -3325,12 +3321,13 @@ class _$GetGroceryListsSuccessfulImpl implements GetGroceryListsSuccessful {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetGroceryListsSuccessfulImpl &&
-            (identical(other.groceryList, groceryList) ||
-                other.groceryList == groceryList));
+            const DeepCollectionEquality()
+                .equals(other._groceryLists, _groceryLists));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, groceryList);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_groceryLists));
 
   @JsonKey(ignore: true)
   @override
@@ -3343,32 +3340,32 @@ class _$GetGroceryListsSuccessfulImpl implements GetGroceryListsSuccessful {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
-    required TResult Function(GroceryList groceryList) successful,
+    required TResult Function(Set<GroceryList> groceryLists) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
-    return successful(groceryList);
+    return successful(groceryLists);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function()? $default, {
-    TResult? Function(GroceryList groceryList)? successful,
+    TResult? Function(Set<GroceryList> groceryLists)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
-    return successful?.call(groceryList);
+    return successful?.call(groceryLists);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function(GroceryList groceryList)? successful,
+    TResult Function(Set<GroceryList> groceryLists)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
     if (successful != null) {
-      return successful(groceryList);
+      return successful(groceryLists);
     }
     return orElse();
   }
@@ -3409,10 +3406,10 @@ class _$GetGroceryListsSuccessfulImpl implements GetGroceryListsSuccessful {
 }
 
 abstract class GetGroceryListsSuccessful implements GetGroceryLists {
-  const factory GetGroceryListsSuccessful(final GroceryList groceryList) =
+  const factory GetGroceryListsSuccessful(final Set<GroceryList> groceryLists) =
       _$GetGroceryListsSuccessfulImpl;
 
-  GroceryList get groceryList;
+  Set<GroceryList> get groceryLists;
   @JsonKey(ignore: true)
   _$$GetGroceryListsSuccessfulImplCopyWith<_$GetGroceryListsSuccessfulImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -3492,7 +3489,7 @@ class _$GetGroceryListsErrorImpl implements GetGroceryListsError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
-    required TResult Function(GroceryList groceryList) successful,
+    required TResult Function(Set<GroceryList> groceryLists) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
     return error(this.error, stackTrace);
@@ -3502,7 +3499,7 @@ class _$GetGroceryListsErrorImpl implements GetGroceryListsError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function()? $default, {
-    TResult? Function(GroceryList groceryList)? successful,
+    TResult? Function(Set<GroceryList> groceryLists)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
     return error?.call(this.error, stackTrace);
@@ -3512,7 +3509,7 @@ class _$GetGroceryListsErrorImpl implements GetGroceryListsError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function(GroceryList groceryList)? successful,
+    TResult Function(Set<GroceryList> groceryLists)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
@@ -3574,21 +3571,21 @@ mixin _$CreateGroceryList {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(String title) $default, {
-    required TResult Function() successful,
+    required TResult Function(GroceryList groceryList) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(String title)? $default, {
-    TResult? Function()? successful,
+    TResult? Function(GroceryList groceryList)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(String title)? $default, {
-    TResult Function()? successful,
+    TResult Function(GroceryList groceryList)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) =>
@@ -3703,7 +3700,7 @@ class _$CreateGroceryListStartImpl implements CreateGroceryListStart {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(String title) $default, {
-    required TResult Function() successful,
+    required TResult Function(GroceryList groceryList) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
     return $default(title);
@@ -3713,7 +3710,7 @@ class _$CreateGroceryListStartImpl implements CreateGroceryListStart {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(String title)? $default, {
-    TResult? Function()? successful,
+    TResult? Function(GroceryList groceryList)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
     return $default?.call(title);
@@ -3723,7 +3720,7 @@ class _$CreateGroceryListStartImpl implements CreateGroceryListStart {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(String title)? $default, {
-    TResult Function()? successful,
+    TResult Function(GroceryList groceryList)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
@@ -3784,6 +3781,10 @@ abstract class _$$CreateGroceryListSuccessfulImplCopyWith<$Res> {
           _$CreateGroceryListSuccessfulImpl value,
           $Res Function(_$CreateGroceryListSuccessfulImpl) then) =
       __$$CreateGroceryListSuccessfulImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({GroceryList groceryList});
+
+  $GroceryListCopyWith<$Res> get groceryList;
 }
 
 /// @nodoc
@@ -3795,58 +3796,91 @@ class __$$CreateGroceryListSuccessfulImplCopyWithImpl<$Res>
       _$CreateGroceryListSuccessfulImpl _value,
       $Res Function(_$CreateGroceryListSuccessfulImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? groceryList = null,
+  }) {
+    return _then(_$CreateGroceryListSuccessfulImpl(
+      null == groceryList
+          ? _value.groceryList
+          : groceryList // ignore: cast_nullable_to_non_nullable
+              as GroceryList,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $GroceryListCopyWith<$Res> get groceryList {
+    return $GroceryListCopyWith<$Res>(_value.groceryList, (value) {
+      return _then(_value.copyWith(groceryList: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$CreateGroceryListSuccessfulImpl implements CreateGroceryListSuccessful {
-  const _$CreateGroceryListSuccessfulImpl();
+  const _$CreateGroceryListSuccessfulImpl(this.groceryList);
+
+  @override
+  final GroceryList groceryList;
 
   @override
   String toString() {
-    return 'CreateGroceryList.successful()';
+    return 'CreateGroceryList.successful(groceryList: $groceryList)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CreateGroceryListSuccessfulImpl);
+            other is _$CreateGroceryListSuccessfulImpl &&
+            (identical(other.groceryList, groceryList) ||
+                other.groceryList == groceryList));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, groceryList);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CreateGroceryListSuccessfulImplCopyWith<_$CreateGroceryListSuccessfulImpl>
+      get copyWith => __$$CreateGroceryListSuccessfulImplCopyWithImpl<
+          _$CreateGroceryListSuccessfulImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(String title) $default, {
-    required TResult Function() successful,
+    required TResult Function(GroceryList groceryList) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
-    return successful();
+    return successful(groceryList);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(String title)? $default, {
-    TResult? Function()? successful,
+    TResult? Function(GroceryList groceryList)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
-    return successful?.call();
+    return successful?.call(groceryList);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(String title)? $default, {
-    TResult Function()? successful,
+    TResult Function(GroceryList groceryList)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
     if (successful != null) {
-      return successful();
+      return successful(groceryList);
     }
     return orElse();
   }
@@ -3887,8 +3921,13 @@ class _$CreateGroceryListSuccessfulImpl implements CreateGroceryListSuccessful {
 }
 
 abstract class CreateGroceryListSuccessful implements CreateGroceryList {
-  const factory CreateGroceryListSuccessful() =
+  const factory CreateGroceryListSuccessful(final GroceryList groceryList) =
       _$CreateGroceryListSuccessfulImpl;
+
+  GroceryList get groceryList;
+  @JsonKey(ignore: true)
+  _$$CreateGroceryListSuccessfulImplCopyWith<_$CreateGroceryListSuccessfulImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -3966,7 +4005,7 @@ class _$CreateGroceryListErrorImpl implements CreateGroceryListError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(String title) $default, {
-    required TResult Function() successful,
+    required TResult Function(GroceryList groceryList) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
     return error(this.error, stackTrace);
@@ -3976,7 +4015,7 @@ class _$CreateGroceryListErrorImpl implements CreateGroceryListError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(String title)? $default, {
-    TResult? Function()? successful,
+    TResult? Function(GroceryList groceryList)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
     return error?.call(this.error, stackTrace);
@@ -3986,7 +4025,7 @@ class _$CreateGroceryListErrorImpl implements CreateGroceryListError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(String title)? $default, {
-    TResult Function()? successful,
+    TResult Function(GroceryList groceryList)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
