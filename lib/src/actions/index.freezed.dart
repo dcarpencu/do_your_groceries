@@ -3093,21 +3093,21 @@ abstract class UpdateUserProductsListError
 mixin _$GetGroceryLists {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(bool isAppStartup) $default, {
+    TResult Function() $default, {
     required TResult Function(Set<GroceryList> groceryLists) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(bool isAppStartup)? $default, {
+    TResult? Function()? $default, {
     TResult? Function(Set<GroceryList> groceryLists)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(bool isAppStartup)? $default, {
+    TResult Function()? $default, {
     TResult Function(Set<GroceryList> groceryLists)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
@@ -3160,8 +3160,6 @@ abstract class _$$GetGroceryListsStartImplCopyWith<$Res> {
   factory _$$GetGroceryListsStartImplCopyWith(_$GetGroceryListsStartImpl value,
           $Res Function(_$GetGroceryListsStartImpl) then) =
       __$$GetGroceryListsStartImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({bool isAppStartup});
 }
 
 /// @nodoc
@@ -3171,84 +3169,58 @@ class __$$GetGroceryListsStartImplCopyWithImpl<$Res>
   __$$GetGroceryListsStartImplCopyWithImpl(_$GetGroceryListsStartImpl _value,
       $Res Function(_$GetGroceryListsStartImpl) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? isAppStartup = null,
-  }) {
-    return _then(_$GetGroceryListsStartImpl(
-      isAppStartup: null == isAppStartup
-          ? _value.isAppStartup
-          : isAppStartup // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$GetGroceryListsStartImpl implements GetGroceryListsStart {
-  const _$GetGroceryListsStartImpl({required this.isAppStartup});
-
-  @override
-  final bool isAppStartup;
+  const _$GetGroceryListsStartImpl();
 
   @override
   String toString() {
-    return 'GetGroceryLists(isAppStartup: $isAppStartup)';
+    return 'GetGroceryLists()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GetGroceryListsStartImpl &&
-            (identical(other.isAppStartup, isAppStartup) ||
-                other.isAppStartup == isAppStartup));
+            other is _$GetGroceryListsStartImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isAppStartup);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$GetGroceryListsStartImplCopyWith<_$GetGroceryListsStartImpl>
-      get copyWith =>
-          __$$GetGroceryListsStartImplCopyWithImpl<_$GetGroceryListsStartImpl>(
-              this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(bool isAppStartup) $default, {
+    TResult Function() $default, {
     required TResult Function(Set<GroceryList> groceryLists) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
-    return $default(isAppStartup);
+    return $default();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(bool isAppStartup)? $default, {
+    TResult? Function()? $default, {
     TResult? Function(Set<GroceryList> groceryLists)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
-    return $default?.call(isAppStartup);
+    return $default?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(bool isAppStartup)? $default, {
+    TResult Function()? $default, {
     TResult Function(Set<GroceryList> groceryLists)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(isAppStartup);
+      return $default();
     }
     return orElse();
   }
@@ -3289,13 +3261,7 @@ class _$GetGroceryListsStartImpl implements GetGroceryListsStart {
 }
 
 abstract class GetGroceryListsStart implements GetGroceryLists {
-  const factory GetGroceryListsStart({required final bool isAppStartup}) =
-      _$GetGroceryListsStartImpl;
-
-  bool get isAppStartup;
-  @JsonKey(ignore: true)
-  _$$GetGroceryListsStartImplCopyWith<_$GetGroceryListsStartImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  const factory GetGroceryListsStart() = _$GetGroceryListsStartImpl;
 }
 
 /// @nodoc
@@ -3373,7 +3339,7 @@ class _$GetGroceryListsSuccessfulImpl implements GetGroceryListsSuccessful {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(bool isAppStartup) $default, {
+    TResult Function() $default, {
     required TResult Function(Set<GroceryList> groceryLists) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
@@ -3383,7 +3349,7 @@ class _$GetGroceryListsSuccessfulImpl implements GetGroceryListsSuccessful {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(bool isAppStartup)? $default, {
+    TResult? Function()? $default, {
     TResult? Function(Set<GroceryList> groceryLists)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
@@ -3393,7 +3359,7 @@ class _$GetGroceryListsSuccessfulImpl implements GetGroceryListsSuccessful {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(bool isAppStartup)? $default, {
+    TResult Function()? $default, {
     TResult Function(Set<GroceryList> groceryLists)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
@@ -3522,7 +3488,7 @@ class _$GetGroceryListsErrorImpl implements GetGroceryListsError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(bool isAppStartup) $default, {
+    TResult Function() $default, {
     required TResult Function(Set<GroceryList> groceryLists) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
@@ -3532,7 +3498,7 @@ class _$GetGroceryListsErrorImpl implements GetGroceryListsError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(bool isAppStartup)? $default, {
+    TResult? Function()? $default, {
     TResult? Function(Set<GroceryList> groceryLists)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
@@ -3542,7 +3508,7 @@ class _$GetGroceryListsErrorImpl implements GetGroceryListsError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(bool isAppStartup)? $default, {
+    TResult Function()? $default, {
     TResult Function(Set<GroceryList> groceryLists)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
@@ -5520,528 +5486,4 @@ abstract class CreateProductError implements CreateProduct, ErrorAction {
   @JsonKey(ignore: true)
   _$$CreateProductErrorImplCopyWith<_$CreateProductErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-mixin _$AddGroceryListToUser {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(String groceryListId) $default, {
-    required TResult Function(AppUser user) successful,
-    required TResult Function(Object error, StackTrace stackTrace) error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String groceryListId)? $default, {
-    TResult? Function(AppUser user)? successful,
-    TResult? Function(Object error, StackTrace stackTrace)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String groceryListId)? $default, {
-    TResult Function(AppUser user)? successful,
-    TResult Function(Object error, StackTrace stackTrace)? error,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(AddGroceryListToUserStart value) $default, {
-    required TResult Function(AddGroceryListToUserSuccessful value) successful,
-    required TResult Function(AddGroceryListToUserError value) error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(AddGroceryListToUserStart value)? $default, {
-    TResult? Function(AddGroceryListToUserSuccessful value)? successful,
-    TResult? Function(AddGroceryListToUserError value)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(AddGroceryListToUserStart value)? $default, {
-    TResult Function(AddGroceryListToUserSuccessful value)? successful,
-    TResult Function(AddGroceryListToUserError value)? error,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $AddGroceryListToUserCopyWith<$Res> {
-  factory $AddGroceryListToUserCopyWith(AddGroceryListToUser value,
-          $Res Function(AddGroceryListToUser) then) =
-      _$AddGroceryListToUserCopyWithImpl<$Res, AddGroceryListToUser>;
-}
-
-/// @nodoc
-class _$AddGroceryListToUserCopyWithImpl<$Res,
-        $Val extends AddGroceryListToUser>
-    implements $AddGroceryListToUserCopyWith<$Res> {
-  _$AddGroceryListToUserCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-}
-
-/// @nodoc
-abstract class _$$AddGroceryListToUserStartImplCopyWith<$Res> {
-  factory _$$AddGroceryListToUserStartImplCopyWith(
-          _$AddGroceryListToUserStartImpl value,
-          $Res Function(_$AddGroceryListToUserStartImpl) then) =
-      __$$AddGroceryListToUserStartImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String groceryListId});
-}
-
-/// @nodoc
-class __$$AddGroceryListToUserStartImplCopyWithImpl<$Res>
-    extends _$AddGroceryListToUserCopyWithImpl<$Res,
-        _$AddGroceryListToUserStartImpl>
-    implements _$$AddGroceryListToUserStartImplCopyWith<$Res> {
-  __$$AddGroceryListToUserStartImplCopyWithImpl(
-      _$AddGroceryListToUserStartImpl _value,
-      $Res Function(_$AddGroceryListToUserStartImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? groceryListId = null,
-  }) {
-    return _then(_$AddGroceryListToUserStartImpl(
-      groceryListId: null == groceryListId
-          ? _value.groceryListId
-          : groceryListId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$AddGroceryListToUserStartImpl implements AddGroceryListToUserStart {
-  const _$AddGroceryListToUserStartImpl({required this.groceryListId});
-
-  @override
-  final String groceryListId;
-
-  @override
-  String toString() {
-    return 'AddGroceryListToUser(groceryListId: $groceryListId)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AddGroceryListToUserStartImpl &&
-            (identical(other.groceryListId, groceryListId) ||
-                other.groceryListId == groceryListId));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, groceryListId);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AddGroceryListToUserStartImplCopyWith<_$AddGroceryListToUserStartImpl>
-      get copyWith => __$$AddGroceryListToUserStartImplCopyWithImpl<
-          _$AddGroceryListToUserStartImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(String groceryListId) $default, {
-    required TResult Function(AppUser user) successful,
-    required TResult Function(Object error, StackTrace stackTrace) error,
-  }) {
-    return $default(groceryListId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String groceryListId)? $default, {
-    TResult? Function(AppUser user)? successful,
-    TResult? Function(Object error, StackTrace stackTrace)? error,
-  }) {
-    return $default?.call(groceryListId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String groceryListId)? $default, {
-    TResult Function(AppUser user)? successful,
-    TResult Function(Object error, StackTrace stackTrace)? error,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(groceryListId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(AddGroceryListToUserStart value) $default, {
-    required TResult Function(AddGroceryListToUserSuccessful value) successful,
-    required TResult Function(AddGroceryListToUserError value) error,
-  }) {
-    return $default(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(AddGroceryListToUserStart value)? $default, {
-    TResult? Function(AddGroceryListToUserSuccessful value)? successful,
-    TResult? Function(AddGroceryListToUserError value)? error,
-  }) {
-    return $default?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(AddGroceryListToUserStart value)? $default, {
-    TResult Function(AddGroceryListToUserSuccessful value)? successful,
-    TResult Function(AddGroceryListToUserError value)? error,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class AddGroceryListToUserStart implements AddGroceryListToUser {
-  const factory AddGroceryListToUserStart(
-      {required final String groceryListId}) = _$AddGroceryListToUserStartImpl;
-
-  String get groceryListId;
-  @JsonKey(ignore: true)
-  _$$AddGroceryListToUserStartImplCopyWith<_$AddGroceryListToUserStartImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$AddGroceryListToUserSuccessfulImplCopyWith<$Res> {
-  factory _$$AddGroceryListToUserSuccessfulImplCopyWith(
-          _$AddGroceryListToUserSuccessfulImpl value,
-          $Res Function(_$AddGroceryListToUserSuccessfulImpl) then) =
-      __$$AddGroceryListToUserSuccessfulImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({AppUser user});
-
-  $AppUserCopyWith<$Res> get user;
-}
-
-/// @nodoc
-class __$$AddGroceryListToUserSuccessfulImplCopyWithImpl<$Res>
-    extends _$AddGroceryListToUserCopyWithImpl<$Res,
-        _$AddGroceryListToUserSuccessfulImpl>
-    implements _$$AddGroceryListToUserSuccessfulImplCopyWith<$Res> {
-  __$$AddGroceryListToUserSuccessfulImplCopyWithImpl(
-      _$AddGroceryListToUserSuccessfulImpl _value,
-      $Res Function(_$AddGroceryListToUserSuccessfulImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? user = null,
-  }) {
-    return _then(_$AddGroceryListToUserSuccessfulImpl(
-      null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as AppUser,
-    ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $AppUserCopyWith<$Res> get user {
-    return $AppUserCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _$AddGroceryListToUserSuccessfulImpl
-    implements AddGroceryListToUserSuccessful {
-  const _$AddGroceryListToUserSuccessfulImpl(this.user);
-
-  @override
-  final AppUser user;
-
-  @override
-  String toString() {
-    return 'AddGroceryListToUser.successful(user: $user)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AddGroceryListToUserSuccessfulImpl &&
-            (identical(other.user, user) || other.user == user));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, user);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AddGroceryListToUserSuccessfulImplCopyWith<
-          _$AddGroceryListToUserSuccessfulImpl>
-      get copyWith => __$$AddGroceryListToUserSuccessfulImplCopyWithImpl<
-          _$AddGroceryListToUserSuccessfulImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(String groceryListId) $default, {
-    required TResult Function(AppUser user) successful,
-    required TResult Function(Object error, StackTrace stackTrace) error,
-  }) {
-    return successful(user);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String groceryListId)? $default, {
-    TResult? Function(AppUser user)? successful,
-    TResult? Function(Object error, StackTrace stackTrace)? error,
-  }) {
-    return successful?.call(user);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String groceryListId)? $default, {
-    TResult Function(AppUser user)? successful,
-    TResult Function(Object error, StackTrace stackTrace)? error,
-    required TResult orElse(),
-  }) {
-    if (successful != null) {
-      return successful(user);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(AddGroceryListToUserStart value) $default, {
-    required TResult Function(AddGroceryListToUserSuccessful value) successful,
-    required TResult Function(AddGroceryListToUserError value) error,
-  }) {
-    return successful(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(AddGroceryListToUserStart value)? $default, {
-    TResult? Function(AddGroceryListToUserSuccessful value)? successful,
-    TResult? Function(AddGroceryListToUserError value)? error,
-  }) {
-    return successful?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(AddGroceryListToUserStart value)? $default, {
-    TResult Function(AddGroceryListToUserSuccessful value)? successful,
-    TResult Function(AddGroceryListToUserError value)? error,
-    required TResult orElse(),
-  }) {
-    if (successful != null) {
-      return successful(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class AddGroceryListToUserSuccessful
-    implements AddGroceryListToUser, UserAction {
-  const factory AddGroceryListToUserSuccessful(final AppUser user) =
-      _$AddGroceryListToUserSuccessfulImpl;
-
-  AppUser get user;
-  @JsonKey(ignore: true)
-  _$$AddGroceryListToUserSuccessfulImplCopyWith<
-          _$AddGroceryListToUserSuccessfulImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$AddGroceryListToUserErrorImplCopyWith<$Res> {
-  factory _$$AddGroceryListToUserErrorImplCopyWith(
-          _$AddGroceryListToUserErrorImpl value,
-          $Res Function(_$AddGroceryListToUserErrorImpl) then) =
-      __$$AddGroceryListToUserErrorImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({Object error, StackTrace stackTrace});
-}
-
-/// @nodoc
-class __$$AddGroceryListToUserErrorImplCopyWithImpl<$Res>
-    extends _$AddGroceryListToUserCopyWithImpl<$Res,
-        _$AddGroceryListToUserErrorImpl>
-    implements _$$AddGroceryListToUserErrorImplCopyWith<$Res> {
-  __$$AddGroceryListToUserErrorImplCopyWithImpl(
-      _$AddGroceryListToUserErrorImpl _value,
-      $Res Function(_$AddGroceryListToUserErrorImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? error = null,
-    Object? stackTrace = null,
-  }) {
-    return _then(_$AddGroceryListToUserErrorImpl(
-      null == error ? _value.error : error,
-      null == stackTrace
-          ? _value.stackTrace
-          : stackTrace // ignore: cast_nullable_to_non_nullable
-              as StackTrace,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$AddGroceryListToUserErrorImpl implements AddGroceryListToUserError {
-  const _$AddGroceryListToUserErrorImpl(this.error, this.stackTrace);
-
-  @override
-  final Object error;
-  @override
-  final StackTrace stackTrace;
-
-  @override
-  String toString() {
-    return 'AddGroceryListToUser.error(error: $error, stackTrace: $stackTrace)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AddGroceryListToUserErrorImpl &&
-            const DeepCollectionEquality().equals(other.error, error) &&
-            (identical(other.stackTrace, stackTrace) ||
-                other.stackTrace == stackTrace));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AddGroceryListToUserErrorImplCopyWith<_$AddGroceryListToUserErrorImpl>
-      get copyWith => __$$AddGroceryListToUserErrorImplCopyWithImpl<
-          _$AddGroceryListToUserErrorImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(String groceryListId) $default, {
-    required TResult Function(AppUser user) successful,
-    required TResult Function(Object error, StackTrace stackTrace) error,
-  }) {
-    return error(this.error, stackTrace);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String groceryListId)? $default, {
-    TResult? Function(AppUser user)? successful,
-    TResult? Function(Object error, StackTrace stackTrace)? error,
-  }) {
-    return error?.call(this.error, stackTrace);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String groceryListId)? $default, {
-    TResult Function(AppUser user)? successful,
-    TResult Function(Object error, StackTrace stackTrace)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this.error, stackTrace);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(AddGroceryListToUserStart value) $default, {
-    required TResult Function(AddGroceryListToUserSuccessful value) successful,
-    required TResult Function(AddGroceryListToUserError value) error,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(AddGroceryListToUserStart value)? $default, {
-    TResult? Function(AddGroceryListToUserSuccessful value)? successful,
-    TResult? Function(AddGroceryListToUserError value)? error,
-  }) {
-    return error?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(AddGroceryListToUserStart value)? $default, {
-    TResult Function(AddGroceryListToUserSuccessful value)? successful,
-    TResult Function(AddGroceryListToUserError value)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class AddGroceryListToUserError
-    implements AddGroceryListToUser, ErrorAction {
-  const factory AddGroceryListToUserError(
-          final Object error, final StackTrace stackTrace) =
-      _$AddGroceryListToUserErrorImpl;
-
-  Object get error;
-  StackTrace get stackTrace;
-  @JsonKey(ignore: true)
-  _$$AddGroceryListToUserErrorImplCopyWith<_$AddGroceryListToUserErrorImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }

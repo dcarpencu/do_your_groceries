@@ -74,28 +74,7 @@ class AuthApi {
     return groceryList;
   }
 
-  Future<AppUser> addGroceryListToUser({required String groceryListId}) async {
-    final User? currentUser = _auth.currentUser;
-    final DocumentReference<Map<String, dynamic>> userRef = _firestore.doc('users/${currentUser?.uid}');
-    final DocumentSnapshot<Map<String, dynamic>> snapshot = await userRef.get();
-
-    final Map<String, dynamic> userData = snapshot.data()!;
-
-    final List<dynamic>? groceryListIds =
-    (snapshot.data()?['groceryListIds'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
-
-    groceryListIds?.add(groceryListId);
-    userData['groceryListIds'] = groceryListIds;
-    await userRef.update(userData);
-
-    print('\n--------------- USER DATA CHECK');
-    print(userData);
-    print('\n');
-
-    return AppUser.fromJson(userData);
-  }
-
-  Future<Set<GroceryList>> getLists({required bool isAppStartup}) async {
+  Future<Set<GroceryList>> getLists() async {
     final User? currentUser = _auth.currentUser;
     final DocumentReference<Map<String, dynamic>> userRef =
     _firestore.doc('users/${currentUser?.uid}');

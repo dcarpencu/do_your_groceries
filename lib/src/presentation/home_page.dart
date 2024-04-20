@@ -18,17 +18,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late bool _isAppStartup;
-  late Store<AppState> _store;
   @override
   void initState() {
     super.initState();
-    _store = StoreProvider.of<AppState>(context, listen: false);
-    _isAppStartup = _store.state.isAppStartup;
-    // if (_isAppStartup) {
-      print('\n\n\n\n\n ------ IM IN STARTUP ------ \n\n\n');
-      // _isAppStartup = !_isAppStartup;
-    StoreProvider.of<AppState>(context, listen: false).dispatch(const GetGroceryLists(isAppStartup: false));
+
+    print('\n\n\n\n\n ------ IM IN STARTUP ------ \n\n\n');
+
+    StoreProvider.of<AppState>(context, listen: false).dispatch(const GetGroceryLists());
     // }
   }
 

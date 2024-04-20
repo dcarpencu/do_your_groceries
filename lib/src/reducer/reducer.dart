@@ -55,20 +55,16 @@ AppState _getProductsError(AppState state, GetProductsError action) {
 }
 
 AppState _getGroceryListsSuccessful(AppState state, GetGroceryListsSuccessful action) {
-  return state.copyWith(groceryLists: action.groceryLists, isAppStartup: false);
+  return state.copyWith(groceryLists: action.groceryLists);
 }
 
 AppState _getGroceryListsError(AppState state, GetGroceryListsError action) {
-  return state.copyWith(groceryLists: <GroceryList>{}, isAppStartup: true);
+  return state.copyWith(groceryLists: <GroceryList>{});
 }
 
 AppState _setSelectedList(AppState state, SetSelectedList action) {
   return state.copyWith(selectedGroceryList: action.selectedGroceryList);
 }
-
-// AppState _setCreatedGroceryList(AppState state, SetCreatedGroceryList action) {
-//   return state.copyWith(user: action.user)
-// }
 
 AppState _onProductsEvent(AppState state, OnProductsEvent action) {
   return state.copyWith(productsList: <Product>{...state.productsList, ...action.products}.toList());
