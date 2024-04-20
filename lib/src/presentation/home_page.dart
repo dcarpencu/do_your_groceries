@@ -8,7 +8,6 @@ import 'package:do_you_groceries/src/presentation/products/user_products_page.da
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:redux/redux.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -22,7 +21,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
 
-    print('\n\n\n\n\n ------ IM IN STARTUP ------ \n\n\n');
+    // print('\n\n\n\n\n ------ IM IN STARTUP ------ \n\n\n');
 
     StoreProvider.of<AppState>(context, listen: false).dispatch(const GetGroceryLists());
     StoreProvider.of<AppState>(context, listen: false).dispatch(GetProducts(_onResult));

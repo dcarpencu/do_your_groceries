@@ -40,7 +40,7 @@ class AuthApi {
   Future<AppUser> create({required String email, required String password, required String username}) async {
     final UserCredential credential = await _auth.createUserWithEmailAndPassword(email: email, password: password);
     final AppUser user = AppUser(uid: credential.user!.uid, email: email, username: username);
-    // TODO Maybe add groceryList parameter -- shall see later
+    // TODOMaybe add groceryList parameter -- shall see later
 
     await _firestore.doc('users/${user.uid}').set(user.toJson());
 
@@ -70,10 +70,6 @@ class AuthApi {
     userData['groceryListIds'] = groceryListIds;
     await userRef.update(userData);
 
-    print('\n--------------- USER DATA CHECK');
-    print(userData);
-    print('\n');
-
     return groceryList;
   }
 
@@ -90,26 +86,20 @@ class AuthApi {
     final List<dynamic>? groceryListIds =
     (snapshot.data()?['groceryListIds'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
 
-    print('\n\n GETTING LISTS \n\n');
-    print('\n IDS INSIDE USER: $groceryListIds\n');
-
-    final Set<GroceryList> result = {};
+    final Set<GroceryList> result = <GroceryList>{};
 
     if (groceryListIds != null && groceryListIds.isNotEmpty) {
       final QuerySnapshot<Map<String, dynamic>> listSnapshot =
       await _firestore.collection('lists').where(FieldPath.documentId, whereIn: groceryListIds).get();
 
-      print('\n---------- \nAICIAI BUBA\n $listSnapshot\n\n');
-
       for (final DocumentSnapshot<Map<String, dynamic>> documentSnapshot in listSnapshot.docs) {
         if (documentSnapshot.exists) {
-          final groceryList = GroceryList.fromJson(documentSnapshot.data()!);
+          final GroceryList groceryList = GroceryList.fromJson(documentSnapshot.data()!);
           result.add(groceryList);
         }
       }
     }
 
-    print('\n------------- RESULT: $result');
     return result;
   }
 

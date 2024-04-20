@@ -1,8 +1,6 @@
 import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/models/index.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:redux/redux.dart';
@@ -89,12 +87,12 @@ class _CreateListPageState extends State<CreateListPage> {
                               return SizedBox(
                                 width: 200,
                                 child: Column(
-                                  children: [
+                                  children: <Widget>[
                                     SizedBox(
                                         width: 60,
                                         height: 60,
-                                        child: SvgPicture.asset('assets/groceryListIcons/$item.svg')),
-                                    RadioListTile(
+                                        child: SvgPicture.asset('assets/groceryListIcons/$item.svg'),),
+                                    RadioListTile<int>(
                                       title: Text(item),
                                       value: index,
                                       groupValue: _selected,
@@ -143,7 +141,7 @@ class _CreateListPageState extends State<CreateListPage> {
                             FocusScope.of(context).requestFocus(_descriptionFocusNode);
                           },
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 32,
                         ),
                         const Align(

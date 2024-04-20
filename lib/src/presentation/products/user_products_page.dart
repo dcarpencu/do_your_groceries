@@ -101,7 +101,7 @@ class _UserProductsPageState extends State<UserProductsPage> {
                           );
                         },
                       ),
-                    )
+                    ),
                   // else
                   //   const Center(
                   //     child: Text('No products YET.\nPlease add some!'),
