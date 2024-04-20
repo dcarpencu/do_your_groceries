@@ -4768,6 +4768,563 @@ abstract class _ListenForProductsError
 }
 
 /// @nodoc
+abstract class $ListenForListsCopyWith<$Res> {
+  factory $ListenForListsCopyWith(
+          ListenForLists value, $Res Function(ListenForLists) then) =
+      _$ListenForListsCopyWithImpl<$Res, ListenForLists>;
+}
+
+/// @nodoc
+class _$ListenForListsCopyWithImpl<$Res, $Val extends ListenForLists>
+    implements $ListenForListsCopyWith<$Res> {
+  _$ListenForListsCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$ListenForListsStartImplCopyWith<$Res> {
+  factory _$$ListenForListsStartImplCopyWith(_$ListenForListsStartImpl value,
+          $Res Function(_$ListenForListsStartImpl) then) =
+      __$$ListenForListsStartImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ListenForListsStartImplCopyWithImpl<$Res>
+    extends _$ListenForListsCopyWithImpl<$Res, _$ListenForListsStartImpl>
+    implements _$$ListenForListsStartImplCopyWith<$Res> {
+  __$$ListenForListsStartImplCopyWithImpl(_$ListenForListsStartImpl _value,
+      $Res Function(_$ListenForListsStartImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ListenForListsStartImpl implements ListenForListsStart {
+  const _$ListenForListsStartImpl();
+
+  @override
+  String toString() {
+    return 'ListenForLists.start()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ListenForListsStartImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() start,
+    required TResult Function() done,
+    required TResult Function(Set<GroceryList> groceryLists) event,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return start();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? start,
+    TResult? Function()? done,
+    TResult? Function(Set<GroceryList> groceryLists)? event,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return start?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? start,
+    TResult Function()? done,
+    TResult Function(Set<GroceryList> groceryLists)? event,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (start != null) {
+      return start();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ListenForListsStart value) start,
+    required TResult Function(ListenForListsDone value) done,
+    required TResult Function(OnListsEvent value) event,
+    required TResult Function(_ListenForListsError value) error,
+  }) {
+    return start(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ListenForListsStart value)? start,
+    TResult? Function(ListenForListsDone value)? done,
+    TResult? Function(OnListsEvent value)? event,
+    TResult? Function(_ListenForListsError value)? error,
+  }) {
+    return start?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ListenForListsStart value)? start,
+    TResult Function(ListenForListsDone value)? done,
+    TResult Function(OnListsEvent value)? event,
+    TResult Function(_ListenForListsError value)? error,
+    required TResult orElse(),
+  }) {
+    if (start != null) {
+      return start(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ListenForListsStart implements ListenForLists {
+  const factory ListenForListsStart() = _$ListenForListsStartImpl;
+}
+
+/// @nodoc
+abstract class _$$ListenForListsDoneImplCopyWith<$Res> {
+  factory _$$ListenForListsDoneImplCopyWith(_$ListenForListsDoneImpl value,
+          $Res Function(_$ListenForListsDoneImpl) then) =
+      __$$ListenForListsDoneImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ListenForListsDoneImplCopyWithImpl<$Res>
+    extends _$ListenForListsCopyWithImpl<$Res, _$ListenForListsDoneImpl>
+    implements _$$ListenForListsDoneImplCopyWith<$Res> {
+  __$$ListenForListsDoneImplCopyWithImpl(_$ListenForListsDoneImpl _value,
+      $Res Function(_$ListenForListsDoneImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ListenForListsDoneImpl implements ListenForListsDone {
+  const _$ListenForListsDoneImpl();
+
+  @override
+  String toString() {
+    return 'ListenForLists.done()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ListenForListsDoneImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() start,
+    required TResult Function() done,
+    required TResult Function(Set<GroceryList> groceryLists) event,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return done();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? start,
+    TResult? Function()? done,
+    TResult? Function(Set<GroceryList> groceryLists)? event,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return done?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? start,
+    TResult Function()? done,
+    TResult Function(Set<GroceryList> groceryLists)? event,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (done != null) {
+      return done();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ListenForListsStart value) start,
+    required TResult Function(ListenForListsDone value) done,
+    required TResult Function(OnListsEvent value) event,
+    required TResult Function(_ListenForListsError value) error,
+  }) {
+    return done(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ListenForListsStart value)? start,
+    TResult? Function(ListenForListsDone value)? done,
+    TResult? Function(OnListsEvent value)? event,
+    TResult? Function(_ListenForListsError value)? error,
+  }) {
+    return done?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ListenForListsStart value)? start,
+    TResult Function(ListenForListsDone value)? done,
+    TResult Function(OnListsEvent value)? event,
+    TResult Function(_ListenForListsError value)? error,
+    required TResult orElse(),
+  }) {
+    if (done != null) {
+      return done(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ListenForListsDone implements ListenForLists {
+  const factory ListenForListsDone() = _$ListenForListsDoneImpl;
+}
+
+/// @nodoc
+abstract class _$$OnListsEventImplCopyWith<$Res> {
+  factory _$$OnListsEventImplCopyWith(
+          _$OnListsEventImpl value, $Res Function(_$OnListsEventImpl) then) =
+      __$$OnListsEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Set<GroceryList> groceryLists});
+}
+
+/// @nodoc
+class __$$OnListsEventImplCopyWithImpl<$Res>
+    extends _$ListenForListsCopyWithImpl<$Res, _$OnListsEventImpl>
+    implements _$$OnListsEventImplCopyWith<$Res> {
+  __$$OnListsEventImplCopyWithImpl(
+      _$OnListsEventImpl _value, $Res Function(_$OnListsEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? groceryLists = null,
+  }) {
+    return _then(_$OnListsEventImpl(
+      null == groceryLists
+          ? _value._groceryLists
+          : groceryLists // ignore: cast_nullable_to_non_nullable
+              as Set<GroceryList>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$OnListsEventImpl implements OnListsEvent {
+  const _$OnListsEventImpl(final Set<GroceryList> groceryLists)
+      : _groceryLists = groceryLists;
+
+  final Set<GroceryList> _groceryLists;
+  @override
+  Set<GroceryList> get groceryLists {
+    if (_groceryLists is EqualUnmodifiableSetView) return _groceryLists;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(_groceryLists);
+  }
+
+  @override
+  String toString() {
+    return 'ListenForLists.event(groceryLists: $groceryLists)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OnListsEventImpl &&
+            const DeepCollectionEquality()
+                .equals(other._groceryLists, _groceryLists));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_groceryLists));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OnListsEventImplCopyWith<_$OnListsEventImpl> get copyWith =>
+      __$$OnListsEventImplCopyWithImpl<_$OnListsEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() start,
+    required TResult Function() done,
+    required TResult Function(Set<GroceryList> groceryLists) event,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return event(groceryLists);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? start,
+    TResult? Function()? done,
+    TResult? Function(Set<GroceryList> groceryLists)? event,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return event?.call(groceryLists);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? start,
+    TResult Function()? done,
+    TResult Function(Set<GroceryList> groceryLists)? event,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (event != null) {
+      return event(groceryLists);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ListenForListsStart value) start,
+    required TResult Function(ListenForListsDone value) done,
+    required TResult Function(OnListsEvent value) event,
+    required TResult Function(_ListenForListsError value) error,
+  }) {
+    return event(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ListenForListsStart value)? start,
+    TResult? Function(ListenForListsDone value)? done,
+    TResult? Function(OnListsEvent value)? event,
+    TResult? Function(_ListenForListsError value)? error,
+  }) {
+    return event?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ListenForListsStart value)? start,
+    TResult Function(ListenForListsDone value)? done,
+    TResult Function(OnListsEvent value)? event,
+    TResult Function(_ListenForListsError value)? error,
+    required TResult orElse(),
+  }) {
+    if (event != null) {
+      return event(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class OnListsEvent implements ListenForLists {
+  const factory OnListsEvent(final Set<GroceryList> groceryLists) =
+      _$OnListsEventImpl;
+
+  Set<GroceryList> get groceryLists;
+  @JsonKey(ignore: true)
+  _$$OnListsEventImplCopyWith<_$OnListsEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ListenForListsErrorImplCopyWith<$Res> {
+  factory _$$ListenForListsErrorImplCopyWith(_$ListenForListsErrorImpl value,
+          $Res Function(_$ListenForListsErrorImpl) then) =
+      __$$ListenForListsErrorImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Object error, StackTrace stackTrace});
+}
+
+/// @nodoc
+class __$$ListenForListsErrorImplCopyWithImpl<$Res>
+    extends _$ListenForListsCopyWithImpl<$Res, _$ListenForListsErrorImpl>
+    implements _$$ListenForListsErrorImplCopyWith<$Res> {
+  __$$ListenForListsErrorImplCopyWithImpl(_$ListenForListsErrorImpl _value,
+      $Res Function(_$ListenForListsErrorImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+    Object? stackTrace = null,
+  }) {
+    return _then(_$ListenForListsErrorImpl(
+      null == error ? _value.error : error,
+      null == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ListenForListsErrorImpl implements _ListenForListsError {
+  const _$ListenForListsErrorImpl(this.error, this.stackTrace);
+
+  @override
+  final Object error;
+  @override
+  final StackTrace stackTrace;
+
+  @override
+  String toString() {
+    return 'ListenForLists.error(error: $error, stackTrace: $stackTrace)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ListenForListsErrorImpl &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ListenForListsErrorImplCopyWith<_$ListenForListsErrorImpl> get copyWith =>
+      __$$ListenForListsErrorImplCopyWithImpl<_$ListenForListsErrorImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() start,
+    required TResult Function() done,
+    required TResult Function(Set<GroceryList> groceryLists) event,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return error(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? start,
+    TResult? Function()? done,
+    TResult? Function(Set<GroceryList> groceryLists)? event,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return error?.call(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? start,
+    TResult Function()? done,
+    TResult Function(Set<GroceryList> groceryLists)? event,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error, stackTrace);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ListenForListsStart value) start,
+    required TResult Function(ListenForListsDone value) done,
+    required TResult Function(OnListsEvent value) event,
+    required TResult Function(_ListenForListsError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ListenForListsStart value)? start,
+    TResult? Function(ListenForListsDone value)? done,
+    TResult? Function(OnListsEvent value)? event,
+    TResult? Function(_ListenForListsError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ListenForListsStart value)? start,
+    TResult Function(ListenForListsDone value)? done,
+    TResult Function(OnListsEvent value)? event,
+    TResult Function(_ListenForListsError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ListenForListsError implements ListenForLists, ErrorAction {
+  const factory _ListenForListsError(
+          final Object error, final StackTrace stackTrace) =
+      _$ListenForListsErrorImpl;
+
+  Object get error;
+  StackTrace get stackTrace;
+  @JsonKey(ignore: true)
+  _$$ListenForListsErrorImplCopyWith<_$ListenForListsErrorImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$SetSelectedList {
   String get selectedGroceryList => throw _privateConstructorUsedError;
 

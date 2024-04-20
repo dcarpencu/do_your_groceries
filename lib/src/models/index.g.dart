@@ -33,6 +33,7 @@ Map<String, dynamic> _$$AppState$ImplToJson(_$AppState$Impl instance) =>
       'isLoading': instance.isLoading,
       'products': instance.products,
       'productsList': instance.productsList,
+      'selectedListTitle': instance.selectedListTitle,
       'groceryLists': instance.groceryLists.toList(),
       'selectedGroceryList': instance.selectedGroceryList,
     };

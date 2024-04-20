@@ -24,6 +24,7 @@ mixin _$AppState {
   bool get isLoading => throw _privateConstructorUsedError;
   List<Auchan> get products => throw _privateConstructorUsedError;
   List<Product> get productsList => throw _privateConstructorUsedError;
+  String? get selectedListTitle => throw _privateConstructorUsedError;
   Set<GroceryList> get groceryLists => throw _privateConstructorUsedError;
   String? get selectedGroceryList => throw _privateConstructorUsedError;
 
@@ -66,6 +67,7 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
     Object? isLoading = null,
     Object? products = null,
     Object? productsList = null,
+    Object? selectedListTitle = freezed,
     Object? groceryLists = null,
     Object? selectedGroceryList = freezed,
   }) {
@@ -86,6 +88,10 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.productsList
           : productsList // ignore: cast_nullable_to_non_nullable
               as List<Product>,
+      selectedListTitle: freezed == selectedListTitle
+          ? _value.selectedListTitle
+          : selectedListTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
       groceryLists: null == groceryLists
           ? _value.groceryLists
           : groceryLists // ignore: cast_nullable_to_non_nullable
@@ -145,6 +151,7 @@ class __$$AppState$ImplCopyWithImpl<$Res>
     Object? isLoading = null,
     Object? products = null,
     Object? productsList = null,
+    Object? selectedListTitle = freezed,
     Object? groceryLists = null,
     Object? selectedGroceryList = freezed,
   }) {
@@ -165,6 +172,10 @@ class __$$AppState$ImplCopyWithImpl<$Res>
           ? _value._productsList
           : productsList // ignore: cast_nullable_to_non_nullable
               as List<Product>,
+      selectedListTitle: freezed == selectedListTitle
+          ? _value.selectedListTitle
+          : selectedListTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
       groceryLists: null == groceryLists
           ? _value._groceryLists
           : groceryLists // ignore: cast_nullable_to_non_nullable
@@ -217,6 +228,8 @@ class _$AppState$Impl implements AppState$ {
     return EqualUnmodifiableListView(_productsList);
   }
 
+  @override
+  final String? selectedListTitle;
   final Set<GroceryList> _groceryLists;
   @override
   @JsonKey()
@@ -296,6 +309,8 @@ abstract class AppState$ implements AppState {
   List<Auchan> get products;
   @override
   List<Product> get productsList;
+  @override
+  String? get selectedListTitle;
   @override
   Set<GroceryList> get groceryLists;
   @override

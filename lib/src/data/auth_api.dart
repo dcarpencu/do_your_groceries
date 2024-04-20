@@ -40,6 +40,7 @@ class AuthApi {
   Future<AppUser> create({required String email, required String password, required String username}) async {
     final UserCredential credential = await _auth.createUserWithEmailAndPassword(email: email, password: password);
     final AppUser user = AppUser(uid: credential.user!.uid, email: email, username: username);
+    // TODO Maybe add groceryList parameter -- shall see later
 
     await _firestore.doc('users/${user.uid}').set(user.toJson());
 
