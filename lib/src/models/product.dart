@@ -4,10 +4,9 @@ part of 'index.dart';
 class Product with _$Product {
   const factory Product({
     required String productId,
-    required String groceryListId,
     required String name,
     required double price,
-    //final String? image,
+    @Default('') String image,
     // @Default(0) final int quantity,
   }) = Product$;
 

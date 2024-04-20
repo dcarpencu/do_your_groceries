@@ -25,7 +25,17 @@ class _HomePageState extends State<HomePage> {
     print('\n\n\n\n\n ------ IM IN STARTUP ------ \n\n\n');
 
     StoreProvider.of<AppState>(context, listen: false).dispatch(const GetGroceryLists());
+    StoreProvider.of<AppState>(context, listen: false).dispatch(GetProducts(_onResult));
     // }
+  }
+
+  void _onResult(AppAction action) {
+    if (action is GetCurrentUserSuccessful) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Page loaded.')));
+    } else if (action is GetProductsError) {
+      final Object error = action.error;
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('An error has occurred $error')));
+    }
   }
 
   // void _onResult(AppAction action) {
@@ -98,7 +108,7 @@ class _HomePageState extends State<HomePage> {
                                   SizedBox(
                                     width: 120,
                                     height: 120,
-                                    child: SvgPicture.asset('assets/base/scissors-svgrepo-com.svg'),
+                                    child: SvgPicture.asset('assets/groceryListIcons/${groceryLists.elementAt(index).selectedIcon}.svg'),
                                   ),
                                   Text(
                                     groceryLists.elementAt(index).title,
@@ -108,9 +118,9 @@ class _HomePageState extends State<HomePage> {
                                       fontSize: 16,
                                     ),
                                   ),
-                                  const Text(
-                                    'short description',
-                                    style: TextStyle(color: Colors.grey),
+                                  Text(
+                                    groceryLists.elementAt(index).description,
+                                    style: const TextStyle(color: Colors.grey),
                                   ),
                                   const SizedBox(
                                     height: 10,
@@ -133,7 +143,7 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                       onPressed: () {
                                         StoreProvider.of<AppState>(context)
-                                            .dispatch(SetSelectedList(groceryLists.elementAt(index).title));
+                                            .dispatch(SetSelectedList(groceryLists.elementAt(index).groceryListId));
                                         Navigator.push(
                                           context,
                                           // ignore: always_specify_types

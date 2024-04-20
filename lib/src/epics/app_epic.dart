@@ -23,7 +23,6 @@ class AppEpic {
       TypedEpic<AppState, GetGroceryListsStart>(_getGroceryListsStart).call,
       TypedEpic<AppState, CreateGroceryListStart>(_createGroceryListStart).call,
       _listenForProducts,
-      _listenForLists,
       TypedEpic<AppState, CreateProductStart>(_createProductStart).call,
     ]);
   }
@@ -98,19 +97,6 @@ class AppEpic {
     });
   }
 
-  Stream<AppAction> _listenForLists(Stream<dynamic> actions, EpicStore<AppState> store) {
-    return actions.whereType<ListenForListsStart>().flatMap((ListenForListsStart action) {
-      return _authApi
-          .listenForLists()
-          .map<ListenForLists>(ListenForLists.event)
-          .takeUntil<dynamic>(
-        actions.where((dynamic event) {
-          return event is ListenForListsDone;
-        }),
-      ).onErrorReturnWith(ListenForLists.error);
-    });
-  }
-
   Stream<AppAction> _createProductStart(Stream<CreateProductStart> actions, EpicStore<AppState> store) {
     return actions.flatMap((CreateProductStart action) {
       return Stream<void>.value(null)
@@ -130,7 +116,7 @@ class AppEpic {
   Stream<AppAction> _createGroceryListStart(Stream<CreateGroceryListStart> actions, EpicStore<AppState> store) {
     return actions.flatMap((CreateGroceryListStart action) {
       return Stream<void>.value(null)
-          .asyncMap((_) => _authApi.createGroceryList(title: action.title))
+          .asyncMap((_) => _authApi.createGroceryList(title: action.title, description: action.description, selectedIcon: action.selectedIcon))
           .map<CreateGroceryList>(CreateGroceryList.successful)
           .onErrorReturnWith(CreateGroceryList.error);
     });

@@ -1,12 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:html/dom.dart'; // Contains DOM related classes for extracting data from elements
 import 'package:html/parser.dart'; // Contains HTML parsers to generate a Document object
 import 'package:http/http.dart'; // Contains a client for making API calls
 
 class AuchanApi {
-  AuchanApi(this._client);
+  AuchanApi(this._client, this._firestore);
 
   final Client _client;
+  final FirebaseFirestore _firestore;
 
   Future<List<Auchan>> getProducts() async {
     final Response response = await _client.get(
@@ -21,6 +23,7 @@ class AuchanApi {
     final List<Map<String, dynamic>> linkMap = <Map<String, dynamic>>[];
 
     for (int i = 0; i < links.length; i++) {
+      final DocumentReference<Map<String, dynamic>> ref = _firestore.collection('auchanProducts').doc();
       final Element link = links[i];
       final Element? foodInfo = link.querySelector('div.content-container');
       final Element? image = link.querySelector('div.image-container > img');
@@ -41,6 +44,9 @@ class AuchanApi {
         'price': priceD,
         //'oldPrice': oldPrice?.text,
       });
+
+      final Product product = Product(productId: ref.id, name: title!.text, price: priceD, image: image!.attributes['src']!);
+      await ref.set(product.toJson());
     }
 
     final List<Auchan> list = <Auchan>[];

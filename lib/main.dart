@@ -28,7 +28,7 @@ Future<void> main() async {
   final FirebaseFirestore firestore = FirebaseFirestore.instanceFor(app: app);
 
   final Client client = Client();
-  final AuchanApi auchanApi = AuchanApi(client);
+  final AuchanApi auchanApi = AuchanApi(client, firestore);
   final ProductsApi productApi = ProductsApi(firestore);
 
   final AuthApi authApi = AuthApi(auth, firestore);

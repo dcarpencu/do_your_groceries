@@ -3570,21 +3570,24 @@ abstract class GetGroceryListsError implements GetGroceryLists, ErrorAction {
 mixin _$CreateGroceryList {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String title) $default, {
+    TResult Function(String title, String description, String selectedIcon)
+        $default, {
     required TResult Function(GroceryList groceryList) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String title)? $default, {
+    TResult? Function(String title, String description, String selectedIcon)?
+        $default, {
     TResult? Function(GroceryList groceryList)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String title)? $default, {
+    TResult Function(String title, String description, String selectedIcon)?
+        $default, {
     TResult Function(GroceryList groceryList)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
@@ -3639,7 +3642,7 @@ abstract class _$$CreateGroceryListStartImplCopyWith<$Res> {
           $Res Function(_$CreateGroceryListStartImpl) then) =
       __$$CreateGroceryListStartImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String title});
+  $Res call({String title, String description, String selectedIcon});
 }
 
 /// @nodoc
@@ -3655,11 +3658,21 @@ class __$$CreateGroceryListStartImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? title = null,
+    Object? description = null,
+    Object? selectedIcon = null,
   }) {
     return _then(_$CreateGroceryListStartImpl(
-      null == title
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      selectedIcon: null == selectedIcon
+          ? _value.selectedIcon
+          : selectedIcon // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -3668,14 +3681,21 @@ class __$$CreateGroceryListStartImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$CreateGroceryListStartImpl implements CreateGroceryListStart {
-  const _$CreateGroceryListStartImpl(this.title);
+  const _$CreateGroceryListStartImpl(
+      {required this.title,
+      required this.description,
+      required this.selectedIcon});
 
   @override
   final String title;
+  @override
+  final String description;
+  @override
+  final String selectedIcon;
 
   @override
   String toString() {
-    return 'CreateGroceryList(title: $title)';
+    return 'CreateGroceryList(title: $title, description: $description, selectedIcon: $selectedIcon)';
   }
 
   @override
@@ -3683,11 +3703,16 @@ class _$CreateGroceryListStartImpl implements CreateGroceryListStart {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CreateGroceryListStartImpl &&
-            (identical(other.title, title) || other.title == title));
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.selectedIcon, selectedIcon) ||
+                other.selectedIcon == selectedIcon));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, title);
+  int get hashCode =>
+      Object.hash(runtimeType, title, description, selectedIcon);
 
   @JsonKey(ignore: true)
   @override
@@ -3699,33 +3724,36 @@ class _$CreateGroceryListStartImpl implements CreateGroceryListStart {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String title) $default, {
+    TResult Function(String title, String description, String selectedIcon)
+        $default, {
     required TResult Function(GroceryList groceryList) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
-    return $default(title);
+    return $default(title, description, selectedIcon);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String title)? $default, {
+    TResult? Function(String title, String description, String selectedIcon)?
+        $default, {
     TResult? Function(GroceryList groceryList)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
-    return $default?.call(title);
+    return $default?.call(title, description, selectedIcon);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String title)? $default, {
+    TResult Function(String title, String description, String selectedIcon)?
+        $default, {
     TResult Function(GroceryList groceryList)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(title);
+      return $default(title, description, selectedIcon);
     }
     return orElse();
   }
@@ -3766,10 +3794,14 @@ class _$CreateGroceryListStartImpl implements CreateGroceryListStart {
 }
 
 abstract class CreateGroceryListStart implements CreateGroceryList {
-  const factory CreateGroceryListStart(final String title) =
-      _$CreateGroceryListStartImpl;
+  const factory CreateGroceryListStart(
+      {required final String title,
+      required final String description,
+      required final String selectedIcon}) = _$CreateGroceryListStartImpl;
 
   String get title;
+  String get description;
+  String get selectedIcon;
   @JsonKey(ignore: true)
   _$$CreateGroceryListStartImplCopyWith<_$CreateGroceryListStartImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -3854,7 +3886,8 @@ class _$CreateGroceryListSuccessfulImpl implements CreateGroceryListSuccessful {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String title) $default, {
+    TResult Function(String title, String description, String selectedIcon)
+        $default, {
     required TResult Function(GroceryList groceryList) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
@@ -3864,7 +3897,8 @@ class _$CreateGroceryListSuccessfulImpl implements CreateGroceryListSuccessful {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String title)? $default, {
+    TResult? Function(String title, String description, String selectedIcon)?
+        $default, {
     TResult? Function(GroceryList groceryList)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
@@ -3874,7 +3908,8 @@ class _$CreateGroceryListSuccessfulImpl implements CreateGroceryListSuccessful {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String title)? $default, {
+    TResult Function(String title, String description, String selectedIcon)?
+        $default, {
     TResult Function(GroceryList groceryList)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
@@ -4004,7 +4039,8 @@ class _$CreateGroceryListErrorImpl implements CreateGroceryListError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String title) $default, {
+    TResult Function(String title, String description, String selectedIcon)
+        $default, {
     required TResult Function(GroceryList groceryList) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
@@ -4014,7 +4050,8 @@ class _$CreateGroceryListErrorImpl implements CreateGroceryListError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String title)? $default, {
+    TResult? Function(String title, String description, String selectedIcon)?
+        $default, {
     TResult? Function(GroceryList groceryList)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
@@ -4024,7 +4061,8 @@ class _$CreateGroceryListErrorImpl implements CreateGroceryListError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String title)? $default, {
+    TResult Function(String title, String description, String selectedIcon)?
+        $default, {
     TResult Function(GroceryList groceryList)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
@@ -4768,6 +4806,60 @@ abstract class _ListenForProductsError
 }
 
 /// @nodoc
+mixin _$ListenForLists {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() start,
+    required TResult Function() done,
+    required TResult Function(Set<GroceryList> groceryLists) event,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? start,
+    TResult? Function()? done,
+    TResult? Function(Set<GroceryList> groceryLists)? event,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? start,
+    TResult Function()? done,
+    TResult Function(Set<GroceryList> groceryLists)? event,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ListenForListsStart value) start,
+    required TResult Function(ListenForListsDone value) done,
+    required TResult Function(OnListsEvent value) event,
+    required TResult Function(_ListenForListsError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ListenForListsStart value)? start,
+    TResult? Function(ListenForListsDone value)? done,
+    TResult? Function(OnListsEvent value)? event,
+    TResult? Function(_ListenForListsError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ListenForListsStart value)? start,
+    TResult Function(ListenForListsDone value)? done,
+    TResult Function(OnListsEvent value)? event,
+    TResult Function(_ListenForListsError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 abstract class $ListenForListsCopyWith<$Res> {
   factory $ListenForListsCopyWith(
           ListenForLists value, $Res Function(ListenForLists) then) =
@@ -5445,127 +5537,69 @@ abstract class SetSelectedList$ implements SetSelectedList {
 }
 
 /// @nodoc
-mixin _$SetCreatedGroceryList {
-  String get groceryListId => throw _privateConstructorUsedError;
+mixin _$SetProductsListToEmpty {}
 
-  @JsonKey(ignore: true)
-  $SetCreatedGroceryListCopyWith<SetCreatedGroceryList> get copyWith =>
-      throw _privateConstructorUsedError;
+/// @nodoc
+abstract class $SetProductsListToEmptyCopyWith<$Res> {
+  factory $SetProductsListToEmptyCopyWith(SetProductsListToEmpty value,
+          $Res Function(SetProductsListToEmpty) then) =
+      _$SetProductsListToEmptyCopyWithImpl<$Res, SetProductsListToEmpty>;
 }
 
 /// @nodoc
-abstract class $SetCreatedGroceryListCopyWith<$Res> {
-  factory $SetCreatedGroceryListCopyWith(SetCreatedGroceryList value,
-          $Res Function(SetCreatedGroceryList) then) =
-      _$SetCreatedGroceryListCopyWithImpl<$Res, SetCreatedGroceryList>;
-  @useResult
-  $Res call({String groceryListId});
-}
-
-/// @nodoc
-class _$SetCreatedGroceryListCopyWithImpl<$Res,
-        $Val extends SetCreatedGroceryList>
-    implements $SetCreatedGroceryListCopyWith<$Res> {
-  _$SetCreatedGroceryListCopyWithImpl(this._value, this._then);
+class _$SetProductsListToEmptyCopyWithImpl<$Res,
+        $Val extends SetProductsListToEmpty>
+    implements $SetProductsListToEmptyCopyWith<$Res> {
+  _$SetProductsListToEmptyCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? groceryListId = null,
-  }) {
-    return _then(_value.copyWith(
-      groceryListId: null == groceryListId
-          ? _value.groceryListId
-          : groceryListId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$SetCreatedGroceryList$ImplCopyWith<$Res>
-    implements $SetCreatedGroceryListCopyWith<$Res> {
-  factory _$$SetCreatedGroceryList$ImplCopyWith(
-          _$SetCreatedGroceryList$Impl value,
-          $Res Function(_$SetCreatedGroceryList$Impl) then) =
-      __$$SetCreatedGroceryList$ImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String groceryListId});
+abstract class _$$SetProductsListToEmpty$ImplCopyWith<$Res> {
+  factory _$$SetProductsListToEmpty$ImplCopyWith(
+          _$SetProductsListToEmpty$Impl value,
+          $Res Function(_$SetProductsListToEmpty$Impl) then) =
+      __$$SetProductsListToEmpty$ImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$SetCreatedGroceryList$ImplCopyWithImpl<$Res>
-    extends _$SetCreatedGroceryListCopyWithImpl<$Res,
-        _$SetCreatedGroceryList$Impl>
-    implements _$$SetCreatedGroceryList$ImplCopyWith<$Res> {
-  __$$SetCreatedGroceryList$ImplCopyWithImpl(
-      _$SetCreatedGroceryList$Impl _value,
-      $Res Function(_$SetCreatedGroceryList$Impl) _then)
+class __$$SetProductsListToEmpty$ImplCopyWithImpl<$Res>
+    extends _$SetProductsListToEmptyCopyWithImpl<$Res,
+        _$SetProductsListToEmpty$Impl>
+    implements _$$SetProductsListToEmpty$ImplCopyWith<$Res> {
+  __$$SetProductsListToEmpty$ImplCopyWithImpl(
+      _$SetProductsListToEmpty$Impl _value,
+      $Res Function(_$SetProductsListToEmpty$Impl) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? groceryListId = null,
-  }) {
-    return _then(_$SetCreatedGroceryList$Impl(
-      null == groceryListId
-          ? _value.groceryListId
-          : groceryListId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$SetCreatedGroceryList$Impl implements SetCreatedGroceryList$ {
-  const _$SetCreatedGroceryList$Impl(this.groceryListId);
-
-  @override
-  final String groceryListId;
+class _$SetProductsListToEmpty$Impl implements SetProductsListToEmpty$ {
+  const _$SetProductsListToEmpty$Impl();
 
   @override
   String toString() {
-    return 'SetCreatedGroceryList(groceryListId: $groceryListId)';
+    return 'SetProductsListToEmpty()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SetCreatedGroceryList$Impl &&
-            (identical(other.groceryListId, groceryListId) ||
-                other.groceryListId == groceryListId));
+            other is _$SetProductsListToEmpty$Impl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, groceryListId);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SetCreatedGroceryList$ImplCopyWith<_$SetCreatedGroceryList$Impl>
-      get copyWith => __$$SetCreatedGroceryList$ImplCopyWithImpl<
-          _$SetCreatedGroceryList$Impl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 }
 
-abstract class SetCreatedGroceryList$ implements SetCreatedGroceryList {
-  const factory SetCreatedGroceryList$(final String groceryListId) =
-      _$SetCreatedGroceryList$Impl;
-
-  @override
-  String get groceryListId;
-  @override
-  @JsonKey(ignore: true)
-  _$$SetCreatedGroceryList$ImplCopyWith<_$SetCreatedGroceryList$Impl>
-      get copyWith => throw _privateConstructorUsedError;
+abstract class SetProductsListToEmpty$ implements SetProductsListToEmpty {
+  const factory SetProductsListToEmpty$() = _$SetProductsListToEmpty$Impl;
 }
 
 /// @nodoc

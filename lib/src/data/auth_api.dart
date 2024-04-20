@@ -49,9 +49,11 @@ class AuthApi {
 
   Future<GroceryList> createGroceryList({
     required String title,
+    required String description,
+    required String selectedIcon,
   }) async {
     final DocumentReference<Map<String, dynamic>> ref = _firestore.collection('lists').doc();
-    final GroceryList groceryList = GroceryList(groceryListId: ref.id, title: title);
+    final GroceryList groceryList = GroceryList(groceryListId: ref.id, title: title, selectedIcon: selectedIcon, description: description);
 
     await ref.set(groceryList.toJson());
 

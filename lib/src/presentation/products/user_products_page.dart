@@ -47,31 +47,25 @@ class _UserProductsPageState extends State<UserProductsPage> {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  if (products.isNotEmpty)
+                  // if (products.isNotEmpty)
                     Expanded(
                       child: ListView.builder(
                         itemCount: products.length,
                         itemBuilder: (BuildContext context, int index) {
                           final Product product = products[index];
-                          return
-                          // Card(
-                          // child: ListTile(
-                          // leading: FlutterLogo(size: 72.0),
-                          // title: Text(product.name),
-                          // subtitle: Text('${product.price} RON'))
-                          // );
-                            Hero(
-                              tag: product.productId,
-                              child: Material(
-                                child: Card(
-                                  child: ListTile(
-                                    leading: const FlutterLogo(size: 72),
-                                    title: Text(product.name),
-                                    subtitle: Text('${product.price} RON'),
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute<Widget>(builder: (BuildContext context) {
+                          return Hero(
+                            tag: product.productId,
+                            child: Material(
+                              child: Card(
+                                child: ListTile(
+                                  leading: const FlutterLogo(size: 72),
+                                  title: Text(product.name),
+                                  subtitle: Text('${product.price} RON'),
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute<Widget>(
+                                        builder: (BuildContext context) {
                                           return Scaffold(
                                             appBar: AppBar(title: const Text('')),
                                             body: Center(
@@ -80,31 +74,38 @@ class _UserProductsPageState extends State<UserProductsPage> {
                                                 child: Material(
                                                   child: Column(
                                                     children: <Widget>[
-                                                      Text(product.name, style: const TextStyle(fontSize: 36),),
+                                                      Text(
+                                                        product.name,
+                                                        style: const TextStyle(fontSize: 36),
+                                                      ),
                                                       const SizedBox(
                                                         height: 16,
                                                       ),
-                                                    Text('${product.price} Lei', style: const TextStyle(fontSize: 28),),
+                                                      Text(
+                                                        '${product.price} Lei',
+                                                        style: const TextStyle(fontSize: 28),
+                                                      ),
                                                     ],
                                                   ),
                                                 ),
                                               ),
                                             ),
                                           );
-                                        },),
-                                      );
-                                    },
-                                  ),
+                                        },
+                                      ),
+                                    );
+                                  },
                                 ),
                               ),
-                            );
+                            ),
+                          );
                         },
                       ),
                     )
-                  else
-                    const Center(
-                      child: Text('No products YET.\nPlease add some!'),
-                    ),
+                  // else
+                  //   const Center(
+                  //     child: Text('No products YET.\nPlease add some!'),
+                  //   ),
                 ],
               );
             },

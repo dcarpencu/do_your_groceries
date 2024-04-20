@@ -6,7 +6,6 @@ class SetSelectedList with _$SetSelectedList implements AppAction {
 }
 
 @freezed
-class SetCreatedGroceryList with _$SetCreatedGroceryList implements AppAction {
-  const factory SetCreatedGroceryList(String groceryListId) = SetCreatedGroceryList$;
+class SetProductsListToEmpty with _$SetProductsListToEmpty implements AppAction {
+  const factory SetProductsListToEmpty() = SetProductsListToEmpty$;
 }
-
