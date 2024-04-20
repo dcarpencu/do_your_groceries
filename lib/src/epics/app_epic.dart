@@ -116,7 +116,13 @@ class AppEpic {
   Stream<AppAction> _createGroceryListStart(Stream<CreateGroceryListStart> actions, EpicStore<AppState> store) {
     return actions.flatMap((CreateGroceryListStart action) {
       return Stream<void>.value(null)
-          .asyncMap((_) => _authApi.createGroceryList(title: action.title, description: action.description, selectedIcon: action.selectedIcon))
+          .asyncMap(
+            (_) => _authApi.createGroceryList(
+              title: action.title,
+              description: action.description,
+              selectedIcon: action.selectedIcon,
+            ),
+          )
           .map<CreateGroceryList>(CreateGroceryList.successful)
           .onErrorReturnWith(CreateGroceryList.error);
     });

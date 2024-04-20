@@ -41,7 +41,11 @@ class _CreateListPageState extends State<CreateListPage> {
 
     _store = StoreProvider.of<AppState>(context);
     _store.dispatch(
-      CreateGroceryList(title: _titleController.text, description: _descriptionController.text, selectedIcon: _selectedValue.toString(),),
+      CreateGroceryList(
+        title: _titleController.text,
+        description: _descriptionController.text,
+        selectedIcon: _selectedValue.toString(),
+      ),
     );
 
     Navigator.pop(context);
@@ -89,9 +93,10 @@ class _CreateListPageState extends State<CreateListPage> {
                                 child: Column(
                                   children: <Widget>[
                                     SizedBox(
-                                        width: 60,
-                                        height: 60,
-                                        child: SvgPicture.asset('assets/groceryListIcons/$item.svg'),),
+                                      width: 60,
+                                      height: 60,
+                                      child: SvgPicture.asset('assets/groceryListIcons/$item.svg'),
+                                    ),
                                     RadioListTile<int>(
                                       title: Text(item),
                                       value: index,
@@ -125,7 +130,6 @@ class _CreateListPageState extends State<CreateListPage> {
                             ),
                           ),
                         ),
-
                         TextFormField(
                           controller: _titleController,
                           keyboardType: TextInputType.text,

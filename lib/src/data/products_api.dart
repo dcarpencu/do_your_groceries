@@ -17,7 +17,8 @@ class ProductsApi {
             (snapshot.data()?['productIds'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
 
         final List<DocumentSnapshot<Map<String, dynamic>>> productSnapshots = await Future.wait(
-            productIds!.map((dynamic productId) => _firestore.collection('products').doc(productId.toString()).get()),);
+          productIds!.map((dynamic productId) => _firestore.collection('products').doc(productId.toString()).get()),
+        );
 
         final List<Product> products = productSnapshots
             .where((DocumentSnapshot<Map<String, dynamic>> productSnapshot) => productSnapshot.exists)

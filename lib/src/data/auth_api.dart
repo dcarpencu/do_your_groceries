@@ -53,7 +53,8 @@ class AuthApi {
     required String selectedIcon,
   }) async {
     final DocumentReference<Map<String, dynamic>> ref = _firestore.collection('lists').doc();
-    final GroceryList groceryList = GroceryList(groceryListId: ref.id, title: title, selectedIcon: selectedIcon, description: description);
+    final GroceryList groceryList =
+        GroceryList(groceryListId: ref.id, title: title, selectedIcon: selectedIcon, description: description);
 
     await ref.set(groceryList.toJson());
 
@@ -64,7 +65,7 @@ class AuthApi {
     final Map<String, dynamic> userData = snapshot.data()!;
 
     final List<dynamic>? groceryListIds =
-    (snapshot.data()?['groceryListIds'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
+        (snapshot.data()?['groceryListIds'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
 
     groceryListIds?.add(ref.id);
     userData['groceryListIds'] = groceryListIds;
@@ -75,8 +76,7 @@ class AuthApi {
 
   Future<Set<GroceryList>> getLists() async {
     final User? currentUser = _auth.currentUser;
-    final DocumentReference<Map<String, dynamic>> userRef =
-    _firestore.doc('users/${currentUser?.uid}');
+    final DocumentReference<Map<String, dynamic>> userRef = _firestore.doc('users/${currentUser?.uid}');
     final DocumentSnapshot<Map<String, dynamic>> snapshot = await userRef.get();
 
     if (!snapshot.exists) {
@@ -84,13 +84,13 @@ class AuthApi {
     }
 
     final List<dynamic>? groceryListIds =
-    (snapshot.data()?['groceryListIds'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
+        (snapshot.data()?['groceryListIds'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
 
     final Set<GroceryList> result = <GroceryList>{};
 
     if (groceryListIds != null && groceryListIds.isNotEmpty) {
       final QuerySnapshot<Map<String, dynamic>> listSnapshot =
-      await _firestore.collection('lists').where(FieldPath.documentId, whereIn: groceryListIds).get();
+          await _firestore.collection('lists').where(FieldPath.documentId, whereIn: groceryListIds).get();
 
       for (final DocumentSnapshot<Map<String, dynamic>> documentSnapshot in listSnapshot.docs) {
         if (documentSnapshot.exists) {

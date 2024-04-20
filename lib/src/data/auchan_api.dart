@@ -45,7 +45,8 @@ class AuchanApi {
         //'oldPrice': oldPrice?.text,
       });
 
-      final Product product = Product(productId: ref.id, name: title!.text, price: priceD, image: image!.attributes['src']!);
+      final Product product =
+          Product(productId: ref.id, name: title!.text, price: priceD, image: image!.attributes['src']!);
       await ref.set(product.toJson());
     }
 

@@ -62,8 +62,7 @@ class _HomePageState extends State<HomePage> {
             ),
             actions: const <Widget>[],
           ),
-          body:
-          GroceryListsContainer(
+          body: GroceryListsContainer(
             builder: (BuildContext context, Set<GroceryList> groceryLists) {
               return SafeArea(
                 child: Column(
@@ -107,7 +106,9 @@ class _HomePageState extends State<HomePage> {
                                   SizedBox(
                                     width: 120,
                                     height: 120,
-                                    child: SvgPicture.asset('assets/groceryListIcons/${groceryLists.elementAt(index).selectedIcon}.svg'),
+                                    child: SvgPicture.asset(
+                                      'assets/groceryListIcons/${groceryLists.elementAt(index).selectedIcon}.svg',
+                                    ),
                                   ),
                                   Text(
                                     groceryLists.elementAt(index).title,

@@ -31,7 +31,6 @@ Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   TypedReducer<AppState, GetGroceryListsError>(_getGroceryListsError).call,
   TypedReducer<AppState, SetSelectedList>(_setSelectedList).call,
   TypedReducer<AppState, SetProductsListToEmpty>(_setProductsListToEmpty).call,
-
   TypedReducer<AppState, OnProductsEvent>(_onProductsEvent).call,
   TypedReducer<AppState, CreateGroceryListSuccessful>(_createGroceryListSuccessful).call,
 ]);
