@@ -46,7 +46,7 @@ class AuthApi {
     return user;
   }
 
-  Future<AppUser> createGroceryList({
+  Future<GroceryList> createGroceryList({
     required String title,
   }) async {
     final DocumentReference<Map<String, dynamic>> ref = _firestore.collection('lists').doc();
@@ -71,7 +71,7 @@ class AuthApi {
     print(userData);
     print('\n');
 
-    return AppUser.fromJson(userData);
+    return groceryList;
   }
 
   Future<AppUser> addGroceryListToUser({required String groceryListId}) async {
@@ -95,7 +95,7 @@ class AuthApi {
     return AppUser.fromJson(userData);
   }
 
-  Future<Set<GroceryList>> getLists() async {
+  Future<Set<GroceryList>> getLists({required bool isAppStartup}) async {
     final User? currentUser = _auth.currentUser;
     final DocumentReference<Map<String, dynamic>> userRef =
     _firestore.doc('users/${currentUser?.uid}');
@@ -108,30 +108,26 @@ class AuthApi {
     final List<dynamic>? groceryListIds =
     (snapshot.data()?['groceryListIds'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
 
+    print('\n\n GETTING LISTS \n\n');
+    print('\n IDS INSIDE USER: $groceryListIds\n');
 
-    print('\n\n PLEASE WORK DEAR GOD');
-    print(groceryListIds);
-    print('\n');
-
-    final Set<GroceryList> result = <GroceryList>{};
+    final Set<GroceryList> result = {};
 
     if (groceryListIds != null && groceryListIds.isNotEmpty) {
-      for (final String listId in groceryListIds as List<String>) {
-        final DocumentSnapshot<Map<String, dynamic>> listSnapshot =
-        await _firestore.collection('lists').doc(listId).get();
-        print('\n---------- \nAICIAI BUBA\n');
-        print(listSnapshot.data());
+      final QuerySnapshot<Map<String, dynamic>> listSnapshot =
+      await _firestore.collection('lists').where(FieldPath.documentId, whereIn: groceryListIds).get();
 
-        if (listSnapshot.exists) {
-          final groceryList =
-          GroceryList.fromJson(listSnapshot.data()!);
+      print('\n---------- \nAICIAI BUBA\n $listSnapshot\n\n');
+
+      for (final DocumentSnapshot<Map<String, dynamic>> documentSnapshot in listSnapshot.docs) {
+        if (documentSnapshot.exists) {
+          final groceryList = GroceryList.fromJson(documentSnapshot.data()!);
           result.add(groceryList);
         }
       }
     }
-    print('\n------------- RESULT');
-    print(result);
 
+    print('\n------------- RESULT: $result');
     return result;
   }
 

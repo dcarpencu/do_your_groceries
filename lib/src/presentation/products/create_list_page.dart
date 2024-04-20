@@ -38,24 +38,29 @@ class _CreateListPageState extends State<CreateListPage> {
       return;
     }
 
-    _store = StoreProvider.of<AppState>(context, listen: false);
-    _store..dispatch(
+    _store = StoreProvider.of<AppState>(context);
+    _store.dispatch(
       CreateGroceryList(_titleController.text),
-    )
-    // ..dispatch(
-    //   AddGroceryListToUser(groceryListId: _store.state.groceryLists.last.groceryListId),
-    // )
-    ..dispatch(
-      const GetGroceryLists(),
     );
-    //Navigator.pushNamedAndRemoveUntil(context, '/', (_) => false);
 
+    // if(_store.state.groceryLists.isNotEmpty) {
+    // final  String newGroceryListId = _store.state.groceryLists.first.groceryListId;
+    //   _store.dispatch(
+    //     AddGroceryListToUser(groceryListId: newGroceryListId),
+    //   );
+    // }
+    // StoreProvider.of<AppState>(context).dispatch(
+    //   const GetGroceryLists(),
+    // );
+
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute<Widget>(
+    //     builder: (BuildContext context) => const HomePage(),
+    //   ),
+    // );
     Navigator.pop(context);
-    // MaterialPageRoute<Widget>(builder: (BuildContext context) => const HomePage());
 
-    MaterialPageRoute<Widget>(
-      builder: (BuildContext context) => const HomePage(),
-    );
   }
 
   @override
