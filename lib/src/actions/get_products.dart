@@ -4,7 +4,7 @@ part of 'index.dart';
 class GetProducts with _$GetProducts implements AppAction {
   const factory GetProducts(ActionResult onResult) = GetProductsStart;
 
-  const factory GetProducts.successful(List<Auchan> products) = GetProductsSuccessful;
+  const factory GetProducts.successful(List<Product> products) = GetProductsSuccessful;
 
   @Implements<ErrorAction>()
   const factory GetProducts.error(Object error, StackTrace stackTrace) = GetProductsError;

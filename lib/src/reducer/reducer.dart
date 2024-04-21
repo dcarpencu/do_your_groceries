@@ -33,6 +33,8 @@ Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   TypedReducer<AppState, SetProductsListToEmpty>(_setProductsListToEmpty).call,
   TypedReducer<AppState, OnProductsEvent>(_onProductsEvent).call,
   TypedReducer<AppState, CreateGroceryListSuccessful>(_createGroceryListSuccessful).call,
+  TypedReducer<AppState, GetSuperMarketProductsSuccessful>(_getSuperMarketProductsSuccessful).call,
+  TypedReducer<AppState, GetSuperMarketProductsError>(_getSuperMarketProductsError).call,
 ]);
 
 AppState _userAction(AppState state, UserAction action) {
@@ -48,7 +50,7 @@ AppState _getProductsStart(AppState state, GetProductsStart action) {
 }
 
 AppState _getProductsSuccessful(AppState state, GetProductsSuccessful action) {
-  return state.copyWith(isLoading: false, products: action.products);
+  return state.copyWith(isLoading: false, supermarketProducts: action.products);
 }
 
 AppState _getProductsError(AppState state, GetProductsError action) {
@@ -77,4 +79,12 @@ AppState _createGroceryListSuccessful(AppState state, CreateGroceryListSuccessfu
 
 AppState _setProductsListToEmpty(AppState state, SetProductsListToEmpty action) {
   return state.copyWith(productsList: <Product>[]);
+}
+
+AppState _getSuperMarketProductsSuccessful(AppState state, GetSuperMarketProductsSuccessful action) {
+  return state.copyWith(supermarketProducts: action.supermarketProducts, isLoading: false);
+}
+
+AppState _getSuperMarketProductsError(AppState state, GetSuperMarketProductsError action) {
+  return state.copyWith(isLoading: true);
 }

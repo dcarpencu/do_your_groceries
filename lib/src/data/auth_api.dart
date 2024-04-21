@@ -102,16 +102,4 @@ class AuthApi {
 
     return result;
   }
-
-  Stream<List<Product>> listenForLists(String groceryListId) {
-    return _firestore
-        .collection('products')
-        .where('groceryListId', isEqualTo: groceryListId)
-        .snapshots()
-        .map((QuerySnapshot<Map<String, dynamic>> snapshot) {
-      return snapshot.docs
-          .map((QueryDocumentSnapshot<Map<String, dynamic>> doc) => Product.fromJson(doc.data()))
-          .toList();
-    });
-  }
 }

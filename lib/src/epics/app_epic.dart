@@ -1,16 +1,17 @@
 import 'package:do_you_groceries/src/actions/index.dart';
-import 'package:do_you_groceries/src/data/auchan_api.dart';
+import 'package:do_you_groceries/src/data/supermarkets_api.dart';
 import 'package:do_you_groceries/src/data/auth_api.dart';
 import 'package:do_you_groceries/src/data/products_api.dart';
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:redux_epics/redux_epics.dart';
 import 'package:rxdart/transformers.dart';
 
+
 class AppEpic {
-  AppEpic(this._authApi, this._auchanApi, this._productsApi);
+  AppEpic(this._authApi, this._superMarketsApi, this._productsApi);
 
   final AuthApi _authApi;
-  final AuchanApi _auchanApi;
+  final SuperMarketsApi _superMarketsApi;
   final ProductsApi _productsApi;
 
   Epic<AppState> getEpics() {
@@ -21,9 +22,11 @@ class AppEpic {
       TypedEpic<AppState, LogoutStart>(_logoutStart).call,
       TypedEpic<AppState, GetProductsStart>(_getProductsStart).call,
       TypedEpic<AppState, GetGroceryListsStart>(_getGroceryListsStart).call,
+      TypedEpic<AppState, GetSuperMarketProductsStart>(_getSuperMarketProducts).call,
       TypedEpic<AppState, CreateGroceryListStart>(_createGroceryListStart).call,
       _listenForProducts,
       TypedEpic<AppState, CreateProductStart>(_createProductStart).call,
+      TypedEpic<AppState, GenerateProductsStart>(_generateProductsStart).call,
     ]);
   }
 
@@ -68,7 +71,7 @@ class AppEpic {
   Stream<AppAction> _getProductsStart(Stream<GetProductsStart> actions, EpicStore<AppState> store) {
     return actions.flatMap((GetProductsStart action) {
       return Stream<void>.value(null)
-          .asyncMap((_) => _auchanApi.getProducts())
+          .asyncMap((_) => _superMarketsApi.getProducts())
           .map<GetProducts>(GetProducts.successful)
           .onErrorReturnWith(GetProducts.error)
           .doOnData(action.onResult);
@@ -125,6 +128,25 @@ class AppEpic {
           )
           .map<CreateGroceryList>(CreateGroceryList.successful)
           .onErrorReturnWith(CreateGroceryList.error);
+    });
+  }
+
+  Stream<AppAction> _getSuperMarketProducts(Stream<GetSuperMarketProductsStart> actions, EpicStore<AppState> store) {
+      return actions.flatMap((GetSuperMarketProductsStart action) {
+        return Stream<void>.value(null)
+            .asyncMap((_) => _superMarketsApi.getSuperMarketProducts(supermarketName: action.supermarketName))
+            .map<GetSuperMarketProducts>(GetSuperMarketProducts.successful)
+            .onErrorReturnWith(GetSuperMarketProducts.error)
+            .doOnData(action.onResult);
+      });
+  }
+
+  Stream<AppAction> _generateProductsStart(Stream<GenerateProductsStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((GenerateProductsStart action) {
+      return Stream<void>.value(null)
+          .asyncMap((_) => _superMarketsApi.generateProducts())
+          .mapTo(const GenerateProducts.successful())
+          .onErrorReturnWith(GenerateProducts.error);
     });
   }
 }

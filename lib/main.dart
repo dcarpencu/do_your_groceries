@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:do_you_groceries/src/actions/index.dart';
-import 'package:do_you_groceries/src/data/auchan_api.dart';
 import 'package:do_you_groceries/src/data/auth_api.dart';
 import 'package:do_you_groceries/src/data/products_api.dart';
+import 'package:do_you_groceries/src/data/supermarkets_api.dart';
 import 'package:do_you_groceries/src/epics/app_epic.dart';
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:do_you_groceries/src/presentation/home.dart';
@@ -28,11 +28,11 @@ Future<void> main() async {
   final FirebaseFirestore firestore = FirebaseFirestore.instanceFor(app: app);
 
   final Client client = Client();
-  final AuchanApi auchanApi = AuchanApi(client, firestore);
+  final SuperMarketsApi superMarketsApi = SuperMarketsApi(client, firestore);
   final ProductsApi productApi = ProductsApi(firestore);
 
   final AuthApi authApi = AuthApi(auth, firestore);
-  final AppEpic epic = AppEpic(authApi, auchanApi, productApi);
+  final AppEpic epic = AppEpic(authApi, superMarketsApi, productApi);
 
   final Store<AppState> store = Store<AppState>(
     reducer,

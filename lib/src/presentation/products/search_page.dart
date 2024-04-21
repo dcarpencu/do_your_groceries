@@ -16,7 +16,7 @@ class _SearchProductsPageState extends State<SearchProductsPage> {
   @override
   void initState() {
     super.initState();
-    StoreProvider.of<AppState>(context, listen: false).dispatch(GetProducts(_onResult));
+    StoreProvider.of<AppState>(context, listen: false).dispatch(GetSuperMarketProducts(supermarketName: 'auchan', _onResult));
   }
 
   void _onResult(AppAction action) {
@@ -38,14 +38,14 @@ class _SearchProductsPageState extends State<SearchProductsPage> {
             title: const Text('Auchan products'),
           ),
           body: SearchProductsContainer(
-            builder: (BuildContext context, List<Auchan> products) {
+            builder: (BuildContext context, List<Product> products) {
               if (state.isLoading && products.isEmpty) {
                 return const Center(child: CircularProgressIndicator());
               }
               return ListView.builder(
                 itemCount: products.length,
                 itemBuilder: (BuildContext context, int index) {
-                  final Auchan product = products[index];
+                  final Product product = products[index];
 
                   return Column(
                     children: <Widget>[
@@ -53,7 +53,7 @@ class _SearchProductsPageState extends State<SearchProductsPage> {
                         height: 320,
                         child: Image.network(product.image),
                       ),
-                      Text(product.title),
+                      Text(product.name),
                       Text('${product.price}'),
                     ],
                   );
