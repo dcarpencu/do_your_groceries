@@ -59,7 +59,7 @@ class MovieApp extends StatelessWidget {
           '/': (BuildContext context) => const Home(),
           '/signUp': (BuildContext context) => const SignupPage(),
           '/login': (BuildContext context) => const LoginPage(),
-          '/productsSearch': (BuildContext context) => const SearchProductsPage(),
+          //'/productsSearch': (BuildContext context) => const SearchProductsPage(),
           '/markets': (BuildContext context) => const MarketsPage(),
           '/createList': (BuildContext context) => const CreateListPage(),
           '/createProductPage': (BuildContext context) => const CreateProductPage(),

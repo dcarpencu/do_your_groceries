@@ -4,6 +4,17 @@ import 'package:html/dom.dart'; // Contains DOM related classes for extracting d
 import 'package:html/parser.dart'; // Contains HTML parsers to generate a Document object
 import 'package:http/http.dart'; // Contains a client for making API calls
 
+const List<String> auchanCategories = ['legume', 'carne', 'mezeluri', 'bauturiNonAlcoolice', 'bauturiAlcoolice'];
+
+Map<String, String> auchan = <String, String>{
+  'legume': 'https://tazz.ro/timisoara/auchan-hypermarket-timisoara/legume-si-fructe/9063/2355527/dpt',
+  'carne': 'https://tazz.ro/timisoara/auchan-hypermarket-timisoara/macelarie-si-peste/9063/2355685/dpt',
+  'lactate': 'https://tazz.ro/timisoara/auchan-hypermarket-timisoara/lactate-branzeturi-si-oua/9063/2355796/dpt',
+  'mezeluri': 'https://tazz.ro/timisoara/auchan-hypermarket-timisoara/mezeluri-si-specialitati/9063/2356037/dpt',
+  'bauturiNonAlcoolice': 'https://tazz.ro/timisoara/auchan-hypermarket-timisoara/bauturi-non-alcoolice/9063/2356141/dpt',
+  'bauturiAlcoolice': 'https://tazz.ro/timisoara/auchan-hypermarket-timisoara/bauturi-alcoolice/9063/2356655/dpt',
+};
+
 class SuperMarketsApi {
   SuperMarketsApi(this._client, this._firestore);
 
@@ -74,11 +85,28 @@ class SuperMarketsApi {
   }
 
   Future<void> generateProducts() async {
-    final Response response = await _client.get(
+    final Response legumeAuchan = await _client.get(
       Uri.parse('https://tazz.ro/timisoara/auchan-hypermarket-timisoara/legume-si-fructe/9063/2355527/dpt'),
     );
+    final Response carneAuchan = await _client.get(
+      Uri.parse('https://tazz.ro/timisoara/auchan-hypermarket-timisoara/macelarie-si-peste/9063/2355685/dpt'),
+    );
+    final Response lactateAuchan = await _client.get(
+      Uri.parse('https://tazz.ro/timisoara/auchan-hypermarket-timisoara/lactate-branzeturi-si-oua/9063/2355796/dpt'),
+    );
+    final Response mezeluriAuchan = await _client.get(
+      Uri.parse('https://tazz.ro/timisoara/auchan-hypermarket-timisoara/mezeluri-si-specialitati/9063/2356037/dpt'),
+    );
+    final Response bauturiNonAlcoolice = await _client.get(
+      Uri.parse('https://tazz.ro/timisoara/auchan-hypermarket-timisoara/bauturi-non-alcoolice/9063/2356141/dpt'),
+    );
+    final Response bauturiAlcoolice = await _client.get(
+      Uri.parse('https://tazz.ro/timisoara/auchan-hypermarket-timisoara/bauturi-alcoolice/9063/2356655/dpt'),
+    );
 
-    final Document document = parse(response.body);
+    https://tazz.ro/timisoara/auchan-hypermarket-timisoara/bauturi-alcoolice/9063/2356655/dpt
+
+    final Document document = parse(legumeAuchan.body);
     //print(document.outerHtml);
 
     final List<Element> links = document.querySelectorAll('div.product-non-food-card');
@@ -86,7 +114,7 @@ class SuperMarketsApi {
     final List<Map<String, dynamic>> linkMap = <Map<String, dynamic>>[];
 
     for (int i = 0; i < links.length; i++) {
-      final DocumentReference<Map<String, dynamic>> ref = _firestore.collection('auchan').doc();
+      final DocumentReference<Map<String, dynamic>> ref = _firestore.collection('Auchan').doc();
       final Element link = links[i];
       final Element? foodInfo = link.querySelector('div.content-container');
       final Element? image = link.querySelector('div.image-container > img');

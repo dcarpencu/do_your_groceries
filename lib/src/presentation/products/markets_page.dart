@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class MarketsPage extends StatelessWidget {
   const MarketsPage({super.key});
 
-  static const List<String> marketsNames = <String>['Auchan', 'Lidl', 'Kaufland', 'Penny'];
+  static const List<String> marketsNames = <String>['auchan', 'Lidl', 'Kaufland', 'Penny'];
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class MarketsPage extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute<Widget>(builder: (BuildContext context) => const SearchProductsPage()),
+                          MaterialPageRoute<Widget>(builder: (BuildContext context) => SearchProductsPage(marketsNames[index])),
                         );
                       },
                       child: const Text('Check products'),
