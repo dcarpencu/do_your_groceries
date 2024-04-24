@@ -1,16 +1,15 @@
-import 'package:do_you_groceries/src/presentation/products/search_page.dart';
+import 'package:do_you_groceries/src/data/market_links.dart';
+import 'package:do_you_groceries/src/presentation/products/supermarket_categories_page.dart';
 import 'package:flutter/material.dart';
 
 class MarketsPage extends StatelessWidget {
   const MarketsPage({super.key});
 
-  static const List<String> marketsNames = <String>['auchan', 'Lidl', 'Kaufland', 'Penny'];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Markets'),
+        title: const Text('Available markets'),
       ),
       body: ListView.builder(
         itemCount: marketsNames.length,
@@ -34,16 +33,14 @@ class MarketsPage extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute<Widget>(builder: (BuildContext context) => SearchProductsPage(marketsNames[index])),
+                          MaterialPageRoute<Widget>(
+                            builder: (BuildContext context) => SupermarketCategoriesPage(
+                              supermarketName: marketsNames[index],
+                            ),
+                          ),
                         );
                       },
                       child: const Text('Check products'),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        // Perform some action
-                      },
-                      child: const Text('Add product'),
                     ),
                   ],
                 ),
