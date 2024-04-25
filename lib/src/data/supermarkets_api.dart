@@ -11,9 +11,9 @@ class SuperMarketsApi {
   final Client _client;
   final FirebaseFirestore _firestore;
 
-  Future<List<Product>> getSuperMarketProducts({required String supermarketName, required String category}) async {
+  Future<List<Product>> getSuperMarketProducts({required String supermarketName, required String category, required int pageNumber}) async {
     final QuerySnapshot<Map<String, dynamic>> querySnapshot =
-        await _firestore.collection(supermarketName).doc('categories').collection(category).get();
+        await _firestore.collection(supermarketName).doc('categories').collection(category).doc('pages').collection('page_$pageNumber').get();
 
     final List<Product> products = <Product>[];
 
@@ -25,6 +25,7 @@ class SuperMarketsApi {
   }
 
   Future<void> generateProducts() async {
+    int pgCt;
     for (int indexSupermakets = 0; indexSupermakets < marketsNames.length; indexSupermakets++) {
       for (int index = 0; index < supermarketCategories.length; index++) {
         // print('\n\n\n\n\n\n------- ${auchan['legume']}\n\n\n\n');
@@ -38,13 +39,19 @@ class SuperMarketsApi {
 
         final List<Map<String, dynamic>> linkMap = <Map<String, dynamic>>[];
 
+        pgCt = 0;
         for (int i = 0; i < links.length; i++) {
+          if (i % 40 == 0) {
+            pgCt++;
+          }
           final DocumentReference<Map<String, dynamic>> ref = _firestore
               .collection(marketsNames[indexSupermakets])
               .doc('categories')
               .collection(
                 supermarketCategories[index],
               )
+              .doc('pages')
+              .collection('page_$pgCt')
               .doc();
           final Element link = links[i];
           final Element? foodInfo = link.querySelector('div.content-container');

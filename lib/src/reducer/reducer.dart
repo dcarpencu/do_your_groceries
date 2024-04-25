@@ -14,6 +14,10 @@ AppState reducer(AppState state, dynamic action) {
     }
   }
 
+  if (kDebugMode) {
+    print(action);
+  }
+
   final AppState newState = _reducer(state, action);
   if (kDebugMode) {
     print(newState);

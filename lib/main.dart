@@ -10,7 +10,7 @@ import 'package:do_you_groceries/src/presentation/login/login_page.dart';
 import 'package:do_you_groceries/src/presentation/login/sign_up_page.dart';
 import 'package:do_you_groceries/src/presentation/products/create_list_page.dart';
 import 'package:do_you_groceries/src/presentation/products/create_product_page.dart';
-import 'package:do_you_groceries/src/presentation/products/markets_page.dart';
+import 'package:do_you_groceries/src/presentation/supermarkets/markets_page.dart';
 import 'package:do_you_groceries/src/reducer/reducer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -54,6 +54,7 @@ class MovieApp extends StatelessWidget {
     return StoreProvider<AppState>(
       store: store,
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         routes: <String, WidgetBuilder>{
           '/': (BuildContext context) => const Home(),
           '/signUp': (BuildContext context) => const SignupPage(),

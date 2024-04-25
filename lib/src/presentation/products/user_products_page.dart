@@ -3,7 +3,7 @@ import 'package:do_you_groceries/src/containers/products_container.dart';
 import 'package:do_you_groceries/src/containers/selected_list_container.dart';
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:do_you_groceries/src/presentation/products/create_product_page.dart';
-import 'package:do_you_groceries/src/presentation/products/markets_page.dart';
+import 'package:do_you_groceries/src/presentation/supermarkets/markets_page.dart';
 import 'package:do_you_groceries/src/ui_elements/bottom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';

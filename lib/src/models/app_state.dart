@@ -5,6 +5,7 @@ class AppState with _$AppState {
   const factory AppState({
     AppUser? user,
     @Default(true) bool isLoading,
+    @Default(1) int pageNumber,
     @Default(<Product>[]) List<Product> supermarketProducts,
     @Default(<Product>[]) List<Product> productsList,
     @Default(<GroceryList>{}) Set<GroceryList> groceryLists,

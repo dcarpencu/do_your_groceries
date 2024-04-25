@@ -126,6 +126,7 @@ class AppEpic {
             (_) => _superMarketsApi.getSuperMarketProducts(
               supermarketName: action.supermarketName,
               category: action.category,
+              pageNumber: store.state.pageNumber,
             ),
           )
           .map<GetSuperMarketProducts>(GetSuperMarketProducts.successful)

@@ -1,5 +1,5 @@
 import 'package:do_you_groceries/src/data/market_links.dart';
-import 'package:do_you_groceries/src/presentation/products/supermarket_categories_page.dart';
+import 'package:do_you_groceries/src/presentation/supermarkets/supermarket_categories_page.dart';
 import 'package:flutter/material.dart';
 
 class MarketsPage extends StatelessWidget {

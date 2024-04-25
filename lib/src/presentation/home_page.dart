@@ -3,7 +3,7 @@ import 'package:do_you_groceries/src/containers/grocery_lists_container.dart';
 import 'package:do_you_groceries/src/containers/home_page_container.dart';
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:do_you_groceries/src/presentation/products/create_list_page.dart';
-import 'package:do_you_groceries/src/presentation/products/markets_page.dart';
+import 'package:do_you_groceries/src/presentation/supermarkets/markets_page.dart';
 import 'package:do_you_groceries/src/presentation/products/user_products_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -24,7 +24,8 @@ class _HomePageState extends State<HomePage> {
     // print('\n\n\n\n\n ------ IM IN STARTUP ------ \n\n\n');
 
     // RUN ONLY ONCE!
-    // StoreProvider.of<AppState>(context, listen: false).dispatch(const GenerateProducts());
+
+    StoreProvider.of<AppState>(context, listen: false).dispatch(const GenerateProducts());
 
     StoreProvider.of<AppState>(context, listen: false).dispatch(const GetGroceryLists());
   }
