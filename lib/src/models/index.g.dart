@@ -11,7 +11,6 @@ _$AppState$Impl _$$AppState$ImplFromJson(Map<String, dynamic> json) =>
       user: json['user'] == null
           ? null
           : AppUser.fromJson(json['user'] as Map<String, dynamic>),
-      isLoading: json['isLoading'] as bool? ?? true,
       pageNumber: json['pageNumber'] as int? ?? 1,
       supermarketProducts: (json['supermarketProducts'] as List<dynamic>?)
               ?.map((e) => Product.fromJson(e as Map<String, dynamic>))
@@ -26,17 +25,21 @@ _$AppState$Impl _$$AppState$ImplFromJson(Map<String, dynamic> json) =>
               .toSet() ??
           const <GroceryList>{},
       selectedGroceryList: json['selectedGroceryList'] as String?,
+      pending: (json['pending'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toSet() ??
+          const <String>{},
     );
 
 Map<String, dynamic> _$$AppState$ImplToJson(_$AppState$Impl instance) =>
     <String, dynamic>{
       'user': instance.user,
-      'isLoading': instance.isLoading,
       'pageNumber': instance.pageNumber,
       'supermarketProducts': instance.supermarketProducts,
       'productsList': instance.productsList,
       'groceryLists': instance.groceryLists.toList(),
       'selectedGroceryList': instance.selectedGroceryList,
+      'pending': instance.pending.toList(),
     };
 
 _$AppUser$Impl _$$AppUser$ImplFromJson(Map<String, dynamic> json) =>

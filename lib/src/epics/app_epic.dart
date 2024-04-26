@@ -20,7 +20,7 @@ class AppEpic {
       TypedEpic<AppState, CreateUserStart>(_createUserStart).call,
       TypedEpic<AppState, LogoutStart>(_logoutStart).call,
       TypedEpic<AppState, GetGroceryListsStart>(_getGroceryListsStart).call,
-      TypedEpic<AppState, GetSuperMarketProductsStart>(_getSuperMarketProducts).call,
+      _getSuperMarketProducts,
       TypedEpic<AppState, CreateGroceryListStart>(_createGroceryListStart).call,
       _listenForProducts,
       TypedEpic<AppState, CreateProductStart>(_createProductStart).call,
@@ -119,19 +119,39 @@ class AppEpic {
     });
   }
 
-  Stream<AppAction> _getSuperMarketProducts(Stream<GetSuperMarketProductsStart> actions, EpicStore<AppState> store) {
-    return actions.flatMap((GetSuperMarketProductsStart action) {
+  Stream<AppAction> _getSuperMarketProducts(Stream<dynamic> actions, EpicStore<AppState> store) {
+    return actions
+        .where((dynamic action) => action is GetSuperMarketProductsStart || action is GetSuperMarketProductsMore)
+        .flatMap((dynamic action) {
+      String pendingId = '';
+      String superMarketName = '';
+      String category = '';
+      ActionResult onResult = (_) {};
+      if (action is GetSuperMarketProductsStart) {
+        pendingId = action.pendingId;
+        onResult = action.onResult;
+        superMarketName = action.supermarketName;
+        category = action.category;
+      }  else if (action is GetSuperMarketProductsMore) {
+        pendingId = action.pendingId;
+        onResult = action.onResult;
+        superMarketName = action.supermarketName;
+        category = action.category;
+      }
+
       return Stream<void>.value(null)
           .asyncMap(
             (_) => _superMarketsApi.getSuperMarketProducts(
-              supermarketName: action.supermarketName,
-              category: action.category,
+              supermarketName: superMarketName,
+              category: category,
               pageNumber: store.state.pageNumber,
             ),
           )
-          .map<GetSuperMarketProducts>(GetSuperMarketProducts.successful)
-          .onErrorReturnWith(GetSuperMarketProducts.error)
-          .doOnData(action.onResult);
+          .map<GetSuperMarketProducts>((List<Product> products) {
+      return GetSuperMarketProducts.successful(products, pendingId);
+      })
+          .onErrorReturnWith((Object error, StackTrace stackTrace) => GetSuperMarketProducts.error(error, stackTrace, pendingId))
+          .doOnData(onResult);
     });
   }
 

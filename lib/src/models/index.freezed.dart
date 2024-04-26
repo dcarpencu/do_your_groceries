@@ -21,12 +21,12 @@ AppState _$AppStateFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$AppState {
   AppUser? get user => throw _privateConstructorUsedError;
-  bool get isLoading => throw _privateConstructorUsedError;
   int get pageNumber => throw _privateConstructorUsedError;
   List<Product> get supermarketProducts => throw _privateConstructorUsedError;
   List<Product> get productsList => throw _privateConstructorUsedError;
   Set<GroceryList> get groceryLists => throw _privateConstructorUsedError;
   String? get selectedGroceryList => throw _privateConstructorUsedError;
+  Set<String> get pending => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,12 +41,12 @@ abstract class $AppStateCopyWith<$Res> {
   @useResult
   $Res call(
       {AppUser? user,
-      bool isLoading,
       int pageNumber,
       List<Product> supermarketProducts,
       List<Product> productsList,
       Set<GroceryList> groceryLists,
-      String? selectedGroceryList});
+      String? selectedGroceryList,
+      Set<String> pending});
 
   $AppUserCopyWith<$Res>? get user;
 }
@@ -65,22 +65,18 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
   @override
   $Res call({
     Object? user = freezed,
-    Object? isLoading = null,
     Object? pageNumber = null,
     Object? supermarketProducts = null,
     Object? productsList = null,
     Object? groceryLists = null,
     Object? selectedGroceryList = freezed,
+    Object? pending = null,
   }) {
     return _then(_value.copyWith(
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as AppUser?,
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
       pageNumber: null == pageNumber
           ? _value.pageNumber
           : pageNumber // ignore: cast_nullable_to_non_nullable
@@ -101,6 +97,10 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.selectedGroceryList
           : selectedGroceryList // ignore: cast_nullable_to_non_nullable
               as String?,
+      pending: null == pending
+          ? _value.pending
+          : pending // ignore: cast_nullable_to_non_nullable
+              as Set<String>,
     ) as $Val);
   }
 
@@ -127,12 +127,12 @@ abstract class _$$AppState$ImplCopyWith<$Res>
   @useResult
   $Res call(
       {AppUser? user,
-      bool isLoading,
       int pageNumber,
       List<Product> supermarketProducts,
       List<Product> productsList,
       Set<GroceryList> groceryLists,
-      String? selectedGroceryList});
+      String? selectedGroceryList,
+      Set<String> pending});
 
   @override
   $AppUserCopyWith<$Res>? get user;
@@ -150,22 +150,18 @@ class __$$AppState$ImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? user = freezed,
-    Object? isLoading = null,
     Object? pageNumber = null,
     Object? supermarketProducts = null,
     Object? productsList = null,
     Object? groceryLists = null,
     Object? selectedGroceryList = freezed,
+    Object? pending = null,
   }) {
     return _then(_$AppState$Impl(
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as AppUser?,
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
       pageNumber: null == pageNumber
           ? _value.pageNumber
           : pageNumber // ignore: cast_nullable_to_non_nullable
@@ -186,6 +182,10 @@ class __$$AppState$ImplCopyWithImpl<$Res>
           ? _value.selectedGroceryList
           : selectedGroceryList // ignore: cast_nullable_to_non_nullable
               as String?,
+      pending: null == pending
+          ? _value._pending
+          : pending // ignore: cast_nullable_to_non_nullable
+              as Set<String>,
     ));
   }
 }
@@ -195,24 +195,22 @@ class __$$AppState$ImplCopyWithImpl<$Res>
 class _$AppState$Impl implements AppState$ {
   const _$AppState$Impl(
       {this.user,
-      this.isLoading = true,
       this.pageNumber = 1,
       final List<Product> supermarketProducts = const <Product>[],
       final List<Product> productsList = const <Product>[],
       final Set<GroceryList> groceryLists = const <GroceryList>{},
-      this.selectedGroceryList})
+      this.selectedGroceryList,
+      final Set<String> pending = const <String>{}})
       : _supermarketProducts = supermarketProducts,
         _productsList = productsList,
-        _groceryLists = groceryLists;
+        _groceryLists = groceryLists,
+        _pending = pending;
 
   factory _$AppState$Impl.fromJson(Map<String, dynamic> json) =>
       _$$AppState$ImplFromJson(json);
 
   @override
   final AppUser? user;
-  @override
-  @JsonKey()
-  final bool isLoading;
   @override
   @JsonKey()
   final int pageNumber;
@@ -246,10 +244,18 @@ class _$AppState$Impl implements AppState$ {
 
   @override
   final String? selectedGroceryList;
+  final Set<String> _pending;
+  @override
+  @JsonKey()
+  Set<String> get pending {
+    if (_pending is EqualUnmodifiableSetView) return _pending;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(_pending);
+  }
 
   @override
   String toString() {
-    return 'AppState(user: $user, isLoading: $isLoading, pageNumber: $pageNumber, supermarketProducts: $supermarketProducts, productsList: $productsList, groceryLists: $groceryLists, selectedGroceryList: $selectedGroceryList)';
+    return 'AppState(user: $user, pageNumber: $pageNumber, supermarketProducts: $supermarketProducts, productsList: $productsList, groceryLists: $groceryLists, selectedGroceryList: $selectedGroceryList, pending: $pending)';
   }
 
   @override
@@ -258,8 +264,6 @@ class _$AppState$Impl implements AppState$ {
         (other.runtimeType == runtimeType &&
             other is _$AppState$Impl &&
             (identical(other.user, user) || other.user == user) &&
-            (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading) &&
             (identical(other.pageNumber, pageNumber) ||
                 other.pageNumber == pageNumber) &&
             const DeepCollectionEquality()
@@ -269,7 +273,8 @@ class _$AppState$Impl implements AppState$ {
             const DeepCollectionEquality()
                 .equals(other._groceryLists, _groceryLists) &&
             (identical(other.selectedGroceryList, selectedGroceryList) ||
-                other.selectedGroceryList == selectedGroceryList));
+                other.selectedGroceryList == selectedGroceryList) &&
+            const DeepCollectionEquality().equals(other._pending, _pending));
   }
 
   @JsonKey(ignore: true)
@@ -277,12 +282,12 @@ class _$AppState$Impl implements AppState$ {
   int get hashCode => Object.hash(
       runtimeType,
       user,
-      isLoading,
       pageNumber,
       const DeepCollectionEquality().hash(_supermarketProducts),
       const DeepCollectionEquality().hash(_productsList),
       const DeepCollectionEquality().hash(_groceryLists),
-      selectedGroceryList);
+      selectedGroceryList,
+      const DeepCollectionEquality().hash(_pending));
 
   @JsonKey(ignore: true)
   @override
@@ -301,20 +306,18 @@ class _$AppState$Impl implements AppState$ {
 abstract class AppState$ implements AppState {
   const factory AppState$(
       {final AppUser? user,
-      final bool isLoading,
       final int pageNumber,
       final List<Product> supermarketProducts,
       final List<Product> productsList,
       final Set<GroceryList> groceryLists,
-      final String? selectedGroceryList}) = _$AppState$Impl;
+      final String? selectedGroceryList,
+      final Set<String> pending}) = _$AppState$Impl;
 
   factory AppState$.fromJson(Map<String, dynamic> json) =
       _$AppState$Impl.fromJson;
 
   @override
   AppUser? get user;
-  @override
-  bool get isLoading;
   @override
   int get pageNumber;
   @override
@@ -325,6 +328,8 @@ abstract class AppState$ implements AppState {
   Set<GroceryList> get groceryLists;
   @override
   String? get selectedGroceryList;
+  @override
+  Set<String> get pending;
   @override
   @JsonKey(ignore: true)
   _$$AppState$ImplCopyWith<_$AppState$Impl> get copyWith =>

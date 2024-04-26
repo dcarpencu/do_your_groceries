@@ -23,6 +23,14 @@ abstract class ErrorAction implements AppAction {
   StackTrace get stackTrace;
 }
 
+abstract class PendingAction {
+  String get pendingId;
+}
+
+abstract class ActionStart implements PendingAction {}
+
+abstract class ActionDone implements PendingAction {}
+
 abstract class UserAction implements AppAction {
   AppUser? get user;
 }

@@ -27,9 +27,7 @@ AppState reducer(AppState state, dynamic action) {
 
 Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   TypedReducer<AppState, UserAction>(_userAction).call,
-  TypedReducer<AppState, GetProductsStart>(_getProductsStart).call,
   TypedReducer<AppState, GetProductsSuccessful>(_getProductsSuccessful).call,
-  TypedReducer<AppState, GetProductsError>(_getProductsError).call,
   TypedReducer<AppState, LogoutSuccessful>(_logoutSuccessful).call,
   TypedReducer<AppState, GetGroceryListsSuccessful>(_getGroceryListsSuccessful).call,
   TypedReducer<AppState, GetGroceryListsError>(_getGroceryListsError).call,
@@ -39,7 +37,7 @@ Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   TypedReducer<AppState, OnProductsEvent>(_onProductsEvent).call,
   TypedReducer<AppState, CreateGroceryListSuccessful>(_createGroceryListSuccessful).call,
   TypedReducer<AppState, GetSuperMarketProductsSuccessful>(_getSuperMarketProductsSuccessful).call,
-  TypedReducer<AppState, GetSuperMarketProductsError>(_getSuperMarketProductsError).call,
+
 ]);
 
 AppState _setUserProductsToEmpty(AppState state, SetUserProductsToEmpty action) {
@@ -58,16 +56,8 @@ AppState _logoutSuccessful(AppState state, LogoutSuccessful action) {
   return state.copyWith(user: null, groceryLists: <GroceryList>{});
 }
 
-AppState _getProductsStart(AppState state, GetProductsStart action) {
-  return state.copyWith(isLoading: true);
-}
-
 AppState _getProductsSuccessful(AppState state, GetProductsSuccessful action) {
-  return state.copyWith(isLoading: false, supermarketProducts: action.products);
-}
-
-AppState _getProductsError(AppState state, GetProductsError action) {
-  return state.copyWith(isLoading: true);
+  return state.copyWith(supermarketProducts: action.products);
 }
 
 AppState _getGroceryListsSuccessful(AppState state, GetGroceryListsSuccessful action) {
@@ -91,9 +81,5 @@ AppState _createGroceryListSuccessful(AppState state, CreateGroceryListSuccessfu
 }
 
 AppState _getSuperMarketProductsSuccessful(AppState state, GetSuperMarketProductsSuccessful action) {
-  return state.copyWith(supermarketProducts: action.supermarketProducts, isLoading: false);
-}
-
-AppState _getSuperMarketProductsError(AppState state, GetSuperMarketProductsError action) {
-  return state.copyWith(isLoading: true);
+  return state.copyWith(pageNumber: state.pageNumber + 1, supermarketProducts: <Product>[...state.supermarketProducts, ...action.supermarketProducts]);
 }
