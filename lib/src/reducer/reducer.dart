@@ -34,12 +34,21 @@ Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   TypedReducer<AppState, GetGroceryListsSuccessful>(_getGroceryListsSuccessful).call,
   TypedReducer<AppState, GetGroceryListsError>(_getGroceryListsError).call,
   TypedReducer<AppState, SetSelectedList>(_setSelectedList).call,
-  TypedReducer<AppState, SetProductsListToEmpty>(_setProductsListToEmpty).call,
+  TypedReducer<AppState, SetUserProductsToEmpty>(_setUserProductsToEmpty).call,
+  TypedReducer<AppState, SetMarketProductsToEmpty>(_setMarketProductsToEmpty).call,
   TypedReducer<AppState, OnProductsEvent>(_onProductsEvent).call,
   TypedReducer<AppState, CreateGroceryListSuccessful>(_createGroceryListSuccessful).call,
   TypedReducer<AppState, GetSuperMarketProductsSuccessful>(_getSuperMarketProductsSuccessful).call,
   TypedReducer<AppState, GetSuperMarketProductsError>(_getSuperMarketProductsError).call,
 ]);
+
+AppState _setUserProductsToEmpty(AppState state, SetUserProductsToEmpty action) {
+  return state.copyWith(productsList: <Product>[]);
+}
+
+AppState _setMarketProductsToEmpty(AppState state, SetMarketProductsToEmpty action) {
+  return state.copyWith(supermarketProducts: <Product>[]);
+}
 
 AppState _userAction(AppState state, UserAction action) {
   return state.copyWith(user: action.user);
@@ -79,10 +88,6 @@ AppState _onProductsEvent(AppState state, OnProductsEvent action) {
 
 AppState _createGroceryListSuccessful(AppState state, CreateGroceryListSuccessful action) {
   return state.copyWith(groceryLists: <GroceryList>{action.groceryList, ...state.groceryLists});
-}
-
-AppState _setProductsListToEmpty(AppState state, SetProductsListToEmpty action) {
-  return state.copyWith(productsList: <Product>[]);
 }
 
 AppState _getSuperMarketProductsSuccessful(AppState state, GetSuperMarketProductsSuccessful action) {

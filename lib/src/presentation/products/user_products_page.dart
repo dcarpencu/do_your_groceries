@@ -29,7 +29,8 @@ class _UserProductsPageState extends State<UserProductsPage> {
 
   @override
   void dispose() {
-    _store.dispatch(ListenForProductsDone(_store.state.selectedGroceryList!));
+    _store..dispatch(ListenForProductsDone(_store.state.selectedGroceryList!))
+    ..dispatch(const SetUserProductsToEmpty());
 
     super.dispose();
   }

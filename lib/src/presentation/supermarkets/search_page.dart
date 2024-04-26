@@ -17,16 +17,27 @@ class SearchProductsPage extends StatefulWidget {
 }
 
 class _SearchProductsPageState extends State<SearchProductsPage> {
+  late Store<AppState> _store;
+  final ScrollController _controller = ScrollController();
+
   @override
   void initState() {
     super.initState();
-    StoreProvider.of<AppState>(context, listen: false).dispatch(
+    _store = StoreProvider.of<AppState>(context, listen: false);
+    _store.dispatch(
       GetSuperMarketProducts(
         supermarketName: widget.marketName,
         category: widget.category,
         _onResult,
       ),
     );
+
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _store.dispatch(const SetMarketProductsToEmpty());
   }
 
   void _onResult(AppAction action) {
