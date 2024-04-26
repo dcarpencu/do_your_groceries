@@ -2,16 +2,20 @@ import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/containers/pending_container.dart';
 import 'package:do_you_groceries/src/containers/search_products_container.dart';
 import 'package:do_you_groceries/src/models/index.dart';
+import 'package:do_you_groceries/src/ui_elements/components/market_product_widget.dart';
+import 'package:do_you_groceries/src/ui_elements/components/model_item_widget.dart';
+import 'package:do_you_groceries/src/ui_elements/components/shimmer_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 // import 'package:skeletonizer/skeletonizer.dart';
 
 class SearchProductsPage extends StatefulWidget {
-  const SearchProductsPage(this.marketName, {required this.category, super.key});
+  const SearchProductsPage(this.marketName, {required this.category, required this.supermarketCategoryLabel, super.key});
 
   final String marketName;
   final String category;
+  final String supermarketCategoryLabel;
 
   @override
   State<SearchProductsPage> createState() => _SearchProductsPageState();
@@ -38,17 +42,16 @@ class _SearchProductsPageState extends State<SearchProductsPage> {
   void _onScroll() {
     final double extent = _controller.position.maxScrollExtent;
     final double offset = _controller.offset;
-    final Store<AppState> store = StoreProvider.of<AppState>(context);
 
     final bool isLoading = <String>[GetSuperMarketProducts.pendingKey, GetSuperMarketProducts.pendingKeyMore]
-        .any(store.state.pending.contains);
-    if (offset >= extent - 0
-        // MediaQuery
-        // .of(context)
-        // .size
-        // .height
-        && !isLoading) {
-      store.dispatch(
+        .any(_store.state.pending.contains);
+    if (offset >= extent -
+        MediaQuery
+        .of(context)
+        .size
+        .height
+        && !isLoading && !_store.state.contentLoaded) {
+      _store.dispatch(
         GetSuperMarketProducts.more(supermarketName: widget.marketName, category: widget.category, _onResult),
       );
     }
@@ -75,7 +78,7 @@ class _SearchProductsPageState extends State<SearchProductsPage> {
       builder: (BuildContext context, AppState state) {
         return Scaffold(
           appBar: AppBar(
-            title: Text('${widget.marketName} products'),
+            title: Text('${widget.supermarketCategoryLabel} ${widget.marketName}'),
           ),
           body: PendingContainer(
             builder: (BuildContext context, Set<String> pending) {
@@ -85,7 +88,12 @@ class _SearchProductsPageState extends State<SearchProductsPage> {
                   final bool isLoadingMore = state.pending.contains(GetSuperMarketProducts.pendingKeyMore);
 
                   if (isLoading && products.isEmpty) {
-                    return const Center(child: CircularProgressIndicator());
+                    return ListView.builder(
+                      itemBuilder: (BuildContext context, int i) {
+                        return const ShimmerItem(); // TODO: Create ShimmerItem
+                      },
+                      itemCount: 7,
+                    );
                   }
 
                   return ListView.builder(
@@ -105,73 +113,7 @@ class _SearchProductsPageState extends State<SearchProductsPage> {
 
                       // TODO(dcarpencu): Implement Skeletonizer
 
-                      return Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: Colors.blue,
-                          gradient: const LinearGradient(
-                            colors: <Color>[
-                              Colors.orangeAccent,
-                              Colors.deepOrangeAccent,
-                            ],
-                          ),
-                        ),
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.transparent,
-                            shadowColor: Colors.transparent,
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                          ),
-                          onPressed: () {
-                            // print('Pressed button!');
-                          },
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.all(8),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(8),
-                                  child: Image.network(
-                                    product.image,
-                                    height: 100,
-                                    width: 100,
-                                    loadingBuilder:
-                                        (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
-                                      if (loadingProgress == null) {
-                                        return child;
-                                      }
-                                      return Center(
-                                        child: CircularProgressIndicator(
-                                          value: loadingProgress.expectedTotalBytes != null
-                                              ? loadingProgress.cumulativeBytesLoaded /
-                                              loadingProgress.expectedTotalBytes!
-                                              : null,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                              Align(
-                                child: Text(
-                                  product.name,
-                                  style: const TextStyle(fontSize: 12, color: Colors.black),
-                                ),
-                              ),
-                              Align(
-                                child: Text(
-                                  '${product.price} RON',
-                                  style: const TextStyle(color: Colors.black45, fontWeight: FontWeight.w600),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
+                      return ModelItem(model: product,);
                     },
                   );
                 },

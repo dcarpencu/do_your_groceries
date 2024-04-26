@@ -37,6 +37,8 @@ Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   TypedReducer<AppState, OnProductsEvent>(_onProductsEvent).call,
   TypedReducer<AppState, CreateGroceryListSuccessful>(_createGroceryListSuccessful).call,
   TypedReducer<AppState, GetSuperMarketProductsSuccessful>(_getSuperMarketProductsSuccessful).call,
+  TypedReducer<AppState, ActionStart>(_actionStart).call,
+  TypedReducer<AppState, ActionDone>(_actionDone).call,
 
 ]);
 
@@ -45,7 +47,7 @@ AppState _setUserProductsToEmpty(AppState state, SetUserProductsToEmpty action) 
 }
 
 AppState _setMarketProductsToEmpty(AppState state, SetMarketProductsToEmpty action) {
-  return state.copyWith(supermarketProducts: <Product>[], pageNumber: 1);
+  return state.copyWith(supermarketProducts: <Product>[], pageNumber: 1, contentLoaded: false);
 }
 
 AppState _userAction(AppState state, UserAction action) {
@@ -81,5 +83,17 @@ AppState _createGroceryListSuccessful(AppState state, CreateGroceryListSuccessfu
 }
 
 AppState _getSuperMarketProductsSuccessful(AppState state, GetSuperMarketProductsSuccessful action) {
-  return state.copyWith(pageNumber: state.pageNumber + 1, supermarketProducts: <Product>[...state.supermarketProducts, ...action.supermarketProducts]);
+  if (action.supermarketProducts.isNotEmpty) {
+    return state.copyWith(pageNumber: state.pageNumber + 1, supermarketProducts: <Product>[...state.supermarketProducts, ...action.supermarketProducts]);
+  } else {
+    return state.copyWith(pageNumber: state.pageNumber + 1, supermarketProducts: <Product>[...state.supermarketProducts, ...action.supermarketProducts], contentLoaded: true);
+  }
+}
+
+AppState _actionStart(AppState state, ActionStart action) {
+  return state.copyWith(pending: <String>{...state.pending, action.pendingId});
+}
+
+AppState _actionDone(AppState state, ActionDone action) {
+  return state.copyWith(pending: <String>{...state.pending}..remove(action.pendingId));
 }
