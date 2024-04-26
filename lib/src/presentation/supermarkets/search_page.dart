@@ -42,10 +42,12 @@ class _SearchProductsPageState extends State<SearchProductsPage> {
 
     final bool isLoading = <String>[GetSuperMarketProducts.pendingKey, GetSuperMarketProducts.pendingKeyMore]
         .any(store.state.pending.contains);
-    if (offset >= extent - MediaQuery
-        .of(context)
-        .size
-        .height && !isLoading) {
+    if (offset >= extent - 0
+        // MediaQuery
+        // .of(context)
+        // .size
+        // .height
+        && !isLoading) {
       store.dispatch(
         GetSuperMarketProducts.more(supermarketName: widget.marketName, category: widget.category, _onResult),
       );
@@ -54,14 +56,13 @@ class _SearchProductsPageState extends State<SearchProductsPage> {
 
   @override
   void dispose() {
+    _controller.dispose();
     super.dispose();
     _store.dispatch(const SetMarketProductsToEmpty());
   }
 
   void _onResult(AppAction action) {
-    if (action is GetSuperMarketProductsSuccessful) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Page loaded.')));
-    } else if (action is GetSuperMarketProductsError) {
+    if (action is GetSuperMarketProductsError) {
       final Object error = action.error;
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('An error has occurred $error')));
     }
@@ -87,14 +88,15 @@ class _SearchProductsPageState extends State<SearchProductsPage> {
                     return const Center(child: CircularProgressIndicator());
                   }
 
-                  return GridView.builder(
+                  return ListView.builder(
+                    controller: _controller,
                     padding: const EdgeInsets.all(8),
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 16,
-                      mainAxisSpacing: 16,
-                    ),
-                    itemCount: products.length + (isLoadingMore ? 2 : 0),
+                    // gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    //   crossAxisCount: 2,
+                    //   crossAxisSpacing: 16,
+                    //   mainAxisSpacing: 16,
+                    // ),
+                    itemCount: products.length + (isLoadingMore ? 1 : 0),
                     itemBuilder: (BuildContext context, int index) {
                       if (index == products.length) {
                         return const Center(child: CircularProgressIndicator());

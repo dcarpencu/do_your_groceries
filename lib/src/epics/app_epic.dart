@@ -132,7 +132,7 @@ class AppEpic {
         onResult = action.onResult;
         superMarketName = action.supermarketName;
         category = action.category;
-      }  else if (action is GetSuperMarketProductsMore) {
+      } else if (action is GetSuperMarketProductsMore) {
         pendingId = action.pendingId;
         onResult = action.onResult;
         superMarketName = action.supermarketName;
@@ -148,9 +148,10 @@ class AppEpic {
             ),
           )
           .map<GetSuperMarketProducts>((List<Product> products) {
-      return GetSuperMarketProducts.successful(products, pendingId);
-      })
-          .onErrorReturnWith((Object error, StackTrace stackTrace) => GetSuperMarketProducts.error(error, stackTrace, pendingId))
+            return GetSuperMarketProducts.successful(products, pendingId);
+          })
+          .onErrorReturnWith(
+              (Object error, StackTrace stackTrace) => GetSuperMarketProducts.error(error, stackTrace, pendingId))
           .doOnData(onResult);
     });
   }

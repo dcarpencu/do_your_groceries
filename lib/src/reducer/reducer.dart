@@ -45,7 +45,7 @@ AppState _setUserProductsToEmpty(AppState state, SetUserProductsToEmpty action) 
 }
 
 AppState _setMarketProductsToEmpty(AppState state, SetMarketProductsToEmpty action) {
-  return state.copyWith(supermarketProducts: <Product>[]);
+  return state.copyWith(supermarketProducts: <Product>[], pageNumber: 1);
 }
 
 AppState _userAction(AppState state, UserAction action) {
