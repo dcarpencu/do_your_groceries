@@ -11,7 +11,7 @@ class ShimmerItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+        children: <Widget>[
           // Shimmer Placeholder for Photo Image
           SizedBox(
             width: 120,
@@ -35,7 +35,7 @@ class ShimmerItem extends StatelessWidget {
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+              children: <Widget>[
                 // Shimmer for Photo Title
                 Shimmer.fromColors(
                   baseColor: Colors.grey.shade300,
