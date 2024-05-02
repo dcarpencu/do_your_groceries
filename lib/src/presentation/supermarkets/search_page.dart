@@ -2,20 +2,19 @@ import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/containers/pending_container.dart';
 import 'package:do_you_groceries/src/containers/search_products_container.dart';
 import 'package:do_you_groceries/src/models/index.dart';
-import 'package:do_you_groceries/src/ui_elements/components/market_product_widget.dart';
 import 'package:do_you_groceries/src/ui_elements/components/model_item_widget.dart';
 import 'package:do_you_groceries/src/ui_elements/components/shimmer_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
-// import 'package:skeletonizer/skeletonizer.dart';
 
 class SearchProductsPage extends StatefulWidget {
-  const SearchProductsPage(this.marketName, {required this.category, required this.supermarketCategoryLabel, super.key});
+  const SearchProductsPage(this.marketName, {required this.category, required this.supermarketCategoryLabel, required this.supermarketCategory, super.key});
 
   final String marketName;
   final String category;
   final String supermarketCategoryLabel;
+  final String supermarketCategory;
 
   @override
   State<SearchProductsPage> createState() => _SearchProductsPageState();
@@ -90,7 +89,7 @@ class _SearchProductsPageState extends State<SearchProductsPage> {
                   if (isLoading && products.isEmpty) {
                     return ListView.builder(
                       itemBuilder: (BuildContext context, int i) {
-                        return const ShimmerItem(); // TODO: Create ShimmerItem
+                        return const ShimmerItem();
                       },
                       itemCount: 7,
                     );
@@ -107,13 +106,13 @@ class _SearchProductsPageState extends State<SearchProductsPage> {
                     itemCount: products.length + (isLoadingMore ? 1 : 0),
                     itemBuilder: (BuildContext context, int index) {
                       if (index == products.length) {
-                        return const Center(child: CircularProgressIndicator());
+                        return const Center(child: LinearProgressIndicator());
                       }
                       final Product product = products[index];
 
                       // TODO(dcarpencu): Implement Skeletonizer
 
-                      return ModelItem(model: product,);
+                      return ModelItem(store: _store, model: product, marketName: widget.marketName, category: widget.supermarketCategory,);
                     },
                   );
                 },

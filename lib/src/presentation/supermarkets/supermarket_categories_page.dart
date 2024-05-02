@@ -39,7 +39,7 @@ class SupermarketCategoriesPage extends StatelessWidget {
                           MaterialPageRoute<Widget>(
                             builder: (BuildContext context) => SearchProductsPage(
                               supermarketName,
-                              category: supermarketCategories[index], supermarketCategoryLabel: supermarketCategoryLabels[index],
+                              category: supermarketCategories[index], supermarketCategoryLabel: supermarketCategoryLabels[index], supermarketCategory: supermarketCategories[index],
                             ),
                           ),
                         );

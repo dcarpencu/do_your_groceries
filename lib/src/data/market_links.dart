@@ -16,7 +16,15 @@ const List<String> supermarketCategoryLabels = <String>[
   'Bauturi alcoolice',
 ];
 
-Map<String, String> auchan = <String, String>{
+Map<String, Map<String, String>> allSupermarkets = {
+  'Auchan': Auchan,
+  'Carrefour': Carrefour,
+  'Kaufland': Kaufland,
+  'Penny': Penny,
+  'Profi': Profi,
+};
+
+Map<String, String> Auchan = <String, String>{
   supermarketCategories[0]: 'https://tazz.ro/timisoara/auchan-hypermarket-timisoara/legume-si-fructe/9063/2355527/dpt',
   supermarketCategories[1]:
       'https://tazz.ro/timisoara/auchan-hypermarket-timisoara/macelarie-si-peste/9063/2355685/dpt',
@@ -29,7 +37,7 @@ Map<String, String> auchan = <String, String>{
   supermarketCategories[5]: 'https://tazz.ro/timisoara/auchan-hypermarket-timisoara/bauturi-alcoolice/9063/2356655/dpt',
 };
 
-Map<String, String> carrefour = <String, String>{
+Map<String, String> Carrefour = <String, String>{
   supermarketCategories[0]: 'https://tazz.ro/timisoara/carrefour-timisoara-9113-/fructe-si-legume/21098/2249517/dpt',
   supermarketCategories[1]: 'https://tazz.ro/timisoara/carrefour-timisoara-9113-/macelarie-si-peste/21098/2249519/dpt',
   supermarketCategories[2]: 'https://tazz.ro/timisoara/carrefour-timisoara-9113-/mezeluri/21098/2249520/dpt',
@@ -39,7 +47,7 @@ Map<String, String> carrefour = <String, String>{
   supermarketCategories[5]: 'https://tazz.ro/timisoara/carrefour-timisoara-9113-/bauturi-alcoolice/21098/2248357/dpt',
 };
 
-Map<String, String> kaufland = <String, String>{
+Map<String, String> Kaufland = <String, String>{
   supermarketCategories[0]: 'https://tazz.ro/timisoara/kaufland-timisoara/legume-si-fructe/3865/1800340/dpt',
   supermarketCategories[1]: 'https://tazz.ro/timisoara/kaufland-timisoara/macelarie-si-peste/3865/1800367/dpt',
   supermarketCategories[2]: 'https://tazz.ro/timisoara/kaufland-timisoara/mezeluri-si-specialitati/3865/1800414/dpt',
@@ -48,7 +56,7 @@ Map<String, String> kaufland = <String, String>{
   supermarketCategories[5]: 'https://tazz.ro/timisoara/kaufland-timisoara/bauturi-alcoolice/3865/1800448/dpt',
 };
 
-Map<String, String> penny = <String, String>{
+Map<String, String> Penny = <String, String>{
   supermarketCategories[0]: 'https://tazz.ro/timisoara/penny/legume-si-fructe/14722/2345386/dpt',
   supermarketCategories[1]: 'https://tazz.ro/timisoara/penny/macelarie-si-peste/14722/2345396/dpt',
   supermarketCategories[2]: 'https://tazz.ro/timisoara/penny/mezeluri-si-specialitati/14722/2345439/dpt',
@@ -57,7 +65,7 @@ Map<String, String> penny = <String, String>{
   supermarketCategories[5]: 'https://tazz.ro/timisoara/penny/bauturi-alcoolice/14722/2345460/dpt',
 };
 
-Map<String, String> profi = <String, String>{
+Map<String, String> Profi = <String, String>{
   supermarketCategories[0]: 'https://tazz.ro/timisoara/profi/fructe-si-legume/19615/2094143/dpt',
   supermarketCategories[1]: 'https://tazz.ro/timisoara/profi/carne/19615/2094166/cat',
   supermarketCategories[2]: 'https://tazz.ro/timisoara/profi/mezeluri/19615/2094147/dpt',

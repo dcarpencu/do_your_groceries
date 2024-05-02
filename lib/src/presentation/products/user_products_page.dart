@@ -30,7 +30,7 @@ class _UserProductsPageState extends State<UserProductsPage> {
   @override
   void dispose() {
     _store..dispatch(ListenForProductsDone(_store.state.selectedGroceryList!))
-    ..dispatch(const SetUserProductsToEmpty());
+    ..dispatch(const SetUnselectedList());
 
     super.dispose();
   }
@@ -59,7 +59,8 @@ class _UserProductsPageState extends State<UserProductsPage> {
                           child: Material(
                             child: Card(
                               child: ListTile(
-                                leading: const FlutterLogo(size: 72),
+                                leading: 
+                                product.image.isEmpty ? FlutterLogo(size: 72) : SizedBox(height: 72, child: Image.network(product.image),),
                                 title: Text(product.name),
                                 subtitle: Text('${product.price} RON'),
                                 onTap: () {

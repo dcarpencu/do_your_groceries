@@ -14,6 +14,7 @@ part 'set.dart';
 part 'create_product.dart';
 part 'get_supermarket_products.dart';
 part 'generate_products.dart';
+part 'add_product_to_grocery_list.dart';
 
 abstract class AppAction {}
 

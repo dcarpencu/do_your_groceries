@@ -30,15 +30,18 @@ class SuperMarketsApi {
     for (int indexSupermakets = 0; indexSupermakets < marketsNames.length; indexSupermakets++) {
       for (int index = 0; index < supermarketCategories.length; index++) {
         // print('\n\n\n\n\n\n------- ${auchan['legume']}\n\n\n\n');
+        final String currentSupermarketName = marketsNames[indexSupermakets];
+        final Map<String, String>? currentSupermarketData = allSupermarkets[currentSupermarketName];
+        print('\n\n\n\n DE BUGGING HERE: ${currentSupermarketData![supermarketCategories[index]]!}');
         final Response response = await _client.get(
-          Uri.parse(auchan[supermarketCategories[index]]!),
+          Uri.parse(currentSupermarketData![supermarketCategories[index]]!),
         );
 
         final Document document = parse(response.body);
 
         final List<Element> links = document.querySelectorAll('div.product-non-food-card');
 
-        final List<Map<String, dynamic>> linkMap = <Map<String, dynamic>>[];
+        //final List<Map<String, dynamic>> linkMap = <Map<String, dynamic>>[];
 
         pgCt = 0;
         for (int i = 0; i < links.length; i++) {
@@ -68,15 +71,16 @@ class SuperMarketsApi {
           // var oldPrice = foodInfo?.querySelector('div.price-container > span.old-price');
           final Element? title = foodInfo?.querySelector('div.title');
 
-          linkMap.add(<String, dynamic>{
-            'title': title?.text,
-            'image': image?.attributes['src'],
-            'price': priceD,
-            //'oldPrice': oldPrice?.text,
-          });
+          // linkMap.add(<String, dynamic>{
+          //   'title': title?.text,
+          //   'image': image?.attributes['src'],
+          //   'price': priceD,
+          //   'page': pgCt,
+          //   //'oldPrice': oldPrice?.text,
+          // });
 
           final Product product =
-              Product(productId: ref.id, name: title!.text, price: priceD, image: image!.attributes['src']!);
+              Product(productId: ref.id, name: title!.text, price: priceD, image: image!.attributes['src']!, page: pgCt);
           await ref.set(product.toJson());
         }
       }

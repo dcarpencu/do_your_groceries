@@ -24,6 +24,7 @@ class AppEpic {
       TypedEpic<AppState, CreateGroceryListStart>(_createGroceryListStart).call,
       _listenForProducts,
       TypedEpic<AppState, CreateProductStart>(_createProductStart).call,
+      TypedEpic<AppState, AddProductToGroceryListStart>(_addProductToGroceryListStart).call,
       TypedEpic<AppState, GenerateProductsStart>(_generateProductsStart).call,
     ]);
   }
@@ -162,6 +163,17 @@ class AppEpic {
           .asyncMap((_) => _superMarketsApi.generateProducts())
           .mapTo(const GenerateProducts.successful())
           .onErrorReturnWith(GenerateProducts.error);
+    });
+  }
+
+  Stream<AppAction> _addProductToGroceryListStart(
+      Stream<AddProductToGroceryListStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((AddProductToGroceryListStart action) {
+      return Stream<void>.value(null)
+          .asyncMap((_) => _productsApi.addProductToGroceryList(action.product, action.groceryListId,
+              marketName: action.marketName, category: action.category, action.page,),)
+          .mapTo(const AddProductToGroceryList.successful())
+          .onErrorReturnWith(AddProductToGroceryList.error);
     });
   }
 }

@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
 
     // RUN ONLY ONCE!
 
-    // StoreProvider.of<AppState>(context, listen: false).dispatch(const GenerateProducts());
+    //StoreProvider.of<AppState>(context, listen: false).dispatch(const GenerateProducts());
 
     StoreProvider.of<AppState>(context, listen: false).dispatch(const GetGroceryLists.start());
   }
@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
           appBar: AppBar(
             leading: IconButton(
               onPressed: () {
-                StoreProvider.of<AppState>(context).dispatch(const Logout());
+                StoreProvider.of<AppState>(context).dispatch(const Logout.start());
               },
               icon: const Icon(Icons.logout),
             ),

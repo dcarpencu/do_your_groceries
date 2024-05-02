@@ -739,6 +739,7 @@ mixin _$Product {
   String get name => throw _privateConstructorUsedError;
   double get price => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
+  int get page => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -750,7 +751,8 @@ abstract class $ProductCopyWith<$Res> {
   factory $ProductCopyWith(Product value, $Res Function(Product) then) =
       _$ProductCopyWithImpl<$Res, Product>;
   @useResult
-  $Res call({String productId, String name, double price, String image});
+  $Res call(
+      {String productId, String name, double price, String image, int page});
 }
 
 /// @nodoc
@@ -770,6 +772,7 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
     Object? name = null,
     Object? price = null,
     Object? image = null,
+    Object? page = null,
   }) {
     return _then(_value.copyWith(
       productId: null == productId
@@ -788,6 +791,10 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String,
+      page: null == page
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -799,7 +806,8 @@ abstract class _$$Product$ImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
       __$$Product$ImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String productId, String name, double price, String image});
+  $Res call(
+      {String productId, String name, double price, String image, int page});
 }
 
 /// @nodoc
@@ -817,6 +825,7 @@ class __$$Product$ImplCopyWithImpl<$Res>
     Object? name = null,
     Object? price = null,
     Object? image = null,
+    Object? page = null,
   }) {
     return _then(_$Product$Impl(
       productId: null == productId
@@ -835,6 +844,10 @@ class __$$Product$ImplCopyWithImpl<$Res>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String,
+      page: null == page
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -846,7 +859,8 @@ class _$Product$Impl implements Product$ {
       {required this.productId,
       required this.name,
       required this.price,
-      this.image = ''});
+      this.image = '',
+      this.page = 1});
 
   factory _$Product$Impl.fromJson(Map<String, dynamic> json) =>
       _$$Product$ImplFromJson(json);
@@ -860,10 +874,13 @@ class _$Product$Impl implements Product$ {
   @override
   @JsonKey()
   final String image;
+  @override
+  @JsonKey()
+  final int page;
 
   @override
   String toString() {
-    return 'Product(productId: $productId, name: $name, price: $price, image: $image)';
+    return 'Product(productId: $productId, name: $name, price: $price, image: $image, page: $page)';
   }
 
   @override
@@ -875,12 +892,14 @@ class _$Product$Impl implements Product$ {
                 other.productId == productId) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.price, price) || other.price == price) &&
-            (identical(other.image, image) || other.image == image));
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.page, page) || other.page == page));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, productId, name, price, image);
+  int get hashCode =>
+      Object.hash(runtimeType, productId, name, price, image, page);
 
   @JsonKey(ignore: true)
   @override
@@ -901,7 +920,8 @@ abstract class Product$ implements Product {
       {required final String productId,
       required final String name,
       required final double price,
-      final String image}) = _$Product$Impl;
+      final String image,
+      final int page}) = _$Product$Impl;
 
   factory Product$.fromJson(Map<String, dynamic> json) =
       _$Product$Impl.fromJson;
@@ -914,6 +934,8 @@ abstract class Product$ implements Product {
   double get price;
   @override
   String get image;
+  @override
+  int get page;
   @override
   @JsonKey(ignore: true)
   _$$Product$ImplCopyWith<_$Product$Impl> get copyWith =>
