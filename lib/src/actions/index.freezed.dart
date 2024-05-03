@@ -3922,28 +3922,33 @@ abstract class CreateGroceryListError
 
 /// @nodoc
 mixin _$ListenForProducts {
+  String get pendingId => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String groceryListTitle) start,
-    required TResult Function(String groceryListTitle) done,
-    required TResult Function(List<Product> products) event,
-    required TResult Function(Object error, StackTrace stackTrace) error,
+    required TResult Function(String groceryListTitle, String pendingId) start,
+    required TResult Function(String groceryListTitle, String pendingId) done,
+    required TResult Function(List<Product> products, String pendingId) event,
+    required TResult Function(
+            Object error, StackTrace stackTrace, String pendingId)
+        error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String groceryListTitle)? start,
-    TResult? Function(String groceryListTitle)? done,
-    TResult? Function(List<Product> products)? event,
-    TResult? Function(Object error, StackTrace stackTrace)? error,
+    TResult? Function(String groceryListTitle, String pendingId)? start,
+    TResult? Function(String groceryListTitle, String pendingId)? done,
+    TResult? Function(List<Product> products, String pendingId)? event,
+    TResult? Function(Object error, StackTrace stackTrace, String pendingId)?
+        error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String groceryListTitle)? start,
-    TResult Function(String groceryListTitle)? done,
-    TResult Function(List<Product> products)? event,
-    TResult Function(Object error, StackTrace stackTrace)? error,
+    TResult Function(String groceryListTitle, String pendingId)? start,
+    TResult Function(String groceryListTitle, String pendingId)? done,
+    TResult Function(List<Product> products, String pendingId)? event,
+    TResult Function(Object error, StackTrace stackTrace, String pendingId)?
+        error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -3972,6 +3977,10 @@ mixin _$ListenForProducts {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $ListenForProductsCopyWith<ListenForProducts> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -3979,6 +3988,8 @@ abstract class $ListenForProductsCopyWith<$Res> {
   factory $ListenForProductsCopyWith(
           ListenForProducts value, $Res Function(ListenForProducts) then) =
       _$ListenForProductsCopyWithImpl<$Res, ListenForProducts>;
+  @useResult
+  $Res call({String pendingId});
 }
 
 /// @nodoc
@@ -3990,16 +4001,31 @@ class _$ListenForProductsCopyWithImpl<$Res, $Val extends ListenForProducts>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? pendingId = null,
+  }) {
+    return _then(_value.copyWith(
+      pendingId: null == pendingId
+          ? _value.pendingId
+          : pendingId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$ListenForProductsStartImplCopyWith<$Res> {
+abstract class _$$ListenForProductsStartImplCopyWith<$Res>
+    implements $ListenForProductsCopyWith<$Res> {
   factory _$$ListenForProductsStartImplCopyWith(
           _$ListenForProductsStartImpl value,
           $Res Function(_$ListenForProductsStartImpl) then) =
       __$$ListenForProductsStartImplCopyWithImpl<$Res>;
+  @override
   @useResult
-  $Res call({String groceryListTitle});
+  $Res call({String groceryListTitle, String pendingId});
 }
 
 /// @nodoc
@@ -4015,11 +4041,16 @@ class __$$ListenForProductsStartImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? groceryListTitle = null,
+    Object? pendingId = null,
   }) {
     return _then(_$ListenForProductsStartImpl(
       null == groceryListTitle
           ? _value.groceryListTitle
           : groceryListTitle // ignore: cast_nullable_to_non_nullable
+              as String,
+      pendingId: null == pendingId
+          ? _value.pendingId
+          : pendingId // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -4028,14 +4059,18 @@ class __$$ListenForProductsStartImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ListenForProductsStartImpl implements ListenForProductsStart {
-  const _$ListenForProductsStartImpl(this.groceryListTitle);
+  const _$ListenForProductsStartImpl(this.groceryListTitle,
+      {this.pendingId = _kListenForProductsPendingId});
 
   @override
   final String groceryListTitle;
+  @override
+  @JsonKey()
+  final String pendingId;
 
   @override
   String toString() {
-    return 'ListenForProducts.start(groceryListTitle: $groceryListTitle)';
+    return 'ListenForProducts.start(groceryListTitle: $groceryListTitle, pendingId: $pendingId)';
   }
 
   @override
@@ -4044,11 +4079,13 @@ class _$ListenForProductsStartImpl implements ListenForProductsStart {
         (other.runtimeType == runtimeType &&
             other is _$ListenForProductsStartImpl &&
             (identical(other.groceryListTitle, groceryListTitle) ||
-                other.groceryListTitle == groceryListTitle));
+                other.groceryListTitle == groceryListTitle) &&
+            (identical(other.pendingId, pendingId) ||
+                other.pendingId == pendingId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, groceryListTitle);
+  int get hashCode => Object.hash(runtimeType, groceryListTitle, pendingId);
 
   @JsonKey(ignore: true)
   @override
@@ -4060,36 +4097,40 @@ class _$ListenForProductsStartImpl implements ListenForProductsStart {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String groceryListTitle) start,
-    required TResult Function(String groceryListTitle) done,
-    required TResult Function(List<Product> products) event,
-    required TResult Function(Object error, StackTrace stackTrace) error,
+    required TResult Function(String groceryListTitle, String pendingId) start,
+    required TResult Function(String groceryListTitle, String pendingId) done,
+    required TResult Function(List<Product> products, String pendingId) event,
+    required TResult Function(
+            Object error, StackTrace stackTrace, String pendingId)
+        error,
   }) {
-    return start(groceryListTitle);
+    return start(groceryListTitle, pendingId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String groceryListTitle)? start,
-    TResult? Function(String groceryListTitle)? done,
-    TResult? Function(List<Product> products)? event,
-    TResult? Function(Object error, StackTrace stackTrace)? error,
+    TResult? Function(String groceryListTitle, String pendingId)? start,
+    TResult? Function(String groceryListTitle, String pendingId)? done,
+    TResult? Function(List<Product> products, String pendingId)? event,
+    TResult? Function(Object error, StackTrace stackTrace, String pendingId)?
+        error,
   }) {
-    return start?.call(groceryListTitle);
+    return start?.call(groceryListTitle, pendingId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String groceryListTitle)? start,
-    TResult Function(String groceryListTitle)? done,
-    TResult Function(List<Product> products)? event,
-    TResult Function(Object error, StackTrace stackTrace)? error,
+    TResult Function(String groceryListTitle, String pendingId)? start,
+    TResult Function(String groceryListTitle, String pendingId)? done,
+    TResult Function(List<Product> products, String pendingId)? event,
+    TResult Function(Object error, StackTrace stackTrace, String pendingId)?
+        error,
     required TResult orElse(),
   }) {
     if (start != null) {
-      return start(groceryListTitle);
+      return start(groceryListTitle, pendingId);
     }
     return orElse();
   }
@@ -4132,24 +4173,30 @@ class _$ListenForProductsStartImpl implements ListenForProductsStart {
   }
 }
 
-abstract class ListenForProductsStart implements ListenForProducts {
-  const factory ListenForProductsStart(final String groceryListTitle) =
-      _$ListenForProductsStartImpl;
+abstract class ListenForProductsStart
+    implements ListenForProducts, ActionStart {
+  const factory ListenForProductsStart(final String groceryListTitle,
+      {final String pendingId}) = _$ListenForProductsStartImpl;
 
   String get groceryListTitle;
+  @override
+  String get pendingId;
+  @override
   @JsonKey(ignore: true)
   _$$ListenForProductsStartImplCopyWith<_$ListenForProductsStartImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ListenForProductsDoneImplCopyWith<$Res> {
+abstract class _$$ListenForProductsDoneImplCopyWith<$Res>
+    implements $ListenForProductsCopyWith<$Res> {
   factory _$$ListenForProductsDoneImplCopyWith(
           _$ListenForProductsDoneImpl value,
           $Res Function(_$ListenForProductsDoneImpl) then) =
       __$$ListenForProductsDoneImplCopyWithImpl<$Res>;
+  @override
   @useResult
-  $Res call({String groceryListTitle});
+  $Res call({String groceryListTitle, String pendingId});
 }
 
 /// @nodoc
@@ -4164,11 +4211,16 @@ class __$$ListenForProductsDoneImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? groceryListTitle = null,
+    Object? pendingId = null,
   }) {
     return _then(_$ListenForProductsDoneImpl(
       null == groceryListTitle
           ? _value.groceryListTitle
           : groceryListTitle // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == pendingId
+          ? _value.pendingId
+          : pendingId // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -4177,14 +4229,18 @@ class __$$ListenForProductsDoneImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ListenForProductsDoneImpl implements ListenForProductsDone {
-  const _$ListenForProductsDoneImpl(this.groceryListTitle);
+  const _$ListenForProductsDoneImpl(this.groceryListTitle,
+      [this.pendingId = _kListenForProductsPendingId]);
 
   @override
   final String groceryListTitle;
+  @override
+  @JsonKey()
+  final String pendingId;
 
   @override
   String toString() {
-    return 'ListenForProducts.done(groceryListTitle: $groceryListTitle)';
+    return 'ListenForProducts.done(groceryListTitle: $groceryListTitle, pendingId: $pendingId)';
   }
 
   @override
@@ -4193,11 +4249,13 @@ class _$ListenForProductsDoneImpl implements ListenForProductsDone {
         (other.runtimeType == runtimeType &&
             other is _$ListenForProductsDoneImpl &&
             (identical(other.groceryListTitle, groceryListTitle) ||
-                other.groceryListTitle == groceryListTitle));
+                other.groceryListTitle == groceryListTitle) &&
+            (identical(other.pendingId, pendingId) ||
+                other.pendingId == pendingId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, groceryListTitle);
+  int get hashCode => Object.hash(runtimeType, groceryListTitle, pendingId);
 
   @JsonKey(ignore: true)
   @override
@@ -4209,36 +4267,40 @@ class _$ListenForProductsDoneImpl implements ListenForProductsDone {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String groceryListTitle) start,
-    required TResult Function(String groceryListTitle) done,
-    required TResult Function(List<Product> products) event,
-    required TResult Function(Object error, StackTrace stackTrace) error,
+    required TResult Function(String groceryListTitle, String pendingId) start,
+    required TResult Function(String groceryListTitle, String pendingId) done,
+    required TResult Function(List<Product> products, String pendingId) event,
+    required TResult Function(
+            Object error, StackTrace stackTrace, String pendingId)
+        error,
   }) {
-    return done(groceryListTitle);
+    return done(groceryListTitle, pendingId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String groceryListTitle)? start,
-    TResult? Function(String groceryListTitle)? done,
-    TResult? Function(List<Product> products)? event,
-    TResult? Function(Object error, StackTrace stackTrace)? error,
+    TResult? Function(String groceryListTitle, String pendingId)? start,
+    TResult? Function(String groceryListTitle, String pendingId)? done,
+    TResult? Function(List<Product> products, String pendingId)? event,
+    TResult? Function(Object error, StackTrace stackTrace, String pendingId)?
+        error,
   }) {
-    return done?.call(groceryListTitle);
+    return done?.call(groceryListTitle, pendingId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String groceryListTitle)? start,
-    TResult Function(String groceryListTitle)? done,
-    TResult Function(List<Product> products)? event,
-    TResult Function(Object error, StackTrace stackTrace)? error,
+    TResult Function(String groceryListTitle, String pendingId)? start,
+    TResult Function(String groceryListTitle, String pendingId)? done,
+    TResult Function(List<Product> products, String pendingId)? event,
+    TResult Function(Object error, StackTrace stackTrace, String pendingId)?
+        error,
     required TResult orElse(),
   }) {
     if (done != null) {
-      return done(groceryListTitle);
+      return done(groceryListTitle, pendingId);
     }
     return orElse();
   }
@@ -4281,23 +4343,28 @@ class _$ListenForProductsDoneImpl implements ListenForProductsDone {
   }
 }
 
-abstract class ListenForProductsDone implements ListenForProducts {
-  const factory ListenForProductsDone(final String groceryListTitle) =
-      _$ListenForProductsDoneImpl;
+abstract class ListenForProductsDone implements ListenForProducts, ActionDone {
+  const factory ListenForProductsDone(final String groceryListTitle,
+      [final String pendingId]) = _$ListenForProductsDoneImpl;
 
   String get groceryListTitle;
+  @override
+  String get pendingId;
+  @override
   @JsonKey(ignore: true)
   _$$ListenForProductsDoneImplCopyWith<_$ListenForProductsDoneImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$OnProductsEventImplCopyWith<$Res> {
+abstract class _$$OnProductsEventImplCopyWith<$Res>
+    implements $ListenForProductsCopyWith<$Res> {
   factory _$$OnProductsEventImplCopyWith(_$OnProductsEventImpl value,
           $Res Function(_$OnProductsEventImpl) then) =
       __$$OnProductsEventImplCopyWithImpl<$Res>;
+  @override
   @useResult
-  $Res call({List<Product> products});
+  $Res call({List<Product> products, String pendingId});
 }
 
 /// @nodoc
@@ -4312,12 +4379,17 @@ class __$$OnProductsEventImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? products = null,
+    Object? pendingId = null,
   }) {
     return _then(_$OnProductsEventImpl(
       null == products
           ? _value._products
           : products // ignore: cast_nullable_to_non_nullable
               as List<Product>,
+      null == pendingId
+          ? _value.pendingId
+          : pendingId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -4325,7 +4397,8 @@ class __$$OnProductsEventImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$OnProductsEventImpl implements OnProductsEvent {
-  const _$OnProductsEventImpl(final List<Product> products)
+  const _$OnProductsEventImpl(final List<Product> products,
+      [this.pendingId = _kListenForProductsPendingId])
       : _products = products;
 
   final List<Product> _products;
@@ -4337,8 +4410,12 @@ class _$OnProductsEventImpl implements OnProductsEvent {
   }
 
   @override
+  @JsonKey()
+  final String pendingId;
+
+  @override
   String toString() {
-    return 'ListenForProducts.event(products: $products)';
+    return 'ListenForProducts.event(products: $products, pendingId: $pendingId)';
   }
 
   @override
@@ -4346,12 +4423,14 @@ class _$OnProductsEventImpl implements OnProductsEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$OnProductsEventImpl &&
-            const DeepCollectionEquality().equals(other._products, _products));
+            const DeepCollectionEquality().equals(other._products, _products) &&
+            (identical(other.pendingId, pendingId) ||
+                other.pendingId == pendingId));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_products));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_products), pendingId);
 
   @JsonKey(ignore: true)
   @override
@@ -4363,36 +4442,40 @@ class _$OnProductsEventImpl implements OnProductsEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String groceryListTitle) start,
-    required TResult Function(String groceryListTitle) done,
-    required TResult Function(List<Product> products) event,
-    required TResult Function(Object error, StackTrace stackTrace) error,
+    required TResult Function(String groceryListTitle, String pendingId) start,
+    required TResult Function(String groceryListTitle, String pendingId) done,
+    required TResult Function(List<Product> products, String pendingId) event,
+    required TResult Function(
+            Object error, StackTrace stackTrace, String pendingId)
+        error,
   }) {
-    return event(products);
+    return event(products, pendingId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String groceryListTitle)? start,
-    TResult? Function(String groceryListTitle)? done,
-    TResult? Function(List<Product> products)? event,
-    TResult? Function(Object error, StackTrace stackTrace)? error,
+    TResult? Function(String groceryListTitle, String pendingId)? start,
+    TResult? Function(String groceryListTitle, String pendingId)? done,
+    TResult? Function(List<Product> products, String pendingId)? event,
+    TResult? Function(Object error, StackTrace stackTrace, String pendingId)?
+        error,
   }) {
-    return event?.call(products);
+    return event?.call(products, pendingId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String groceryListTitle)? start,
-    TResult Function(String groceryListTitle)? done,
-    TResult Function(List<Product> products)? event,
-    TResult Function(Object error, StackTrace stackTrace)? error,
+    TResult Function(String groceryListTitle, String pendingId)? start,
+    TResult Function(String groceryListTitle, String pendingId)? done,
+    TResult Function(List<Product> products, String pendingId)? event,
+    TResult Function(Object error, StackTrace stackTrace, String pendingId)?
+        error,
     required TResult orElse(),
   }) {
     if (event != null) {
-      return event(products);
+      return event(products, pendingId);
     }
     return orElse();
   }
@@ -4435,24 +4518,29 @@ class _$OnProductsEventImpl implements OnProductsEvent {
   }
 }
 
-abstract class OnProductsEvent implements ListenForProducts {
-  const factory OnProductsEvent(final List<Product> products) =
-      _$OnProductsEventImpl;
+abstract class OnProductsEvent implements ListenForProducts, ActionDone {
+  const factory OnProductsEvent(final List<Product> products,
+      [final String pendingId]) = _$OnProductsEventImpl;
 
   List<Product> get products;
+  @override
+  String get pendingId;
+  @override
   @JsonKey(ignore: true)
   _$$OnProductsEventImplCopyWith<_$OnProductsEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ListenForProductsErrorImplCopyWith<$Res> {
+abstract class _$$ListenForProductsErrorImplCopyWith<$Res>
+    implements $ListenForProductsCopyWith<$Res> {
   factory _$$ListenForProductsErrorImplCopyWith(
           _$ListenForProductsErrorImpl value,
           $Res Function(_$ListenForProductsErrorImpl) then) =
       __$$ListenForProductsErrorImplCopyWithImpl<$Res>;
+  @override
   @useResult
-  $Res call({Object error, StackTrace stackTrace});
+  $Res call({Object error, StackTrace stackTrace, String pendingId});
 }
 
 /// @nodoc
@@ -4469,6 +4557,7 @@ class __$$ListenForProductsErrorImplCopyWithImpl<$Res>
   $Res call({
     Object? error = null,
     Object? stackTrace = null,
+    Object? pendingId = null,
   }) {
     return _then(_$ListenForProductsErrorImpl(
       null == error ? _value.error : error,
@@ -4476,6 +4565,10 @@ class __$$ListenForProductsErrorImplCopyWithImpl<$Res>
           ? _value.stackTrace
           : stackTrace // ignore: cast_nullable_to_non_nullable
               as StackTrace,
+      null == pendingId
+          ? _value.pendingId
+          : pendingId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -4483,16 +4576,20 @@ class __$$ListenForProductsErrorImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ListenForProductsErrorImpl implements _ListenForProductsError {
-  const _$ListenForProductsErrorImpl(this.error, this.stackTrace);
+  const _$ListenForProductsErrorImpl(this.error, this.stackTrace,
+      [this.pendingId = _kListenForProductsPendingId]);
 
   @override
   final Object error;
   @override
   final StackTrace stackTrace;
+  @override
+  @JsonKey()
+  final String pendingId;
 
   @override
   String toString() {
-    return 'ListenForProducts.error(error: $error, stackTrace: $stackTrace)';
+    return 'ListenForProducts.error(error: $error, stackTrace: $stackTrace, pendingId: $pendingId)';
   }
 
   @override
@@ -4502,12 +4599,14 @@ class _$ListenForProductsErrorImpl implements _ListenForProductsError {
             other is _$ListenForProductsErrorImpl &&
             const DeepCollectionEquality().equals(other.error, error) &&
             (identical(other.stackTrace, stackTrace) ||
-                other.stackTrace == stackTrace));
+                other.stackTrace == stackTrace) &&
+            (identical(other.pendingId, pendingId) ||
+                other.pendingId == pendingId));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(error), stackTrace, pendingId);
 
   @JsonKey(ignore: true)
   @override
@@ -4519,36 +4618,40 @@ class _$ListenForProductsErrorImpl implements _ListenForProductsError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String groceryListTitle) start,
-    required TResult Function(String groceryListTitle) done,
-    required TResult Function(List<Product> products) event,
-    required TResult Function(Object error, StackTrace stackTrace) error,
+    required TResult Function(String groceryListTitle, String pendingId) start,
+    required TResult Function(String groceryListTitle, String pendingId) done,
+    required TResult Function(List<Product> products, String pendingId) event,
+    required TResult Function(
+            Object error, StackTrace stackTrace, String pendingId)
+        error,
   }) {
-    return error(this.error, stackTrace);
+    return error(this.error, stackTrace, pendingId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String groceryListTitle)? start,
-    TResult? Function(String groceryListTitle)? done,
-    TResult? Function(List<Product> products)? event,
-    TResult? Function(Object error, StackTrace stackTrace)? error,
+    TResult? Function(String groceryListTitle, String pendingId)? start,
+    TResult? Function(String groceryListTitle, String pendingId)? done,
+    TResult? Function(List<Product> products, String pendingId)? event,
+    TResult? Function(Object error, StackTrace stackTrace, String pendingId)?
+        error,
   }) {
-    return error?.call(this.error, stackTrace);
+    return error?.call(this.error, stackTrace, pendingId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String groceryListTitle)? start,
-    TResult Function(String groceryListTitle)? done,
-    TResult Function(List<Product> products)? event,
-    TResult Function(Object error, StackTrace stackTrace)? error,
+    TResult Function(String groceryListTitle, String pendingId)? start,
+    TResult Function(String groceryListTitle, String pendingId)? done,
+    TResult Function(List<Product> products, String pendingId)? event,
+    TResult Function(Object error, StackTrace stackTrace, String pendingId)?
+        error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(this.error, stackTrace);
+      return error(this.error, stackTrace, pendingId);
     }
     return orElse();
   }
@@ -4592,13 +4695,16 @@ class _$ListenForProductsErrorImpl implements _ListenForProductsError {
 }
 
 abstract class _ListenForProductsError
-    implements ListenForProducts, ErrorAction {
+    implements ListenForProducts, ActionDone, ErrorAction {
   const factory _ListenForProductsError(
-          final Object error, final StackTrace stackTrace) =
-      _$ListenForProductsErrorImpl;
+      final Object error, final StackTrace stackTrace,
+      [final String pendingId]) = _$ListenForProductsErrorImpl;
 
   Object get error;
   StackTrace get stackTrace;
+  @override
+  String get pendingId;
+  @override
   @JsonKey(ignore: true)
   _$$ListenForProductsErrorImplCopyWith<_$ListenForProductsErrorImpl>
       get copyWith => throw _privateConstructorUsedError;

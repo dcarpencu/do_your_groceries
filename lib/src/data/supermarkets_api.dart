@@ -27,7 +27,7 @@ class SuperMarketsApi {
 
   Future<void> generateProducts() async {
     int pgCt;
-    for (int indexSupermakets = 0; indexSupermakets < marketsNames.length; indexSupermakets++) {
+    for (int indexSupermakets = 0; indexSupermakets < 2; indexSupermakets++) {
       for (int index = 0; index < supermarketCategories.length; index++) {
         // print('\n\n\n\n\n\n------- ${auchan['legume']}\n\n\n\n');
         final String currentSupermarketName = marketsNames[indexSupermakets];

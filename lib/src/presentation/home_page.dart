@@ -201,17 +201,17 @@ class _HomePageState extends State<HomePage> {
                     icon: const Icon(Icons.menu),
                     onPressed: () {},
                   ),
-                  IconButton(
-                    tooltip: 'Search',
-                    icon: const Icon(Icons.search),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        // ignore: always_specify_types
-                        MaterialPageRoute<Widget>(builder: (BuildContext context) => const MarketsPage()),
-                      );
-                    },
-                  ),
+                  // IconButton(
+                  //   tooltip: 'Search',
+                  //   icon: const Icon(Icons.search),
+                  //   onPressed: () {
+                  //     Navigator.push(
+                  //       context,
+                  //       // ignore: always_specify_types
+                  //       MaterialPageRoute<Widget>(builder: (BuildContext context) => const MarketsPage()),
+                  //     );
+                  //   },
+                  // ),
                   IconButton(
                     tooltip: 'Favorite',
                     icon: const Icon(Icons.favorite),

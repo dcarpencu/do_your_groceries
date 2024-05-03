@@ -32,7 +32,11 @@ class ModelItem extends StatelessWidget {
                   ),
               ),
             onPressed: () {
-                store.dispatch(AddProductToGroceryListStart(model, store.state.selectedGroceryList!, model.page,marketName: marketName, category: category,)); },
+                store.dispatch(AddProductToGroceryListStart(model, store.state.selectedGroceryList!, model.page,marketName: marketName, category: category,));
+                Navigator.pop(context);
+                Navigator.pop(context);
+                Navigator.pop(context);
+                },
             child: Row(
               children: [
                 ImageShimmer(

@@ -1,4 +1,5 @@
 import 'package:do_you_groceries/src/actions/index.dart';
+import 'package:do_you_groceries/src/containers/pending_container.dart';
 import 'package:do_you_groceries/src/containers/products_container.dart';
 import 'package:do_you_groceries/src/containers/selected_list_container.dart';
 import 'package:do_you_groceries/src/models/index.dart';
@@ -29,8 +30,7 @@ class _UserProductsPageState extends State<UserProductsPage> {
 
   @override
   void dispose() {
-    _store..dispatch(ListenForProductsDone(_store.state.selectedGroceryList!))
-    ..dispatch(const SetUnselectedList());
+    _store..dispatch(ListenForProductsDone(_store.state.selectedGroceryList!))..dispatch(const SetUnselectedList());
 
     super.dispose();
   }
@@ -43,72 +43,80 @@ class _UserProductsPageState extends State<UserProductsPage> {
           appBar: AppBar(
             title: Text(groceryList.title),
           ),
-          body: ProductsContainer(
-            builder: (BuildContext context, List<Product> products) {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  // if (products.isNotEmpty)
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: products.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        final Product product = products[index];
-                        return Hero(
-                          tag: product.productId,
-                          child: Material(
-                            child: Card(
-                              child: ListTile(
-                                leading: 
-                                product.image.isEmpty ? FlutterLogo(size: 72) : SizedBox(height: 72, child: Image.network(product.image),),
-                                title: Text(product.name),
-                                subtitle: Text('${product.price} RON'),
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute<Widget>(
-                                      builder: (BuildContext context) {
-                                        return Scaffold(
-                                          appBar: AppBar(title: const Text('')),
-                                          body: Center(
-                                            child: Hero(
-                                              tag: '${product.productId} tag',
-                                              child: Material(
-                                                child: Column(
-                                                  children: <Widget>[
-                                                    Text(
-                                                      product.name,
-                                                      style: const TextStyle(fontSize: 36),
+          body: PendingContainer(
+            builder: (BuildContext context, Set<String> pending) {
+              if (pending.contains(ListenForProducts.pendingKey)) {
+                return const LinearProgressIndicator();
+              }
+              return ProductsContainer(
+                builder: (BuildContext context, List<Product> products) {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      // if (products.isNotEmpty)
+                      Expanded(
+                        child: ListView.builder(
+                          itemCount: products.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            final Product product = products[index];
+                            return Hero(
+                              tag: product.productId,
+                              child: Material(
+                                child: Card(
+                                  child: ListTile(
+                                    leading:
+                                    product.image.isEmpty ? const FlutterLogo(size: 72) : SizedBox(
+                                      height: 72, child: Image.network(product.image),),
+                                    title: Text(product.name),
+                                    subtitle: Text('${product.price} RON'),
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute<Widget>(
+                                          builder: (BuildContext context) {
+                                            return Scaffold(
+                                              appBar: AppBar(title: const Text('')),
+                                              body: Center(
+                                                child: Hero(
+                                                  tag: '${product.productId} tag',
+                                                  child: Material(
+                                                    child: Column(
+                                                      children: <Widget>[
+                                                        Text(
+                                                          product.name,
+                                                          style: const TextStyle(fontSize: 36),
+                                                        ),
+                                                        const SizedBox(
+                                                          height: 16,
+                                                        ),
+                                                        Text(
+                                                          '${product.price} Lei',
+                                                          style: const TextStyle(fontSize: 28),
+                                                        ),
+                                                      ],
                                                     ),
-                                                    const SizedBox(
-                                                      height: 16,
-                                                    ),
-                                                    Text(
-                                                      '${product.price} Lei',
-                                                      style: const TextStyle(fontSize: 28),
-                                                    ),
-                                                  ],
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  );
-                                },
+                                            );
+                                          },
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  // else
-                  //   const Center(
-                  //     child: Text('No products YET.\nPlease add some!'),
-                  //   ),
-                ],
+                            );
+                          },
+                        ),
+                      ),
+                      // else
+                      //   const Center(
+                      //     child: Text('No products YET.\nPlease add some!'),
+                      //   ),
+                    ],
+                  );
+                },
               );
             },
           ),

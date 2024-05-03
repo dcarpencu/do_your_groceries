@@ -23,6 +23,7 @@ mixin _$AppState {
   AppUser? get user => throw _privateConstructorUsedError;
   List<Product> get supermarketProducts => throw _privateConstructorUsedError;
   List<Product> get productsList => throw _privateConstructorUsedError;
+  List<Product> get relatedProducts => throw _privateConstructorUsedError;
   Set<GroceryList> get groceryLists => throw _privateConstructorUsedError;
   String? get selectedGroceryList => throw _privateConstructorUsedError;
   Set<String> get pending => throw _privateConstructorUsedError;
@@ -44,6 +45,7 @@ abstract class $AppStateCopyWith<$Res> {
       {AppUser? user,
       List<Product> supermarketProducts,
       List<Product> productsList,
+      List<Product> relatedProducts,
       Set<GroceryList> groceryLists,
       String? selectedGroceryList,
       Set<String> pending,
@@ -69,6 +71,7 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
     Object? user = freezed,
     Object? supermarketProducts = null,
     Object? productsList = null,
+    Object? relatedProducts = null,
     Object? groceryLists = null,
     Object? selectedGroceryList = freezed,
     Object? pending = null,
@@ -87,6 +90,10 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
       productsList: null == productsList
           ? _value.productsList
           : productsList // ignore: cast_nullable_to_non_nullable
+              as List<Product>,
+      relatedProducts: null == relatedProducts
+          ? _value.relatedProducts
+          : relatedProducts // ignore: cast_nullable_to_non_nullable
               as List<Product>,
       groceryLists: null == groceryLists
           ? _value.groceryLists
@@ -136,6 +143,7 @@ abstract class _$$AppState$ImplCopyWith<$Res>
       {AppUser? user,
       List<Product> supermarketProducts,
       List<Product> productsList,
+      List<Product> relatedProducts,
       Set<GroceryList> groceryLists,
       String? selectedGroceryList,
       Set<String> pending,
@@ -160,6 +168,7 @@ class __$$AppState$ImplCopyWithImpl<$Res>
     Object? user = freezed,
     Object? supermarketProducts = null,
     Object? productsList = null,
+    Object? relatedProducts = null,
     Object? groceryLists = null,
     Object? selectedGroceryList = freezed,
     Object? pending = null,
@@ -178,6 +187,10 @@ class __$$AppState$ImplCopyWithImpl<$Res>
       productsList: null == productsList
           ? _value._productsList
           : productsList // ignore: cast_nullable_to_non_nullable
+              as List<Product>,
+      relatedProducts: null == relatedProducts
+          ? _value._relatedProducts
+          : relatedProducts // ignore: cast_nullable_to_non_nullable
               as List<Product>,
       groceryLists: null == groceryLists
           ? _value._groceryLists
@@ -210,6 +223,7 @@ class _$AppState$Impl implements AppState$ {
       {this.user,
       final List<Product> supermarketProducts = const <Product>[],
       final List<Product> productsList = const <Product>[],
+      final List<Product> relatedProducts = const <Product>[],
       final Set<GroceryList> groceryLists = const <GroceryList>{},
       this.selectedGroceryList,
       final Set<String> pending = const <String>{},
@@ -217,6 +231,7 @@ class _$AppState$Impl implements AppState$ {
       this.contentLoaded = false})
       : _supermarketProducts = supermarketProducts,
         _productsList = productsList,
+        _relatedProducts = relatedProducts,
         _groceryLists = groceryLists,
         _pending = pending;
 
@@ -242,6 +257,15 @@ class _$AppState$Impl implements AppState$ {
     if (_productsList is EqualUnmodifiableListView) return _productsList;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_productsList);
+  }
+
+  final List<Product> _relatedProducts;
+  @override
+  @JsonKey()
+  List<Product> get relatedProducts {
+    if (_relatedProducts is EqualUnmodifiableListView) return _relatedProducts;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_relatedProducts);
   }
 
   final Set<GroceryList> _groceryLists;
@@ -273,7 +297,7 @@ class _$AppState$Impl implements AppState$ {
 
   @override
   String toString() {
-    return 'AppState(user: $user, supermarketProducts: $supermarketProducts, productsList: $productsList, groceryLists: $groceryLists, selectedGroceryList: $selectedGroceryList, pending: $pending, pageNumber: $pageNumber, contentLoaded: $contentLoaded)';
+    return 'AppState(user: $user, supermarketProducts: $supermarketProducts, productsList: $productsList, relatedProducts: $relatedProducts, groceryLists: $groceryLists, selectedGroceryList: $selectedGroceryList, pending: $pending, pageNumber: $pageNumber, contentLoaded: $contentLoaded)';
   }
 
   @override
@@ -286,6 +310,8 @@ class _$AppState$Impl implements AppState$ {
                 .equals(other._supermarketProducts, _supermarketProducts) &&
             const DeepCollectionEquality()
                 .equals(other._productsList, _productsList) &&
+            const DeepCollectionEquality()
+                .equals(other._relatedProducts, _relatedProducts) &&
             const DeepCollectionEquality()
                 .equals(other._groceryLists, _groceryLists) &&
             (identical(other.selectedGroceryList, selectedGroceryList) ||
@@ -304,6 +330,7 @@ class _$AppState$Impl implements AppState$ {
       user,
       const DeepCollectionEquality().hash(_supermarketProducts),
       const DeepCollectionEquality().hash(_productsList),
+      const DeepCollectionEquality().hash(_relatedProducts),
       const DeepCollectionEquality().hash(_groceryLists),
       selectedGroceryList,
       const DeepCollectionEquality().hash(_pending),
@@ -329,6 +356,7 @@ abstract class AppState$ implements AppState {
       {final AppUser? user,
       final List<Product> supermarketProducts,
       final List<Product> productsList,
+      final List<Product> relatedProducts,
       final Set<GroceryList> groceryLists,
       final String? selectedGroceryList,
       final Set<String> pending,
@@ -344,6 +372,8 @@ abstract class AppState$ implements AppState {
   List<Product> get supermarketProducts;
   @override
   List<Product> get productsList;
+  @override
+  List<Product> get relatedProducts;
   @override
   Set<GroceryList> get groceryLists;
   @override
