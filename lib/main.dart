@@ -55,6 +55,10 @@ class MovieApp extends StatelessWidget {
       store: store,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          colorSchemeSeed: Colors.green,
+          useMaterial3: true,
+        ),
         routes: <String, WidgetBuilder>{
           '/': (BuildContext context) => const Home(),
           '/signUp': (BuildContext context) => const SignupPage(),
