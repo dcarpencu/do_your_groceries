@@ -1,6 +1,9 @@
-import 'package:camera/camera.dart' as camera;
+import 'package:camera/camera.dart';
 import 'package:do_you_groceries/src/models/index.dart';
+import 'package:do_you_groceries/src/presentation/camera/image_view_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class CameraApi {
@@ -24,12 +27,12 @@ class CameraApi {
   }
 
   Future<List<CameraInfo>> getCameras() async {
-    final List<camera.CameraDescription> cameraDescriptions = await camera.availableCameras();
+    final List<CameraDescription> cameraDescriptions = await availableCameras();
 
-    final List<CameraInfo> cameras = cameraDescriptions.map((cameraDescription) {
+    final List<CameraInfo> cameras = cameraDescriptions.map((CameraDescription cameraDescription) {
       return CameraInfo(
         name: cameraDescription.name,
-        lensDirection: _convertLensDirection(cameraDescription.lensDirection),
+        lensDirection: cameraDescription.lensDirection,
         sensorOrientation: cameraDescription.sensorOrientation,
       );
     }).toList();
@@ -38,14 +41,25 @@ class CameraApi {
     return cameras;
   }
 
-  CameraInfoLensDirection _convertLensDirection(camera.CameraLensDirection lensDirection) {
-    switch (lensDirection) {
-      case camera.CameraLensDirection.front:
-        return CameraInfoLensDirection.front;
-      case camera.CameraLensDirection.back:
-        return CameraInfoLensDirection.back;
-      case camera.CameraLensDirection.external:
-        return CameraInfoLensDirection.external;
-    }
+  Future<void> initializeController({required CameraController controller}) async {
+    await controller.initialize();
   }
+
+  Future<XFile> takePicture({required CameraController controller, required BuildContext context}) async {
+
+      final XFile picture = await controller.takePicture();
+
+
+
+      // Navigate to the image view page after capturing the image
+      await Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (BuildContext context) => ImageViewPage(imagePath: picture.path),
+        ),
+      );
+
+      return picture;
+  }
+
 }

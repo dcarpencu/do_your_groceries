@@ -1,5 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:do_you_groceries/src/models/index.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'index.freezed.dart';
@@ -18,6 +19,8 @@ part 'generate_products.dart';
 part 'add_product_to_grocery_list.dart';
 part 'request_storage_permission.dart';
 part 'get_cameras.dart';
+part 'initalize_controller_pending.dart';
+part 'take_picture.dart';
 
 abstract class AppAction {}
 

@@ -30,6 +30,9 @@ mixin _$AppState {
   int get pageNumber => throw _privateConstructorUsedError;
   bool get contentLoaded => throw _privateConstructorUsedError;
   List<CameraInfo> get cameras => throw _privateConstructorUsedError;
+  CameraInfo? get selectedCamera => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: _xFileFromJson, toJson: _xFileToJson)
+  XFile? get picture => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -52,9 +55,12 @@ abstract class $AppStateCopyWith<$Res> {
       Set<String> pending,
       int pageNumber,
       bool contentLoaded,
-      List<CameraInfo> cameras});
+      List<CameraInfo> cameras,
+      CameraInfo? selectedCamera,
+      @JsonKey(fromJson: _xFileFromJson, toJson: _xFileToJson) XFile? picture});
 
   $AppUserCopyWith<$Res>? get user;
+  $CameraInfoCopyWith<$Res>? get selectedCamera;
 }
 
 /// @nodoc
@@ -80,6 +86,8 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
     Object? pageNumber = null,
     Object? contentLoaded = null,
     Object? cameras = null,
+    Object? selectedCamera = freezed,
+    Object? picture = freezed,
   }) {
     return _then(_value.copyWith(
       user: freezed == user
@@ -122,6 +130,14 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.cameras
           : cameras // ignore: cast_nullable_to_non_nullable
               as List<CameraInfo>,
+      selectedCamera: freezed == selectedCamera
+          ? _value.selectedCamera
+          : selectedCamera // ignore: cast_nullable_to_non_nullable
+              as CameraInfo?,
+      picture: freezed == picture
+          ? _value.picture
+          : picture // ignore: cast_nullable_to_non_nullable
+              as XFile?,
     ) as $Val);
   }
 
@@ -134,6 +150,18 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
 
     return $AppUserCopyWith<$Res>(_value.user!, (value) {
       return _then(_value.copyWith(user: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CameraInfoCopyWith<$Res>? get selectedCamera {
+    if (_value.selectedCamera == null) {
+      return null;
+    }
+
+    return $CameraInfoCopyWith<$Res>(_value.selectedCamera!, (value) {
+      return _then(_value.copyWith(selectedCamera: value) as $Val);
     });
   }
 }
@@ -156,10 +184,14 @@ abstract class _$$AppState$ImplCopyWith<$Res>
       Set<String> pending,
       int pageNumber,
       bool contentLoaded,
-      List<CameraInfo> cameras});
+      List<CameraInfo> cameras,
+      CameraInfo? selectedCamera,
+      @JsonKey(fromJson: _xFileFromJson, toJson: _xFileToJson) XFile? picture});
 
   @override
   $AppUserCopyWith<$Res>? get user;
+  @override
+  $CameraInfoCopyWith<$Res>? get selectedCamera;
 }
 
 /// @nodoc
@@ -183,6 +215,8 @@ class __$$AppState$ImplCopyWithImpl<$Res>
     Object? pageNumber = null,
     Object? contentLoaded = null,
     Object? cameras = null,
+    Object? selectedCamera = freezed,
+    Object? picture = freezed,
   }) {
     return _then(_$AppState$Impl(
       user: freezed == user
@@ -225,6 +259,14 @@ class __$$AppState$ImplCopyWithImpl<$Res>
           ? _value._cameras
           : cameras // ignore: cast_nullable_to_non_nullable
               as List<CameraInfo>,
+      selectedCamera: freezed == selectedCamera
+          ? _value.selectedCamera
+          : selectedCamera // ignore: cast_nullable_to_non_nullable
+              as CameraInfo?,
+      picture: freezed == picture
+          ? _value.picture
+          : picture // ignore: cast_nullable_to_non_nullable
+              as XFile?,
     ));
   }
 }
@@ -242,7 +284,9 @@ class _$AppState$Impl implements AppState$ {
       final Set<String> pending = const <String>{},
       this.pageNumber = 1,
       this.contentLoaded = false,
-      final List<CameraInfo> cameras = const <CameraInfo>[]})
+      final List<CameraInfo> cameras = const <CameraInfo>[],
+      this.selectedCamera = null,
+      @JsonKey(fromJson: _xFileFromJson, toJson: _xFileToJson) this.picture})
       : _supermarketProducts = supermarketProducts,
         _productsList = productsList,
         _relatedProducts = relatedProducts,
@@ -319,8 +363,15 @@ class _$AppState$Impl implements AppState$ {
   }
 
   @override
+  @JsonKey()
+  final CameraInfo? selectedCamera;
+  @override
+  @JsonKey(fromJson: _xFileFromJson, toJson: _xFileToJson)
+  final XFile? picture;
+
+  @override
   String toString() {
-    return 'AppState(user: $user, supermarketProducts: $supermarketProducts, productsList: $productsList, relatedProducts: $relatedProducts, groceryLists: $groceryLists, selectedGroceryList: $selectedGroceryList, pending: $pending, pageNumber: $pageNumber, contentLoaded: $contentLoaded, cameras: $cameras)';
+    return 'AppState(user: $user, supermarketProducts: $supermarketProducts, productsList: $productsList, relatedProducts: $relatedProducts, groceryLists: $groceryLists, selectedGroceryList: $selectedGroceryList, pending: $pending, pageNumber: $pageNumber, contentLoaded: $contentLoaded, cameras: $cameras, selectedCamera: $selectedCamera, picture: $picture)';
   }
 
   @override
@@ -344,7 +395,10 @@ class _$AppState$Impl implements AppState$ {
                 other.pageNumber == pageNumber) &&
             (identical(other.contentLoaded, contentLoaded) ||
                 other.contentLoaded == contentLoaded) &&
-            const DeepCollectionEquality().equals(other._cameras, _cameras));
+            const DeepCollectionEquality().equals(other._cameras, _cameras) &&
+            (identical(other.selectedCamera, selectedCamera) ||
+                other.selectedCamera == selectedCamera) &&
+            (identical(other.picture, picture) || other.picture == picture));
   }
 
   @JsonKey(ignore: true)
@@ -360,7 +414,9 @@ class _$AppState$Impl implements AppState$ {
       const DeepCollectionEquality().hash(_pending),
       pageNumber,
       contentLoaded,
-      const DeepCollectionEquality().hash(_cameras));
+      const DeepCollectionEquality().hash(_cameras),
+      selectedCamera,
+      picture);
 
   @JsonKey(ignore: true)
   @override
@@ -387,7 +443,10 @@ abstract class AppState$ implements AppState {
       final Set<String> pending,
       final int pageNumber,
       final bool contentLoaded,
-      final List<CameraInfo> cameras}) = _$AppState$Impl;
+      final List<CameraInfo> cameras,
+      final CameraInfo? selectedCamera,
+      @JsonKey(fromJson: _xFileFromJson, toJson: _xFileToJson)
+      final XFile? picture}) = _$AppState$Impl;
 
   factory AppState$.fromJson(Map<String, dynamic> json) =
       _$AppState$Impl.fromJson;
@@ -412,6 +471,11 @@ abstract class AppState$ implements AppState {
   bool get contentLoaded;
   @override
   List<CameraInfo> get cameras;
+  @override
+  CameraInfo? get selectedCamera;
+  @override
+  @JsonKey(fromJson: _xFileFromJson, toJson: _xFileToJson)
+  XFile? get picture;
   @override
   @JsonKey(ignore: true)
   _$$AppState$ImplCopyWith<_$AppState$Impl> get copyWith =>
@@ -1245,8 +1309,7 @@ CameraInfo _$CameraInfoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$CameraInfo {
   String get name => throw _privateConstructorUsedError;
-  CameraInfoLensDirection get lensDirection =>
-      throw _privateConstructorUsedError;
+  CameraLensDirection get lensDirection => throw _privateConstructorUsedError;
   int get sensorOrientation => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -1262,9 +1325,7 @@ abstract class $CameraInfoCopyWith<$Res> {
       _$CameraInfoCopyWithImpl<$Res, CameraInfo>;
   @useResult
   $Res call(
-      {String name,
-      CameraInfoLensDirection lensDirection,
-      int sensorOrientation});
+      {String name, CameraLensDirection lensDirection, int sensorOrientation});
 }
 
 /// @nodoc
@@ -1292,7 +1353,7 @@ class _$CameraInfoCopyWithImpl<$Res, $Val extends CameraInfo>
       lensDirection: null == lensDirection
           ? _value.lensDirection
           : lensDirection // ignore: cast_nullable_to_non_nullable
-              as CameraInfoLensDirection,
+              as CameraLensDirection,
       sensorOrientation: null == sensorOrientation
           ? _value.sensorOrientation
           : sensorOrientation // ignore: cast_nullable_to_non_nullable
@@ -1310,9 +1371,7 @@ abstract class _$$CameraInfo$ImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String name,
-      CameraInfoLensDirection lensDirection,
-      int sensorOrientation});
+      {String name, CameraLensDirection lensDirection, int sensorOrientation});
 }
 
 /// @nodoc
@@ -1338,7 +1397,7 @@ class __$$CameraInfo$ImplCopyWithImpl<$Res>
       lensDirection: null == lensDirection
           ? _value.lensDirection
           : lensDirection // ignore: cast_nullable_to_non_nullable
-              as CameraInfoLensDirection,
+              as CameraLensDirection,
       sensorOrientation: null == sensorOrientation
           ? _value.sensorOrientation
           : sensorOrientation // ignore: cast_nullable_to_non_nullable
@@ -1361,7 +1420,7 @@ class _$CameraInfo$Impl implements CameraInfo$ {
   @override
   final String name;
   @override
-  final CameraInfoLensDirection lensDirection;
+  final CameraLensDirection lensDirection;
   @override
   final int sensorOrientation;
 
@@ -1404,7 +1463,7 @@ class _$CameraInfo$Impl implements CameraInfo$ {
 abstract class CameraInfo$ implements CameraInfo {
   const factory CameraInfo$(
       {required final String name,
-      required final CameraInfoLensDirection lensDirection,
+      required final CameraLensDirection lensDirection,
       required final int sensorOrientation}) = _$CameraInfo$Impl;
 
   factory CameraInfo$.fromJson(Map<String, dynamic> json) =
@@ -1413,7 +1472,7 @@ abstract class CameraInfo$ implements CameraInfo {
   @override
   String get name;
   @override
-  CameraInfoLensDirection get lensDirection;
+  CameraLensDirection get lensDirection;
   @override
   int get sensorOrientation;
   @override

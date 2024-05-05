@@ -15,9 +15,19 @@ enum CameraInfoLensDirection {
 class CameraInfo with _$CameraInfo {
   const factory CameraInfo({
     required String name,
-    required CameraInfoLensDirection lensDirection,
+    required CameraLensDirection lensDirection,
     required int sensorOrientation,
   }) = CameraInfo$;
 
   factory CameraInfo.fromJson(Map<dynamic, dynamic> json) => _$CameraInfoFromJson(Map<String, dynamic>.from(json));
+
+  static CameraDescription toCameraDescription(CameraInfo cameraInfo) {
+    return CameraDescription(
+      name: cameraInfo.name,
+      lensDirection: cameraInfo.lensDirection,
+      sensorOrientation: cameraInfo.sensorOrientation,
+    );
+  }
 }
+
+

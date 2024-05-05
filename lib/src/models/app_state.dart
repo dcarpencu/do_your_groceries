@@ -13,8 +13,22 @@ class AppState with _$AppState {
     @Default(1) int pageNumber,
     @Default(false) bool contentLoaded,
     @Default(<CameraInfo>[]) List<CameraInfo> cameras,
+    @Default(null) CameraInfo? selectedCamera,
+    @JsonKey(fromJson: _xFileFromJson, toJson: _xFileToJson) XFile? picture,
 
   }) = AppState$;
 
   factory AppState.fromJson(Map<dynamic, dynamic> json) => _$AppStateFromJson(Map<String, dynamic>.from(json));
+}
+
+XFile? _xFileFromJson(dynamic json) {
+  if (json is String) {
+    // Convert string to XFile
+    return XFile(json);
+  }
+  return null;
+}
+
+String? _xFileToJson(XFile? file) {
+  return file?.path;
 }

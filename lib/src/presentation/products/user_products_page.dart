@@ -1,10 +1,9 @@
-import 'package:camera/camera.dart';
 import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/containers/pending_container.dart';
 import 'package:do_you_groceries/src/containers/products_container.dart';
 import 'package:do_you_groceries/src/containers/selected_list_container.dart';
 import 'package:do_you_groceries/src/models/index.dart';
-import 'package:do_you_groceries/src/presentation/image_recognition_page.dart';
+import 'package:do_you_groceries/src/presentation/camera/image_recognition_page.dart';
 import 'package:do_you_groceries/src/presentation/supermarkets/markets_page.dart';
 import 'package:do_you_groceries/src/ui_elements/bottom_app_bar.dart';
 import 'package:do_you_groceries/src/ui_elements/components/hero_transition_demo.dart';

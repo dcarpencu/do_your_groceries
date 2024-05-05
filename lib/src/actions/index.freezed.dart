@@ -5024,6 +5024,139 @@ abstract class SetMarketProductsToEmpty$ implements SetMarketProductsToEmpty {
 }
 
 /// @nodoc
+mixin _$SetSelectedCamera {
+  CameraInfo get selectedCamera => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $SetSelectedCameraCopyWith<SetSelectedCamera> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SetSelectedCameraCopyWith<$Res> {
+  factory $SetSelectedCameraCopyWith(
+          SetSelectedCamera value, $Res Function(SetSelectedCamera) then) =
+      _$SetSelectedCameraCopyWithImpl<$Res, SetSelectedCamera>;
+  @useResult
+  $Res call({CameraInfo selectedCamera});
+
+  $CameraInfoCopyWith<$Res> get selectedCamera;
+}
+
+/// @nodoc
+class _$SetSelectedCameraCopyWithImpl<$Res, $Val extends SetSelectedCamera>
+    implements $SetSelectedCameraCopyWith<$Res> {
+  _$SetSelectedCameraCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? selectedCamera = null,
+  }) {
+    return _then(_value.copyWith(
+      selectedCamera: null == selectedCamera
+          ? _value.selectedCamera
+          : selectedCamera // ignore: cast_nullable_to_non_nullable
+              as CameraInfo,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CameraInfoCopyWith<$Res> get selectedCamera {
+    return $CameraInfoCopyWith<$Res>(_value.selectedCamera, (value) {
+      return _then(_value.copyWith(selectedCamera: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$SetSelectedCamera$ImplCopyWith<$Res>
+    implements $SetSelectedCameraCopyWith<$Res> {
+  factory _$$SetSelectedCamera$ImplCopyWith(_$SetSelectedCamera$Impl value,
+          $Res Function(_$SetSelectedCamera$Impl) then) =
+      __$$SetSelectedCamera$ImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({CameraInfo selectedCamera});
+
+  @override
+  $CameraInfoCopyWith<$Res> get selectedCamera;
+}
+
+/// @nodoc
+class __$$SetSelectedCamera$ImplCopyWithImpl<$Res>
+    extends _$SetSelectedCameraCopyWithImpl<$Res, _$SetSelectedCamera$Impl>
+    implements _$$SetSelectedCamera$ImplCopyWith<$Res> {
+  __$$SetSelectedCamera$ImplCopyWithImpl(_$SetSelectedCamera$Impl _value,
+      $Res Function(_$SetSelectedCamera$Impl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? selectedCamera = null,
+  }) {
+    return _then(_$SetSelectedCamera$Impl(
+      null == selectedCamera
+          ? _value.selectedCamera
+          : selectedCamera // ignore: cast_nullable_to_non_nullable
+              as CameraInfo,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SetSelectedCamera$Impl implements SetSelectedCamera$ {
+  const _$SetSelectedCamera$Impl(this.selectedCamera);
+
+  @override
+  final CameraInfo selectedCamera;
+
+  @override
+  String toString() {
+    return 'SetSelectedCamera(selectedCamera: $selectedCamera)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetSelectedCamera$Impl &&
+            (identical(other.selectedCamera, selectedCamera) ||
+                other.selectedCamera == selectedCamera));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, selectedCamera);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SetSelectedCamera$ImplCopyWith<_$SetSelectedCamera$Impl> get copyWith =>
+      __$$SetSelectedCamera$ImplCopyWithImpl<_$SetSelectedCamera$Impl>(
+          this, _$identity);
+}
+
+abstract class SetSelectedCamera$ implements SetSelectedCamera {
+  const factory SetSelectedCamera$(final CameraInfo selectedCamera) =
+      _$SetSelectedCamera$Impl;
+
+  @override
+  CameraInfo get selectedCamera;
+  @override
+  @JsonKey(ignore: true)
+  _$$SetSelectedCamera$ImplCopyWith<_$SetSelectedCamera$Impl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$CreateProduct {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
@@ -8387,5 +8520,1224 @@ abstract class GetCamerasError implements GetCameras, ErrorAction {
   StackTrace get stackTrace;
   @JsonKey(ignore: true)
   _$$GetCamerasErrorImplCopyWith<_$GetCamerasErrorImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$InitializeController {
+  String get pendingId => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(CameraController controller, String pendingId)
+        start,
+    required TResult Function(String pendingId) successful,
+    required TResult Function(
+            Object error, StackTrace stackTrace, String pendingId)
+        error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(CameraController controller, String pendingId)? start,
+    TResult? Function(String pendingId)? successful,
+    TResult? Function(Object error, StackTrace stackTrace, String pendingId)?
+        error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(CameraController controller, String pendingId)? start,
+    TResult Function(String pendingId)? successful,
+    TResult Function(Object error, StackTrace stackTrace, String pendingId)?
+        error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeControllerStart value) start,
+    required TResult Function(InitializeControllerSuccessful value) successful,
+    required TResult Function(InitializeControllerError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(InitializeControllerStart value)? start,
+    TResult? Function(InitializeControllerSuccessful value)? successful,
+    TResult? Function(InitializeControllerError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeControllerStart value)? start,
+    TResult Function(InitializeControllerSuccessful value)? successful,
+    TResult Function(InitializeControllerError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $InitializeControllerCopyWith<InitializeController> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $InitializeControllerCopyWith<$Res> {
+  factory $InitializeControllerCopyWith(InitializeController value,
+          $Res Function(InitializeController) then) =
+      _$InitializeControllerCopyWithImpl<$Res, InitializeController>;
+  @useResult
+  $Res call({String pendingId});
+}
+
+/// @nodoc
+class _$InitializeControllerCopyWithImpl<$Res,
+        $Val extends InitializeController>
+    implements $InitializeControllerCopyWith<$Res> {
+  _$InitializeControllerCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? pendingId = null,
+  }) {
+    return _then(_value.copyWith(
+      pendingId: null == pendingId
+          ? _value.pendingId
+          : pendingId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$InitializeControllerStartImplCopyWith<$Res>
+    implements $InitializeControllerCopyWith<$Res> {
+  factory _$$InitializeControllerStartImplCopyWith(
+          _$InitializeControllerStartImpl value,
+          $Res Function(_$InitializeControllerStartImpl) then) =
+      __$$InitializeControllerStartImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({CameraController controller, String pendingId});
+}
+
+/// @nodoc
+class __$$InitializeControllerStartImplCopyWithImpl<$Res>
+    extends _$InitializeControllerCopyWithImpl<$Res,
+        _$InitializeControllerStartImpl>
+    implements _$$InitializeControllerStartImplCopyWith<$Res> {
+  __$$InitializeControllerStartImplCopyWithImpl(
+      _$InitializeControllerStartImpl _value,
+      $Res Function(_$InitializeControllerStartImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? controller = null,
+    Object? pendingId = null,
+  }) {
+    return _then(_$InitializeControllerStartImpl(
+      controller: null == controller
+          ? _value.controller
+          : controller // ignore: cast_nullable_to_non_nullable
+              as CameraController,
+      pendingId: null == pendingId
+          ? _value.pendingId
+          : pendingId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$InitializeControllerStartImpl implements InitializeControllerStart {
+  const _$InitializeControllerStartImpl(
+      {required this.controller,
+      this.pendingId = _kInitializeControllerPendingId});
+
+  @override
+  final CameraController controller;
+  @override
+  @JsonKey()
+  final String pendingId;
+
+  @override
+  String toString() {
+    return 'InitializeController.start(controller: $controller, pendingId: $pendingId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InitializeControllerStartImpl &&
+            (identical(other.controller, controller) ||
+                other.controller == controller) &&
+            (identical(other.pendingId, pendingId) ||
+                other.pendingId == pendingId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, controller, pendingId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InitializeControllerStartImplCopyWith<_$InitializeControllerStartImpl>
+      get copyWith => __$$InitializeControllerStartImplCopyWithImpl<
+          _$InitializeControllerStartImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(CameraController controller, String pendingId)
+        start,
+    required TResult Function(String pendingId) successful,
+    required TResult Function(
+            Object error, StackTrace stackTrace, String pendingId)
+        error,
+  }) {
+    return start(controller, pendingId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(CameraController controller, String pendingId)? start,
+    TResult? Function(String pendingId)? successful,
+    TResult? Function(Object error, StackTrace stackTrace, String pendingId)?
+        error,
+  }) {
+    return start?.call(controller, pendingId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(CameraController controller, String pendingId)? start,
+    TResult Function(String pendingId)? successful,
+    TResult Function(Object error, StackTrace stackTrace, String pendingId)?
+        error,
+    required TResult orElse(),
+  }) {
+    if (start != null) {
+      return start(controller, pendingId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeControllerStart value) start,
+    required TResult Function(InitializeControllerSuccessful value) successful,
+    required TResult Function(InitializeControllerError value) error,
+  }) {
+    return start(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(InitializeControllerStart value)? start,
+    TResult? Function(InitializeControllerSuccessful value)? successful,
+    TResult? Function(InitializeControllerError value)? error,
+  }) {
+    return start?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeControllerStart value)? start,
+    TResult Function(InitializeControllerSuccessful value)? successful,
+    TResult Function(InitializeControllerError value)? error,
+    required TResult orElse(),
+  }) {
+    if (start != null) {
+      return start(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InitializeControllerStart
+    implements InitializeController, ActionStart {
+  const factory InitializeControllerStart(
+      {required final CameraController controller,
+      final String pendingId}) = _$InitializeControllerStartImpl;
+
+  CameraController get controller;
+  @override
+  String get pendingId;
+  @override
+  @JsonKey(ignore: true)
+  _$$InitializeControllerStartImplCopyWith<_$InitializeControllerStartImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$InitializeControllerSuccessfulImplCopyWith<$Res>
+    implements $InitializeControllerCopyWith<$Res> {
+  factory _$$InitializeControllerSuccessfulImplCopyWith(
+          _$InitializeControllerSuccessfulImpl value,
+          $Res Function(_$InitializeControllerSuccessfulImpl) then) =
+      __$$InitializeControllerSuccessfulImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String pendingId});
+}
+
+/// @nodoc
+class __$$InitializeControllerSuccessfulImplCopyWithImpl<$Res>
+    extends _$InitializeControllerCopyWithImpl<$Res,
+        _$InitializeControllerSuccessfulImpl>
+    implements _$$InitializeControllerSuccessfulImplCopyWith<$Res> {
+  __$$InitializeControllerSuccessfulImplCopyWithImpl(
+      _$InitializeControllerSuccessfulImpl _value,
+      $Res Function(_$InitializeControllerSuccessfulImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? pendingId = null,
+  }) {
+    return _then(_$InitializeControllerSuccessfulImpl(
+      null == pendingId
+          ? _value.pendingId
+          : pendingId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$InitializeControllerSuccessfulImpl
+    implements InitializeControllerSuccessful {
+  const _$InitializeControllerSuccessfulImpl(
+      [this.pendingId = _kInitializeControllerPendingId]);
+
+  @override
+  @JsonKey()
+  final String pendingId;
+
+  @override
+  String toString() {
+    return 'InitializeController.successful(pendingId: $pendingId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InitializeControllerSuccessfulImpl &&
+            (identical(other.pendingId, pendingId) ||
+                other.pendingId == pendingId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, pendingId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InitializeControllerSuccessfulImplCopyWith<
+          _$InitializeControllerSuccessfulImpl>
+      get copyWith => __$$InitializeControllerSuccessfulImplCopyWithImpl<
+          _$InitializeControllerSuccessfulImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(CameraController controller, String pendingId)
+        start,
+    required TResult Function(String pendingId) successful,
+    required TResult Function(
+            Object error, StackTrace stackTrace, String pendingId)
+        error,
+  }) {
+    return successful(pendingId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(CameraController controller, String pendingId)? start,
+    TResult? Function(String pendingId)? successful,
+    TResult? Function(Object error, StackTrace stackTrace, String pendingId)?
+        error,
+  }) {
+    return successful?.call(pendingId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(CameraController controller, String pendingId)? start,
+    TResult Function(String pendingId)? successful,
+    TResult Function(Object error, StackTrace stackTrace, String pendingId)?
+        error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(pendingId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeControllerStart value) start,
+    required TResult Function(InitializeControllerSuccessful value) successful,
+    required TResult Function(InitializeControllerError value) error,
+  }) {
+    return successful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(InitializeControllerStart value)? start,
+    TResult? Function(InitializeControllerSuccessful value)? successful,
+    TResult? Function(InitializeControllerError value)? error,
+  }) {
+    return successful?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeControllerStart value)? start,
+    TResult Function(InitializeControllerSuccessful value)? successful,
+    TResult Function(InitializeControllerError value)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InitializeControllerSuccessful
+    implements InitializeController, ActionDone {
+  const factory InitializeControllerSuccessful([final String pendingId]) =
+      _$InitializeControllerSuccessfulImpl;
+
+  @override
+  String get pendingId;
+  @override
+  @JsonKey(ignore: true)
+  _$$InitializeControllerSuccessfulImplCopyWith<
+          _$InitializeControllerSuccessfulImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$InitializeControllerErrorImplCopyWith<$Res>
+    implements $InitializeControllerCopyWith<$Res> {
+  factory _$$InitializeControllerErrorImplCopyWith(
+          _$InitializeControllerErrorImpl value,
+          $Res Function(_$InitializeControllerErrorImpl) then) =
+      __$$InitializeControllerErrorImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({Object error, StackTrace stackTrace, String pendingId});
+}
+
+/// @nodoc
+class __$$InitializeControllerErrorImplCopyWithImpl<$Res>
+    extends _$InitializeControllerCopyWithImpl<$Res,
+        _$InitializeControllerErrorImpl>
+    implements _$$InitializeControllerErrorImplCopyWith<$Res> {
+  __$$InitializeControllerErrorImplCopyWithImpl(
+      _$InitializeControllerErrorImpl _value,
+      $Res Function(_$InitializeControllerErrorImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+    Object? stackTrace = null,
+    Object? pendingId = null,
+  }) {
+    return _then(_$InitializeControllerErrorImpl(
+      null == error ? _value.error : error,
+      null == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace,
+      null == pendingId
+          ? _value.pendingId
+          : pendingId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$InitializeControllerErrorImpl implements InitializeControllerError {
+  const _$InitializeControllerErrorImpl(this.error, this.stackTrace,
+      [this.pendingId = _kInitializeControllerPendingId]);
+
+  @override
+  final Object error;
+  @override
+  final StackTrace stackTrace;
+  @override
+  @JsonKey()
+  final String pendingId;
+
+  @override
+  String toString() {
+    return 'InitializeController.error(error: $error, stackTrace: $stackTrace, pendingId: $pendingId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InitializeControllerErrorImpl &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace) &&
+            (identical(other.pendingId, pendingId) ||
+                other.pendingId == pendingId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(error), stackTrace, pendingId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InitializeControllerErrorImplCopyWith<_$InitializeControllerErrorImpl>
+      get copyWith => __$$InitializeControllerErrorImplCopyWithImpl<
+          _$InitializeControllerErrorImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(CameraController controller, String pendingId)
+        start,
+    required TResult Function(String pendingId) successful,
+    required TResult Function(
+            Object error, StackTrace stackTrace, String pendingId)
+        error,
+  }) {
+    return error(this.error, stackTrace, pendingId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(CameraController controller, String pendingId)? start,
+    TResult? Function(String pendingId)? successful,
+    TResult? Function(Object error, StackTrace stackTrace, String pendingId)?
+        error,
+  }) {
+    return error?.call(this.error, stackTrace, pendingId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(CameraController controller, String pendingId)? start,
+    TResult Function(String pendingId)? successful,
+    TResult Function(Object error, StackTrace stackTrace, String pendingId)?
+        error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error, stackTrace, pendingId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeControllerStart value) start,
+    required TResult Function(InitializeControllerSuccessful value) successful,
+    required TResult Function(InitializeControllerError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(InitializeControllerStart value)? start,
+    TResult? Function(InitializeControllerSuccessful value)? successful,
+    TResult? Function(InitializeControllerError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeControllerStart value)? start,
+    TResult Function(InitializeControllerSuccessful value)? successful,
+    TResult Function(InitializeControllerError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InitializeControllerError
+    implements InitializeController, ActionDone, ErrorAction {
+  const factory InitializeControllerError(
+      final Object error, final StackTrace stackTrace,
+      [final String pendingId]) = _$InitializeControllerErrorImpl;
+
+  Object get error;
+  StackTrace get stackTrace;
+  @override
+  String get pendingId;
+  @override
+  @JsonKey(ignore: true)
+  _$$InitializeControllerErrorImplCopyWith<_$InitializeControllerErrorImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$TakePicture {
+  String get pendingId => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            CameraController controller, BuildContext context, String pendingId)
+        start,
+    required TResult Function(XFile picture, String pendingId) successful,
+    required TResult Function(
+            Object error, StackTrace stackTrace, String pendingId)
+        error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(CameraController controller, BuildContext context,
+            String pendingId)?
+        start,
+    TResult? Function(XFile picture, String pendingId)? successful,
+    TResult? Function(Object error, StackTrace stackTrace, String pendingId)?
+        error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(CameraController controller, BuildContext context,
+            String pendingId)?
+        start,
+    TResult Function(XFile picture, String pendingId)? successful,
+    TResult Function(Object error, StackTrace stackTrace, String pendingId)?
+        error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TakePictureStart value) start,
+    required TResult Function(TakePictureSuccessful value) successful,
+    required TResult Function(TakePictureError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TakePictureStart value)? start,
+    TResult? Function(TakePictureSuccessful value)? successful,
+    TResult? Function(TakePictureError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TakePictureStart value)? start,
+    TResult Function(TakePictureSuccessful value)? successful,
+    TResult Function(TakePictureError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $TakePictureCopyWith<TakePicture> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TakePictureCopyWith<$Res> {
+  factory $TakePictureCopyWith(
+          TakePicture value, $Res Function(TakePicture) then) =
+      _$TakePictureCopyWithImpl<$Res, TakePicture>;
+  @useResult
+  $Res call({String pendingId});
+}
+
+/// @nodoc
+class _$TakePictureCopyWithImpl<$Res, $Val extends TakePicture>
+    implements $TakePictureCopyWith<$Res> {
+  _$TakePictureCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? pendingId = null,
+  }) {
+    return _then(_value.copyWith(
+      pendingId: null == pendingId
+          ? _value.pendingId
+          : pendingId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$TakePictureStartImplCopyWith<$Res>
+    implements $TakePictureCopyWith<$Res> {
+  factory _$$TakePictureStartImplCopyWith(_$TakePictureStartImpl value,
+          $Res Function(_$TakePictureStartImpl) then) =
+      __$$TakePictureStartImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {CameraController controller, BuildContext context, String pendingId});
+}
+
+/// @nodoc
+class __$$TakePictureStartImplCopyWithImpl<$Res>
+    extends _$TakePictureCopyWithImpl<$Res, _$TakePictureStartImpl>
+    implements _$$TakePictureStartImplCopyWith<$Res> {
+  __$$TakePictureStartImplCopyWithImpl(_$TakePictureStartImpl _value,
+      $Res Function(_$TakePictureStartImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? controller = null,
+    Object? context = null,
+    Object? pendingId = null,
+  }) {
+    return _then(_$TakePictureStartImpl(
+      controller: null == controller
+          ? _value.controller
+          : controller // ignore: cast_nullable_to_non_nullable
+              as CameraController,
+      context: null == context
+          ? _value.context
+          : context // ignore: cast_nullable_to_non_nullable
+              as BuildContext,
+      pendingId: null == pendingId
+          ? _value.pendingId
+          : pendingId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$TakePictureStartImpl implements TakePictureStart {
+  const _$TakePictureStartImpl(
+      {required this.controller,
+      required this.context,
+      this.pendingId = _kTakePicturePendingId});
+
+  @override
+  final CameraController controller;
+  @override
+  final BuildContext context;
+  @override
+  @JsonKey()
+  final String pendingId;
+
+  @override
+  String toString() {
+    return 'TakePicture.start(controller: $controller, context: $context, pendingId: $pendingId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TakePictureStartImpl &&
+            (identical(other.controller, controller) ||
+                other.controller == controller) &&
+            (identical(other.context, context) || other.context == context) &&
+            (identical(other.pendingId, pendingId) ||
+                other.pendingId == pendingId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, controller, context, pendingId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TakePictureStartImplCopyWith<_$TakePictureStartImpl> get copyWith =>
+      __$$TakePictureStartImplCopyWithImpl<_$TakePictureStartImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            CameraController controller, BuildContext context, String pendingId)
+        start,
+    required TResult Function(XFile picture, String pendingId) successful,
+    required TResult Function(
+            Object error, StackTrace stackTrace, String pendingId)
+        error,
+  }) {
+    return start(controller, context, pendingId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(CameraController controller, BuildContext context,
+            String pendingId)?
+        start,
+    TResult? Function(XFile picture, String pendingId)? successful,
+    TResult? Function(Object error, StackTrace stackTrace, String pendingId)?
+        error,
+  }) {
+    return start?.call(controller, context, pendingId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(CameraController controller, BuildContext context,
+            String pendingId)?
+        start,
+    TResult Function(XFile picture, String pendingId)? successful,
+    TResult Function(Object error, StackTrace stackTrace, String pendingId)?
+        error,
+    required TResult orElse(),
+  }) {
+    if (start != null) {
+      return start(controller, context, pendingId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TakePictureStart value) start,
+    required TResult Function(TakePictureSuccessful value) successful,
+    required TResult Function(TakePictureError value) error,
+  }) {
+    return start(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TakePictureStart value)? start,
+    TResult? Function(TakePictureSuccessful value)? successful,
+    TResult? Function(TakePictureError value)? error,
+  }) {
+    return start?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TakePictureStart value)? start,
+    TResult Function(TakePictureSuccessful value)? successful,
+    TResult Function(TakePictureError value)? error,
+    required TResult orElse(),
+  }) {
+    if (start != null) {
+      return start(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class TakePictureStart implements TakePicture, ActionStart {
+  const factory TakePictureStart(
+      {required final CameraController controller,
+      required final BuildContext context,
+      final String pendingId}) = _$TakePictureStartImpl;
+
+  CameraController get controller;
+  BuildContext get context;
+  @override
+  String get pendingId;
+  @override
+  @JsonKey(ignore: true)
+  _$$TakePictureStartImplCopyWith<_$TakePictureStartImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$TakePictureSuccessfulImplCopyWith<$Res>
+    implements $TakePictureCopyWith<$Res> {
+  factory _$$TakePictureSuccessfulImplCopyWith(
+          _$TakePictureSuccessfulImpl value,
+          $Res Function(_$TakePictureSuccessfulImpl) then) =
+      __$$TakePictureSuccessfulImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({XFile picture, String pendingId});
+}
+
+/// @nodoc
+class __$$TakePictureSuccessfulImplCopyWithImpl<$Res>
+    extends _$TakePictureCopyWithImpl<$Res, _$TakePictureSuccessfulImpl>
+    implements _$$TakePictureSuccessfulImplCopyWith<$Res> {
+  __$$TakePictureSuccessfulImplCopyWithImpl(_$TakePictureSuccessfulImpl _value,
+      $Res Function(_$TakePictureSuccessfulImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? picture = null,
+    Object? pendingId = null,
+  }) {
+    return _then(_$TakePictureSuccessfulImpl(
+      null == picture
+          ? _value.picture
+          : picture // ignore: cast_nullable_to_non_nullable
+              as XFile,
+      null == pendingId
+          ? _value.pendingId
+          : pendingId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$TakePictureSuccessfulImpl implements TakePictureSuccessful {
+  const _$TakePictureSuccessfulImpl(this.picture,
+      [this.pendingId = _kTakePicturePendingId]);
+
+  @override
+  final XFile picture;
+  @override
+  @JsonKey()
+  final String pendingId;
+
+  @override
+  String toString() {
+    return 'TakePicture.successful(picture: $picture, pendingId: $pendingId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TakePictureSuccessfulImpl &&
+            (identical(other.picture, picture) || other.picture == picture) &&
+            (identical(other.pendingId, pendingId) ||
+                other.pendingId == pendingId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, picture, pendingId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TakePictureSuccessfulImplCopyWith<_$TakePictureSuccessfulImpl>
+      get copyWith => __$$TakePictureSuccessfulImplCopyWithImpl<
+          _$TakePictureSuccessfulImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            CameraController controller, BuildContext context, String pendingId)
+        start,
+    required TResult Function(XFile picture, String pendingId) successful,
+    required TResult Function(
+            Object error, StackTrace stackTrace, String pendingId)
+        error,
+  }) {
+    return successful(picture, pendingId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(CameraController controller, BuildContext context,
+            String pendingId)?
+        start,
+    TResult? Function(XFile picture, String pendingId)? successful,
+    TResult? Function(Object error, StackTrace stackTrace, String pendingId)?
+        error,
+  }) {
+    return successful?.call(picture, pendingId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(CameraController controller, BuildContext context,
+            String pendingId)?
+        start,
+    TResult Function(XFile picture, String pendingId)? successful,
+    TResult Function(Object error, StackTrace stackTrace, String pendingId)?
+        error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(picture, pendingId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TakePictureStart value) start,
+    required TResult Function(TakePictureSuccessful value) successful,
+    required TResult Function(TakePictureError value) error,
+  }) {
+    return successful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TakePictureStart value)? start,
+    TResult? Function(TakePictureSuccessful value)? successful,
+    TResult? Function(TakePictureError value)? error,
+  }) {
+    return successful?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TakePictureStart value)? start,
+    TResult Function(TakePictureSuccessful value)? successful,
+    TResult Function(TakePictureError value)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class TakePictureSuccessful implements TakePicture, ActionDone {
+  const factory TakePictureSuccessful(final XFile picture,
+      [final String pendingId]) = _$TakePictureSuccessfulImpl;
+
+  XFile get picture;
+  @override
+  String get pendingId;
+  @override
+  @JsonKey(ignore: true)
+  _$$TakePictureSuccessfulImplCopyWith<_$TakePictureSuccessfulImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$TakePictureErrorImplCopyWith<$Res>
+    implements $TakePictureCopyWith<$Res> {
+  factory _$$TakePictureErrorImplCopyWith(_$TakePictureErrorImpl value,
+          $Res Function(_$TakePictureErrorImpl) then) =
+      __$$TakePictureErrorImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({Object error, StackTrace stackTrace, String pendingId});
+}
+
+/// @nodoc
+class __$$TakePictureErrorImplCopyWithImpl<$Res>
+    extends _$TakePictureCopyWithImpl<$Res, _$TakePictureErrorImpl>
+    implements _$$TakePictureErrorImplCopyWith<$Res> {
+  __$$TakePictureErrorImplCopyWithImpl(_$TakePictureErrorImpl _value,
+      $Res Function(_$TakePictureErrorImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+    Object? stackTrace = null,
+    Object? pendingId = null,
+  }) {
+    return _then(_$TakePictureErrorImpl(
+      null == error ? _value.error : error,
+      null == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace,
+      null == pendingId
+          ? _value.pendingId
+          : pendingId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$TakePictureErrorImpl implements TakePictureError {
+  const _$TakePictureErrorImpl(this.error, this.stackTrace,
+      [this.pendingId = _kTakePicturePendingId]);
+
+  @override
+  final Object error;
+  @override
+  final StackTrace stackTrace;
+  @override
+  @JsonKey()
+  final String pendingId;
+
+  @override
+  String toString() {
+    return 'TakePicture.error(error: $error, stackTrace: $stackTrace, pendingId: $pendingId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TakePictureErrorImpl &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace) &&
+            (identical(other.pendingId, pendingId) ||
+                other.pendingId == pendingId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(error), stackTrace, pendingId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TakePictureErrorImplCopyWith<_$TakePictureErrorImpl> get copyWith =>
+      __$$TakePictureErrorImplCopyWithImpl<_$TakePictureErrorImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            CameraController controller, BuildContext context, String pendingId)
+        start,
+    required TResult Function(XFile picture, String pendingId) successful,
+    required TResult Function(
+            Object error, StackTrace stackTrace, String pendingId)
+        error,
+  }) {
+    return error(this.error, stackTrace, pendingId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(CameraController controller, BuildContext context,
+            String pendingId)?
+        start,
+    TResult? Function(XFile picture, String pendingId)? successful,
+    TResult? Function(Object error, StackTrace stackTrace, String pendingId)?
+        error,
+  }) {
+    return error?.call(this.error, stackTrace, pendingId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(CameraController controller, BuildContext context,
+            String pendingId)?
+        start,
+    TResult Function(XFile picture, String pendingId)? successful,
+    TResult Function(Object error, StackTrace stackTrace, String pendingId)?
+        error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error, stackTrace, pendingId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TakePictureStart value) start,
+    required TResult Function(TakePictureSuccessful value) successful,
+    required TResult Function(TakePictureError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TakePictureStart value)? start,
+    TResult? Function(TakePictureSuccessful value)? successful,
+    TResult? Function(TakePictureError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TakePictureStart value)? start,
+    TResult Function(TakePictureSuccessful value)? successful,
+    TResult Function(TakePictureError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class TakePictureError
+    implements TakePicture, ActionDone, ErrorAction {
+  const factory TakePictureError(
+      final Object error, final StackTrace stackTrace,
+      [final String pendingId]) = _$TakePictureErrorImpl;
+
+  Object get error;
+  StackTrace get stackTrace;
+  @override
+  String get pendingId;
+  @override
+  @JsonKey(ignore: true)
+  _$$TakePictureErrorImplCopyWith<_$TakePictureErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

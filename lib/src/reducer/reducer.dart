@@ -33,6 +33,7 @@ Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   TypedReducer<AppState, GetGroceryListsError>(_getGroceryListsError).call,
   TypedReducer<AppState, SetSelectedList>(_setSelectedList).call,
   TypedReducer<AppState, SetUnselectedList>(_setUnselectedList).call,
+  TypedReducer<AppState, SetSelectedCamera>(_setSelectedCamera).call,
   TypedReducer<AppState, SetMarketProductsToEmpty>(_setMarketProductsToEmpty).call,
   TypedReducer<AppState, OnProductsEvent>(_onProductsEvent).call,
   TypedReducer<AppState, CreateGroceryListSuccessful>(_createGroceryListSuccessful).call,
@@ -40,6 +41,7 @@ Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   TypedReducer<AppState, ActionStart>(_actionStart).call,
   TypedReducer<AppState, ActionDone>(_actionDone).call,
   TypedReducer<AppState, GetCamerasSuccessful>(_getCamerasSuccessful).call,
+  TypedReducer<AppState, TakePictureSuccessful>(_takePictureSuccessful).call,
 
 ]);
 
@@ -101,4 +103,12 @@ AppState _actionDone(AppState state, ActionDone action) {
 
 AppState _getCamerasSuccessful(AppState state, GetCamerasSuccessful action) {
   return state.copyWith(cameras: action.cameras);
+}
+
+AppState _setSelectedCamera(AppState state, SetSelectedCamera action) {
+  return state.copyWith(selectedCamera: action.selectedCamera);
+}
+
+AppState _takePictureSuccessful(AppState state, TakePictureSuccessful action) {
+  return state.copyWith(picture: action.picture);
 }

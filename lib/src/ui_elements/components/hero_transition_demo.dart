@@ -93,10 +93,13 @@ class PostDetailPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 // Displaying detailed post image.
-                Image.network(
+                if (product.image.isNotEmpty) Image.network(
                   product.image,
                   fit: BoxFit.cover,
                   height: 300,
+                ) else const Padding(
+                  padding: EdgeInsets.all(8),
+                  child: FlutterLogo(size: 216),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(16),

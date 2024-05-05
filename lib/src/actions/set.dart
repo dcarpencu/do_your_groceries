@@ -19,3 +19,8 @@ class SetUserProductsToEmpty with _$SetUserProductsToEmpty implements AppAction 
 class SetMarketProductsToEmpty with _$SetMarketProductsToEmpty implements AppAction {
   const factory SetMarketProductsToEmpty() = SetMarketProductsToEmpty$;
 }
+
+@freezed
+class SetSelectedCamera with _$SetSelectedCamera implements AppAction {
+  const factory SetSelectedCamera(CameraInfo selectedCamera) = SetSelectedCamera$;
+}

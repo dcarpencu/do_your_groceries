@@ -31,6 +31,8 @@ class AppEpic {
       TypedEpic<AppState, RequestStoragePermissionStart>(_requestStoragePermissionStart).call,
       TypedEpic<AppState, RequestStoragePermissionStart>(_requestStoragePermissionStart).call,
       TypedEpic<AppState, GetCamerasStart>(_getCamerasStart).call,
+      TypedEpic<AppState, InitializeControllerStart>(_initializeControllerStart).call,
+      TypedEpic<AppState, TakePictureStart>(_takePictureStart).call,
     ]);
   }
 
@@ -41,6 +43,15 @@ class AppEpic {
           .map<Login>(Login.successful)
           .onErrorReturnWith(Login.error)
           .doOnData(action.onResult);
+    });
+  }
+
+  Stream<AppAction> _initializeControllerStart(Stream<InitializeControllerStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((InitializeControllerStart action) {
+      return Stream<void>.value(null)
+          .asyncMap((_) => _cameraApi.initializeController(controller: action.controller))
+          .mapTo(const InitializeController.successful())
+          .onErrorReturnWith(InitializeController.error);
     });
   }
 
@@ -157,7 +168,7 @@ class AppEpic {
             return GetSuperMarketProducts.successful(products, pendingId);
           })
           .onErrorReturnWith(
-              (Object error, StackTrace stackTrace) => GetSuperMarketProducts.error(error, stackTrace, pendingId))
+              (Object error, StackTrace stackTrace) => GetSuperMarketProducts.error(error, stackTrace, pendingId),)
           .doOnData(onResult);
     });
   }
@@ -197,6 +208,15 @@ class AppEpic {
           .asyncMap((_) => _cameraApi.getCameras(),)
           .map<GetCameras>(GetCameras.successful)
           .onErrorReturnWith(GetCameras.error);
+    });
+  }
+
+  Stream<AppAction> _takePictureStart(Stream<TakePictureStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((TakePictureStart action) {
+      return Stream<void>.value(null)
+          .asyncMap((_) => _cameraApi.takePicture(controller: action.controller, context: action.context,))
+          .map<TakePicture>(TakePicture.successful)
+          .onErrorReturnWith(TakePicture.error);
     });
   }
 }
