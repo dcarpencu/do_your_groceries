@@ -1,0 +1,4 @@
+0 banana
+1 tomato
+2 pomegranate
+3 avocado

@@ -1,5 +1,6 @@
 import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/data/auth_api.dart';
+import 'package:do_you_groceries/src/data/camera_api.dart';
 import 'package:do_you_groceries/src/data/products_api.dart';
 import 'package:do_you_groceries/src/data/supermarkets_api.dart';
 import 'package:do_you_groceries/src/models/index.dart';
@@ -7,11 +8,12 @@ import 'package:redux_epics/redux_epics.dart';
 import 'package:rxdart/transformers.dart';
 
 class AppEpic {
-  AppEpic(this._authApi, this._superMarketsApi, this._productsApi);
+  AppEpic(this._authApi, this._superMarketsApi, this._productsApi,  this._cameraApi);
 
   final AuthApi _authApi;
   final SuperMarketsApi _superMarketsApi;
   final ProductsApi _productsApi;
+  final CameraApi _cameraApi;
 
   Epic<AppState> getEpics() {
     return combineEpics(<Epic<AppState>>[
@@ -26,6 +28,9 @@ class AppEpic {
       TypedEpic<AppState, CreateProductStart>(_createProductStart).call,
       TypedEpic<AppState, AddProductToGroceryListStart>(_addProductToGroceryListStart).call,
       TypedEpic<AppState, GenerateProductsStart>(_generateProductsStart).call,
+      TypedEpic<AppState, RequestStoragePermissionStart>(_requestStoragePermissionStart).call,
+      TypedEpic<AppState, RequestStoragePermissionStart>(_requestStoragePermissionStart).call,
+      TypedEpic<AppState, GetCamerasStart>(_getCamerasStart).call,
     ]);
   }
 
@@ -167,13 +172,31 @@ class AppEpic {
   }
 
   Stream<AppAction> _addProductToGroceryListStart(
-      Stream<AddProductToGroceryListStart> actions, EpicStore<AppState> store) {
+      Stream<AddProductToGroceryListStart> actions, EpicStore<AppState> store,) {
     return actions.flatMap((AddProductToGroceryListStart action) {
       return Stream<void>.value(null)
           .asyncMap((_) => _productsApi.addProductToGroceryList(action.product, action.groceryListId,
               marketName: action.marketName, category: action.category, action.page,),)
           .mapTo(const AddProductToGroceryList.successful())
           .onErrorReturnWith(AddProductToGroceryList.error);
+    });
+  }
+
+  Stream<AppAction> _requestStoragePermissionStart(Stream<RequestStoragePermissionStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((RequestStoragePermissionStart action) {
+      return Stream<void>.value(null)
+          .asyncMap((_) => _cameraApi.requestStoragePermission(),)
+          .mapTo(const RequestStoragePermission.successful())
+          .onErrorReturnWith(RequestStoragePermission.error);
+    });
+  }
+
+  Stream<AppAction> _getCamerasStart(Stream<GetCamerasStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((GetCamerasStart action) {
+      return Stream<void>.value(null)
+          .asyncMap((_) => _cameraApi.getCameras(),)
+          .map<GetCameras>(GetCameras.successful)
+          .onErrorReturnWith(GetCameras.error);
     });
   }
 }

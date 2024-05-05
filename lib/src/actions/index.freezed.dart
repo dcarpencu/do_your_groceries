@@ -7459,3 +7459,933 @@ abstract class AddProductToGroceryListError
           _$AddProductToGroceryListErrorImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$RequestStoragePermission {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function() successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function()? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function()? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(RequestStoragePermissionStart value) $default, {
+    required TResult Function(RequestStoragePermissionSuccessful value)
+        successful,
+    required TResult Function(RequestStoragePermissionError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(RequestStoragePermissionStart value)? $default, {
+    TResult? Function(RequestStoragePermissionSuccessful value)? successful,
+    TResult? Function(RequestStoragePermissionError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(RequestStoragePermissionStart value)? $default, {
+    TResult Function(RequestStoragePermissionSuccessful value)? successful,
+    TResult Function(RequestStoragePermissionError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RequestStoragePermissionCopyWith<$Res> {
+  factory $RequestStoragePermissionCopyWith(RequestStoragePermission value,
+          $Res Function(RequestStoragePermission) then) =
+      _$RequestStoragePermissionCopyWithImpl<$Res, RequestStoragePermission>;
+}
+
+/// @nodoc
+class _$RequestStoragePermissionCopyWithImpl<$Res,
+        $Val extends RequestStoragePermission>
+    implements $RequestStoragePermissionCopyWith<$Res> {
+  _$RequestStoragePermissionCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$RequestStoragePermissionStartImplCopyWith<$Res> {
+  factory _$$RequestStoragePermissionStartImplCopyWith(
+          _$RequestStoragePermissionStartImpl value,
+          $Res Function(_$RequestStoragePermissionStartImpl) then) =
+      __$$RequestStoragePermissionStartImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$RequestStoragePermissionStartImplCopyWithImpl<$Res>
+    extends _$RequestStoragePermissionCopyWithImpl<$Res,
+        _$RequestStoragePermissionStartImpl>
+    implements _$$RequestStoragePermissionStartImplCopyWith<$Res> {
+  __$$RequestStoragePermissionStartImplCopyWithImpl(
+      _$RequestStoragePermissionStartImpl _value,
+      $Res Function(_$RequestStoragePermissionStartImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$RequestStoragePermissionStartImpl
+    implements RequestStoragePermissionStart {
+  const _$RequestStoragePermissionStartImpl();
+
+  @override
+  String toString() {
+    return 'RequestStoragePermission()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RequestStoragePermissionStartImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function() successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return $default();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function()? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return $default?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function()? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(RequestStoragePermissionStart value) $default, {
+    required TResult Function(RequestStoragePermissionSuccessful value)
+        successful,
+    required TResult Function(RequestStoragePermissionError value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(RequestStoragePermissionStart value)? $default, {
+    TResult? Function(RequestStoragePermissionSuccessful value)? successful,
+    TResult? Function(RequestStoragePermissionError value)? error,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(RequestStoragePermissionStart value)? $default, {
+    TResult Function(RequestStoragePermissionSuccessful value)? successful,
+    TResult Function(RequestStoragePermissionError value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RequestStoragePermissionStart
+    implements RequestStoragePermission {
+  const factory RequestStoragePermissionStart() =
+      _$RequestStoragePermissionStartImpl;
+}
+
+/// @nodoc
+abstract class _$$RequestStoragePermissionSuccessfulImplCopyWith<$Res> {
+  factory _$$RequestStoragePermissionSuccessfulImplCopyWith(
+          _$RequestStoragePermissionSuccessfulImpl value,
+          $Res Function(_$RequestStoragePermissionSuccessfulImpl) then) =
+      __$$RequestStoragePermissionSuccessfulImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$RequestStoragePermissionSuccessfulImplCopyWithImpl<$Res>
+    extends _$RequestStoragePermissionCopyWithImpl<$Res,
+        _$RequestStoragePermissionSuccessfulImpl>
+    implements _$$RequestStoragePermissionSuccessfulImplCopyWith<$Res> {
+  __$$RequestStoragePermissionSuccessfulImplCopyWithImpl(
+      _$RequestStoragePermissionSuccessfulImpl _value,
+      $Res Function(_$RequestStoragePermissionSuccessfulImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$RequestStoragePermissionSuccessfulImpl
+    implements RequestStoragePermissionSuccessful {
+  const _$RequestStoragePermissionSuccessfulImpl();
+
+  @override
+  String toString() {
+    return 'RequestStoragePermission.successful()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RequestStoragePermissionSuccessfulImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function() successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return successful();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function()? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return successful?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function()? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(RequestStoragePermissionStart value) $default, {
+    required TResult Function(RequestStoragePermissionSuccessful value)
+        successful,
+    required TResult Function(RequestStoragePermissionError value) error,
+  }) {
+    return successful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(RequestStoragePermissionStart value)? $default, {
+    TResult? Function(RequestStoragePermissionSuccessful value)? successful,
+    TResult? Function(RequestStoragePermissionError value)? error,
+  }) {
+    return successful?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(RequestStoragePermissionStart value)? $default, {
+    TResult Function(RequestStoragePermissionSuccessful value)? successful,
+    TResult Function(RequestStoragePermissionError value)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RequestStoragePermissionSuccessful
+    implements RequestStoragePermission {
+  const factory RequestStoragePermissionSuccessful() =
+      _$RequestStoragePermissionSuccessfulImpl;
+}
+
+/// @nodoc
+abstract class _$$RequestStoragePermissionErrorImplCopyWith<$Res> {
+  factory _$$RequestStoragePermissionErrorImplCopyWith(
+          _$RequestStoragePermissionErrorImpl value,
+          $Res Function(_$RequestStoragePermissionErrorImpl) then) =
+      __$$RequestStoragePermissionErrorImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Object error, StackTrace stackTrace});
+}
+
+/// @nodoc
+class __$$RequestStoragePermissionErrorImplCopyWithImpl<$Res>
+    extends _$RequestStoragePermissionCopyWithImpl<$Res,
+        _$RequestStoragePermissionErrorImpl>
+    implements _$$RequestStoragePermissionErrorImplCopyWith<$Res> {
+  __$$RequestStoragePermissionErrorImplCopyWithImpl(
+      _$RequestStoragePermissionErrorImpl _value,
+      $Res Function(_$RequestStoragePermissionErrorImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+    Object? stackTrace = null,
+  }) {
+    return _then(_$RequestStoragePermissionErrorImpl(
+      null == error ? _value.error : error,
+      null == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RequestStoragePermissionErrorImpl
+    implements RequestStoragePermissionError {
+  const _$RequestStoragePermissionErrorImpl(this.error, this.stackTrace);
+
+  @override
+  final Object error;
+  @override
+  final StackTrace stackTrace;
+
+  @override
+  String toString() {
+    return 'RequestStoragePermission.error(error: $error, stackTrace: $stackTrace)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RequestStoragePermissionErrorImpl &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RequestStoragePermissionErrorImplCopyWith<
+          _$RequestStoragePermissionErrorImpl>
+      get copyWith => __$$RequestStoragePermissionErrorImplCopyWithImpl<
+          _$RequestStoragePermissionErrorImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function() successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return error(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function()? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return error?.call(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function()? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error, stackTrace);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(RequestStoragePermissionStart value) $default, {
+    required TResult Function(RequestStoragePermissionSuccessful value)
+        successful,
+    required TResult Function(RequestStoragePermissionError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(RequestStoragePermissionStart value)? $default, {
+    TResult? Function(RequestStoragePermissionSuccessful value)? successful,
+    TResult? Function(RequestStoragePermissionError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(RequestStoragePermissionStart value)? $default, {
+    TResult Function(RequestStoragePermissionSuccessful value)? successful,
+    TResult Function(RequestStoragePermissionError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RequestStoragePermissionError
+    implements RequestStoragePermission, ErrorAction {
+  const factory RequestStoragePermissionError(
+          final Object error, final StackTrace stackTrace) =
+      _$RequestStoragePermissionErrorImpl;
+
+  Object get error;
+  StackTrace get stackTrace;
+  @JsonKey(ignore: true)
+  _$$RequestStoragePermissionErrorImplCopyWith<
+          _$RequestStoragePermissionErrorImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$GetCameras {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function(List<CameraInfo> cameras) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function(List<CameraInfo> cameras)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function(List<CameraInfo> cameras)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetCamerasStart value) $default, {
+    required TResult Function(GetCamerasSuccessful value) successful,
+    required TResult Function(GetCamerasError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(GetCamerasStart value)? $default, {
+    TResult? Function(GetCamerasSuccessful value)? successful,
+    TResult? Function(GetCamerasError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetCamerasStart value)? $default, {
+    TResult Function(GetCamerasSuccessful value)? successful,
+    TResult Function(GetCamerasError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GetCamerasCopyWith<$Res> {
+  factory $GetCamerasCopyWith(
+          GetCameras value, $Res Function(GetCameras) then) =
+      _$GetCamerasCopyWithImpl<$Res, GetCameras>;
+}
+
+/// @nodoc
+class _$GetCamerasCopyWithImpl<$Res, $Val extends GetCameras>
+    implements $GetCamerasCopyWith<$Res> {
+  _$GetCamerasCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$GetCamerasStartImplCopyWith<$Res> {
+  factory _$$GetCamerasStartImplCopyWith(_$GetCamerasStartImpl value,
+          $Res Function(_$GetCamerasStartImpl) then) =
+      __$$GetCamerasStartImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GetCamerasStartImplCopyWithImpl<$Res>
+    extends _$GetCamerasCopyWithImpl<$Res, _$GetCamerasStartImpl>
+    implements _$$GetCamerasStartImplCopyWith<$Res> {
+  __$$GetCamerasStartImplCopyWithImpl(
+      _$GetCamerasStartImpl _value, $Res Function(_$GetCamerasStartImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$GetCamerasStartImpl implements GetCamerasStart {
+  const _$GetCamerasStartImpl();
+
+  @override
+  String toString() {
+    return 'GetCameras()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$GetCamerasStartImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function(List<CameraInfo> cameras) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return $default();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function(List<CameraInfo> cameras)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return $default?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function(List<CameraInfo> cameras)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetCamerasStart value) $default, {
+    required TResult Function(GetCamerasSuccessful value) successful,
+    required TResult Function(GetCamerasError value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(GetCamerasStart value)? $default, {
+    TResult? Function(GetCamerasSuccessful value)? successful,
+    TResult? Function(GetCamerasError value)? error,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetCamerasStart value)? $default, {
+    TResult Function(GetCamerasSuccessful value)? successful,
+    TResult Function(GetCamerasError value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetCamerasStart implements GetCameras {
+  const factory GetCamerasStart() = _$GetCamerasStartImpl;
+}
+
+/// @nodoc
+abstract class _$$GetCamerasSuccessfulImplCopyWith<$Res> {
+  factory _$$GetCamerasSuccessfulImplCopyWith(_$GetCamerasSuccessfulImpl value,
+          $Res Function(_$GetCamerasSuccessfulImpl) then) =
+      __$$GetCamerasSuccessfulImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<CameraInfo> cameras});
+}
+
+/// @nodoc
+class __$$GetCamerasSuccessfulImplCopyWithImpl<$Res>
+    extends _$GetCamerasCopyWithImpl<$Res, _$GetCamerasSuccessfulImpl>
+    implements _$$GetCamerasSuccessfulImplCopyWith<$Res> {
+  __$$GetCamerasSuccessfulImplCopyWithImpl(_$GetCamerasSuccessfulImpl _value,
+      $Res Function(_$GetCamerasSuccessfulImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? cameras = null,
+  }) {
+    return _then(_$GetCamerasSuccessfulImpl(
+      null == cameras
+          ? _value._cameras
+          : cameras // ignore: cast_nullable_to_non_nullable
+              as List<CameraInfo>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetCamerasSuccessfulImpl implements GetCamerasSuccessful {
+  const _$GetCamerasSuccessfulImpl(final List<CameraInfo> cameras)
+      : _cameras = cameras;
+
+  final List<CameraInfo> _cameras;
+  @override
+  List<CameraInfo> get cameras {
+    if (_cameras is EqualUnmodifiableListView) return _cameras;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_cameras);
+  }
+
+  @override
+  String toString() {
+    return 'GetCameras.successful(cameras: $cameras)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetCamerasSuccessfulImpl &&
+            const DeepCollectionEquality().equals(other._cameras, _cameras));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_cameras));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetCamerasSuccessfulImplCopyWith<_$GetCamerasSuccessfulImpl>
+      get copyWith =>
+          __$$GetCamerasSuccessfulImplCopyWithImpl<_$GetCamerasSuccessfulImpl>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function(List<CameraInfo> cameras) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return successful(cameras);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function(List<CameraInfo> cameras)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return successful?.call(cameras);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function(List<CameraInfo> cameras)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(cameras);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetCamerasStart value) $default, {
+    required TResult Function(GetCamerasSuccessful value) successful,
+    required TResult Function(GetCamerasError value) error,
+  }) {
+    return successful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(GetCamerasStart value)? $default, {
+    TResult? Function(GetCamerasSuccessful value)? successful,
+    TResult? Function(GetCamerasError value)? error,
+  }) {
+    return successful?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetCamerasStart value)? $default, {
+    TResult Function(GetCamerasSuccessful value)? successful,
+    TResult Function(GetCamerasError value)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetCamerasSuccessful implements GetCameras {
+  const factory GetCamerasSuccessful(final List<CameraInfo> cameras) =
+      _$GetCamerasSuccessfulImpl;
+
+  List<CameraInfo> get cameras;
+  @JsonKey(ignore: true)
+  _$$GetCamerasSuccessfulImplCopyWith<_$GetCamerasSuccessfulImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetCamerasErrorImplCopyWith<$Res> {
+  factory _$$GetCamerasErrorImplCopyWith(_$GetCamerasErrorImpl value,
+          $Res Function(_$GetCamerasErrorImpl) then) =
+      __$$GetCamerasErrorImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Object error, StackTrace stackTrace});
+}
+
+/// @nodoc
+class __$$GetCamerasErrorImplCopyWithImpl<$Res>
+    extends _$GetCamerasCopyWithImpl<$Res, _$GetCamerasErrorImpl>
+    implements _$$GetCamerasErrorImplCopyWith<$Res> {
+  __$$GetCamerasErrorImplCopyWithImpl(
+      _$GetCamerasErrorImpl _value, $Res Function(_$GetCamerasErrorImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+    Object? stackTrace = null,
+  }) {
+    return _then(_$GetCamerasErrorImpl(
+      null == error ? _value.error : error,
+      null == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetCamerasErrorImpl implements GetCamerasError {
+  const _$GetCamerasErrorImpl(this.error, this.stackTrace);
+
+  @override
+  final Object error;
+  @override
+  final StackTrace stackTrace;
+
+  @override
+  String toString() {
+    return 'GetCameras.error(error: $error, stackTrace: $stackTrace)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetCamerasErrorImpl &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetCamerasErrorImplCopyWith<_$GetCamerasErrorImpl> get copyWith =>
+      __$$GetCamerasErrorImplCopyWithImpl<_$GetCamerasErrorImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function(List<CameraInfo> cameras) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return error(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function(List<CameraInfo> cameras)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return error?.call(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function(List<CameraInfo> cameras)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error, stackTrace);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetCamerasStart value) $default, {
+    required TResult Function(GetCamerasSuccessful value) successful,
+    required TResult Function(GetCamerasError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(GetCamerasStart value)? $default, {
+    TResult? Function(GetCamerasSuccessful value)? successful,
+    TResult? Function(GetCamerasError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetCamerasStart value)? $default, {
+    TResult Function(GetCamerasSuccessful value)? successful,
+    TResult Function(GetCamerasError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetCamerasError implements GetCameras, ErrorAction {
+  const factory GetCamerasError(
+      final Object error, final StackTrace stackTrace) = _$GetCamerasErrorImpl;
+
+  Object get error;
+  StackTrace get stackTrace;
+  @JsonKey(ignore: true)
+  _$$GetCamerasErrorImplCopyWith<_$GetCamerasErrorImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

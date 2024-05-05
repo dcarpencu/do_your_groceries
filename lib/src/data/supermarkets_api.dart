@@ -27,7 +27,7 @@ class SuperMarketsApi {
 
   Future<void> generateProducts() async {
     int pgCt;
-    for (int indexSupermakets = 0; indexSupermakets < 2; indexSupermakets++) {
+    for (int indexSupermakets = 4; indexSupermakets < 5; indexSupermakets++) {
       for (int index = 0; index < supermarketCategories.length; index++) {
         // print('\n\n\n\n\n\n------- ${auchan['legume']}\n\n\n\n');
         final String currentSupermarketName = marketsNames[indexSupermakets];
@@ -38,10 +38,7 @@ class SuperMarketsApi {
         );
 
         final Document document = parse(response.body);
-
         final List<Element> links = document.querySelectorAll('div.product-non-food-card');
-
-        //final List<Map<String, dynamic>> linkMap = <Map<String, dynamic>>[];
 
         pgCt = 0;
         for (int i = 0; i < links.length; i++) {
@@ -58,7 +55,9 @@ class SuperMarketsApi {
               .collection('page_$pgCt')
               .doc();
           final Element link = links[i];
+          print('\n\n -- FOOD INFO: $link \n\n');
           final Element? foodInfo = link.querySelector('div.content-container');
+
           final Element? image = link.querySelector('div.image-container > img');
           Element? price;
           if (foodInfo?.querySelector('div.price-container > span.price.red') == null) {
@@ -70,14 +69,6 @@ class SuperMarketsApi {
           final double priceD = double.tryParse(priceText.replaceAll(RegExp('[^0-9.]'), '')) ?? 0.0;
           // var oldPrice = foodInfo?.querySelector('div.price-container > span.old-price');
           final Element? title = foodInfo?.querySelector('div.title');
-
-          // linkMap.add(<String, dynamic>{
-          //   'title': title?.text,
-          //   'image': image?.attributes['src'],
-          //   'price': priceD,
-          //   'page': pgCt,
-          //   //'oldPrice': oldPrice?.text,
-          // });
 
           final Product product =
               Product(productId: ref.id, name: title!.text, price: priceD, image: image!.attributes['src']!, page: pgCt);

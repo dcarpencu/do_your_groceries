@@ -1,3 +1,4 @@
+import 'package:do_you_groceries/src/presentation/products/create_product_page.dart';
 import 'package:flutter/material.dart';
 
 class BottomAppBarWidget extends StatelessWidget {
@@ -38,8 +39,10 @@ class BottomAppBarWidget extends StatelessWidget {
                 ),
                 IconButton(
                   tooltip: 'Favorite',
-                  icon: const Icon(Icons.favorite),
-                  onPressed: () {},
+                  icon: const Icon(Icons.create),
+                  onPressed: () {Navigator.of(context).push(
+                    MaterialPageRoute<Widget>(builder: (BuildContext context) => const CreateProductPage()),
+                  );},
                 ),
               ],
             ),

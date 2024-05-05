@@ -1,13 +1,13 @@
+import 'package:camera/camera.dart';
 import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/containers/pending_container.dart';
 import 'package:do_you_groceries/src/containers/products_container.dart';
 import 'package:do_you_groceries/src/containers/selected_list_container.dart';
 import 'package:do_you_groceries/src/models/index.dart';
-import 'package:do_you_groceries/src/presentation/products/create_product_page.dart';
+import 'package:do_you_groceries/src/presentation/image_recognition_page.dart';
 import 'package:do_you_groceries/src/presentation/supermarkets/markets_page.dart';
 import 'package:do_you_groceries/src/ui_elements/bottom_app_bar.dart';
 import 'package:do_you_groceries/src/ui_elements/components/hero_transition_demo.dart';
-import 'package:do_you_groceries/src/ui_elements/components/view_product_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
@@ -52,6 +52,7 @@ class _UserProductsPageState extends State<UserProductsPage> {
               }
               return ProductsContainer(
                 builder: (BuildContext context, List<Product> products) {
+                  if (products.isNotEmpty) {
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -62,80 +63,30 @@ class _UserProductsPageState extends State<UserProductsPage> {
                           itemBuilder: (BuildContext context, int index) {
                             final Product product = products[index];
                             return HeroPosts(product: product,);
-                            //   Hero(
-                            //   tag: product.productId,
-                            //   child: Material(
-                            //     child: Card(
-                            //       child: ListTile(
-                            //         leading:
-                            //         product.image.isEmpty ? const FlutterLogo(size: 72) : SizedBox(
-                            //           height: 72, child: Image.network(product.image),),
-                            //         title: Text(product.name),
-                            //         subtitle: Text('${product.price} RON'),
-                            //         onTap: () {
-                            //           Navigator.push(
-                            //             context,
-                            //             MaterialPageRoute<Widget>(
-                            //               builder: (BuildContext context) {
-                            //                 return Scaffold(
-                            //                   appBar: AppBar(title: const Text('')),
-                            //                   body: Center(
-                            //                     child: Hero(
-                            //                       tag: '${product.productId} tag',
-                            //                       child: Material(
-                            //                         child: Column(
-                            //                           children: <Widget>[
-                            //                             // Padding(
-                            //                             //   padding: const EdgeInsets.all(24),
-                            //                             //   child: Text(
-                            //                             //     product.name,
-                            //                             //     style: const TextStyle(fontSize: 36),
-                            //                             //   ),
-                            //                             // ),
-                            //                             ViewProductCard(product: product),
-                            //                             const SizedBox(
-                            //                               height: 16,
-                            //                             ),
-                            //                             Text(
-                            //                               '${product.price} Lei',
-                            //                               style: const TextStyle(fontSize: 28),
-                            //                             ),
-                            //                           ],
-                            //                         ),
-                            //                       ),
-                            //                     ),
-                            //                   ),
-                            //                 );
-                            //               },
-                            //             ),
-                            //           );
-                            //         },
-                            //       ),
-                            //     ),
-                            //   ),
-                            // );
                           },
                         ),
                       ),
-                      // else
-                      //   const Center(
-                      //     child: Text('No products YET.\nPlease add some!'),
-                      //   ),
                     ],
                   );
+                  }
+                  else {
+                    return const Center(
+                      child: Text('No products YET.\nPlease add some!'),
+                    );
+                  }
                 },
               );
             },
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
+              _store.dispatch(const GetCamerasStart());
               Navigator.of(context).push(
-                MaterialPageRoute<Widget>(builder: (BuildContext context) => const CreateProductPage()),
+                MaterialPageRoute<Widget>(builder: (BuildContext context) => CameraApp(cameras: _store.state.cameras,)),
               );
-              // Navigator.pushNamed(context, '/login');
             },
-            tooltip: 'Create',
-            child: const Icon(Icons.add),
+            tooltip: 'Camera',
+            child: const Icon(Icons.camera_alt),
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
           bottomNavigationBar: const BottomAppBarWidget(

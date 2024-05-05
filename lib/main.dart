@@ -1,6 +1,8 @@
+import 'package:camera/camera.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/data/auth_api.dart';
+import 'package:do_you_groceries/src/data/camera_api.dart';
 import 'package:do_you_groceries/src/data/products_api.dart';
 import 'package:do_you_groceries/src/data/supermarkets_api.dart';
 import 'package:do_you_groceries/src/epics/app_epic.dart';
@@ -14,9 +16,11 @@ import 'package:do_you_groceries/src/presentation/supermarkets/markets_page.dart
 import 'package:do_you_groceries/src/reducer/reducer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:http/http.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:redux/redux.dart';
 import 'package:redux_epics/redux_epics.dart';
 
@@ -30,8 +34,12 @@ Future<void> main() async {
   final SuperMarketsApi superMarketsApi = SuperMarketsApi(client, firestore);
   final ProductsApi productApi = ProductsApi(firestore);
 
+  final CameraApi cameraApi = CameraApi();
+
   final AuthApi authApi = AuthApi(auth, firestore);
-  final AppEpic epic = AppEpic(authApi, superMarketsApi, productApi);
+  final AppEpic epic = AppEpic(authApi, superMarketsApi, productApi, cameraApi);
+
+
 
   final Store<AppState> store = Store<AppState>(
     reducer,
@@ -41,11 +49,11 @@ Future<void> main() async {
     ],
   )..dispatch(const GetCurrentUser());
 
-  runApp(MovieApp(store: store));
+  runApp(DoYourGroceriesApp(store: store));
 }
 
-class MovieApp extends StatelessWidget {
-  const MovieApp({required this.store, super.key});
+class DoYourGroceriesApp extends StatelessWidget {
+  const DoYourGroceriesApp({required this.store, super.key});
 
   final Store<AppState> store;
 
@@ -67,6 +75,7 @@ class MovieApp extends StatelessWidget {
           '/markets': (BuildContext context) => const MarketsPage(),
           '/createList': (BuildContext context) => const CreateListPage(),
           '/createProductPage': (BuildContext context) => const CreateProductPage(),
+          //'/cameraPage': (BuildContext context) => CameraApp
         },
       ),
     );

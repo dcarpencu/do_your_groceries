@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -15,6 +16,8 @@ part 'create_product.dart';
 part 'get_supermarket_products.dart';
 part 'generate_products.dart';
 part 'add_product_to_grocery_list.dart';
+part 'request_storage_permission.dart';
+part 'get_cameras.dart';
 
 abstract class AppAction {}
 

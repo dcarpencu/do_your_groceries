@@ -215,7 +215,7 @@ class _HomePageState extends State<HomePage> {
                   IconButton(
                     tooltip: 'Favorite',
                     icon: const Icon(Icons.favorite),
-                    onPressed: () {},
+                    onPressed: () {StoreProvider.of<AppState>(context, listen: false).dispatch(const GetCamerasStart());},
                   ),
                   const Spacer(),
                 ],

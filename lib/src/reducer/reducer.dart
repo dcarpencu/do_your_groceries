@@ -39,6 +39,7 @@ Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   TypedReducer<AppState, GetSuperMarketProductsSuccessful>(_getSuperMarketProductsSuccessful).call,
   TypedReducer<AppState, ActionStart>(_actionStart).call,
   TypedReducer<AppState, ActionDone>(_actionDone).call,
+  TypedReducer<AppState, GetCamerasSuccessful>(_getCamerasSuccessful).call,
 
 ]);
 
@@ -96,4 +97,8 @@ AppState _actionStart(AppState state, ActionStart action) {
 
 AppState _actionDone(AppState state, ActionDone action) {
   return state.copyWith(pending: <String>{...state.pending}..remove(action.pendingId));
+}
+
+AppState _getCamerasSuccessful(AppState state, GetCamerasSuccessful action) {
+  return state.copyWith(cameras: action.cameras);
 }

@@ -29,6 +29,7 @@ mixin _$AppState {
   Set<String> get pending => throw _privateConstructorUsedError;
   int get pageNumber => throw _privateConstructorUsedError;
   bool get contentLoaded => throw _privateConstructorUsedError;
+  List<CameraInfo> get cameras => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -50,7 +51,8 @@ abstract class $AppStateCopyWith<$Res> {
       String? selectedGroceryList,
       Set<String> pending,
       int pageNumber,
-      bool contentLoaded});
+      bool contentLoaded,
+      List<CameraInfo> cameras});
 
   $AppUserCopyWith<$Res>? get user;
 }
@@ -77,6 +79,7 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
     Object? pending = null,
     Object? pageNumber = null,
     Object? contentLoaded = null,
+    Object? cameras = null,
   }) {
     return _then(_value.copyWith(
       user: freezed == user
@@ -115,6 +118,10 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.contentLoaded
           : contentLoaded // ignore: cast_nullable_to_non_nullable
               as bool,
+      cameras: null == cameras
+          ? _value.cameras
+          : cameras // ignore: cast_nullable_to_non_nullable
+              as List<CameraInfo>,
     ) as $Val);
   }
 
@@ -148,7 +155,8 @@ abstract class _$$AppState$ImplCopyWith<$Res>
       String? selectedGroceryList,
       Set<String> pending,
       int pageNumber,
-      bool contentLoaded});
+      bool contentLoaded,
+      List<CameraInfo> cameras});
 
   @override
   $AppUserCopyWith<$Res>? get user;
@@ -174,6 +182,7 @@ class __$$AppState$ImplCopyWithImpl<$Res>
     Object? pending = null,
     Object? pageNumber = null,
     Object? contentLoaded = null,
+    Object? cameras = null,
   }) {
     return _then(_$AppState$Impl(
       user: freezed == user
@@ -212,6 +221,10 @@ class __$$AppState$ImplCopyWithImpl<$Res>
           ? _value.contentLoaded
           : contentLoaded // ignore: cast_nullable_to_non_nullable
               as bool,
+      cameras: null == cameras
+          ? _value._cameras
+          : cameras // ignore: cast_nullable_to_non_nullable
+              as List<CameraInfo>,
     ));
   }
 }
@@ -228,12 +241,14 @@ class _$AppState$Impl implements AppState$ {
       this.selectedGroceryList,
       final Set<String> pending = const <String>{},
       this.pageNumber = 1,
-      this.contentLoaded = false})
+      this.contentLoaded = false,
+      final List<CameraInfo> cameras = const <CameraInfo>[]})
       : _supermarketProducts = supermarketProducts,
         _productsList = productsList,
         _relatedProducts = relatedProducts,
         _groceryLists = groceryLists,
-        _pending = pending;
+        _pending = pending,
+        _cameras = cameras;
 
   factory _$AppState$Impl.fromJson(Map<String, dynamic> json) =>
       _$$AppState$ImplFromJson(json);
@@ -294,10 +309,18 @@ class _$AppState$Impl implements AppState$ {
   @override
   @JsonKey()
   final bool contentLoaded;
+  final List<CameraInfo> _cameras;
+  @override
+  @JsonKey()
+  List<CameraInfo> get cameras {
+    if (_cameras is EqualUnmodifiableListView) return _cameras;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_cameras);
+  }
 
   @override
   String toString() {
-    return 'AppState(user: $user, supermarketProducts: $supermarketProducts, productsList: $productsList, relatedProducts: $relatedProducts, groceryLists: $groceryLists, selectedGroceryList: $selectedGroceryList, pending: $pending, pageNumber: $pageNumber, contentLoaded: $contentLoaded)';
+    return 'AppState(user: $user, supermarketProducts: $supermarketProducts, productsList: $productsList, relatedProducts: $relatedProducts, groceryLists: $groceryLists, selectedGroceryList: $selectedGroceryList, pending: $pending, pageNumber: $pageNumber, contentLoaded: $contentLoaded, cameras: $cameras)';
   }
 
   @override
@@ -320,7 +343,8 @@ class _$AppState$Impl implements AppState$ {
             (identical(other.pageNumber, pageNumber) ||
                 other.pageNumber == pageNumber) &&
             (identical(other.contentLoaded, contentLoaded) ||
-                other.contentLoaded == contentLoaded));
+                other.contentLoaded == contentLoaded) &&
+            const DeepCollectionEquality().equals(other._cameras, _cameras));
   }
 
   @JsonKey(ignore: true)
@@ -335,7 +359,8 @@ class _$AppState$Impl implements AppState$ {
       selectedGroceryList,
       const DeepCollectionEquality().hash(_pending),
       pageNumber,
-      contentLoaded);
+      contentLoaded,
+      const DeepCollectionEquality().hash(_cameras));
 
   @JsonKey(ignore: true)
   @override
@@ -361,7 +386,8 @@ abstract class AppState$ implements AppState {
       final String? selectedGroceryList,
       final Set<String> pending,
       final int pageNumber,
-      final bool contentLoaded}) = _$AppState$Impl;
+      final bool contentLoaded,
+      final List<CameraInfo> cameras}) = _$AppState$Impl;
 
   factory AppState$.fromJson(Map<String, dynamic> json) =
       _$AppState$Impl.fromJson;
@@ -384,6 +410,8 @@ abstract class AppState$ implements AppState {
   int get pageNumber;
   @override
   bool get contentLoaded;
+  @override
+  List<CameraInfo> get cameras;
   @override
   @JsonKey(ignore: true)
   _$$AppState$ImplCopyWith<_$AppState$Impl> get copyWith =>
@@ -1207,5 +1235,189 @@ abstract class GroceryList$ implements GroceryList {
   @override
   @JsonKey(ignore: true)
   _$$GroceryList$ImplCopyWith<_$GroceryList$Impl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+CameraInfo _$CameraInfoFromJson(Map<String, dynamic> json) {
+  return CameraInfo$.fromJson(json);
+}
+
+/// @nodoc
+mixin _$CameraInfo {
+  String get name => throw _privateConstructorUsedError;
+  CameraInfoLensDirection get lensDirection =>
+      throw _privateConstructorUsedError;
+  int get sensorOrientation => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $CameraInfoCopyWith<CameraInfo> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CameraInfoCopyWith<$Res> {
+  factory $CameraInfoCopyWith(
+          CameraInfo value, $Res Function(CameraInfo) then) =
+      _$CameraInfoCopyWithImpl<$Res, CameraInfo>;
+  @useResult
+  $Res call(
+      {String name,
+      CameraInfoLensDirection lensDirection,
+      int sensorOrientation});
+}
+
+/// @nodoc
+class _$CameraInfoCopyWithImpl<$Res, $Val extends CameraInfo>
+    implements $CameraInfoCopyWith<$Res> {
+  _$CameraInfoCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? lensDirection = null,
+    Object? sensorOrientation = null,
+  }) {
+    return _then(_value.copyWith(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      lensDirection: null == lensDirection
+          ? _value.lensDirection
+          : lensDirection // ignore: cast_nullable_to_non_nullable
+              as CameraInfoLensDirection,
+      sensorOrientation: null == sensorOrientation
+          ? _value.sensorOrientation
+          : sensorOrientation // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$CameraInfo$ImplCopyWith<$Res>
+    implements $CameraInfoCopyWith<$Res> {
+  factory _$$CameraInfo$ImplCopyWith(
+          _$CameraInfo$Impl value, $Res Function(_$CameraInfo$Impl) then) =
+      __$$CameraInfo$ImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String name,
+      CameraInfoLensDirection lensDirection,
+      int sensorOrientation});
+}
+
+/// @nodoc
+class __$$CameraInfo$ImplCopyWithImpl<$Res>
+    extends _$CameraInfoCopyWithImpl<$Res, _$CameraInfo$Impl>
+    implements _$$CameraInfo$ImplCopyWith<$Res> {
+  __$$CameraInfo$ImplCopyWithImpl(
+      _$CameraInfo$Impl _value, $Res Function(_$CameraInfo$Impl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? lensDirection = null,
+    Object? sensorOrientation = null,
+  }) {
+    return _then(_$CameraInfo$Impl(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      lensDirection: null == lensDirection
+          ? _value.lensDirection
+          : lensDirection // ignore: cast_nullable_to_non_nullable
+              as CameraInfoLensDirection,
+      sensorOrientation: null == sensorOrientation
+          ? _value.sensorOrientation
+          : sensorOrientation // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$CameraInfo$Impl implements CameraInfo$ {
+  const _$CameraInfo$Impl(
+      {required this.name,
+      required this.lensDirection,
+      required this.sensorOrientation});
+
+  factory _$CameraInfo$Impl.fromJson(Map<String, dynamic> json) =>
+      _$$CameraInfo$ImplFromJson(json);
+
+  @override
+  final String name;
+  @override
+  final CameraInfoLensDirection lensDirection;
+  @override
+  final int sensorOrientation;
+
+  @override
+  String toString() {
+    return 'CameraInfo(name: $name, lensDirection: $lensDirection, sensorOrientation: $sensorOrientation)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CameraInfo$Impl &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.lensDirection, lensDirection) ||
+                other.lensDirection == lensDirection) &&
+            (identical(other.sensorOrientation, sensorOrientation) ||
+                other.sensorOrientation == sensorOrientation));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, name, lensDirection, sensorOrientation);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CameraInfo$ImplCopyWith<_$CameraInfo$Impl> get copyWith =>
+      __$$CameraInfo$ImplCopyWithImpl<_$CameraInfo$Impl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$CameraInfo$ImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class CameraInfo$ implements CameraInfo {
+  const factory CameraInfo$(
+      {required final String name,
+      required final CameraInfoLensDirection lensDirection,
+      required final int sensorOrientation}) = _$CameraInfo$Impl;
+
+  factory CameraInfo$.fromJson(Map<String, dynamic> json) =
+      _$CameraInfo$Impl.fromJson;
+
+  @override
+  String get name;
+  @override
+  CameraInfoLensDirection get lensDirection;
+  @override
+  int get sensorOrientation;
+  @override
+  @JsonKey(ignore: true)
+  _$$CameraInfo$ImplCopyWith<_$CameraInfo$Impl> get copyWith =>
       throw _privateConstructorUsedError;
 }

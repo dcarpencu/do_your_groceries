@@ -12,6 +12,7 @@ class AppState with _$AppState {
     @Default(<String>{}) Set<String> pending,
     @Default(1) int pageNumber,
     @Default(false) bool contentLoaded,
+    @Default(<CameraInfo>[]) List<CameraInfo> cameras,
 
   }) = AppState$;
 

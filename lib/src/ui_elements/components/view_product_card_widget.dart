@@ -1,10 +1,11 @@
-import 'package:do_you_groceries/src/models/index.dart';
+import 'package:do_you_groceries/src/presentation/supermarkets/supermarket_categories_page.dart';
 import 'package:flutter/material.dart';
 
 class ViewProductCard extends StatelessWidget {
-  const ViewProductCard({super.key, required this.product});
+  const ViewProductCard({required this.marketName, required this.marketImage, super.key});
 
-  final Product product;
+  final String marketName;
+  final String marketImage;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class ViewProductCard extends StatelessWidget {
         children: <Widget>[
           // Display an image at the top of the card that fills the width of the card and has a height of 160 pixels
           Image.network(
-            product.image,
+            marketImage,
             height: 160,
             width: double.infinity,
             fit: BoxFit.cover,
@@ -34,7 +35,7 @@ class ViewProductCard extends StatelessWidget {
               children: <Widget>[
                 // Display the card's title using a font size of 24 and a dark grey color
                 Text(
-                  product.name,
+                  marketName,
                   style: TextStyle(
                     fontSize: 24,
                     color: Colors.grey[800],
@@ -48,27 +49,25 @@ class ViewProductCard extends StatelessWidget {
                   children: <Widget>[
                     // Add a spacer to push the buttons to the right side of the card
                     const Spacer(),
-                    // Add a text button labeled "SHARE" with transparent foreground color and an accent color for the text
-                    TextButton(
-                      style: TextButton.styleFrom(
-                        foregroundColor: Colors.transparent,
-                      ),
-                      child: const Text(
-                        "SHARE",
-                        style: TextStyle(color: Colors.deepOrangeAccent),
-                      ),
-                      onPressed: () {},
-                    ),
                     // Add a text button labeled "EXPLORE" with transparent foreground color and an accent color for the text
                     TextButton(
                       style: TextButton.styleFrom(
                         foregroundColor: Colors.transparent,
                       ),
                       child: const Text(
-                        "EXPLORE",
+                        'EXPLORE',
                         style: TextStyle(color: Colors.deepOrange),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute<Widget>(
+                      builder: (BuildContext context) => SupermarketCategoriesPage(
+                        supermarketName: marketName,
+                      ),
+                    ),
+                  );
+                },
                     ),
                   ],
                 ),

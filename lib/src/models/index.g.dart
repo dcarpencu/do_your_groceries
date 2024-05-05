@@ -34,6 +34,10 @@ _$AppState$Impl _$$AppState$ImplFromJson(Map<String, dynamic> json) =>
           const <String>{},
       pageNumber: json['pageNumber'] as int? ?? 1,
       contentLoaded: json['contentLoaded'] as bool? ?? false,
+      cameras: (json['cameras'] as List<dynamic>?)
+              ?.map((e) => CameraInfo.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const <CameraInfo>[],
     );
 
 Map<String, dynamic> _$$AppState$ImplToJson(_$AppState$Impl instance) =>
@@ -47,6 +51,7 @@ Map<String, dynamic> _$$AppState$ImplToJson(_$AppState$Impl instance) =>
       'pending': instance.pending.toList(),
       'pageNumber': instance.pageNumber,
       'contentLoaded': instance.contentLoaded,
+      'cameras': instance.cameras,
     };
 
 _$AppUser$Impl _$$AppUser$ImplFromJson(Map<String, dynamic> json) =>
@@ -120,3 +125,25 @@ Map<String, dynamic> _$$GroceryList$ImplToJson(_$GroceryList$Impl instance) =>
       'description': instance.description,
       'productIds': instance.productIds,
     };
+
+_$CameraInfo$Impl _$$CameraInfo$ImplFromJson(Map<String, dynamic> json) =>
+    _$CameraInfo$Impl(
+      name: json['name'] as String,
+      lensDirection:
+          $enumDecode(_$CameraInfoLensDirectionEnumMap, json['lensDirection']),
+      sensorOrientation: json['sensorOrientation'] as int,
+    );
+
+Map<String, dynamic> _$$CameraInfo$ImplToJson(_$CameraInfo$Impl instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'lensDirection':
+          _$CameraInfoLensDirectionEnumMap[instance.lensDirection]!,
+      'sensorOrientation': instance.sensorOrientation,
+    };
+
+const _$CameraInfoLensDirectionEnumMap = {
+  CameraInfoLensDirection.front: 'front',
+  CameraInfoLensDirection.back: 'back',
+  CameraInfoLensDirection.external: 'external',
+};
