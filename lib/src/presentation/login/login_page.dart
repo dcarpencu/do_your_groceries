@@ -1,5 +1,3 @@
-import 'package:do_you_groceries/src/actions/index.dart';
-import 'package:do_you_groceries/src/containers/pending_container.dart';
 import 'package:do_you_groceries/src/presentation/login/onboarding_page.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +19,7 @@ class _LoginPageState extends State<LoginPage> {
       // }
       // return const OnboardingScreen();
       // },),
-        body: OnboardingScreen(),
-        );
+      body: OnboardingScreen(),
+    );
   }
 }

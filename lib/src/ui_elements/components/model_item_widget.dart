@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:redux/redux.dart';
 
 class ModelItem extends StatelessWidget {
-  const ModelItem({required this.model, required this.store, required this.marketName, required this.category, super.key});
+  const ModelItem(
+      {required this.model, required this.store, required this.marketName, required this.category, super.key});
   final Product model;
   final Store<AppState> store;
   final String marketName;
@@ -23,28 +24,36 @@ class ModelItem extends StatelessWidget {
           height: 100,
           width: 120,
           child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.transparent,
-                  shadowColor: Colors.transparent,
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.transparent,
+              shadowColor: Colors.transparent,
+              elevation: 0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
               ),
+            ),
             onPressed: () {
-                store.dispatch(AddProductToGroceryListStart(model, store.state.selectedGroceryList!, model.page,marketName: marketName, category: category,));
-                Navigator.pop(context);
-                Navigator.pop(context);
-                Navigator.pop(context);
-                },
+              store.dispatch(AddProductToGroceryListStart(
+                model,
+                store.state.selectedGroceryList!,
+                model.page,
+                marketName: marketName,
+                category: category,
+              ));
+              Navigator.pop(context);
+              Navigator.pop(context);
+              Navigator.pop(context);
+            },
             child: Row(
-              children: [
+              children: <Widget>[
                 ImageShimmer(
                   url: model.image,
                   height: 100,
                   width: 130,
                 ),
-                const SizedBox(width: 12,),
+                const SizedBox(
+                  width: 12,
+                ),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,7 +68,9 @@ class ModelItem extends StatelessWidget {
                             Icons.monetization_on,
                             size: 12,
                           ),
-                          const SizedBox(width: 8,),
+                          const SizedBox(
+                            width: 8,
+                          ),
                           Text(
                             '${model.price} RON',
                             style: const TextStyle(fontSize: 16),
@@ -68,7 +79,7 @@ class ModelItem extends StatelessWidget {
                       ),
                     ],
                   ),
-                )
+                ),
               ],
             ),
           ),

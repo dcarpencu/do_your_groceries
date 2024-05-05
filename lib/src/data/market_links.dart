@@ -1,5 +1,11 @@
 const List<String> marketsNames = <String>['Auchan', 'Carrefour', 'Kaufland', 'Penny', 'Profi'];
-const List<String> marketsPictures = <String>['https://www.hellopark.ro/pictures/original/318255e7cfa2c1093c-auchan.jpg', 'https://logowik.com/content/uploads/images/210_carrefour.jpg', 'https://kaufland.media.schwarz/is/image/schwarz/t-kaufland-magazin%20%282%29?JGstbGVnYWN5LW9uc2l0ZS00JA==', 'https://assets-eu-01.kc-usercontent.com/b50b8cce-450a-0138-7b43-de6bc2f3ad32/dfa9eff8-af7e-4d76-941f-226973049f2c/otopeni.jpg?w=1500&fm=webp&lossless=0&q=80','https://storage0.dms.mpinteractiv.ro/media/1/1481/21335/22104753/1/profi.jpg'];
+const List<String> marketsPictures = <String>[
+  'https://www.hellopark.ro/pictures/original/318255e7cfa2c1093c-auchan.jpg',
+  'https://logowik.com/content/uploads/images/210_carrefour.jpg',
+  'https://kaufland.media.schwarz/is/image/schwarz/t-kaufland-magazin%20%282%29?JGstbGVnYWN5LW9uc2l0ZS00JA==',
+  'https://assets-eu-01.kc-usercontent.com/b50b8cce-450a-0138-7b43-de6bc2f3ad32/dfa9eff8-af7e-4d76-941f-226973049f2c/otopeni.jpg?w=1500&fm=webp&lossless=0&q=80',
+  'https://storage0.dms.mpinteractiv.ro/media/1/1481/21335/22104753/1/profi.jpg',
+];
 
 const List<String> supermarketCategories = <String>[
   'legume',
@@ -18,7 +24,7 @@ const List<String> supermarketCategoryLabels = <String>[
   'Bauturi alcoolice',
 ];
 
-Map<String, Map<String, String>> allSupermarkets = {
+Map<String, Map<String, String>> allSupermarkets = <String, Map<String, String>>{
   'Auchan': Auchan,
   'Carrefour': Carrefour,
   'Kaufland': Kaufland,

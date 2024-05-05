@@ -39,7 +39,11 @@ class MarketProductWidget extends StatelessWidget {
               padding: const EdgeInsets.all(8),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8),
-                child: ImageShimmer(url: product.image, height: 100, width: 100,),
+                child: ImageShimmer(
+                  url: product.image,
+                  height: 100,
+                  width: 100,
+                ),
               ),
             ),
             Align(

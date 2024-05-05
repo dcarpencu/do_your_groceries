@@ -24,3 +24,8 @@ class SetMarketProductsToEmpty with _$SetMarketProductsToEmpty implements AppAct
 class SetSelectedCamera with _$SetSelectedCamera implements AppAction {
   const factory SetSelectedCamera(CameraInfo selectedCamera) = SetSelectedCamera$;
 }
+
+@freezed
+class SetPictureToNull with _$SetPictureToNull implements AppAction {
+  const factory SetPictureToNull() = SetPictureToNull$;
+}

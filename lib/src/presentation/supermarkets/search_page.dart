@@ -9,7 +9,8 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
 class SearchProductsPage extends StatefulWidget {
-  const SearchProductsPage(this.marketName, {required this.category, required this.supermarketCategoryLabel, required this.supermarketCategory, super.key});
+  const SearchProductsPage(this.marketName,
+      {required this.category, required this.supermarketCategoryLabel, required this.supermarketCategory, super.key});
 
   final String marketName;
   final String category;
@@ -44,12 +45,7 @@ class _SearchProductsPageState extends State<SearchProductsPage> {
 
     final bool isLoading = <String>[GetSuperMarketProducts.pendingKey, GetSuperMarketProducts.pendingKeyMore]
         .any(_store.state.pending.contains);
-    if (offset >= extent -
-        MediaQuery
-        .of(context)
-        .size
-        .height
-        && !isLoading && !_store.state.contentLoaded) {
+    if (offset >= extent - MediaQuery.of(context).size.height && !isLoading && !_store.state.contentLoaded) {
       _store.dispatch(
         GetSuperMarketProducts.more(supermarketName: widget.marketName, category: widget.category, _onResult),
       );
@@ -112,7 +108,12 @@ class _SearchProductsPageState extends State<SearchProductsPage> {
 
                       // TODO(dcarpencu): Implement Skeletonizer
 
-                      return ModelItem(store: _store, model: product, marketName: widget.marketName, category: widget.supermarketCategory,);
+                      return ModelItem(
+                        store: _store,
+                        model: product,
+                        marketName: widget.marketName,
+                        category: widget.supermarketCategory,
+                      );
                     },
                   );
                 },

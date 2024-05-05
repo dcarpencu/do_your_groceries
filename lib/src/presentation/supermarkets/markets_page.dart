@@ -1,5 +1,4 @@
 import 'package:do_you_groceries/src/data/market_links.dart';
-import 'package:do_you_groceries/src/presentation/supermarkets/supermarket_categories_page.dart';
 import 'package:do_you_groceries/src/ui_elements/components/view_product_card_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +15,10 @@ class MarketsPage extends StatelessWidget {
         itemCount: marketsNames.length,
         padding: const EdgeInsets.all(8),
         itemBuilder: (BuildContext context, int index) {
-          return ViewProductCard(marketName: marketsNames[index], marketImage: marketsPictures[index],);
+          return ViewProductCard(
+            marketName: marketsNames[index],
+            marketImage: marketsPictures[index],
+          );
           //   Card(
           //   clipBehavior: Clip.antiAlias,
           //   child: Column(

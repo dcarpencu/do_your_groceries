@@ -1,6 +1,5 @@
 import 'package:camera/camera.dart';
 import 'package:do_you_groceries/src/models/index.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'index.freezed.dart';

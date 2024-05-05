@@ -31,7 +31,9 @@ class _UserProductsPageState extends State<UserProductsPage> {
 
   @override
   void dispose() {
-    _store..dispatch(ListenForProductsDone(_store.state.selectedGroceryList!))..dispatch(const SetUnselectedList());
+    _store
+      ..dispatch(ListenForProductsDone(_store.state.selectedGroceryList!))
+      ..dispatch(const SetUnselectedList());
 
     super.dispose();
   }
@@ -52,23 +54,24 @@ class _UserProductsPageState extends State<UserProductsPage> {
               return ProductsContainer(
                 builder: (BuildContext context, List<Product> products) {
                   if (products.isNotEmpty) {
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      // if (products.isNotEmpty)
-                      Expanded(
-                        child: ListView.builder(
-                          itemCount: products.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            final Product product = products[index];
-                            return HeroPosts(product: product,);
-                          },
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        // if (products.isNotEmpty)
+                        Expanded(
+                          child: ListView.builder(
+                            itemCount: products.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              final Product product = products[index];
+                              return HeroPosts(
+                                product: product,
+                              );
+                            },
+                          ),
                         ),
-                      ),
-                    ],
-                  );
-                  }
-                  else {
+                      ],
+                    );
+                  } else {
                     return const Center(
                       child: Text('No products YET.\nPlease add some!'),
                     );
@@ -81,7 +84,10 @@ class _UserProductsPageState extends State<UserProductsPage> {
             onPressed: () {
               _store.dispatch(const GetCamerasStart());
               Navigator.of(context).push(
-                MaterialPageRoute<Widget>(builder: (BuildContext context) => CameraApp(cameras: _store.state.cameras,)),
+                MaterialPageRoute<Widget>(
+                    builder: (BuildContext context) => CameraApp(
+                          cameras: _store.state.cameras,
+                        )),
               );
             },
             tooltip: 'Camera',

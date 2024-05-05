@@ -48,7 +48,10 @@ class PostCard extends StatelessWidget {
                         width: 64,
                       ),
                     ),
-              title: Text(product.name, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),),
+              title: Text(
+                product.name,
+                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+              ),
               subtitle: Text('${product.price} RON'),
             ),
           ),
@@ -93,14 +96,17 @@ class PostDetailPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 // Displaying detailed post image.
-                if (product.image.isNotEmpty) Image.network(
-                  product.image,
-                  fit: BoxFit.cover,
-                  height: 300,
-                ) else const Padding(
-                  padding: EdgeInsets.all(8),
-                  child: FlutterLogo(size: 216),
-                ),
+                if (product.image.isNotEmpty)
+                  Image.network(
+                    product.image,
+                    fit: BoxFit.cover,
+                    height: 300,
+                  )
+                else
+                  const Padding(
+                    padding: EdgeInsets.all(8),
+                    child: FlutterLogo(size: 216),
+                  ),
                 Padding(
                   padding: const EdgeInsets.all(16),
                   child: Column(

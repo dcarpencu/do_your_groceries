@@ -31,9 +31,10 @@ class _HomePageState extends State<HomePage> {
 
     _store = StoreProvider.of<AppState>(context, listen: false);
 
-    _store..dispatch(const GetGroceryLists.start())
-    ..dispatch(const RequestStoragePermissionStart())
-    ..dispatch(const GetCamerasStart());
+    _store
+      ..dispatch(const GetGroceryLists.start())
+      ..dispatch(const RequestStoragePermissionStart())
+      ..dispatch(const GetCamerasStart());
   }
 
   @override
@@ -57,129 +58,130 @@ class _HomePageState extends State<HomePage> {
           body: PendingContainer(
             builder: (BuildContext context, Set<String> pending) {
               if (pending.contains(GetGroceryLists.pendingKey)) {
-                return  const LinearProgressIndicator();
+                return const LinearProgressIndicator();
               }
               return GroceryListsContainer(
-              builder: (BuildContext context, Set<GroceryList> groceryLists) {
-                return SafeArea(
-                  child: Column(
-                    children: <Widget>[
-                      const SizedBox(
-                        height: 16,
-                      ),
-                      const Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Text(
-                            'Your lists. Here.',
-                            style: TextStyle(
-                              fontSize: 16,
+                builder: (BuildContext context, Set<GroceryList> groceryLists) {
+                  return SafeArea(
+                    child: Column(
+                      children: <Widget>[
+                        const SizedBox(
+                          height: 16,
+                        ),
+                        const Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.all(8),
+                            child: Text(
+                              'Your lists. Here.',
+                              style: TextStyle(
+                                fontSize: 16,
+                              ),
+                              textAlign: TextAlign.left,
                             ),
-                            textAlign: TextAlign.left,
                           ),
                         ),
-                      ),
-                      if (groceryLists.isNotEmpty)
-                        SizedBox(
-                          height: 240,
-                          child: ListView.separated(
-                            itemCount: groceryLists.length,
-                            scrollDirection: Axis.horizontal,
-                            padding: const EdgeInsets.only(left: 20, right: 20),
-                            separatorBuilder: (BuildContext context, int index) => const SizedBox(
-                              width: 16,
+                        if (groceryLists.isNotEmpty)
+                          SizedBox(
+                            height: 240,
+                            child: ListView.separated(
+                              itemCount: groceryLists.length,
+                              scrollDirection: Axis.horizontal,
+                              padding: const EdgeInsets.only(left: 20, right: 20),
+                              separatorBuilder: (BuildContext context, int index) => const SizedBox(
+                                width: 16,
+                              ),
+                              itemBuilder: (BuildContext context, int index) {
+                                return Container(
+                                  width: 210,
+                                  decoration: BoxDecoration(
+                                    color: Colors.greenAccent,
+                                    borderRadius: BorderRadius.circular(16),
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: <Widget>[
+                                      SizedBox(
+                                        width: 120,
+                                        height: 120,
+                                        child: SvgPicture.asset(
+                                          'assets/groceryListIcons/${groceryLists.elementAt(index).selectedIcon}.svg',
+                                        ),
+                                      ),
+                                      Text(
+                                        groceryLists.elementAt(index).title,
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.black,
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                      Text(
+                                        groceryLists.elementAt(index).description,
+                                        style: const TextStyle(color: Colors.grey),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Container(
+                                        height: 45,
+                                        width: 130,
+                                        decoration: BoxDecoration(
+                                          gradient: const LinearGradient(colors: <Color>[Colors.green, Colors.teal]),
+                                          borderRadius: BorderRadius.circular(16),
+                                        ),
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: Colors.transparent,
+                                            shadowColor: Colors.transparent,
+                                            elevation: 0,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(16),
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            StoreProvider.of<AppState>(context)
+                                                .dispatch(SetSelectedList(groceryLists.elementAt(index).groceryListId));
+                                            Navigator.push(
+                                              context,
+                                              // ignore: always_specify_types
+                                              MaterialPageRoute<Widget>(
+                                                builder: (BuildContext context) => const UserProductsPage(),
+                                              ),
+                                            );
+                                          },
+                                          child: const Center(
+                                            child: Text(
+                                              'View',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
                             ),
-                            itemBuilder: (BuildContext context, int index) {
-                              return Container(
-                                width: 210,
-                                decoration: BoxDecoration(
-                                  color: Colors.greenAccent,
-                                  borderRadius: BorderRadius.circular(16),
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: <Widget>[
-                                    SizedBox(
-                                      width: 120,
-                                      height: 120,
-                                      child: SvgPicture.asset(
-                                        'assets/groceryListIcons/${groceryLists.elementAt(index).selectedIcon}.svg',
-                                      ),
-                                    ),
-                                    Text(
-                                      groceryLists.elementAt(index).title,
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        color: Colors.black,
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                    Text(
-                                      groceryLists.elementAt(index).description,
-                                      style: const TextStyle(color: Colors.grey),
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    Container(
-                                      height: 45,
-                                      width: 130,
-                                      decoration: BoxDecoration(
-                                        gradient: const LinearGradient(colors: <Color>[Colors.green, Colors.teal]),
-                                        borderRadius: BorderRadius.circular(16),
-                                      ),
-                                      child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor: Colors.transparent,
-                                          shadowColor: Colors.transparent,
-                                          elevation: 0,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(16),
-                                          ),
-                                        ),
-                                        onPressed: () {
-                                          StoreProvider.of<AppState>(context)
-                                              .dispatch(SetSelectedList(groceryLists.elementAt(index).groceryListId));
-                                          Navigator.push(
-                                            context,
-                                            // ignore: always_specify_types
-                                            MaterialPageRoute<Widget>(
-                                              builder: (BuildContext context) => const UserProductsPage(),
-                                            ),
-                                          );
-                                        },
-                                        child: const Center(
-                                          child: Text(
-                                            'View',
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                  ],
-                                ),
-                              );
-                            },
-                          ),
-                        )
-                      else
-                        const Center(child: Text('No lists.')),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ); },
+                          )
+                        else
+                          const Center(child: Text('No lists.')),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              );
+            },
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
@@ -220,7 +222,9 @@ class _HomePageState extends State<HomePage> {
                   IconButton(
                     tooltip: 'Favorite',
                     icon: const Icon(Icons.favorite),
-                    onPressed: () {StoreProvider.of<AppState>(context, listen: false).dispatch(const GetCamerasStart());},
+                    onPressed: () {
+                      StoreProvider.of<AppState>(context, listen: false).dispatch(const GetCamerasStart());
+                    },
                   ),
                   const Spacer(),
                 ],

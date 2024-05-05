@@ -8,7 +8,7 @@ import 'package:redux_epics/redux_epics.dart';
 import 'package:rxdart/transformers.dart';
 
 class AppEpic {
-  AppEpic(this._authApi, this._superMarketsApi, this._productsApi,  this._cameraApi);
+  AppEpic(this._authApi, this._superMarketsApi, this._productsApi, this._cameraApi);
 
   final AuthApi _authApi;
   final SuperMarketsApi _superMarketsApi;
@@ -168,7 +168,8 @@ class AppEpic {
             return GetSuperMarketProducts.successful(products, pendingId);
           })
           .onErrorReturnWith(
-              (Object error, StackTrace stackTrace) => GetSuperMarketProducts.error(error, stackTrace, pendingId),)
+            (Object error, StackTrace stackTrace) => GetSuperMarketProducts.error(error, stackTrace, pendingId),
+          )
           .doOnData(onResult);
     });
   }
@@ -183,20 +184,32 @@ class AppEpic {
   }
 
   Stream<AppAction> _addProductToGroceryListStart(
-      Stream<AddProductToGroceryListStart> actions, EpicStore<AppState> store,) {
+    Stream<AddProductToGroceryListStart> actions,
+    EpicStore<AppState> store,
+  ) {
     return actions.flatMap((AddProductToGroceryListStart action) {
       return Stream<void>.value(null)
-          .asyncMap((_) => _productsApi.addProductToGroceryList(action.product, action.groceryListId,
-              marketName: action.marketName, category: action.category, action.page,),)
+          .asyncMap(
+            (_) => _productsApi.addProductToGroceryList(
+              action.product,
+              action.groceryListId,
+              marketName: action.marketName,
+              category: action.category,
+              action.page,
+            ),
+          )
           .mapTo(const AddProductToGroceryList.successful())
           .onErrorReturnWith(AddProductToGroceryList.error);
     });
   }
 
-  Stream<AppAction> _requestStoragePermissionStart(Stream<RequestStoragePermissionStart> actions, EpicStore<AppState> store) {
+  Stream<AppAction> _requestStoragePermissionStart(
+      Stream<RequestStoragePermissionStart> actions, EpicStore<AppState> store) {
     return actions.flatMap((RequestStoragePermissionStart action) {
       return Stream<void>.value(null)
-          .asyncMap((_) => _cameraApi.requestStoragePermission(),)
+          .asyncMap(
+            (_) => _cameraApi.requestStoragePermission(),
+          )
           .mapTo(const RequestStoragePermission.successful())
           .onErrorReturnWith(RequestStoragePermission.error);
     });
@@ -205,7 +218,9 @@ class AppEpic {
   Stream<AppAction> _getCamerasStart(Stream<GetCamerasStart> actions, EpicStore<AppState> store) {
     return actions.flatMap((GetCamerasStart action) {
       return Stream<void>.value(null)
-          .asyncMap((_) => _cameraApi.getCameras(),)
+          .asyncMap(
+            (_) => _cameraApi.getCameras(),
+          )
           .map<GetCameras>(GetCameras.successful)
           .onErrorReturnWith(GetCameras.error);
     });
@@ -214,7 +229,9 @@ class AppEpic {
   Stream<AppAction> _takePictureStart(Stream<TakePictureStart> actions, EpicStore<AppState> store) {
     return actions.flatMap((TakePictureStart action) {
       return Stream<void>.value(null)
-          .asyncMap((_) => _cameraApi.takePicture(controller: action.controller, context: action.context,))
+          .asyncMap((_) => _cameraApi.takePicture(
+                controller: action.controller,
+              ))
           .map<TakePicture>(TakePicture.successful)
           .onErrorReturnWith(TakePicture.error);
     });

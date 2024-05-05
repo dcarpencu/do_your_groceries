@@ -29,5 +29,3 @@ class CameraInfo with _$CameraInfo {
     );
   }
 }
-
-

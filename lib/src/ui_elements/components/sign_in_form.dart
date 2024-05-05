@@ -4,7 +4,6 @@ import 'package:do_you_groceries/src/models/index.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:rive/rive.dart';
@@ -94,11 +93,19 @@ class _SignInFormState extends State<SignInForm> {
     return PendingContainer(
       builder: (BuildContext context, Set<String> pending) {
         if (pending.contains(Login.pendingKey)) {
-          return const Center(child: Column(children: <Widget>[
-            SizedBox(height: 64,),
-            LinearProgressIndicator(),
-              SizedBox(height: 64,),
-          ],),);
+          return const Center(
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 64,
+                ),
+                LinearProgressIndicator(),
+                SizedBox(
+                  height: 64,
+                ),
+              ],
+            ),
+          );
         }
         return Stack(
           children: <Widget>[

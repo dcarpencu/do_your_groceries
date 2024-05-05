@@ -9,6 +9,7 @@ import 'package:redux/redux.dart';
 
 class CameraApp extends StatefulWidget {
   const CameraApp({required this.cameras, super.key});
+
   final List<CameraInfo> cameras;
 
   @override
@@ -17,16 +18,15 @@ class CameraApp extends StatefulWidget {
 
 class _CameraAppState extends State<CameraApp> {
   late CameraController controller;
-  late Future<void> _initializeControllerFuture;
-  late XFile? imageFile; // Variable to store the captured image file
   late Store<AppState> _store;
 
   @override
   void initState() {
     super.initState();
     _store = StoreProvider.of<AppState>(context, listen: false);
-    _store..dispatch(const RequestStoragePermissionStart())
-    ..dispatch(SetSelectedCamera(widget.cameras[0]));
+    _store
+      ..dispatch(const RequestStoragePermissionStart())
+      ..dispatch(SetSelectedCamera(widget.cameras[0]));
 
     controller = CameraController(CameraInfo.toCameraDescription(_store.state.selectedCamera!), ResolutionPreset.max);
     _store.dispatch(InitializeControllerStart(controller: controller));
@@ -57,9 +57,9 @@ class _CameraAppState extends State<CameraApp> {
       ),
       body: PendingContainer(
         builder: (BuildContext context, Set<String> pending) {
-         if (pending.contains(InitializeController.pendingKey)) {
-           return const LinearProgressIndicator();
-         }
+          if (pending.contains(InitializeController.pendingKey)) {
+            return const LinearProgressIndicator();
+          }
 
           return Stack(
             children: <Widget>[
@@ -69,21 +69,19 @@ class _CameraAppState extends State<CameraApp> {
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 32),
                   child: FloatingActionButton(
-                    onPressed: () async {
-                      await _store.dispatch(TakePictureStart(controller: controller,context: context));
-
-                      if (pending.contains(TakePicture.pendingKey) && _store.state.picture == null) {
-                        await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (BuildContext context) => ImageViewPage(imagePath: _store.state.picture!.path),
+                    onPressed: () {
+                      _store.dispatch(TakePictureStart(controller: controller));
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute<dynamic>(
+                          builder: (BuildContext context) => ImageViewPage(
+                            store: _store,
                           ),
-                        );
-                      }
+                        ),
+                      );
                     },
                     backgroundColor: Colors.white,
                     foregroundColor: Colors.green,
-
                     child: const Icon(Icons.camera),
                   ),
                 ),

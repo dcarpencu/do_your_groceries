@@ -17,7 +17,8 @@ class Logout with _$Logout implements AppAction {
   @Implements<ActionDone>()
   @Implements<ErrorAction>()
   const factory Logout.error(
-    Object error, StackTrace stackTrace, [
+    Object error,
+    StackTrace stackTrace, [
     @Default(_kLogoutPendingId) String pendingId,
   ]) = LogoutError;
 

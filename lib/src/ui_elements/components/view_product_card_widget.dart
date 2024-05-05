@@ -59,15 +59,15 @@ class ViewProductCard extends StatelessWidget {
                         style: TextStyle(color: Colors.deepOrange),
                       ),
                       onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute<Widget>(
-                      builder: (BuildContext context) => SupermarketCategoriesPage(
-                        supermarketName: marketName,
-                      ),
-                    ),
-                  );
-                },
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute<Widget>(
+                            builder: (BuildContext context) => SupermarketCategoriesPage(
+                              supermarketName: marketName,
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),

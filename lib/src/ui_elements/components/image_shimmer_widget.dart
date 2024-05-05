@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ImageShimmer extends StatelessWidget {
-
   const ImageShimmer({required this.url, super.key, this.height, this.width});
   final String url;
   final double? height;
@@ -31,7 +30,7 @@ class ImageShimmer extends StatelessWidget {
                 Icons.error,
                 color: Theme.of(context).primaryColor,
               ),
-              const Text('Error!')
+              const Text('Error!'),
             ],
           ),
         ),

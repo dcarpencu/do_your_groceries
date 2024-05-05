@@ -1,9 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:do_you_groceries/src/models/index.dart';
-import 'package:do_you_groceries/src/presentation/camera/image_view_page.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class CameraApi {
@@ -37,7 +34,6 @@ class CameraApi {
       );
     }).toList();
 
-    print('\n\n\n --- $cameras \n\n');
     return cameras;
   }
 
@@ -45,21 +41,9 @@ class CameraApi {
     await controller.initialize();
   }
 
-  Future<XFile> takePicture({required CameraController controller, required BuildContext context}) async {
+  Future<XFile> takePicture({required CameraController controller}) async {
+    final XFile picture = await controller.takePicture();
 
-      final XFile picture = await controller.takePicture();
-
-
-
-      // Navigate to the image view page after capturing the image
-      await Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (BuildContext context) => ImageViewPage(imagePath: picture.path),
-        ),
-      );
-
-      return picture;
+    return picture;
   }
-
 }

@@ -7,7 +7,6 @@ class TakePicture with _$TakePicture implements AppAction {
   @Implements<ActionStart>()
   const factory TakePicture.start({
     required CameraController controller,
-    required BuildContext context,
     @Default(_kTakePicturePendingId) String pendingId,
   }) = TakePictureStart;
 

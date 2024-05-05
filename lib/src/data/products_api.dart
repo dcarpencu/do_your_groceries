@@ -16,12 +16,12 @@ class ProductsApi {
         final List<dynamic>? productIds =
             (snapshot.data()?['productIds'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
 
-
         // final List<DocumentSnapshot<Map<String, dynamic>>> productSnapshots = await Future.wait(
         //   productIds!.map((dynamic productId) => _firestore.collection('/Auchan/categories/legume/pages/page_1').doc(productId.toString()).get()),
         // );
 
-        final List<DocumentSnapshot<Map<String, dynamic>>> productSnapshots = [];
+        final List<DocumentSnapshot<Map<String, dynamic>>> productSnapshots =
+            <DocumentSnapshot<Map<String, dynamic>>>[];
 
         for (final dynamic productId in productIds!) {
           // Find the index of the last occurrence of '/'
@@ -31,10 +31,8 @@ class ProductsApi {
           final String collectionPath = productId.toString().substring(0, lastIndex);
           final String documentId = productId.toString().substring(lastIndex + 1);
 
-          final DocumentSnapshot<Map<String, dynamic>> snapshot = await _firestore
-              .collection(collectionPath)
-              .doc(documentId)
-              .get();
+          final DocumentSnapshot<Map<String, dynamic>> snapshot =
+              await _firestore.collection(collectionPath).doc(documentId).get();
           productSnapshots.add(snapshot);
         }
 
@@ -74,14 +72,15 @@ class ProductsApi {
     await listRef.update(listData);
   }
 
-  Future<void> addProductToGroceryList(Product product, String groceryListId, int page, {required String marketName, required String category}) async {
+  Future<void> addProductToGroceryList(Product product, String groceryListId, int page,
+      {required String marketName, required String category,}) async {
     final DocumentReference<Map<String, dynamic>> listRef = _firestore.collection('lists').doc(groceryListId);
     final DocumentSnapshot<Map<String, dynamic>> snapshot = await listRef.get();
 
     final Map<String, dynamic> listData = snapshot.data()!;
 
     final List<dynamic>? productIds =
-    (snapshot.data()?['productIds'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
+        (snapshot.data()?['productIds'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
 
     productIds?.add('/$marketName/categories/$category/pages/page_$page/${product.productId}');
     listData['productIds'] = productIds;

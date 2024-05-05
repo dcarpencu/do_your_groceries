@@ -8,7 +8,6 @@ import 'package:html/dom.dart';
 import 'package:html/parser.dart' show parse;
 import 'package:http/http.dart';
 
-
 late Client _client;
 late FirebaseFirestore _firestore;
 late Response response;
@@ -53,7 +52,7 @@ Future<void> generateProducts() async {
         final Element? title = foodInfo?.querySelector('div.title');
 
         final Product product =
-        Product(productId: ref.id, name: title!.text, price: priceD, image: image!.attributes['src']!, page: pgCt);
+            Product(productId: ref.id, name: title!.text, price: priceD, image: image!.attributes['src']!, page: pgCt);
 
         print(product);
         await ref.set(product.toJson());
@@ -64,7 +63,7 @@ Future<void> generateProducts() async {
 
 Future<void> main() async {
   final FirebaseApp app = await Firebase.initializeApp();
- _firestore = FirebaseFirestore.instanceFor(app: app);
+  _firestore = FirebaseFirestore.instanceFor(app: app);
   _client = Client();
   await generateProducts();
   _client.close();

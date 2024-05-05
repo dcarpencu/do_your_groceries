@@ -15,7 +15,6 @@ class AppState with _$AppState {
     @Default(<CameraInfo>[]) List<CameraInfo> cameras,
     @Default(null) CameraInfo? selectedCamera,
     @JsonKey(fromJson: _xFileFromJson, toJson: _xFileToJson) XFile? picture,
-
   }) = AppState$;
 
   factory AppState.fromJson(Map<dynamic, dynamic> json) => _$AppStateFromJson(Map<String, dynamic>.from(json));

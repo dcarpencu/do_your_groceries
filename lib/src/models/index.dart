@@ -10,4 +10,3 @@ part 'auchan.dart';
 part 'product.dart';
 part 'grocery_list.dart';
 part 'camera_info.dart';
-

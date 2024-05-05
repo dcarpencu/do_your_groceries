@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 
 const LinearGradient _shimmerGradient = LinearGradient(
-  colors: [
+  colors: <Color>[
     Color(0xFFEBEBF4),
     Color(0xFFF4F4F4),
     Color(0xFFEBEBF4),
   ],
-  stops: [
+  stops: <double>[
     0.1,
     0.3,
     0.4,
   ],
-  begin: Alignment(-1.0, -0.3),
-  end: Alignment(1.0, 0.3),
-  tileMode: TileMode.clamp,
+  begin: Alignment(-1, -0.3),
+  end: Alignment(1, 0.3),
 );
 
 class ExampleUiLoadingAnimation extends StatefulWidget {
@@ -22,8 +21,7 @@ class ExampleUiLoadingAnimation extends StatefulWidget {
   });
 
   @override
-  State<ExampleUiLoadingAnimation> createState() =>
-      _ExampleUiLoadingAnimationState();
+  State<ExampleUiLoadingAnimation> createState() => _ExampleUiLoadingAnimationState();
 }
 
 class _ExampleUiLoadingAnimationState extends State<ExampleUiLoadingAnimation> {
@@ -42,7 +40,9 @@ class _ExampleUiLoadingAnimationState extends State<ExampleUiLoadingAnimation> {
         linearGradient: _shimmerGradient,
         child: ListView.builder(
           physics: _isLoading ? const NeverScrollableScrollPhysics() : null,
-          itemBuilder: (BuildContext context, int index) { return _buildListItem(); },
+          itemBuilder: (BuildContext context, int index) {
+            return _buildListItem();
+          },
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -92,15 +92,14 @@ class _ExampleUiLoadingAnimationState extends State<ExampleUiLoadingAnimation> {
 }
 
 class Shimmer extends StatefulWidget {
+  const Shimmer({
+    required this.linearGradient,
+    super.key,
+    this.child,
+  });
   static ShimmerState? of(BuildContext context) {
     return context.findAncestorStateOfType<ShimmerState>();
   }
-
-  const Shimmer({
-    super.key,
-    required this.linearGradient,
-    this.child,
-  });
 
   final LinearGradient linearGradient;
   final Widget? child;
@@ -128,24 +127,22 @@ class ShimmerState extends State<Shimmer> with SingleTickerProviderStateMixin {
 // code-excerpt-closing-bracket
 
   LinearGradient get gradient => LinearGradient(
-    colors: widget.linearGradient.colors,
-    stops: widget.linearGradient.stops,
-    begin: widget.linearGradient.begin,
-    end: widget.linearGradient.end,
-    transform:
-    _SlidingGradientTransform(slidePercent: _shimmerController.value),
-  );
+        colors: widget.linearGradient.colors,
+        stops: widget.linearGradient.stops,
+        begin: widget.linearGradient.begin,
+        end: widget.linearGradient.end,
+        transform: _SlidingGradientTransform(slidePercent: _shimmerController.value),
+      );
 
-  bool get isSized =>
-      (context.findRenderObject() as RenderBox?)?.hasSize ?? false;
+  bool get isSized => (context.findRenderObject() as RenderBox?)?.hasSize ?? false;
 
-  Size get size => (context.findRenderObject() as RenderBox).size;
+  Size get size => (context.findRenderObject()! as RenderBox).size;
 
   Offset getDescendantOffset({
     required RenderBox descendant,
     Offset offset = Offset.zero,
   }) {
-    final shimmerBox = context.findRenderObject() as RenderBox;
+    final RenderBox shimmerBox = context.findRenderObject()! as RenderBox;
     return descendant.localToGlobal(offset, ancestor: shimmerBox);
   }
 
@@ -166,15 +163,15 @@ class _SlidingGradientTransform extends GradientTransform {
 
   @override
   Matrix4? transform(Rect bounds, {TextDirection? textDirection}) {
-    return Matrix4.translationValues(bounds.width * slidePercent, 0.0, 0.0);
+    return Matrix4.translationValues(bounds.width * slidePercent, 0, 0);
   }
 }
 
 class ShimmerLoading extends StatefulWidget {
   const ShimmerLoading({
-    super.key,
     required this.isLoading,
     required this.child,
+    super.key,
   });
 
   final bool isLoading;
@@ -221,21 +218,21 @@ class _ShimmerLoadingState extends State<ShimmerLoading> {
     }
 
     // Collect ancestor shimmer info.
-    final shimmer = Shimmer.of(context)!;
+    final ShimmerState shimmer = Shimmer.of(context)!;
     if (!shimmer.isSized) {
       // The ancestor Shimmer widget has not laid
       // itself out yet. Return an empty box.
       return const SizedBox();
     }
-    final shimmerSize = shimmer.size;
-    final gradient = shimmer.gradient;
-    final offsetWithinShimmer = shimmer.getDescendantOffset(
-      descendant: context.findRenderObject() as RenderBox,
+    final Size shimmerSize = shimmer.size;
+    final LinearGradient gradient = shimmer.gradient;
+    final Offset offsetWithinShimmer = shimmer.getDescendantOffset(
+      descendant: context.findRenderObject()! as RenderBox,
     );
 
     return ShaderMask(
       blendMode: BlendMode.srcATop,
-      shaderCallback: (bounds) {
+      shaderCallback: (Rect bounds) {
         return gradient.createShader(
           Rect.fromLTWH(
             -offsetWithinShimmer.dx,
@@ -267,7 +264,7 @@ class CircleListItem extends StatelessWidget {
         child: ClipOval(
           child: Image.network(
             'https://docs.flutter.dev/cookbook'
-                '/img-files/effects/split-check/Avatar1.jpg',
+            '/img-files/effects/split-check/Avatar1.jpg',
             fit: BoxFit.cover,
           ),
         ),
@@ -278,8 +275,8 @@ class CircleListItem extends StatelessWidget {
 
 class CardListItem extends StatelessWidget {
   const CardListItem({
-    super.key,
     required this.isLoading,
+    super.key,
   });
 
   final bool isLoading;
@@ -290,7 +287,7 @@ class CardListItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+        children: <Widget>[
           _buildImage(),
           const SizedBox(height: 16),
           _buildText(),
@@ -312,7 +309,7 @@ class CardListItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           child: Image.network(
             'https://docs.flutter.dev/cookbook'
-                '/img-files/effects/split-check/Food1.jpg',
+            '/img-files/effects/split-check/Food1.jpg',
             fit: BoxFit.cover,
           ),
         ),
@@ -324,7 +321,7 @@ class CardListItem extends StatelessWidget {
     if (isLoading) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+        children: <Widget>[
           Container(
             width: double.infinity,
             height: 24,
@@ -349,7 +346,7 @@ class CardListItem extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 8),
         child: Text(
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do '
-              'eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+          'eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         ),
       );
     }
