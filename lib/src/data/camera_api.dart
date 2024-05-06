@@ -46,4 +46,11 @@ class CameraApi {
 
     return picture;
   }
+
+  // Future<void> loadModel() async {
+  //   await Tflite.loadModel(
+  //     model: "assets/model_unquant.tflite",
+  //     labels: "assets/labels.txt",
+  //   );
+  // }
 }

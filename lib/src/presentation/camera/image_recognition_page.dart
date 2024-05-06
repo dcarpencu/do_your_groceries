@@ -42,9 +42,9 @@ class _CameraAppState extends State<CameraApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.white,
         leading: BackButton(
-          color: Colors.white,
+          color: Colors.black,
           onPressed: () {
             Navigator.pop(context);
           },
@@ -52,7 +52,7 @@ class _CameraAppState extends State<CameraApp> {
         centerTitle: true,
         title: const Text(
           'Take a picture',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.black),
         ),
       ),
       body: PendingContainer(
@@ -61,30 +61,27 @@ class _CameraAppState extends State<CameraApp> {
             return const LinearProgressIndicator();
           }
 
-          return Stack(
+          return Column(
             children: <Widget>[
-              CameraPreview(controller),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 32),
-                  child: FloatingActionButton(
-                    onPressed: () {
-                      _store.dispatch(TakePictureStart(controller: controller));
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute<dynamic>(
-                          builder: (BuildContext context) => ImageViewPage(
-                            store: _store,
-                          ),
-                        ),
-                      );
-                    },
-                    backgroundColor: Colors.white,
-                    foregroundColor: Colors.green,
-                    child: const Icon(Icons.camera),
-                  ),
-                ),
+              Container(
+                  padding: const EdgeInsets.all(8),
+                  child: ClipRRect(borderRadius: BorderRadius.circular(16), child: CameraPreview(controller))),
+              const SizedBox(height: 64,),
+              FloatingActionButton(
+                onPressed: () {
+                  _store.dispatch(TakePictureStart(controller: controller));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute<dynamic>(
+                      builder: (BuildContext context) => ImageViewPage(
+                        store: _store,
+                      ),
+                    ),
+                  );
+                },
+                backgroundColor: Colors.white70,
+                foregroundColor: Colors.black,
+                child: const Icon(Icons.camera),
               ),
             ],
           );
