@@ -15,11 +15,16 @@ class ImageViewPage extends StatefulWidget {
 }
 
 class _ImageViewPageState extends State<ImageViewPage> {
-  bool isLoading = false;
+
+  @override
+  void initState() {
+    widget.store.dispatch(GetImageLabelsStart(imagePath: widget.store.state.picture!.path));
+    super.initState();
+  }
 
   @override
   void dispose() {
-    widget.store.dispatch(const SetPictureToNull());
+    //widget.store.dispatch(const SetPictureToNull());
     super.dispose();
   }
 
@@ -31,13 +36,19 @@ class _ImageViewPageState extends State<ImageViewPage> {
       ),
       body: PendingContainer(
         builder: (BuildContext context, Set<String> pending) {
-          if (pending.contains(TakePicture.pendingKey) && widget.store.state.picture == null) {
+          if (pending.contains(GetImageLabels.pendingKey) || pending.contains(TakePicture.pendingKey) || widget.store.state.picture == null) {
             return const Center(child: CircularProgressIndicator());
           }
-          return Center(
-            child: Image.file(File(
-              widget.store.state.picture!.path,
-            )),
+          return Column(
+            children: <Widget>[
+              Center(
+                child: Image.file(File(
+                  widget.store.state.picture!.path,
+                ),),
+              ),
+              Text('CEVA'),
+              Text(widget.store.state.imageLabel),
+            ],
           );
         },
       ),

@@ -13,6 +13,7 @@ class AppState with _$AppState {
     @Default(1) int pageNumber,
     @Default(false) bool contentLoaded,
     @Default(<CameraInfo>[]) List<CameraInfo> cameras,
+    @Default('') String imageLabel,
     @Default(null) CameraInfo? selectedCamera,
     @JsonKey(fromJson: _xFileFromJson, toJson: _xFileToJson) XFile? picture,
   }) = AppState$;

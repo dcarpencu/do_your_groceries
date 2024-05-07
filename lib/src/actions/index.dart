@@ -20,6 +20,7 @@ part 'request_storage_permission.dart';
 part 'get_cameras.dart';
 part 'initalize_controller_pending.dart';
 part 'take_picture.dart';
+part 'get_image_labels.dart';
 
 abstract class AppAction {}
 

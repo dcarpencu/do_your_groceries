@@ -43,6 +43,7 @@ Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   TypedReducer<AppState, ActionDone>(_actionDone).call,
   TypedReducer<AppState, GetCamerasSuccessful>(_getCamerasSuccessful).call,
   TypedReducer<AppState, TakePictureSuccessful>(_takePictureSuccessful).call,
+  TypedReducer<AppState, GetImageLabelsSuccessful>(_getImageLabelsSuccessful).call,
 ]);
 
 AppState _setMarketProductsToEmpty(AppState state, SetMarketProductsToEmpty action) {
@@ -120,4 +121,8 @@ AppState _takePictureSuccessful(AppState state, TakePictureSuccessful action) {
 
 AppState _setPictureToNull(AppState state, SetPictureToNull action) {
   return state.copyWith(picture: null);
+}
+
+AppState _getImageLabelsSuccessful(AppState state, GetImageLabelsSuccessful action) {
+  return state.copyWith(imageLabel: action.imageLabel);
 }

@@ -30,18 +30,21 @@ mixin _$AppState {
   int get pageNumber => throw _privateConstructorUsedError;
   bool get contentLoaded => throw _privateConstructorUsedError;
   List<CameraInfo> get cameras => throw _privateConstructorUsedError;
+  String get imageLabel => throw _privateConstructorUsedError;
   CameraInfo? get selectedCamera => throw _privateConstructorUsedError;
   @JsonKey(fromJson: _xFileFromJson, toJson: _xFileToJson)
   XFile? get picture => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $AppStateCopyWith<AppState> get copyWith => throw _privateConstructorUsedError;
+  $AppStateCopyWith<AppState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $AppStateCopyWith<$Res> {
-  factory $AppStateCopyWith(AppState value, $Res Function(AppState) then) = _$AppStateCopyWithImpl<$Res, AppState>;
+  factory $AppStateCopyWith(AppState value, $Res Function(AppState) then) =
+      _$AppStateCopyWithImpl<$Res, AppState>;
   @useResult
   $Res call(
       {AppUser? user,
@@ -54,6 +57,7 @@ abstract class $AppStateCopyWith<$Res> {
       int pageNumber,
       bool contentLoaded,
       List<CameraInfo> cameras,
+      String imageLabel,
       CameraInfo? selectedCamera,
       @JsonKey(fromJson: _xFileFromJson, toJson: _xFileToJson) XFile? picture});
 
@@ -62,7 +66,8 @@ abstract class $AppStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AppStateCopyWithImpl<$Res, $Val extends AppState> implements $AppStateCopyWith<$Res> {
+class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
+    implements $AppStateCopyWith<$Res> {
   _$AppStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -83,6 +88,7 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState> implements $AppStateCo
     Object? pageNumber = null,
     Object? contentLoaded = null,
     Object? cameras = null,
+    Object? imageLabel = null,
     Object? selectedCamera = freezed,
     Object? picture = freezed,
   }) {
@@ -127,6 +133,10 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState> implements $AppStateCo
           ? _value.cameras
           : cameras // ignore: cast_nullable_to_non_nullable
               as List<CameraInfo>,
+      imageLabel: null == imageLabel
+          ? _value.imageLabel
+          : imageLabel // ignore: cast_nullable_to_non_nullable
+              as String,
       selectedCamera: freezed == selectedCamera
           ? _value.selectedCamera
           : selectedCamera // ignore: cast_nullable_to_non_nullable
@@ -164,8 +174,10 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState> implements $AppStateCo
 }
 
 /// @nodoc
-abstract class _$$AppState$ImplCopyWith<$Res> implements $AppStateCopyWith<$Res> {
-  factory _$$AppState$ImplCopyWith(_$AppState$Impl value, $Res Function(_$AppState$Impl) then) =
+abstract class _$$AppState$ImplCopyWith<$Res>
+    implements $AppStateCopyWith<$Res> {
+  factory _$$AppState$ImplCopyWith(
+          _$AppState$Impl value, $Res Function(_$AppState$Impl) then) =
       __$$AppState$ImplCopyWithImpl<$Res>;
   @override
   @useResult
@@ -180,6 +192,7 @@ abstract class _$$AppState$ImplCopyWith<$Res> implements $AppStateCopyWith<$Res>
       int pageNumber,
       bool contentLoaded,
       List<CameraInfo> cameras,
+      String imageLabel,
       CameraInfo? selectedCamera,
       @JsonKey(fromJson: _xFileFromJson, toJson: _xFileToJson) XFile? picture});
 
@@ -190,9 +203,12 @@ abstract class _$$AppState$ImplCopyWith<$Res> implements $AppStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$AppState$ImplCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res, _$AppState$Impl>
+class __$$AppState$ImplCopyWithImpl<$Res>
+    extends _$AppStateCopyWithImpl<$Res, _$AppState$Impl>
     implements _$$AppState$ImplCopyWith<$Res> {
-  __$$AppState$ImplCopyWithImpl(_$AppState$Impl _value, $Res Function(_$AppState$Impl) _then) : super(_value, _then);
+  __$$AppState$ImplCopyWithImpl(
+      _$AppState$Impl _value, $Res Function(_$AppState$Impl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -207,6 +223,7 @@ class __$$AppState$ImplCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res, _
     Object? pageNumber = null,
     Object? contentLoaded = null,
     Object? cameras = null,
+    Object? imageLabel = null,
     Object? selectedCamera = freezed,
     Object? picture = freezed,
   }) {
@@ -251,6 +268,10 @@ class __$$AppState$ImplCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res, _
           ? _value._cameras
           : cameras // ignore: cast_nullable_to_non_nullable
               as List<CameraInfo>,
+      imageLabel: null == imageLabel
+          ? _value.imageLabel
+          : imageLabel // ignore: cast_nullable_to_non_nullable
+              as String,
       selectedCamera: freezed == selectedCamera
           ? _value.selectedCamera
           : selectedCamera // ignore: cast_nullable_to_non_nullable
@@ -277,6 +298,7 @@ class _$AppState$Impl implements AppState$ {
       this.pageNumber = 1,
       this.contentLoaded = false,
       final List<CameraInfo> cameras = const <CameraInfo>[],
+      this.imageLabel = '',
       this.selectedCamera = null,
       @JsonKey(fromJson: _xFileFromJson, toJson: _xFileToJson) this.picture})
       : _supermarketProducts = supermarketProducts,
@@ -286,7 +308,8 @@ class _$AppState$Impl implements AppState$ {
         _pending = pending,
         _cameras = cameras;
 
-  factory _$AppState$Impl.fromJson(Map<String, dynamic> json) => _$$AppState$ImplFromJson(json);
+  factory _$AppState$Impl.fromJson(Map<String, dynamic> json) =>
+      _$$AppState$ImplFromJson(json);
 
   @override
   final AppUser? user;
@@ -294,7 +317,8 @@ class _$AppState$Impl implements AppState$ {
   @override
   @JsonKey()
   List<Product> get supermarketProducts {
-    if (_supermarketProducts is EqualUnmodifiableListView) return _supermarketProducts;
+    if (_supermarketProducts is EqualUnmodifiableListView)
+      return _supermarketProducts;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_supermarketProducts);
   }
@@ -354,6 +378,9 @@ class _$AppState$Impl implements AppState$ {
 
   @override
   @JsonKey()
+  final String imageLabel;
+  @override
+  @JsonKey()
   final CameraInfo? selectedCamera;
   @override
   @JsonKey(fromJson: _xFileFromJson, toJson: _xFileToJson)
@@ -361,7 +388,7 @@ class _$AppState$Impl implements AppState$ {
 
   @override
   String toString() {
-    return 'AppState(user: $user, supermarketProducts: $supermarketProducts, productsList: $productsList, relatedProducts: $relatedProducts, groceryLists: $groceryLists, selectedGroceryList: $selectedGroceryList, pending: $pending, pageNumber: $pageNumber, contentLoaded: $contentLoaded, cameras: $cameras, selectedCamera: $selectedCamera, picture: $picture)';
+    return 'AppState(user: $user, supermarketProducts: $supermarketProducts, productsList: $productsList, relatedProducts: $relatedProducts, groceryLists: $groceryLists, selectedGroceryList: $selectedGroceryList, pending: $pending, pageNumber: $pageNumber, contentLoaded: $contentLoaded, cameras: $cameras, imageLabel: $imageLabel, selectedCamera: $selectedCamera, picture: $picture)';
   }
 
   @override
@@ -370,17 +397,26 @@ class _$AppState$Impl implements AppState$ {
         (other.runtimeType == runtimeType &&
             other is _$AppState$Impl &&
             (identical(other.user, user) || other.user == user) &&
-            const DeepCollectionEquality().equals(other._supermarketProducts, _supermarketProducts) &&
-            const DeepCollectionEquality().equals(other._productsList, _productsList) &&
-            const DeepCollectionEquality().equals(other._relatedProducts, _relatedProducts) &&
-            const DeepCollectionEquality().equals(other._groceryLists, _groceryLists) &&
+            const DeepCollectionEquality()
+                .equals(other._supermarketProducts, _supermarketProducts) &&
+            const DeepCollectionEquality()
+                .equals(other._productsList, _productsList) &&
+            const DeepCollectionEquality()
+                .equals(other._relatedProducts, _relatedProducts) &&
+            const DeepCollectionEquality()
+                .equals(other._groceryLists, _groceryLists) &&
             (identical(other.selectedGroceryList, selectedGroceryList) ||
                 other.selectedGroceryList == selectedGroceryList) &&
             const DeepCollectionEquality().equals(other._pending, _pending) &&
-            (identical(other.pageNumber, pageNumber) || other.pageNumber == pageNumber) &&
-            (identical(other.contentLoaded, contentLoaded) || other.contentLoaded == contentLoaded) &&
+            (identical(other.pageNumber, pageNumber) ||
+                other.pageNumber == pageNumber) &&
+            (identical(other.contentLoaded, contentLoaded) ||
+                other.contentLoaded == contentLoaded) &&
             const DeepCollectionEquality().equals(other._cameras, _cameras) &&
-            (identical(other.selectedCamera, selectedCamera) || other.selectedCamera == selectedCamera) &&
+            (identical(other.imageLabel, imageLabel) ||
+                other.imageLabel == imageLabel) &&
+            (identical(other.selectedCamera, selectedCamera) ||
+                other.selectedCamera == selectedCamera) &&
             (identical(other.picture, picture) || other.picture == picture));
   }
 
@@ -398,6 +434,7 @@ class _$AppState$Impl implements AppState$ {
       pageNumber,
       contentLoaded,
       const DeepCollectionEquality().hash(_cameras),
+      imageLabel,
       selectedCamera,
       picture);
 
@@ -427,10 +464,13 @@ abstract class AppState$ implements AppState {
       final int pageNumber,
       final bool contentLoaded,
       final List<CameraInfo> cameras,
+      final String imageLabel,
       final CameraInfo? selectedCamera,
-      @JsonKey(fromJson: _xFileFromJson, toJson: _xFileToJson) final XFile? picture}) = _$AppState$Impl;
+      @JsonKey(fromJson: _xFileFromJson, toJson: _xFileToJson)
+      final XFile? picture}) = _$AppState$Impl;
 
-  factory AppState$.fromJson(Map<String, dynamic> json) = _$AppState$Impl.fromJson;
+  factory AppState$.fromJson(Map<String, dynamic> json) =
+      _$AppState$Impl.fromJson;
 
   @override
   AppUser? get user;
@@ -453,13 +493,16 @@ abstract class AppState$ implements AppState {
   @override
   List<CameraInfo> get cameras;
   @override
+  String get imageLabel;
+  @override
   CameraInfo? get selectedCamera;
   @override
   @JsonKey(fromJson: _xFileFromJson, toJson: _xFileToJson)
   XFile? get picture;
   @override
   @JsonKey(ignore: true)
-  _$$AppState$ImplCopyWith<_$AppState$Impl> get copyWith => throw _privateConstructorUsedError;
+  _$$AppState$ImplCopyWith<_$AppState$Impl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 AppUser _$AppUserFromJson(Map<String, dynamic> json) {
@@ -480,13 +523,16 @@ mixin _$AppUser {
 
 /// @nodoc
 abstract class $AppUserCopyWith<$Res> {
-  factory $AppUserCopyWith(AppUser value, $Res Function(AppUser) then) = _$AppUserCopyWithImpl<$Res, AppUser>;
+  factory $AppUserCopyWith(AppUser value, $Res Function(AppUser) then) =
+      _$AppUserCopyWithImpl<$Res, AppUser>;
   @useResult
-  $Res call({String uid, String email, String username, List<String> groceryListIds});
+  $Res call(
+      {String uid, String email, String username, List<String> groceryListIds});
 }
 
 /// @nodoc
-class _$AppUserCopyWithImpl<$Res, $Val extends AppUser> implements $AppUserCopyWith<$Res> {
+class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
+    implements $AppUserCopyWith<$Res> {
   _$AppUserCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -525,17 +571,22 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser> implements $AppUserCopyW
 
 /// @nodoc
 abstract class _$$AppUser$ImplCopyWith<$Res> implements $AppUserCopyWith<$Res> {
-  factory _$$AppUser$ImplCopyWith(_$AppUser$Impl value, $Res Function(_$AppUser$Impl) then) =
+  factory _$$AppUser$ImplCopyWith(
+          _$AppUser$Impl value, $Res Function(_$AppUser$Impl) then) =
       __$$AppUser$ImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String uid, String email, String username, List<String> groceryListIds});
+  $Res call(
+      {String uid, String email, String username, List<String> groceryListIds});
 }
 
 /// @nodoc
-class __$$AppUser$ImplCopyWithImpl<$Res> extends _$AppUserCopyWithImpl<$Res, _$AppUser$Impl>
+class __$$AppUser$ImplCopyWithImpl<$Res>
+    extends _$AppUserCopyWithImpl<$Res, _$AppUser$Impl>
     implements _$$AppUser$ImplCopyWith<$Res> {
-  __$$AppUser$ImplCopyWithImpl(_$AppUser$Impl _value, $Res Function(_$AppUser$Impl) _then) : super(_value, _then);
+  __$$AppUser$ImplCopyWithImpl(
+      _$AppUser$Impl _value, $Res Function(_$AppUser$Impl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -576,7 +627,8 @@ class _$AppUser$Impl implements AppUser$ {
       final List<String> groceryListIds = const <String>[]})
       : _groceryListIds = groceryListIds;
 
-  factory _$AppUser$Impl.fromJson(Map<String, dynamic> json) => _$$AppUser$ImplFromJson(json);
+  factory _$AppUser$Impl.fromJson(Map<String, dynamic> json) =>
+      _$$AppUser$ImplFromJson(json);
 
   @override
   final String uid;
@@ -605,14 +657,16 @@ class _$AppUser$Impl implements AppUser$ {
             other is _$AppUser$Impl &&
             (identical(other.uid, uid) || other.uid == uid) &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.username, username) || other.username == username) &&
-            const DeepCollectionEquality().equals(other._groceryListIds, _groceryListIds));
+            (identical(other.username, username) ||
+                other.username == username) &&
+            const DeepCollectionEquality()
+                .equals(other._groceryListIds, _groceryListIds));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, uid, email, username, const DeepCollectionEquality().hash(_groceryListIds));
+  int get hashCode => Object.hash(runtimeType, uid, email, username,
+      const DeepCollectionEquality().hash(_groceryListIds));
 
   @JsonKey(ignore: true)
   @override
@@ -635,7 +689,8 @@ abstract class AppUser$ implements AppUser {
       required final String username,
       final List<String> groceryListIds}) = _$AppUser$Impl;
 
-  factory AppUser$.fromJson(Map<String, dynamic> json) = _$AppUser$Impl.fromJson;
+  factory AppUser$.fromJson(Map<String, dynamic> json) =
+      _$AppUser$Impl.fromJson;
 
   @override
   String get uid;
@@ -647,7 +702,8 @@ abstract class AppUser$ implements AppUser {
   List<String> get groceryListIds;
   @override
   @JsonKey(ignore: true)
-  _$$AppUser$ImplCopyWith<_$AppUser$Impl> get copyWith => throw _privateConstructorUsedError;
+  _$$AppUser$ImplCopyWith<_$AppUser$Impl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 Auchan _$AuchanFromJson(Map<String, dynamic> json) {
@@ -667,13 +723,15 @@ mixin _$Auchan {
 
 /// @nodoc
 abstract class $AuchanCopyWith<$Res> {
-  factory $AuchanCopyWith(Auchan value, $Res Function(Auchan) then) = _$AuchanCopyWithImpl<$Res, Auchan>;
+  factory $AuchanCopyWith(Auchan value, $Res Function(Auchan) then) =
+      _$AuchanCopyWithImpl<$Res, Auchan>;
   @useResult
   $Res call({String title, String image, double price});
 }
 
 /// @nodoc
-class _$AuchanCopyWithImpl<$Res, $Val extends Auchan> implements $AuchanCopyWith<$Res> {
+class _$AuchanCopyWithImpl<$Res, $Val extends Auchan>
+    implements $AuchanCopyWith<$Res> {
   _$AuchanCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -707,7 +765,8 @@ class _$AuchanCopyWithImpl<$Res, $Val extends Auchan> implements $AuchanCopyWith
 
 /// @nodoc
 abstract class _$$Auchan$ImplCopyWith<$Res> implements $AuchanCopyWith<$Res> {
-  factory _$$Auchan$ImplCopyWith(_$Auchan$Impl value, $Res Function(_$Auchan$Impl) then) =
+  factory _$$Auchan$ImplCopyWith(
+          _$Auchan$Impl value, $Res Function(_$Auchan$Impl) then) =
       __$$Auchan$ImplCopyWithImpl<$Res>;
   @override
   @useResult
@@ -715,9 +774,12 @@ abstract class _$$Auchan$ImplCopyWith<$Res> implements $AuchanCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$Auchan$ImplCopyWithImpl<$Res> extends _$AuchanCopyWithImpl<$Res, _$Auchan$Impl>
+class __$$Auchan$ImplCopyWithImpl<$Res>
+    extends _$AuchanCopyWithImpl<$Res, _$Auchan$Impl>
     implements _$$Auchan$ImplCopyWith<$Res> {
-  __$$Auchan$ImplCopyWithImpl(_$Auchan$Impl _value, $Res Function(_$Auchan$Impl) _then) : super(_value, _then);
+  __$$Auchan$ImplCopyWithImpl(
+      _$Auchan$Impl _value, $Res Function(_$Auchan$Impl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -746,9 +808,11 @@ class __$$Auchan$ImplCopyWithImpl<$Res> extends _$AuchanCopyWithImpl<$Res, _$Auc
 /// @nodoc
 @JsonSerializable()
 class _$Auchan$Impl implements Auchan$ {
-  const _$Auchan$Impl({required this.title, required this.image, required this.price});
+  const _$Auchan$Impl(
+      {required this.title, required this.image, required this.price});
 
-  factory _$Auchan$Impl.fromJson(Map<String, dynamic> json) => _$$Auchan$ImplFromJson(json);
+  factory _$Auchan$Impl.fromJson(Map<String, dynamic> json) =>
+      _$$Auchan$ImplFromJson(json);
 
   @override
   final String title;
@@ -779,7 +843,8 @@ class _$Auchan$Impl implements Auchan$ {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$Auchan$ImplCopyWith<_$Auchan$Impl> get copyWith => __$$Auchan$ImplCopyWithImpl<_$Auchan$Impl>(this, _$identity);
+  _$$Auchan$ImplCopyWith<_$Auchan$Impl> get copyWith =>
+      __$$Auchan$ImplCopyWithImpl<_$Auchan$Impl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -790,8 +855,10 @@ class _$Auchan$Impl implements Auchan$ {
 }
 
 abstract class Auchan$ implements Auchan {
-  const factory Auchan$({required final String title, required final String image, required final double price}) =
-      _$Auchan$Impl;
+  const factory Auchan$(
+      {required final String title,
+      required final String image,
+      required final double price}) = _$Auchan$Impl;
 
   factory Auchan$.fromJson(Map<String, dynamic> json) = _$Auchan$Impl.fromJson;
 
@@ -803,7 +870,8 @@ abstract class Auchan$ implements Auchan {
   double get price;
   @override
   @JsonKey(ignore: true)
-  _$$Auchan$ImplCopyWith<_$Auchan$Impl> get copyWith => throw _privateConstructorUsedError;
+  _$$Auchan$ImplCopyWith<_$Auchan$Impl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 Product _$ProductFromJson(Map<String, dynamic> json) {
@@ -825,13 +893,16 @@ mixin _$Product {
 
 /// @nodoc
 abstract class $ProductCopyWith<$Res> {
-  factory $ProductCopyWith(Product value, $Res Function(Product) then) = _$ProductCopyWithImpl<$Res, Product>;
+  factory $ProductCopyWith(Product value, $Res Function(Product) then) =
+      _$ProductCopyWithImpl<$Res, Product>;
   @useResult
-  $Res call({String productId, String name, double price, String image, int page});
+  $Res call(
+      {String productId, String name, double price, String image, int page});
 }
 
 /// @nodoc
-class _$ProductCopyWithImpl<$Res, $Val extends Product> implements $ProductCopyWith<$Res> {
+class _$ProductCopyWithImpl<$Res, $Val extends Product>
+    implements $ProductCopyWith<$Res> {
   _$ProductCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -875,17 +946,22 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product> implements $ProductCopyW
 
 /// @nodoc
 abstract class _$$Product$ImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
-  factory _$$Product$ImplCopyWith(_$Product$Impl value, $Res Function(_$Product$Impl) then) =
+  factory _$$Product$ImplCopyWith(
+          _$Product$Impl value, $Res Function(_$Product$Impl) then) =
       __$$Product$ImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String productId, String name, double price, String image, int page});
+  $Res call(
+      {String productId, String name, double price, String image, int page});
 }
 
 /// @nodoc
-class __$$Product$ImplCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res, _$Product$Impl>
+class __$$Product$ImplCopyWithImpl<$Res>
+    extends _$ProductCopyWithImpl<$Res, _$Product$Impl>
     implements _$$Product$ImplCopyWith<$Res> {
-  __$$Product$ImplCopyWithImpl(_$Product$Impl _value, $Res Function(_$Product$Impl) _then) : super(_value, _then);
+  __$$Product$ImplCopyWithImpl(
+      _$Product$Impl _value, $Res Function(_$Product$Impl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -925,9 +1001,14 @@ class __$$Product$ImplCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res, _$P
 @JsonSerializable()
 class _$Product$Impl implements Product$ {
   const _$Product$Impl(
-      {required this.productId, required this.name, required this.price, this.image = '', this.page = 1});
+      {required this.productId,
+      required this.name,
+      required this.price,
+      this.image = '',
+      this.page = 1});
 
-  factory _$Product$Impl.fromJson(Map<String, dynamic> json) => _$$Product$ImplFromJson(json);
+  factory _$Product$Impl.fromJson(Map<String, dynamic> json) =>
+      _$$Product$ImplFromJson(json);
 
   @override
   final String productId;
@@ -952,7 +1033,8 @@ class _$Product$Impl implements Product$ {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$Product$Impl &&
-            (identical(other.productId, productId) || other.productId == productId) &&
+            (identical(other.productId, productId) ||
+                other.productId == productId) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.price, price) || other.price == price) &&
             (identical(other.image, image) || other.image == image) &&
@@ -961,7 +1043,8 @@ class _$Product$Impl implements Product$ {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, productId, name, price, image, page);
+  int get hashCode =>
+      Object.hash(runtimeType, productId, name, price, image, page);
 
   @JsonKey(ignore: true)
   @override
@@ -985,7 +1068,8 @@ abstract class Product$ implements Product {
       final String image,
       final int page}) = _$Product$Impl;
 
-  factory Product$.fromJson(Map<String, dynamic> json) = _$Product$Impl.fromJson;
+  factory Product$.fromJson(Map<String, dynamic> json) =
+      _$Product$Impl.fromJson;
 
   @override
   String get productId;
@@ -999,7 +1083,8 @@ abstract class Product$ implements Product {
   int get page;
   @override
   @JsonKey(ignore: true)
-  _$$Product$ImplCopyWith<_$Product$Impl> get copyWith => throw _privateConstructorUsedError;
+  _$$Product$ImplCopyWith<_$Product$Impl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 GroceryList _$GroceryListFromJson(Map<String, dynamic> json) {
@@ -1016,19 +1101,27 @@ mixin _$GroceryList {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $GroceryListCopyWith<GroceryList> get copyWith => throw _privateConstructorUsedError;
+  $GroceryListCopyWith<GroceryList> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $GroceryListCopyWith<$Res> {
-  factory $GroceryListCopyWith(GroceryList value, $Res Function(GroceryList) then) =
+  factory $GroceryListCopyWith(
+          GroceryList value, $Res Function(GroceryList) then) =
       _$GroceryListCopyWithImpl<$Res, GroceryList>;
   @useResult
-  $Res call({String groceryListId, String title, String selectedIcon, String description, List<String> productIds});
+  $Res call(
+      {String groceryListId,
+      String title,
+      String selectedIcon,
+      String description,
+      List<String> productIds});
 }
 
 /// @nodoc
-class _$GroceryListCopyWithImpl<$Res, $Val extends GroceryList> implements $GroceryListCopyWith<$Res> {
+class _$GroceryListCopyWithImpl<$Res, $Val extends GroceryList>
+    implements $GroceryListCopyWith<$Res> {
   _$GroceryListCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -1071,18 +1164,27 @@ class _$GroceryListCopyWithImpl<$Res, $Val extends GroceryList> implements $Groc
 }
 
 /// @nodoc
-abstract class _$$GroceryList$ImplCopyWith<$Res> implements $GroceryListCopyWith<$Res> {
-  factory _$$GroceryList$ImplCopyWith(_$GroceryList$Impl value, $Res Function(_$GroceryList$Impl) then) =
+abstract class _$$GroceryList$ImplCopyWith<$Res>
+    implements $GroceryListCopyWith<$Res> {
+  factory _$$GroceryList$ImplCopyWith(
+          _$GroceryList$Impl value, $Res Function(_$GroceryList$Impl) then) =
       __$$GroceryList$ImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String groceryListId, String title, String selectedIcon, String description, List<String> productIds});
+  $Res call(
+      {String groceryListId,
+      String title,
+      String selectedIcon,
+      String description,
+      List<String> productIds});
 }
 
 /// @nodoc
-class __$$GroceryList$ImplCopyWithImpl<$Res> extends _$GroceryListCopyWithImpl<$Res, _$GroceryList$Impl>
+class __$$GroceryList$ImplCopyWithImpl<$Res>
+    extends _$GroceryListCopyWithImpl<$Res, _$GroceryList$Impl>
     implements _$$GroceryList$ImplCopyWith<$Res> {
-  __$$GroceryList$ImplCopyWithImpl(_$GroceryList$Impl _value, $Res Function(_$GroceryList$Impl) _then)
+  __$$GroceryList$ImplCopyWithImpl(
+      _$GroceryList$Impl _value, $Res Function(_$GroceryList$Impl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1130,7 +1232,8 @@ class _$GroceryList$Impl implements GroceryList$ {
       final List<String> productIds = const <String>[]})
       : _productIds = productIds;
 
-  factory _$GroceryList$Impl.fromJson(Map<String, dynamic> json) => _$$GroceryList$ImplFromJson(json);
+  factory _$GroceryList$Impl.fromJson(Map<String, dynamic> json) =>
+      _$$GroceryList$ImplFromJson(json);
 
   @override
   final String groceryListId;
@@ -1160,17 +1263,26 @@ class _$GroceryList$Impl implements GroceryList$ {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GroceryList$Impl &&
-            (identical(other.groceryListId, groceryListId) || other.groceryListId == groceryListId) &&
+            (identical(other.groceryListId, groceryListId) ||
+                other.groceryListId == groceryListId) &&
             (identical(other.title, title) || other.title == title) &&
-            (identical(other.selectedIcon, selectedIcon) || other.selectedIcon == selectedIcon) &&
-            (identical(other.description, description) || other.description == description) &&
-            const DeepCollectionEquality().equals(other._productIds, _productIds));
+            (identical(other.selectedIcon, selectedIcon) ||
+                other.selectedIcon == selectedIcon) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            const DeepCollectionEquality()
+                .equals(other._productIds, _productIds));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, groceryListId, title, selectedIcon, description, const DeepCollectionEquality().hash(_productIds));
+      runtimeType,
+      groceryListId,
+      title,
+      selectedIcon,
+      description,
+      const DeepCollectionEquality().hash(_productIds));
 
   @JsonKey(ignore: true)
   @override
@@ -1194,7 +1306,8 @@ abstract class GroceryList$ implements GroceryList {
       final String description,
       final List<String> productIds}) = _$GroceryList$Impl;
 
-  factory GroceryList$.fromJson(Map<String, dynamic> json) = _$GroceryList$Impl.fromJson;
+  factory GroceryList$.fromJson(Map<String, dynamic> json) =
+      _$GroceryList$Impl.fromJson;
 
   @override
   String get groceryListId;
@@ -1208,7 +1321,8 @@ abstract class GroceryList$ implements GroceryList {
   List<String> get productIds;
   @override
   @JsonKey(ignore: true)
-  _$$GroceryList$ImplCopyWith<_$GroceryList$Impl> get copyWith => throw _privateConstructorUsedError;
+  _$$GroceryList$ImplCopyWith<_$GroceryList$Impl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 CameraInfo _$CameraInfoFromJson(Map<String, dynamic> json) {
@@ -1223,19 +1337,23 @@ mixin _$CameraInfo {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $CameraInfoCopyWith<CameraInfo> get copyWith => throw _privateConstructorUsedError;
+  $CameraInfoCopyWith<CameraInfo> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $CameraInfoCopyWith<$Res> {
-  factory $CameraInfoCopyWith(CameraInfo value, $Res Function(CameraInfo) then) =
+  factory $CameraInfoCopyWith(
+          CameraInfo value, $Res Function(CameraInfo) then) =
       _$CameraInfoCopyWithImpl<$Res, CameraInfo>;
   @useResult
-  $Res call({String name, CameraLensDirection lensDirection, int sensorOrientation});
+  $Res call(
+      {String name, CameraLensDirection lensDirection, int sensorOrientation});
 }
 
 /// @nodoc
-class _$CameraInfoCopyWithImpl<$Res, $Val extends CameraInfo> implements $CameraInfoCopyWith<$Res> {
+class _$CameraInfoCopyWithImpl<$Res, $Val extends CameraInfo>
+    implements $CameraInfoCopyWith<$Res> {
   _$CameraInfoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -1268,18 +1386,23 @@ class _$CameraInfoCopyWithImpl<$Res, $Val extends CameraInfo> implements $Camera
 }
 
 /// @nodoc
-abstract class _$$CameraInfo$ImplCopyWith<$Res> implements $CameraInfoCopyWith<$Res> {
-  factory _$$CameraInfo$ImplCopyWith(_$CameraInfo$Impl value, $Res Function(_$CameraInfo$Impl) then) =
+abstract class _$$CameraInfo$ImplCopyWith<$Res>
+    implements $CameraInfoCopyWith<$Res> {
+  factory _$$CameraInfo$ImplCopyWith(
+          _$CameraInfo$Impl value, $Res Function(_$CameraInfo$Impl) then) =
       __$$CameraInfo$ImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, CameraLensDirection lensDirection, int sensorOrientation});
+  $Res call(
+      {String name, CameraLensDirection lensDirection, int sensorOrientation});
 }
 
 /// @nodoc
-class __$$CameraInfo$ImplCopyWithImpl<$Res> extends _$CameraInfoCopyWithImpl<$Res, _$CameraInfo$Impl>
+class __$$CameraInfo$ImplCopyWithImpl<$Res>
+    extends _$CameraInfoCopyWithImpl<$Res, _$CameraInfo$Impl>
     implements _$$CameraInfo$ImplCopyWith<$Res> {
-  __$$CameraInfo$ImplCopyWithImpl(_$CameraInfo$Impl _value, $Res Function(_$CameraInfo$Impl) _then)
+  __$$CameraInfo$ImplCopyWithImpl(
+      _$CameraInfo$Impl _value, $Res Function(_$CameraInfo$Impl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1309,9 +1432,13 @@ class __$$CameraInfo$ImplCopyWithImpl<$Res> extends _$CameraInfoCopyWithImpl<$Re
 /// @nodoc
 @JsonSerializable()
 class _$CameraInfo$Impl implements CameraInfo$ {
-  const _$CameraInfo$Impl({required this.name, required this.lensDirection, required this.sensorOrientation});
+  const _$CameraInfo$Impl(
+      {required this.name,
+      required this.lensDirection,
+      required this.sensorOrientation});
 
-  factory _$CameraInfo$Impl.fromJson(Map<String, dynamic> json) => _$$CameraInfo$ImplFromJson(json);
+  factory _$CameraInfo$Impl.fromJson(Map<String, dynamic> json) =>
+      _$$CameraInfo$ImplFromJson(json);
 
   @override
   final String name;
@@ -1331,13 +1458,16 @@ class _$CameraInfo$Impl implements CameraInfo$ {
         (other.runtimeType == runtimeType &&
             other is _$CameraInfo$Impl &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.lensDirection, lensDirection) || other.lensDirection == lensDirection) &&
-            (identical(other.sensorOrientation, sensorOrientation) || other.sensorOrientation == sensorOrientation));
+            (identical(other.lensDirection, lensDirection) ||
+                other.lensDirection == lensDirection) &&
+            (identical(other.sensorOrientation, sensorOrientation) ||
+                other.sensorOrientation == sensorOrientation));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, lensDirection, sensorOrientation);
+  int get hashCode =>
+      Object.hash(runtimeType, name, lensDirection, sensorOrientation);
 
   @JsonKey(ignore: true)
   @override
@@ -1359,7 +1489,8 @@ abstract class CameraInfo$ implements CameraInfo {
       required final CameraLensDirection lensDirection,
       required final int sensorOrientation}) = _$CameraInfo$Impl;
 
-  factory CameraInfo$.fromJson(Map<String, dynamic> json) = _$CameraInfo$Impl.fromJson;
+  factory CameraInfo$.fromJson(Map<String, dynamic> json) =
+      _$CameraInfo$Impl.fromJson;
 
   @override
   String get name;
@@ -1369,5 +1500,6 @@ abstract class CameraInfo$ implements CameraInfo {
   int get sensorOrientation;
   @override
   @JsonKey(ignore: true)
-  _$$CameraInfo$ImplCopyWith<_$CameraInfo$Impl> get copyWith => throw _privateConstructorUsedError;
+  _$$CameraInfo$ImplCopyWith<_$CameraInfo$Impl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

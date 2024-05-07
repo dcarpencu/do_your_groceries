@@ -33,6 +33,7 @@ class AppEpic {
       TypedEpic<AppState, GetCamerasStart>(_getCamerasStart).call,
       TypedEpic<AppState, InitializeControllerStart>(_initializeControllerStart).call,
       TypedEpic<AppState, TakePictureStart>(_takePictureStart).call,
+      TypedEpic<AppState, GetImageLabelsStart>(_getImageLabelsStart).call,
     ]);
   }
 
@@ -110,12 +111,12 @@ class AppEpic {
       return Stream<void>.value(null)
           .asyncMap(
             (_) => _productsApi.createProduct(
-              groceryListId: store.state.selectedGroceryList!,
-              name: action.name,
-              price: action.price,
-              uid: store.state.user!.uid,
-            ),
-          )
+          groceryListId: store.state.selectedGroceryList!,
+          name: action.name,
+          price: action.price,
+          uid: store.state.user!.uid,
+        ),
+      )
           .mapTo(const CreateProduct.successful())
           .onErrorReturnWith(CreateProduct.error);
     });
@@ -126,11 +127,11 @@ class AppEpic {
       return Stream<void>.value(null)
           .asyncMap(
             (_) => _authApi.createGroceryList(
-              title: action.title,
-              description: action.description,
-              selectedIcon: action.selectedIcon,
-            ),
-          )
+          title: action.title,
+          description: action.description,
+          selectedIcon: action.selectedIcon,
+        ),
+      )
           .map<CreateGroceryList>(CreateGroceryList.successful)
           .onErrorReturnWith(CreateGroceryList.error);
     });
@@ -159,17 +160,17 @@ class AppEpic {
       return Stream<void>.value(null)
           .asyncMap(
             (_) => _superMarketsApi.getSuperMarketProducts(
-              supermarketName: superMarketName,
-              category: category,
-              pageNumber: store.state.pageNumber,
-            ),
-          )
+          supermarketName: superMarketName,
+          category: category,
+          pageNumber: store.state.pageNumber,
+        ),
+      )
           .map<GetSuperMarketProducts>((List<Product> products) {
-            return GetSuperMarketProducts.successful(products, pendingId);
-          })
+        return GetSuperMarketProducts.successful(products, pendingId);
+      })
           .onErrorReturnWith(
             (Object error, StackTrace stackTrace) => GetSuperMarketProducts.error(error, stackTrace, pendingId),
-          )
+      )
           .doOnData(onResult);
     });
   }
@@ -184,20 +185,20 @@ class AppEpic {
   }
 
   Stream<AppAction> _addProductToGroceryListStart(
-    Stream<AddProductToGroceryListStart> actions,
-    EpicStore<AppState> store,
-  ) {
+      Stream<AddProductToGroceryListStart> actions,
+      EpicStore<AppState> store,
+      ) {
     return actions.flatMap((AddProductToGroceryListStart action) {
       return Stream<void>.value(null)
           .asyncMap(
             (_) => _productsApi.addProductToGroceryList(
-              action.product,
-              action.groceryListId,
-              marketName: action.marketName,
-              category: action.category,
-              action.page,
-            ),
-          )
+          action.product,
+          action.groceryListId,
+          marketName: action.marketName,
+          category: action.category,
+          action.page,
+        ),
+      )
           .mapTo(const AddProductToGroceryList.successful())
           .onErrorReturnWith(AddProductToGroceryList.error);
     });
@@ -209,7 +210,7 @@ class AppEpic {
       return Stream<void>.value(null)
           .asyncMap(
             (_) => _cameraApi.requestStoragePermission(),
-          )
+      )
           .mapTo(const RequestStoragePermission.successful())
           .onErrorReturnWith(RequestStoragePermission.error);
     });
@@ -220,7 +221,7 @@ class AppEpic {
       return Stream<void>.value(null)
           .asyncMap(
             (_) => _cameraApi.getCameras(),
-          )
+      )
           .map<GetCameras>(GetCameras.successful)
           .onErrorReturnWith(GetCameras.error);
     });
@@ -230,10 +231,20 @@ class AppEpic {
     return actions.flatMap((TakePictureStart action) {
       return Stream<void>.value(null)
           .asyncMap((_) => _cameraApi.takePicture(
-                controller: action.controller,
-              ))
+        controller: action.controller,
+      ))
           .map<TakePicture>(TakePicture.successful)
           .onErrorReturnWith(TakePicture.error);
+    });
+  }
+
+  Stream<AppAction> _getImageLabelsStart(Stream<GetImageLabelsStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((GetImageLabelsStart action) {
+      return Stream<void>.value(null)
+          .asyncMap((_) => _cameraApi.getImageLabels(imagePath: action.imagePath,
+      ),)
+          .map<GetImageLabels>(GetImageLabels.successful)
+          .onErrorReturnWith(GetImageLabels.error);
     });
   }
 }

@@ -1,6 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:flutter/foundation.dart';
+import 'package:google_mlkit_image_labeling/google_mlkit_image_labeling.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class CameraApi {
@@ -47,10 +48,23 @@ class CameraApi {
     return picture;
   }
 
-  // Future<void> loadModel() async {
-  //   await Tflite.loadModel(
-  //     model: "assets/model_unquant.tflite",
-  //     labels: "assets/labels.txt",
-  //   );
-  // }
+  Future<String> getImageLabels({required String imagePath}) async {
+    final InputImage inputImage = InputImage.fromFilePath(imagePath);
+
+    print('\n\n\n\n\n INPUT IMAGE: $inputImage \n\n\n IMAGE PATH: $imagePath \n\n\n');
+    final ImageLabeler imageLabeler =
+    ImageLabeler(options: ImageLabelerOptions(confidenceThreshold: 0.5));
+    final List<ImageLabel> labels = await imageLabeler.processImage(inputImage);
+    final StringBuffer sb = StringBuffer();
+    for (final ImageLabel imgLabel in labels) {
+      final String lblText = imgLabel.label;
+      final double confidence = imgLabel.confidence;
+      sb..write(lblText)
+        ..write(' : ')
+        ..write((confidence * 100).toStringAsFixed(2))
+        ..write('%\n');
+    }
+    await imageLabeler.close();
+    return sb.toString();
+  }
 }

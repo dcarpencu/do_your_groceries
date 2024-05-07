@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:camera/camera.dart';
 import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/containers/pending_container.dart';
@@ -24,9 +26,7 @@ class _CameraAppState extends State<CameraApp> {
   void initState() {
     super.initState();
     _store = StoreProvider.of<AppState>(context, listen: false);
-    _store
-      ..dispatch(const RequestStoragePermissionStart())
-      ..dispatch(SetSelectedCamera(widget.cameras[0]));
+    _store..dispatch(const RequestStoragePermissionStart())..dispatch(SetSelectedCamera(widget.cameras[0]));
 
     controller = CameraController(CameraInfo.toCameraDescription(_store.state.selectedCamera!), ResolutionPreset.max);
     _store.dispatch(InitializeControllerStart(controller: controller));
@@ -64,29 +64,66 @@ class _CameraAppState extends State<CameraApp> {
           return Column(
             children: <Widget>[
               Container(
-                  padding: const EdgeInsets.all(8),
-                  child: ClipRRect(borderRadius: BorderRadius.circular(16), child: CameraPreview(controller))),
+                padding: const EdgeInsets.all(8),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: CameraPreview(controller),
+                ),
+              ),
               const SizedBox(height: 64,),
               FloatingActionButton(
                 onPressed: () {
-                  _store.dispatch(TakePictureStart(controller: controller));
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute<dynamic>(
-                      builder: (BuildContext context) => ImageViewPage(
-                        store: _store,
-                      ),
-                    ),
-                  );
+                  _store.dispatch(TakePictureStart(controller: controller))
+                      .then(Navigator.of(context).push(
+                      MaterialPageRoute<Widget>(
+                          builder: (BuildContext context) => ImageViewPage(store: _store))));
                 },
                 backgroundColor: Colors.white70,
                 foregroundColor: Colors.black,
                 child: const Icon(Icons.camera),
               ),
+              if (pending.contains(TakePicture.pendingKey) || _store.state.picture == null)
+                const Text('muie'),
             ],
           );
         },
       ),
     );
   }
+
+  void _showModalBottomSheet(BuildContext context) {
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      builder: (BuildContext bc) {
+        return Container(
+          height: MediaQuery
+              .of(context)
+              .size
+              .height * 0.75,
+          padding: const EdgeInsets.only(top: 10, left: 5, right: 5),
+          child: Column(
+            children: <Widget>[
+              ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Image.file(
+                  File(_store.state.picture!.path),
+                ),
+              ),
+              const Expanded(
+                child: Text('CEVA'),
+              )
+            ],
+          ),
+        );
+      },
+    );
+  }
 }
+
+
+
+
