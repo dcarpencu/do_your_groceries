@@ -85,9 +85,10 @@ class _UserProductsPageState extends State<UserProductsPage> {
               _store.dispatch(const GetCamerasStart());
               Navigator.of(context).push(
                 MaterialPageRoute<Widget>(
-                    builder: (BuildContext context) => CameraApp(
-                          cameras: _store.state.cameras,
-                        )),
+                  builder: (BuildContext context) => CameraApp(
+                    cameras: _store.state.cameras,
+                  ),
+                ),
               );
             },
             tooltip: 'Camera',

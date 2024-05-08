@@ -12,7 +12,7 @@ class TakePicture with _$TakePicture implements AppAction {
 
   @Implements<ActionDone>()
   const factory TakePicture.successful(
-    XFile picture, [
+    TakenPicture takenPicture, [
     @Default(_kTakePicturePendingId) String pendingId,
   ]) = TakePictureSuccessful;
 

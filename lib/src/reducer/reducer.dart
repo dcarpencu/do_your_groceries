@@ -34,7 +34,7 @@ Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   TypedReducer<AppState, SetSelectedList>(_setSelectedList).call,
   TypedReducer<AppState, SetUnselectedList>(_setUnselectedList).call,
   TypedReducer<AppState, SetSelectedCamera>(_setSelectedCamera).call,
-  TypedReducer<AppState, SetPictureToNull>(_setPictureToNull).call,
+  // TypedReducer<AppState, SetPictureToNull>(_setPictureToNull).call,
   TypedReducer<AppState, SetMarketProductsToEmpty>(_setMarketProductsToEmpty).call,
   TypedReducer<AppState, OnProductsEvent>(_onProductsEvent).call,
   TypedReducer<AppState, CreateGroceryListSuccessful>(_createGroceryListSuccessful).call,
@@ -43,7 +43,7 @@ Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   TypedReducer<AppState, ActionDone>(_actionDone).call,
   TypedReducer<AppState, GetCamerasSuccessful>(_getCamerasSuccessful).call,
   TypedReducer<AppState, TakePictureSuccessful>(_takePictureSuccessful).call,
-  TypedReducer<AppState, GetImageLabelsSuccessful>(_getImageLabelsSuccessful).call,
+  // TypedReducer<AppState, GetImageLabelsSuccessful>(_getImageLabelsSuccessful).call,
 ]);
 
 AppState _setMarketProductsToEmpty(AppState state, SetMarketProductsToEmpty action) {
@@ -89,13 +89,15 @@ AppState _createGroceryListSuccessful(AppState state, CreateGroceryListSuccessfu
 AppState _getSuperMarketProductsSuccessful(AppState state, GetSuperMarketProductsSuccessful action) {
   if (action.supermarketProducts.isNotEmpty) {
     return state.copyWith(
-        pageNumber: state.pageNumber + 1,
-        supermarketProducts: <Product>[...state.supermarketProducts, ...action.supermarketProducts]);
+      pageNumber: state.pageNumber + 1,
+      supermarketProducts: <Product>[...state.supermarketProducts, ...action.supermarketProducts],
+    );
   } else {
     return state.copyWith(
-        pageNumber: state.pageNumber + 1,
-        supermarketProducts: <Product>[...state.supermarketProducts, ...action.supermarketProducts],
-        contentLoaded: true);
+      pageNumber: state.pageNumber + 1,
+      supermarketProducts: <Product>[...state.supermarketProducts, ...action.supermarketProducts],
+      contentLoaded: true,
+    );
   }
 }
 
@@ -116,13 +118,13 @@ AppState _setSelectedCamera(AppState state, SetSelectedCamera action) {
 }
 
 AppState _takePictureSuccessful(AppState state, TakePictureSuccessful action) {
-  return state.copyWith(picture: action.picture);
+  return state.copyWith(takenPicture: action.takenPicture);
 }
 
-AppState _setPictureToNull(AppState state, SetPictureToNull action) {
-  return state.copyWith(picture: null);
-}
+// AppState _setPictureToNull(AppState state, SetPictureToNull action) {
+//   return state.copyWith(picture: null);
+// }
 
-AppState _getImageLabelsSuccessful(AppState state, GetImageLabelsSuccessful action) {
-  return state.copyWith(imageLabel: action.imageLabel);
-}
+// AppState _getImageLabelsSuccessful(AppState state, GetImageLabelsSuccessful action) {
+//   return state.copyWith(imageLabel: action.imageLabel);
+// }

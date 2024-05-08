@@ -26,7 +26,9 @@ class _CameraAppState extends State<CameraApp> {
   void initState() {
     super.initState();
     _store = StoreProvider.of<AppState>(context, listen: false);
-    _store..dispatch(const RequestStoragePermissionStart())..dispatch(SetSelectedCamera(widget.cameras[0]));
+    _store
+      ..dispatch(const RequestStoragePermissionStart())
+      ..dispatch(SetSelectedCamera(widget.cameras[0]));
 
     controller = CameraController(CameraInfo.toCameraDescription(_store.state.selectedCamera!), ResolutionPreset.max);
     _store.dispatch(InitializeControllerStart(controller: controller));
@@ -70,20 +72,48 @@ class _CameraAppState extends State<CameraApp> {
                   child: CameraPreview(controller),
                 ),
               ),
-              const SizedBox(height: 64,),
+              const SizedBox(
+                height: 64,
+              ),
               FloatingActionButton(
-                onPressed: () {
-                  _store.dispatch(TakePictureStart(controller: controller))
-                      .then(Navigator.of(context).push(
-                      MaterialPageRoute<Widget>(
-                          builder: (BuildContext context) => ImageViewPage(store: _store))));
+                onPressed: () async {
+                  await _store.dispatch(TakePictureStart(controller: controller));
+
+                  print('\n\n\n TAKE PICTURE \n\n\n');
+
+                  // if (pending.contains(TakePicture.pendingKey)) {
+                  //   print('\n\n\n\n\n\n\n ISLOADING \n\n\n\n');
+                  //   _showModalBottomSheetLoading;
+                  //   _showModalBottomSheet(context);
+                  // }
+                  if (!context.mounted) {
+                    return;
+                  }
+                  await Navigator.of(context).push(
+                    MaterialPageRoute<Widget>(
+                      builder: (BuildContext context) => ImageViewPage(store: _store),
+                    ),
+                  );
                 },
                 backgroundColor: Colors.white70,
                 foregroundColor: Colors.black,
                 child: const Icon(Icons.camera),
               ),
-              if (pending.contains(TakePicture.pendingKey) || _store.state.picture == null)
-                const Text('muie'),
+
+              //_showModalBottomSheet(context),
+              //_showModalBottomSheet(context),
+              // Show the modal bottom sheet based on the future
+              // FutureBuilder<void>(
+              //   future: _store.state.takenPicture != null ? Future<void>.value() : Future<void>.delayed(const Duration(seconds: 1)),
+              //   builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
+              //     if (snapshot.connectionState == ConnectionState.done) {
+              //       return _showModalBottomSheet(context);
+              //     } else {
+              //       // You can return a loading indicator or just return an empty container
+              //       return Container();
+              //     }
+              //   },
+              // ),
             ],
           );
         },
@@ -100,30 +130,37 @@ class _CameraAppState extends State<CameraApp> {
       ),
       builder: (BuildContext bc) {
         return Container(
-          height: MediaQuery
-              .of(context)
-              .size
-              .height * 0.75,
+          height: MediaQuery.of(context).size.height * 0.75,
           padding: const EdgeInsets.only(top: 10, left: 5, right: 5),
           child: Column(
             children: <Widget>[
               ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Image.file(
-                  File(_store.state.picture!.path),
+                  File(_store.state.takenPicture!.picture!.path),
                 ),
               ),
               const Expanded(
                 child: Text('CEVA'),
-              )
+              ),
             ],
           ),
         );
       },
     );
   }
+
+  Widget _showModalBottomSheetLoading(BuildContext context) {
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      builder: (BuildContext bc) {
+        return const CircularProgressIndicator();
+      },
+    );
+    return const Text('pula');
+  }
 }
-
-
-
-

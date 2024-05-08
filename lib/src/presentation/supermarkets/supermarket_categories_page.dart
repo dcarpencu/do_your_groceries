@@ -1,6 +1,7 @@
 import 'package:do_you_groceries/src/data/market_links.dart';
 import 'package:do_you_groceries/src/presentation/supermarkets/search_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class SupermarketCategoriesPage extends StatelessWidget {
   const SupermarketCategoriesPage({required this.supermarketName, super.key});
@@ -17,44 +18,47 @@ class SupermarketCategoriesPage extends StatelessWidget {
         itemCount: supermarketCategoryLabels.length,
         padding: const EdgeInsets.all(8),
         itemBuilder: (BuildContext context, int index) {
-          return Card(
-            clipBehavior: Clip.antiAlias,
-            child: Column(
-              children: <Widget>[
-                ListTile(
-                  leading: const Icon(Icons.apple),
-                  title: Text(supermarketCategoryLabels[index]),
-                  subtitle: Text(
-                    'Info',
-                    style: TextStyle(color: Colors.black.withOpacity(0.6)),
+          final String item = supermarketCategroyIcons[index];
+          return ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.transparent,
+              shadowColor: Colors.transparent,
+              elevation: 3,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute<Widget>(
+                  builder: (BuildContext context) => SearchProductsPage(
+                    supermarketName,
+                    category: supermarketCategories[index],
+                    supermarketCategoryLabel: supermarketCategoryLabels[index],
+                    supermarketCategory: supermarketCategories[index],
                   ),
                 ),
-                Column(
-                  // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute<Widget>(
-                            builder: (BuildContext context) => SearchProductsPage(
-                              supermarketName,
-                              category: supermarketCategories[index],
-                              supermarketCategoryLabel: supermarketCategoryLabels[index],
-                              supermarketCategory: supermarketCategories[index],
-                            ),
-                          ),
-                        );
-                      },
-                      child: const Text('Check products'),
+              );
+            },
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              // crossAxisAlignment: CrossAxisAlignment.baseline,
+              children: <Widget>[
+                SizedBox(
+                  width: 100,
+                  height: 100,
+                  child: SvgPicture.asset(
+                    'assets/categoryIcons/$item',
+                  ),
+                ),
+                Align(
+                  child: Text(
+                    supermarketCategoryLabels[index],
+                    style: const TextStyle(
+                      fontSize: 16,
                     ),
-                    TextButton(
-                      onPressed: () {
-                        // Perform some action
-                      },
-                      child: const Text('Add product'),
-                    ),
-                  ],
+                  ),
                 ),
               ],
             ),

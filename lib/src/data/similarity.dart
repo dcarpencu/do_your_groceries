@@ -6,7 +6,7 @@ int levenshteinDistance(String first, String second) {
     throw ArgumentError('Inputs must not have length 0');
   }
 
-  final List<List<int>> matrix = List.generate(firstLen + 1, (_) => List<int>.filled(secondLen + 1, 0));
+  final List<List<int>> matrix = List<List<int>>.generate(firstLen + 1, (_) => List<int>.filled(secondLen + 1, 0));
 
   for (int i = 0; i <= firstLen; i++) {
     matrix[i][0] = i;

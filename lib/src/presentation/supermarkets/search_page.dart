@@ -9,8 +9,13 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
 class SearchProductsPage extends StatefulWidget {
-  const SearchProductsPage(this.marketName,
-      {required this.category, required this.supermarketCategoryLabel, required this.supermarketCategory, super.key});
+  const SearchProductsPage(
+    this.marketName, {
+    required this.category,
+    required this.supermarketCategoryLabel,
+    required this.supermarketCategory,
+    super.key,
+  });
 
   final String marketName;
   final String category;

@@ -72,8 +72,13 @@ class ProductsApi {
     await listRef.update(listData);
   }
 
-  Future<void> addProductToGroceryList(Product product, String groceryListId, int page,
-      {required String marketName, required String category,}) async {
+  Future<void> addProductToGroceryList(
+    Product product,
+    String groceryListId,
+    int page, {
+    required String marketName,
+    required String category,
+  }) async {
     final DocumentReference<Map<String, dynamic>> listRef = _firestore.collection('lists').doc(groceryListId);
     final DocumentSnapshot<Map<String, dynamic>> snapshot = await listRef.get();
 

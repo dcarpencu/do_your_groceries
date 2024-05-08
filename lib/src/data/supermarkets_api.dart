@@ -11,8 +11,11 @@ class SuperMarketsApi {
   final Client _client;
   final FirebaseFirestore _firestore;
 
-  Future<List<Product>> getSuperMarketProducts(
-      {required String supermarketName, required String category, required int pageNumber,}) async {
+  Future<List<Product>> getSuperMarketProducts({
+    required String supermarketName,
+    required String category,
+    required int pageNumber,
+  }) async {
     final QuerySnapshot<Map<String, dynamic>> querySnapshot = await _firestore
         .collection(supermarketName)
         .doc('categories')
@@ -77,7 +80,12 @@ class SuperMarketsApi {
           final Element? title = foodInfo?.querySelector('div.title');
 
           final Product product = Product(
-              productId: ref.id, name: title!.text, price: priceD, image: image!.attributes['src']!, page: pgCt,);
+            productId: ref.id,
+            name: title!.text,
+            price: priceD,
+            image: image!.attributes['src']!,
+            page: pgCt,
+          );
           await ref.set(product.toJson());
         }
       }

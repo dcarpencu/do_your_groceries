@@ -1,354 +1,183 @@
-import 'package:flutter/material.dart';
-
-const LinearGradient _shimmerGradient = LinearGradient(
-  colors: <Color>[
-    Color(0xFFEBEBF4),
-    Color(0xFFF4F4F4),
-    Color(0xFFEBEBF4),
-  ],
-  stops: <double>[
-    0.1,
-    0.3,
-    0.4,
-  ],
-  begin: Alignment(-1, -0.3),
-  end: Alignment(1, 0.3),
-);
-
-class ExampleUiLoadingAnimation extends StatefulWidget {
-  const ExampleUiLoadingAnimation({
-    super.key,
-  });
-
-  @override
-  State<ExampleUiLoadingAnimation> createState() => _ExampleUiLoadingAnimationState();
-}
-
-class _ExampleUiLoadingAnimationState extends State<ExampleUiLoadingAnimation> {
-  bool _isLoading = true;
-
-  void _toggleLoading() {
-    setState(() {
-      _isLoading = !_isLoading;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Shimmer(
-        linearGradient: _shimmerGradient,
-        child: ListView.builder(
-          physics: _isLoading ? const NeverScrollableScrollPhysics() : null,
-          itemBuilder: (BuildContext context, int index) {
-            return _buildListItem();
-          },
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _toggleLoading,
-        child: Icon(
-          _isLoading ? Icons.hourglass_full : Icons.hourglass_bottom,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildTopRowList() {
-    return SizedBox(
-      height: 72,
-      child: ListView(
-        physics: _isLoading ? const NeverScrollableScrollPhysics() : null,
-        scrollDirection: Axis.horizontal,
-        shrinkWrap: true,
-        children: <Widget>[
-          const SizedBox(width: 16),
-          _buildTopRowItem(),
-          _buildTopRowItem(),
-          _buildTopRowItem(),
-          _buildTopRowItem(),
-          _buildTopRowItem(),
-          _buildTopRowItem(),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildTopRowItem() {
-    return ShimmerLoading(
-      isLoading: _isLoading,
-      child: const CircleListItem(),
-    );
-  }
-
-  Widget _buildListItem() {
-    return ShimmerLoading(
-      isLoading: _isLoading,
-      child: CardListItem(
-        isLoading: _isLoading,
-      ),
-    );
-  }
-}
-
-class Shimmer extends StatefulWidget {
-  const Shimmer({
-    required this.linearGradient,
-    super.key,
-    this.child,
-  });
-  static ShimmerState? of(BuildContext context) {
-    return context.findAncestorStateOfType<ShimmerState>();
-  }
-
-  final LinearGradient linearGradient;
-  final Widget? child;
-
-  @override
-  ShimmerState createState() => ShimmerState();
-}
-
-class ShimmerState extends State<Shimmer> with SingleTickerProviderStateMixin {
-  late AnimationController _shimmerController;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _shimmerController = AnimationController.unbounded(vsync: this)
-      ..repeat(min: -0.5, max: 1.5, period: const Duration(milliseconds: 1000));
-  }
-
-  @override
-  void dispose() {
-    _shimmerController.dispose();
-    super.dispose();
-  }
-// code-excerpt-closing-bracket
-
-  LinearGradient get gradient => LinearGradient(
-        colors: widget.linearGradient.colors,
-        stops: widget.linearGradient.stops,
-        begin: widget.linearGradient.begin,
-        end: widget.linearGradient.end,
-        transform: _SlidingGradientTransform(slidePercent: _shimmerController.value),
-      );
-
-  bool get isSized => (context.findRenderObject() as RenderBox?)?.hasSize ?? false;
-
-  Size get size => (context.findRenderObject()! as RenderBox).size;
-
-  Offset getDescendantOffset({
-    required RenderBox descendant,
-    Offset offset = Offset.zero,
-  }) {
-    final RenderBox shimmerBox = context.findRenderObject()! as RenderBox;
-    return descendant.localToGlobal(offset, ancestor: shimmerBox);
-  }
-
-  Listenable get shimmerChanges => _shimmerController;
-
-  @override
-  Widget build(BuildContext context) {
-    return widget.child ?? const SizedBox();
-  }
-}
-
-class _SlidingGradientTransform extends GradientTransform {
-  const _SlidingGradientTransform({
-    required this.slidePercent,
-  });
-
-  final double slidePercent;
-
-  @override
-  Matrix4? transform(Rect bounds, {TextDirection? textDirection}) {
-    return Matrix4.translationValues(bounds.width * slidePercent, 0, 0);
-  }
-}
-
-class ShimmerLoading extends StatefulWidget {
-  const ShimmerLoading({
-    required this.isLoading,
-    required this.child,
-    super.key,
-  });
-
-  final bool isLoading;
-  final Widget child;
-
-  @override
-  State<ShimmerLoading> createState() => _ShimmerLoadingState();
-}
-
-class _ShimmerLoadingState extends State<ShimmerLoading> {
-  Listenable? _shimmerChanges;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    if (_shimmerChanges != null) {
-      _shimmerChanges!.removeListener(_onShimmerChange);
-    }
-    _shimmerChanges = Shimmer.of(context)?.shimmerChanges;
-    if (_shimmerChanges != null) {
-      _shimmerChanges!.addListener(_onShimmerChange);
-    }
-  }
-
-  @override
-  void dispose() {
-    _shimmerChanges?.removeListener(_onShimmerChange);
-    super.dispose();
-  }
-
-  void _onShimmerChange() {
-    if (widget.isLoading) {
-      setState(() {
-        // update the shimmer painting.
-      });
-    }
-  }
-// code-excerpt-closing-bracket
-
-  @override
-  Widget build(BuildContext context) {
-    if (!widget.isLoading) {
-      return widget.child;
-    }
-
-    // Collect ancestor shimmer info.
-    final ShimmerState shimmer = Shimmer.of(context)!;
-    if (!shimmer.isSized) {
-      // The ancestor Shimmer widget has not laid
-      // itself out yet. Return an empty box.
-      return const SizedBox();
-    }
-    final Size shimmerSize = shimmer.size;
-    final LinearGradient gradient = shimmer.gradient;
-    final Offset offsetWithinShimmer = shimmer.getDescendantOffset(
-      descendant: context.findRenderObject()! as RenderBox,
-    );
-
-    return ShaderMask(
-      blendMode: BlendMode.srcATop,
-      shaderCallback: (Rect bounds) {
-        return gradient.createShader(
-          Rect.fromLTWH(
-            -offsetWithinShimmer.dx,
-            -offsetWithinShimmer.dy,
-            shimmerSize.width,
-            shimmerSize.height,
-          ),
-        );
-      },
-      child: widget.child,
-    );
-  }
-}
-
-//----------- List Items ---------
-class CircleListItem extends StatelessWidget {
-  const CircleListItem({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-      child: Container(
-        width: 54,
-        height: 54,
-        decoration: const BoxDecoration(
-          color: Colors.black,
-          shape: BoxShape.circle,
-        ),
-        child: ClipOval(
-          child: Image.network(
-            'https://docs.flutter.dev/cookbook'
-            '/img-files/effects/split-check/Avatar1.jpg',
-            fit: BoxFit.cover,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class CardListItem extends StatelessWidget {
-  const CardListItem({
-    required this.isLoading,
-    super.key,
-  });
-
-  final bool isLoading;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          _buildImage(),
-          const SizedBox(height: 16),
-          _buildText(),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildImage() {
-    return AspectRatio(
-      aspectRatio: 16 / 9,
-      child: Container(
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: Colors.black,
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(16),
-          child: Image.network(
-            'https://docs.flutter.dev/cookbook'
-            '/img-files/effects/split-check/Food1.jpg',
-            fit: BoxFit.cover,
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildText() {
-    if (isLoading) {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            width: double.infinity,
-            height: 24,
-            decoration: BoxDecoration(
-              color: Colors.black,
-              borderRadius: BorderRadius.circular(16),
-            ),
-          ),
-          const SizedBox(height: 16),
-          Container(
-            width: 250,
-            height: 24,
-            decoration: BoxDecoration(
-              color: Colors.black,
-              borderRadius: BorderRadius.circular(16),
-            ),
-          ),
-        ],
-      );
-    } else {
-      return const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 8),
-        child: Text(
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do '
-          'eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        ),
-      );
-    }
-  }
-}
+// import 'package:camera/camera.dart';
+// import 'package:flutter/material.dart';
+// import 'package:path/path.dart';
+// import 'package:image/image.dart' as img;
+// import 'package:path_provider/path_provider.dart';
+//
+// import 'classifier.dart';
+//
+// class ClassifierPage extends StatefulWidget {
+//   final CameraDescription camera;
+//
+//   const ClassifierPage({Key key, this.camera}) : super(key: key);
+//
+//   @override
+//   _ClassifierPageState createState() => _ClassifierPageState();
+// }
+//
+// class _ClassifierPageState extends State<ClassifierPage> {
+//   Classifier _classifier;
+//   CameraController _controller;
+//   Future<void> _initializeControllerFuture;
+//
+//   @override
+//   void initState() {
+//     super.initState();
+//     _classifier = Classifier();
+//     _controller = CameraController(
+//       widget.camera,
+//       ResolutionPreset.medium,
+//       enableAudio: false,
+//     );
+//
+//     _initializeControllerFuture = _controller.initialize();
+//   }
+//
+//   @override
+//   void dispose() {
+//     _controller.dispose();
+//     super.dispose();
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         backgroundColor: Colors.transparent,
+//         elevation: 0.0,
+//         title: Text(
+//           'US Product Classifier (tflite)',
+//           style: TextStyle(
+//             color: Colors.black,
+//           ),
+//         ),
+//       ),
+//       body: FutureBuilder<void>(
+//         future: _initializeControllerFuture,
+//         builder: (context, snapshot) {
+//           if (snapshot.connectionState == ConnectionState.done) {
+//             return Column(
+//               children: [
+//                 Expanded(
+//                   child: Container(
+//                     padding: const EdgeInsets.all(10),
+//                     child: ClipRRect(
+//                       borderRadius: BorderRadius.circular(20),
+//                       child: CameraPreview(_controller),
+//                     ),
+//                   ),
+//                 ),
+//                 Container(
+//                   height: 200,
+//                   child: IconButton(
+//                     iconSize: 60,
+//                     onPressed: () {
+//                       _runModel(context);
+//                     },
+//                     icon: Icon(Icons.camera),
+//                   ),
+//                 ),
+//               ],
+//             );
+//           } else {
+//             return Center(
+//               child: CircularProgressIndicator(),
+//             );
+//           }
+//         },
+//       ),
+//     );
+//   }
+//
+//   void _runModel(context) async {
+//     try {
+//       await _initializeControllerFuture;
+//
+//       final path = join(
+//         (await getTemporaryDirectory()).path,
+//         '${DateTime.now()}.png',
+//       );
+//
+//       await _controller.takePicture(path);
+//
+//       var loadImage = await _classifier.loadImage(path);
+//       var loadResult = await _classifier.runModel(loadImage);
+//
+//       _showModalBottomSheet(context, loadImage, loadResult);
+//     } catch (e) {
+//       print(e);
+//     }
+//   }
+//
+//   void _showModalBottomSheet(context, loadImage, loadResult) {
+//     showModalBottomSheet(
+//       context: context,
+//       isScrollControlled: true,
+//       shape: RoundedRectangleBorder(
+//         borderRadius: BorderRadius.circular(20),
+//       ),
+//       builder: (BuildContext bc) {
+//         return Container(
+//           height: MediaQuery.of(context).size.height * 0.75,
+//           padding: const EdgeInsets.only(top: 10, left: 5, right: 5),
+//           child: Column(
+//             children: [
+//               ClipRRect(
+//                 borderRadius: BorderRadius.circular(20),
+//                 child: Image.memory(
+//                   img.encodeJpg(loadImage),
+//                   height: 300,
+//                 ),
+//               ),
+//               Expanded(
+//                 child: Container(
+//                   child: ListView.builder(
+//                     padding: const EdgeInsets.all(10),
+//                     itemBuilder: (context, index) {
+//                       return Padding(
+//                         padding: const EdgeInsets.only(bottom: 8.0),
+//                         child: Column(
+//                           children: [
+//                             Row(
+//                               children: [
+//                                 Text(
+//                                   '${index + 1}. ',
+//                                   style: TextStyle(
+//                                     fontWeight: FontWeight.bold,
+//                                     fontSize: 20,
+//                                   ),
+//                                 ),
+//                                 Flexible(
+//                                   child: Text(
+//                                     loadResult[index]['label'],
+//                                     style: TextStyle(
+//                                       fontWeight: FontWeight.bold,
+//                                       fontSize: 15,
+//                                     ),
+//                                   ),
+//                                 ),
+//                               ],
+//                             ),
+//                             Text(
+//                               loadResult[index]['value'].toString(),
+//                               style: TextStyle(
+//                                 color: Colors.orange,
+//                                 fontWeight: FontWeight.bold,
+//                                 fontSize: (20 - index).toDouble(),
+//                               ),
+//                             ),
+//                           ],
+//                         ),
+//                       );
+//                     },
+//                     itemCount: loadResult.length,
+//                   ),
+//                 ),
+//               )
+//             ],
+//           ),
+//         );
+//       },
+//     );
+//   }
+// }

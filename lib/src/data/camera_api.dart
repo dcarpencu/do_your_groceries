@@ -42,24 +42,45 @@ class CameraApi {
     await controller.initialize();
   }
 
-  Future<XFile> takePicture({required CameraController controller}) async {
+  Future<TakenPicture> takePicture({required CameraController controller}) async {
     final XFile picture = await controller.takePicture();
 
-    return picture;
+    print('\n\n\n\n PICTURE: $picture \n\n\n');
+
+    final InputImage inputImage = InputImage.fromFilePath(picture.path);
+
+    print('\n\n\n\n\n INPUT IMAGE: $inputImage \n\n\n IMAGE PATH: ${picture.path} \n\n\n');
+
+    final ImageLabeler imageLabeler = ImageLabeler(options: ImageLabelerOptions());
+    final List<ImageLabel> labels = await imageLabeler.processImage(inputImage);
+    final StringBuffer sb = StringBuffer();
+    for (final ImageLabel imgLabel in labels) {
+      final String lblText = imgLabel.label;
+      final double confidence = imgLabel.confidence;
+      sb
+        ..write(lblText)
+        ..write(' : ')
+        ..write((confidence * 100).toStringAsFixed(2))
+        ..write('%\n');
+    }
+    await imageLabeler.close();
+
+    final TakenPicture takenPicture = TakenPicture(picture: picture, imageLabel: sb.toString());
+    return takenPicture;
   }
 
   Future<String> getImageLabels({required String imagePath}) async {
     final InputImage inputImage = InputImage.fromFilePath(imagePath);
 
     print('\n\n\n\n\n INPUT IMAGE: $inputImage \n\n\n IMAGE PATH: $imagePath \n\n\n');
-    final ImageLabeler imageLabeler =
-    ImageLabeler(options: ImageLabelerOptions(confidenceThreshold: 0.5));
+    final ImageLabeler imageLabeler = ImageLabeler(options: ImageLabelerOptions());
     final List<ImageLabel> labels = await imageLabeler.processImage(inputImage);
     final StringBuffer sb = StringBuffer();
     for (final ImageLabel imgLabel in labels) {
       final String lblText = imgLabel.label;
       final double confidence = imgLabel.confidence;
-      sb..write(lblText)
+      sb
+        ..write(lblText)
         ..write(' : ')
         ..write((confidence * 100).toStringAsFixed(2))
         ..write('%\n');
