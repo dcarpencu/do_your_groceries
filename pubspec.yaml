@@ -58,5 +58,5 @@ flutter:
     - assets/RiveAssets/
     - assets/base/
     - assets/groceryListIcons/
-    - assets/tensorFlow/
+    - assets/ml/
     - assets/categoryIcons/

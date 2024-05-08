@@ -34,7 +34,7 @@ Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   TypedReducer<AppState, SetSelectedList>(_setSelectedList).call,
   TypedReducer<AppState, SetUnselectedList>(_setUnselectedList).call,
   TypedReducer<AppState, SetSelectedCamera>(_setSelectedCamera).call,
-  // TypedReducer<AppState, SetPictureToNull>(_setPictureToNull).call,
+  TypedReducer<AppState, SetPictureToNull>(_setPictureToNull).call,
   TypedReducer<AppState, SetMarketProductsToEmpty>(_setMarketProductsToEmpty).call,
   TypedReducer<AppState, OnProductsEvent>(_onProductsEvent).call,
   TypedReducer<AppState, CreateGroceryListSuccessful>(_createGroceryListSuccessful).call,
@@ -43,6 +43,7 @@ Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   TypedReducer<AppState, ActionDone>(_actionDone).call,
   TypedReducer<AppState, GetCamerasSuccessful>(_getCamerasSuccessful).call,
   TypedReducer<AppState, TakePictureSuccessful>(_takePictureSuccessful).call,
+  TypedReducer<AppState, GetProductsSuccessful>(_getProductsSuccessful).call,
   // TypedReducer<AppState, GetImageLabelsSuccessful>(_getImageLabelsSuccessful).call,
 ]);
 
@@ -59,7 +60,7 @@ AppState _logoutSuccessful(AppState state, LogoutSuccessful action) {
 }
 
 AppState _getProductsSuccessful(AppState state, GetProductsSuccessful action) {
-  return state.copyWith(supermarketProducts: action.products);
+  return state.copyWith(productsList: action.productsList);
 }
 
 AppState _getGroceryListsSuccessful(AppState state, GetGroceryListsSuccessful action) {
@@ -121,9 +122,9 @@ AppState _takePictureSuccessful(AppState state, TakePictureSuccessful action) {
   return state.copyWith(takenPicture: action.takenPicture);
 }
 
-// AppState _setPictureToNull(AppState state, SetPictureToNull action) {
-//   return state.copyWith(picture: null);
-// }
+AppState _setPictureToNull(AppState state, SetPictureToNull action) {
+  return state.copyWith(takenPicture: null);
+}
 
 // AppState _getImageLabelsSuccessful(AppState state, GetImageLabelsSuccessful action) {
 //   return state.copyWith(imageLabel: action.imageLabel);

@@ -14,37 +14,76 @@ class ProductsApi {
         .asyncMap((DocumentSnapshot<Map<String, dynamic>> snapshot) async {
       if (snapshot.exists) {
         final List<dynamic>? productIds =
-            (snapshot.data()?['productIds'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
+        (snapshot.data()?['productIds'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
 
-        // final List<DocumentSnapshot<Map<String, dynamic>>> productSnapshots = await Future.wait(
-        //   productIds!.map((dynamic productId) => _firestore.collection('/Auchan/categories/legume/pages/page_1').doc(productId.toString()).get()),
-        // );
+        if (productIds == null || productIds.isEmpty) {
+          return <Product>[]; // Return empty list if there are no products
+        }
 
-        final List<DocumentSnapshot<Map<String, dynamic>>> productSnapshots =
-            <DocumentSnapshot<Map<String, dynamic>>>[];
+        // Create a list to hold all the batched reads
+        final List<Future<DocumentSnapshot<Map<String, dynamic>>>> readOperations = <Future<DocumentSnapshot<Map<String, dynamic>>>>[];
 
-        for (final dynamic productId in productIds!) {
-          // Find the index of the last occurrence of '/'
+        // Iterate through productIds to add batched reads to readOperations list
+        for (final dynamic productId in productIds) {
           final int lastIndex = productId.toString().lastIndexOf('/');
-
-          // Extract the collectionPath and documentId
           final String collectionPath = productId.toString().substring(0, lastIndex);
           final String documentId = productId.toString().substring(lastIndex + 1);
 
-          final DocumentSnapshot<Map<String, dynamic>> snapshot =
-              await _firestore.collection(collectionPath).doc(documentId).get();
-          productSnapshots.add(snapshot);
+          final DocumentReference<Map<String, dynamic>> docRef = _firestore.collection(collectionPath).doc(documentId);
+          readOperations.add(docRef.get());
         }
 
+        // Execute all batched reads concurrently
+        final List<DocumentSnapshot<Map<String, dynamic>>> productSnapshots = await Future.wait(readOperations);
+
+        // Filter out snapshots that do not exist and map remaining snapshots to Product objects
         final List<Product> products = productSnapshots
-            .where((DocumentSnapshot<Map<String, dynamic>> productSnapshot) => productSnapshot.exists)
-            .map((DocumentSnapshot<Map<String, dynamic>> productSnapshot) => Product.fromJson(productSnapshot.data()!))
+            .where((DocumentSnapshot<Map<String, dynamic>> snapshot) => snapshot.exists)
+            .map((DocumentSnapshot<Map<String, dynamic>> snapshot) => Product.fromJson(snapshot.data()!))
             .toList();
+
         return products;
       } else {
-        return <Product>[];
+        return <Product>[]; // Return empty list if the snapshot does not exist
       }
     });
+  }
+
+
+  Future<List<Product>> getProducts({required String groceryListId}) async {
+    final DocumentReference<Map<String, dynamic>> ref = _firestore.doc('lists/$groceryListId');
+    final DocumentSnapshot<Map<String, dynamic>> snapshot = await ref.get();
+
+    if (!snapshot.exists) {
+      throw Exception('Grocery list document not found!');
+    }
+
+    final List<dynamic>? productIds =
+    (snapshot.data()?['productIds'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
+
+    //List<Product> result = <Product>[];
+
+
+      final List<DocumentSnapshot<Map<String, dynamic>>> productSnapshots =
+      <DocumentSnapshot<Map<String, dynamic>>>[];
+
+      for (final dynamic productId in productIds!) {
+        // Find the index of the last occurrence of '/'
+        final int lastIndex = productId.toString().lastIndexOf('/');
+
+        // Extract the collectionPath and documentId
+        final String collectionPath = productId.toString().substring(0, lastIndex);
+        final String documentId = productId.toString().substring(lastIndex + 1);
+
+        final DocumentSnapshot<Map<String, dynamic>> snapshot =
+        await _firestore.collection(collectionPath).doc(documentId).get();
+        productSnapshots.add(snapshot);
+      }
+
+     return productSnapshots
+          .where((DocumentSnapshot<Map<String, dynamic>> productSnapshot) => productSnapshot.exists)
+          .map((DocumentSnapshot<Map<String, dynamic>> productSnapshot) => Product.fromJson(productSnapshot.data()!))
+          .toList();
   }
 
   Future<void> createProduct({

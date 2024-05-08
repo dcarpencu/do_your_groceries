@@ -62,6 +62,7 @@ class _HomePageState extends State<HomePage> {
               }
               return GroceryListsContainer(
                 builder: (BuildContext context, Set<GroceryList> groceryLists) {
+                  final double width = MediaQuery.of(context).size.width * 0.9;
                   return SafeArea(
                     child: Column(
                       children: <Widget>[
@@ -174,8 +175,44 @@ class _HomePageState extends State<HomePage> {
                         else
                           const Center(child: Text('No lists.')),
                         const SizedBox(
-                          height: 20,
+                          height: 30,
                         ),
+                        Card(
+                          elevation: 5,
+                          shadowColor: Colors.black,
+                          color: Colors.greenAccent,
+                          child: SizedBox(
+                            width: width,
+                            height: 200,
+                            child: Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Column(
+                                children: [
+                                  CircleAvatar(
+                                    backgroundColor: Colors.green[500],
+                                    radius: 50,
+                                    child: const CircleAvatar(
+                                      backgroundImage: NetworkImage(
+                                          "https://www.pushengage.com/wp-content/uploads/2022/10/How-to-Add-a-Push-Notification-Icon.png"), //NetworkImage
+                                      radius: 100,
+                                    ), //CircleAvatar
+                                  ), //CircleAvatar
+                                  const SizedBox(
+                                    height: 10,
+                                  ), //SizedBox
+                                  Text(
+                                    'Notification center',
+                                    style: TextStyle(
+                                      fontSize: 30,
+                                      color: Colors.green[900],
+                                      fontWeight: FontWeight.w500,
+                                    ), //Textstyle
+                                  ), //Text
+                                ],
+                              ), //Column
+                            ), //Padding
+                          ), //SizedBox
+                        ), //Card
                       ],
                     ),
                   );
@@ -208,22 +245,11 @@ class _HomePageState extends State<HomePage> {
                     icon: const Icon(Icons.menu),
                     onPressed: () {},
                   ),
-                  // IconButton(
-                  //   tooltip: 'Search',
-                  //   icon: const Icon(Icons.search),
-                  //   onPressed: () {
-                  //     Navigator.push(
-                  //       context,
-                  //       // ignore: always_specify_types
-                  //       MaterialPageRoute<Widget>(builder: (BuildContext context) => const MarketsPage()),
-                  //     );
-                  //   },
-                  // ),
                   IconButton(
                     tooltip: 'Favorite',
                     icon: const Icon(Icons.favorite),
                     onPressed: () {
-                      StoreProvider.of<AppState>(context, listen: false).dispatch(const GetCamerasStart());
+                      print('Favorites Icon pressed!');
                     },
                   ),
                   const Spacer(),

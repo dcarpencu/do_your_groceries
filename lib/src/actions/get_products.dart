@@ -1,11 +1,26 @@
 part of 'index.dart';
 
+const String _kGetProductsPendingId = 'GetProducts';
+
 @freezed
 class GetProducts with _$GetProducts implements AppAction {
-  const factory GetProducts(ActionResult onResult) = GetProductsStart;
+  @Implements<ActionStart>()
+  const factory GetProducts.start({required String groceryListId,
+    @Default(_kGetProductsPendingId) String pendingId,
+  }) = GetProductsStart;
 
-  const factory GetProducts.successful(List<Product> products) = GetProductsSuccessful;
+  @Implements<ActionDone>()
+  const factory GetProducts.successful(List<Product> productsList, [
+    @Default(_kGetProductsPendingId) String pendingId,
+  ]) = GetProductsSuccessful;
 
+  @Implements<ActionDone>()
   @Implements<ErrorAction>()
-  const factory GetProducts.error(Object error, StackTrace stackTrace) = GetProductsError;
+  const factory GetProducts.error(
+    Object error, StackTrace stackTrace, [
+    @Default(_kGetProductsPendingId) String pendingId,
+  ]) = GetProductsError;
+
+  static String get pendingKey => _kGetProductsPendingId;
 }
+
