@@ -35,15 +35,23 @@ class _ImageViewPageState extends State<ImageViewPage> {
       ),
       body: PendingContainer(
         builder: (BuildContext context, Set<String> pending) {
+          final double width = MediaQuery.of(context).size.width * 0.9;
           if (pending.contains(GetImageLabels.pendingKey) || pending.contains(TakePicture.pendingKey)) {
             return const Center(child: CircularProgressIndicator());
           }
           return Column(
             children: <Widget>[
               Center(
-                child: Image.file(
-                  File(
-                    widget.store.state.takenPicture!.picture!.path,
+                child: Container(
+                  width: width,
+                  padding: const EdgeInsets.all(8),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(16),
+                    child: Image.file(
+                      File(
+                        widget.store.state.takenPicture!.picture!.path,
+                      ),
+                    ),
                   ),
                 ),
               ),

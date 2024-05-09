@@ -89,11 +89,12 @@ class _CameraAppState extends State<CameraApp> {
                   if (!context.mounted) {
                     return;
                   }
-                  await Navigator.of(context).push(
-                    MaterialPageRoute<Widget>(
-                      builder: (BuildContext context) => ImageViewPage(store: _store),
-                    ),
-                  );
+                  await Navigator.of(context).push(_createRoute());
+                  // Navigator.of(context).push(
+                  //   MaterialPageRoute<Widget>(
+                  //     builder: (BuildContext context) => ImageViewPage(store: _store),
+                  //   ),
+                  // );
                 },
                 backgroundColor: Colors.white70,
                 foregroundColor: Colors.black,
@@ -162,5 +163,23 @@ class _CameraAppState extends State<CameraApp> {
       },
     );
     return const Text('pula');
+  }
+
+  Route<dynamic> _createRoute() {
+    return PageRouteBuilder<dynamic>(
+      pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) => ImageViewPage(store: _store),
+      transitionsBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
+        const Offset begin = Offset(0.0, 1.0);
+        const Offset end = Offset.zero;
+        const Cubic curve = Curves.ease;
+
+        Animatable<Offset> tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
+    );
   }
 }
