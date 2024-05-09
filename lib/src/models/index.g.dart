@@ -100,6 +100,9 @@ _$Product$Impl _$$Product$ImplFromJson(Map<String, dynamic> json) =>
       productId: json['productId'] as String,
       name: json['name'] as String,
       price: (json['price'] as num).toDouble(),
+      tags:
+          (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+              const <String>[],
       image: json['image'] as String? ?? '',
       page: json['page'] as int? ?? 1,
     );
@@ -109,6 +112,7 @@ Map<String, dynamic> _$$Product$ImplToJson(_$Product$Impl instance) =>
       'productId': instance.productId,
       'name': instance.name,
       'price': instance.price,
+      'tags': instance.tags,
       'image': instance.image,
       'page': instance.page,
     };

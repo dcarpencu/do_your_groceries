@@ -36,7 +36,7 @@ class SuperMarketsApi {
 
   Future<void> generateProducts() async {
     int pgCt;
-    for (int indexSupermakets = 4; indexSupermakets < 5; indexSupermakets++) {
+    for (int indexSupermakets = 0; indexSupermakets < 1; indexSupermakets++) {
       for (int index = 0; index < supermarketCategories.length; index++) {
         // print('\n\n\n\n\n\n------- ${auchan['legume']}\n\n\n\n');
         final String currentSupermarketName = marketsNames[indexSupermakets];
@@ -63,6 +63,7 @@ class SuperMarketsApi {
               .doc('pages')
               .collection('page_$pgCt')
               .doc();
+
           final Element link = links[i];
           //print('\n\n -- FOOD INFO: $link \n\n');
           final Element? foodInfo = link.querySelector('div.content-container');
@@ -79,6 +80,50 @@ class SuperMarketsApi {
           // var oldPrice = foodInfo?.querySelector('div.price-container > span.old-price');
           final Element? title = foodInfo?.querySelector('div.title');
 
+
+
+          printFilteredProductName(title!.text);
+
+
+
+
+
+            // // Your input string
+            // final String inputString = title!.text;
+            //
+            // // Iterate over each string in the whitelist
+            // for (final String item in whitelist) {
+            //   // Split the item into individual words
+            //   final List<String> words = item.toLowerCase().split(' ');
+            //
+            //   // Check if all words in the item are present in the input string
+            //   final bool allWordsPresent = words.every((String word) => inputString.toLowerCase().contains(word));
+            //
+            //   // If all words are present, print the item
+            //   if (allWordsPresent) {
+            //     print(item);
+            //     // If you want to print only the first match and exit the loop, uncomment the next line
+            //     // break;
+            //   }
+            // }
+
+
+
+
+
+
+          // final DocumentReference<Map<String, dynamic>> refTags = _firestore
+          //     .collection('tags')
+          //     .doc('categories')
+          //     .collection(
+          //   supermarketCategories[index],
+          // )
+          //     .doc('')
+          //     .collection('page_$pgCt')
+          //     .doc();
+
+
+
           final Product product = Product(
             productId: ref.id,
             name: title!.text,
@@ -91,4 +136,43 @@ class SuperMarketsApi {
       }
     }
   }
+
+  // void main() {
+  //   String inputString = "This is a test string with some words like 123, g, 1.5kg, and others.";
+  //
+  //
+  //
+  //
+  //   print(filteredWords);
+  // }
+
+  List<String> extractWords(String input) {
+    RegExp exp = RegExp(r'[a-zA-Z]+(?:\.[a-zA-Z]+)?');
+    Iterable<Match> matches = exp.allMatches(input);
+    List<String> words = [];
+    for (Match match in matches) {
+      words.add(match.group(0)!);
+    }
+    return words;
+  }
+
+  bool isNumber(String word) {
+    RegExp exp = RegExp(r'^\d*\.?\d*$');
+    return exp.hasMatch(word);
+  }
+
+void printFilteredProductName(String name) {
+  final List<String> words = extractWords(name);
+
+  final List<String> filteredWords = words.where((word) {
+    final String lowerWord = word.toLowerCase();
+    if (!blacklist.map((String entry) => entry.toLowerCase()).contains(lowerWord) && !isNumber(word)) {
+      return true;
+    }
+    return false;
+  }).toList();
+
+  print('\n FILTERED WORDS FOR $name: $filteredWords \n');
+}
+
 }

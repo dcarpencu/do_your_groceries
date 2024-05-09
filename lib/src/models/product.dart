@@ -6,6 +6,7 @@ class Product with _$Product {
     required String productId,
     required String name,
     required double price,
+    @Default(<String>[]) List<String> tags,
     @Default('') String image,
     @Default(1) int page,
     // @Default(0) final int quantity,

@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
     // print('\n\n\n\n\n ------ IM IN STARTUP ------ \n\n\n');
 
     // RUN ONLY ONCE!
-    //StoreProvider.of<AppState>(context, listen: false).dispatch(const GenerateProducts());
+    StoreProvider.of<AppState>(context, listen: false).dispatch(const GenerateProducts());
 
     _store = StoreProvider.of<AppState>(context, listen: false);
 
