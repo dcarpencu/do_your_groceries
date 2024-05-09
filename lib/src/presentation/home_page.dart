@@ -187,7 +187,7 @@ class _HomePageState extends State<HomePage> {
                             child: Padding(
                               padding: const EdgeInsets.all(20.0),
                               child: Column(
-                                children: [
+                                children: <Widget>[
                                   CircleAvatar(
                                     backgroundColor: Colors.green[500],
                                     radius: 50,
@@ -222,10 +222,11 @@ class _HomePageState extends State<HomePage> {
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
-              Navigator.of(context).push(
-                // ignore: always_specify_types
-                MaterialPageRoute<Widget>(builder: (BuildContext context) => const CreateListPage()),
-              );
+              // Navigator.of(context).push(
+              //   // ignore: always_specify_types
+              //   MaterialPageRoute<Widget>(builder: (BuildContext context) => const CreateListPage()),
+              // );
+              Navigator.of(context).push(_createRoute());
               //Navigator.pushNamed(context, '/createList');
             },
             tooltip: 'Create',
@@ -261,4 +262,23 @@ class _HomePageState extends State<HomePage> {
       },
     );
   }
+
+  Route<dynamic> _createRoute() {
+    return PageRouteBuilder<dynamic>(
+      pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) => const CreateListPage(),
+      transitionsBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
+        const Offset begin = Offset(0.0, 1.0);
+        const Offset end = Offset.zero;
+        const Cubic curve = Curves.ease;
+
+        Animatable<Offset> tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
+    );
+  }
+
 }
