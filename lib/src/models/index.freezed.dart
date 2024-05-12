@@ -874,6 +874,7 @@ mixin _$Product {
   String get name => throw _privateConstructorUsedError;
   double get price => throw _privateConstructorUsedError;
   String get category => throw _privateConstructorUsedError;
+  String get supermarket => throw _privateConstructorUsedError;
   String get tag => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
   int get page => throw _privateConstructorUsedError;
@@ -893,6 +894,7 @@ abstract class $ProductCopyWith<$Res> {
       String name,
       double price,
       String category,
+      String supermarket,
       String tag,
       String image,
       int page});
@@ -915,6 +917,7 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
     Object? name = null,
     Object? price = null,
     Object? category = null,
+    Object? supermarket = null,
     Object? tag = null,
     Object? image = null,
     Object? page = null,
@@ -935,6 +938,10 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
+              as String,
+      supermarket: null == supermarket
+          ? _value.supermarket
+          : supermarket // ignore: cast_nullable_to_non_nullable
               as String,
       tag: null == tag
           ? _value.tag
@@ -964,6 +971,7 @@ abstract class _$$Product$ImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
       String name,
       double price,
       String category,
+      String supermarket,
       String tag,
       String image,
       int page});
@@ -984,6 +992,7 @@ class __$$Product$ImplCopyWithImpl<$Res>
     Object? name = null,
     Object? price = null,
     Object? category = null,
+    Object? supermarket = null,
     Object? tag = null,
     Object? image = null,
     Object? page = null,
@@ -1004,6 +1013,10 @@ class __$$Product$ImplCopyWithImpl<$Res>
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
+              as String,
+      supermarket: null == supermarket
+          ? _value.supermarket
+          : supermarket // ignore: cast_nullable_to_non_nullable
               as String,
       tag: null == tag
           ? _value.tag
@@ -1029,6 +1042,7 @@ class _$Product$Impl implements Product$ {
       required this.name,
       required this.price,
       required this.category,
+      this.supermarket = '',
       this.tag = '',
       this.image = '',
       this.page = 1});
@@ -1046,6 +1060,9 @@ class _$Product$Impl implements Product$ {
   final String category;
   @override
   @JsonKey()
+  final String supermarket;
+  @override
+  @JsonKey()
   final String tag;
   @override
   @JsonKey()
@@ -1056,7 +1073,7 @@ class _$Product$Impl implements Product$ {
 
   @override
   String toString() {
-    return 'Product(productId: $productId, name: $name, price: $price, category: $category, tag: $tag, image: $image, page: $page)';
+    return 'Product(productId: $productId, name: $name, price: $price, category: $category, supermarket: $supermarket, tag: $tag, image: $image, page: $page)';
   }
 
   @override
@@ -1070,6 +1087,8 @@ class _$Product$Impl implements Product$ {
             (identical(other.price, price) || other.price == price) &&
             (identical(other.category, category) ||
                 other.category == category) &&
+            (identical(other.supermarket, supermarket) ||
+                other.supermarket == supermarket) &&
             (identical(other.tag, tag) || other.tag == tag) &&
             (identical(other.image, image) || other.image == image) &&
             (identical(other.page, page) || other.page == page));
@@ -1077,8 +1096,8 @@ class _$Product$Impl implements Product$ {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, productId, name, price, category, tag, image, page);
+  int get hashCode => Object.hash(runtimeType, productId, name, price, category,
+      supermarket, tag, image, page);
 
   @JsonKey(ignore: true)
   @override
@@ -1100,6 +1119,7 @@ abstract class Product$ implements Product {
       required final String name,
       required final double price,
       required final String category,
+      final String supermarket,
       final String tag,
       final String image,
       final int page}) = _$Product$Impl;
@@ -1115,6 +1135,8 @@ abstract class Product$ implements Product {
   double get price;
   @override
   String get category;
+  @override
+  String get supermarket;
   @override
   String get tag;
   @override

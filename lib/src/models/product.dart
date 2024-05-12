@@ -7,6 +7,7 @@ class Product with _$Product {
     required String name,
     required double price,
     required String category,
+    @Default('') String supermarket,
     @Default('') String tag,
     @Default('') String image,
     @Default(1) int page,

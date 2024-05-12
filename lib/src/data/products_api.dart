@@ -67,7 +67,7 @@ class ProductsApi {
           price: doc['price'] as double,
           productId: doc.id,
           category: product.category,
-          image: product.image,
+          image: doc['image'] as String,
         ),
       );
     }

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:do_you_groceries/src/data/market_links.dart';
+import 'package:do_you_groceries/src/data/whitelist.dart';
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:html/dom.dart';
 import 'package:html/parser.dart';
@@ -36,8 +37,9 @@ class SuperMarketsApi {
 
   Future<void> generateProducts() async {
     int pgCt;
-    for (int indexSupermakets = 0; indexSupermakets < 1; indexSupermakets++) {
-      for (int index = 0; index < supermarketCategories.length; index++) {
+    bool hasTag;
+    for (int indexSupermakets = 0; indexSupermakets < 2; indexSupermakets++) {
+      for (int index = 0; index < supermarketCategories.length; index++) { //
         // print('\n\n\n\n\n\n------- ${auchan['legume']}\n\n\n\n');
         final String currentSupermarketName = marketsNames[indexSupermakets];
         final Map<String, String>? currentSupermarketData = allSupermarkets[currentSupermarketName];
@@ -82,31 +84,39 @@ class SuperMarketsApi {
           // var oldPrice = foodInfo?.querySelector('div.price-container > span.old-price');
           final Element? title = foodInfo?.querySelector('div.title');
 
-
           final String filteredProductName = printFilteredProductName(title!.text);
 
+          // Whitelist version:
 
-            // // Your input string
-            // final String inputString = title!.text;
-            //
-            // // Iterate over each string in the whitelist
-            // for (final String item in whitelist) {
-            //   // Split the item into individual words
-            //   final List<String> words = item.toLowerCase().split(' ');
-            //
-            //   // Check if all words in the item are present in the input string
-            //   final bool allWordsPresent = words.every((String word) => inputString.toLowerCase().contains(word));
-            //
-            //   // If all words are present, print the item
-            //   if (allWordsPresent) {
-            //     print(item);
-            //     // If you want to print only the first match and exit the loop, uncomment the next line
-            //     // break;
-            //   }
-            // }
+            // Your input string
+
+          String item = '';
+          hasTag = false;
+            final String inputString = title!.text;
+
+            // Iterate over each string in the whitelist
+            for (item in allWhitelists[supermarketCategories[index]]!) {
+              // Split the item into individual words
+              final List<String> words = item.toLowerCase().split(' ');
+
+              // Check if all words in the item are present in the input string
+              final bool allWordsPresent = words.every((String word) => inputString.toLowerCase().contains(word));
+
+              // If all words are present, print the item
+              if (allWordsPresent) {
+                // print(item);
+                hasTag = true;
+                break;
+              }
+            }
+
+            if(hasTag == false) {
+              item = '${supermarketCategories[index]} universal';
+            }
 
           // await refTags.set('');
 
+          print(item);
 
           final Product product = Product(
             productId: ref.id,
@@ -114,11 +124,14 @@ class SuperMarketsApi {
             price: priceD,
             image: image!.attributes['src']!,
             page: pgCt,
-            tag: filteredProductName,
+            tag: item,
+            supermarket: currentSupermarketName,
             category: supermarketCategories[index],
           );
 
-          await _firestore.doc('tags/${supermarketCategories[index]}/$filteredProductName/${ref.id}').set(product.toJson());
+          //print('\n ${product.name}');
+
+          await _firestore.doc('tags/${supermarketCategories[index]}/$item/${ref.id}').set(product.toJson());
           //refTags.set(product.toJson());
           await ref.set(product.toJson());
         }
@@ -165,7 +178,8 @@ class SuperMarketsApi {
 
     final String result = filteredWords.join(' ').toLowerCase(); // Concatenate words with spaces and convert to lowercase
 
-    print('\n FILTERED WORDS FOR $name: $result \n');
+    //print('\n FILTERED WORDS FOR $name: $result \n');
+    // print('\n\'$result\', \n');
 
     return result; // Return the concatenated string
   }

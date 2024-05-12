@@ -182,6 +182,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                   itemCount: relatedProducts.length,
                   itemBuilder: (BuildContext context, int index) {
                   final Product relatedProduct = relatedProducts[index];
+                  print(relatedProduct.name);
                   return Padding(
                     padding: const EdgeInsets.all(8),
                     child: Material(
@@ -234,6 +235,10 @@ class _PostDetailPageState extends State<PostDetailPage> {
                                           style: const TextStyle(fontSize: 16),
                                         ),
                                       ],
+                                    ),
+                                    Text(
+                                      relatedProduct.supermarket,
+                                      //style: const TextStyle(fontSize: 16),
                                     ),
                                   ],
                                 ),
