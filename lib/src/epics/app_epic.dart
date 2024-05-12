@@ -259,7 +259,7 @@ class AppEpic {
   Stream<AppAction> _getProductsStart(Stream<GetProductsStart> actions, EpicStore<AppState> store) {
     return actions.flatMap((GetProductsStart action) {
       return Stream<void>.value(null)
-          .asyncMap((_) => _productsApi.getProducts(groceryListId: action.groceryListId))
+          .asyncMap((_) => _productsApi.getProducts(product: action.product))
           .map<GetProducts>(GetProducts.successful)
           .onErrorReturnWith(GetProducts.error);
     });

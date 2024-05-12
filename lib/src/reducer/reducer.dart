@@ -60,7 +60,7 @@ AppState _logoutSuccessful(AppState state, LogoutSuccessful action) {
 }
 
 AppState _getProductsSuccessful(AppState state, GetProductsSuccessful action) {
-  return state.copyWith(productsList: action.productsList);
+  return state.copyWith(relatedProducts: action.productsList);
 }
 
 AppState _getGroceryListsSuccessful(AppState state, GetGroceryListsSuccessful action) {

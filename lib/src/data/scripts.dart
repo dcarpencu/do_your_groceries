@@ -52,7 +52,7 @@ Future<void> generateProducts() async {
         final Element? title = foodInfo?.querySelector('div.title');
 
         final Product product =
-            Product(productId: ref.id, name: title!.text, price: priceD, image: image!.attributes['src']!, page: pgCt);
+            Product(productId: ref.id, name: title!.text, price: priceD, image: image!.attributes['src']!, page: pgCt, category: supermarketCategories[index]);
 
         print(product);
         await ref.set(product.toJson());

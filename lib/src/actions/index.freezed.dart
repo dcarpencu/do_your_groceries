@@ -2264,7 +2264,7 @@ mixin _$GetProducts {
   String get pendingId => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String groceryListId, String pendingId) start,
+    required TResult Function(Product product, String pendingId) start,
     required TResult Function(List<Product> productsList, String pendingId)
         successful,
     required TResult Function(
@@ -2274,7 +2274,7 @@ mixin _$GetProducts {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String groceryListId, String pendingId)? start,
+    TResult? Function(Product product, String pendingId)? start,
     TResult? Function(List<Product> productsList, String pendingId)? successful,
     TResult? Function(Object error, StackTrace stackTrace, String pendingId)?
         error,
@@ -2282,7 +2282,7 @@ mixin _$GetProducts {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String groceryListId, String pendingId)? start,
+    TResult Function(Product product, String pendingId)? start,
     TResult Function(List<Product> productsList, String pendingId)? successful,
     TResult Function(Object error, StackTrace stackTrace, String pendingId)?
         error,
@@ -2358,7 +2358,9 @@ abstract class _$$GetProductsStartImplCopyWith<$Res>
       __$$GetProductsStartImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String groceryListId, String pendingId});
+  $Res call({Product product, String pendingId});
+
+  $ProductCopyWith<$Res> get product;
 }
 
 /// @nodoc
@@ -2372,19 +2374,27 @@ class __$$GetProductsStartImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? groceryListId = null,
+    Object? product = null,
     Object? pendingId = null,
   }) {
     return _then(_$GetProductsStartImpl(
-      groceryListId: null == groceryListId
-          ? _value.groceryListId
-          : groceryListId // ignore: cast_nullable_to_non_nullable
-              as String,
+      product: null == product
+          ? _value.product
+          : product // ignore: cast_nullable_to_non_nullable
+              as Product,
       pendingId: null == pendingId
           ? _value.pendingId
           : pendingId // ignore: cast_nullable_to_non_nullable
               as String,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProductCopyWith<$Res> get product {
+    return $ProductCopyWith<$Res>(_value.product, (value) {
+      return _then(_value.copyWith(product: value));
+    });
   }
 }
 
@@ -2392,17 +2402,17 @@ class __$$GetProductsStartImplCopyWithImpl<$Res>
 
 class _$GetProductsStartImpl implements GetProductsStart {
   const _$GetProductsStartImpl(
-      {required this.groceryListId, this.pendingId = _kGetProductsPendingId});
+      {required this.product, this.pendingId = _kGetProductsPendingId});
 
   @override
-  final String groceryListId;
+  final Product product;
   @override
   @JsonKey()
   final String pendingId;
 
   @override
   String toString() {
-    return 'GetProducts.start(groceryListId: $groceryListId, pendingId: $pendingId)';
+    return 'GetProducts.start(product: $product, pendingId: $pendingId)';
   }
 
   @override
@@ -2410,14 +2420,13 @@ class _$GetProductsStartImpl implements GetProductsStart {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetProductsStartImpl &&
-            (identical(other.groceryListId, groceryListId) ||
-                other.groceryListId == groceryListId) &&
+            (identical(other.product, product) || other.product == product) &&
             (identical(other.pendingId, pendingId) ||
                 other.pendingId == pendingId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, groceryListId, pendingId);
+  int get hashCode => Object.hash(runtimeType, product, pendingId);
 
   @JsonKey(ignore: true)
   @override
@@ -2429,38 +2438,38 @@ class _$GetProductsStartImpl implements GetProductsStart {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String groceryListId, String pendingId) start,
+    required TResult Function(Product product, String pendingId) start,
     required TResult Function(List<Product> productsList, String pendingId)
         successful,
     required TResult Function(
             Object error, StackTrace stackTrace, String pendingId)
         error,
   }) {
-    return start(groceryListId, pendingId);
+    return start(product, pendingId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String groceryListId, String pendingId)? start,
+    TResult? Function(Product product, String pendingId)? start,
     TResult? Function(List<Product> productsList, String pendingId)? successful,
     TResult? Function(Object error, StackTrace stackTrace, String pendingId)?
         error,
   }) {
-    return start?.call(groceryListId, pendingId);
+    return start?.call(product, pendingId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String groceryListId, String pendingId)? start,
+    TResult Function(Product product, String pendingId)? start,
     TResult Function(List<Product> productsList, String pendingId)? successful,
     TResult Function(Object error, StackTrace stackTrace, String pendingId)?
         error,
     required TResult orElse(),
   }) {
     if (start != null) {
-      return start(groceryListId, pendingId);
+      return start(product, pendingId);
     }
     return orElse();
   }
@@ -2502,10 +2511,10 @@ class _$GetProductsStartImpl implements GetProductsStart {
 
 abstract class GetProductsStart implements GetProducts, ActionStart {
   const factory GetProductsStart(
-      {required final String groceryListId,
+      {required final Product product,
       final String pendingId}) = _$GetProductsStartImpl;
 
-  String get groceryListId;
+  Product get product;
   @override
   String get pendingId;
   @override
@@ -2602,7 +2611,7 @@ class _$GetProductsSuccessfulImpl implements GetProductsSuccessful {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String groceryListId, String pendingId) start,
+    required TResult Function(Product product, String pendingId) start,
     required TResult Function(List<Product> productsList, String pendingId)
         successful,
     required TResult Function(
@@ -2615,7 +2624,7 @@ class _$GetProductsSuccessfulImpl implements GetProductsSuccessful {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String groceryListId, String pendingId)? start,
+    TResult? Function(Product product, String pendingId)? start,
     TResult? Function(List<Product> productsList, String pendingId)? successful,
     TResult? Function(Object error, StackTrace stackTrace, String pendingId)?
         error,
@@ -2626,7 +2635,7 @@ class _$GetProductsSuccessfulImpl implements GetProductsSuccessful {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String groceryListId, String pendingId)? start,
+    TResult Function(Product product, String pendingId)? start,
     TResult Function(List<Product> productsList, String pendingId)? successful,
     TResult Function(Object error, StackTrace stackTrace, String pendingId)?
         error,
@@ -2771,7 +2780,7 @@ class _$GetProductsErrorImpl implements GetProductsError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String groceryListId, String pendingId) start,
+    required TResult Function(Product product, String pendingId) start,
     required TResult Function(List<Product> productsList, String pendingId)
         successful,
     required TResult Function(
@@ -2784,7 +2793,7 @@ class _$GetProductsErrorImpl implements GetProductsError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String groceryListId, String pendingId)? start,
+    TResult? Function(Product product, String pendingId)? start,
     TResult? Function(List<Product> productsList, String pendingId)? successful,
     TResult? Function(Object error, StackTrace stackTrace, String pendingId)?
         error,
@@ -2795,7 +2804,7 @@ class _$GetProductsErrorImpl implements GetProductsError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String groceryListId, String pendingId)? start,
+    TResult Function(Product product, String pendingId)? start,
     TResult Function(List<Product> productsList, String pendingId)? successful,
     TResult Function(Object error, StackTrace stackTrace, String pendingId)?
         error,

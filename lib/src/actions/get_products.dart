@@ -5,7 +5,7 @@ const String _kGetProductsPendingId = 'GetProducts';
 @freezed
 class GetProducts with _$GetProducts implements AppAction {
   @Implements<ActionStart>()
-  const factory GetProducts.start({required String groceryListId,
+  const factory GetProducts.start({required Product product,
     @Default(_kGetProductsPendingId) String pendingId,
   }) = GetProductsStart;
 

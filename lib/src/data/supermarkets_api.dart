@@ -65,7 +65,9 @@ class SuperMarketsApi {
               .doc();
 
           final Element link = links[i];
+
           //print('\n\n -- FOOD INFO: $link \n\n');
+
           final Element? foodInfo = link.querySelector('div.content-container');
 
           final Element? image = link.querySelector('div.image-container > img');
@@ -81,11 +83,7 @@ class SuperMarketsApi {
           final Element? title = foodInfo?.querySelector('div.title');
 
 
-
-          printFilteredProductName(title!.text);
-
-
-
+          final String filteredProductName = printFilteredProductName(title!.text);
 
 
             // // Your input string
@@ -107,21 +105,7 @@ class SuperMarketsApi {
             //   }
             // }
 
-
-
-
-
-
-          // final DocumentReference<Map<String, dynamic>> refTags = _firestore
-          //     .collection('tags')
-          //     .doc('categories')
-          //     .collection(
-          //   supermarketCategories[index],
-          // )
-          //     .doc('')
-          //     .collection('page_$pgCt')
-          //     .doc();
-
+          // await refTags.set('');
 
 
           final Product product = Product(
@@ -130,7 +114,12 @@ class SuperMarketsApi {
             price: priceD,
             image: image!.attributes['src']!,
             page: pgCt,
+            tag: filteredProductName,
+            category: supermarketCategories[index],
           );
+
+          await _firestore.doc('tags/${supermarketCategories[index]}/$filteredProductName/${ref.id}').set(product.toJson());
+          //refTags.set(product.toJson());
           await ref.set(product.toJson());
         }
       }
@@ -161,18 +150,23 @@ class SuperMarketsApi {
     return exp.hasMatch(word);
   }
 
-void printFilteredProductName(String name) {
-  final List<String> words = extractWords(name);
+  String printFilteredProductName(String name) {
+    final List<String> words = extractWords(name);
 
-  final List<String> filteredWords = words.where((word) {
-    final String lowerWord = word.toLowerCase();
-    if (!blacklist.map((String entry) => entry.toLowerCase()).contains(lowerWord) && !isNumber(word)) {
-      return true;
-    }
-    return false;
-  }).toList();
+    final List<String> filteredWords = words.where((word) {
+      final String lowerWord = word.toLowerCase();
+      if (!blacklist.map((String entry) => entry.toLowerCase()).contains(lowerWord) &&
+          !isNumber(word) &&
+          !word.endsWith('.')) { // Check if word does not end with '.'
+        return true;
+      }
+      return false;
+    }).toList();
 
-  print('\n FILTERED WORDS FOR $name: $filteredWords \n');
-}
+    final String result = filteredWords.join(' ').toLowerCase(); // Concatenate words with spaces and convert to lowercase
 
+    print('\n FILTERED WORDS FOR $name: $result \n');
+
+    return result; // Return the concatenated string
+  }
 }

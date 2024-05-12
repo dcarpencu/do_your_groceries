@@ -873,7 +873,8 @@ mixin _$Product {
   String get productId => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   double get price => throw _privateConstructorUsedError;
-  List<String> get tags => throw _privateConstructorUsedError;
+  String get category => throw _privateConstructorUsedError;
+  String get tag => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
   int get page => throw _privateConstructorUsedError;
 
@@ -891,7 +892,8 @@ abstract class $ProductCopyWith<$Res> {
       {String productId,
       String name,
       double price,
-      List<String> tags,
+      String category,
+      String tag,
       String image,
       int page});
 }
@@ -912,7 +914,8 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
     Object? productId = null,
     Object? name = null,
     Object? price = null,
-    Object? tags = null,
+    Object? category = null,
+    Object? tag = null,
     Object? image = null,
     Object? page = null,
   }) {
@@ -929,10 +932,14 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as double,
-      tags: null == tags
-          ? _value.tags
-          : tags // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String,
+      tag: null == tag
+          ? _value.tag
+          : tag // ignore: cast_nullable_to_non_nullable
+              as String,
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -956,7 +963,8 @@ abstract class _$$Product$ImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
       {String productId,
       String name,
       double price,
-      List<String> tags,
+      String category,
+      String tag,
       String image,
       int page});
 }
@@ -975,7 +983,8 @@ class __$$Product$ImplCopyWithImpl<$Res>
     Object? productId = null,
     Object? name = null,
     Object? price = null,
-    Object? tags = null,
+    Object? category = null,
+    Object? tag = null,
     Object? image = null,
     Object? page = null,
   }) {
@@ -992,10 +1001,14 @@ class __$$Product$ImplCopyWithImpl<$Res>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as double,
-      tags: null == tags
-          ? _value._tags
-          : tags // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String,
+      tag: null == tag
+          ? _value.tag
+          : tag // ignore: cast_nullable_to_non_nullable
+              as String,
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -1015,10 +1028,10 @@ class _$Product$Impl implements Product$ {
       {required this.productId,
       required this.name,
       required this.price,
-      final List<String> tags = const <String>[],
+      required this.category,
+      this.tag = '',
       this.image = '',
-      this.page = 1})
-      : _tags = tags;
+      this.page = 1});
 
   factory _$Product$Impl.fromJson(Map<String, dynamic> json) =>
       _$$Product$ImplFromJson(json);
@@ -1029,15 +1042,11 @@ class _$Product$Impl implements Product$ {
   final String name;
   @override
   final double price;
-  final List<String> _tags;
+  @override
+  final String category;
   @override
   @JsonKey()
-  List<String> get tags {
-    if (_tags is EqualUnmodifiableListView) return _tags;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_tags);
-  }
-
+  final String tag;
   @override
   @JsonKey()
   final String image;
@@ -1047,7 +1056,7 @@ class _$Product$Impl implements Product$ {
 
   @override
   String toString() {
-    return 'Product(productId: $productId, name: $name, price: $price, tags: $tags, image: $image, page: $page)';
+    return 'Product(productId: $productId, name: $name, price: $price, category: $category, tag: $tag, image: $image, page: $page)';
   }
 
   @override
@@ -1059,15 +1068,17 @@ class _$Product$Impl implements Product$ {
                 other.productId == productId) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.price, price) || other.price == price) &&
-            const DeepCollectionEquality().equals(other._tags, _tags) &&
+            (identical(other.category, category) ||
+                other.category == category) &&
+            (identical(other.tag, tag) || other.tag == tag) &&
             (identical(other.image, image) || other.image == image) &&
             (identical(other.page, page) || other.page == page));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, productId, name, price,
-      const DeepCollectionEquality().hash(_tags), image, page);
+  int get hashCode => Object.hash(
+      runtimeType, productId, name, price, category, tag, image, page);
 
   @JsonKey(ignore: true)
   @override
@@ -1088,7 +1099,8 @@ abstract class Product$ implements Product {
       {required final String productId,
       required final String name,
       required final double price,
-      final List<String> tags,
+      required final String category,
+      final String tag,
       final String image,
       final int page}) = _$Product$Impl;
 
@@ -1102,7 +1114,9 @@ abstract class Product$ implements Product {
   @override
   double get price;
   @override
-  List<String> get tags;
+  String get category;
+  @override
+  String get tag;
   @override
   String get image;
   @override
