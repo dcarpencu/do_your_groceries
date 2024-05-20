@@ -29,74 +29,77 @@ class ListsCarousel extends StatelessWidget {
               color: Colors.greenAccent,
               borderRadius: BorderRadius.circular(16),
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                SizedBox(
-                  width: 120,
-                  height: 120,
-                  child: SvgPicture.asset(
-                    'assets/groceryListIcons/${groceryLists.elementAt(index).selectedIcon}.svg',
-                  ),
-                ),
-                Text(
-                  groceryLists.elementAt(index).title,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                    fontSize: 16,
-                  ),
-                ),
-                Text(
-                  groceryLists.elementAt(index).description,
-                  style: const TextStyle(color: Colors.grey),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  height: 45,
-                  width: 130,
-                  decoration: BoxDecoration(
-                    gradient: const LinearGradient(colors: <Color>[Colors.green, Colors.teal]),
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.transparent,
-                      shadowColor: Colors.transparent,
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                    ),
-                    onPressed: () {
-                      store
-                          .dispatch(SetSelectedList(groceryLists.elementAt(index).groceryListId));
-                      Navigator.push(
-                        context,
-                        // ignore: always_specify_types
-                        MaterialPageRoute<Widget>(
-                          builder: (BuildContext context) => const UserProductsPage(),
-                        ),
-                      );
-                    },
-                    child: const Center(
-                      child: Text(
-                        'View',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
+            child: SafeArea(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  SizedBox(
+                    width: 120,
+                    height: 120,
+                    child: SvgPicture.asset(
+                      'assets/groceryListIcons/${groceryLists.elementAt(index).selectedIcon}.svg',
                     ),
                   ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-              ],
+                  Text(
+                    groceryLists.elementAt(index).title,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w400,
+                      color: Colors.black,
+                      fontSize: 16,
+                    ),
+                  ),
+                  Text(
+                    groceryLists.elementAt(index).description,
+                    style: const TextStyle(color: Colors.grey),
+                  ),
+                  // const SizedBox(
+                  //   height: 10,
+                  // ),
+                  Container(
+                    height: 45,
+                    width: 130,
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(colors: <Color>[Colors.green, Colors.teal]),
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                        shadowColor: Colors.transparent,
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                      ),
+                      onPressed: () {
+                        store
+                            .dispatch(SetSelectedList(groceryLists.elementAt(index).groceryListId));
+                        Navigator.push(
+                          context,
+                          // ignore: always_specify_types
+                          MaterialPageRoute<Widget>(
+                            builder: (BuildContext context) => const UserProductsPage(),
+                          ),
+                        );
+                      },
+                      child: const Center(
+                        child: Text(
+                          'View',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  TextButton(onPressed: () {store.dispatch(RemoveGroceryList(groceryList: groceryLists.elementAt(index)));}, child: const Text('Delete list')),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                ],
+              ),
             ),
           );
         },

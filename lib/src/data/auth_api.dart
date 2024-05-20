@@ -74,6 +74,31 @@ class AuthApi {
     return groceryList;
   }
 
+  Future<GroceryList> removeGroceryList({
+    required GroceryList groceryList,
+  }) async {
+    final DocumentReference<Map<String, dynamic>> ref = _firestore.collection('lists').doc(groceryList.groceryListId);
+
+    final User? currentUser = _auth.currentUser;
+    final DocumentReference<Map<String, dynamic>> userRef = _firestore.doc('users/${currentUser?.uid}');
+    final DocumentSnapshot<Map<String, dynamic>> snapshot = await userRef.get();
+
+    final Map<String, dynamic> userData = snapshot.data()!;
+
+    final List<dynamic>? groceryListIds =
+    (snapshot.data()?['groceryListIds'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
+
+    groceryListIds?.add(ref.id);
+
+    groceryListIds?.remove(groceryList.groceryListId);
+
+    userData['groceryListIds'] = groceryListIds;
+    await userRef.update(userData);
+    await ref.delete();
+
+    return groceryList;
+  }
+
   Future<Set<GroceryList>> getLists() async {
     final User? currentUser = _auth.currentUser;
     final DocumentReference<Map<String, dynamic>> userRef = _firestore.doc('users/${currentUser?.uid}');

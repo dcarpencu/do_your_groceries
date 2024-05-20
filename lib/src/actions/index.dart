@@ -22,6 +22,7 @@ part 'initalize_controller_pending.dart';
 part 'take_picture.dart';
 part 'get_image_labels.dart';
 part 'remove_product_from_grocery_list.dart';
+part 'remove_grocery_list.dart';
 
 abstract class AppAction {}
 

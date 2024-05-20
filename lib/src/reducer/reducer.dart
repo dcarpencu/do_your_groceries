@@ -45,6 +45,7 @@ Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   TypedReducer<AppState, TakePictureSuccessful>(_takePictureSuccessful).call,
   TypedReducer<AppState, GetProductsSuccessful>(_getProductsSuccessful).call,
   TypedReducer<AppState, RemoveProductFromGroceryListSuccessful>(_removeProductFromGroceryListSuccessful).call,
+  TypedReducer<AppState, RemoveGroceryListSuccessful>(_removeGroceryListSuccessful).call,
   // TypedReducer<AppState, GetImageLabelsSuccessful>(_getImageLabelsSuccessful).call,
 ]);
 
@@ -132,5 +133,9 @@ AppState _setPictureToNull(AppState state, SetPictureToNull action) {
 // }
 
 AppState _removeProductFromGroceryListSuccessful(AppState state, RemoveProductFromGroceryListSuccessful action) {
-  return state.copyWith(productsGroceryList: [...state.productsGroceryList]..remove(action.product));
+  return state.copyWith(productsGroceryList: <Product>[...state.productsGroceryList]..remove(action.product));
+}
+
+AppState _removeGroceryListSuccessful(AppState state, RemoveGroceryListSuccessful action) {
+  return state.copyWith(groceryLists: <GroceryList>{...state.groceryLists}..remove(action.groceryList));
 }
