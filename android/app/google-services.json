@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "849433541153",
+    "project_id": "doyourgroceries",
+    "storage_bucket": "doyourgroceries.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:849433541153:android:24be4ee969672a7c660160",
+        "android_client_info": {
+          "package_name": "com.example.do_you_groceries"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUJ2EwBUrk8MzC4zjqM17He-Ev7su-Vsg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
