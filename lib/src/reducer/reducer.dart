@@ -44,6 +44,7 @@ Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   TypedReducer<AppState, GetCamerasSuccessful>(_getCamerasSuccessful).call,
   TypedReducer<AppState, TakePictureSuccessful>(_takePictureSuccessful).call,
   TypedReducer<AppState, GetProductsSuccessful>(_getProductsSuccessful).call,
+  TypedReducer<AppState, RemoveProductFromGroceryListSuccessful>(_removeProductFromGroceryListSuccessful).call,
   // TypedReducer<AppState, GetImageLabelsSuccessful>(_getImageLabelsSuccessful).call,
 ]);
 
@@ -76,11 +77,11 @@ AppState _setSelectedList(AppState state, SetSelectedList action) {
 }
 
 AppState _setUnselectedList(AppState state, SetUnselectedList action) {
-  return state.copyWith(selectedGroceryList: '', productsList: <Product>[]);
+  return state.copyWith(selectedGroceryList: '', productsGroceryList: <Product>[]);
 }
 
 AppState _onProductsEvent(AppState state, OnProductsEvent action) {
-  return state.copyWith(productsList: <Product>{...state.productsList, ...action.products}.toList());
+  return state.copyWith(productsGroceryList: <Product>{...state.productsGroceryList, ...action.products}.toList());
 }
 
 AppState _createGroceryListSuccessful(AppState state, CreateGroceryListSuccessful action) {
@@ -129,3 +130,7 @@ AppState _setPictureToNull(AppState state, SetPictureToNull action) {
 // AppState _getImageLabelsSuccessful(AppState state, GetImageLabelsSuccessful action) {
 //   return state.copyWith(imageLabel: action.imageLabel);
 // }
+
+AppState _removeProductFromGroceryListSuccessful(AppState state, RemoveProductFromGroceryListSuccessful action) {
+  return state.copyWith(productsGroceryList: [...state.productsGroceryList]..remove(action.product));
+}

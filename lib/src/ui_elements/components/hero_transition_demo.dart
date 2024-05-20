@@ -2,6 +2,7 @@ import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/containers/pending_container.dart';
 import 'package:do_you_groceries/src/containers/related_products_container.dart';
 import 'package:do_you_groceries/src/models/index.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
@@ -171,85 +172,91 @@ class _PostDetailPageState extends State<PostDetailPage> {
               ),
             ),
           ),
+          Container(
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: Colors.redAccent),
+            child: TextButton(onPressed: () {
+              _store.dispatch(RemoveProductFromGroceryListStart(groceryListId: _store.state.selectedGroceryList!,
+                  product: widget.product),);
+              Navigator.pop(context);
+            }, child: const Text('Remove product from list')),
+          ),
           PendingContainer(builder: (BuildContext context, Set<String> pending) {
             if (pending.contains(GetProducts.pendingKey)) {
               return const CircularProgressIndicator();
             }
-            return RelatedProductsContainer(builder: (BuildContext context, List<Product> relatedProducts)
-            {
+            return RelatedProductsContainer(builder: (BuildContext context, List<Product> relatedProducts) {
               return Expanded(
                 child: ListView.builder(
                   itemCount: relatedProducts.length,
                   itemBuilder: (BuildContext context, int index) {
-                  final Product relatedProduct = relatedProducts[index];
-                  print(relatedProduct.name);
-                  return Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: Material(
-                      borderRadius: BorderRadius.circular(24),
-                      elevation: 4,
-                      child: SizedBox(
-                        //padding: const EdgeInsets.all(8),
-                        height: 100,
-                        width: 120,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.transparent,
-                            shadowColor: Colors.transparent,
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16),
+                    final Product relatedProduct = relatedProducts[index];
+                    print(relatedProduct.name);
+                    return Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: Material(
+                        borderRadius: BorderRadius.circular(24),
+                        elevation: 4,
+                        child: SizedBox(
+                          //padding: const EdgeInsets.all(8),
+                          height: 100,
+                          width: 120,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.transparent,
+                              shadowColor: Colors.transparent,
+                              elevation: 0,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16),
+                              ),
                             ),
-                          ),
-                          onPressed: () {
-                          },
-                          child: Row(
-                            children: <Widget>[
-                              ImageShimmer(
-                                url: relatedProduct.image,
-                                height: 100,
-                                width: 130,
-                              ),
-                              const SizedBox(
-                                width: 12,
-                              ),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text(
-                                      relatedProduct.name,
-                                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                                    ),
-                                    Row(
-                                      children: <Widget>[
-                                        const Icon(
-                                          Icons.monetization_on,
-                                          size: 12,
-                                        ),
-                                        const SizedBox(
-                                          width: 8,
-                                        ),
-                                        Text(
-                                          '${relatedProduct.price} RON',
-                                          style: const TextStyle(fontSize: 16),
-                                        ),
-                                      ],
-                                    ),
-                                    Text(
-                                      relatedProduct.supermarket,
-                                      //style: const TextStyle(fontSize: 16),
-                                    ),
-                                  ],
+                            onPressed: () {},
+                            child: Row(
+                              children: <Widget>[
+                                ImageShimmer(
+                                  url: relatedProduct.image,
+                                  height: 100,
+                                  width: 130,
                                 ),
-                              ),
-                            ],
+                                const SizedBox(
+                                  width: 12,
+                                ),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        relatedProduct.name,
+                                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                                      ),
+                                      Row(
+                                        children: <Widget>[
+                                          const Icon(
+                                            Icons.monetization_on,
+                                            size: 12,
+                                          ),
+                                          const SizedBox(
+                                            width: 8,
+                                          ),
+                                          Text(
+                                            '${relatedProduct.price} RON',
+                                            style: const TextStyle(fontSize: 16),
+                                          ),
+                                        ],
+                                      ),
+                                      Text(
+                                        relatedProduct.supermarket,
+                                        //style: const TextStyle(fontSize: 16),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  );
-                },),
+                    );
+                  },),
               );
             },
             );

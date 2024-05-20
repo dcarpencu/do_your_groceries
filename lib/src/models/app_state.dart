@@ -5,7 +5,7 @@ class AppState with _$AppState {
   const factory AppState({
     AppUser? user,
     @Default(<Product>[]) List<Product> supermarketProducts,
-    @Default(<Product>[]) List<Product> productsList,
+    @Default(<Product>[]) List<Product> productsGroceryList,
     @Default(<Product>[]) List<Product> relatedProducts,
     @Default(<GroceryList>{}) Set<GroceryList> groceryLists,
     String? selectedGroceryList,

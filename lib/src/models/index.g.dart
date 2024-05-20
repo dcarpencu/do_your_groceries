@@ -15,7 +15,7 @@ _$AppState$Impl _$$AppState$ImplFromJson(Map<String, dynamic> json) =>
               ?.map((e) => Product.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const <Product>[],
-      productsList: (json['productsList'] as List<dynamic>?)
+      productsGroceryList: (json['productsGroceryList'] as List<dynamic>?)
               ?.map((e) => Product.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const <Product>[],
@@ -50,7 +50,7 @@ Map<String, dynamic> _$$AppState$ImplToJson(_$AppState$Impl instance) =>
     <String, dynamic>{
       'user': instance.user,
       'supermarketProducts': instance.supermarketProducts,
-      'productsList': instance.productsList,
+      'productsGroceryList': instance.productsGroceryList,
       'relatedProducts': instance.relatedProducts,
       'groceryLists': instance.groceryLists.toList(),
       'selectedGroceryList': instance.selectedGroceryList,
@@ -103,6 +103,10 @@ _$Product$Impl _$$Product$ImplFromJson(Map<String, dynamic> json) =>
       category: json['category'] as String,
       supermarket: json['supermarket'] as String? ?? '',
       tag: json['tag'] as String? ?? '',
+      keyWords: (json['keyWords'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const <String>[],
       image: json['image'] as String? ?? '',
       page: json['page'] as int? ?? 1,
     );
@@ -115,6 +119,7 @@ Map<String, dynamic> _$$Product$ImplToJson(_$Product$Impl instance) =>
       'category': instance.category,
       'supermarket': instance.supermarket,
       'tag': instance.tag,
+      'keyWords': instance.keyWords,
       'image': instance.image,
       'page': instance.page,
     };

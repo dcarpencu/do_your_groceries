@@ -22,7 +22,7 @@ AppState _$AppStateFromJson(Map<String, dynamic> json) {
 mixin _$AppState {
   AppUser? get user => throw _privateConstructorUsedError;
   List<Product> get supermarketProducts => throw _privateConstructorUsedError;
-  List<Product> get productsList => throw _privateConstructorUsedError;
+  List<Product> get productsGroceryList => throw _privateConstructorUsedError;
   List<Product> get relatedProducts => throw _privateConstructorUsedError;
   Set<GroceryList> get groceryLists => throw _privateConstructorUsedError;
   String? get selectedGroceryList => throw _privateConstructorUsedError;
@@ -47,7 +47,7 @@ abstract class $AppStateCopyWith<$Res> {
   $Res call(
       {AppUser? user,
       List<Product> supermarketProducts,
-      List<Product> productsList,
+      List<Product> productsGroceryList,
       List<Product> relatedProducts,
       Set<GroceryList> groceryLists,
       String? selectedGroceryList,
@@ -78,7 +78,7 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
   $Res call({
     Object? user = freezed,
     Object? supermarketProducts = null,
-    Object? productsList = null,
+    Object? productsGroceryList = null,
     Object? relatedProducts = null,
     Object? groceryLists = null,
     Object? selectedGroceryList = freezed,
@@ -98,9 +98,9 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.supermarketProducts
           : supermarketProducts // ignore: cast_nullable_to_non_nullable
               as List<Product>,
-      productsList: null == productsList
-          ? _value.productsList
-          : productsList // ignore: cast_nullable_to_non_nullable
+      productsGroceryList: null == productsGroceryList
+          ? _value.productsGroceryList
+          : productsGroceryList // ignore: cast_nullable_to_non_nullable
               as List<Product>,
       relatedProducts: null == relatedProducts
           ? _value.relatedProducts
@@ -189,7 +189,7 @@ abstract class _$$AppState$ImplCopyWith<$Res>
   $Res call(
       {AppUser? user,
       List<Product> supermarketProducts,
-      List<Product> productsList,
+      List<Product> productsGroceryList,
       List<Product> relatedProducts,
       Set<GroceryList> groceryLists,
       String? selectedGroceryList,
@@ -221,7 +221,7 @@ class __$$AppState$ImplCopyWithImpl<$Res>
   $Res call({
     Object? user = freezed,
     Object? supermarketProducts = null,
-    Object? productsList = null,
+    Object? productsGroceryList = null,
     Object? relatedProducts = null,
     Object? groceryLists = null,
     Object? selectedGroceryList = freezed,
@@ -241,9 +241,9 @@ class __$$AppState$ImplCopyWithImpl<$Res>
           ? _value._supermarketProducts
           : supermarketProducts // ignore: cast_nullable_to_non_nullable
               as List<Product>,
-      productsList: null == productsList
-          ? _value._productsList
-          : productsList // ignore: cast_nullable_to_non_nullable
+      productsGroceryList: null == productsGroceryList
+          ? _value._productsGroceryList
+          : productsGroceryList // ignore: cast_nullable_to_non_nullable
               as List<Product>,
       relatedProducts: null == relatedProducts
           ? _value._relatedProducts
@@ -291,7 +291,7 @@ class _$AppState$Impl implements AppState$ {
   const _$AppState$Impl(
       {this.user,
       final List<Product> supermarketProducts = const <Product>[],
-      final List<Product> productsList = const <Product>[],
+      final List<Product> productsGroceryList = const <Product>[],
       final List<Product> relatedProducts = const <Product>[],
       final Set<GroceryList> groceryLists = const <GroceryList>{},
       this.selectedGroceryList,
@@ -302,7 +302,7 @@ class _$AppState$Impl implements AppState$ {
       this.takenPicture = null,
       this.selectedCamera = null})
       : _supermarketProducts = supermarketProducts,
-        _productsList = productsList,
+        _productsGroceryList = productsGroceryList,
         _relatedProducts = relatedProducts,
         _groceryLists = groceryLists,
         _pending = pending,
@@ -323,13 +323,14 @@ class _$AppState$Impl implements AppState$ {
     return EqualUnmodifiableListView(_supermarketProducts);
   }
 
-  final List<Product> _productsList;
+  final List<Product> _productsGroceryList;
   @override
   @JsonKey()
-  List<Product> get productsList {
-    if (_productsList is EqualUnmodifiableListView) return _productsList;
+  List<Product> get productsGroceryList {
+    if (_productsGroceryList is EqualUnmodifiableListView)
+      return _productsGroceryList;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_productsList);
+    return EqualUnmodifiableListView(_productsGroceryList);
   }
 
   final List<Product> _relatedProducts;
@@ -385,7 +386,7 @@ class _$AppState$Impl implements AppState$ {
 
   @override
   String toString() {
-    return 'AppState(user: $user, supermarketProducts: $supermarketProducts, productsList: $productsList, relatedProducts: $relatedProducts, groceryLists: $groceryLists, selectedGroceryList: $selectedGroceryList, pending: $pending, pageNumber: $pageNumber, contentLoaded: $contentLoaded, cameras: $cameras, takenPicture: $takenPicture, selectedCamera: $selectedCamera)';
+    return 'AppState(user: $user, supermarketProducts: $supermarketProducts, productsGroceryList: $productsGroceryList, relatedProducts: $relatedProducts, groceryLists: $groceryLists, selectedGroceryList: $selectedGroceryList, pending: $pending, pageNumber: $pageNumber, contentLoaded: $contentLoaded, cameras: $cameras, takenPicture: $takenPicture, selectedCamera: $selectedCamera)';
   }
 
   @override
@@ -397,7 +398,7 @@ class _$AppState$Impl implements AppState$ {
             const DeepCollectionEquality()
                 .equals(other._supermarketProducts, _supermarketProducts) &&
             const DeepCollectionEquality()
-                .equals(other._productsList, _productsList) &&
+                .equals(other._productsGroceryList, _productsGroceryList) &&
             const DeepCollectionEquality()
                 .equals(other._relatedProducts, _relatedProducts) &&
             const DeepCollectionEquality()
@@ -422,7 +423,7 @@ class _$AppState$Impl implements AppState$ {
       runtimeType,
       user,
       const DeepCollectionEquality().hash(_supermarketProducts),
-      const DeepCollectionEquality().hash(_productsList),
+      const DeepCollectionEquality().hash(_productsGroceryList),
       const DeepCollectionEquality().hash(_relatedProducts),
       const DeepCollectionEquality().hash(_groceryLists),
       selectedGroceryList,
@@ -451,7 +452,7 @@ abstract class AppState$ implements AppState {
   const factory AppState$(
       {final AppUser? user,
       final List<Product> supermarketProducts,
-      final List<Product> productsList,
+      final List<Product> productsGroceryList,
       final List<Product> relatedProducts,
       final Set<GroceryList> groceryLists,
       final String? selectedGroceryList,
@@ -470,7 +471,7 @@ abstract class AppState$ implements AppState {
   @override
   List<Product> get supermarketProducts;
   @override
-  List<Product> get productsList;
+  List<Product> get productsGroceryList;
   @override
   List<Product> get relatedProducts;
   @override
@@ -876,6 +877,7 @@ mixin _$Product {
   String get category => throw _privateConstructorUsedError;
   String get supermarket => throw _privateConstructorUsedError;
   String get tag => throw _privateConstructorUsedError;
+  List<String> get keyWords => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
   int get page => throw _privateConstructorUsedError;
 
@@ -896,6 +898,7 @@ abstract class $ProductCopyWith<$Res> {
       String category,
       String supermarket,
       String tag,
+      List<String> keyWords,
       String image,
       int page});
 }
@@ -919,6 +922,7 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
     Object? category = null,
     Object? supermarket = null,
     Object? tag = null,
+    Object? keyWords = null,
     Object? image = null,
     Object? page = null,
   }) {
@@ -947,6 +951,10 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
           ? _value.tag
           : tag // ignore: cast_nullable_to_non_nullable
               as String,
+      keyWords: null == keyWords
+          ? _value.keyWords
+          : keyWords // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -973,6 +981,7 @@ abstract class _$$Product$ImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
       String category,
       String supermarket,
       String tag,
+      List<String> keyWords,
       String image,
       int page});
 }
@@ -994,6 +1003,7 @@ class __$$Product$ImplCopyWithImpl<$Res>
     Object? category = null,
     Object? supermarket = null,
     Object? tag = null,
+    Object? keyWords = null,
     Object? image = null,
     Object? page = null,
   }) {
@@ -1022,6 +1032,10 @@ class __$$Product$ImplCopyWithImpl<$Res>
           ? _value.tag
           : tag // ignore: cast_nullable_to_non_nullable
               as String,
+      keyWords: null == keyWords
+          ? _value._keyWords
+          : keyWords // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -1044,8 +1058,10 @@ class _$Product$Impl implements Product$ {
       required this.category,
       this.supermarket = '',
       this.tag = '',
+      final List<String> keyWords = const <String>[],
       this.image = '',
-      this.page = 1});
+      this.page = 1})
+      : _keyWords = keyWords;
 
   factory _$Product$Impl.fromJson(Map<String, dynamic> json) =>
       _$$Product$ImplFromJson(json);
@@ -1064,6 +1080,15 @@ class _$Product$Impl implements Product$ {
   @override
   @JsonKey()
   final String tag;
+  final List<String> _keyWords;
+  @override
+  @JsonKey()
+  List<String> get keyWords {
+    if (_keyWords is EqualUnmodifiableListView) return _keyWords;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_keyWords);
+  }
+
   @override
   @JsonKey()
   final String image;
@@ -1073,7 +1098,7 @@ class _$Product$Impl implements Product$ {
 
   @override
   String toString() {
-    return 'Product(productId: $productId, name: $name, price: $price, category: $category, supermarket: $supermarket, tag: $tag, image: $image, page: $page)';
+    return 'Product(productId: $productId, name: $name, price: $price, category: $category, supermarket: $supermarket, tag: $tag, keyWords: $keyWords, image: $image, page: $page)';
   }
 
   @override
@@ -1090,14 +1115,24 @@ class _$Product$Impl implements Product$ {
             (identical(other.supermarket, supermarket) ||
                 other.supermarket == supermarket) &&
             (identical(other.tag, tag) || other.tag == tag) &&
+            const DeepCollectionEquality().equals(other._keyWords, _keyWords) &&
             (identical(other.image, image) || other.image == image) &&
             (identical(other.page, page) || other.page == page));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, productId, name, price, category,
-      supermarket, tag, image, page);
+  int get hashCode => Object.hash(
+      runtimeType,
+      productId,
+      name,
+      price,
+      category,
+      supermarket,
+      tag,
+      const DeepCollectionEquality().hash(_keyWords),
+      image,
+      page);
 
   @JsonKey(ignore: true)
   @override
@@ -1121,6 +1156,7 @@ abstract class Product$ implements Product {
       required final String category,
       final String supermarket,
       final String tag,
+      final List<String> keyWords,
       final String image,
       final int page}) = _$Product$Impl;
 
@@ -1139,6 +1175,8 @@ abstract class Product$ implements Product {
   String get supermarket;
   @override
   String get tag;
+  @override
+  List<String> get keyWords;
   @override
   String get image;
   @override

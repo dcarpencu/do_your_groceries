@@ -35,6 +35,7 @@ class AppEpic {
       TypedEpic<AppState, TakePictureStart>(_takePictureStart).call,
       TypedEpic<AppState, GetImageLabelsStart>(_getImageLabelsStart).call,
       TypedEpic<AppState, GetProductsStart>(_getProductsStart).call,
+      TypedEpic<AppState, RemoveProductFromGroceryListStart>(_removeProductFromGroceryListStart).call,
     ]);
   }
 
@@ -262,6 +263,15 @@ class AppEpic {
           .asyncMap((_) => _productsApi.getProducts(product: action.product))
           .map<GetProducts>(GetProducts.successful)
           .onErrorReturnWith(GetProducts.error);
+    });
+  }
+
+  Stream<AppAction> _removeProductFromGroceryListStart(Stream<RemoveProductFromGroceryListStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((RemoveProductFromGroceryListStart action) {
+      return Stream<void>.value(null)
+          .asyncMap((_) => _productsApi.removeProductFromGroceryList(groceryListId: action.groceryListId, product: action.product, ))
+          .map<RemoveProductFromGroceryList>( RemoveProductFromGroceryList.successful)
+          .onErrorReturnWith(RemoveProductFromGroceryList.error);
     });
   }
 }

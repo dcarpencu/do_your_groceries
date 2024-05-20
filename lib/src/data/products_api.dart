@@ -54,22 +54,25 @@ class ProductsApi {
     print('\n\n\n\n GET PRODUCTS: \n\n');
     final List<Product> relatedProducts = <Product>[];
 
-    final CollectionReference<Map<String, dynamic>> productsRef =
-        _firestore.collection('tags/${product.category}/${product.tag}');
+    if (product.supermarket.isNotEmpty)
+    {
+      final CollectionReference<Map<String, dynamic>> productsRef =
+          _firestore.collection('tags/${product.category}/${product.tag}');
 
-    final QuerySnapshot<Map<String, dynamic>> querySnapshot = await productsRef.get();
+      final QuerySnapshot<Map<String, dynamic>> querySnapshot = await productsRef.get();
 
-    // Loop through documents and convert them to Product objects
-    for (final QueryDocumentSnapshot<Map<String, dynamic>> doc in querySnapshot.docs) {
-      relatedProducts.add(
-        Product(
-          name: doc['name'] as String,
-          price: doc['price'] as double,
-          productId: doc.id,
-          category: product.category,
-          image: doc['image'] as String,
-        ),
-      );
+      // Loop through documents and convert them to Product objects
+      for (final QueryDocumentSnapshot<Map<String, dynamic>> doc in querySnapshot.docs) {
+        relatedProducts.add(
+          Product(
+            name: doc['name'] as String,
+            price: doc['price'] as double,
+            productId: doc.id,
+            category: product.category,
+            image: doc['image'] as String,
+          ),
+        );
+      }
     }
 
     return relatedProducts;
@@ -119,5 +122,48 @@ class ProductsApi {
     listData['productIds'] = productIds;
 
     await listRef.update(listData);
+  }
+
+  Future<Product> removeProductFromGroceryList({
+    required String groceryListId,
+    required Product product,
+  }) async {
+    final DocumentReference<Map<String, dynamic>> listRef = _firestore.collection('lists').doc(groceryListId);
+    final DocumentReference<Map<String, dynamic>> productRef = _firestore.collection('products').doc(product.productId);
+
+    final DocumentSnapshot<Map<String, dynamic>> snapshot = await listRef.get();
+
+    if (!snapshot.exists) {
+      throw Exception('Grocery list does not exist');
+    }
+
+    final Map<String, dynamic>? listData = snapshot.data();
+
+    if (listData == null) {
+      throw Exception('Grocery list data is null');
+    }
+
+    List<String> productIds = (listData['productIds'] as List<dynamic>?)
+        ?.map((dynamic id) => id.toString())
+        .toList() ?? <String>[];
+
+    print('\n\n\n\n BEFORE: $productIds \n\n');
+
+    print('\n\n\n\n PRODUCT TO BE RM: ${product.productId} \n\n');
+
+    productIds.removeWhere((String id) => id.contains(product.productId));
+
+    print('\n\n\n\n BOR BOR FASULE: $productIds \n\n');
+
+    listData['productIds'] = productIds;
+
+    await listRef.update(listData);
+
+    if (product.supermarket.isEmpty) {
+      final DocumentReference<Map<String, dynamic>> productRef = _firestore.collection('products').doc(product.productId);
+      await productRef.delete();
+    }
+
+    return product;
   }
 }
