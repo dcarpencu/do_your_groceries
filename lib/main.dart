@@ -6,12 +6,7 @@ import 'package:do_you_groceries/src/data/products_api.dart';
 import 'package:do_you_groceries/src/data/supermarkets_api.dart';
 import 'package:do_you_groceries/src/epics/app_epic.dart';
 import 'package:do_you_groceries/src/models/index.dart';
-import 'package:do_you_groceries/src/presentation/home.dart';
-import 'package:do_you_groceries/src/presentation/login/login_page.dart';
-import 'package:do_you_groceries/src/presentation/login/sign_up_page.dart';
-import 'package:do_you_groceries/src/presentation/products/create_list_page.dart';
-import 'package:do_you_groceries/src/presentation/products/create_product_page.dart';
-import 'package:do_you_groceries/src/presentation/supermarkets/markets_page.dart';
+import 'package:do_you_groceries/src/navigation/routes.dart';
 import 'package:do_you_groceries/src/reducer/reducer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -56,22 +51,13 @@ class DoYourGroceriesApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return StoreProvider<AppState>(
       store: store,
-      child: MaterialApp(
+      child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           colorSchemeSeed: Colors.green,
           useMaterial3: true,
         ),
-        routes: <String, WidgetBuilder>{
-          '/': (BuildContext context) => const Home(),
-          '/signUp': (BuildContext context) => const SignupPage(),
-          '/login': (BuildContext context) => const LoginPage(),
-          //'/productsSearch': (BuildContext context) => const SearchProductsPage(),
-          '/markets': (BuildContext context) => const MarketsPage(),
-          '/createList': (BuildContext context) => const CreateListPage(),
-          '/createProductPage': (BuildContext context) => const CreateProductPage(),
-          //'/cameraPage': (BuildContext context) => CameraApp
-        },
+        routerConfig: router,
       ),
     );
   }

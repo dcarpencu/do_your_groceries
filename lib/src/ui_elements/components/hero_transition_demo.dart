@@ -2,12 +2,10 @@ import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/containers/pending_container.dart';
 import 'package:do_you_groceries/src/containers/related_products_container.dart';
 import 'package:do_you_groceries/src/models/index.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:do_you_groceries/src/ui_elements/components/image_shimmer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
-
-import 'image_shimmer_widget.dart';
 
 class HeroPosts extends StatelessWidget {
   const HeroPosts({required this.product, super.key});
@@ -38,7 +36,6 @@ class PostCard extends StatefulWidget {
 class _PostCardState extends State<PostCard> {
   late Store<AppState> _store;
 
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -59,16 +56,27 @@ class _PostCardState extends State<PostCard> {
               leading: widget.product.image.isEmpty
                   ? const FlutterLogo(size: 72)
                   : SizedBox(
-                height: 72,
-                child: Image.network(
-                  widget.product.image,
-                  fit: BoxFit.cover,
-                  width: 64,
-                ),
-              ),
-              title: Text(
-                widget.product.name,
-                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                      height: 72,
+                      child: Image.network(
+                        widget.product.image,
+                        fit: BoxFit.cover,
+                        width: 64,
+                      ),
+                    ),
+              title: Column(
+                children: <Widget>[
+                  Text(
+                    widget.product.name,
+                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                  ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      widget.product.supermarket,
+                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500, ),
+                    ),
+                  ),
+                ],
               ),
               subtitle: Text('${widget.product.price} RON'),
             ),
@@ -81,7 +89,7 @@ class _PostCardState extends State<PostCard> {
   // Method to navigate to the detail page when a post is tapped.
   void _navigateToDetail(BuildContext context, Product product) {
     Navigator.of(context).push(
-      MaterialPageRoute(
+      MaterialPageRoute<void>(
         builder: (BuildContext context) => PostDetailPage(product: product),
       ),
     );
@@ -99,7 +107,6 @@ class PostDetailPage extends StatefulWidget {
 }
 
 class _PostDetailPageState extends State<PostDetailPage> {
-
   late Store<AppState> _store;
 
   @override
@@ -158,6 +165,15 @@ class _PostDetailPageState extends State<PostDetailPage> {
                           const SizedBox(height: 10),
                           // Displaying detailed post description.
                           Text(
+                            widget.product.supermarket,
+                            style: MyTextSample.body1(context)!.copyWith(
+                              fontSize: 18,
+                              color: Colors.black,
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          // Displaying detailed post description.
+                          Text(
                             '${widget.product.price} RON',
                             style: MyTextSample.body1(context)!.copyWith(
                               fontSize: 16,
@@ -174,93 +190,104 @@ class _PostDetailPageState extends State<PostDetailPage> {
           ),
           Container(
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: Colors.redAccent),
-            child: TextButton(onPressed: () {
-              _store.dispatch(RemoveProductFromGroceryListStart(groceryListId: _store.state.selectedGroceryList!,
-                  product: widget.product),);
-              Navigator.pop(context);
-            }, child: const Text('Remove product from list')),
+            child: TextButton(
+                onPressed: () {
+                  _store.dispatch(
+                    RemoveProductFromGroceryListStart(
+                        groceryListId: _store.state.selectedGroceryList!, product: widget.product),
+                  );
+                  Navigator.pop(context);
+                },
+                child: const Text('Remove product from list')),
           ),
-          PendingContainer(builder: (BuildContext context, Set<String> pending) {
-            if (pending.contains(GetProducts.pendingKey)) {
-              return const CircularProgressIndicator();
-            }
-            return RelatedProductsContainer(builder: (BuildContext context, List<Product> relatedProducts) {
-              return Expanded(
-                child: ListView.builder(
-                  itemCount: relatedProducts.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    final Product relatedProduct = relatedProducts[index];
-                    print(relatedProduct.name);
-                    return Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: Material(
-                        borderRadius: BorderRadius.circular(24),
-                        elevation: 4,
-                        child: SizedBox(
-                          //padding: const EdgeInsets.all(8),
-                          height: 100,
-                          width: 120,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.transparent,
-                              shadowColor: Colors.transparent,
-                              elevation: 0,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                            ),
-                            onPressed: () {},
-                            child: Row(
-                              children: <Widget>[
-                                ImageShimmer(
-                                  url: relatedProduct.image,
-                                  height: 100,
-                                  width: 130,
+          PendingContainer(
+            builder: (BuildContext context, Set<String> pending) {
+              if (pending.contains(GetProducts.pendingKey)) {
+                return const CircularProgressIndicator();
+              }
+              return RelatedProductsContainer(
+                builder: (BuildContext context, List<Product> relatedProducts) {
+                  return Expanded(
+                    child: ListView.builder(
+                      itemCount: relatedProducts.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        final Product relatedProduct = relatedProducts[index];
+                        return Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: Material(
+                            borderRadius: BorderRadius.circular(24),
+                            elevation: 4,
+                            child: SizedBox(
+                              //padding: const EdgeInsets.all(8),
+                              height: 100,
+                              width: 120,
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.transparent,
+                                  shadowColor: Colors.transparent,
+                                  elevation: 0,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(16),
+                                  ),
                                 ),
-                                const SizedBox(
-                                  width: 12,
-                                ),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Text(
-                                        relatedProduct.name,
-                                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                                      ),
-                                      Row(
+                                onPressed: () {},
+                                child: Row(
+                                  children: <Widget>[
+                                    Column(
+                                      children: [
+                                        ImageShimmer(
+                                          url: relatedProduct.image,
+                                          height: 70,
+                                          width: 130,
+                                        ),
+                                        Text(
+                                          relatedProduct.supermarket,
+                                          //style: const TextStyle(fontSize: 16),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      width: 12,
+                                    ),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: <Widget>[
-                                          const Icon(
-                                            Icons.monetization_on,
-                                            size: 12,
-                                          ),
-                                          const SizedBox(
-                                            width: 8,
-                                          ),
                                           Text(
-                                            '${relatedProduct.price} RON',
-                                            style: const TextStyle(fontSize: 16),
+                                            relatedProduct.name,
+                                            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                                          ),
+                                          Row(
+                                            children: <Widget>[
+                                              const Icon(
+                                                Icons.monetization_on,
+                                                size: 12,
+                                              ),
+                                              const SizedBox(
+                                                width: 8,
+                                              ),
+                                              Text(
+                                                '${relatedProduct.price} RON',
+                                                style: const TextStyle(fontSize: 16),
+                                              ),
+                                            ],
                                           ),
                                         ],
                                       ),
-                                      Text(
-                                        relatedProduct.supermarket,
-                                        //style: const TextStyle(fontSize: 16),
-                                      ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
-                              ],
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                    );
-                  },),
+                        );
+                      },
+                    ),
+                  );
+                },
               );
             },
-            );
-          },),
+          ),
         ],
       ),
     );
@@ -270,16 +297,10 @@ class _PostDetailPageState extends State<PostDetailPage> {
 // MyTextSample is a utility class that provides text styles.
 class MyTextSample {
   static TextStyle? title(BuildContext context) {
-    return Theme
-        .of(context)
-        .textTheme
-        .titleLarge;
+    return Theme.of(context).textTheme.titleLarge;
   }
 
   static TextStyle? body1(BuildContext context) {
-    return Theme
-        .of(context)
-        .textTheme
-        .bodyMedium;
+    return Theme.of(context).textTheme.bodyMedium;
   }
 }

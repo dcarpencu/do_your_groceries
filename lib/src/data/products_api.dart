@@ -69,6 +69,7 @@ class ProductsApi {
             price: doc['price'] as double,
             productId: doc.id,
             category: product.category,
+            supermarket: doc['supermarket'] as String,
             image: doc['image'] as String,
           ),
         );

@@ -14,7 +14,7 @@ class ListsCarousel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 240,
+      height: 264,
       child: ListView.separated(
         itemCount: groceryLists.length,
         scrollDirection: Axis.horizontal,
