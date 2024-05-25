@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:go_router/go_router.dart';
 import 'package:rive/rive.dart';
 
 class SignupPage extends StatefulWidget {
@@ -43,7 +44,7 @@ class _SignupPageState extends State<SignupPage> {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('$error')));
       }
     } else if (action is CreateUserSuccessful) {
-      Navigator.pushNamedAndRemoveUntil(context, '/', (_) => false);
+      context.go('/homePage');
     }
   }
 

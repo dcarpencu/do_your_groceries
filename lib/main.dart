@@ -57,7 +57,7 @@ class DoYourGroceriesApp extends StatelessWidget {
           colorSchemeSeed: Colors.green,
           useMaterial3: true,
         ),
-        routerConfig: router,
+        routerConfig: RouterApp(store).router,
       ),
     );
   }

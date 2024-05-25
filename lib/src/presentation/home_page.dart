@@ -7,6 +7,7 @@ import 'package:do_you_groceries/src/presentation/products/create_list_page.dart
 import 'package:do_you_groceries/src/ui_elements/components/home_page_components/lists_carousel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:go_router/go_router.dart';
 import 'package:redux/redux.dart';
 
 class HomePage extends StatefulWidget {
@@ -23,17 +24,8 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
 
-    // print('\n\n\n\n\n ------ IM IN STARTUP ------ \n\n\n');
-
-    // RUN ONLY ONCE!
-    // StoreProvider.of<AppState>(context, listen: false).dispatch(const GenerateProducts());
-
     _store = StoreProvider.of<AppState>(context, listen: false);
-
-    _store
-      ..dispatch(const GetGroceryListsStart())
-      ..dispatch(const RequestStoragePermissionStart())
-      ..dispatch(const GetCamerasStart());
+    _store.dispatch(const GetGroceryListsStart());
   }
 
   @override
@@ -44,7 +36,8 @@ class _HomePageState extends State<HomePage> {
           appBar: AppBar(
             leading: IconButton(
               onPressed: () {
-                StoreProvider.of<AppState>(context).dispatch(const Logout.start());
+                StoreProvider.of<AppState>(context).dispatch(const LogoutStart());
+                context.go('/login');
               },
               icon: const Icon(Icons.logout),
             ),
@@ -132,14 +125,7 @@ class _HomePageState extends State<HomePage> {
             },
           ),
           floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              // Navigator.of(context).push(
-              //   // ignore: always_specify_types
-              //   MaterialPageRoute<Widget>(builder: (BuildContext context) => const CreateListPage()),
-              // );
-              Navigator.of(context).push(_createRoute());
-              //Navigator.pushNamed(context, '/createList');
-            },
+            onPressed: () => context.push('/createList'),
             tooltip: 'Create',
             child: const Icon(Icons.playlist_add),
           ),

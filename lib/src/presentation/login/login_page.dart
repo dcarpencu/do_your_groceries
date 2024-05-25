@@ -12,13 +12,6 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      // body: PendingContainer(
-      //   builder: (BuildContext context, Set<String> pending) {
-      // if (pending.contains(Login.pendingKey)) {
-      //   return const Center(child: CircularProgressIndicator());
-      // }
-      // return const OnboardingScreen();
-      // },),
       body: OnboardingScreen(),
     );
   }

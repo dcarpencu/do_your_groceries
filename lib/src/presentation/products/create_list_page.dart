@@ -3,6 +3,7 @@ import 'package:do_you_groceries/src/models/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:redux/redux.dart';
 
 class CreateListPage extends StatefulWidget {
@@ -48,7 +49,7 @@ class _CreateListPageState extends State<CreateListPage> {
       ),
     );
 
-    Navigator.pop(context);
+   context.go('/homePage');
   }
 
   @override
@@ -175,7 +176,7 @@ class _CreateListPageState extends State<CreateListPage> {
                         TextButton(onPressed: () => _onNext(context), child: const Text('Create list')),
                         TextButton(
                           onPressed: () {
-                            Navigator.pop(context);
+                            context.pop();
                           },
                           child: const Text('Cancel', style: TextStyle(color: Colors.black)),
                         ),

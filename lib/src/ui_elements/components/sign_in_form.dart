@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:rive/rive.dart';
 
 class SignInForm extends StatefulWidget {
@@ -43,7 +44,8 @@ class _SignInFormState extends State<SignInForm> {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('$error')));
       }
     } else if (action is LoginSuccessful) {
-      Navigator.pushNamedAndRemoveUntil(context, '/', (_) => false);
+      context..pop()
+      ..go('/homePage');
     }
   }
 

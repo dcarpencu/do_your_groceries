@@ -1,6 +1,7 @@
 import 'package:do_you_groceries/src/ui_elements/components/sign_in_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 Future<Object?> customSigninDialog(BuildContext context, {required ValueChanged<dynamic> onClosed}) {
   return showGeneralDialog(
@@ -72,7 +73,7 @@ Future<Object?> customSigninDialog(BuildContext context, {required ValueChanged<
                       IconButton(
                         padding: EdgeInsets.zero,
                         onPressed: () {
-                          Navigator.pushNamed(context, '/signUp');
+                          context.go('/signUp');
                         },
                         icon: SvgPicture.asset(
                           'assets/icons/email_box.svg',
