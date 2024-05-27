@@ -1,0 +1,22 @@
+{
+  "user": {
+    "uid": "uid",
+    "email": "email",
+    "username": "username",
+    "groceryListIds": [
+      "a",
+      "b",
+      "c"
+    ]},
+  "supermarketProducts": [],
+  "productsGroceryList": [],
+  "relatedProducts": [],
+  "groceryLists": [],
+  "selectedGroceryList": null,
+  "pending": {},
+  "pageNumber": 1,
+  "contentLoaded": false,
+  "cameras": [],
+  "takenPicture": null,
+  "selectedCamera": null
+}
