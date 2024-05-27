@@ -1,9 +1,11 @@
 import 'package:do_you_groceries/src/models/index.dart';
+import 'package:do_you_groceries/src/presentation/camera/image_recognition_page.dart';
 import 'package:do_you_groceries/src/presentation/home.dart';
 import 'package:do_you_groceries/src/presentation/home_page.dart';
 import 'package:do_you_groceries/src/presentation/login/login_page.dart';
 import 'package:do_you_groceries/src/presentation/login/sign_up_page.dart';
 import 'package:do_you_groceries/src/presentation/products/create_list_page.dart';
+import 'package:do_you_groceries/src/presentation/products/create_product_page.dart';
 import 'package:do_you_groceries/src/presentation/products/user_products_page.dart';
 import 'package:do_you_groceries/src/presentation/supermarkets/markets_page.dart';
 import 'package:do_you_groceries/src/presentation/supermarkets/search_page.dart';
@@ -49,6 +51,19 @@ class RouterApp {
           path: '/groceryList',
           builder: (BuildContext context, GoRouterState state) => const UserProductsPage(),
           routes: <RouteBase>[
+            GoRoute(
+              name: 'createProduct',
+              path: 'createProductPage',
+              builder: (BuildContext context, GoRouterState state) => const CreateProductPage(),
+            ),
+            GoRoute(
+              name: 'cameraApp',
+              path: 'cameraAppPage/:cameras',
+              builder: (BuildContext context, GoRouterState state) {
+                final List<CameraInfo> cameras = state.pathParameters['cameras']! as List<CameraInfo>;
+                return CameraApp(cameras: cameras,);
+              }
+            ),
             GoRoute(
               name: 'marketsPage',
               path: 'marketsPage',

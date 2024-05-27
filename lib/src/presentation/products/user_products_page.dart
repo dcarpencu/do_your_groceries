@@ -9,6 +9,7 @@ import 'package:do_you_groceries/src/ui_elements/bottom_app_bar.dart';
 import 'package:do_you_groceries/src/ui_elements/components/hero_transition_demo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:go_router/go_router.dart';
 import 'package:redux/redux.dart';
 
 class UserProductsPage extends StatefulWidget {
@@ -83,6 +84,9 @@ class _UserProductsPageState extends State<UserProductsPage> {
           floatingActionButton: FloatingActionButton(
             onPressed: () {
               _store.dispatch(const GetCamerasStart());
+
+              //context.goNamed('cameraApp', pathParameters: <String, String>{'cameras': _store.state.cameras});
+
               Navigator.of(context).push(
                 MaterialPageRoute<Widget>(
                   builder: (BuildContext context) => CameraApp(

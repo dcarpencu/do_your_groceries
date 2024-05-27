@@ -41,7 +41,9 @@ class BottomAppBarWidget extends StatelessWidget {
                     // Navigator.of(context).push(
                     //   MaterialPageRoute<Widget>(builder: (BuildContext context) => const CreateProductPage()),
                     // );
-                    Navigator.of(context).push(_createRoute());
+                    // Navigator.of(context).push(_createRoute());
+
+                    context.pushNamed('createProduct');
                   },
                 ),
               ],
