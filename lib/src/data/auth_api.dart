@@ -77,27 +77,61 @@ class AuthApi {
   Future<GroceryList> removeGroceryList({
     required GroceryList groceryList,
   }) async {
-    final DocumentReference<Map<String, dynamic>> ref = _firestore.collection('lists').doc(groceryList.groceryListId);
+    final DocumentReference<Map<String, dynamic>> groceryListRef = _firestore.collection('lists').doc(groceryList.groceryListId);
+    final DocumentSnapshot<Map<String, dynamic>> groceryListSnapshot = await groceryListRef.get();
 
-    final User? currentUser = _auth.currentUser;
-    final DocumentReference<Map<String, dynamic>> userRef = _firestore.doc('users/${currentUser?.uid}');
-    final DocumentSnapshot<Map<String, dynamic>> snapshot = await userRef.get();
+    if (groceryListSnapshot.exists) {
+      final Map<String, dynamic> groceryListData = groceryListSnapshot.data()!;
+      final List<dynamic>? productIds = groceryListData['productIds'] as List<dynamic>?;
 
-    final Map<String, dynamic> userData = snapshot.data()!;
+      final WriteBatch batch = _firestore.batch();
+      // Delete each product associated with the grocery list
+      if (productIds != null) {
+        for (final dynamic productId in productIds) {
+          final List<dynamic> parts = productId.toString().split('/');
+          print('\n\n${parts.first}\n\n ${parts.last}');
+          print('\n\nPRODUCT ID: $productId\n');
+          if(parts.first == 'products') {
+            final DocumentReference<Map<String, dynamic>> productRef = _firestore.collection('products').doc(
+                parts.last as String);
+            print('\n\nPRODUCT ref: $productRef\n');
+            batch.delete(productRef);
+          }
+        }
+      }
 
-    final List<dynamic>? groceryListIds =
-    (snapshot.data()?['groceryListIds'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
+      final User? currentUser = _auth.currentUser;
+      if (currentUser != null) {
+        final DocumentReference<Map<String, dynamic>> userRef = _firestore.doc('users/${currentUser.uid}');
+        final DocumentSnapshot<Map<String, dynamic>> userSnapshot = await userRef.get();
 
-    groceryListIds?.add(ref.id);
+        if (userSnapshot.exists) {
+          final Map<String, dynamic> userData = userSnapshot.data()!;
+          final List<dynamic>? groceryListIds = (userData['groceryListIds'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
 
-    groceryListIds?.remove(groceryList.groceryListId);
+          if (groceryListIds != null) {
+            groceryListIds.remove(groceryList.groceryListId);
+            userData['groceryListIds'] = groceryListIds;
+            batch.update(userRef, userData);
+          }
+        }
+      }
 
-    userData['groceryListIds'] = groceryListIds;
-    await userRef.update(userData);
-    await ref.delete();
+      // Delete the grocery list itself
+      batch.delete(groceryListRef);
+
+      try {
+        await batch.commit();
+      } catch (e) {
+        print('Failed to remove grocery list: $e');
+        // Handle errors accordingly, possibly rethrowing the error or returning a failure result
+        rethrow;
+      }
+    }
 
     return groceryList;
   }
+
 
   Future<Set<GroceryList>> getLists() async {
     final User? currentUser = _auth.currentUser;

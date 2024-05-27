@@ -37,27 +37,39 @@ Future<void> main() async {
     middleware: <Middleware<AppState>>[
       EpicMiddleware<AppState>(epic.getEpics()).call,
     ],
-  )..dispatch(const GetCurrentUser());
+  )..dispatch(const GetCurrentUserStart());
 
   runApp(DoYourGroceriesApp(store: store));
 }
 
-class DoYourGroceriesApp extends StatelessWidget {
+class DoYourGroceriesApp extends StatefulWidget {
   const DoYourGroceriesApp({required this.store, super.key});
 
   final Store<AppState> store;
 
   @override
+  State<DoYourGroceriesApp> createState() => _DoYourGroceriesAppState();
+}
+
+class _DoYourGroceriesAppState extends State<DoYourGroceriesApp> {
+  @override
+  void initState() {
+    super.initState();
+    widget.store
+      ..dispatch(const RequestStoragePermissionStart())
+      ..dispatch(const GetCamerasStart());
+  }
+  @override
   Widget build(BuildContext context) {
     return StoreProvider<AppState>(
-      store: store,
+      store: widget.store,
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           colorSchemeSeed: Colors.green,
           useMaterial3: true,
         ),
-        routerConfig: RouterApp(store).router,
+        routerConfig: RouterApp(widget.store).router,
       ),
     );
   }

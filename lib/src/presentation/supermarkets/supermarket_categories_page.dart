@@ -3,6 +3,7 @@ import 'package:do_you_groceries/src/presentation/supermarkets/search_page.dart'
 import 'package:do_you_groceries/src/ui_elements/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 class SupermarketCategoriesPage extends StatelessWidget {
   const SupermarketCategoriesPage({required this.supermarketName, super.key});
@@ -32,16 +33,15 @@ class SupermarketCategoriesPage extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute<Widget>(
-                    builder: (BuildContext context) => SearchProductsPage(
-                      supermarketName,
-                      category: supermarketCategories[index],
-                      supermarketCategoryLabel: supermarketCategoryLabels[index],
-                      supermarketCategory: supermarketCategories[index],
-                    ),
-                  ),
+                context.pushNamed(
+                  'searchProducts',
+                  pathParameters: <String, String>{
+                    'supermarketName': supermarketName,
+                    'marketName': supermarketName,
+                    'category': supermarketCategories[index],
+                    'supermarketCategoryLabel': supermarketCategoryLabels[index],
+                    'supermarketCategory': supermarketCategories[index],
+                  },
                 );
               },
               child: Column(

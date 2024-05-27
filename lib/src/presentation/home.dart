@@ -21,10 +21,10 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
 
-    _store = StoreProvider.of<AppState>(context, listen: false);
-    _store
-      ..dispatch(const RequestStoragePermissionStart())
-      ..dispatch(const GetCamerasStart());
+    // _store = StoreProvider.of<AppState>(context, listen: false);
+    // _store
+    //   ..dispatch(const RequestStoragePermissionStart())
+    //   ..dispatch(const GetCamerasStart());
   }
 
   @override

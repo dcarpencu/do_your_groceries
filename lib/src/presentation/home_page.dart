@@ -97,7 +97,7 @@ class _HomePageState extends State<HomePage> {
                                     radius: 50,
                                     child: const CircleAvatar(
                                       backgroundImage: NetworkImage(
-                                          "https://www.pushengage.com/wp-content/uploads/2022/10/How-to-Add-a-Push-Notification-Icon.png"),
+                                          'https://www.pushengage.com/wp-content/uploads/2022/10/How-to-Add-a-Push-Notification-Icon.png'),
                                       radius: 100,
                                     ),
                                   ),
@@ -125,7 +125,7 @@ class _HomePageState extends State<HomePage> {
             },
           ),
           floatingActionButton: FloatingActionButton(
-            onPressed: () => context.push('/createList'),
+            onPressed: () => context.pushNamed('createList'),
             tooltip: 'Create',
             child: const Icon(Icons.playlist_add),
           ),

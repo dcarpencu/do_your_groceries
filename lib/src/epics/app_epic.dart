@@ -50,21 +50,21 @@ class AppEpic {
     });
   }
 
-  Stream<AppAction> _initializeControllerStart(Stream<InitializeControllerStart> actions, EpicStore<AppState> store) {
-    return actions.flatMap((InitializeControllerStart action) {
-      return Stream<void>.value(null)
-          .asyncMap((_) => _cameraApi.initializeController(controller: action.controller))
-          .mapTo(const InitializeController.successful())
-          .onErrorReturnWith(InitializeController.error);
-    });
-  }
-
   Stream<AppAction> _getCurrentUserStart(Stream<GetCurrentUserStart> actions, EpicStore<AppState> store) {
     return actions.flatMap((GetCurrentUserStart action) {
       return Stream<void>.value(null)
           .asyncMap((_) => _authApi.getCurrentUser())
           .map<GetCurrentUser>(GetCurrentUser.successful)
           .onErrorReturnWith(GetCurrentUser.error);
+    });
+  }
+
+  Stream<AppAction> _initializeControllerStart(Stream<InitializeControllerStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((InitializeControllerStart action) {
+      return Stream<void>.value(null)
+          .asyncMap((_) => _cameraApi.initializeController(controller: action.controller))
+          .mapTo(const InitializeController.successful())
+          .onErrorReturnWith(InitializeController.error);
     });
   }
 

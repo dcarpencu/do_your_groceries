@@ -3,6 +3,7 @@ import 'package:do_you_groceries/src/models/index.dart';
 import 'package:do_you_groceries/src/presentation/products/user_products_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:redux/redux.dart';
 
 class ListsCarousel extends StatelessWidget {
@@ -72,15 +73,8 @@ class ListsCarousel extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                        store
-                            .dispatch(SetSelectedList(groceryLists.elementAt(index).groceryListId));
-                        Navigator.push(
-                          context,
-                          // ignore: always_specify_types
-                          MaterialPageRoute<Widget>(
-                            builder: (BuildContext context) => const UserProductsPage(),
-                          ),
-                        );
+                        store.dispatch(SetSelectedList(groceryLists.elementAt(index).groceryListId));
+                        context.pushNamed('groceryList');
                       },
                       child: const Center(
                         child: Text(
@@ -94,7 +88,11 @@ class ListsCarousel extends StatelessWidget {
                       ),
                     ),
                   ),
-                  TextButton(onPressed: () {store.dispatch(RemoveGroceryList(groceryList: groceryLists.elementAt(index)));}, child: const Text('Delete list')),
+                  TextButton(
+                      onPressed: () {
+                        store.dispatch(RemoveGroceryList(groceryList: groceryLists.elementAt(index)));
+                      },
+                      child: const Text('Delete list')),
                   const SizedBox(
                     height: 10,
                   ),

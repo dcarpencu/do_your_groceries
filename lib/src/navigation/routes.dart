@@ -1,18 +1,21 @@
 import 'package:do_you_groceries/src/models/index.dart';
+import 'package:do_you_groceries/src/presentation/home.dart';
 import 'package:do_you_groceries/src/presentation/home_page.dart';
 import 'package:do_you_groceries/src/presentation/login/login_page.dart';
 import 'package:do_you_groceries/src/presentation/login/sign_up_page.dart';
 import 'package:do_you_groceries/src/presentation/products/create_list_page.dart';
 import 'package:do_you_groceries/src/presentation/products/user_products_page.dart';
+import 'package:do_you_groceries/src/presentation/supermarkets/markets_page.dart';
+import 'package:do_you_groceries/src/presentation/supermarkets/search_page.dart';
+import 'package:do_you_groceries/src/presentation/supermarkets/supermarket_categories_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:redux/redux.dart';
 
-import '../presentation/home.dart';
-
 class RouterApp {
   RouterApp(this.store) {
     router = GoRouter(
+      initialLocation: '/',
       routes: <RouteBase>[
         GoRoute(
           name: 'home',
@@ -23,16 +26,18 @@ class RouterApp {
           name: 'homePage',
           path: '/homePage',
           builder: (BuildContext context, GoRouterState state) => const HomePage(),
+          routes: <RouteBase>[
+            GoRoute(
+              name: 'createList',
+              path: 'createList',
+              builder: (BuildContext context, GoRouterState state) => const CreateListPage(),
+            ),
+          ],
         ),
         GoRoute(
           name: 'login',
           path: '/login',
           builder: (BuildContext context, GoRouterState state) => const LoginPage(),
-        ),
-        GoRoute(
-          name: 'createList',
-          path: '/createList',
-          builder: (BuildContext context, GoRouterState state) => const CreateListPage(),
         ),
         GoRoute(
           name: 'signUp',
@@ -43,6 +48,43 @@ class RouterApp {
           name: 'groceryList',
           path: '/groceryList',
           builder: (BuildContext context, GoRouterState state) => const UserProductsPage(),
+          routes: <RouteBase>[
+            GoRoute(
+              name: 'marketsPage',
+              path: 'marketsPage',
+              builder: (BuildContext context, GoRouterState state) => const MarketsPage(),
+              routes: <RouteBase>[
+                GoRoute(
+                  name: 'supermarketCategories',
+                  path: 'supermarketCategoriesPage/:supermarketName',
+                  builder: (BuildContext context, GoRouterState state) {
+                    final String? supermarketName = state.pathParameters['supermarketName'];
+                    return SupermarketCategoriesPage(
+                      supermarketName: supermarketName!,
+                    );
+                  },
+                  routes: <RouteBase>[
+                    GoRoute(
+                      name: 'searchProducts',
+                      path: 'searchProductsPage/:marketName/:category/:supermarketCategoryLabel/:supermarketCategory',
+                      builder: (BuildContext context, GoRouterState state) {
+                        final String? marketName = state.pathParameters['marketName'];
+                        final String? category = state.pathParameters['category'];
+                        final String? supermarketCategoryLabel = state.pathParameters['supermarketCategoryLabel'];
+                        final String? supermarketCategory = state.pathParameters['supermarketCategory'];
+                        return SearchProductsPage(
+                          marketName: marketName!,
+                          category: category!,
+                          supermarketCategoryLabel: supermarketCategoryLabel!,
+                          supermarketCategory: supermarketCategory!,
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
         ),
       ],
     );

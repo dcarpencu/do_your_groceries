@@ -144,7 +144,7 @@ class ProductsApi {
       throw Exception('Grocery list data is null');
     }
 
-    List<String> productIds = (listData['productIds'] as List<dynamic>?)
+    final List<String> productIds = (listData['productIds'] as List<dynamic>?)
         ?.map((dynamic id) => id.toString())
         .toList() ?? <String>[];
 

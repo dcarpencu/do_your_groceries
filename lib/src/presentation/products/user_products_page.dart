@@ -26,7 +26,6 @@ class _UserProductsPageState extends State<UserProductsPage> {
     super.initState();
 
     _store = StoreProvider.of<AppState>(context, listen: false);
-    //_store..dispatch(GetProductsStart(groceryListId: _store.state.selectedGroceryList!))
     _store.dispatch(ListenForProductsStart(_store.state.selectedGroceryList!));
   }
 
@@ -97,7 +96,7 @@ class _UserProductsPageState extends State<UserProductsPage> {
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
           bottomNavigationBar: const BottomAppBarWidget(
-            route: MarketsPage(),
+            route: 'marketsPage',
           ),
         );
       },

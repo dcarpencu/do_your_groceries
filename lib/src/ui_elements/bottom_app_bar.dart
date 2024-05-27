@@ -1,12 +1,13 @@
 import 'package:do_you_groceries/src/presentation/products/create_product_page.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class BottomAppBarWidget extends StatelessWidget {
   const BottomAppBarWidget({
     required this.route,
     super.key,
   });
-  final Widget route;
+  final String route;
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +31,7 @@ class BottomAppBarWidget extends StatelessWidget {
                   tooltip: 'Search',
                   icon: const Icon(Icons.search),
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      // ignore: always_specify_types
-                      MaterialPageRoute<Widget>(builder: (BuildContext context) => route),
-                    );
+                      context.pushNamed(route);
                   },
                 ),
                 IconButton(
