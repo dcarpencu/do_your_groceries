@@ -1,5 +1,6 @@
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:do_you_groceries/src/presentation/camera/image_recognition_page.dart';
+import 'package:do_you_groceries/src/presentation/camera/image_view_page.dart';
 import 'package:do_you_groceries/src/presentation/home.dart';
 import 'package:do_you_groceries/src/presentation/home_page.dart';
 import 'package:do_you_groceries/src/presentation/login/login_page.dart';
@@ -100,6 +101,11 @@ class RouterApp {
               ],
             ),
           ],
+        ),
+        GoRoute(
+            name: 'imageView',
+            path: '/imageViewPage',
+            builder: (BuildContext context, GoRouterState state) => const ImageViewPage(),
         ),
       ],
     );

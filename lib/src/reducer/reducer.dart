@@ -44,6 +44,7 @@ Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   TypedReducer<AppState, GetCamerasSuccessful>(_getCamerasSuccessful).call,
   TypedReducer<AppState, TakePictureSuccessful>(_takePictureSuccessful).call,
   TypedReducer<AppState, GetProductsSuccessful>(_getProductsSuccessful).call,
+  TypedReducer<AppState, GetProductsForCameraSuccessful>(_getProductsForCameraSuccessful).call,
   TypedReducer<AppState, RemoveProductFromGroceryListSuccessful>(_removeProductFromGroceryListSuccessful).call,
   TypedReducer<AppState, RemoveGroceryListSuccessful>(_removeGroceryListSuccessful).call,
   // TypedReducer<AppState, GetImageLabelsSuccessful>(_getImageLabelsSuccessful).call,
@@ -62,6 +63,10 @@ AppState _logoutSuccessful(AppState state, LogoutSuccessful action) {
 }
 
 AppState _getProductsSuccessful(AppState state, GetProductsSuccessful action) {
+  return state.copyWith(relatedProducts: action.productsList);
+}
+
+AppState _getProductsForCameraSuccessful(AppState state, GetProductsForCameraSuccessful action) {
   return state.copyWith(relatedProducts: action.productsList);
 }
 

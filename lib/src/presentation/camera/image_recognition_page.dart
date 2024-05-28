@@ -7,6 +7,7 @@ import 'package:do_you_groceries/src/models/index.dart';
 import 'package:do_you_groceries/src/presentation/camera/image_view_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:go_router/go_router.dart';
 import 'package:redux/redux.dart';
 
 class CameraApp extends StatefulWidget {
@@ -27,8 +28,7 @@ class _CameraAppState extends State<CameraApp> {
     super.initState();
     _store = StoreProvider.of<AppState>(context, listen: false);
     _store
-      ..dispatch(const RequestStoragePermissionStart())
-      ..dispatch(SetSelectedCamera(widget.cameras[0]));
+      .dispatch(SetSelectedCamera(widget.cameras[0]));
 
     controller = CameraController(CameraInfo.toCameraDescription(_store.state.selectedCamera!), ResolutionPreset.max);
     _store.dispatch(InitializeControllerStart(controller: controller));
@@ -78,7 +78,6 @@ class _CameraAppState extends State<CameraApp> {
               FloatingActionButton(
                 onPressed: () async {
                   await _store.dispatch(TakePictureStart(controller: controller));
-
                   print('\n\n\n TAKE PICTURE \n\n\n');
 
                   // if (pending.contains(TakePicture.pendingKey)) {
@@ -89,7 +88,7 @@ class _CameraAppState extends State<CameraApp> {
                   if (!context.mounted) {
                     return;
                   }
-                  await Navigator.of(context).push(_createRoute());
+                  await context.pushNamed('imageView');
                   // Navigator.of(context).push(
                   //   MaterialPageRoute<Widget>(
                   //     builder: (BuildContext context) => ImageViewPage(store: _store),
@@ -167,13 +166,13 @@ class _CameraAppState extends State<CameraApp> {
 
   Route<dynamic> _createRoute() {
     return PageRouteBuilder<dynamic>(
-      pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) => ImageViewPage(store: _store),
+      pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) => const ImageViewPage(),
       transitionsBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
         const Offset begin = Offset(0.0, 1.0);
         const Offset end = Offset.zero;
         const Cubic curve = Curves.ease;
 
-        Animatable<Offset> tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+        final Animatable<Offset> tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
 
         return SlideTransition(
           position: animation.drive(tween),

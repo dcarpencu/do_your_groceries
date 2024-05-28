@@ -79,6 +79,32 @@ class ProductsApi {
     return relatedProducts;
   }
 
+  Future<List<Product>> getProductsForCamera({required String category, required String tag}) async {
+    print('\n\n\n\n GET PRODUCTS: \n\n');
+    final List<Product> relatedProducts = <Product>[];
+
+      final CollectionReference<Map<String, dynamic>> productsRef =
+      _firestore.collection('tags/$category/$tag');
+
+      final QuerySnapshot<Map<String, dynamic>> querySnapshot = await productsRef.get();
+
+      // Loop through documents and convert them to Product objects
+      for (final QueryDocumentSnapshot<Map<String, dynamic>> doc in querySnapshot.docs) {
+        relatedProducts.add(
+          Product(
+            name: doc['name'] as String,
+            price: doc['price'] as double,
+            productId: doc.id,
+            category: category,
+            supermarket: doc['supermarket'] as String,
+            image: doc['image'] as String,
+          ),
+        );
+      }
+
+    return relatedProducts;
+  }
+
   Future<void> createProduct({
     required String groceryListId,
     required String name,

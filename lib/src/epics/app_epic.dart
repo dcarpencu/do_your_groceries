@@ -35,6 +35,7 @@ class AppEpic {
       TypedEpic<AppState, TakePictureStart>(_takePictureStart).call,
       TypedEpic<AppState, GetImageLabelsStart>(_getImageLabelsStart).call,
       TypedEpic<AppState, GetProductsStart>(_getProductsStart).call,
+      TypedEpic<AppState, GetProductsForCameraStart>(_getProductsForCameraStart).call,
       TypedEpic<AppState, RemoveProductFromGroceryListStart>(_removeProductFromGroceryListStart).call,
       TypedEpic<AppState, RemoveGroceryListStart>(_removeGroceryListStart).call,
     ]);
@@ -264,6 +265,15 @@ class AppEpic {
           .asyncMap((_) => _productsApi.getProducts(product: action.product))
           .map<GetProducts>(GetProducts.successful)
           .onErrorReturnWith(GetProducts.error);
+    });
+  }
+
+  Stream<AppAction> _getProductsForCameraStart(Stream<GetProductsForCameraStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((GetProductsForCameraStart action) {
+      return Stream<void>.value(null)
+          .asyncMap((_) => _productsApi.getProductsForCamera(category: action.category, tag: action.tag))
+          .map<GetProductsForCamera>(GetProductsForCamera.successful)
+          .onErrorReturnWith(GetProductsForCamera.error);
     });
   }
 

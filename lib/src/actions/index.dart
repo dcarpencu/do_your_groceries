@@ -23,6 +23,7 @@ part 'take_picture.dart';
 part 'get_image_labels.dart';
 part 'remove_product_from_grocery_list.dart';
 part 'remove_grocery_list.dart';
+part 'get_products_for_camera.dart';
 
 abstract class AppAction {}
 

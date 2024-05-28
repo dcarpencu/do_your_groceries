@@ -11670,3 +11670,632 @@ abstract class RemoveGroceryListError
   _$$RemoveGroceryListErrorImplCopyWith<_$RemoveGroceryListErrorImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$GetProductsForCamera {
+  String get pendingId => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String category, String tag, String pendingId)
+        start,
+    required TResult Function(List<Product> productsList, String pendingId)
+        successful,
+    required TResult Function(
+            Object error, StackTrace stackTrace, String pendingId)
+        error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String category, String tag, String pendingId)? start,
+    TResult? Function(List<Product> productsList, String pendingId)? successful,
+    TResult? Function(Object error, StackTrace stackTrace, String pendingId)?
+        error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String category, String tag, String pendingId)? start,
+    TResult Function(List<Product> productsList, String pendingId)? successful,
+    TResult Function(Object error, StackTrace stackTrace, String pendingId)?
+        error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetProductsForCameraStart value) start,
+    required TResult Function(GetProductsForCameraSuccessful value) successful,
+    required TResult Function(GetProductsForCameraError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetProductsForCameraStart value)? start,
+    TResult? Function(GetProductsForCameraSuccessful value)? successful,
+    TResult? Function(GetProductsForCameraError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetProductsForCameraStart value)? start,
+    TResult Function(GetProductsForCameraSuccessful value)? successful,
+    TResult Function(GetProductsForCameraError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $GetProductsForCameraCopyWith<GetProductsForCamera> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GetProductsForCameraCopyWith<$Res> {
+  factory $GetProductsForCameraCopyWith(GetProductsForCamera value,
+          $Res Function(GetProductsForCamera) then) =
+      _$GetProductsForCameraCopyWithImpl<$Res, GetProductsForCamera>;
+  @useResult
+  $Res call({String pendingId});
+}
+
+/// @nodoc
+class _$GetProductsForCameraCopyWithImpl<$Res,
+        $Val extends GetProductsForCamera>
+    implements $GetProductsForCameraCopyWith<$Res> {
+  _$GetProductsForCameraCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? pendingId = null,
+  }) {
+    return _then(_value.copyWith(
+      pendingId: null == pendingId
+          ? _value.pendingId
+          : pendingId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$GetProductsForCameraStartImplCopyWith<$Res>
+    implements $GetProductsForCameraCopyWith<$Res> {
+  factory _$$GetProductsForCameraStartImplCopyWith(
+          _$GetProductsForCameraStartImpl value,
+          $Res Function(_$GetProductsForCameraStartImpl) then) =
+      __$$GetProductsForCameraStartImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String category, String tag, String pendingId});
+}
+
+/// @nodoc
+class __$$GetProductsForCameraStartImplCopyWithImpl<$Res>
+    extends _$GetProductsForCameraCopyWithImpl<$Res,
+        _$GetProductsForCameraStartImpl>
+    implements _$$GetProductsForCameraStartImplCopyWith<$Res> {
+  __$$GetProductsForCameraStartImplCopyWithImpl(
+      _$GetProductsForCameraStartImpl _value,
+      $Res Function(_$GetProductsForCameraStartImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? category = null,
+    Object? tag = null,
+    Object? pendingId = null,
+  }) {
+    return _then(_$GetProductsForCameraStartImpl(
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String,
+      tag: null == tag
+          ? _value.tag
+          : tag // ignore: cast_nullable_to_non_nullable
+              as String,
+      pendingId: null == pendingId
+          ? _value.pendingId
+          : pendingId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetProductsForCameraStartImpl implements GetProductsForCameraStart {
+  const _$GetProductsForCameraStartImpl(
+      {required this.category,
+      required this.tag,
+      this.pendingId = _kGetProductsForCameraPendingId});
+
+  @override
+  final String category;
+  @override
+  final String tag;
+  @override
+  @JsonKey()
+  final String pendingId;
+
+  @override
+  String toString() {
+    return 'GetProductsForCamera.start(category: $category, tag: $tag, pendingId: $pendingId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetProductsForCameraStartImpl &&
+            (identical(other.category, category) ||
+                other.category == category) &&
+            (identical(other.tag, tag) || other.tag == tag) &&
+            (identical(other.pendingId, pendingId) ||
+                other.pendingId == pendingId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, category, tag, pendingId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetProductsForCameraStartImplCopyWith<_$GetProductsForCameraStartImpl>
+      get copyWith => __$$GetProductsForCameraStartImplCopyWithImpl<
+          _$GetProductsForCameraStartImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String category, String tag, String pendingId)
+        start,
+    required TResult Function(List<Product> productsList, String pendingId)
+        successful,
+    required TResult Function(
+            Object error, StackTrace stackTrace, String pendingId)
+        error,
+  }) {
+    return start(category, tag, pendingId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String category, String tag, String pendingId)? start,
+    TResult? Function(List<Product> productsList, String pendingId)? successful,
+    TResult? Function(Object error, StackTrace stackTrace, String pendingId)?
+        error,
+  }) {
+    return start?.call(category, tag, pendingId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String category, String tag, String pendingId)? start,
+    TResult Function(List<Product> productsList, String pendingId)? successful,
+    TResult Function(Object error, StackTrace stackTrace, String pendingId)?
+        error,
+    required TResult orElse(),
+  }) {
+    if (start != null) {
+      return start(category, tag, pendingId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetProductsForCameraStart value) start,
+    required TResult Function(GetProductsForCameraSuccessful value) successful,
+    required TResult Function(GetProductsForCameraError value) error,
+  }) {
+    return start(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetProductsForCameraStart value)? start,
+    TResult? Function(GetProductsForCameraSuccessful value)? successful,
+    TResult? Function(GetProductsForCameraError value)? error,
+  }) {
+    return start?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetProductsForCameraStart value)? start,
+    TResult Function(GetProductsForCameraSuccessful value)? successful,
+    TResult Function(GetProductsForCameraError value)? error,
+    required TResult orElse(),
+  }) {
+    if (start != null) {
+      return start(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetProductsForCameraStart
+    implements GetProductsForCamera, ActionStart {
+  const factory GetProductsForCameraStart(
+      {required final String category,
+      required final String tag,
+      final String pendingId}) = _$GetProductsForCameraStartImpl;
+
+  String get category;
+  String get tag;
+  @override
+  String get pendingId;
+  @override
+  @JsonKey(ignore: true)
+  _$$GetProductsForCameraStartImplCopyWith<_$GetProductsForCameraStartImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetProductsForCameraSuccessfulImplCopyWith<$Res>
+    implements $GetProductsForCameraCopyWith<$Res> {
+  factory _$$GetProductsForCameraSuccessfulImplCopyWith(
+          _$GetProductsForCameraSuccessfulImpl value,
+          $Res Function(_$GetProductsForCameraSuccessfulImpl) then) =
+      __$$GetProductsForCameraSuccessfulImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<Product> productsList, String pendingId});
+}
+
+/// @nodoc
+class __$$GetProductsForCameraSuccessfulImplCopyWithImpl<$Res>
+    extends _$GetProductsForCameraCopyWithImpl<$Res,
+        _$GetProductsForCameraSuccessfulImpl>
+    implements _$$GetProductsForCameraSuccessfulImplCopyWith<$Res> {
+  __$$GetProductsForCameraSuccessfulImplCopyWithImpl(
+      _$GetProductsForCameraSuccessfulImpl _value,
+      $Res Function(_$GetProductsForCameraSuccessfulImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? productsList = null,
+    Object? pendingId = null,
+  }) {
+    return _then(_$GetProductsForCameraSuccessfulImpl(
+      null == productsList
+          ? _value._productsList
+          : productsList // ignore: cast_nullable_to_non_nullable
+              as List<Product>,
+      null == pendingId
+          ? _value.pendingId
+          : pendingId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetProductsForCameraSuccessfulImpl
+    implements GetProductsForCameraSuccessful {
+  const _$GetProductsForCameraSuccessfulImpl(final List<Product> productsList,
+      [this.pendingId = _kGetProductsForCameraPendingId])
+      : _productsList = productsList;
+
+  final List<Product> _productsList;
+  @override
+  List<Product> get productsList {
+    if (_productsList is EqualUnmodifiableListView) return _productsList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_productsList);
+  }
+
+  @override
+  @JsonKey()
+  final String pendingId;
+
+  @override
+  String toString() {
+    return 'GetProductsForCamera.successful(productsList: $productsList, pendingId: $pendingId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetProductsForCameraSuccessfulImpl &&
+            const DeepCollectionEquality()
+                .equals(other._productsList, _productsList) &&
+            (identical(other.pendingId, pendingId) ||
+                other.pendingId == pendingId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_productsList), pendingId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetProductsForCameraSuccessfulImplCopyWith<
+          _$GetProductsForCameraSuccessfulImpl>
+      get copyWith => __$$GetProductsForCameraSuccessfulImplCopyWithImpl<
+          _$GetProductsForCameraSuccessfulImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String category, String tag, String pendingId)
+        start,
+    required TResult Function(List<Product> productsList, String pendingId)
+        successful,
+    required TResult Function(
+            Object error, StackTrace stackTrace, String pendingId)
+        error,
+  }) {
+    return successful(productsList, pendingId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String category, String tag, String pendingId)? start,
+    TResult? Function(List<Product> productsList, String pendingId)? successful,
+    TResult? Function(Object error, StackTrace stackTrace, String pendingId)?
+        error,
+  }) {
+    return successful?.call(productsList, pendingId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String category, String tag, String pendingId)? start,
+    TResult Function(List<Product> productsList, String pendingId)? successful,
+    TResult Function(Object error, StackTrace stackTrace, String pendingId)?
+        error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(productsList, pendingId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetProductsForCameraStart value) start,
+    required TResult Function(GetProductsForCameraSuccessful value) successful,
+    required TResult Function(GetProductsForCameraError value) error,
+  }) {
+    return successful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetProductsForCameraStart value)? start,
+    TResult? Function(GetProductsForCameraSuccessful value)? successful,
+    TResult? Function(GetProductsForCameraError value)? error,
+  }) {
+    return successful?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetProductsForCameraStart value)? start,
+    TResult Function(GetProductsForCameraSuccessful value)? successful,
+    TResult Function(GetProductsForCameraError value)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetProductsForCameraSuccessful
+    implements GetProductsForCamera, ActionDone {
+  const factory GetProductsForCameraSuccessful(final List<Product> productsList,
+      [final String pendingId]) = _$GetProductsForCameraSuccessfulImpl;
+
+  List<Product> get productsList;
+  @override
+  String get pendingId;
+  @override
+  @JsonKey(ignore: true)
+  _$$GetProductsForCameraSuccessfulImplCopyWith<
+          _$GetProductsForCameraSuccessfulImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetProductsForCameraErrorImplCopyWith<$Res>
+    implements $GetProductsForCameraCopyWith<$Res> {
+  factory _$$GetProductsForCameraErrorImplCopyWith(
+          _$GetProductsForCameraErrorImpl value,
+          $Res Function(_$GetProductsForCameraErrorImpl) then) =
+      __$$GetProductsForCameraErrorImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({Object error, StackTrace stackTrace, String pendingId});
+}
+
+/// @nodoc
+class __$$GetProductsForCameraErrorImplCopyWithImpl<$Res>
+    extends _$GetProductsForCameraCopyWithImpl<$Res,
+        _$GetProductsForCameraErrorImpl>
+    implements _$$GetProductsForCameraErrorImplCopyWith<$Res> {
+  __$$GetProductsForCameraErrorImplCopyWithImpl(
+      _$GetProductsForCameraErrorImpl _value,
+      $Res Function(_$GetProductsForCameraErrorImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+    Object? stackTrace = null,
+    Object? pendingId = null,
+  }) {
+    return _then(_$GetProductsForCameraErrorImpl(
+      null == error ? _value.error : error,
+      null == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace,
+      null == pendingId
+          ? _value.pendingId
+          : pendingId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetProductsForCameraErrorImpl implements GetProductsForCameraError {
+  const _$GetProductsForCameraErrorImpl(this.error, this.stackTrace,
+      [this.pendingId = _kGetProductsForCameraPendingId]);
+
+  @override
+  final Object error;
+  @override
+  final StackTrace stackTrace;
+  @override
+  @JsonKey()
+  final String pendingId;
+
+  @override
+  String toString() {
+    return 'GetProductsForCamera.error(error: $error, stackTrace: $stackTrace, pendingId: $pendingId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetProductsForCameraErrorImpl &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace) &&
+            (identical(other.pendingId, pendingId) ||
+                other.pendingId == pendingId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(error), stackTrace, pendingId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetProductsForCameraErrorImplCopyWith<_$GetProductsForCameraErrorImpl>
+      get copyWith => __$$GetProductsForCameraErrorImplCopyWithImpl<
+          _$GetProductsForCameraErrorImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String category, String tag, String pendingId)
+        start,
+    required TResult Function(List<Product> productsList, String pendingId)
+        successful,
+    required TResult Function(
+            Object error, StackTrace stackTrace, String pendingId)
+        error,
+  }) {
+    return error(this.error, stackTrace, pendingId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String category, String tag, String pendingId)? start,
+    TResult? Function(List<Product> productsList, String pendingId)? successful,
+    TResult? Function(Object error, StackTrace stackTrace, String pendingId)?
+        error,
+  }) {
+    return error?.call(this.error, stackTrace, pendingId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String category, String tag, String pendingId)? start,
+    TResult Function(List<Product> productsList, String pendingId)? successful,
+    TResult Function(Object error, StackTrace stackTrace, String pendingId)?
+        error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error, stackTrace, pendingId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GetProductsForCameraStart value) start,
+    required TResult Function(GetProductsForCameraSuccessful value) successful,
+    required TResult Function(GetProductsForCameraError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(GetProductsForCameraStart value)? start,
+    TResult? Function(GetProductsForCameraSuccessful value)? successful,
+    TResult? Function(GetProductsForCameraError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GetProductsForCameraStart value)? start,
+    TResult Function(GetProductsForCameraSuccessful value)? successful,
+    TResult Function(GetProductsForCameraError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetProductsForCameraError
+    implements GetProductsForCamera, ActionDone, ErrorAction {
+  const factory GetProductsForCameraError(
+      final Object error, final StackTrace stackTrace,
+      [final String pendingId]) = _$GetProductsForCameraErrorImpl;
+
+  Object get error;
+  StackTrace get stackTrace;
+  @override
+  String get pendingId;
+  @override
+  @JsonKey(ignore: true)
+  _$$GetProductsForCameraErrorImplCopyWith<_$GetProductsForCameraErrorImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
