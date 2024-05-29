@@ -44,6 +44,10 @@ _$AppState$Impl _$$AppState$ImplFromJson(Map<String, dynamic> json) =>
       selectedCamera: json['selectedCamera'] == null
           ? null
           : CameraInfo.fromJson(json['selectedCamera'] as Map<String, dynamic>),
+      users: (json['users'] as List<dynamic>?)
+              ?.map((e) => AppUser.fromJson(e as Map<String, dynamic>))
+              .toSet() ??
+          const <AppUser>{},
     );
 
 Map<String, dynamic> _$$AppState$ImplToJson(_$AppState$Impl instance) =>
@@ -60,6 +64,7 @@ Map<String, dynamic> _$$AppState$ImplToJson(_$AppState$Impl instance) =>
       'cameras': instance.cameras,
       'takenPicture': instance.takenPicture,
       'selectedCamera': instance.selectedCamera,
+      'users': instance.users.toList(),
     };
 
 _$AppUser$Impl _$$AppUser$ImplFromJson(Map<String, dynamic> json) =>
@@ -71,6 +76,10 @@ _$AppUser$Impl _$$AppUser$ImplFromJson(Map<String, dynamic> json) =>
               ?.map((e) => e as String)
               .toList() ??
           const <String>[],
+      requests: (json['requests'] as List<dynamic>?)
+              ?.map((e) => AddRequest.fromJson(e as Map<String, dynamic>))
+              .toSet() ??
+          const <AddRequest>{},
     );
 
 Map<String, dynamic> _$$AppUser$ImplToJson(_$AppUser$Impl instance) =>
@@ -79,6 +88,7 @@ Map<String, dynamic> _$$AppUser$ImplToJson(_$AppUser$Impl instance) =>
       'email': instance.email,
       'username': instance.username,
       'groceryListIds': instance.groceryListIds,
+      'requests': instance.requests.toList(),
     };
 
 _$Auchan$Impl _$$Auchan$ImplFromJson(Map<String, dynamic> json) =>
@@ -176,4 +186,20 @@ Map<String, dynamic> _$$TakenPicture$ImplToJson(_$TakenPicture$Impl instance) =>
     <String, dynamic>{
       'picture': _xFileToJson(instance.picture),
       'imageLabel': instance.imageLabel,
+    };
+
+_$AddRequest$Impl _$$AddRequest$ImplFromJson(Map<String, dynamic> json) =>
+    _$AddRequest$Impl(
+      senderName: json['senderName'] as String,
+      senderEmail: json['senderEmail'] as String,
+      senderId: json['senderId'] as String,
+      groceryListId: json['groceryListId'] as String,
+    );
+
+Map<String, dynamic> _$$AddRequest$ImplToJson(_$AddRequest$Impl instance) =>
+    <String, dynamic>{
+      'senderName': instance.senderName,
+      'senderEmail': instance.senderEmail,
+      'senderId': instance.senderId,
+      'groceryListId': instance.groceryListId,
     };

@@ -11,6 +11,8 @@ import 'package:do_you_groceries/src/presentation/products/user_products_page.da
 import 'package:do_you_groceries/src/presentation/supermarkets/markets_page.dart';
 import 'package:do_you_groceries/src/presentation/supermarkets/search_page.dart';
 import 'package:do_you_groceries/src/presentation/supermarkets/supermarket_categories_page.dart';
+import 'package:do_you_groceries/src/presentation/user/add_people_page.dart';
+import 'package:do_you_groceries/src/presentation/user/user_profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:redux/redux.dart';
@@ -107,7 +109,18 @@ class RouterApp {
             path: '/imageViewPage',
             builder: (BuildContext context, GoRouterState state) => const ImageViewPage(),
         ),
+        GoRoute(
+          name: 'userProfile',
+          path: '/userProfilePage',
+          builder: (BuildContext context, GoRouterState state) => const UserProfilePage(),
+        ),
+        GoRoute(
+          name: 'addPeople',
+          path: '/addPeoplePage',
+          builder: (BuildContext context, GoRouterState state) => const AddPeoplePage(),
+        ),
       ],
+
     );
   }
 

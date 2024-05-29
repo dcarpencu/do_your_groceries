@@ -36,8 +36,11 @@ class AppEpic {
       TypedEpic<AppState, GetImageLabelsStart>(_getImageLabelsStart).call,
       TypedEpic<AppState, GetProductsStart>(_getProductsStart).call,
       TypedEpic<AppState, GetProductsForCameraStart>(_getProductsForCameraStart).call,
+      TypedEpic<AppState, GetUsersStart>(_getUsersStart).call,
       TypedEpic<AppState, RemoveProductFromGroceryListStart>(_removeProductFromGroceryListStart).call,
       TypedEpic<AppState, RemoveGroceryListStart>(_removeGroceryListStart).call,
+      TypedEpic<AppState, SendRequestStart>(_sendRequestStart).call,
+
     ]);
   }
 
@@ -85,6 +88,15 @@ class AppEpic {
           .asyncMap((_) => _authApi.logout())
           .mapTo(const Logout.successful())
           .onErrorReturnWith(Logout.error);
+    });
+  }
+
+  Stream<AppAction> _sendRequestStart(Stream<SendRequestStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((SendRequestStart action) {
+      return Stream<void>.value(null)
+          .asyncMap((_) => _authApi.sendRequest(receiverId: action.receiverId, groceryListId: action.groceryListId))
+          .mapTo(const SendRequest.successful())
+          .onErrorReturnWith(SendRequest.error);
     });
   }
 
@@ -274,6 +286,15 @@ class AppEpic {
           .asyncMap((_) => _productsApi.getProductsForCamera(category: action.category, tag: action.tag))
           .map<GetProductsForCamera>(GetProductsForCamera.successful)
           .onErrorReturnWith(GetProductsForCamera.error);
+    });
+  }
+
+  Stream<AppAction> _getUsersStart(Stream<GetUsersStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((GetUsersStart action) {
+      return Stream<void>.value(null)
+          .asyncMap((_) => _authApi.getUsers())
+          .map<GetUsers>(GetUsers.successful)
+          .onErrorReturnWith(GetUsers.error);
     });
   }
 

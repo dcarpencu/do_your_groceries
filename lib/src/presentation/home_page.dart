@@ -140,8 +140,12 @@ class _HomePageState extends State<HomePage> {
                 children: <Widget>[
                   IconButton(
                     tooltip: 'Open navigation menu',
-                    icon: const Icon(Icons.menu),
-                    onPressed: () {},
+                    icon: const Icon(Icons.person),
+                    onPressed: () {
+                      context.pushNamed('userProfile');
+
+                      print('\n\n USER PROFILE');
+                    },
                   ),
                   IconButton(
                     tooltip: 'Favorite',

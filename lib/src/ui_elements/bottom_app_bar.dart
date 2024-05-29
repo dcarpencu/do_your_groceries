@@ -24,8 +24,10 @@ class BottomAppBarWidget extends StatelessWidget {
               children: <Widget>[
                 IconButton(
                   tooltip: 'Open navigation menu',
-                  icon: const Icon(Icons.menu),
-                  onPressed: () {},
+                  icon: const Icon(Icons.person_add),
+                  onPressed: () {
+                    context.pushNamed('addPeople');
+                  },
                 ),
                 IconButton(
                   tooltip: 'Search',
@@ -53,23 +55,4 @@ class BottomAppBarWidget extends StatelessWidget {
       },
     );
   }
-
-  Route<dynamic> _createRoute() {
-    return PageRouteBuilder<dynamic>(
-      pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) => const CreateProductPage(),
-      transitionsBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
-        const Offset begin = Offset(0.0, 1.0);
-        const Offset end = Offset.zero;
-        const Cubic curve = Curves.ease;
-
-        Animatable<Offset> tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-
-        return SlideTransition(
-          position: animation.drive(tween),
-          child: child,
-        );
-      },
-    );
-  }
-
 }

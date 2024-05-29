@@ -32,6 +32,7 @@ mixin _$AppState {
   List<CameraInfo> get cameras => throw _privateConstructorUsedError;
   TakenPicture? get takenPicture => throw _privateConstructorUsedError;
   CameraInfo? get selectedCamera => throw _privateConstructorUsedError;
+  Set<AppUser> get users => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -56,7 +57,8 @@ abstract class $AppStateCopyWith<$Res> {
       bool contentLoaded,
       List<CameraInfo> cameras,
       TakenPicture? takenPicture,
-      CameraInfo? selectedCamera});
+      CameraInfo? selectedCamera,
+      Set<AppUser> users});
 
   $AppUserCopyWith<$Res>? get user;
   $TakenPictureCopyWith<$Res>? get takenPicture;
@@ -88,6 +90,7 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
     Object? cameras = null,
     Object? takenPicture = freezed,
     Object? selectedCamera = freezed,
+    Object? users = null,
   }) {
     return _then(_value.copyWith(
       user: freezed == user
@@ -138,6 +141,10 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.selectedCamera
           : selectedCamera // ignore: cast_nullable_to_non_nullable
               as CameraInfo?,
+      users: null == users
+          ? _value.users
+          : users // ignore: cast_nullable_to_non_nullable
+              as Set<AppUser>,
     ) as $Val);
   }
 
@@ -198,7 +205,8 @@ abstract class _$$AppState$ImplCopyWith<$Res>
       bool contentLoaded,
       List<CameraInfo> cameras,
       TakenPicture? takenPicture,
-      CameraInfo? selectedCamera});
+      CameraInfo? selectedCamera,
+      Set<AppUser> users});
 
   @override
   $AppUserCopyWith<$Res>? get user;
@@ -231,6 +239,7 @@ class __$$AppState$ImplCopyWithImpl<$Res>
     Object? cameras = null,
     Object? takenPicture = freezed,
     Object? selectedCamera = freezed,
+    Object? users = null,
   }) {
     return _then(_$AppState$Impl(
       user: freezed == user
@@ -281,6 +290,10 @@ class __$$AppState$ImplCopyWithImpl<$Res>
           ? _value.selectedCamera
           : selectedCamera // ignore: cast_nullable_to_non_nullable
               as CameraInfo?,
+      users: null == users
+          ? _value._users
+          : users // ignore: cast_nullable_to_non_nullable
+              as Set<AppUser>,
     ));
   }
 }
@@ -300,13 +313,15 @@ class _$AppState$Impl implements AppState$ {
       this.contentLoaded = false,
       final List<CameraInfo> cameras = const <CameraInfo>[],
       this.takenPicture = null,
-      this.selectedCamera = null})
+      this.selectedCamera = null,
+      final Set<AppUser> users = const <AppUser>{}})
       : _supermarketProducts = supermarketProducts,
         _productsGroceryList = productsGroceryList,
         _relatedProducts = relatedProducts,
         _groceryLists = groceryLists,
         _pending = pending,
-        _cameras = cameras;
+        _cameras = cameras,
+        _users = users;
 
   factory _$AppState$Impl.fromJson(Map<String, dynamic> json) =>
       _$$AppState$ImplFromJson(json);
@@ -383,10 +398,18 @@ class _$AppState$Impl implements AppState$ {
   @override
   @JsonKey()
   final CameraInfo? selectedCamera;
+  final Set<AppUser> _users;
+  @override
+  @JsonKey()
+  Set<AppUser> get users {
+    if (_users is EqualUnmodifiableSetView) return _users;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(_users);
+  }
 
   @override
   String toString() {
-    return 'AppState(user: $user, supermarketProducts: $supermarketProducts, productsGroceryList: $productsGroceryList, relatedProducts: $relatedProducts, groceryLists: $groceryLists, selectedGroceryList: $selectedGroceryList, pending: $pending, pageNumber: $pageNumber, contentLoaded: $contentLoaded, cameras: $cameras, takenPicture: $takenPicture, selectedCamera: $selectedCamera)';
+    return 'AppState(user: $user, supermarketProducts: $supermarketProducts, productsGroceryList: $productsGroceryList, relatedProducts: $relatedProducts, groceryLists: $groceryLists, selectedGroceryList: $selectedGroceryList, pending: $pending, pageNumber: $pageNumber, contentLoaded: $contentLoaded, cameras: $cameras, takenPicture: $takenPicture, selectedCamera: $selectedCamera, users: $users)';
   }
 
   @override
@@ -414,7 +437,8 @@ class _$AppState$Impl implements AppState$ {
             (identical(other.takenPicture, takenPicture) ||
                 other.takenPicture == takenPicture) &&
             (identical(other.selectedCamera, selectedCamera) ||
-                other.selectedCamera == selectedCamera));
+                other.selectedCamera == selectedCamera) &&
+            const DeepCollectionEquality().equals(other._users, _users));
   }
 
   @JsonKey(ignore: true)
@@ -432,7 +456,8 @@ class _$AppState$Impl implements AppState$ {
       contentLoaded,
       const DeepCollectionEquality().hash(_cameras),
       takenPicture,
-      selectedCamera);
+      selectedCamera,
+      const DeepCollectionEquality().hash(_users));
 
   @JsonKey(ignore: true)
   @override
@@ -461,7 +486,8 @@ abstract class AppState$ implements AppState {
       final bool contentLoaded,
       final List<CameraInfo> cameras,
       final TakenPicture? takenPicture,
-      final CameraInfo? selectedCamera}) = _$AppState$Impl;
+      final CameraInfo? selectedCamera,
+      final Set<AppUser> users}) = _$AppState$Impl;
 
   factory AppState$.fromJson(Map<String, dynamic> json) =
       _$AppState$Impl.fromJson;
@@ -491,6 +517,8 @@ abstract class AppState$ implements AppState {
   @override
   CameraInfo? get selectedCamera;
   @override
+  Set<AppUser> get users;
+  @override
   @JsonKey(ignore: true)
   _$$AppState$ImplCopyWith<_$AppState$Impl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -506,6 +534,7 @@ mixin _$AppUser {
   String get email => throw _privateConstructorUsedError;
   String get username => throw _privateConstructorUsedError;
   List<String> get groceryListIds => throw _privateConstructorUsedError;
+  Set<AddRequest> get requests => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -518,7 +547,11 @@ abstract class $AppUserCopyWith<$Res> {
       _$AppUserCopyWithImpl<$Res, AppUser>;
   @useResult
   $Res call(
-      {String uid, String email, String username, List<String> groceryListIds});
+      {String uid,
+      String email,
+      String username,
+      List<String> groceryListIds,
+      Set<AddRequest> requests});
 }
 
 /// @nodoc
@@ -538,6 +571,7 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
     Object? email = null,
     Object? username = null,
     Object? groceryListIds = null,
+    Object? requests = null,
   }) {
     return _then(_value.copyWith(
       uid: null == uid
@@ -556,6 +590,10 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
           ? _value.groceryListIds
           : groceryListIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      requests: null == requests
+          ? _value.requests
+          : requests // ignore: cast_nullable_to_non_nullable
+              as Set<AddRequest>,
     ) as $Val);
   }
 }
@@ -568,7 +606,11 @@ abstract class _$$AppUser$ImplCopyWith<$Res> implements $AppUserCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String uid, String email, String username, List<String> groceryListIds});
+      {String uid,
+      String email,
+      String username,
+      List<String> groceryListIds,
+      Set<AddRequest> requests});
 }
 
 /// @nodoc
@@ -586,6 +628,7 @@ class __$$AppUser$ImplCopyWithImpl<$Res>
     Object? email = null,
     Object? username = null,
     Object? groceryListIds = null,
+    Object? requests = null,
   }) {
     return _then(_$AppUser$Impl(
       uid: null == uid
@@ -604,6 +647,10 @@ class __$$AppUser$ImplCopyWithImpl<$Res>
           ? _value._groceryListIds
           : groceryListIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      requests: null == requests
+          ? _value._requests
+          : requests // ignore: cast_nullable_to_non_nullable
+              as Set<AddRequest>,
     ));
   }
 }
@@ -615,8 +662,10 @@ class _$AppUser$Impl implements AppUser$ {
       {required this.uid,
       required this.email,
       required this.username,
-      final List<String> groceryListIds = const <String>[]})
-      : _groceryListIds = groceryListIds;
+      final List<String> groceryListIds = const <String>[],
+      final Set<AddRequest> requests = const <AddRequest>{}})
+      : _groceryListIds = groceryListIds,
+        _requests = requests;
 
   factory _$AppUser$Impl.fromJson(Map<String, dynamic> json) =>
       _$$AppUser$ImplFromJson(json);
@@ -636,9 +685,18 @@ class _$AppUser$Impl implements AppUser$ {
     return EqualUnmodifiableListView(_groceryListIds);
   }
 
+  final Set<AddRequest> _requests;
+  @override
+  @JsonKey()
+  Set<AddRequest> get requests {
+    if (_requests is EqualUnmodifiableSetView) return _requests;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(_requests);
+  }
+
   @override
   String toString() {
-    return 'AppUser(uid: $uid, email: $email, username: $username, groceryListIds: $groceryListIds)';
+    return 'AppUser(uid: $uid, email: $email, username: $username, groceryListIds: $groceryListIds, requests: $requests)';
   }
 
   @override
@@ -651,13 +709,19 @@ class _$AppUser$Impl implements AppUser$ {
             (identical(other.username, username) ||
                 other.username == username) &&
             const DeepCollectionEquality()
-                .equals(other._groceryListIds, _groceryListIds));
+                .equals(other._groceryListIds, _groceryListIds) &&
+            const DeepCollectionEquality().equals(other._requests, _requests));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, uid, email, username,
-      const DeepCollectionEquality().hash(_groceryListIds));
+  int get hashCode => Object.hash(
+      runtimeType,
+      uid,
+      email,
+      username,
+      const DeepCollectionEquality().hash(_groceryListIds),
+      const DeepCollectionEquality().hash(_requests));
 
   @JsonKey(ignore: true)
   @override
@@ -678,7 +742,8 @@ abstract class AppUser$ implements AppUser {
       {required final String uid,
       required final String email,
       required final String username,
-      final List<String> groceryListIds}) = _$AppUser$Impl;
+      final List<String> groceryListIds,
+      final Set<AddRequest> requests}) = _$AppUser$Impl;
 
   factory AppUser$.fromJson(Map<String, dynamic> json) =
       _$AppUser$Impl.fromJson;
@@ -691,6 +756,8 @@ abstract class AppUser$ implements AppUser {
   String get username;
   @override
   List<String> get groceryListIds;
+  @override
+  Set<AddRequest> get requests;
   @override
   @JsonKey(ignore: true)
   _$$AppUser$ImplCopyWith<_$AppUser$Impl> get copyWith =>
@@ -1767,5 +1834,210 @@ abstract class TakenPicture$ implements TakenPicture {
   @override
   @JsonKey(ignore: true)
   _$$TakenPicture$ImplCopyWith<_$TakenPicture$Impl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+AddRequest _$AddRequestFromJson(Map<String, dynamic> json) {
+  return AddRequest$.fromJson(json);
+}
+
+/// @nodoc
+mixin _$AddRequest {
+  String get senderName => throw _privateConstructorUsedError;
+  String get senderEmail => throw _privateConstructorUsedError;
+  String get senderId => throw _privateConstructorUsedError;
+  String get groceryListId => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $AddRequestCopyWith<AddRequest> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AddRequestCopyWith<$Res> {
+  factory $AddRequestCopyWith(
+          AddRequest value, $Res Function(AddRequest) then) =
+      _$AddRequestCopyWithImpl<$Res, AddRequest>;
+  @useResult
+  $Res call(
+      {String senderName,
+      String senderEmail,
+      String senderId,
+      String groceryListId});
+}
+
+/// @nodoc
+class _$AddRequestCopyWithImpl<$Res, $Val extends AddRequest>
+    implements $AddRequestCopyWith<$Res> {
+  _$AddRequestCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? senderName = null,
+    Object? senderEmail = null,
+    Object? senderId = null,
+    Object? groceryListId = null,
+  }) {
+    return _then(_value.copyWith(
+      senderName: null == senderName
+          ? _value.senderName
+          : senderName // ignore: cast_nullable_to_non_nullable
+              as String,
+      senderEmail: null == senderEmail
+          ? _value.senderEmail
+          : senderEmail // ignore: cast_nullable_to_non_nullable
+              as String,
+      senderId: null == senderId
+          ? _value.senderId
+          : senderId // ignore: cast_nullable_to_non_nullable
+              as String,
+      groceryListId: null == groceryListId
+          ? _value.groceryListId
+          : groceryListId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$AddRequest$ImplCopyWith<$Res>
+    implements $AddRequestCopyWith<$Res> {
+  factory _$$AddRequest$ImplCopyWith(
+          _$AddRequest$Impl value, $Res Function(_$AddRequest$Impl) then) =
+      __$$AddRequest$ImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String senderName,
+      String senderEmail,
+      String senderId,
+      String groceryListId});
+}
+
+/// @nodoc
+class __$$AddRequest$ImplCopyWithImpl<$Res>
+    extends _$AddRequestCopyWithImpl<$Res, _$AddRequest$Impl>
+    implements _$$AddRequest$ImplCopyWith<$Res> {
+  __$$AddRequest$ImplCopyWithImpl(
+      _$AddRequest$Impl _value, $Res Function(_$AddRequest$Impl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? senderName = null,
+    Object? senderEmail = null,
+    Object? senderId = null,
+    Object? groceryListId = null,
+  }) {
+    return _then(_$AddRequest$Impl(
+      senderName: null == senderName
+          ? _value.senderName
+          : senderName // ignore: cast_nullable_to_non_nullable
+              as String,
+      senderEmail: null == senderEmail
+          ? _value.senderEmail
+          : senderEmail // ignore: cast_nullable_to_non_nullable
+              as String,
+      senderId: null == senderId
+          ? _value.senderId
+          : senderId // ignore: cast_nullable_to_non_nullable
+              as String,
+      groceryListId: null == groceryListId
+          ? _value.groceryListId
+          : groceryListId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$AddRequest$Impl implements AddRequest$ {
+  const _$AddRequest$Impl(
+      {required this.senderName,
+      required this.senderEmail,
+      required this.senderId,
+      required this.groceryListId});
+
+  factory _$AddRequest$Impl.fromJson(Map<String, dynamic> json) =>
+      _$$AddRequest$ImplFromJson(json);
+
+  @override
+  final String senderName;
+  @override
+  final String senderEmail;
+  @override
+  final String senderId;
+  @override
+  final String groceryListId;
+
+  @override
+  String toString() {
+    return 'AddRequest(senderName: $senderName, senderEmail: $senderEmail, senderId: $senderId, groceryListId: $groceryListId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AddRequest$Impl &&
+            (identical(other.senderName, senderName) ||
+                other.senderName == senderName) &&
+            (identical(other.senderEmail, senderEmail) ||
+                other.senderEmail == senderEmail) &&
+            (identical(other.senderId, senderId) ||
+                other.senderId == senderId) &&
+            (identical(other.groceryListId, groceryListId) ||
+                other.groceryListId == groceryListId));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, senderName, senderEmail, senderId, groceryListId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AddRequest$ImplCopyWith<_$AddRequest$Impl> get copyWith =>
+      __$$AddRequest$ImplCopyWithImpl<_$AddRequest$Impl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$AddRequest$ImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class AddRequest$ implements AddRequest {
+  const factory AddRequest$(
+      {required final String senderName,
+      required final String senderEmail,
+      required final String senderId,
+      required final String groceryListId}) = _$AddRequest$Impl;
+
+  factory AddRequest$.fromJson(Map<String, dynamic> json) =
+      _$AddRequest$Impl.fromJson;
+
+  @override
+  String get senderName;
+  @override
+  String get senderEmail;
+  @override
+  String get senderId;
+  @override
+  String get groceryListId;
+  @override
+  @JsonKey(ignore: true)
+  _$$AddRequest$ImplCopyWith<_$AddRequest$Impl> get copyWith =>
       throw _privateConstructorUsedError;
 }

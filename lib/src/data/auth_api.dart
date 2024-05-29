@@ -77,7 +77,8 @@ class AuthApi {
   Future<GroceryList> removeGroceryList({
     required GroceryList groceryList,
   }) async {
-    final DocumentReference<Map<String, dynamic>> groceryListRef = _firestore.collection('lists').doc(groceryList.groceryListId);
+    final DocumentReference<Map<String, dynamic>> groceryListRef =
+        _firestore.collection('lists').doc(groceryList.groceryListId);
     final DocumentSnapshot<Map<String, dynamic>> groceryListSnapshot = await groceryListRef.get();
 
     if (groceryListSnapshot.exists) {
@@ -91,9 +92,9 @@ class AuthApi {
           final List<dynamic> parts = productId.toString().split('/');
           print('\n\n${parts.first}\n\n ${parts.last}');
           print('\n\nPRODUCT ID: $productId\n');
-          if(parts.first == 'products') {
-            final DocumentReference<Map<String, dynamic>> productRef = _firestore.collection('products').doc(
-                parts.last as String);
+          if (parts.first == 'products') {
+            final DocumentReference<Map<String, dynamic>> productRef =
+                _firestore.collection('products').doc(parts.last as String);
             print('\n\nPRODUCT ref: $productRef\n');
             batch.delete(productRef);
           }
@@ -107,7 +108,8 @@ class AuthApi {
 
         if (userSnapshot.exists) {
           final Map<String, dynamic> userData = userSnapshot.data()!;
-          final List<dynamic>? groceryListIds = (userData['groceryListIds'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
+          final List<dynamic>? groceryListIds =
+              (userData['groceryListIds'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
 
           if (groceryListIds != null) {
             groceryListIds.remove(groceryList.groceryListId);
@@ -131,7 +133,6 @@ class AuthApi {
 
     return groceryList;
   }
-
 
   Future<Set<GroceryList>> getLists() async {
     final User? currentUser = _auth.currentUser;
@@ -160,5 +161,51 @@ class AuthApi {
     }
 
     return result;
+  }
+
+  Future<Set<AppUser>> getUsers() async {
+    final Set<AppUser> users = <AppUser>{};
+
+    final CollectionReference<Map<String, dynamic>> usersRef = _firestore.collection('users');
+    final QuerySnapshot<Map<String, dynamic>> querySnapshot = await usersRef.get();
+
+    for (final QueryDocumentSnapshot<Map<String, dynamic>> doc in querySnapshot.docs) {
+      users.add(
+        AppUser(
+          uid: doc['uid'] as String,
+          email: doc['email'] as String,
+          username: doc['username'] as String,
+        ),
+      );
+    }
+
+    return users;
+  }
+
+  Future<void> sendRequest({required String receiverId, required String groceryListId}) async {
+    final User? currentUser = _auth.currentUser;
+
+    final DocumentReference<Map<String, dynamic>> userRef = _firestore.doc('users/$receiverId');
+    final DocumentSnapshot<Map<String, dynamic>> snapshot = await userRef.get();
+
+    final Map<String, dynamic> listData = snapshot.data()!;
+
+    if (!snapshot.exists) {
+      throw Exception('User document not found!');
+    }
+
+    final List<dynamic>? requests =
+        (listData['requests'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
+
+    final AddRequest request = AddRequest(
+        senderName: currentUser!.displayName!,
+        senderEmail: currentUser.email!,
+        senderId: currentUser.uid,
+        groceryListId: groceryListId);
+
+    requests?.add(request.toJson());
+    listData['productIds'] = requests;
+
+    await userRef.update(listData);
   }
 }
