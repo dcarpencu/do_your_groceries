@@ -197,16 +197,18 @@ class AuthApi {
     final List<dynamic>? requests = listData?['requests'] as List<dynamic>?;
 
     final AddRequest request = AddRequest(
-        senderName: 'david', senderEmail: currentUser.email!, senderId: currentUser.uid, groceryListId: groceryListId);
+        senderName: 'currentUser.displayName!',
+        senderEmail: currentUser.email!,
+        senderId: currentUser.uid,
+        groceryListId: groceryListId);
+
+    final String requestJson = request.toJson().toString();
 
     if (requests != null) {
-      // Ensure requests is a List<String> by converting each element to String
-      final List<String> updatedRequests = requests.map((dynamic id) => id.toString()).toList();
-      updatedRequests.add(request.toJson().toString());
-      listData!['requests'] = updatedRequests;
+      final Set<String> updatedRequestsSet = requests.map((dynamic id) => id.toString()).toSet()..add(requestJson);
+      listData!['requests'] = updatedRequestsSet.toList();
     } else {
-      // Initialize requests list if it doesn't exist
-      listData!['requests'] = [request.toJson().toString()];
+      listData!['requests'] = [requestJson];
     }
 
     await userRef.update(listData);
