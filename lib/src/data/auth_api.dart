@@ -183,28 +183,31 @@ class AuthApi {
   }
 
   Future<void> sendRequest({required String receiverId, required String groceryListId}) async {
-    final User? currentUser = _auth.currentUser;
+    final User currentUser = _auth.currentUser!;
 
     final DocumentReference<Map<String, dynamic>> userRef = _firestore.doc('users/$receiverId');
     final DocumentSnapshot<Map<String, dynamic>> snapshot = await userRef.get();
-
-    final Map<String, dynamic> listData = snapshot.data()!;
 
     if (!snapshot.exists) {
       throw Exception('User document not found!');
     }
 
-    final List<dynamic>? requests =
-        (listData['requests'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
+    final Map<String, dynamic>? listData = snapshot.data();
+
+    final List<dynamic>? requests = listData?['requests'] as List<dynamic>?;
 
     final AddRequest request = AddRequest(
-        senderName: currentUser!.displayName!,
-        senderEmail: currentUser.email!,
-        senderId: currentUser.uid,
-        groceryListId: groceryListId);
+        senderName: 'david', senderEmail: currentUser.email!, senderId: currentUser.uid, groceryListId: groceryListId);
 
-    requests?.add(request.toJson());
-    listData['productIds'] = requests;
+    if (requests != null) {
+      // Ensure requests is a List<String> by converting each element to String
+      final List<String> updatedRequests = requests.map((dynamic id) => id.toString()).toList();
+      updatedRequests.add(request.toJson().toString());
+      listData!['requests'] = updatedRequests;
+    } else {
+      // Initialize requests list if it doesn't exist
+      listData!['requests'] = [request.toJson().toString()];
+    }
 
     await userRef.update(listData);
   }

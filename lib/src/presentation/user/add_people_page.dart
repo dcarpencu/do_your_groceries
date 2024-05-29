@@ -38,73 +38,71 @@ class _AddPeoplePageState extends State<AddPeoplePage> {
               if (users.isEmpty) {
                 return const Text('No match for your product.');
               }
-              return Expanded(
-                child: ListView.builder(
-                  itemCount: users.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    final AppUser user = users.elementAt(index);
-                    return Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: Material(
-                        borderRadius: BorderRadius.circular(24),
-                        elevation: 4,
-                        child: SizedBox(
-                          height: 100,
-                          width: 120,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.transparent,
-                              shadowColor: Colors.transparent,
-                              elevation: 0,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16),
-                              ),
+              return ListView.builder(
+                itemCount: users.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final AppUser user = users.elementAt(index);
+                  return Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Material(
+                      borderRadius: BorderRadius.circular(24),
+                      elevation: 4,
+                      child: SizedBox(
+                        height: 100,
+                        width: 120,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.transparent,
+                            shadowColor: Colors.transparent,
+                            elevation: 0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16),
                             ),
-                            onPressed: () {
-                              //store.dispatch(SendRequestStart(receiverId: user.uid, groceryListId: store.state.selectedGroceryList!));
-                            },
-                            child: Row(
-                              children: <Widget>[
-                                Column(
+                          ),
+                          onPressed: () {
+                            store.dispatch(SendRequestStart(receiverId: user.uid, groceryListId: store.state.selectedGroceryList!));
+                          },
+                          child: Row(
+                            children: <Widget>[
+                              Column(
+                                children: <Widget>[
+                                  Text(
+                                    user.username,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                width: 12,
+                              ),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
                                     Text(
-                                      user.username,
+                                      user.email,
+                                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                                    ),
+                                    const Row(
+                                      children: <Widget>[
+                                        Icon(
+                                          Icons.monetization_on,
+                                          size: 12,
+                                        ),
+                                        SizedBox(
+                                          width: 8,
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),
-                                const SizedBox(
-                                  width: 12,
-                                ),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Text(
-                                        user.email,
-                                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                                      ),
-                                      const Row(
-                                        children: <Widget>[
-                                          Icon(
-                                            Icons.monetization_on,
-                                            size: 12,
-                                          ),
-                                          SizedBox(
-                                            width: 8,
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
-                    );
-                  },
-                ),
+                    ),
+                  );
+                },
               );
             },
           );
