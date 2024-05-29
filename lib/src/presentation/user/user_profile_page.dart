@@ -10,7 +10,7 @@ class UserProfilePage extends StatelessWidget {
     return UserContainer(builder: (BuildContext context, AppUser? user) {
       return Scaffold(
         appBar: AppBar(title: Text('Hello ${user?.username}!'),),
-        body: Column(
+        body: const Column(
           children: <Widget>[
             Text('User details'),
             Text('Welcome'),

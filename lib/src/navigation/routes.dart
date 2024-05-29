@@ -12,6 +12,7 @@ import 'package:do_you_groceries/src/presentation/supermarkets/markets_page.dart
 import 'package:do_you_groceries/src/presentation/supermarkets/search_page.dart';
 import 'package:do_you_groceries/src/presentation/supermarkets/supermarket_categories_page.dart';
 import 'package:do_you_groceries/src/presentation/user/add_people_page.dart';
+import 'package:do_you_groceries/src/presentation/user/notifications_page.dart';
 import 'package:do_you_groceries/src/presentation/user/user_profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -118,6 +119,11 @@ class RouterApp {
           name: 'addPeople',
           path: '/addPeoplePage',
           builder: (BuildContext context, GoRouterState state) => const AddPeoplePage(),
+        ),
+        GoRoute(
+          name: 'notifications',
+          path: '/notificationsPage',
+          builder: (BuildContext context, GoRouterState state) => const NotificationsPage(),
         ),
       ],
 

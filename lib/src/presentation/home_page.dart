@@ -139,19 +139,20 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 children: <Widget>[
                   IconButton(
+                    tooltip: 'Notifications',
+                    icon: const Icon(Icons.notifications),
+                    onPressed: () {
+                      print('Notifications Icon pressed!');
+                      context.pushNamed('notifications');
+                    },
+                  ),
+                  IconButton(
                     tooltip: 'Open navigation menu',
                     icon: const Icon(Icons.person),
                     onPressed: () {
                       context.pushNamed('userProfile');
 
                       print('\n\n USER PROFILE');
-                    },
-                  ),
-                  IconButton(
-                    tooltip: 'Favorite',
-                    icon: const Icon(Icons.favorite),
-                    onPressed: () {
-                      print('Favorites Icon pressed!');
                     },
                   ),
                   const Spacer(),

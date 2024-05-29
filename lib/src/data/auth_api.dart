@@ -202,15 +202,56 @@ class AuthApi {
         senderId: currentUser.uid,
         groceryListId: groceryListId);
 
-    final String requestJson = request.toJson().toString();
+    final Map<String, dynamic> requestJson = request.toJson();
 
     if (requests != null) {
-      final Set<String> updatedRequestsSet = requests.map((dynamic id) => id.toString()).toSet()..add(requestJson);
+      final Set<Map<String, dynamic>> updatedRequestsSet =
+          requests.map((dynamic id) => Map<String, dynamic>.from(id as Map)).toSet()..add(requestJson);
       listData!['requests'] = updatedRequestsSet.toList();
     } else {
+      // Initialize requests list if it doesn't exist
       listData!['requests'] = [requestJson];
     }
 
     await userRef.update(listData);
+  }
+
+  // Future<void> removeRequest({required String receiverId, required AddRequest requestToRemove}) async {
+  //   final DocumentReference<Map<String, dynamic>> userRef = _firestore.doc('users/$receiverId');
+  //   final DocumentSnapshot<Map<String, dynamic>> snapshot = await userRef.get();
+  //
+  //   if (!snapshot.exists) {
+  //     throw Exception('User document not found!');
+  //   }
+  //
+  //   final Map<String, dynamic>? listData = snapshot.data();
+  //
+  //   final List<dynamic>? requests = listData?['requests'] as List<dynamic>?;
+  //
+  //   final Map<String, dynamic> requestJsonToRemove = requestToRemove.toJson();
+  //
+  //   if (requests != null) {
+  //     // Convert list to set to remove duplicates
+  //     final Set<Map<String, dynamic>> updatedRequestsSet =
+  //     requests.map((dynamic id) => Map<String, dynamic>.from(id as Map)).toSet();
+  //
+  //     // Remove the specified request
+  //     updatedRequestsSet.removeWhere((Map<String, dynamic> element) => _mapsAreEqual(element, requestJsonToRemove));
+  //
+  //     // Update the listData
+  //     listData!['requests'] = updatedRequestsSet.toList();
+  //   }
+  //
+  //   await userRef.update(listData);
+  // }
+
+  bool _mapsAreEqual(Map<String, dynamic> map1, Map<String, dynamic> map2) {
+    if (map1.length != map2.length) return false;
+    for (final key in map1.keys) {
+      if (!map2.containsKey(key) || map1[key] != map2[key]) {
+        return false;
+      }
+    }
+    return true;
   }
 }
