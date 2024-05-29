@@ -33,6 +33,8 @@ mixin _$AppState {
   TakenPicture? get takenPicture => throw _privateConstructorUsedError;
   CameraInfo? get selectedCamera => throw _privateConstructorUsedError;
   Set<AppUser> get users => throw _privateConstructorUsedError;
+  List<AddRequest> get requests => throw _privateConstructorUsedError;
+  bool get isNotifications => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -58,7 +60,9 @@ abstract class $AppStateCopyWith<$Res> {
       List<CameraInfo> cameras,
       TakenPicture? takenPicture,
       CameraInfo? selectedCamera,
-      Set<AppUser> users});
+      Set<AppUser> users,
+      List<AddRequest> requests,
+      bool isNotifications});
 
   $AppUserCopyWith<$Res>? get user;
   $TakenPictureCopyWith<$Res>? get takenPicture;
@@ -91,6 +95,8 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
     Object? takenPicture = freezed,
     Object? selectedCamera = freezed,
     Object? users = null,
+    Object? requests = null,
+    Object? isNotifications = null,
   }) {
     return _then(_value.copyWith(
       user: freezed == user
@@ -145,6 +151,14 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.users
           : users // ignore: cast_nullable_to_non_nullable
               as Set<AppUser>,
+      requests: null == requests
+          ? _value.requests
+          : requests // ignore: cast_nullable_to_non_nullable
+              as List<AddRequest>,
+      isNotifications: null == isNotifications
+          ? _value.isNotifications
+          : isNotifications // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -206,7 +220,9 @@ abstract class _$$AppState$ImplCopyWith<$Res>
       List<CameraInfo> cameras,
       TakenPicture? takenPicture,
       CameraInfo? selectedCamera,
-      Set<AppUser> users});
+      Set<AppUser> users,
+      List<AddRequest> requests,
+      bool isNotifications});
 
   @override
   $AppUserCopyWith<$Res>? get user;
@@ -240,6 +256,8 @@ class __$$AppState$ImplCopyWithImpl<$Res>
     Object? takenPicture = freezed,
     Object? selectedCamera = freezed,
     Object? users = null,
+    Object? requests = null,
+    Object? isNotifications = null,
   }) {
     return _then(_$AppState$Impl(
       user: freezed == user
@@ -294,6 +312,14 @@ class __$$AppState$ImplCopyWithImpl<$Res>
           ? _value._users
           : users // ignore: cast_nullable_to_non_nullable
               as Set<AppUser>,
+      requests: null == requests
+          ? _value._requests
+          : requests // ignore: cast_nullable_to_non_nullable
+              as List<AddRequest>,
+      isNotifications: null == isNotifications
+          ? _value.isNotifications
+          : isNotifications // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -314,14 +340,17 @@ class _$AppState$Impl implements AppState$ {
       final List<CameraInfo> cameras = const <CameraInfo>[],
       this.takenPicture = null,
       this.selectedCamera = null,
-      final Set<AppUser> users = const <AppUser>{}})
+      final Set<AppUser> users = const <AppUser>{},
+      final List<AddRequest> requests = const <AddRequest>[],
+      this.isNotifications = false})
       : _supermarketProducts = supermarketProducts,
         _productsGroceryList = productsGroceryList,
         _relatedProducts = relatedProducts,
         _groceryLists = groceryLists,
         _pending = pending,
         _cameras = cameras,
-        _users = users;
+        _users = users,
+        _requests = requests;
 
   factory _$AppState$Impl.fromJson(Map<String, dynamic> json) =>
       _$$AppState$ImplFromJson(json);
@@ -407,9 +436,22 @@ class _$AppState$Impl implements AppState$ {
     return EqualUnmodifiableSetView(_users);
   }
 
+  final List<AddRequest> _requests;
+  @override
+  @JsonKey()
+  List<AddRequest> get requests {
+    if (_requests is EqualUnmodifiableListView) return _requests;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_requests);
+  }
+
+  @override
+  @JsonKey()
+  final bool isNotifications;
+
   @override
   String toString() {
-    return 'AppState(user: $user, supermarketProducts: $supermarketProducts, productsGroceryList: $productsGroceryList, relatedProducts: $relatedProducts, groceryLists: $groceryLists, selectedGroceryList: $selectedGroceryList, pending: $pending, pageNumber: $pageNumber, contentLoaded: $contentLoaded, cameras: $cameras, takenPicture: $takenPicture, selectedCamera: $selectedCamera, users: $users)';
+    return 'AppState(user: $user, supermarketProducts: $supermarketProducts, productsGroceryList: $productsGroceryList, relatedProducts: $relatedProducts, groceryLists: $groceryLists, selectedGroceryList: $selectedGroceryList, pending: $pending, pageNumber: $pageNumber, contentLoaded: $contentLoaded, cameras: $cameras, takenPicture: $takenPicture, selectedCamera: $selectedCamera, users: $users, requests: $requests, isNotifications: $isNotifications)';
   }
 
   @override
@@ -438,7 +480,10 @@ class _$AppState$Impl implements AppState$ {
                 other.takenPicture == takenPicture) &&
             (identical(other.selectedCamera, selectedCamera) ||
                 other.selectedCamera == selectedCamera) &&
-            const DeepCollectionEquality().equals(other._users, _users));
+            const DeepCollectionEquality().equals(other._users, _users) &&
+            const DeepCollectionEquality().equals(other._requests, _requests) &&
+            (identical(other.isNotifications, isNotifications) ||
+                other.isNotifications == isNotifications));
   }
 
   @JsonKey(ignore: true)
@@ -457,7 +502,9 @@ class _$AppState$Impl implements AppState$ {
       const DeepCollectionEquality().hash(_cameras),
       takenPicture,
       selectedCamera,
-      const DeepCollectionEquality().hash(_users));
+      const DeepCollectionEquality().hash(_users),
+      const DeepCollectionEquality().hash(_requests),
+      isNotifications);
 
   @JsonKey(ignore: true)
   @override
@@ -487,7 +534,9 @@ abstract class AppState$ implements AppState {
       final List<CameraInfo> cameras,
       final TakenPicture? takenPicture,
       final CameraInfo? selectedCamera,
-      final Set<AppUser> users}) = _$AppState$Impl;
+      final Set<AppUser> users,
+      final List<AddRequest> requests,
+      final bool isNotifications}) = _$AppState$Impl;
 
   factory AppState$.fromJson(Map<String, dynamic> json) =
       _$AppState$Impl.fromJson;
@@ -518,6 +567,10 @@ abstract class AppState$ implements AppState {
   CameraInfo? get selectedCamera;
   @override
   Set<AppUser> get users;
+  @override
+  List<AddRequest> get requests;
+  @override
+  bool get isNotifications;
   @override
   @JsonKey(ignore: true)
   _$$AppState$ImplCopyWith<_$AppState$Impl> get copyWith =>

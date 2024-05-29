@@ -209,49 +209,68 @@ class AuthApi {
           requests.map((dynamic id) => Map<String, dynamic>.from(id as Map)).toSet()..add(requestJson);
       listData!['requests'] = updatedRequestsSet.toList();
     } else {
-      // Initialize requests list if it doesn't exist
       listData!['requests'] = [requestJson];
     }
 
     await userRef.update(listData);
   }
 
-  // Future<void> removeRequest({required String receiverId, required AddRequest requestToRemove}) async {
-  //   final DocumentReference<Map<String, dynamic>> userRef = _firestore.doc('users/$receiverId');
-  //   final DocumentSnapshot<Map<String, dynamic>> snapshot = await userRef.get();
-  //
-  //   if (!snapshot.exists) {
-  //     throw Exception('User document not found!');
-  //   }
-  //
-  //   final Map<String, dynamic>? listData = snapshot.data();
-  //
-  //   final List<dynamic>? requests = listData?['requests'] as List<dynamic>?;
-  //
-  //   final Map<String, dynamic> requestJsonToRemove = requestToRemove.toJson();
-  //
-  //   if (requests != null) {
-  //     // Convert list to set to remove duplicates
-  //     final Set<Map<String, dynamic>> updatedRequestsSet =
-  //     requests.map((dynamic id) => Map<String, dynamic>.from(id as Map)).toSet();
-  //
-  //     // Remove the specified request
-  //     updatedRequestsSet.removeWhere((Map<String, dynamic> element) => _mapsAreEqual(element, requestJsonToRemove));
-  //
-  //     // Update the listData
-  //     listData!['requests'] = updatedRequestsSet.toList();
-  //   }
-  //
-  //   await userRef.update(listData);
-  // }
+  Future<void> removeRequest({required AddRequest requestToRemove}) async {
+    final User currentUser = _auth.currentUser!;
+    final DocumentReference<Map<String, dynamic>> userRef = _firestore.doc('users/${currentUser.uid}');
+    final DocumentSnapshot<Map<String, dynamic>> snapshot = await userRef.get();
+
+    if (!snapshot.exists) {
+      throw Exception('User document not found!');
+    }
+
+    final Map<String, dynamic>? listData = snapshot.data();
+
+    final List<Map<String, dynamic>>? requests =
+        (listData?['requests'] as List?)?.map((item) => item as Map<String, dynamic>).toList();
+
+    final Map<String, dynamic> requestJsonToRemove = requestToRemove.toJson();
+
+    if (requests != null && requests.isNotEmpty) {
+      requests.removeWhere((element) => _mapsAreEqual(element, requestJsonToRemove));
+      listData!['requests'] = requests;
+      await userRef.update(listData);
+    }
+  }
 
   bool _mapsAreEqual(Map<String, dynamic> map1, Map<String, dynamic> map2) {
-    if (map1.length != map2.length) return false;
-    for (final key in map1.keys) {
+    if (map1.length != map2.length) {
+      return false;
+    }
+    for (final String key in map1.keys) {
       if (!map2.containsKey(key) || map1[key] != map2[key]) {
         return false;
       }
     }
     return true;
+  }
+
+  Stream<List<AddRequest>> listenForRequests({required bool isNotifications}) {
+    final User currentUser = _auth.currentUser!;
+    return _firestore
+        .collection('users')
+        .doc(currentUser.uid)
+        .snapshots()
+        .asyncMap((DocumentSnapshot<Map<String, dynamic>> snapshot) async {
+      if (snapshot.exists) {
+        final List<dynamic>? requests = snapshot.data()?['requests'] as List<dynamic>?;
+
+        if (requests == null || requests.isEmpty) {
+          return <AddRequest>[];
+        }
+
+        final List<AddRequest> userRequests =
+            requests.map((dynamic request) => AddRequest.fromJson(request as Map<String, dynamic>)).toList();
+
+        return userRequests;
+      } else {
+        return <AddRequest>[];
+      }
+    });
   }
 }

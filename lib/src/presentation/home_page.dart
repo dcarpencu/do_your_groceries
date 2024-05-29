@@ -142,6 +142,7 @@ class _HomePageState extends State<HomePage> {
                     tooltip: 'Notifications',
                     icon: const Icon(Icons.notifications),
                     onPressed: () {
+                      _store.dispatch(const SetNotificationOn());
                       print('Notifications Icon pressed!');
                       context.pushNamed('notifications');
                     },

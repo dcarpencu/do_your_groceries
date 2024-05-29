@@ -37,6 +37,7 @@ Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   TypedReducer<AppState, SetPictureToNull>(_setPictureToNull).call,
   TypedReducer<AppState, SetMarketProductsToEmpty>(_setMarketProductsToEmpty).call,
   TypedReducer<AppState, OnProductsEvent>(_onProductsEvent).call,
+  TypedReducer<AppState, OnRequestsEvent>(_onRequestsEvent).call,
   TypedReducer<AppState, CreateGroceryListSuccessful>(_createGroceryListSuccessful).call,
   TypedReducer<AppState, GetSuperMarketProductsSuccessful>(_getSuperMarketProductsSuccessful).call,
   TypedReducer<AppState, ActionStart>(_actionStart).call,
@@ -48,11 +49,21 @@ Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   TypedReducer<AppState, RemoveProductFromGroceryListSuccessful>(_removeProductFromGroceryListSuccessful).call,
   TypedReducer<AppState, RemoveGroceryListSuccessful>(_removeGroceryListSuccessful).call,
   TypedReducer<AppState, GetUsersSuccessful>(_getUsersSuccessful).call,
+  TypedReducer<AppState, SetNotificationOn>(_setNotificationOn).call,
+  TypedReducer<AppState, SetNotificationOff>(_setNotificationOff).call,
   // TypedReducer<AppState, GetImageLabelsSuccessful>(_getImageLabelsSuccessful).call,
 ]);
 
 AppState _setMarketProductsToEmpty(AppState state, SetMarketProductsToEmpty action) {
   return state.copyWith(supermarketProducts: <Product>[], pageNumber: 1, contentLoaded: false);
+}
+
+AppState _setNotificationOn(AppState state, SetNotificationOn action) {
+  return state.copyWith(isNotifications: true);
+}
+
+AppState _setNotificationOff(AppState state, SetNotificationOff action) {
+  return state.copyWith(isNotifications: false);
 }
 
 AppState _userAction(AppState state, UserAction action) {
@@ -93,6 +104,10 @@ AppState _setUnselectedList(AppState state, SetUnselectedList action) {
 
 AppState _onProductsEvent(AppState state, OnProductsEvent action) {
   return state.copyWith(productsGroceryList: <Product>{...state.productsGroceryList, ...action.products}.toList());
+}
+
+AppState _onRequestsEvent(AppState state, OnRequestsEvent action) {
+  return state.copyWith(requests: <AddRequest>{...state.requests, ...action.requests}.toList());
 }
 
 AppState _createGroceryListSuccessful(AppState state, CreateGroceryListSuccessful action) {

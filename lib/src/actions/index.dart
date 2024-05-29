@@ -26,6 +26,8 @@ part 'remove_grocery_list.dart';
 part 'get_products_for_camera.dart';
 part 'get_users.dart';
 part 'send_request.dart';
+part 'remove_request.dart';
+part 'listen_for_requests.dart';
 
 abstract class AppAction {}
 

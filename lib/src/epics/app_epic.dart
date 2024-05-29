@@ -40,6 +40,8 @@ class AppEpic {
       TypedEpic<AppState, RemoveProductFromGroceryListStart>(_removeProductFromGroceryListStart).call,
       TypedEpic<AppState, RemoveGroceryListStart>(_removeGroceryListStart).call,
       TypedEpic<AppState, SendRequestStart>(_sendRequestStart).call,
+      TypedEpic<AppState, RemoveRequestStart>(_removeRequestStart).call,
+      TypedEpic<AppState, RemoveRequestStart>(_removeRequestStart).call,
 
     ]);
   }
@@ -100,6 +102,15 @@ class AppEpic {
     });
   }
 
+  Stream<AppAction> _removeRequestStart(Stream<RemoveRequestStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((RemoveRequestStart action) {
+      return Stream<void>.value(null)
+          .asyncMap((_) => _authApi.removeRequest(requestToRemove: action.requestToRemove))
+          .mapTo(const RemoveRequest.successful())
+          .onErrorReturnWith(RemoveRequest.error);
+    });
+  }
+
   Stream<AppAction> _getGroceryListsStart(Stream<GetGroceryListsStart> actions, EpicStore<AppState> store) {
     return actions.flatMap((GetGroceryListsStart action) {
       return Stream<void>.value(null)
@@ -119,6 +130,19 @@ class AppEpic {
           return event is ListenForProductsDone && event.groceryListTitle == action.groceryListTitle;
         }),
       ).onErrorReturnWith(ListenForProducts.error);
+    });
+  }
+
+  Stream<AppAction> listenForRequests(Stream<dynamic> actions, EpicStore<AppState> store) {
+    return actions.whereType<ListenForRequestsStart>().flatMap((ListenForRequestsStart action) {
+      return _authApi
+          .listenForRequests(isNotifications: action.isNotifications,)
+          .map<ListenForRequests>(ListenForRequests.event)
+          .takeUntil<dynamic>(
+        actions.where((dynamic event) {
+          return event is ListenForRequestsDone && event.isNotifications == action.isNotifications;
+        }),
+      ).onErrorReturnWith(ListenForRequests.error);
     });
   }
 

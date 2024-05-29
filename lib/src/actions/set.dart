@@ -29,3 +29,13 @@ class SetSelectedCamera with _$SetSelectedCamera implements AppAction {
 class SetPictureToNull with _$SetPictureToNull implements AppAction {
   const factory SetPictureToNull() = SetPictureToNull$;
 }
+
+@freezed
+class SetNotificationOn with _$SetNotificationOn implements AppAction {
+  const factory SetNotificationOn() = SetNotificationOn$;
+}
+
+@freezed
+class SetNotificationOff with _$SetNotificationOff implements AppAction {
+  const factory SetNotificationOff() = SetNotificationOff$;
+}

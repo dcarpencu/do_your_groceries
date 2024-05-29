@@ -45,7 +45,7 @@ class ProductsApi {
 
         return products;
       } else {
-        return <Product>[]; // Return empty list if the snapshot does not exist
+        return <Product>[];
       }
     });
   }

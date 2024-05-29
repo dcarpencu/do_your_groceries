@@ -48,6 +48,11 @@ _$AppState$Impl _$$AppState$ImplFromJson(Map<String, dynamic> json) =>
               ?.map((e) => AppUser.fromJson(e as Map<String, dynamic>))
               .toSet() ??
           const <AppUser>{},
+      requests: (json['requests'] as List<dynamic>?)
+              ?.map((e) => AddRequest.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const <AddRequest>[],
+      isNotifications: json['isNotifications'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$AppState$ImplToJson(_$AppState$Impl instance) =>
@@ -65,6 +70,8 @@ Map<String, dynamic> _$$AppState$ImplToJson(_$AppState$Impl instance) =>
       'takenPicture': instance.takenPicture,
       'selectedCamera': instance.selectedCamera,
       'users': instance.users.toList(),
+      'requests': instance.requests,
+      'isNotifications': instance.isNotifications,
     };
 
 _$AppUser$Impl _$$AppUser$ImplFromJson(Map<String, dynamic> json) =>
