@@ -77,9 +77,10 @@ class _AddPeoplePageState extends State<NotificationsPage> {
                                   IconButton(
                                     iconSize: 36,
                                     icon: const Icon(Icons.check_circle),
-                                    onPressed: () {
-                                      store..dispatch(RemoveRequestSimple(request: request))
-                                        ..dispatch(AcceptRequestStart(groceryListId: request.groceryListId))..dispatch(const GetGroceryListsStart());
+                                    onPressed: () async {
+                                      store.dispatch(AcceptRequestStart(groceryListId: request.groceryListId, requestToRemove: request));
+                                      await store.dispatch(RemoveRequestStart(requestToRemove: request));
+                                      store.dispatch(RemoveRequestSimple(request: request));
                                     },
                                   ),
                                   IconButton(

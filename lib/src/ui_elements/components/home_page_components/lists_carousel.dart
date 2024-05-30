@@ -23,6 +23,9 @@ class ListsCarousel extends StatelessWidget {
           width: 16,
         ),
         itemBuilder: (BuildContext context, int index) {
+          final GroceryList groceryList = groceryLists.elementAt(index);
+          //final bool isDeleted = store.state.user!.groceryListIds.contains(groceryList.groceryListId);
+
           return Container(
             width: 210,
             decoration: BoxDecoration(
@@ -37,11 +40,11 @@ class ListsCarousel extends StatelessWidget {
                     width: 120,
                     height: 120,
                     child: SvgPicture.asset(
-                      'assets/groceryListIcons/${groceryLists.elementAt(index).selectedIcon}.svg',
+                      'assets/groceryListIcons/${groceryList.selectedIcon}.svg',
                     ),
                   ),
                   Text(
-                    groceryLists.elementAt(index).title,
+                    groceryList.title,
                     style: const TextStyle(
                       fontWeight: FontWeight.w400,
                       color: Colors.black,
@@ -49,7 +52,7 @@ class ListsCarousel extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    groceryLists.elementAt(index).description,
+                    groceryList.description,
                     style: const TextStyle(color: Colors.grey),
                   ),
                   // const SizedBox(
@@ -72,7 +75,7 @@ class ListsCarousel extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                        store.dispatch(SetSelectedList(groceryLists.elementAt(index).groceryListId, groceryLists.elementAt(index).title));
+                        store.dispatch(SetSelectedList(groceryList.groceryListId, groceryList.title));
                         context.pushNamed('groceryList');
                       },
                       child: const Center(
@@ -88,10 +91,9 @@ class ListsCarousel extends StatelessWidget {
                     ),
                   ),
                   TextButton(
-                      onPressed: () async {
-                        await store.dispatch(RemoveGroceryList(groceryList: groceryLists.elementAt(index)));
-                        store.dispatch(RemoveGroceryListSimple(groceryList: groceryLists.elementAt(index)));
-                        await store.dispatch(const GetGroceryListsStart());
+                      onPressed: () {
+                        store..dispatch(RemoveGroceryListSimple(groceryList: groceryLists.elementAt(index)))
+                        ..dispatch(RemoveGroceryList(groceryList: groceryLists.elementAt(index)));
                       },
                       child: const Text('Delete list')),
                   const SizedBox(

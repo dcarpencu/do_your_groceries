@@ -15038,21 +15038,24 @@ abstract class RemoveRequestSimple$ implements RemoveRequestSimple {
 mixin _$AcceptRequest {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String groceryListId) $default, {
+    TResult Function(String groceryListId, AddRequest requestToRemove)
+        $default, {
     required TResult Function() successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String groceryListId)? $default, {
+    TResult? Function(String groceryListId, AddRequest requestToRemove)?
+        $default, {
     TResult? Function()? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String groceryListId)? $default, {
+    TResult Function(String groceryListId, AddRequest requestToRemove)?
+        $default, {
     TResult Function()? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
@@ -15106,7 +15109,9 @@ abstract class _$$AcceptRequestStartImplCopyWith<$Res> {
           $Res Function(_$AcceptRequestStartImpl) then) =
       __$$AcceptRequestStartImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String groceryListId});
+  $Res call({String groceryListId, AddRequest requestToRemove});
+
+  $AddRequestCopyWith<$Res> get requestToRemove;
 }
 
 /// @nodoc
@@ -15121,27 +15126,43 @@ class __$$AcceptRequestStartImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? groceryListId = null,
+    Object? requestToRemove = null,
   }) {
     return _then(_$AcceptRequestStartImpl(
       groceryListId: null == groceryListId
           ? _value.groceryListId
           : groceryListId // ignore: cast_nullable_to_non_nullable
               as String,
+      requestToRemove: null == requestToRemove
+          ? _value.requestToRemove
+          : requestToRemove // ignore: cast_nullable_to_non_nullable
+              as AddRequest,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AddRequestCopyWith<$Res> get requestToRemove {
+    return $AddRequestCopyWith<$Res>(_value.requestToRemove, (value) {
+      return _then(_value.copyWith(requestToRemove: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$AcceptRequestStartImpl implements AcceptRequestStart {
-  const _$AcceptRequestStartImpl({required this.groceryListId});
+  const _$AcceptRequestStartImpl(
+      {required this.groceryListId, required this.requestToRemove});
 
   @override
   final String groceryListId;
+  @override
+  final AddRequest requestToRemove;
 
   @override
   String toString() {
-    return 'AcceptRequest(groceryListId: $groceryListId)';
+    return 'AcceptRequest(groceryListId: $groceryListId, requestToRemove: $requestToRemove)';
   }
 
   @override
@@ -15150,11 +15171,13 @@ class _$AcceptRequestStartImpl implements AcceptRequestStart {
         (other.runtimeType == runtimeType &&
             other is _$AcceptRequestStartImpl &&
             (identical(other.groceryListId, groceryListId) ||
-                other.groceryListId == groceryListId));
+                other.groceryListId == groceryListId) &&
+            (identical(other.requestToRemove, requestToRemove) ||
+                other.requestToRemove == requestToRemove));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, groceryListId);
+  int get hashCode => Object.hash(runtimeType, groceryListId, requestToRemove);
 
   @JsonKey(ignore: true)
   @override
@@ -15166,33 +15189,36 @@ class _$AcceptRequestStartImpl implements AcceptRequestStart {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String groceryListId) $default, {
+    TResult Function(String groceryListId, AddRequest requestToRemove)
+        $default, {
     required TResult Function() successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
-    return $default(groceryListId);
+    return $default(groceryListId, requestToRemove);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String groceryListId)? $default, {
+    TResult? Function(String groceryListId, AddRequest requestToRemove)?
+        $default, {
     TResult? Function()? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
-    return $default?.call(groceryListId);
+    return $default?.call(groceryListId, requestToRemove);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String groceryListId)? $default, {
+    TResult Function(String groceryListId, AddRequest requestToRemove)?
+        $default, {
     TResult Function()? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(groceryListId);
+      return $default(groceryListId, requestToRemove);
     }
     return orElse();
   }
@@ -15233,10 +15259,12 @@ class _$AcceptRequestStartImpl implements AcceptRequestStart {
 }
 
 abstract class AcceptRequestStart implements AcceptRequest {
-  const factory AcceptRequestStart({required final String groceryListId}) =
-      _$AcceptRequestStartImpl;
+  const factory AcceptRequestStart(
+      {required final String groceryListId,
+      required final AddRequest requestToRemove}) = _$AcceptRequestStartImpl;
 
   String get groceryListId;
+  AddRequest get requestToRemove;
   @JsonKey(ignore: true)
   _$$AcceptRequestStartImplCopyWith<_$AcceptRequestStartImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -15283,7 +15311,8 @@ class _$AcceptRequestSuccessfulImpl implements AcceptRequestSuccessful {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String groceryListId) $default, {
+    TResult Function(String groceryListId, AddRequest requestToRemove)
+        $default, {
     required TResult Function() successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
@@ -15293,7 +15322,8 @@ class _$AcceptRequestSuccessfulImpl implements AcceptRequestSuccessful {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String groceryListId)? $default, {
+    TResult? Function(String groceryListId, AddRequest requestToRemove)?
+        $default, {
     TResult? Function()? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
@@ -15303,7 +15333,8 @@ class _$AcceptRequestSuccessfulImpl implements AcceptRequestSuccessful {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String groceryListId)? $default, {
+    TResult Function(String groceryListId, AddRequest requestToRemove)?
+        $default, {
     TResult Function()? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
@@ -15425,7 +15456,8 @@ class _$AcceptRequestErrorImpl implements AcceptRequestError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String groceryListId) $default, {
+    TResult Function(String groceryListId, AddRequest requestToRemove)
+        $default, {
     required TResult Function() successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
@@ -15435,7 +15467,8 @@ class _$AcceptRequestErrorImpl implements AcceptRequestError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String groceryListId)? $default, {
+    TResult? Function(String groceryListId, AddRequest requestToRemove)?
+        $default, {
     TResult? Function()? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
@@ -15445,7 +15478,8 @@ class _$AcceptRequestErrorImpl implements AcceptRequestError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String groceryListId)? $default, {
+    TResult Function(String groceryListId, AddRequest requestToRemove)?
+        $default, {
     TResult Function()? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
@@ -15501,4 +15535,543 @@ abstract class AcceptRequestError implements AcceptRequest, ErrorAction {
   @JsonKey(ignore: true)
   _$$AcceptRequestErrorImplCopyWith<_$AcceptRequestErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$UpdateGroceryLists {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String groceryListId, bool remove) $default, {
+    required TResult Function() successful,
+    required TResult Function(Object error, StackTrace stackTrace,
+            String groceryListId, bool remove)
+        error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String groceryListId, bool remove)? $default, {
+    TResult? Function()? successful,
+    TResult? Function(Object error, StackTrace stackTrace, String groceryListId,
+            bool remove)?
+        error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String groceryListId, bool remove)? $default, {
+    TResult Function()? successful,
+    TResult Function(Object error, StackTrace stackTrace, String groceryListId,
+            bool remove)?
+        error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(UpdateGroceryListsStart value) $default, {
+    required TResult Function(UpdateGroceryListsSuccessful value) successful,
+    required TResult Function(UpdateGroceryListsError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(UpdateGroceryListsStart value)? $default, {
+    TResult? Function(UpdateGroceryListsSuccessful value)? successful,
+    TResult? Function(UpdateGroceryListsError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(UpdateGroceryListsStart value)? $default, {
+    TResult Function(UpdateGroceryListsSuccessful value)? successful,
+    TResult Function(UpdateGroceryListsError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UpdateGroceryListsCopyWith<$Res> {
+  factory $UpdateGroceryListsCopyWith(
+          UpdateGroceryLists value, $Res Function(UpdateGroceryLists) then) =
+      _$UpdateGroceryListsCopyWithImpl<$Res, UpdateGroceryLists>;
+}
+
+/// @nodoc
+class _$UpdateGroceryListsCopyWithImpl<$Res, $Val extends UpdateGroceryLists>
+    implements $UpdateGroceryListsCopyWith<$Res> {
+  _$UpdateGroceryListsCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$UpdateGroceryListsStartImplCopyWith<$Res> {
+  factory _$$UpdateGroceryListsStartImplCopyWith(
+          _$UpdateGroceryListsStartImpl value,
+          $Res Function(_$UpdateGroceryListsStartImpl) then) =
+      __$$UpdateGroceryListsStartImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String groceryListId, bool remove});
+}
+
+/// @nodoc
+class __$$UpdateGroceryListsStartImplCopyWithImpl<$Res>
+    extends _$UpdateGroceryListsCopyWithImpl<$Res,
+        _$UpdateGroceryListsStartImpl>
+    implements _$$UpdateGroceryListsStartImplCopyWith<$Res> {
+  __$$UpdateGroceryListsStartImplCopyWithImpl(
+      _$UpdateGroceryListsStartImpl _value,
+      $Res Function(_$UpdateGroceryListsStartImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? groceryListId = null,
+    Object? remove = null,
+  }) {
+    return _then(_$UpdateGroceryListsStartImpl(
+      null == groceryListId
+          ? _value.groceryListId
+          : groceryListId // ignore: cast_nullable_to_non_nullable
+              as String,
+      remove: null == remove
+          ? _value.remove
+          : remove // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateGroceryListsStartImpl implements UpdateGroceryListsStart {
+  const _$UpdateGroceryListsStartImpl(this.groceryListId,
+      {required this.remove});
+
+  @override
+  final String groceryListId;
+  @override
+  final bool remove;
+
+  @override
+  String toString() {
+    return 'UpdateGroceryLists(groceryListId: $groceryListId, remove: $remove)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateGroceryListsStartImpl &&
+            (identical(other.groceryListId, groceryListId) ||
+                other.groceryListId == groceryListId) &&
+            (identical(other.remove, remove) || other.remove == remove));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, groceryListId, remove);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateGroceryListsStartImplCopyWith<_$UpdateGroceryListsStartImpl>
+      get copyWith => __$$UpdateGroceryListsStartImplCopyWithImpl<
+          _$UpdateGroceryListsStartImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String groceryListId, bool remove) $default, {
+    required TResult Function() successful,
+    required TResult Function(Object error, StackTrace stackTrace,
+            String groceryListId, bool remove)
+        error,
+  }) {
+    return $default(groceryListId, remove);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String groceryListId, bool remove)? $default, {
+    TResult? Function()? successful,
+    TResult? Function(Object error, StackTrace stackTrace, String groceryListId,
+            bool remove)?
+        error,
+  }) {
+    return $default?.call(groceryListId, remove);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String groceryListId, bool remove)? $default, {
+    TResult Function()? successful,
+    TResult Function(Object error, StackTrace stackTrace, String groceryListId,
+            bool remove)?
+        error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(groceryListId, remove);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(UpdateGroceryListsStart value) $default, {
+    required TResult Function(UpdateGroceryListsSuccessful value) successful,
+    required TResult Function(UpdateGroceryListsError value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(UpdateGroceryListsStart value)? $default, {
+    TResult? Function(UpdateGroceryListsSuccessful value)? successful,
+    TResult? Function(UpdateGroceryListsError value)? error,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(UpdateGroceryListsStart value)? $default, {
+    TResult Function(UpdateGroceryListsSuccessful value)? successful,
+    TResult Function(UpdateGroceryListsError value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UpdateGroceryListsStart implements UpdateGroceryLists {
+  const factory UpdateGroceryListsStart(final String groceryListId,
+      {required final bool remove}) = _$UpdateGroceryListsStartImpl;
+
+  String get groceryListId;
+  bool get remove;
+  @JsonKey(ignore: true)
+  _$$UpdateGroceryListsStartImplCopyWith<_$UpdateGroceryListsStartImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UpdateGroceryListsSuccessfulImplCopyWith<$Res> {
+  factory _$$UpdateGroceryListsSuccessfulImplCopyWith(
+          _$UpdateGroceryListsSuccessfulImpl value,
+          $Res Function(_$UpdateGroceryListsSuccessfulImpl) then) =
+      __$$UpdateGroceryListsSuccessfulImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$UpdateGroceryListsSuccessfulImplCopyWithImpl<$Res>
+    extends _$UpdateGroceryListsCopyWithImpl<$Res,
+        _$UpdateGroceryListsSuccessfulImpl>
+    implements _$$UpdateGroceryListsSuccessfulImplCopyWith<$Res> {
+  __$$UpdateGroceryListsSuccessfulImplCopyWithImpl(
+      _$UpdateGroceryListsSuccessfulImpl _value,
+      $Res Function(_$UpdateGroceryListsSuccessfulImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$UpdateGroceryListsSuccessfulImpl
+    implements UpdateGroceryListsSuccessful {
+  const _$UpdateGroceryListsSuccessfulImpl();
+
+  @override
+  String toString() {
+    return 'UpdateGroceryLists.successful()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateGroceryListsSuccessfulImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String groceryListId, bool remove) $default, {
+    required TResult Function() successful,
+    required TResult Function(Object error, StackTrace stackTrace,
+            String groceryListId, bool remove)
+        error,
+  }) {
+    return successful();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String groceryListId, bool remove)? $default, {
+    TResult? Function()? successful,
+    TResult? Function(Object error, StackTrace stackTrace, String groceryListId,
+            bool remove)?
+        error,
+  }) {
+    return successful?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String groceryListId, bool remove)? $default, {
+    TResult Function()? successful,
+    TResult Function(Object error, StackTrace stackTrace, String groceryListId,
+            bool remove)?
+        error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(UpdateGroceryListsStart value) $default, {
+    required TResult Function(UpdateGroceryListsSuccessful value) successful,
+    required TResult Function(UpdateGroceryListsError value) error,
+  }) {
+    return successful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(UpdateGroceryListsStart value)? $default, {
+    TResult? Function(UpdateGroceryListsSuccessful value)? successful,
+    TResult? Function(UpdateGroceryListsError value)? error,
+  }) {
+    return successful?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(UpdateGroceryListsStart value)? $default, {
+    TResult Function(UpdateGroceryListsSuccessful value)? successful,
+    TResult Function(UpdateGroceryListsError value)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UpdateGroceryListsSuccessful implements UpdateGroceryLists {
+  const factory UpdateGroceryListsSuccessful() =
+      _$UpdateGroceryListsSuccessfulImpl;
+}
+
+/// @nodoc
+abstract class _$$UpdateGroceryListsErrorImplCopyWith<$Res> {
+  factory _$$UpdateGroceryListsErrorImplCopyWith(
+          _$UpdateGroceryListsErrorImpl value,
+          $Res Function(_$UpdateGroceryListsErrorImpl) then) =
+      __$$UpdateGroceryListsErrorImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call(
+      {Object error, StackTrace stackTrace, String groceryListId, bool remove});
+}
+
+/// @nodoc
+class __$$UpdateGroceryListsErrorImplCopyWithImpl<$Res>
+    extends _$UpdateGroceryListsCopyWithImpl<$Res,
+        _$UpdateGroceryListsErrorImpl>
+    implements _$$UpdateGroceryListsErrorImplCopyWith<$Res> {
+  __$$UpdateGroceryListsErrorImplCopyWithImpl(
+      _$UpdateGroceryListsErrorImpl _value,
+      $Res Function(_$UpdateGroceryListsErrorImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+    Object? stackTrace = null,
+    Object? groceryListId = null,
+    Object? remove = null,
+  }) {
+    return _then(_$UpdateGroceryListsErrorImpl(
+      null == error ? _value.error : error,
+      null == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace,
+      null == groceryListId
+          ? _value.groceryListId
+          : groceryListId // ignore: cast_nullable_to_non_nullable
+              as String,
+      remove: null == remove
+          ? _value.remove
+          : remove // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateGroceryListsErrorImpl implements UpdateGroceryListsError {
+  const _$UpdateGroceryListsErrorImpl(
+      this.error, this.stackTrace, this.groceryListId,
+      {required this.remove});
+
+  @override
+  final Object error;
+  @override
+  final StackTrace stackTrace;
+  @override
+  final String groceryListId;
+  @override
+  final bool remove;
+
+  @override
+  String toString() {
+    return 'UpdateGroceryLists.error(error: $error, stackTrace: $stackTrace, groceryListId: $groceryListId, remove: $remove)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateGroceryListsErrorImpl &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace) &&
+            (identical(other.groceryListId, groceryListId) ||
+                other.groceryListId == groceryListId) &&
+            (identical(other.remove, remove) || other.remove == remove));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(error),
+      stackTrace,
+      groceryListId,
+      remove);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateGroceryListsErrorImplCopyWith<_$UpdateGroceryListsErrorImpl>
+      get copyWith => __$$UpdateGroceryListsErrorImplCopyWithImpl<
+          _$UpdateGroceryListsErrorImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String groceryListId, bool remove) $default, {
+    required TResult Function() successful,
+    required TResult Function(Object error, StackTrace stackTrace,
+            String groceryListId, bool remove)
+        error,
+  }) {
+    return error(this.error, stackTrace, groceryListId, remove);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String groceryListId, bool remove)? $default, {
+    TResult? Function()? successful,
+    TResult? Function(Object error, StackTrace stackTrace, String groceryListId,
+            bool remove)?
+        error,
+  }) {
+    return error?.call(this.error, stackTrace, groceryListId, remove);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String groceryListId, bool remove)? $default, {
+    TResult Function()? successful,
+    TResult Function(Object error, StackTrace stackTrace, String groceryListId,
+            bool remove)?
+        error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error, stackTrace, groceryListId, remove);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(UpdateGroceryListsStart value) $default, {
+    required TResult Function(UpdateGroceryListsSuccessful value) successful,
+    required TResult Function(UpdateGroceryListsError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(UpdateGroceryListsStart value)? $default, {
+    TResult? Function(UpdateGroceryListsSuccessful value)? successful,
+    TResult? Function(UpdateGroceryListsError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(UpdateGroceryListsStart value)? $default, {
+    TResult Function(UpdateGroceryListsSuccessful value)? successful,
+    TResult Function(UpdateGroceryListsError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UpdateGroceryListsError
+    implements UpdateGroceryLists, ErrorAction {
+  const factory UpdateGroceryListsError(final Object error,
+      final StackTrace stackTrace, final String groceryListId,
+      {required final bool remove}) = _$UpdateGroceryListsErrorImpl;
+
+  Object get error;
+  StackTrace get stackTrace;
+  String get groceryListId;
+  bool get remove;
+  @JsonKey(ignore: true)
+  _$$UpdateGroceryListsErrorImplCopyWith<_$UpdateGroceryListsErrorImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

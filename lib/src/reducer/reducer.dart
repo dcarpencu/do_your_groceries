@@ -52,6 +52,9 @@ Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   TypedReducer<AppState, GetUsersSuccessful>(_getUsersSuccessful).call,
   TypedReducer<AppState, SetNotificationOn>(_setNotificationOn).call,
   TypedReducer<AppState, SetNotificationOff>(_setNotificationOff).call,
+  TypedReducer<AppState, UpdateGroceryListsStart>(_updateGroceryListsStart).call,
+  TypedReducer<AppState, UpdateGroceryListsError>(_updateGroceryListsError).call,
+
   // TypedReducer<AppState, GetImageLabelsSuccessful>(_getImageLabelsSuccessful).call,
 ]);
 
@@ -168,4 +171,26 @@ AppState _removeGroceryListSimple(AppState state, RemoveGroceryListSimple action
 
 AppState _removeRequestSimple(AppState state, RemoveRequestSimple action) {
   return state.copyWith(requests: <AddRequest>[...state.requests]..remove(action.request));
+}
+
+AppState _updateGroceryListsError(AppState state, UpdateGroceryListsError action) {
+  final List<String> groceryListIds = <String>[...state.user!.groceryListIds];
+  if (action.remove) {
+    groceryListIds.add(action.groceryListId);
+  } else {
+    groceryListIds.remove(action.groceryListId);
+  }
+  final AppUser user = state.user!.copyWith(groceryListIds: groceryListIds);
+  return state.copyWith(user: user);
+}
+
+AppState _updateGroceryListsStart(AppState state, UpdateGroceryListsStart action) {
+  final List<String> groceryListIds = <String>[...state.user!.groceryListIds];
+  if (action.remove) {
+    groceryListIds.remove(action.groceryListId);
+  } else {
+    groceryListIds.add(action.groceryListId);
+  }
+  final AppUser user = state.user!.copyWith(groceryListIds: groceryListIds);
+  return state.copyWith(user: user);
 }

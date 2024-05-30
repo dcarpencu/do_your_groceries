@@ -30,6 +30,7 @@ part 'remove_request.dart';
 part 'listen_for_requests.dart';
 part 'remove.dart';
 part 'accept_request.dart';
+part 'update_grocery_lists.dart';
 
 abstract class AppAction {}
 
