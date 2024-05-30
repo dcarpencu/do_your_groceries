@@ -328,7 +328,7 @@ class AppEpic {
     return actions.flatMap((RemoveProductFromGroceryListStart action) {
       return Stream<void>.value(null)
           .asyncMap((_) => _productsApi.removeProductFromGroceryList(groceryListId: action.groceryListId, product: action.product, ))
-          .map<RemoveProductFromGroceryList>( RemoveProductFromGroceryList.successful)
+          .mapTo( const RemoveProductFromGroceryList.successful())
           .onErrorReturnWith(RemoveProductFromGroceryList.error);
     });
   }
@@ -337,7 +337,7 @@ class AppEpic {
     return actions.flatMap((RemoveGroceryListStart action) {
       return Stream<void>.value(null)
           .asyncMap((_) => _authApi.removeGroceryList(groceryList: action.groceryList, ))
-          .map<RemoveGroceryList>( RemoveGroceryList.successful)
+          .mapTo(const RemoveGroceryList.successful())
           .onErrorReturnWith(RemoveGroceryList.error);
     });
   }

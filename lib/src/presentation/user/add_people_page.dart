@@ -4,6 +4,7 @@ import 'package:do_you_groceries/src/containers/pending_container.dart';
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:go_router/go_router.dart';
 import 'package:redux/redux.dart';
 
 class AddPeoplePage extends StatefulWidget {
@@ -61,6 +62,7 @@ class _AddPeoplePageState extends State<AddPeoplePage> {
                           ),
                           onPressed: () {
                             store.dispatch(SendRequestStart(receiverId: user.uid, groceryListId: store.state.selectedGroceryList!, senderUsername: store.state.user!.username, groceryListName: store.state.selectedGroceryListName!));
+                            //context.pop();
                           },
                           child: Row(
                             children: <Widget>[

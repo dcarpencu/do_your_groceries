@@ -88,8 +88,10 @@ class ListsCarousel extends StatelessWidget {
                     ),
                   ),
                   TextButton(
-                      onPressed: () {
-                        store.dispatch(RemoveGroceryList(groceryList: groceryLists.elementAt(index)));
+                      onPressed: () async {
+                        await store.dispatch(RemoveGroceryList(groceryList: groceryLists.elementAt(index)));
+                        store.dispatch(RemoveGroceryListSimple(groceryList: groceryLists.elementAt(index)));
+                        await store.dispatch(const GetGroceryListsStart());
                       },
                       child: const Text('Delete list')),
                   const SizedBox(

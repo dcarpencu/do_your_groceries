@@ -10731,21 +10731,21 @@ mixin _$RemoveProductFromGroceryList {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(String groceryListId, Product product) $default, {
-    required TResult Function(Product product) successful,
+    required TResult Function() successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(String groceryListId, Product product)? $default, {
-    TResult? Function(Product product)? successful,
+    TResult? Function()? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(String groceryListId, Product product)? $default, {
-    TResult Function(Product product)? successful,
+    TResult Function()? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) =>
@@ -10887,7 +10887,7 @@ class _$RemoveProductFromGroceryListStartImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(String groceryListId, Product product) $default, {
-    required TResult Function(Product product) successful,
+    required TResult Function() successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
     return $default(groceryListId, product);
@@ -10897,7 +10897,7 @@ class _$RemoveProductFromGroceryListStartImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(String groceryListId, Product product)? $default, {
-    TResult? Function(Product product)? successful,
+    TResult? Function()? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
     return $default?.call(groceryListId, product);
@@ -10907,7 +10907,7 @@ class _$RemoveProductFromGroceryListStartImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(String groceryListId, Product product)? $default, {
-    TResult Function(Product product)? successful,
+    TResult Function()? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
@@ -10974,10 +10974,6 @@ abstract class _$$RemoveProductFromGroceryListSuccessfulImplCopyWith<$Res> {
           _$RemoveProductFromGroceryListSuccessfulImpl value,
           $Res Function(_$RemoveProductFromGroceryListSuccessfulImpl) then) =
       __$$RemoveProductFromGroceryListSuccessfulImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({Product product});
-
-  $ProductCopyWith<$Res> get product;
 }
 
 /// @nodoc
@@ -10989,93 +10985,59 @@ class __$$RemoveProductFromGroceryListSuccessfulImplCopyWithImpl<$Res>
       _$RemoveProductFromGroceryListSuccessfulImpl _value,
       $Res Function(_$RemoveProductFromGroceryListSuccessfulImpl) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? product = null,
-  }) {
-    return _then(_$RemoveProductFromGroceryListSuccessfulImpl(
-      null == product
-          ? _value.product
-          : product // ignore: cast_nullable_to_non_nullable
-              as Product,
-    ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ProductCopyWith<$Res> get product {
-    return $ProductCopyWith<$Res>(_value.product, (value) {
-      return _then(_value.copyWith(product: value));
-    });
-  }
 }
 
 /// @nodoc
 
 class _$RemoveProductFromGroceryListSuccessfulImpl
     implements RemoveProductFromGroceryListSuccessful {
-  const _$RemoveProductFromGroceryListSuccessfulImpl(this.product);
-
-  @override
-  final Product product;
+  const _$RemoveProductFromGroceryListSuccessfulImpl();
 
   @override
   String toString() {
-    return 'RemoveProductFromGroceryList.successful(product: $product)';
+    return 'RemoveProductFromGroceryList.successful()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RemoveProductFromGroceryListSuccessfulImpl &&
-            (identical(other.product, product) || other.product == product));
+            other is _$RemoveProductFromGroceryListSuccessfulImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, product);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$RemoveProductFromGroceryListSuccessfulImplCopyWith<
-          _$RemoveProductFromGroceryListSuccessfulImpl>
-      get copyWith =>
-          __$$RemoveProductFromGroceryListSuccessfulImplCopyWithImpl<
-              _$RemoveProductFromGroceryListSuccessfulImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(String groceryListId, Product product) $default, {
-    required TResult Function(Product product) successful,
+    required TResult Function() successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
-    return successful(product);
+    return successful();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(String groceryListId, Product product)? $default, {
-    TResult? Function(Product product)? successful,
+    TResult? Function()? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
-    return successful?.call(product);
+    return successful?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(String groceryListId, Product product)? $default, {
-    TResult Function(Product product)? successful,
+    TResult Function()? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
     if (successful != null) {
-      return successful(product);
+      return successful();
     }
     return orElse();
   }
@@ -11118,14 +11080,8 @@ class _$RemoveProductFromGroceryListSuccessfulImpl
 
 abstract class RemoveProductFromGroceryListSuccessful
     implements RemoveProductFromGroceryList {
-  const factory RemoveProductFromGroceryListSuccessful(final Product product) =
+  const factory RemoveProductFromGroceryListSuccessful() =
       _$RemoveProductFromGroceryListSuccessfulImpl;
-
-  Product get product;
-  @JsonKey(ignore: true)
-  _$$RemoveProductFromGroceryListSuccessfulImplCopyWith<
-          _$RemoveProductFromGroceryListSuccessfulImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -11206,7 +11162,7 @@ class _$RemoveProductFromGroceryListErrorImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(String groceryListId, Product product) $default, {
-    required TResult Function(Product product) successful,
+    required TResult Function() successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
     return error(this.error, stackTrace);
@@ -11216,7 +11172,7 @@ class _$RemoveProductFromGroceryListErrorImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(String groceryListId, Product product)? $default, {
-    TResult? Function(Product product)? successful,
+    TResult? Function()? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
     return error?.call(this.error, stackTrace);
@@ -11226,7 +11182,7 @@ class _$RemoveProductFromGroceryListErrorImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(String groceryListId, Product product)? $default, {
-    TResult Function(Product product)? successful,
+    TResult Function()? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
@@ -11291,21 +11247,21 @@ mixin _$RemoveGroceryList {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(GroceryList groceryList) $default, {
-    required TResult Function(GroceryList groceryList) successful,
+    required TResult Function() successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(GroceryList groceryList)? $default, {
-    TResult? Function(GroceryList groceryList)? successful,
+    TResult? Function()? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(GroceryList groceryList)? $default, {
-    TResult Function(GroceryList groceryList)? successful,
+    TResult Function()? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) =>
@@ -11431,7 +11387,7 @@ class _$RemoveGroceryListStartImpl implements RemoveGroceryListStart {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(GroceryList groceryList) $default, {
-    required TResult Function(GroceryList groceryList) successful,
+    required TResult Function() successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
     return $default(groceryList);
@@ -11441,7 +11397,7 @@ class _$RemoveGroceryListStartImpl implements RemoveGroceryListStart {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(GroceryList groceryList)? $default, {
-    TResult? Function(GroceryList groceryList)? successful,
+    TResult? Function()? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
     return $default?.call(groceryList);
@@ -11451,7 +11407,7 @@ class _$RemoveGroceryListStartImpl implements RemoveGroceryListStart {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(GroceryList groceryList)? $default, {
-    TResult Function(GroceryList groceryList)? successful,
+    TResult Function()? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
@@ -11512,10 +11468,6 @@ abstract class _$$RemoveGroceryListSuccessfulImplCopyWith<$Res> {
           _$RemoveGroceryListSuccessfulImpl value,
           $Res Function(_$RemoveGroceryListSuccessfulImpl) then) =
       __$$RemoveGroceryListSuccessfulImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({GroceryList groceryList});
-
-  $GroceryListCopyWith<$Res> get groceryList;
 }
 
 /// @nodoc
@@ -11527,91 +11479,58 @@ class __$$RemoveGroceryListSuccessfulImplCopyWithImpl<$Res>
       _$RemoveGroceryListSuccessfulImpl _value,
       $Res Function(_$RemoveGroceryListSuccessfulImpl) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? groceryList = null,
-  }) {
-    return _then(_$RemoveGroceryListSuccessfulImpl(
-      null == groceryList
-          ? _value.groceryList
-          : groceryList // ignore: cast_nullable_to_non_nullable
-              as GroceryList,
-    ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $GroceryListCopyWith<$Res> get groceryList {
-    return $GroceryListCopyWith<$Res>(_value.groceryList, (value) {
-      return _then(_value.copyWith(groceryList: value));
-    });
-  }
 }
 
 /// @nodoc
 
 class _$RemoveGroceryListSuccessfulImpl implements RemoveGroceryListSuccessful {
-  const _$RemoveGroceryListSuccessfulImpl(this.groceryList);
-
-  @override
-  final GroceryList groceryList;
+  const _$RemoveGroceryListSuccessfulImpl();
 
   @override
   String toString() {
-    return 'RemoveGroceryList.successful(groceryList: $groceryList)';
+    return 'RemoveGroceryList.successful()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RemoveGroceryListSuccessfulImpl &&
-            (identical(other.groceryList, groceryList) ||
-                other.groceryList == groceryList));
+            other is _$RemoveGroceryListSuccessfulImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, groceryList);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$RemoveGroceryListSuccessfulImplCopyWith<_$RemoveGroceryListSuccessfulImpl>
-      get copyWith => __$$RemoveGroceryListSuccessfulImplCopyWithImpl<
-          _$RemoveGroceryListSuccessfulImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(GroceryList groceryList) $default, {
-    required TResult Function(GroceryList groceryList) successful,
+    required TResult Function() successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
-    return successful(groceryList);
+    return successful();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(GroceryList groceryList)? $default, {
-    TResult? Function(GroceryList groceryList)? successful,
+    TResult? Function()? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
-    return successful?.call(groceryList);
+    return successful?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(GroceryList groceryList)? $default, {
-    TResult Function(GroceryList groceryList)? successful,
+    TResult Function()? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
     if (successful != null) {
-      return successful(groceryList);
+      return successful();
     }
     return orElse();
   }
@@ -11652,13 +11571,8 @@ class _$RemoveGroceryListSuccessfulImpl implements RemoveGroceryListSuccessful {
 }
 
 abstract class RemoveGroceryListSuccessful implements RemoveGroceryList {
-  const factory RemoveGroceryListSuccessful(final GroceryList groceryList) =
+  const factory RemoveGroceryListSuccessful() =
       _$RemoveGroceryListSuccessfulImpl;
-
-  GroceryList get groceryList;
-  @JsonKey(ignore: true)
-  _$$RemoveGroceryListSuccessfulImplCopyWith<_$RemoveGroceryListSuccessfulImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -11736,7 +11650,7 @@ class _$RemoveGroceryListErrorImpl implements RemoveGroceryListError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(GroceryList groceryList) $default, {
-    required TResult Function(GroceryList groceryList) successful,
+    required TResult Function() successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
     return error(this.error, stackTrace);
@@ -11746,7 +11660,7 @@ class _$RemoveGroceryListErrorImpl implements RemoveGroceryListError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(GroceryList groceryList)? $default, {
-    TResult? Function(GroceryList groceryList)? successful,
+    TResult? Function()? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
     return error?.call(this.error, stackTrace);
@@ -11756,7 +11670,7 @@ class _$RemoveGroceryListErrorImpl implements RemoveGroceryListError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(GroceryList groceryList)? $default, {
-    TResult Function(GroceryList groceryList)? successful,
+    TResult Function()? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
@@ -14030,6 +13944,277 @@ abstract class RemoveRequestError implements RemoveRequest, ErrorAction {
   @JsonKey(ignore: true)
   _$$RemoveRequestErrorImplCopyWith<_$RemoveRequestErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$RemoveProductSimple {
+  Product get product => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $RemoveProductSimpleCopyWith<RemoveProductSimple> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RemoveProductSimpleCopyWith<$Res> {
+  factory $RemoveProductSimpleCopyWith(
+          RemoveProductSimple value, $Res Function(RemoveProductSimple) then) =
+      _$RemoveProductSimpleCopyWithImpl<$Res, RemoveProductSimple>;
+  @useResult
+  $Res call({Product product});
+
+  $ProductCopyWith<$Res> get product;
+}
+
+/// @nodoc
+class _$RemoveProductSimpleCopyWithImpl<$Res, $Val extends RemoveProductSimple>
+    implements $RemoveProductSimpleCopyWith<$Res> {
+  _$RemoveProductSimpleCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? product = null,
+  }) {
+    return _then(_value.copyWith(
+      product: null == product
+          ? _value.product
+          : product // ignore: cast_nullable_to_non_nullable
+              as Product,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProductCopyWith<$Res> get product {
+    return $ProductCopyWith<$Res>(_value.product, (value) {
+      return _then(_value.copyWith(product: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$RemoveProductSimple$ImplCopyWith<$Res>
+    implements $RemoveProductSimpleCopyWith<$Res> {
+  factory _$$RemoveProductSimple$ImplCopyWith(_$RemoveProductSimple$Impl value,
+          $Res Function(_$RemoveProductSimple$Impl) then) =
+      __$$RemoveProductSimple$ImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({Product product});
+
+  @override
+  $ProductCopyWith<$Res> get product;
+}
+
+/// @nodoc
+class __$$RemoveProductSimple$ImplCopyWithImpl<$Res>
+    extends _$RemoveProductSimpleCopyWithImpl<$Res, _$RemoveProductSimple$Impl>
+    implements _$$RemoveProductSimple$ImplCopyWith<$Res> {
+  __$$RemoveProductSimple$ImplCopyWithImpl(_$RemoveProductSimple$Impl _value,
+      $Res Function(_$RemoveProductSimple$Impl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? product = null,
+  }) {
+    return _then(_$RemoveProductSimple$Impl(
+      product: null == product
+          ? _value.product
+          : product // ignore: cast_nullable_to_non_nullable
+              as Product,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RemoveProductSimple$Impl implements RemoveProductSimple$ {
+  const _$RemoveProductSimple$Impl({required this.product});
+
+  @override
+  final Product product;
+
+  @override
+  String toString() {
+    return 'RemoveProductSimple(product: $product)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RemoveProductSimple$Impl &&
+            (identical(other.product, product) || other.product == product));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, product);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RemoveProductSimple$ImplCopyWith<_$RemoveProductSimple$Impl>
+      get copyWith =>
+          __$$RemoveProductSimple$ImplCopyWithImpl<_$RemoveProductSimple$Impl>(
+              this, _$identity);
+}
+
+abstract class RemoveProductSimple$ implements RemoveProductSimple {
+  const factory RemoveProductSimple$({required final Product product}) =
+      _$RemoveProductSimple$Impl;
+
+  @override
+  Product get product;
+  @override
+  @JsonKey(ignore: true)
+  _$$RemoveProductSimple$ImplCopyWith<_$RemoveProductSimple$Impl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$RemoveGroceryListSimple {
+  GroceryList get groceryList => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $RemoveGroceryListSimpleCopyWith<RemoveGroceryListSimple> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RemoveGroceryListSimpleCopyWith<$Res> {
+  factory $RemoveGroceryListSimpleCopyWith(RemoveGroceryListSimple value,
+          $Res Function(RemoveGroceryListSimple) then) =
+      _$RemoveGroceryListSimpleCopyWithImpl<$Res, RemoveGroceryListSimple>;
+  @useResult
+  $Res call({GroceryList groceryList});
+
+  $GroceryListCopyWith<$Res> get groceryList;
+}
+
+/// @nodoc
+class _$RemoveGroceryListSimpleCopyWithImpl<$Res,
+        $Val extends RemoveGroceryListSimple>
+    implements $RemoveGroceryListSimpleCopyWith<$Res> {
+  _$RemoveGroceryListSimpleCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? groceryList = null,
+  }) {
+    return _then(_value.copyWith(
+      groceryList: null == groceryList
+          ? _value.groceryList
+          : groceryList // ignore: cast_nullable_to_non_nullable
+              as GroceryList,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $GroceryListCopyWith<$Res> get groceryList {
+    return $GroceryListCopyWith<$Res>(_value.groceryList, (value) {
+      return _then(_value.copyWith(groceryList: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$RemoveGroceryListSimple$ImplCopyWith<$Res>
+    implements $RemoveGroceryListSimpleCopyWith<$Res> {
+  factory _$$RemoveGroceryListSimple$ImplCopyWith(
+          _$RemoveGroceryListSimple$Impl value,
+          $Res Function(_$RemoveGroceryListSimple$Impl) then) =
+      __$$RemoveGroceryListSimple$ImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({GroceryList groceryList});
+
+  @override
+  $GroceryListCopyWith<$Res> get groceryList;
+}
+
+/// @nodoc
+class __$$RemoveGroceryListSimple$ImplCopyWithImpl<$Res>
+    extends _$RemoveGroceryListSimpleCopyWithImpl<$Res,
+        _$RemoveGroceryListSimple$Impl>
+    implements _$$RemoveGroceryListSimple$ImplCopyWith<$Res> {
+  __$$RemoveGroceryListSimple$ImplCopyWithImpl(
+      _$RemoveGroceryListSimple$Impl _value,
+      $Res Function(_$RemoveGroceryListSimple$Impl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? groceryList = null,
+  }) {
+    return _then(_$RemoveGroceryListSimple$Impl(
+      groceryList: null == groceryList
+          ? _value.groceryList
+          : groceryList // ignore: cast_nullable_to_non_nullable
+              as GroceryList,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RemoveGroceryListSimple$Impl implements RemoveGroceryListSimple$ {
+  const _$RemoveGroceryListSimple$Impl({required this.groceryList});
+
+  @override
+  final GroceryList groceryList;
+
+  @override
+  String toString() {
+    return 'RemoveGroceryListSimple(groceryList: $groceryList)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RemoveGroceryListSimple$Impl &&
+            (identical(other.groceryList, groceryList) ||
+                other.groceryList == groceryList));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, groceryList);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RemoveGroceryListSimple$ImplCopyWith<_$RemoveGroceryListSimple$Impl>
+      get copyWith => __$$RemoveGroceryListSimple$ImplCopyWithImpl<
+          _$RemoveGroceryListSimple$Impl>(this, _$identity);
+}
+
+abstract class RemoveGroceryListSimple$ implements RemoveGroceryListSimple {
+  const factory RemoveGroceryListSimple$(
+          {required final GroceryList groceryList}) =
+      _$RemoveGroceryListSimple$Impl;
+
+  @override
+  GroceryList get groceryList;
+  @override
+  @JsonKey(ignore: true)
+  _$$RemoveGroceryListSimple$ImplCopyWith<_$RemoveGroceryListSimple$Impl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc

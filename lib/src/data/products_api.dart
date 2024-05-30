@@ -151,7 +151,7 @@ class ProductsApi {
     await listRef.update(listData);
   }
 
-  Future<Product> removeProductFromGroceryList({
+  Future<void> removeProductFromGroceryList({
     required String groceryListId,
     required Product product,
   }) async {
@@ -190,7 +190,5 @@ class ProductsApi {
       final DocumentReference<Map<String, dynamic>> productRef = _firestore.collection('products').doc(product.productId);
       await productRef.delete();
     }
-
-    return product;
   }
 }

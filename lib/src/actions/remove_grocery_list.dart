@@ -4,7 +4,7 @@ part of 'index.dart';
 class RemoveGroceryList with _$RemoveGroceryList implements AppAction {
   const factory RemoveGroceryList({required GroceryList groceryList}) = RemoveGroceryListStart;
 
-  const factory RemoveGroceryList.successful(GroceryList groceryList) = RemoveGroceryListSuccessful;
+  const factory RemoveGroceryList.successful() = RemoveGroceryListSuccessful;
 
   @Implements<ErrorAction>()
   const factory RemoveGroceryList.error(Object error, StackTrace stackTrace) = RemoveGroceryListError;

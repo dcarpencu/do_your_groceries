@@ -7,7 +7,7 @@ class RemoveProductFromGroceryList with _$RemoveProductFromGroceryList implement
     required Product product,
   }) = RemoveProductFromGroceryListStart;
 
-  const factory RemoveProductFromGroceryList.successful(Product product) = RemoveProductFromGroceryListSuccessful;
+  const factory RemoveProductFromGroceryList.successful() = RemoveProductFromGroceryListSuccessful;
 
   @Implements<ErrorAction>()
   const factory RemoveProductFromGroceryList.error(Object error, StackTrace stackTrace) = RemoveProductFromGroceryListError;

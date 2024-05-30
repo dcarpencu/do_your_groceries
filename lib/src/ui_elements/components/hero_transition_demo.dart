@@ -192,7 +192,8 @@ class _PostDetailPageState extends State<PostDetailPage> {
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: Colors.redAccent),
             child: TextButton(
                 onPressed: () {
-                  _store.dispatch(
+                  _store..dispatch(RemoveProductSimple(product: widget.product))
+                  ..dispatch(
                     RemoveProductFromGroceryListStart(
                         groceryListId: _store.state.selectedGroceryList!, product: widget.product),
                   );

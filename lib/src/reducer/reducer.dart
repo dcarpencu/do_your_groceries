@@ -47,8 +47,8 @@ Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   TypedReducer<AppState, TakePictureSuccessful>(_takePictureSuccessful).call,
   TypedReducer<AppState, GetProductsSuccessful>(_getProductsSuccessful).call,
   TypedReducer<AppState, GetProductsForCameraSuccessful>(_getProductsForCameraSuccessful).call,
-  TypedReducer<AppState, RemoveProductFromGroceryListSuccessful>(_removeProductFromGroceryListSuccessful).call,
-  TypedReducer<AppState, RemoveGroceryListSuccessful>(_removeGroceryListSuccessful).call,
+  TypedReducer<AppState, RemoveProductSimple>(_removeProductSimple).call,
+  TypedReducer<AppState, RemoveGroceryListSimple>(_removeGroceryListSimple).call,
   TypedReducer<AppState, GetUsersSuccessful>(_getUsersSuccessful).call,
   TypedReducer<AppState, SetNotificationOn>(_setNotificationOn).call,
   TypedReducer<AppState, SetNotificationOff>(_setNotificationOff).call,
@@ -158,11 +158,11 @@ AppState _setPictureToNull(AppState state, SetPictureToNull action) {
 //   return state.copyWith(imageLabel: action.imageLabel);
 // }
 
-AppState _removeProductFromGroceryListSuccessful(AppState state, RemoveProductFromGroceryListSuccessful action) {
+AppState _removeProductSimple(AppState state, RemoveProductSimple action) {
   return state.copyWith(productsGroceryList: <Product>[...state.productsGroceryList]..remove(action.product));
 }
 
-AppState _removeGroceryListSuccessful(AppState state, RemoveGroceryListSuccessful action) {
+AppState _removeGroceryListSimple(AppState state, RemoveGroceryListSimple action) {
   return state.copyWith(groceryLists: <GroceryList>{...state.groceryLists}..remove(action.groceryList));
 }
 

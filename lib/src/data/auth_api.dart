@@ -74,7 +74,7 @@ class AuthApi {
     return groceryList;
   }
 
-  Future<GroceryList> removeGroceryList({
+  Future<void> removeGroceryList({
     required GroceryList groceryList,
   }) async {
     final DocumentReference<Map<String, dynamic>> groceryListRef =
@@ -130,8 +130,6 @@ class AuthApi {
         rethrow;
       }
     }
-
-    return groceryList;
   }
 
   Future<Set<GroceryList>> getLists() async {
