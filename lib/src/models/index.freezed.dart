@@ -26,6 +26,7 @@ mixin _$AppState {
   List<Product> get relatedProducts => throw _privateConstructorUsedError;
   Set<GroceryList> get groceryLists => throw _privateConstructorUsedError;
   String? get selectedGroceryList => throw _privateConstructorUsedError;
+  String? get selectedGroceryListName => throw _privateConstructorUsedError;
   Set<String> get pending => throw _privateConstructorUsedError;
   int get pageNumber => throw _privateConstructorUsedError;
   bool get contentLoaded => throw _privateConstructorUsedError;
@@ -54,6 +55,7 @@ abstract class $AppStateCopyWith<$Res> {
       List<Product> relatedProducts,
       Set<GroceryList> groceryLists,
       String? selectedGroceryList,
+      String? selectedGroceryListName,
       Set<String> pending,
       int pageNumber,
       bool contentLoaded,
@@ -88,6 +90,7 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
     Object? relatedProducts = null,
     Object? groceryLists = null,
     Object? selectedGroceryList = freezed,
+    Object? selectedGroceryListName = freezed,
     Object? pending = null,
     Object? pageNumber = null,
     Object? contentLoaded = null,
@@ -122,6 +125,10 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
       selectedGroceryList: freezed == selectedGroceryList
           ? _value.selectedGroceryList
           : selectedGroceryList // ignore: cast_nullable_to_non_nullable
+              as String?,
+      selectedGroceryListName: freezed == selectedGroceryListName
+          ? _value.selectedGroceryListName
+          : selectedGroceryListName // ignore: cast_nullable_to_non_nullable
               as String?,
       pending: null == pending
           ? _value.pending
@@ -214,6 +221,7 @@ abstract class _$$AppState$ImplCopyWith<$Res>
       List<Product> relatedProducts,
       Set<GroceryList> groceryLists,
       String? selectedGroceryList,
+      String? selectedGroceryListName,
       Set<String> pending,
       int pageNumber,
       bool contentLoaded,
@@ -249,6 +257,7 @@ class __$$AppState$ImplCopyWithImpl<$Res>
     Object? relatedProducts = null,
     Object? groceryLists = null,
     Object? selectedGroceryList = freezed,
+    Object? selectedGroceryListName = freezed,
     Object? pending = null,
     Object? pageNumber = null,
     Object? contentLoaded = null,
@@ -283,6 +292,10 @@ class __$$AppState$ImplCopyWithImpl<$Res>
       selectedGroceryList: freezed == selectedGroceryList
           ? _value.selectedGroceryList
           : selectedGroceryList // ignore: cast_nullable_to_non_nullable
+              as String?,
+      selectedGroceryListName: freezed == selectedGroceryListName
+          ? _value.selectedGroceryListName
+          : selectedGroceryListName // ignore: cast_nullable_to_non_nullable
               as String?,
       pending: null == pending
           ? _value._pending
@@ -334,6 +347,7 @@ class _$AppState$Impl implements AppState$ {
       final List<Product> relatedProducts = const <Product>[],
       final Set<GroceryList> groceryLists = const <GroceryList>{},
       this.selectedGroceryList,
+      this.selectedGroceryListName,
       final Set<String> pending = const <String>{},
       this.pageNumber = 1,
       this.contentLoaded = false,
@@ -397,6 +411,8 @@ class _$AppState$Impl implements AppState$ {
 
   @override
   final String? selectedGroceryList;
+  @override
+  final String? selectedGroceryListName;
   final Set<String> _pending;
   @override
   @JsonKey()
@@ -451,7 +467,7 @@ class _$AppState$Impl implements AppState$ {
 
   @override
   String toString() {
-    return 'AppState(user: $user, supermarketProducts: $supermarketProducts, productsGroceryList: $productsGroceryList, relatedProducts: $relatedProducts, groceryLists: $groceryLists, selectedGroceryList: $selectedGroceryList, pending: $pending, pageNumber: $pageNumber, contentLoaded: $contentLoaded, cameras: $cameras, takenPicture: $takenPicture, selectedCamera: $selectedCamera, users: $users, requests: $requests, isNotifications: $isNotifications)';
+    return 'AppState(user: $user, supermarketProducts: $supermarketProducts, productsGroceryList: $productsGroceryList, relatedProducts: $relatedProducts, groceryLists: $groceryLists, selectedGroceryList: $selectedGroceryList, selectedGroceryListName: $selectedGroceryListName, pending: $pending, pageNumber: $pageNumber, contentLoaded: $contentLoaded, cameras: $cameras, takenPicture: $takenPicture, selectedCamera: $selectedCamera, users: $users, requests: $requests, isNotifications: $isNotifications)';
   }
 
   @override
@@ -470,6 +486,9 @@ class _$AppState$Impl implements AppState$ {
                 .equals(other._groceryLists, _groceryLists) &&
             (identical(other.selectedGroceryList, selectedGroceryList) ||
                 other.selectedGroceryList == selectedGroceryList) &&
+            (identical(
+                    other.selectedGroceryListName, selectedGroceryListName) ||
+                other.selectedGroceryListName == selectedGroceryListName) &&
             const DeepCollectionEquality().equals(other._pending, _pending) &&
             (identical(other.pageNumber, pageNumber) ||
                 other.pageNumber == pageNumber) &&
@@ -496,6 +515,7 @@ class _$AppState$Impl implements AppState$ {
       const DeepCollectionEquality().hash(_relatedProducts),
       const DeepCollectionEquality().hash(_groceryLists),
       selectedGroceryList,
+      selectedGroceryListName,
       const DeepCollectionEquality().hash(_pending),
       pageNumber,
       contentLoaded,
@@ -528,6 +548,7 @@ abstract class AppState$ implements AppState {
       final List<Product> relatedProducts,
       final Set<GroceryList> groceryLists,
       final String? selectedGroceryList,
+      final String? selectedGroceryListName,
       final Set<String> pending,
       final int pageNumber,
       final bool contentLoaded,
@@ -553,6 +574,8 @@ abstract class AppState$ implements AppState {
   Set<GroceryList> get groceryLists;
   @override
   String? get selectedGroceryList;
+  @override
+  String? get selectedGroceryListName;
   @override
   Set<String> get pending;
   @override
@@ -1900,6 +1923,7 @@ mixin _$AddRequest {
   String get senderEmail => throw _privateConstructorUsedError;
   String get senderId => throw _privateConstructorUsedError;
   String get groceryListId => throw _privateConstructorUsedError;
+  String get listName => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1917,7 +1941,8 @@ abstract class $AddRequestCopyWith<$Res> {
       {String senderName,
       String senderEmail,
       String senderId,
-      String groceryListId});
+      String groceryListId,
+      String listName});
 }
 
 /// @nodoc
@@ -1937,6 +1962,7 @@ class _$AddRequestCopyWithImpl<$Res, $Val extends AddRequest>
     Object? senderEmail = null,
     Object? senderId = null,
     Object? groceryListId = null,
+    Object? listName = null,
   }) {
     return _then(_value.copyWith(
       senderName: null == senderName
@@ -1955,6 +1981,10 @@ class _$AddRequestCopyWithImpl<$Res, $Val extends AddRequest>
           ? _value.groceryListId
           : groceryListId // ignore: cast_nullable_to_non_nullable
               as String,
+      listName: null == listName
+          ? _value.listName
+          : listName // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -1971,7 +2001,8 @@ abstract class _$$AddRequest$ImplCopyWith<$Res>
       {String senderName,
       String senderEmail,
       String senderId,
-      String groceryListId});
+      String groceryListId,
+      String listName});
 }
 
 /// @nodoc
@@ -1989,6 +2020,7 @@ class __$$AddRequest$ImplCopyWithImpl<$Res>
     Object? senderEmail = null,
     Object? senderId = null,
     Object? groceryListId = null,
+    Object? listName = null,
   }) {
     return _then(_$AddRequest$Impl(
       senderName: null == senderName
@@ -2007,6 +2039,10 @@ class __$$AddRequest$ImplCopyWithImpl<$Res>
           ? _value.groceryListId
           : groceryListId // ignore: cast_nullable_to_non_nullable
               as String,
+      listName: null == listName
+          ? _value.listName
+          : listName // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -2018,7 +2054,8 @@ class _$AddRequest$Impl implements AddRequest$ {
       {required this.senderName,
       required this.senderEmail,
       required this.senderId,
-      required this.groceryListId});
+      required this.groceryListId,
+      required this.listName});
 
   factory _$AddRequest$Impl.fromJson(Map<String, dynamic> json) =>
       _$$AddRequest$ImplFromJson(json);
@@ -2031,10 +2068,12 @@ class _$AddRequest$Impl implements AddRequest$ {
   final String senderId;
   @override
   final String groceryListId;
+  @override
+  final String listName;
 
   @override
   String toString() {
-    return 'AddRequest(senderName: $senderName, senderEmail: $senderEmail, senderId: $senderId, groceryListId: $groceryListId)';
+    return 'AddRequest(senderName: $senderName, senderEmail: $senderEmail, senderId: $senderId, groceryListId: $groceryListId, listName: $listName)';
   }
 
   @override
@@ -2049,13 +2088,15 @@ class _$AddRequest$Impl implements AddRequest$ {
             (identical(other.senderId, senderId) ||
                 other.senderId == senderId) &&
             (identical(other.groceryListId, groceryListId) ||
-                other.groceryListId == groceryListId));
+                other.groceryListId == groceryListId) &&
+            (identical(other.listName, listName) ||
+                other.listName == listName));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, senderName, senderEmail, senderId, groceryListId);
+      runtimeType, senderName, senderEmail, senderId, groceryListId, listName);
 
   @JsonKey(ignore: true)
   @override
@@ -2076,7 +2117,8 @@ abstract class AddRequest$ implements AddRequest {
       {required final String senderName,
       required final String senderEmail,
       required final String senderId,
-      required final String groceryListId}) = _$AddRequest$Impl;
+      required final String groceryListId,
+      required final String listName}) = _$AddRequest$Impl;
 
   factory AddRequest$.fromJson(Map<String, dynamic> json) =
       _$AddRequest$Impl.fromJson;
@@ -2089,6 +2131,8 @@ abstract class AddRequest$ implements AddRequest {
   String get senderId;
   @override
   String get groceryListId;
+  @override
+  String get listName;
   @override
   @JsonKey(ignore: true)
   _$$AddRequest$ImplCopyWith<_$AddRequest$Impl> get copyWith =>

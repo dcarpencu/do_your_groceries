@@ -28,6 +28,7 @@ _$AppState$Impl _$$AppState$ImplFromJson(Map<String, dynamic> json) =>
               .toSet() ??
           const <GroceryList>{},
       selectedGroceryList: json['selectedGroceryList'] as String?,
+      selectedGroceryListName: json['selectedGroceryListName'] as String?,
       pending: (json['pending'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toSet() ??
@@ -63,6 +64,7 @@ Map<String, dynamic> _$$AppState$ImplToJson(_$AppState$Impl instance) =>
       'relatedProducts': instance.relatedProducts,
       'groceryLists': instance.groceryLists.toList(),
       'selectedGroceryList': instance.selectedGroceryList,
+      'selectedGroceryListName': instance.selectedGroceryListName,
       'pending': instance.pending.toList(),
       'pageNumber': instance.pageNumber,
       'contentLoaded': instance.contentLoaded,
@@ -201,6 +203,7 @@ _$AddRequest$Impl _$$AddRequest$ImplFromJson(Map<String, dynamic> json) =>
       senderEmail: json['senderEmail'] as String,
       senderId: json['senderId'] as String,
       groceryListId: json['groceryListId'] as String,
+      listName: json['listName'] as String,
     );
 
 Map<String, dynamic> _$$AddRequest$ImplToJson(_$AddRequest$Impl instance) =>
@@ -209,4 +212,5 @@ Map<String, dynamic> _$$AddRequest$ImplToJson(_$AddRequest$Impl instance) =>
       'senderEmail': instance.senderEmail,
       'senderId': instance.senderId,
       'groceryListId': instance.groceryListId,
+      'listName': instance.listName,
     };

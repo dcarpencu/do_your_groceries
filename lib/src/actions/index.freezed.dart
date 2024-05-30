@@ -4923,6 +4923,7 @@ abstract class _ListenForProductsError
 /// @nodoc
 mixin _$SetSelectedList {
   String get selectedGroceryList => throw _privateConstructorUsedError;
+  String get selectedGroceryListName => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SetSelectedListCopyWith<SetSelectedList> get copyWith =>
@@ -4935,7 +4936,7 @@ abstract class $SetSelectedListCopyWith<$Res> {
           SetSelectedList value, $Res Function(SetSelectedList) then) =
       _$SetSelectedListCopyWithImpl<$Res, SetSelectedList>;
   @useResult
-  $Res call({String selectedGroceryList});
+  $Res call({String selectedGroceryList, String selectedGroceryListName});
 }
 
 /// @nodoc
@@ -4952,11 +4953,16 @@ class _$SetSelectedListCopyWithImpl<$Res, $Val extends SetSelectedList>
   @override
   $Res call({
     Object? selectedGroceryList = null,
+    Object? selectedGroceryListName = null,
   }) {
     return _then(_value.copyWith(
       selectedGroceryList: null == selectedGroceryList
           ? _value.selectedGroceryList
           : selectedGroceryList // ignore: cast_nullable_to_non_nullable
+              as String,
+      selectedGroceryListName: null == selectedGroceryListName
+          ? _value.selectedGroceryListName
+          : selectedGroceryListName // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -4970,7 +4976,7 @@ abstract class _$$SetSelectedList$ImplCopyWith<$Res>
       __$$SetSelectedList$ImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String selectedGroceryList});
+  $Res call({String selectedGroceryList, String selectedGroceryListName});
 }
 
 /// @nodoc
@@ -4985,11 +4991,16 @@ class __$$SetSelectedList$ImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? selectedGroceryList = null,
+    Object? selectedGroceryListName = null,
   }) {
     return _then(_$SetSelectedList$Impl(
       null == selectedGroceryList
           ? _value.selectedGroceryList
           : selectedGroceryList // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == selectedGroceryListName
+          ? _value.selectedGroceryListName
+          : selectedGroceryListName // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -4998,14 +5009,17 @@ class __$$SetSelectedList$ImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SetSelectedList$Impl implements SetSelectedList$ {
-  const _$SetSelectedList$Impl(this.selectedGroceryList);
+  const _$SetSelectedList$Impl(
+      this.selectedGroceryList, this.selectedGroceryListName);
 
   @override
   final String selectedGroceryList;
+  @override
+  final String selectedGroceryListName;
 
   @override
   String toString() {
-    return 'SetSelectedList(selectedGroceryList: $selectedGroceryList)';
+    return 'SetSelectedList(selectedGroceryList: $selectedGroceryList, selectedGroceryListName: $selectedGroceryListName)';
   }
 
   @override
@@ -5014,11 +5028,15 @@ class _$SetSelectedList$Impl implements SetSelectedList$ {
         (other.runtimeType == runtimeType &&
             other is _$SetSelectedList$Impl &&
             (identical(other.selectedGroceryList, selectedGroceryList) ||
-                other.selectedGroceryList == selectedGroceryList));
+                other.selectedGroceryList == selectedGroceryList) &&
+            (identical(
+                    other.selectedGroceryListName, selectedGroceryListName) ||
+                other.selectedGroceryListName == selectedGroceryListName));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, selectedGroceryList);
+  int get hashCode =>
+      Object.hash(runtimeType, selectedGroceryList, selectedGroceryListName);
 
   @JsonKey(ignore: true)
   @override
@@ -5029,11 +5047,13 @@ class _$SetSelectedList$Impl implements SetSelectedList$ {
 }
 
 abstract class SetSelectedList$ implements SetSelectedList {
-  const factory SetSelectedList$(final String selectedGroceryList) =
-      _$SetSelectedList$Impl;
+  const factory SetSelectedList$(final String selectedGroceryList,
+      final String selectedGroceryListName) = _$SetSelectedList$Impl;
 
   @override
   String get selectedGroceryList;
+  @override
+  String get selectedGroceryListName;
   @override
   @JsonKey(ignore: true)
   _$$SetSelectedList$ImplCopyWith<_$SetSelectedList$Impl> get copyWith =>
@@ -13002,21 +13022,27 @@ abstract class GetUsersError implements GetUsers, ActionDone, ErrorAction {
 mixin _$SendRequest {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String receiverId, String groceryListId) $default, {
+    TResult Function(String senderUsername, String receiverId,
+            String groceryListId, String groceryListName)
+        $default, {
     required TResult Function() successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String receiverId, String groceryListId)? $default, {
+    TResult? Function(String senderUsername, String receiverId,
+            String groceryListId, String groceryListName)?
+        $default, {
     TResult? Function()? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String receiverId, String groceryListId)? $default, {
+    TResult Function(String senderUsername, String receiverId,
+            String groceryListId, String groceryListName)?
+        $default, {
     TResult Function()? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
@@ -13070,7 +13096,11 @@ abstract class _$$SendRequestStartImplCopyWith<$Res> {
           $Res Function(_$SendRequestStartImpl) then) =
       __$$SendRequestStartImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String receiverId, String groceryListId});
+  $Res call(
+      {String senderUsername,
+      String receiverId,
+      String groceryListId,
+      String groceryListName});
 }
 
 /// @nodoc
@@ -13084,10 +13114,16 @@ class __$$SendRequestStartImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? senderUsername = null,
     Object? receiverId = null,
     Object? groceryListId = null,
+    Object? groceryListName = null,
   }) {
     return _then(_$SendRequestStartImpl(
+      senderUsername: null == senderUsername
+          ? _value.senderUsername
+          : senderUsername // ignore: cast_nullable_to_non_nullable
+              as String,
       receiverId: null == receiverId
           ? _value.receiverId
           : receiverId // ignore: cast_nullable_to_non_nullable
@@ -13095,6 +13131,10 @@ class __$$SendRequestStartImplCopyWithImpl<$Res>
       groceryListId: null == groceryListId
           ? _value.groceryListId
           : groceryListId // ignore: cast_nullable_to_non_nullable
+              as String,
+      groceryListName: null == groceryListName
+          ? _value.groceryListName
+          : groceryListName // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -13104,16 +13144,23 @@ class __$$SendRequestStartImplCopyWithImpl<$Res>
 
 class _$SendRequestStartImpl implements SendRequestStart {
   const _$SendRequestStartImpl(
-      {required this.receiverId, required this.groceryListId});
+      {required this.senderUsername,
+      required this.receiverId,
+      required this.groceryListId,
+      required this.groceryListName});
 
+  @override
+  final String senderUsername;
   @override
   final String receiverId;
   @override
   final String groceryListId;
+  @override
+  final String groceryListName;
 
   @override
   String toString() {
-    return 'SendRequest(receiverId: $receiverId, groceryListId: $groceryListId)';
+    return 'SendRequest(senderUsername: $senderUsername, receiverId: $receiverId, groceryListId: $groceryListId, groceryListName: $groceryListName)';
   }
 
   @override
@@ -13121,14 +13168,19 @@ class _$SendRequestStartImpl implements SendRequestStart {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SendRequestStartImpl &&
+            (identical(other.senderUsername, senderUsername) ||
+                other.senderUsername == senderUsername) &&
             (identical(other.receiverId, receiverId) ||
                 other.receiverId == receiverId) &&
             (identical(other.groceryListId, groceryListId) ||
-                other.groceryListId == groceryListId));
+                other.groceryListId == groceryListId) &&
+            (identical(other.groceryListName, groceryListName) ||
+                other.groceryListName == groceryListName));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, receiverId, groceryListId);
+  int get hashCode => Object.hash(
+      runtimeType, senderUsername, receiverId, groceryListId, groceryListName);
 
   @JsonKey(ignore: true)
   @override
@@ -13140,33 +13192,41 @@ class _$SendRequestStartImpl implements SendRequestStart {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String receiverId, String groceryListId) $default, {
+    TResult Function(String senderUsername, String receiverId,
+            String groceryListId, String groceryListName)
+        $default, {
     required TResult Function() successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
-    return $default(receiverId, groceryListId);
+    return $default(senderUsername, receiverId, groceryListId, groceryListName);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String receiverId, String groceryListId)? $default, {
+    TResult? Function(String senderUsername, String receiverId,
+            String groceryListId, String groceryListName)?
+        $default, {
     TResult? Function()? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
-    return $default?.call(receiverId, groceryListId);
+    return $default?.call(
+        senderUsername, receiverId, groceryListId, groceryListName);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String receiverId, String groceryListId)? $default, {
+    TResult Function(String senderUsername, String receiverId,
+            String groceryListId, String groceryListName)?
+        $default, {
     TResult Function()? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(receiverId, groceryListId);
+      return $default(
+          senderUsername, receiverId, groceryListId, groceryListName);
     }
     return orElse();
   }
@@ -13208,11 +13268,15 @@ class _$SendRequestStartImpl implements SendRequestStart {
 
 abstract class SendRequestStart implements SendRequest {
   const factory SendRequestStart(
-      {required final String receiverId,
-      required final String groceryListId}) = _$SendRequestStartImpl;
+      {required final String senderUsername,
+      required final String receiverId,
+      required final String groceryListId,
+      required final String groceryListName}) = _$SendRequestStartImpl;
 
+  String get senderUsername;
   String get receiverId;
   String get groceryListId;
+  String get groceryListName;
   @JsonKey(ignore: true)
   _$$SendRequestStartImplCopyWith<_$SendRequestStartImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -13258,7 +13322,9 @@ class _$SendRequestSuccessfulImpl implements SendRequestSuccessful {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String receiverId, String groceryListId) $default, {
+    TResult Function(String senderUsername, String receiverId,
+            String groceryListId, String groceryListName)
+        $default, {
     required TResult Function() successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
@@ -13268,7 +13334,9 @@ class _$SendRequestSuccessfulImpl implements SendRequestSuccessful {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String receiverId, String groceryListId)? $default, {
+    TResult? Function(String senderUsername, String receiverId,
+            String groceryListId, String groceryListName)?
+        $default, {
     TResult? Function()? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
@@ -13278,7 +13346,9 @@ class _$SendRequestSuccessfulImpl implements SendRequestSuccessful {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String receiverId, String groceryListId)? $default, {
+    TResult Function(String senderUsername, String receiverId,
+            String groceryListId, String groceryListName)?
+        $default, {
     TResult Function()? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
@@ -13400,7 +13470,9 @@ class _$SendRequestErrorImpl implements SendRequestError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String receiverId, String groceryListId) $default, {
+    TResult Function(String senderUsername, String receiverId,
+            String groceryListId, String groceryListName)
+        $default, {
     required TResult Function() successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
@@ -13410,7 +13482,9 @@ class _$SendRequestErrorImpl implements SendRequestError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String receiverId, String groceryListId)? $default, {
+    TResult? Function(String senderUsername, String receiverId,
+            String groceryListId, String groceryListName)?
+        $default, {
     TResult? Function()? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
@@ -13420,7 +13494,9 @@ class _$SendRequestErrorImpl implements SendRequestError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String receiverId, String groceryListId)? $default, {
+    TResult Function(String senderUsername, String receiverId,
+            String groceryListId, String groceryListName)?
+        $default, {
     TResult Function()? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
@@ -13482,21 +13558,21 @@ mixin _$RemoveRequest {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(AddRequest requestToRemove) $default, {
-    required TResult Function() successful,
+    required TResult Function(AddRequest requestToRemove) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(AddRequest requestToRemove)? $default, {
-    TResult? Function()? successful,
+    TResult? Function(AddRequest requestToRemove)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(AddRequest requestToRemove)? $default, {
-    TResult Function()? successful,
+    TResult Function(AddRequest requestToRemove)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) =>
@@ -13620,7 +13696,7 @@ class _$RemoveRequestStartImpl implements RemoveRequestStart {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(AddRequest requestToRemove) $default, {
-    required TResult Function() successful,
+    required TResult Function(AddRequest requestToRemove) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
     return $default(requestToRemove);
@@ -13630,7 +13706,7 @@ class _$RemoveRequestStartImpl implements RemoveRequestStart {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(AddRequest requestToRemove)? $default, {
-    TResult? Function()? successful,
+    TResult? Function(AddRequest requestToRemove)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
     return $default?.call(requestToRemove);
@@ -13640,7 +13716,7 @@ class _$RemoveRequestStartImpl implements RemoveRequestStart {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(AddRequest requestToRemove)? $default, {
-    TResult Function()? successful,
+    TResult Function(AddRequest requestToRemove)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
@@ -13701,6 +13777,10 @@ abstract class _$$RemoveRequestSuccessfulImplCopyWith<$Res> {
           _$RemoveRequestSuccessfulImpl value,
           $Res Function(_$RemoveRequestSuccessfulImpl) then) =
       __$$RemoveRequestSuccessfulImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({AddRequest requestToRemove});
+
+  $AddRequestCopyWith<$Res> get requestToRemove;
 }
 
 /// @nodoc
@@ -13711,58 +13791,91 @@ class __$$RemoveRequestSuccessfulImplCopyWithImpl<$Res>
       _$RemoveRequestSuccessfulImpl _value,
       $Res Function(_$RemoveRequestSuccessfulImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? requestToRemove = null,
+  }) {
+    return _then(_$RemoveRequestSuccessfulImpl(
+      null == requestToRemove
+          ? _value.requestToRemove
+          : requestToRemove // ignore: cast_nullable_to_non_nullable
+              as AddRequest,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AddRequestCopyWith<$Res> get requestToRemove {
+    return $AddRequestCopyWith<$Res>(_value.requestToRemove, (value) {
+      return _then(_value.copyWith(requestToRemove: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$RemoveRequestSuccessfulImpl implements RemoveRequestSuccessful {
-  const _$RemoveRequestSuccessfulImpl();
+  const _$RemoveRequestSuccessfulImpl(this.requestToRemove);
+
+  @override
+  final AddRequest requestToRemove;
 
   @override
   String toString() {
-    return 'RemoveRequest.successful()';
+    return 'RemoveRequest.successful(requestToRemove: $requestToRemove)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RemoveRequestSuccessfulImpl);
+            other is _$RemoveRequestSuccessfulImpl &&
+            (identical(other.requestToRemove, requestToRemove) ||
+                other.requestToRemove == requestToRemove));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, requestToRemove);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RemoveRequestSuccessfulImplCopyWith<_$RemoveRequestSuccessfulImpl>
+      get copyWith => __$$RemoveRequestSuccessfulImplCopyWithImpl<
+          _$RemoveRequestSuccessfulImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(AddRequest requestToRemove) $default, {
-    required TResult Function() successful,
+    required TResult Function(AddRequest requestToRemove) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
-    return successful();
+    return successful(requestToRemove);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(AddRequest requestToRemove)? $default, {
-    TResult? Function()? successful,
+    TResult? Function(AddRequest requestToRemove)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
-    return successful?.call();
+    return successful?.call(requestToRemove);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(AddRequest requestToRemove)? $default, {
-    TResult Function()? successful,
+    TResult Function(AddRequest requestToRemove)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
     if (successful != null) {
-      return successful();
+      return successful(requestToRemove);
     }
     return orElse();
   }
@@ -13803,7 +13916,13 @@ class _$RemoveRequestSuccessfulImpl implements RemoveRequestSuccessful {
 }
 
 abstract class RemoveRequestSuccessful implements RemoveRequest {
-  const factory RemoveRequestSuccessful() = _$RemoveRequestSuccessfulImpl;
+  const factory RemoveRequestSuccessful(final AddRequest requestToRemove) =
+      _$RemoveRequestSuccessfulImpl;
+
+  AddRequest get requestToRemove;
+  @JsonKey(ignore: true)
+  _$$RemoveRequestSuccessfulImplCopyWith<_$RemoveRequestSuccessfulImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -13879,7 +13998,7 @@ class _$RemoveRequestErrorImpl implements RemoveRequestError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(AddRequest requestToRemove) $default, {
-    required TResult Function() successful,
+    required TResult Function(AddRequest requestToRemove) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
     return error(this.error, stackTrace);
@@ -13889,7 +14008,7 @@ class _$RemoveRequestErrorImpl implements RemoveRequestError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(AddRequest requestToRemove)? $default, {
-    TResult? Function()? successful,
+    TResult? Function(AddRequest requestToRemove)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
     return error?.call(this.error, stackTrace);
@@ -13899,7 +14018,7 @@ class _$RemoveRequestErrorImpl implements RemoveRequestError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(AddRequest requestToRemove)? $default, {
-    TResult Function()? successful,
+    TResult Function(AddRequest requestToRemove)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {

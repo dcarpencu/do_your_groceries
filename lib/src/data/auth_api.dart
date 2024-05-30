@@ -182,7 +182,7 @@ class AuthApi {
     return users;
   }
 
-  Future<void> sendRequest({required String receiverId, required String groceryListId}) async {
+  Future<void> sendRequest({required String senderUsername, required String receiverId, required String groceryListId, required String groceryListName}) async {
     final User currentUser = _auth.currentUser!;
 
     final DocumentReference<Map<String, dynamic>> userRef = _firestore.doc('users/$receiverId');
@@ -197,10 +197,11 @@ class AuthApi {
     final List<dynamic>? requests = listData?['requests'] as List<dynamic>?;
 
     final AddRequest request = AddRequest(
-        senderName: 'currentUser.displayName!',
+        senderName: senderUsername,
         senderEmail: currentUser.email!,
         senderId: currentUser.uid,
-        groceryListId: groceryListId);
+        groceryListId: groceryListId,
+        listName: groceryListName);
 
     final Map<String, dynamic> requestJson = request.toJson();
 
@@ -215,7 +216,7 @@ class AuthApi {
     await userRef.update(listData);
   }
 
-  Future<void> removeRequest({required AddRequest requestToRemove}) async {
+  Future<AddRequest> removeRequest({required AddRequest requestToRemove}) async {
     final User currentUser = _auth.currentUser!;
     final DocumentReference<Map<String, dynamic>> userRef = _firestore.doc('users/${currentUser.uid}');
     final DocumentSnapshot<Map<String, dynamic>> snapshot = await userRef.get();
@@ -232,10 +233,11 @@ class AuthApi {
     final Map<String, dynamic> requestJsonToRemove = requestToRemove.toJson();
 
     if (requests != null && requests.isNotEmpty) {
-      requests.removeWhere((element) => _mapsAreEqual(element, requestJsonToRemove));
+      requests.removeWhere((Map<String, dynamic> element) => _mapsAreEqual(element, requestJsonToRemove));
       listData!['requests'] = requests;
       await userRef.update(listData);
     }
+    return requestToRemove;
   }
 
   bool _mapsAreEqual(Map<String, dynamic> map1, Map<String, dynamic> map2) {
@@ -257,6 +259,7 @@ class AuthApi {
         .doc(currentUser.uid)
         .snapshots()
         .asyncMap((DocumentSnapshot<Map<String, dynamic>> snapshot) async {
+          print('/n/n SUNTEM AICIA IN LISTEN REQ');
       if (snapshot.exists) {
         final List<dynamic>? requests = snapshot.data()?['requests'] as List<dynamic>?;
 
@@ -267,6 +270,7 @@ class AuthApi {
         final List<AddRequest> userRequests =
             requests.map((dynamic request) => AddRequest.fromJson(request as Map<String, dynamic>)).toList();
 
+        print('/n/nUSER REQ: $userRequests/n/n');
         return userRequests;
       } else {
         return <AddRequest>[];

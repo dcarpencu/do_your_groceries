@@ -25,6 +25,7 @@ class AppEpic {
       _getSuperMarketProducts,
       TypedEpic<AppState, CreateGroceryListStart>(_createGroceryListStart).call,
       _listenForProducts,
+      _listenForRequests,
       TypedEpic<AppState, CreateProductStart>(_createProductStart).call,
       TypedEpic<AppState, AddProductToGroceryListStart>(_addProductToGroceryListStart).call,
       TypedEpic<AppState, GenerateProductsStart>(_generateProductsStart).call,
@@ -96,7 +97,7 @@ class AppEpic {
   Stream<AppAction> _sendRequestStart(Stream<SendRequestStart> actions, EpicStore<AppState> store) {
     return actions.flatMap((SendRequestStart action) {
       return Stream<void>.value(null)
-          .asyncMap((_) => _authApi.sendRequest(receiverId: action.receiverId, groceryListId: action.groceryListId))
+          .asyncMap((_) => _authApi.sendRequest(receiverId: action.receiverId, groceryListId: action.groceryListId, senderUsername: action.senderUsername, groceryListName: action.groceryListName))
           .mapTo(const SendRequest.successful())
           .onErrorReturnWith(SendRequest.error);
     });
@@ -106,7 +107,7 @@ class AppEpic {
     return actions.flatMap((RemoveRequestStart action) {
       return Stream<void>.value(null)
           .asyncMap((_) => _authApi.removeRequest(requestToRemove: action.requestToRemove))
-          .mapTo(const RemoveRequest.successful())
+          .map<RemoveRequest>(RemoveRequest.successful)
           .onErrorReturnWith(RemoveRequest.error);
     });
   }
@@ -133,7 +134,7 @@ class AppEpic {
     });
   }
 
-  Stream<AppAction> listenForRequests(Stream<dynamic> actions, EpicStore<AppState> store) {
+  Stream<AppAction> _listenForRequests(Stream<dynamic> actions, EpicStore<AppState> store) {
     return actions.whereType<ListenForRequestsStart>().flatMap((ListenForRequestsStart action) {
       return _authApi
           .listenForRequests(isNotifications: action.isNotifications,)

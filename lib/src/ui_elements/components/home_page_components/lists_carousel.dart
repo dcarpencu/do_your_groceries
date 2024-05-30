@@ -1,6 +1,5 @@
 import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/models/index.dart';
-import 'package:do_you_groceries/src/presentation/products/user_products_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
@@ -73,7 +72,7 @@ class ListsCarousel extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                        store.dispatch(SetSelectedList(groceryLists.elementAt(index).groceryListId));
+                        store.dispatch(SetSelectedList(groceryLists.elementAt(index).groceryListId, groceryLists.elementAt(index).title));
                         context.pushNamed('groceryList');
                       },
                       child: const Center(

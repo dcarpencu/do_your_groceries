@@ -60,7 +60,7 @@ class _AddPeoplePageState extends State<AddPeoplePage> {
                             ),
                           ),
                           onPressed: () {
-                            store.dispatch(SendRequestStart(receiverId: user.uid, groceryListId: store.state.selectedGroceryList!));
+                            store.dispatch(SendRequestStart(receiverId: user.uid, groceryListId: store.state.selectedGroceryList!, senderUsername: store.state.user!.username, groceryListName: store.state.selectedGroceryListName!));
                           },
                           child: Row(
                             children: <Widget>[

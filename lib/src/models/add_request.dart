@@ -2,10 +2,12 @@ part of 'index.dart';
 
 @freezed
 class AddRequest with _$AddRequest {
-  const factory AddRequest({required String senderName,
-  required String senderEmail,
-  required String senderId,
-  required String groceryListId,
+  const factory AddRequest({
+    required String senderName,
+    required String senderEmail,
+    required String senderId,
+    required String groceryListId,
+    required String listName,
   }) = AddRequest$;
 
   factory AddRequest.fromJson(Map<dynamic, dynamic> json) => _$AddRequestFromJson(Map<String, dynamic>.from(json));

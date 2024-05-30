@@ -9,6 +9,7 @@ class AppState with _$AppState {
     @Default(<Product>[]) List<Product> relatedProducts,
     @Default(<GroceryList>{}) Set<GroceryList> groceryLists,
     String? selectedGroceryList,
+    String? selectedGroceryListName,
     @Default(<String>{}) Set<String> pending,
     @Default(1) int pageNumber,
     @Default(false) bool contentLoaded,

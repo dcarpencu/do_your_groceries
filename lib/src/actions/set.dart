@@ -2,7 +2,7 @@ part of 'index.dart';
 
 @freezed
 class SetSelectedList with _$SetSelectedList implements AppAction {
-  const factory SetSelectedList(String selectedGroceryList) = SetSelectedList$;
+  const factory SetSelectedList(String selectedGroceryList, String selectedGroceryListName) = SetSelectedList$;
 }
 
 @freezed

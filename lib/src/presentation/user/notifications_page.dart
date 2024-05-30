@@ -1,4 +1,5 @@
 import 'package:do_you_groceries/src/actions/index.dart';
+import 'package:do_you_groceries/src/containers/requests_container.dart';
 import 'package:do_you_groceries/src/containers/user_container.dart';
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:flutter/material.dart';
@@ -33,9 +34,8 @@ class _AddPeoplePageState extends State<NotificationsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Notifications')),
-      body: UserContainer(
-        builder: (BuildContext context, AppUser? user) {
-          final Set<AddRequest> requests = user!.requests;
+      body: RequestsContainer(
+        builder: (BuildContext context, List<AddRequest> requests) {
           return ListView.builder(
             itemCount: requests.length,
             itemBuilder: (BuildContext context, int index) {
@@ -64,6 +64,10 @@ class _AddPeoplePageState extends State<NotificationsPage> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
+                              Text(
+                                request.listName,
+                                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                              ),
                               Text(
                                 request.senderEmail,
                                 style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
