@@ -183,7 +183,12 @@ class AuthApi {
     return users;
   }
 
-  Future<void> sendRequest({required String senderUsername, required String receiverId, required String groceryListId, required String groceryListName}) async {
+  Future<void> sendRequest({
+    required String senderUsername,
+    required String receiverId,
+    required String groceryListId,
+    required String groceryListName,
+  }) async {
     final User currentUser = _auth.currentUser!;
 
     final DocumentReference<Map<String, dynamic>> userRef = _firestore.doc('users/$receiverId');
@@ -196,25 +201,53 @@ class AuthApi {
     final Map<String, dynamic>? listData = snapshot.data();
 
     final List<dynamic>? requests = listData?['requests'] as List<dynamic>?;
+    final List<dynamic>? groceryListIds = listData?['groceryListIds'] as List<dynamic>?;
 
-    final AddRequest request = AddRequest(
-        senderName: senderUsername,
-        senderEmail: currentUser.email!,
-        senderId: currentUser.uid,
-        groceryListId: groceryListId,
-        listName: groceryListName);
+    final AddRequest newRequest = AddRequest(
+      senderName: senderUsername,
+      senderEmail: currentUser.email!,
+      senderId: currentUser.uid,
+      groceryListId: groceryListId,
+      listName: groceryListName,
+    );
 
-    final Map<String, dynamic> requestJson = request.toJson();
+    final Map<String, dynamic> newRequestJson = newRequest.toJson();
 
+    bool requestExists = false;
+
+    // Check if the request already exists in the requests list
     if (requests != null) {
-      final Set<Map<String, dynamic>> updatedRequestsSet =
-          requests.map((dynamic id) => Map<String, dynamic>.from(id as Map)).toSet()..add(requestJson);
-      listData!['requests'] = updatedRequestsSet.toList();
-    } else {
-      listData!['requests'] = [requestJson];
+      for (final dynamic request in requests) {
+        if (request is Map<String, dynamic>) {
+          final AddRequest existingRequest = AddRequest.fromJson(request);
+          if (existingRequest.senderId == newRequest.senderId &&
+              existingRequest.groceryListId == newRequest.groceryListId) {
+            requestExists = true;
+            break;
+          }
+        }
+      }
     }
 
-    await userRef.update(listData);
+    // Check if the groceryListId already exists in the user's groceryListIds list
+    bool groceryListIdExists = false;
+    if (groceryListIds != null) {
+      groceryListIdExists = groceryListIds.contains(groceryListId);
+    }
+
+    if (!requestExists && !groceryListIdExists) {
+      if (requests != null) {
+        final Set<Map<String, dynamic>> updatedRequestsSet = requests
+            .map((dynamic req) => Map<String, dynamic>.from(req as Map<String, dynamic>))
+            .toSet()
+          ..add(newRequestJson);
+        listData!['requests'] = updatedRequestsSet.toList();
+      } else {
+        listData!['requests'] = [newRequestJson];
+      }
+
+      await userRef.update(listData!);
+    }
   }
 
   Future<void> acceptRequest({required String groceryListId}) async {
@@ -235,12 +268,12 @@ class AuthApi {
 
     final List<dynamic>? groceryListIds = listData['groceryListIds'] as List<dynamic>?;
 
-    final Set<String> updatedRequestsSet = (groceryListIds ?? <String>[]).map((dynamic id) => id as String).toSet()..add(groceryListId);
-    listData['requests'] = updatedRequestsSet.toList();
+    final Set<String> updatedRequestsSet = (groceryListIds ?? <String>[]).map((dynamic id) => id as String).toSet()
+      ..add(groceryListId);
+    listData['groceryListIds'] = updatedRequestsSet.toList();
 
     await userRef.update(listData);
   }
-
 
   Future<void> removeRequest({required AddRequest requestToRemove}) async {
     final User currentUser = _auth.currentUser!;
@@ -284,7 +317,7 @@ class AuthApi {
         .doc(currentUser.uid)
         .snapshots()
         .asyncMap((DocumentSnapshot<Map<String, dynamic>> snapshot) async {
-          print('/n/n SUNTEM AICIA IN LISTEN REQ');
+      print('/n/n SUNTEM AICIA IN LISTEN REQ');
       if (snapshot.exists) {
         final List<dynamic>? requests = snapshot.data()?['requests'] as List<dynamic>?;
 

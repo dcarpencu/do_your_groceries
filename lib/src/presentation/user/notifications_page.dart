@@ -33,7 +33,7 @@ class _AddPeoplePageState extends State<NotificationsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Notifications')),
+      appBar: AppBar(title: const Text('Notifications'),),
       body: RequestsContainer(
         builder: (BuildContext context, List<AddRequest> requests) {
           return ListView.builder(
@@ -79,7 +79,7 @@ class _AddPeoplePageState extends State<NotificationsPage> {
                                     icon: const Icon(Icons.check_circle),
                                     onPressed: () {
                                       store..dispatch(RemoveRequestSimple(request: request))
-                                        ..dispatch(AcceptRequestStart(groceryListId: store.state.selectedGroceryList!));
+                                        ..dispatch(AcceptRequestStart(groceryListId: request.groceryListId))..dispatch(const GetGroceryListsStart());
                                     },
                                   ),
                                   IconButton(
