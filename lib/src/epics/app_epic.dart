@@ -336,7 +336,7 @@ class AppEpic {
   Stream<AppAction> _removeGroceryListStart(Stream<RemoveGroceryListStart> actions, EpicStore<AppState> store) {
     return actions.flatMap((RemoveGroceryListStart action) {
       return Stream<void>.value(null)
-          .asyncMap((_) => _authApi.removeGroceryList(groceryList: action.groceryList, ))
+          .asyncMap((_) => _authApi.removeGroceryList(groceryList: action.groceryList, currentUserId: store.state.user!.uid,))
           .mapTo(const RemoveGroceryList.successful())
           .onErrorReturnWith(RemoveGroceryList.error);
     });
@@ -346,7 +346,7 @@ class AppEpic {
     return actions.flatMap((AcceptRequestStart action) {
       return Stream<void>.value(null)
           .asyncMap((_) => _authApi.acceptRequest(groceryListId: action.groceryListId, requestToRemove: action.requestToRemove))
-          .mapTo( const AcceptRequest.successful())
+          .map<AcceptRequest>( AcceptRequest.successful)
           .onErrorReturnWith(AcceptRequest.error);
     });
   }

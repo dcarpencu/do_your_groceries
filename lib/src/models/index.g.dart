@@ -153,6 +153,7 @@ _$GroceryList$Impl _$$GroceryList$ImplFromJson(Map<String, dynamic> json) =>
               ?.map((e) => e as String)
               .toList() ??
           const <String>[],
+      usersCount: (json['usersCount'] as num?)?.toInt() ?? 1,
     );
 
 Map<String, dynamic> _$$GroceryList$ImplToJson(_$GroceryList$Impl instance) =>
@@ -162,6 +163,7 @@ Map<String, dynamic> _$$GroceryList$ImplToJson(_$GroceryList$Impl instance) =>
       'selectedIcon': instance.selectedIcon,
       'description': instance.description,
       'productIds': instance.productIds,
+      'usersCount': instance.usersCount,
     };
 
 _$CameraInfo$Impl _$$CameraInfo$ImplFromJson(Map<String, dynamic> json) =>

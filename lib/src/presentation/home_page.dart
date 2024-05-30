@@ -32,97 +32,94 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return HomePageContainer(
       builder: (BuildContext context, AppState state) {
+        final double width = MediaQuery.of(context).size.width * 0.9;
         return Scaffold(
           appBar: AppBar(
-            leading: IconButton(
-              onPressed: () {
-                StoreProvider.of<AppState>(context).dispatch(const LogoutStart());
-                context.go('/login');
-              },
-              icon: const Icon(Icons.logout),
-            ),
             title: const Text(
               'DoYourGroceries',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             actions: const <Widget>[],
           ),
-          body: PendingContainer(
-            builder: (BuildContext context, Set<String> pending) {
-              if (pending.contains(GetGroceryLists.pendingKey)) {
-                return const LinearProgressIndicator();
-              }
-              return GroceryListsContainer(
-                builder: (BuildContext context, Set<GroceryList> groceryLists) {
-                  final double width = MediaQuery.of(context).size.width * 0.9;
-                  return SafeArea(
+          body: Column(
+            children: <Widget>[
+              Card(
+                elevation: 5,
+                shadowColor: Colors.black,
+                color: Colors.greenAccent,
+                child: SizedBox(
+                  width: width,
+                  height: 200,
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
                     child: Column(
                       children: <Widget>[
-                        const SizedBox(
-                          height: 16,
-                        ),
-                        const Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                            padding: EdgeInsets.all(8),
-                            child: Text(
-                              'Your lists. Here.',
-                              style: TextStyle(
-                                fontSize: 16,
-                              ),
-                              textAlign: TextAlign.left,
-                            ),
+                        CircleAvatar(
+                          backgroundColor: Colors.green[500],
+                          radius: 50,
+                          child: const CircleAvatar(
+                            backgroundImage: NetworkImage(
+                                'https://www.pushengage.com/wp-content/uploads/2022/10/How-to-Add-a-Push-Notification-Icon.png'),
+                            radius: 100,
                           ),
                         ),
-                        if (groceryLists.isNotEmpty)
-                          ListsCarousel(groceryLists: groceryLists, store: _store,)
-                        else
-                          const Center(child: Text('No lists.')),
                         const SizedBox(
-                          height: 30,
+                          height: 10,
                         ),
-                        Card(
-                          elevation: 5,
-                          shadowColor: Colors.black,
-                          color: Colors.greenAccent,
-                          child: SizedBox(
-                            width: width,
-                            height: 200,
-                            child: Padding(
-                              padding: const EdgeInsets.all(20),
-                              child: Column(
-                                children: <Widget>[
-                                  CircleAvatar(
-                                    backgroundColor: Colors.green[500],
-                                    radius: 50,
-                                    child: const CircleAvatar(
-                                      backgroundImage: NetworkImage(
-                                          'https://www.pushengage.com/wp-content/uploads/2022/10/How-to-Add-a-Push-Notification-Icon.png'),
-                                      radius: 100,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    'Notification center',
-                                    style: TextStyle(
-                                      fontSize: 30,
-                                      color: Colors.green[900],
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
+                        Text(
+                          'Notification center',
+                          style: TextStyle(
+                            fontSize: 30,
+                            color: Colors.green[900],
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                       ],
                     ),
+                  ),
+                ),
+              ),
+              PendingContainer(
+                builder: (BuildContext context, Set<String> pending) {
+                  if (pending.contains(GetGroceryLists.pendingKey)) {
+                    return const LinearProgressIndicator();
+                  }
+                  return GroceryListsContainer(
+                    builder: (BuildContext context, Set<GroceryList> groceryLists) {
+                      return SafeArea(
+                        child: Column(
+                          children: <Widget>[
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            const Align(
+                              alignment: Alignment.centerLeft,
+                              child: Padding(
+                                padding: EdgeInsets.all(8),
+                                child: Text(
+                                  'Your lists. Here.',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                  ),
+                                  textAlign: TextAlign.left,
+                                ),
+                              ),
+                            ),
+                            if (groceryLists.isNotEmpty)
+                              ListsCarousel(groceryLists: groceryLists, store: _store,)
+                            else
+                              const Center(child: Text('No lists.')),
+                            const SizedBox(
+                              height: 30,
+                            ),
+                          ],
+                        ),
+                      );
+                    },
                   );
                 },
-              );
-            },
+              ),
+            ],
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () => context.pushNamed('createList'),

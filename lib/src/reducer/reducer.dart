@@ -54,8 +54,7 @@ Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   TypedReducer<AppState, SetNotificationOff>(_setNotificationOff).call,
   TypedReducer<AppState, UpdateGroceryListsStart>(_updateGroceryListsStart).call,
   TypedReducer<AppState, UpdateGroceryListsError>(_updateGroceryListsError).call,
-
-  // TypedReducer<AppState, GetImageLabelsSuccessful>(_getImageLabelsSuccessful).call,
+  TypedReducer<AppState, AcceptRequestSuccessful>(_acceptRequestSuccessful).call,
 ]);
 
 AppState _setMarketProductsToEmpty(AppState state, SetMarketProductsToEmpty action) {
@@ -193,4 +192,8 @@ AppState _updateGroceryListsStart(AppState state, UpdateGroceryListsStart action
   }
   final AppUser user = state.user!.copyWith(groceryListIds: groceryListIds);
   return state.copyWith(user: user);
+}
+
+AppState _acceptRequestSuccessful(AppState state, AcceptRequestSuccessful action) {
+  return state.copyWith(requests: <AddRequest>[...state.requests]..remove(action.requestToRemove));
 }

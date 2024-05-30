@@ -4,6 +4,7 @@ import 'package:do_you_groceries/src/containers/user_container.dart';
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:go_router/go_router.dart';
 import 'package:redux/redux.dart';
 
 class NotificationsPage extends StatefulWidget {
@@ -15,6 +16,7 @@ class NotificationsPage extends StatefulWidget {
 
 class _AddPeoplePageState extends State<NotificationsPage> {
   late Store<AppState> store;
+  bool isAccepted = false;
 
   @override
   void initState() {
@@ -25,15 +27,22 @@ class _AddPeoplePageState extends State<NotificationsPage> {
 
   @override
   void dispose() {
-    store..dispatch(const SetNotificationOff())
-    ..dispatch(ListenForRequestsDone(isNotifications: store.state.isNotifications));
+    if (isAccepted) {
+      store.dispatch(const GetGroceryListsStart());
+    }
+
+    store
+      ..dispatch(const SetNotificationOff())
+      ..dispatch(ListenForRequestsDone(isNotifications: store.state.isNotifications));
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Notifications'),),
+      appBar: AppBar(
+        title: const Text('Notifications'),
+      ),
       body: RequestsContainer(
         builder: (BuildContext context, List<AddRequest> requests) {
           return ListView.builder(
@@ -77,18 +86,22 @@ class _AddPeoplePageState extends State<NotificationsPage> {
                                   IconButton(
                                     iconSize: 36,
                                     icon: const Icon(Icons.check_circle),
-                                    onPressed: () async {
-                                      store.dispatch(AcceptRequestStart(groceryListId: request.groceryListId, requestToRemove: request));
-                                      await store.dispatch(RemoveRequestStart(requestToRemove: request));
-                                      store.dispatch(RemoveRequestSimple(request: request));
+                                    onPressed: () {
+                                      store.dispatch(
+                                        AcceptRequestStart(
+                                            groceryListId: request.groceryListId, requestToRemove: request),
+                                      );
+                                      isAccepted = true;
+                                      context.pop();
                                     },
                                   ),
                                   IconButton(
                                     iconSize: 36,
                                     icon: const Icon(Icons.cancel),
                                     onPressed: () {
-                                      store..dispatch(RemoveRequestSimple(request: request))
-                                      ..dispatch(RemoveRequestStart(requestToRemove: request));
+                                      store
+                                        ..dispatch(RemoveRequestSimple(request: request))
+                                        ..dispatch(RemoveRequestStart(requestToRemove: request));
                                     },
                                   ),
                                   const SizedBox(

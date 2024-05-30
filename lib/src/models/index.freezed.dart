@@ -1341,6 +1341,7 @@ mixin _$GroceryList {
   String get selectedIcon => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   List<String> get productIds => throw _privateConstructorUsedError;
+  int get usersCount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1359,7 +1360,8 @@ abstract class $GroceryListCopyWith<$Res> {
       String title,
       String selectedIcon,
       String description,
-      List<String> productIds});
+      List<String> productIds,
+      int usersCount});
 }
 
 /// @nodoc
@@ -1380,6 +1382,7 @@ class _$GroceryListCopyWithImpl<$Res, $Val extends GroceryList>
     Object? selectedIcon = null,
     Object? description = null,
     Object? productIds = null,
+    Object? usersCount = null,
   }) {
     return _then(_value.copyWith(
       groceryListId: null == groceryListId
@@ -1402,6 +1405,10 @@ class _$GroceryListCopyWithImpl<$Res, $Val extends GroceryList>
           ? _value.productIds
           : productIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      usersCount: null == usersCount
+          ? _value.usersCount
+          : usersCount // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -1419,7 +1426,8 @@ abstract class _$$GroceryList$ImplCopyWith<$Res>
       String title,
       String selectedIcon,
       String description,
-      List<String> productIds});
+      List<String> productIds,
+      int usersCount});
 }
 
 /// @nodoc
@@ -1438,6 +1446,7 @@ class __$$GroceryList$ImplCopyWithImpl<$Res>
     Object? selectedIcon = null,
     Object? description = null,
     Object? productIds = null,
+    Object? usersCount = null,
   }) {
     return _then(_$GroceryList$Impl(
       groceryListId: null == groceryListId
@@ -1460,6 +1469,10 @@ class __$$GroceryList$ImplCopyWithImpl<$Res>
           ? _value._productIds
           : productIds // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      usersCount: null == usersCount
+          ? _value.usersCount
+          : usersCount // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -1472,7 +1485,8 @@ class _$GroceryList$Impl implements GroceryList$ {
       required this.title,
       required this.selectedIcon,
       this.description = '',
-      final List<String> productIds = const <String>[]})
+      final List<String> productIds = const <String>[],
+      this.usersCount = 1})
       : _productIds = productIds;
 
   factory _$GroceryList$Impl.fromJson(Map<String, dynamic> json) =>
@@ -1497,8 +1511,12 @@ class _$GroceryList$Impl implements GroceryList$ {
   }
 
   @override
+  @JsonKey()
+  final int usersCount;
+
+  @override
   String toString() {
-    return 'GroceryList(groceryListId: $groceryListId, title: $title, selectedIcon: $selectedIcon, description: $description, productIds: $productIds)';
+    return 'GroceryList(groceryListId: $groceryListId, title: $title, selectedIcon: $selectedIcon, description: $description, productIds: $productIds, usersCount: $usersCount)';
   }
 
   @override
@@ -1514,7 +1532,9 @@ class _$GroceryList$Impl implements GroceryList$ {
             (identical(other.description, description) ||
                 other.description == description) &&
             const DeepCollectionEquality()
-                .equals(other._productIds, _productIds));
+                .equals(other._productIds, _productIds) &&
+            (identical(other.usersCount, usersCount) ||
+                other.usersCount == usersCount));
   }
 
   @JsonKey(ignore: true)
@@ -1525,7 +1545,8 @@ class _$GroceryList$Impl implements GroceryList$ {
       title,
       selectedIcon,
       description,
-      const DeepCollectionEquality().hash(_productIds));
+      const DeepCollectionEquality().hash(_productIds),
+      usersCount);
 
   @JsonKey(ignore: true)
   @override
@@ -1547,7 +1568,8 @@ abstract class GroceryList$ implements GroceryList {
       required final String title,
       required final String selectedIcon,
       final String description,
-      final List<String> productIds}) = _$GroceryList$Impl;
+      final List<String> productIds,
+      final int usersCount}) = _$GroceryList$Impl;
 
   factory GroceryList$.fromJson(Map<String, dynamic> json) =
       _$GroceryList$Impl.fromJson;
@@ -1562,6 +1584,8 @@ abstract class GroceryList$ implements GroceryList {
   String get description;
   @override
   List<String> get productIds;
+  @override
+  int get usersCount;
   @override
   @JsonKey(ignore: true)
   _$$GroceryList$ImplCopyWith<_$GroceryList$Impl> get copyWith =>

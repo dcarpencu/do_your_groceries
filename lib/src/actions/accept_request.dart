@@ -4,7 +4,7 @@ part of 'index.dart';
 class AcceptRequest with _$AcceptRequest implements AppAction {
   const factory AcceptRequest({required String groceryListId, required AddRequest requestToRemove}) = AcceptRequestStart;
 
-  const factory AcceptRequest.successful() = AcceptRequestSuccessful;
+  const factory AcceptRequest.successful(AddRequest requestToRemove) = AcceptRequestSuccessful;
 
   @Implements<ErrorAction>()
   const factory AcceptRequest.error(Object error, StackTrace stackTrace) = AcceptRequestError;

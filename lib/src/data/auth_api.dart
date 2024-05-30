@@ -53,8 +53,12 @@ class AuthApi {
     required String selectedIcon,
   }) async {
     final DocumentReference<Map<String, dynamic>> ref = _firestore.collection('lists').doc();
-    final GroceryList groceryList =
-        GroceryList(groceryListId: ref.id, title: title, selectedIcon: selectedIcon, description: description);
+    final GroceryList groceryList = GroceryList(
+      groceryListId: ref.id,
+      title: title,
+      selectedIcon: selectedIcon,
+      description: description,
+    );
 
     await ref.set(groceryList.toJson());
 
@@ -76,40 +80,41 @@ class AuthApi {
 
   Future<void> removeGroceryList({
     required GroceryList groceryList,
+    required String currentUserId,
   }) async {
     final DocumentReference<Map<String, dynamic>> groceryListRef =
-        _firestore.collection('lists').doc(groceryList.groceryListId);
+    _firestore.collection('lists').doc(groceryList.groceryListId);
     final DocumentSnapshot<Map<String, dynamic>> groceryListSnapshot = await groceryListRef.get();
 
     if (groceryListSnapshot.exists) {
       final Map<String, dynamic> groceryListData = groceryListSnapshot.data()!;
-      final List<dynamic>? productIds = groceryListData['productIds'] as List<dynamic>?;
+      final int currentUsersCount = groceryListData['usersCount'] as int? ?? 0;
 
-      final WriteBatch batch = _firestore.batch();
-      // Delete each product associated with the grocery list
-      if (productIds != null) {
-        for (final dynamic productId in productIds) {
-          final List<dynamic> parts = productId.toString().split('/');
-          print('\n\n${parts.first}\n\n ${parts.last}');
-          print('\n\nPRODUCT ID: $productId\n');
-          if (parts.first == 'products') {
-            final DocumentReference<Map<String, dynamic>> productRef =
-                _firestore.collection('products').doc(parts.last as String);
-            print('\n\nPRODUCT ref: $productRef\n');
-            batch.delete(productRef);
+      if (currentUsersCount == 1) {
+        // Delete products from the grocery list
+        final List<dynamic>? productIds = groceryListData['productIds'] as List<dynamic>?;
+
+        final WriteBatch batch = _firestore.batch();
+
+        if (productIds != null) {
+          for (final dynamic productId in productIds) {
+            final List<dynamic> parts = productId.toString().split('/');
+            if (parts.first == 'products') {
+              final DocumentReference<Map<String, dynamic>> productRef =
+              _firestore.collection('products').doc(parts.last as String);
+              batch.delete(productRef);
+            }
           }
         }
-      }
 
-      final User? currentUser = _auth.currentUser;
-      if (currentUser != null) {
-        final DocumentReference<Map<String, dynamic>> userRef = _firestore.doc('users/${currentUser.uid}');
+        // Remove grocery list ID from user's groceryListIds
+        final DocumentReference<Map<String, dynamic>> userRef = _firestore.doc('users/$currentUserId');
         final DocumentSnapshot<Map<String, dynamic>> userSnapshot = await userRef.get();
 
         if (userSnapshot.exists) {
           final Map<String, dynamic> userData = userSnapshot.data()!;
           final List<dynamic>? groceryListIds =
-              (userData['groceryListIds'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
+          (userData['groceryListIds'] as List<dynamic>?)?.cast<String>().toList();
 
           if (groceryListIds != null) {
             groceryListIds.remove(groceryList.groceryListId);
@@ -117,17 +122,21 @@ class AuthApi {
             batch.update(userRef, userData);
           }
         }
-      }
 
-      // Delete the grocery list itself
-      batch.delete(groceryListRef);
+        // Delete the grocery list itself
+        batch.delete(groceryListRef);
 
-      try {
-        await batch.commit();
-      } catch (e) {
-        print('Failed to remove grocery list: $e');
-        // Handle errors accordingly, possibly rethrowing the error or returning a failure result
-        rethrow;
+        try {
+          await batch.commit();
+        } catch (e) {
+          print('Failed to remove grocery list: $e');
+          // Handle errors accordingly, possibly rethrowing the error or returning a failure result
+          rethrow;
+        }
+      } else {
+        // Decrement usersCount and update grocery list document
+        groceryListData['usersCount'] = currentUsersCount - 1;
+        await groceryListRef.update(groceryListData);
       }
     }
   }
@@ -248,30 +257,67 @@ class AuthApi {
     }
   }
 
-  Future<void> acceptRequest({required String groceryListId, required AddRequest requestToRemove}) async {
+  Future<AddRequest> acceptRequest({required String groceryListId, required AddRequest requestToRemove}) async {
     final User currentUser = _auth.currentUser!;
-
     final DocumentReference<Map<String, dynamic>> userRef = _firestore.doc('users/${currentUser.uid}');
-    final DocumentSnapshot<Map<String, dynamic>> snapshot = await userRef.get();
+    final DocumentSnapshot<Map<String, dynamic>> userSnapshot = await userRef.get();
 
-    if (!snapshot.exists) {
+    if (!userSnapshot.exists) {
       throw Exception('User document not found!');
     }
 
-    final Map<String, dynamic>? listData = snapshot.data();
+    final Map<String, dynamic>? userData = userSnapshot.data();
 
-    if (listData == null) {
+    if (userData == null) {
       throw Exception('User data is null!');
     }
 
-    final List<dynamic>? groceryListIds = listData['groceryListIds'] as List<dynamic>?;
-
-    final Set<String> updatedRequestsSet = (groceryListIds ?? <String>[]).map((dynamic id) => id as String).toSet()
+    // Update user's groceryListIds
+    final List<dynamic>? groceryListIds = userData['groceryListIds'] as List<dynamic>?;
+    final Set<String> updatedGroceryListIds = (groceryListIds ?? <String>[]).map((dynamic id) => id as String).toSet()
       ..add(groceryListId);
-    listData['groceryListIds'] = updatedRequestsSet.toList();
 
-    //await removeRequest(requestToRemove: requestToRemove);
-    await userRef.update(listData);
+    userData['groceryListIds'] = updatedGroceryListIds.toList();
+
+    print('Accept Request: Updated groceryListIds = ${userData['groceryListIds']}');
+    await userRef.update(userData);
+
+    // Fetch and update the grocery list document
+    final DocumentReference<Map<String, dynamic>> groceryListRef = _firestore.doc('lists/$groceryListId');
+    final DocumentSnapshot<Map<String, dynamic>> groceryListSnapshot = await groceryListRef.get();
+
+    if (!groceryListSnapshot.exists) {
+      throw Exception('Grocery list document not found!');
+    }
+
+    final Map<String, dynamic>? groceryListData = groceryListSnapshot.data();
+
+    if (groceryListData == null) {
+      throw Exception('Grocery list data is null!');
+    }
+
+    // Increment usersCount
+    final int currentUsersCount = groceryListData['usersCount'] as int? ?? 0;
+    groceryListData['usersCount'] = currentUsersCount + 1;
+
+    print('Accept Request: Updated usersCount = ${groceryListData['usersCount']}');
+    await groceryListRef.update(groceryListData);
+
+    // Remove the request from the user's requests
+    final List<Map<String, dynamic>>? requests =
+        (userData['requests'] as List?)?.map((item) => item as Map<String, dynamic>).toList();
+
+    final Map<String, dynamic> requestJsonToRemove = requestToRemove.toJson();
+
+    if (requests != null && requests.isNotEmpty) {
+      requests.removeWhere((Map<String, dynamic> element) => _mapsAreEqual(element, requestJsonToRemove));
+      userData['requests'] = requests;
+
+      print('Remove Request: Updated requests = ${userData['requests']}');
+      await userRef.update(userData);
+    }
+
+    return requestToRemove;
   }
 
   Future<void> removeRequest({required AddRequest requestToRemove}) async {
@@ -284,7 +330,6 @@ class AuthApi {
     }
 
     final Map<String, dynamic>? listData = snapshot.data();
-
     final List<Map<String, dynamic>>? requests =
         (listData?['requests'] as List?)?.map((item) => item as Map<String, dynamic>).toList();
 
@@ -293,8 +338,14 @@ class AuthApi {
     if (requests != null && requests.isNotEmpty) {
       requests.removeWhere((Map<String, dynamic> element) => _mapsAreEqual(element, requestJsonToRemove));
       listData!['requests'] = requests;
+
+      print('Remove Request: Updated requests = ${listData['requests']}');
       await userRef.update(listData);
     }
+  }
+
+  bool _mapsAreEqual(Map<String, dynamic> map1, Map<String, dynamic> map2) {
+    return map1.length == map2.length && map1.entries.every((entry) => map2[entry.key] == entry.value);
   }
 
   Future<void> updateGroceryLists(String uid, String groceryListId, {required bool remove}) async {
@@ -311,18 +362,6 @@ class AuthApi {
 
       transaction.set(_firestore.doc('users/$uid'), user.toJson());
     });
-  }
-
-  bool _mapsAreEqual(Map<String, dynamic> map1, Map<String, dynamic> map2) {
-    if (map1.length != map2.length) {
-      return false;
-    }
-    for (final String key in map1.keys) {
-      if (!map2.containsKey(key) || map1[key] != map2[key]) {
-        return false;
-      }
-    }
-    return true;
   }
 
   Stream<List<AddRequest>> listenForRequests({required bool isNotifications}) {
