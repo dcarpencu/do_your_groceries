@@ -78,14 +78,16 @@ class _AddPeoplePageState extends State<NotificationsPage> {
                                     iconSize: 36,
                                     icon: const Icon(Icons.check_circle),
                                     onPressed: () {
-                                      print('pula');
+                                      store..dispatch(RemoveRequestSimple(request: request))
+                                        ..dispatch(AcceptRequestStart(groceryListId: store.state.selectedGroceryList!));
                                     },
                                   ),
                                   IconButton(
                                     iconSize: 36,
                                     icon: const Icon(Icons.cancel),
                                     onPressed: () {
-                                      store.dispatch(RemoveRequestStart(requestToRemove: request));
+                                      store..dispatch(RemoveRequestSimple(request: request))
+                                      ..dispatch(RemoveRequestStart(requestToRemove: request));
                                     },
                                   ),
                                   const SizedBox(

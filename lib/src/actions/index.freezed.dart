@@ -13558,21 +13558,21 @@ mixin _$RemoveRequest {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(AddRequest requestToRemove) $default, {
-    required TResult Function(AddRequest requestToRemove) successful,
+    required TResult Function() successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(AddRequest requestToRemove)? $default, {
-    TResult? Function(AddRequest requestToRemove)? successful,
+    TResult? Function()? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(AddRequest requestToRemove)? $default, {
-    TResult Function(AddRequest requestToRemove)? successful,
+    TResult Function()? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) =>
@@ -13696,7 +13696,7 @@ class _$RemoveRequestStartImpl implements RemoveRequestStart {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(AddRequest requestToRemove) $default, {
-    required TResult Function(AddRequest requestToRemove) successful,
+    required TResult Function() successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
     return $default(requestToRemove);
@@ -13706,7 +13706,7 @@ class _$RemoveRequestStartImpl implements RemoveRequestStart {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(AddRequest requestToRemove)? $default, {
-    TResult? Function(AddRequest requestToRemove)? successful,
+    TResult? Function()? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
     return $default?.call(requestToRemove);
@@ -13716,7 +13716,7 @@ class _$RemoveRequestStartImpl implements RemoveRequestStart {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(AddRequest requestToRemove)? $default, {
-    TResult Function(AddRequest requestToRemove)? successful,
+    TResult Function()? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
@@ -13777,10 +13777,6 @@ abstract class _$$RemoveRequestSuccessfulImplCopyWith<$Res> {
           _$RemoveRequestSuccessfulImpl value,
           $Res Function(_$RemoveRequestSuccessfulImpl) then) =
       __$$RemoveRequestSuccessfulImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({AddRequest requestToRemove});
-
-  $AddRequestCopyWith<$Res> get requestToRemove;
 }
 
 /// @nodoc
@@ -13791,91 +13787,58 @@ class __$$RemoveRequestSuccessfulImplCopyWithImpl<$Res>
       _$RemoveRequestSuccessfulImpl _value,
       $Res Function(_$RemoveRequestSuccessfulImpl) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? requestToRemove = null,
-  }) {
-    return _then(_$RemoveRequestSuccessfulImpl(
-      null == requestToRemove
-          ? _value.requestToRemove
-          : requestToRemove // ignore: cast_nullable_to_non_nullable
-              as AddRequest,
-    ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $AddRequestCopyWith<$Res> get requestToRemove {
-    return $AddRequestCopyWith<$Res>(_value.requestToRemove, (value) {
-      return _then(_value.copyWith(requestToRemove: value));
-    });
-  }
 }
 
 /// @nodoc
 
 class _$RemoveRequestSuccessfulImpl implements RemoveRequestSuccessful {
-  const _$RemoveRequestSuccessfulImpl(this.requestToRemove);
-
-  @override
-  final AddRequest requestToRemove;
+  const _$RemoveRequestSuccessfulImpl();
 
   @override
   String toString() {
-    return 'RemoveRequest.successful(requestToRemove: $requestToRemove)';
+    return 'RemoveRequest.successful()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RemoveRequestSuccessfulImpl &&
-            (identical(other.requestToRemove, requestToRemove) ||
-                other.requestToRemove == requestToRemove));
+            other is _$RemoveRequestSuccessfulImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, requestToRemove);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$RemoveRequestSuccessfulImplCopyWith<_$RemoveRequestSuccessfulImpl>
-      get copyWith => __$$RemoveRequestSuccessfulImplCopyWithImpl<
-          _$RemoveRequestSuccessfulImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(AddRequest requestToRemove) $default, {
-    required TResult Function(AddRequest requestToRemove) successful,
+    required TResult Function() successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
-    return successful(requestToRemove);
+    return successful();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(AddRequest requestToRemove)? $default, {
-    TResult? Function(AddRequest requestToRemove)? successful,
+    TResult? Function()? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
-    return successful?.call(requestToRemove);
+    return successful?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(AddRequest requestToRemove)? $default, {
-    TResult Function(AddRequest requestToRemove)? successful,
+    TResult Function()? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
     if (successful != null) {
-      return successful(requestToRemove);
+      return successful();
     }
     return orElse();
   }
@@ -13916,13 +13879,7 @@ class _$RemoveRequestSuccessfulImpl implements RemoveRequestSuccessful {
 }
 
 abstract class RemoveRequestSuccessful implements RemoveRequest {
-  const factory RemoveRequestSuccessful(final AddRequest requestToRemove) =
-      _$RemoveRequestSuccessfulImpl;
-
-  AddRequest get requestToRemove;
-  @JsonKey(ignore: true)
-  _$$RemoveRequestSuccessfulImplCopyWith<_$RemoveRequestSuccessfulImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  const factory RemoveRequestSuccessful() = _$RemoveRequestSuccessfulImpl;
 }
 
 /// @nodoc
@@ -13998,7 +13955,7 @@ class _$RemoveRequestErrorImpl implements RemoveRequestError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(AddRequest requestToRemove) $default, {
-    required TResult Function(AddRequest requestToRemove) successful,
+    required TResult Function() successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
     return error(this.error, stackTrace);
@@ -14008,7 +13965,7 @@ class _$RemoveRequestErrorImpl implements RemoveRequestError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(AddRequest requestToRemove)? $default, {
-    TResult? Function(AddRequest requestToRemove)? successful,
+    TResult? Function()? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
     return error?.call(this.error, stackTrace);
@@ -14018,7 +13975,7 @@ class _$RemoveRequestErrorImpl implements RemoveRequestError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(AddRequest requestToRemove)? $default, {
-    TResult Function(AddRequest requestToRemove)? successful,
+    TResult Function()? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
@@ -14757,4 +14714,606 @@ abstract class _ListenForRequestsError
   @JsonKey(ignore: true)
   _$$ListenForRequestsErrorImplCopyWith<_$ListenForRequestsErrorImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$RemoveRequestSimple {
+  AddRequest get request => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $RemoveRequestSimpleCopyWith<RemoveRequestSimple> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RemoveRequestSimpleCopyWith<$Res> {
+  factory $RemoveRequestSimpleCopyWith(
+          RemoveRequestSimple value, $Res Function(RemoveRequestSimple) then) =
+      _$RemoveRequestSimpleCopyWithImpl<$Res, RemoveRequestSimple>;
+  @useResult
+  $Res call({AddRequest request});
+
+  $AddRequestCopyWith<$Res> get request;
+}
+
+/// @nodoc
+class _$RemoveRequestSimpleCopyWithImpl<$Res, $Val extends RemoveRequestSimple>
+    implements $RemoveRequestSimpleCopyWith<$Res> {
+  _$RemoveRequestSimpleCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? request = null,
+  }) {
+    return _then(_value.copyWith(
+      request: null == request
+          ? _value.request
+          : request // ignore: cast_nullable_to_non_nullable
+              as AddRequest,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AddRequestCopyWith<$Res> get request {
+    return $AddRequestCopyWith<$Res>(_value.request, (value) {
+      return _then(_value.copyWith(request: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$RemoveRequestSimple$ImplCopyWith<$Res>
+    implements $RemoveRequestSimpleCopyWith<$Res> {
+  factory _$$RemoveRequestSimple$ImplCopyWith(_$RemoveRequestSimple$Impl value,
+          $Res Function(_$RemoveRequestSimple$Impl) then) =
+      __$$RemoveRequestSimple$ImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({AddRequest request});
+
+  @override
+  $AddRequestCopyWith<$Res> get request;
+}
+
+/// @nodoc
+class __$$RemoveRequestSimple$ImplCopyWithImpl<$Res>
+    extends _$RemoveRequestSimpleCopyWithImpl<$Res, _$RemoveRequestSimple$Impl>
+    implements _$$RemoveRequestSimple$ImplCopyWith<$Res> {
+  __$$RemoveRequestSimple$ImplCopyWithImpl(_$RemoveRequestSimple$Impl _value,
+      $Res Function(_$RemoveRequestSimple$Impl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? request = null,
+  }) {
+    return _then(_$RemoveRequestSimple$Impl(
+      request: null == request
+          ? _value.request
+          : request // ignore: cast_nullable_to_non_nullable
+              as AddRequest,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RemoveRequestSimple$Impl implements RemoveRequestSimple$ {
+  const _$RemoveRequestSimple$Impl({required this.request});
+
+  @override
+  final AddRequest request;
+
+  @override
+  String toString() {
+    return 'RemoveRequestSimple(request: $request)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RemoveRequestSimple$Impl &&
+            (identical(other.request, request) || other.request == request));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, request);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RemoveRequestSimple$ImplCopyWith<_$RemoveRequestSimple$Impl>
+      get copyWith =>
+          __$$RemoveRequestSimple$ImplCopyWithImpl<_$RemoveRequestSimple$Impl>(
+              this, _$identity);
+}
+
+abstract class RemoveRequestSimple$ implements RemoveRequestSimple {
+  const factory RemoveRequestSimple$({required final AddRequest request}) =
+      _$RemoveRequestSimple$Impl;
+
+  @override
+  AddRequest get request;
+  @override
+  @JsonKey(ignore: true)
+  _$$RemoveRequestSimple$ImplCopyWith<_$RemoveRequestSimple$Impl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$AcceptRequest {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String groceryListId) $default, {
+    required TResult Function() successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String groceryListId)? $default, {
+    TResult? Function()? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String groceryListId)? $default, {
+    TResult Function()? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(AcceptRequestStart value) $default, {
+    required TResult Function(AcceptRequestSuccessful value) successful,
+    required TResult Function(AcceptRequestError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(AcceptRequestStart value)? $default, {
+    TResult? Function(AcceptRequestSuccessful value)? successful,
+    TResult? Function(AcceptRequestError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(AcceptRequestStart value)? $default, {
+    TResult Function(AcceptRequestSuccessful value)? successful,
+    TResult Function(AcceptRequestError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AcceptRequestCopyWith<$Res> {
+  factory $AcceptRequestCopyWith(
+          AcceptRequest value, $Res Function(AcceptRequest) then) =
+      _$AcceptRequestCopyWithImpl<$Res, AcceptRequest>;
+}
+
+/// @nodoc
+class _$AcceptRequestCopyWithImpl<$Res, $Val extends AcceptRequest>
+    implements $AcceptRequestCopyWith<$Res> {
+  _$AcceptRequestCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$AcceptRequestStartImplCopyWith<$Res> {
+  factory _$$AcceptRequestStartImplCopyWith(_$AcceptRequestStartImpl value,
+          $Res Function(_$AcceptRequestStartImpl) then) =
+      __$$AcceptRequestStartImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String groceryListId});
+}
+
+/// @nodoc
+class __$$AcceptRequestStartImplCopyWithImpl<$Res>
+    extends _$AcceptRequestCopyWithImpl<$Res, _$AcceptRequestStartImpl>
+    implements _$$AcceptRequestStartImplCopyWith<$Res> {
+  __$$AcceptRequestStartImplCopyWithImpl(_$AcceptRequestStartImpl _value,
+      $Res Function(_$AcceptRequestStartImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? groceryListId = null,
+  }) {
+    return _then(_$AcceptRequestStartImpl(
+      groceryListId: null == groceryListId
+          ? _value.groceryListId
+          : groceryListId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AcceptRequestStartImpl implements AcceptRequestStart {
+  const _$AcceptRequestStartImpl({required this.groceryListId});
+
+  @override
+  final String groceryListId;
+
+  @override
+  String toString() {
+    return 'AcceptRequest(groceryListId: $groceryListId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AcceptRequestStartImpl &&
+            (identical(other.groceryListId, groceryListId) ||
+                other.groceryListId == groceryListId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, groceryListId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AcceptRequestStartImplCopyWith<_$AcceptRequestStartImpl> get copyWith =>
+      __$$AcceptRequestStartImplCopyWithImpl<_$AcceptRequestStartImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String groceryListId) $default, {
+    required TResult Function() successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return $default(groceryListId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String groceryListId)? $default, {
+    TResult? Function()? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return $default?.call(groceryListId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String groceryListId)? $default, {
+    TResult Function()? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(groceryListId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(AcceptRequestStart value) $default, {
+    required TResult Function(AcceptRequestSuccessful value) successful,
+    required TResult Function(AcceptRequestError value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(AcceptRequestStart value)? $default, {
+    TResult? Function(AcceptRequestSuccessful value)? successful,
+    TResult? Function(AcceptRequestError value)? error,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(AcceptRequestStart value)? $default, {
+    TResult Function(AcceptRequestSuccessful value)? successful,
+    TResult Function(AcceptRequestError value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AcceptRequestStart implements AcceptRequest {
+  const factory AcceptRequestStart({required final String groceryListId}) =
+      _$AcceptRequestStartImpl;
+
+  String get groceryListId;
+  @JsonKey(ignore: true)
+  _$$AcceptRequestStartImplCopyWith<_$AcceptRequestStartImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AcceptRequestSuccessfulImplCopyWith<$Res> {
+  factory _$$AcceptRequestSuccessfulImplCopyWith(
+          _$AcceptRequestSuccessfulImpl value,
+          $Res Function(_$AcceptRequestSuccessfulImpl) then) =
+      __$$AcceptRequestSuccessfulImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AcceptRequestSuccessfulImplCopyWithImpl<$Res>
+    extends _$AcceptRequestCopyWithImpl<$Res, _$AcceptRequestSuccessfulImpl>
+    implements _$$AcceptRequestSuccessfulImplCopyWith<$Res> {
+  __$$AcceptRequestSuccessfulImplCopyWithImpl(
+      _$AcceptRequestSuccessfulImpl _value,
+      $Res Function(_$AcceptRequestSuccessfulImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$AcceptRequestSuccessfulImpl implements AcceptRequestSuccessful {
+  const _$AcceptRequestSuccessfulImpl();
+
+  @override
+  String toString() {
+    return 'AcceptRequest.successful()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AcceptRequestSuccessfulImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String groceryListId) $default, {
+    required TResult Function() successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return successful();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String groceryListId)? $default, {
+    TResult? Function()? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return successful?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String groceryListId)? $default, {
+    TResult Function()? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(AcceptRequestStart value) $default, {
+    required TResult Function(AcceptRequestSuccessful value) successful,
+    required TResult Function(AcceptRequestError value) error,
+  }) {
+    return successful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(AcceptRequestStart value)? $default, {
+    TResult? Function(AcceptRequestSuccessful value)? successful,
+    TResult? Function(AcceptRequestError value)? error,
+  }) {
+    return successful?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(AcceptRequestStart value)? $default, {
+    TResult Function(AcceptRequestSuccessful value)? successful,
+    TResult Function(AcceptRequestError value)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AcceptRequestSuccessful implements AcceptRequest {
+  const factory AcceptRequestSuccessful() = _$AcceptRequestSuccessfulImpl;
+}
+
+/// @nodoc
+abstract class _$$AcceptRequestErrorImplCopyWith<$Res> {
+  factory _$$AcceptRequestErrorImplCopyWith(_$AcceptRequestErrorImpl value,
+          $Res Function(_$AcceptRequestErrorImpl) then) =
+      __$$AcceptRequestErrorImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Object error, StackTrace stackTrace});
+}
+
+/// @nodoc
+class __$$AcceptRequestErrorImplCopyWithImpl<$Res>
+    extends _$AcceptRequestCopyWithImpl<$Res, _$AcceptRequestErrorImpl>
+    implements _$$AcceptRequestErrorImplCopyWith<$Res> {
+  __$$AcceptRequestErrorImplCopyWithImpl(_$AcceptRequestErrorImpl _value,
+      $Res Function(_$AcceptRequestErrorImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+    Object? stackTrace = null,
+  }) {
+    return _then(_$AcceptRequestErrorImpl(
+      null == error ? _value.error : error,
+      null == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AcceptRequestErrorImpl implements AcceptRequestError {
+  const _$AcceptRequestErrorImpl(this.error, this.stackTrace);
+
+  @override
+  final Object error;
+  @override
+  final StackTrace stackTrace;
+
+  @override
+  String toString() {
+    return 'AcceptRequest.error(error: $error, stackTrace: $stackTrace)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AcceptRequestErrorImpl &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AcceptRequestErrorImplCopyWith<_$AcceptRequestErrorImpl> get copyWith =>
+      __$$AcceptRequestErrorImplCopyWithImpl<_$AcceptRequestErrorImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String groceryListId) $default, {
+    required TResult Function() successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return error(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String groceryListId)? $default, {
+    TResult? Function()? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return error?.call(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String groceryListId)? $default, {
+    TResult Function()? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error, stackTrace);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(AcceptRequestStart value) $default, {
+    required TResult Function(AcceptRequestSuccessful value) successful,
+    required TResult Function(AcceptRequestError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(AcceptRequestStart value)? $default, {
+    TResult? Function(AcceptRequestSuccessful value)? successful,
+    TResult? Function(AcceptRequestError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(AcceptRequestStart value)? $default, {
+    TResult Function(AcceptRequestSuccessful value)? successful,
+    TResult Function(AcceptRequestError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AcceptRequestError implements AcceptRequest, ErrorAction {
+  const factory AcceptRequestError(
+          final Object error, final StackTrace stackTrace) =
+      _$AcceptRequestErrorImpl;
+
+  Object get error;
+  StackTrace get stackTrace;
+  @JsonKey(ignore: true)
+  _$$AcceptRequestErrorImplCopyWith<_$AcceptRequestErrorImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

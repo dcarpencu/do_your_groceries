@@ -160,6 +160,7 @@ class AuthApi {
       }
     }
 
+    print('\n\n\n GROCERY LISTS: $result');
     return result;
   }
 
@@ -216,7 +217,32 @@ class AuthApi {
     await userRef.update(listData);
   }
 
-  Future<AddRequest> removeRequest({required AddRequest requestToRemove}) async {
+  Future<void> acceptRequest({required String groceryListId}) async {
+    final User currentUser = _auth.currentUser!;
+
+    final DocumentReference<Map<String, dynamic>> userRef = _firestore.doc('users/${currentUser.uid}');
+    final DocumentSnapshot<Map<String, dynamic>> snapshot = await userRef.get();
+
+    if (!snapshot.exists) {
+      throw Exception('User document not found!');
+    }
+
+    final Map<String, dynamic>? listData = snapshot.data();
+
+    if (listData == null) {
+      throw Exception('User data is null!');
+    }
+
+    final List<dynamic>? groceryListIds = listData['groceryListIds'] as List<dynamic>?;
+
+    final Set<String> updatedRequestsSet = (groceryListIds ?? <String>[]).map((dynamic id) => id as String).toSet()..add(groceryListId);
+    listData['requests'] = updatedRequestsSet.toList();
+
+    await userRef.update(listData);
+  }
+
+
+  Future<void> removeRequest({required AddRequest requestToRemove}) async {
     final User currentUser = _auth.currentUser!;
     final DocumentReference<Map<String, dynamic>> userRef = _firestore.doc('users/${currentUser.uid}');
     final DocumentSnapshot<Map<String, dynamic>> snapshot = await userRef.get();
@@ -237,7 +263,6 @@ class AuthApi {
       listData!['requests'] = requests;
       await userRef.update(listData);
     }
-    return requestToRemove;
   }
 
   bool _mapsAreEqual(Map<String, dynamic> map1, Map<String, dynamic> map2) {

@@ -43,6 +43,7 @@ class AppEpic {
       TypedEpic<AppState, SendRequestStart>(_sendRequestStart).call,
       TypedEpic<AppState, RemoveRequestStart>(_removeRequestStart).call,
       TypedEpic<AppState, RemoveRequestStart>(_removeRequestStart).call,
+      TypedEpic<AppState, AcceptRequestStart>(_acceptRequestStart).call
 
     ]);
   }
@@ -107,7 +108,7 @@ class AppEpic {
     return actions.flatMap((RemoveRequestStart action) {
       return Stream<void>.value(null)
           .asyncMap((_) => _authApi.removeRequest(requestToRemove: action.requestToRemove))
-          .map<RemoveRequest>(RemoveRequest.successful)
+          .mapTo(const RemoveRequest.successful())
           .onErrorReturnWith(RemoveRequest.error);
     });
   }
@@ -338,6 +339,15 @@ class AppEpic {
           .asyncMap((_) => _authApi.removeGroceryList(groceryList: action.groceryList, ))
           .map<RemoveGroceryList>( RemoveGroceryList.successful)
           .onErrorReturnWith(RemoveGroceryList.error);
+    });
+  }
+
+  Stream<AppAction> _acceptRequestStart(Stream<AcceptRequestStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((AcceptRequestStart action) {
+      return Stream<void>.value(null)
+          .asyncMap((_) => _authApi.acceptRequest(groceryListId: action.groceryListId))
+          .mapTo( const AcceptRequest.successful())
+          .onErrorReturnWith(AcceptRequest.error);
     });
   }
 }

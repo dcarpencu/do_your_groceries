@@ -28,6 +28,8 @@ part 'get_users.dart';
 part 'send_request.dart';
 part 'remove_request.dart';
 part 'listen_for_requests.dart';
+part 'remove.dart';
+part 'accept_request.dart';
 
 abstract class AppAction {}
 

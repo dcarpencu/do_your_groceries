@@ -36,6 +36,7 @@ Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   TypedReducer<AppState, SetSelectedCamera>(_setSelectedCamera).call,
   TypedReducer<AppState, SetPictureToNull>(_setPictureToNull).call,
   TypedReducer<AppState, SetMarketProductsToEmpty>(_setMarketProductsToEmpty).call,
+  TypedReducer<AppState, RemoveRequestSimple>(_removeRequestSimple).call,
   TypedReducer<AppState, OnProductsEvent>(_onProductsEvent).call,
   TypedReducer<AppState, OnRequestsEvent>(_onRequestsEvent).call,
   TypedReducer<AppState, CreateGroceryListSuccessful>(_createGroceryListSuccessful).call,
@@ -48,7 +49,6 @@ Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   TypedReducer<AppState, GetProductsForCameraSuccessful>(_getProductsForCameraSuccessful).call,
   TypedReducer<AppState, RemoveProductFromGroceryListSuccessful>(_removeProductFromGroceryListSuccessful).call,
   TypedReducer<AppState, RemoveGroceryListSuccessful>(_removeGroceryListSuccessful).call,
-  TypedReducer<AppState, RemoveRequestSuccessful>(_removeRequestSuccessful).call,
   TypedReducer<AppState, GetUsersSuccessful>(_getUsersSuccessful).call,
   TypedReducer<AppState, SetNotificationOn>(_setNotificationOn).call,
   TypedReducer<AppState, SetNotificationOff>(_setNotificationOff).call,
@@ -166,6 +166,6 @@ AppState _removeGroceryListSuccessful(AppState state, RemoveGroceryListSuccessfu
   return state.copyWith(groceryLists: <GroceryList>{...state.groceryLists}..remove(action.groceryList));
 }
 
-AppState _removeRequestSuccessful(AppState state, RemoveRequestSuccessful action) {
-  return state.copyWith(requests: <AddRequest>[...state.requests]..remove(action.requestToRemove));
+AppState _removeRequestSimple(AppState state, RemoveRequestSimple action) {
+  return state.copyWith(requests: <AddRequest>[...state.requests]..remove(action.request));
 }
