@@ -1,6 +1,8 @@
 import 'package:camera/camera.dart';
+import 'package:do_you_groceries/src/models/filter_chip_enums.dart';
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:google_generative_ai/google_generative_ai.dart';
 
 part 'index.freezed.dart';
 part 'login.dart';
@@ -31,6 +33,7 @@ part 'listen_for_requests.dart';
 part 'remove.dart';
 part 'accept_request.dart';
 part 'update_grocery_lists.dart';
+part 'generate_recipe_response.dart';
 
 abstract class AppAction {}
 

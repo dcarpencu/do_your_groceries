@@ -1,4 +1,5 @@
 import 'package:do_you_groceries/src/actions/index.dart';
+import 'package:do_you_groceries/src/data/ai_generated_api.dart';
 import 'package:do_you_groceries/src/data/auth_api.dart';
 import 'package:do_you_groceries/src/data/camera_api.dart';
 import 'package:do_you_groceries/src/data/products_api.dart';
@@ -8,12 +9,13 @@ import 'package:redux_epics/redux_epics.dart';
 import 'package:rxdart/transformers.dart';
 
 class AppEpic {
-  AppEpic(this._authApi, this._superMarketsApi, this._productsApi, this._cameraApi);
+  AppEpic(this._authApi, this._superMarketsApi, this._productsApi, this._cameraApi, this._aiGeneratedApi);
 
   final AuthApi _authApi;
   final SuperMarketsApi _superMarketsApi;
   final ProductsApi _productsApi;
   final CameraApi _cameraApi;
+  final AiGeneratedApi _aiGeneratedApi;
 
   Epic<AppState> getEpics() {
     return combineEpics(<Epic<AppState>>[
@@ -22,6 +24,7 @@ class AppEpic {
       TypedEpic<AppState, CreateUserStart>(_createUserStart).call,
       TypedEpic<AppState, LogoutStart>(_logoutStart).call,
       TypedEpic<AppState, GetGroceryListsStart>(_getGroceryListsStart).call,
+      TypedEpic<AppState, GenerateRecipeResponseStart>(_generateRecipeResponseStart).call,
       _getSuperMarketProducts,
       TypedEpic<AppState, CreateGroceryListStart>(_createGroceryListStart).call,
       _listenForProducts,
@@ -55,6 +58,15 @@ class AppEpic {
           .map<Login>(Login.successful)
           .onErrorReturnWith(Login.error)
           .doOnData(action.onResult);
+    });
+  }
+
+  Stream<AppAction> _generateRecipeResponseStart(Stream<GenerateRecipeResponseStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((GenerateRecipeResponseStart action) {
+      return Stream<void>.value(null)
+          .asyncMap((_) => _aiGeneratedApi.generateRecipeResponse(action.model))
+          .map<GenerateRecipeResponse>(GenerateRecipeResponse.successful)
+          .onErrorReturnWith(GenerateRecipeResponse.error);
     });
   }
 
@@ -361,4 +373,5 @@ class AppEpic {
       });
     });
   }
+
 }

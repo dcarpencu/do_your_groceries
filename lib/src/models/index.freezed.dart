@@ -35,7 +35,11 @@ mixin _$AppState {
   CameraInfo? get selectedCamera => throw _privateConstructorUsedError;
   Set<AppUser> get users => throw _privateConstructorUsedError;
   List<AddRequest> get requests => throw _privateConstructorUsedError;
-  bool get isNotifications => throw _privateConstructorUsedError;
+  bool get isNotifications =>
+      throw _privateConstructorUsedError; //GenerateContentResponse? response,
+//PromptData? promptData,
+  Set<CuisineFilter> get cuisines => throw _privateConstructorUsedError;
+  String? get generatorResponse => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -64,7 +68,9 @@ abstract class $AppStateCopyWith<$Res> {
       CameraInfo? selectedCamera,
       Set<AppUser> users,
       List<AddRequest> requests,
-      bool isNotifications});
+      bool isNotifications,
+      Set<CuisineFilter> cuisines,
+      String? generatorResponse});
 
   $AppUserCopyWith<$Res>? get user;
   $TakenPictureCopyWith<$Res>? get takenPicture;
@@ -100,6 +106,8 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
     Object? users = null,
     Object? requests = null,
     Object? isNotifications = null,
+    Object? cuisines = null,
+    Object? generatorResponse = freezed,
   }) {
     return _then(_value.copyWith(
       user: freezed == user
@@ -166,6 +174,14 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.isNotifications
           : isNotifications // ignore: cast_nullable_to_non_nullable
               as bool,
+      cuisines: null == cuisines
+          ? _value.cuisines
+          : cuisines // ignore: cast_nullable_to_non_nullable
+              as Set<CuisineFilter>,
+      generatorResponse: freezed == generatorResponse
+          ? _value.generatorResponse
+          : generatorResponse // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -230,7 +246,9 @@ abstract class _$$AppState$ImplCopyWith<$Res>
       CameraInfo? selectedCamera,
       Set<AppUser> users,
       List<AddRequest> requests,
-      bool isNotifications});
+      bool isNotifications,
+      Set<CuisineFilter> cuisines,
+      String? generatorResponse});
 
   @override
   $AppUserCopyWith<$Res>? get user;
@@ -267,6 +285,8 @@ class __$$AppState$ImplCopyWithImpl<$Res>
     Object? users = null,
     Object? requests = null,
     Object? isNotifications = null,
+    Object? cuisines = null,
+    Object? generatorResponse = freezed,
   }) {
     return _then(_$AppState$Impl(
       user: freezed == user
@@ -333,6 +353,14 @@ class __$$AppState$ImplCopyWithImpl<$Res>
           ? _value.isNotifications
           : isNotifications // ignore: cast_nullable_to_non_nullable
               as bool,
+      cuisines: null == cuisines
+          ? _value._cuisines
+          : cuisines // ignore: cast_nullable_to_non_nullable
+              as Set<CuisineFilter>,
+      generatorResponse: freezed == generatorResponse
+          ? _value.generatorResponse
+          : generatorResponse // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -356,7 +384,9 @@ class _$AppState$Impl implements AppState$ {
       this.selectedCamera = null,
       final Set<AppUser> users = const <AppUser>{},
       final List<AddRequest> requests = const <AddRequest>[],
-      this.isNotifications = false})
+      this.isNotifications = false,
+      final Set<CuisineFilter> cuisines = const <CuisineFilter>{},
+      this.generatorResponse})
       : _supermarketProducts = supermarketProducts,
         _productsGroceryList = productsGroceryList,
         _relatedProducts = relatedProducts,
@@ -364,7 +394,8 @@ class _$AppState$Impl implements AppState$ {
         _pending = pending,
         _cameras = cameras,
         _users = users,
-        _requests = requests;
+        _requests = requests,
+        _cuisines = cuisines;
 
   factory _$AppState$Impl.fromJson(Map<String, dynamic> json) =>
       _$$AppState$ImplFromJson(json);
@@ -464,10 +495,25 @@ class _$AppState$Impl implements AppState$ {
   @override
   @JsonKey()
   final bool isNotifications;
+//GenerateContentResponse? response,
+//PromptData? promptData,
+  final Set<CuisineFilter> _cuisines;
+//GenerateContentResponse? response,
+//PromptData? promptData,
+  @override
+  @JsonKey()
+  Set<CuisineFilter> get cuisines {
+    if (_cuisines is EqualUnmodifiableSetView) return _cuisines;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(_cuisines);
+  }
+
+  @override
+  final String? generatorResponse;
 
   @override
   String toString() {
-    return 'AppState(user: $user, supermarketProducts: $supermarketProducts, productsGroceryList: $productsGroceryList, relatedProducts: $relatedProducts, groceryLists: $groceryLists, selectedGroceryList: $selectedGroceryList, selectedGroceryListName: $selectedGroceryListName, pending: $pending, pageNumber: $pageNumber, contentLoaded: $contentLoaded, cameras: $cameras, takenPicture: $takenPicture, selectedCamera: $selectedCamera, users: $users, requests: $requests, isNotifications: $isNotifications)';
+    return 'AppState(user: $user, supermarketProducts: $supermarketProducts, productsGroceryList: $productsGroceryList, relatedProducts: $relatedProducts, groceryLists: $groceryLists, selectedGroceryList: $selectedGroceryList, selectedGroceryListName: $selectedGroceryListName, pending: $pending, pageNumber: $pageNumber, contentLoaded: $contentLoaded, cameras: $cameras, takenPicture: $takenPicture, selectedCamera: $selectedCamera, users: $users, requests: $requests, isNotifications: $isNotifications, cuisines: $cuisines, generatorResponse: $generatorResponse)';
   }
 
   @override
@@ -502,7 +548,10 @@ class _$AppState$Impl implements AppState$ {
             const DeepCollectionEquality().equals(other._users, _users) &&
             const DeepCollectionEquality().equals(other._requests, _requests) &&
             (identical(other.isNotifications, isNotifications) ||
-                other.isNotifications == isNotifications));
+                other.isNotifications == isNotifications) &&
+            const DeepCollectionEquality().equals(other._cuisines, _cuisines) &&
+            (identical(other.generatorResponse, generatorResponse) ||
+                other.generatorResponse == generatorResponse));
   }
 
   @JsonKey(ignore: true)
@@ -524,7 +573,9 @@ class _$AppState$Impl implements AppState$ {
       selectedCamera,
       const DeepCollectionEquality().hash(_users),
       const DeepCollectionEquality().hash(_requests),
-      isNotifications);
+      isNotifications,
+      const DeepCollectionEquality().hash(_cuisines),
+      generatorResponse);
 
   @JsonKey(ignore: true)
   @override
@@ -557,7 +608,9 @@ abstract class AppState$ implements AppState {
       final CameraInfo? selectedCamera,
       final Set<AppUser> users,
       final List<AddRequest> requests,
-      final bool isNotifications}) = _$AppState$Impl;
+      final bool isNotifications,
+      final Set<CuisineFilter> cuisines,
+      final String? generatorResponse}) = _$AppState$Impl;
 
   factory AppState$.fromJson(Map<String, dynamic> json) =
       _$AppState$Impl.fromJson;
@@ -594,6 +647,11 @@ abstract class AppState$ implements AppState {
   List<AddRequest> get requests;
   @override
   bool get isNotifications;
+  @override //GenerateContentResponse? response,
+//PromptData? promptData,
+  Set<CuisineFilter> get cuisines;
+  @override
+  String? get generatorResponse;
   @override
   @JsonKey(ignore: true)
   _$$AppState$ImplCopyWith<_$AppState$Impl> get copyWith =>
@@ -2160,5 +2218,272 @@ abstract class AddRequest$ implements AddRequest {
   @override
   @JsonKey(ignore: true)
   _$$AddRequest$ImplCopyWith<_$AddRequest$Impl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+PromptData _$PromptDataFromJson(Map<String, dynamic> json) {
+  return PromptData$.fromJson(json);
+}
+
+/// @nodoc
+mixin _$PromptData {
+  String get textInput => throw _privateConstructorUsedError;
+  Set<BasicIngredientsFilter> get basicIngredients =>
+      throw _privateConstructorUsedError;
+  Set<CuisineFilter> get cuisines => throw _privateConstructorUsedError;
+  Set<DietaryRestrictionsFilter> get dietaryRestrictions =>
+      throw _privateConstructorUsedError;
+  List<String> get additionalTextInput => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $PromptDataCopyWith<PromptData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PromptDataCopyWith<$Res> {
+  factory $PromptDataCopyWith(
+          PromptData value, $Res Function(PromptData) then) =
+      _$PromptDataCopyWithImpl<$Res, PromptData>;
+  @useResult
+  $Res call(
+      {String textInput,
+      Set<BasicIngredientsFilter> basicIngredients,
+      Set<CuisineFilter> cuisines,
+      Set<DietaryRestrictionsFilter> dietaryRestrictions,
+      List<String> additionalTextInput});
+}
+
+/// @nodoc
+class _$PromptDataCopyWithImpl<$Res, $Val extends PromptData>
+    implements $PromptDataCopyWith<$Res> {
+  _$PromptDataCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? textInput = null,
+    Object? basicIngredients = null,
+    Object? cuisines = null,
+    Object? dietaryRestrictions = null,
+    Object? additionalTextInput = null,
+  }) {
+    return _then(_value.copyWith(
+      textInput: null == textInput
+          ? _value.textInput
+          : textInput // ignore: cast_nullable_to_non_nullable
+              as String,
+      basicIngredients: null == basicIngredients
+          ? _value.basicIngredients
+          : basicIngredients // ignore: cast_nullable_to_non_nullable
+              as Set<BasicIngredientsFilter>,
+      cuisines: null == cuisines
+          ? _value.cuisines
+          : cuisines // ignore: cast_nullable_to_non_nullable
+              as Set<CuisineFilter>,
+      dietaryRestrictions: null == dietaryRestrictions
+          ? _value.dietaryRestrictions
+          : dietaryRestrictions // ignore: cast_nullable_to_non_nullable
+              as Set<DietaryRestrictionsFilter>,
+      additionalTextInput: null == additionalTextInput
+          ? _value.additionalTextInput
+          : additionalTextInput // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$PromptData$ImplCopyWith<$Res>
+    implements $PromptDataCopyWith<$Res> {
+  factory _$$PromptData$ImplCopyWith(
+          _$PromptData$Impl value, $Res Function(_$PromptData$Impl) then) =
+      __$$PromptData$ImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String textInput,
+      Set<BasicIngredientsFilter> basicIngredients,
+      Set<CuisineFilter> cuisines,
+      Set<DietaryRestrictionsFilter> dietaryRestrictions,
+      List<String> additionalTextInput});
+}
+
+/// @nodoc
+class __$$PromptData$ImplCopyWithImpl<$Res>
+    extends _$PromptDataCopyWithImpl<$Res, _$PromptData$Impl>
+    implements _$$PromptData$ImplCopyWith<$Res> {
+  __$$PromptData$ImplCopyWithImpl(
+      _$PromptData$Impl _value, $Res Function(_$PromptData$Impl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? textInput = null,
+    Object? basicIngredients = null,
+    Object? cuisines = null,
+    Object? dietaryRestrictions = null,
+    Object? additionalTextInput = null,
+  }) {
+    return _then(_$PromptData$Impl(
+      textInput: null == textInput
+          ? _value.textInput
+          : textInput // ignore: cast_nullable_to_non_nullable
+              as String,
+      basicIngredients: null == basicIngredients
+          ? _value._basicIngredients
+          : basicIngredients // ignore: cast_nullable_to_non_nullable
+              as Set<BasicIngredientsFilter>,
+      cuisines: null == cuisines
+          ? _value._cuisines
+          : cuisines // ignore: cast_nullable_to_non_nullable
+              as Set<CuisineFilter>,
+      dietaryRestrictions: null == dietaryRestrictions
+          ? _value._dietaryRestrictions
+          : dietaryRestrictions // ignore: cast_nullable_to_non_nullable
+              as Set<DietaryRestrictionsFilter>,
+      additionalTextInput: null == additionalTextInput
+          ? _value._additionalTextInput
+          : additionalTextInput // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$PromptData$Impl implements PromptData$ {
+  const _$PromptData$Impl(
+      {required this.textInput,
+      final Set<BasicIngredientsFilter> basicIngredients =
+          const <BasicIngredientsFilter>{},
+      final Set<CuisineFilter> cuisines = const <CuisineFilter>{},
+      final Set<DietaryRestrictionsFilter> dietaryRestrictions =
+          const <DietaryRestrictionsFilter>{},
+      final List<String> additionalTextInput = const <String>[]})
+      : _basicIngredients = basicIngredients,
+        _cuisines = cuisines,
+        _dietaryRestrictions = dietaryRestrictions,
+        _additionalTextInput = additionalTextInput;
+
+  factory _$PromptData$Impl.fromJson(Map<String, dynamic> json) =>
+      _$$PromptData$ImplFromJson(json);
+
+  @override
+  final String textInput;
+  final Set<BasicIngredientsFilter> _basicIngredients;
+  @override
+  @JsonKey()
+  Set<BasicIngredientsFilter> get basicIngredients {
+    if (_basicIngredients is EqualUnmodifiableSetView) return _basicIngredients;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(_basicIngredients);
+  }
+
+  final Set<CuisineFilter> _cuisines;
+  @override
+  @JsonKey()
+  Set<CuisineFilter> get cuisines {
+    if (_cuisines is EqualUnmodifiableSetView) return _cuisines;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(_cuisines);
+  }
+
+  final Set<DietaryRestrictionsFilter> _dietaryRestrictions;
+  @override
+  @JsonKey()
+  Set<DietaryRestrictionsFilter> get dietaryRestrictions {
+    if (_dietaryRestrictions is EqualUnmodifiableSetView)
+      return _dietaryRestrictions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(_dietaryRestrictions);
+  }
+
+  final List<String> _additionalTextInput;
+  @override
+  @JsonKey()
+  List<String> get additionalTextInput {
+    if (_additionalTextInput is EqualUnmodifiableListView)
+      return _additionalTextInput;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_additionalTextInput);
+  }
+
+  @override
+  String toString() {
+    return 'PromptData(textInput: $textInput, basicIngredients: $basicIngredients, cuisines: $cuisines, dietaryRestrictions: $dietaryRestrictions, additionalTextInput: $additionalTextInput)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PromptData$Impl &&
+            (identical(other.textInput, textInput) ||
+                other.textInput == textInput) &&
+            const DeepCollectionEquality()
+                .equals(other._basicIngredients, _basicIngredients) &&
+            const DeepCollectionEquality().equals(other._cuisines, _cuisines) &&
+            const DeepCollectionEquality()
+                .equals(other._dietaryRestrictions, _dietaryRestrictions) &&
+            const DeepCollectionEquality()
+                .equals(other._additionalTextInput, _additionalTextInput));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      textInput,
+      const DeepCollectionEquality().hash(_basicIngredients),
+      const DeepCollectionEquality().hash(_cuisines),
+      const DeepCollectionEquality().hash(_dietaryRestrictions),
+      const DeepCollectionEquality().hash(_additionalTextInput));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PromptData$ImplCopyWith<_$PromptData$Impl> get copyWith =>
+      __$$PromptData$ImplCopyWithImpl<_$PromptData$Impl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$PromptData$ImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class PromptData$ implements PromptData {
+  const factory PromptData$(
+      {required final String textInput,
+      final Set<BasicIngredientsFilter> basicIngredients,
+      final Set<CuisineFilter> cuisines,
+      final Set<DietaryRestrictionsFilter> dietaryRestrictions,
+      final List<String> additionalTextInput}) = _$PromptData$Impl;
+
+  factory PromptData$.fromJson(Map<String, dynamic> json) =
+      _$PromptData$Impl.fromJson;
+
+  @override
+  String get textInput;
+  @override
+  Set<BasicIngredientsFilter> get basicIngredients;
+  @override
+  Set<CuisineFilter> get cuisines;
+  @override
+  Set<DietaryRestrictionsFilter> get dietaryRestrictions;
+  @override
+  List<String> get additionalTextInput;
+  @override
+  @JsonKey(ignore: true)
+  _$$PromptData$ImplCopyWith<_$PromptData$Impl> get copyWith =>
       throw _privateConstructorUsedError;
 }

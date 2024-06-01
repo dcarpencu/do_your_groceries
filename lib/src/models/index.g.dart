@@ -54,6 +54,11 @@ _$AppState$Impl _$$AppState$ImplFromJson(Map<String, dynamic> json) =>
               .toList() ??
           const <AddRequest>[],
       isNotifications: json['isNotifications'] as bool? ?? false,
+      cuisines: (json['cuisines'] as List<dynamic>?)
+              ?.map((e) => $enumDecode(_$CuisineFilterEnumMap, e))
+              .toSet() ??
+          const <CuisineFilter>{},
+      generatorResponse: json['generatorResponse'] as String?,
     );
 
 Map<String, dynamic> _$$AppState$ImplToJson(_$AppState$Impl instance) =>
@@ -74,7 +79,24 @@ Map<String, dynamic> _$$AppState$ImplToJson(_$AppState$Impl instance) =>
       'users': instance.users.toList(),
       'requests': instance.requests,
       'isNotifications': instance.isNotifications,
+      'cuisines':
+          instance.cuisines.map((e) => _$CuisineFilterEnumMap[e]!).toList(),
+      'generatorResponse': instance.generatorResponse,
     };
+
+const _$CuisineFilterEnumMap = {
+  CuisineFilter.italian: 'italian',
+  CuisineFilter.mexican: 'mexican',
+  CuisineFilter.american: 'american',
+  CuisineFilter.french: 'french',
+  CuisineFilter.japanese: 'japanese',
+  CuisineFilter.chinese: 'chinese',
+  CuisineFilter.indian: 'indian',
+  CuisineFilter.greek: 'greek',
+  CuisineFilter.moroccan: 'moroccan',
+  CuisineFilter.ethiopian: 'ethiopian',
+  CuisineFilter.southAfrican: 'southAfrican',
+};
 
 _$AppUser$Impl _$$AppUser$ImplFromJson(Map<String, dynamic> json) =>
     _$AppUser$Impl(
@@ -216,3 +238,60 @@ Map<String, dynamic> _$$AddRequest$ImplToJson(_$AddRequest$Impl instance) =>
       'groceryListId': instance.groceryListId,
       'listName': instance.listName,
     };
+
+_$PromptData$Impl _$$PromptData$ImplFromJson(Map<String, dynamic> json) =>
+    _$PromptData$Impl(
+      textInput: json['textInput'] as String,
+      basicIngredients: (json['basicIngredients'] as List<dynamic>?)
+              ?.map((e) => $enumDecode(_$BasicIngredientsFilterEnumMap, e))
+              .toSet() ??
+          const <BasicIngredientsFilter>{},
+      cuisines: (json['cuisines'] as List<dynamic>?)
+              ?.map((e) => $enumDecode(_$CuisineFilterEnumMap, e))
+              .toSet() ??
+          const <CuisineFilter>{},
+      dietaryRestrictions: (json['dietaryRestrictions'] as List<dynamic>?)
+              ?.map((e) => $enumDecode(_$DietaryRestrictionsFilterEnumMap, e))
+              .toSet() ??
+          const <DietaryRestrictionsFilter>{},
+      additionalTextInput: (json['additionalTextInput'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const <String>[],
+    );
+
+Map<String, dynamic> _$$PromptData$ImplToJson(_$PromptData$Impl instance) =>
+    <String, dynamic>{
+      'textInput': instance.textInput,
+      'basicIngredients': instance.basicIngredients
+          .map((e) => _$BasicIngredientsFilterEnumMap[e]!)
+          .toList(),
+      'cuisines':
+          instance.cuisines.map((e) => _$CuisineFilterEnumMap[e]!).toList(),
+      'dietaryRestrictions': instance.dietaryRestrictions
+          .map((e) => _$DietaryRestrictionsFilterEnumMap[e]!)
+          .toList(),
+      'additionalTextInput': instance.additionalTextInput,
+    };
+
+const _$BasicIngredientsFilterEnumMap = {
+  BasicIngredientsFilter.oil: 'oil',
+  BasicIngredientsFilter.butter: 'butter',
+  BasicIngredientsFilter.flour: 'flour',
+  BasicIngredientsFilter.salt: 'salt',
+  BasicIngredientsFilter.pepper: 'pepper',
+  BasicIngredientsFilter.sugar: 'sugar',
+  BasicIngredientsFilter.milk: 'milk',
+  BasicIngredientsFilter.vinegar: 'vinegar',
+};
+
+const _$DietaryRestrictionsFilterEnumMap = {
+  DietaryRestrictionsFilter.vegan: 'vegan',
+  DietaryRestrictionsFilter.vegetarian: 'vegetarian',
+  DietaryRestrictionsFilter.lactoseIntolerant: 'lactoseIntolerant',
+  DietaryRestrictionsFilter.kosher: 'kosher',
+  DietaryRestrictionsFilter.wheatAllergies: 'wheatAllergies',
+  DietaryRestrictionsFilter.nutAllergies: 'nutAllergies',
+  DietaryRestrictionsFilter.fishAllergies: 'fishAllergies',
+  DietaryRestrictionsFilter.soyAllergies: 'soyAllergies',
+};

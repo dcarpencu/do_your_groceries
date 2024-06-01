@@ -19,6 +19,10 @@ class AppState with _$AppState {
     @Default(<AppUser>{}) Set<AppUser> users,
     @Default(<AddRequest>[]) List<AddRequest> requests,
     @Default(false) bool isNotifications,
+    //GenerateContentResponse? response,
+    //PromptData? promptData,
+    @Default(<CuisineFilter>{}) Set<CuisineFilter> cuisines,
+    String? generatorResponse,
   }) = AppState$;
 
   factory AppState.fromJson(Map<dynamic, dynamic> json) => _$AppStateFromJson(Map<String, dynamic>.from(json));

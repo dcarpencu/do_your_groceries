@@ -7,6 +7,8 @@ import 'package:do_you_groceries/src/presentation/login/login_page.dart';
 import 'package:do_you_groceries/src/presentation/login/sign_up_page.dart';
 import 'package:do_you_groceries/src/presentation/products/create_list_page.dart';
 import 'package:do_you_groceries/src/presentation/products/create_product_page.dart';
+import 'package:do_you_groceries/src/presentation/products/create_recipes_page.dart';
+import 'package:do_you_groceries/src/presentation/products/recipes_test.dart';
 import 'package:do_you_groceries/src/presentation/products/user_products_page.dart';
 import 'package:do_you_groceries/src/presentation/supermarkets/markets_page.dart';
 import 'package:do_you_groceries/src/presentation/supermarkets/search_page.dart';
@@ -125,6 +127,12 @@ class RouterApp {
           path: '/notificationsPage',
           builder: (BuildContext context, GoRouterState state) => const NotificationsPage(),
         ),
+        GoRoute(
+          name: 'createRecipes',
+          path: '/createRecipesPage',
+          builder: (BuildContext context, GoRouterState state) => const  CreateRecipesPage(),
+        ),
+
       ],
 
     );

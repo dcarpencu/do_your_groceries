@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:do_you_groceries/src/actions/index.dart';
+import 'package:do_you_groceries/src/data/ai_generated_api.dart';
 import 'package:do_you_groceries/src/data/auth_api.dart';
 import 'package:do_you_groceries/src/data/camera_api.dart';
 import 'package:do_you_groceries/src/data/products_api.dart';
@@ -28,8 +29,10 @@ Future<void> main() async {
 
   final CameraApi cameraApi = CameraApi();
 
+  final AiGeneratedApi aiGeneratedApi = AiGeneratedApi();
+
   final AuthApi authApi = AuthApi(auth, firestore);
-  final AppEpic epic = AppEpic(authApi, superMarketsApi, productApi, cameraApi);
+  final AppEpic epic = AppEpic(authApi, superMarketsApi, productApi, cameraApi, aiGeneratedApi);
 
   final Store<AppState> store = Store<AppState>(
     reducer,

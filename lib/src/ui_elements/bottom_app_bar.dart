@@ -37,14 +37,16 @@ class BottomAppBarWidget extends StatelessWidget {
                   },
                 ),
                 IconButton(
+                  tooltip: 'Generate',
+                  icon: const Icon(Icons.generating_tokens),
+                  onPressed: () {
+                    context.pushNamed('createRecipes');
+                  },
+                ),
+                IconButton(
                   tooltip: 'Favorite',
                   icon: const Icon(Icons.create),
                   onPressed: () {
-                    // Navigator.of(context).push(
-                    //   MaterialPageRoute<Widget>(builder: (BuildContext context) => const CreateProductPage()),
-                    // );
-                    // Navigator.of(context).push(_createRoute());
-
                     context.pushNamed('createProduct');
                   },
                 ),

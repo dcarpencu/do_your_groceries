@@ -1,4 +1,5 @@
 import 'package:do_you_groceries/src/actions/index.dart';
+import 'package:do_you_groceries/src/models/filter_chip_enums.dart';
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:flutter/foundation.dart';
 import 'package:redux/redux.dart';
@@ -46,6 +47,7 @@ Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   TypedReducer<AppState, GetCamerasSuccessful>(_getCamerasSuccessful).call,
   TypedReducer<AppState, TakePictureSuccessful>(_takePictureSuccessful).call,
   TypedReducer<AppState, GetProductsSuccessful>(_getProductsSuccessful).call,
+  TypedReducer<AppState, GenerateRecipeResponseSuccessful>(_generateRecipeResponseSuccessful).call,
   TypedReducer<AppState, GetProductsForCameraSuccessful>(_getProductsForCameraSuccessful).call,
   TypedReducer<AppState, RemoveProductSimple>(_removeProductSimple).call,
   TypedReducer<AppState, RemoveGroceryListSimple>(_removeGroceryListSimple).call,
@@ -55,6 +57,8 @@ Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   TypedReducer<AppState, UpdateGroceryListsStart>(_updateGroceryListsStart).call,
   TypedReducer<AppState, UpdateGroceryListsError>(_updateGroceryListsError).call,
   TypedReducer<AppState, AcceptRequestSuccessful>(_acceptRequestSuccessful).call,
+  //TypedReducer<AppState, SetPromptData>(_setPromptData).call,
+  //TypedReducer<AppState, AddPromptDataCuisine>(_addPromptDataCuisine).call,
 ]);
 
 AppState _setMarketProductsToEmpty(AppState state, SetMarketProductsToEmpty action) {
@@ -98,7 +102,8 @@ AppState _getGroceryListsError(AppState state, GetGroceryListsError action) {
 }
 
 AppState _setSelectedList(AppState state, SetSelectedList action) {
-  return state.copyWith(selectedGroceryList: action.selectedGroceryList, selectedGroceryListName: action.selectedGroceryListName);
+  return state.copyWith(
+      selectedGroceryList: action.selectedGroceryList, selectedGroceryListName: action.selectedGroceryListName);
 }
 
 AppState _setUnselectedList(AppState state, SetUnselectedList action) {
@@ -196,4 +201,19 @@ AppState _updateGroceryListsStart(AppState state, UpdateGroceryListsStart action
 
 AppState _acceptRequestSuccessful(AppState state, AcceptRequestSuccessful action) {
   return state.copyWith(requests: <AddRequest>[...state.requests]..remove(action.requestToRemove));
+}
+
+// AppState _setPromptData(AppState state, SetPromptData action) {
+//   return state.copyWith(promptData: action.promptData);
+// }
+
+// AppState _addPromptDataCuisine(AppState state, AddPromptDataCuisine action) {
+//   final Set<CuisineFilter> updatedCuisines = state.cuisines.toSet()..add(action.cuisine);
+//
+//   return state.copyWith(cuisines: updatedCuisines);
+// }
+
+
+AppState _generateRecipeResponseSuccessful(AppState state, GenerateRecipeResponseSuccessful action) {
+  return state.copyWith(generatorResponse: action.response!);
 }
