@@ -5,7 +5,7 @@ const String _kGenerateRecipeResponsePendingId = 'GenerateRecipeResponse';
 @freezed
 class GenerateRecipeResponse with _$GenerateRecipeResponse implements AppAction {
   @Implements<ActionStart>()
-  const factory GenerateRecipeResponse.start(GenerativeModel model, {
+  const factory GenerateRecipeResponse.start(GenerativeModel model, String prompt, {
     @Default(_kGenerateRecipeResponsePendingId) String pendingId,
   }) = GenerateRecipeResponseStart;
 

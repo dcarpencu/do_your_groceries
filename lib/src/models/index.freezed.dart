@@ -40,6 +40,9 @@ mixin _$AppState {
 //PromptData? promptData,
   Set<CuisineFilter> get cuisines => throw _privateConstructorUsedError;
   String? get generatorResponse => throw _privateConstructorUsedError;
+  String? get cuisineText => throw _privateConstructorUsedError;
+  String? get basicIngredientsText => throw _privateConstructorUsedError;
+  String? get dietaryRestrictionsText => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -70,7 +73,10 @@ abstract class $AppStateCopyWith<$Res> {
       List<AddRequest> requests,
       bool isNotifications,
       Set<CuisineFilter> cuisines,
-      String? generatorResponse});
+      String? generatorResponse,
+      String? cuisineText,
+      String? basicIngredientsText,
+      String? dietaryRestrictionsText});
 
   $AppUserCopyWith<$Res>? get user;
   $TakenPictureCopyWith<$Res>? get takenPicture;
@@ -108,6 +114,9 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
     Object? isNotifications = null,
     Object? cuisines = null,
     Object? generatorResponse = freezed,
+    Object? cuisineText = freezed,
+    Object? basicIngredientsText = freezed,
+    Object? dietaryRestrictionsText = freezed,
   }) {
     return _then(_value.copyWith(
       user: freezed == user
@@ -182,6 +191,18 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.generatorResponse
           : generatorResponse // ignore: cast_nullable_to_non_nullable
               as String?,
+      cuisineText: freezed == cuisineText
+          ? _value.cuisineText
+          : cuisineText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      basicIngredientsText: freezed == basicIngredientsText
+          ? _value.basicIngredientsText
+          : basicIngredientsText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dietaryRestrictionsText: freezed == dietaryRestrictionsText
+          ? _value.dietaryRestrictionsText
+          : dietaryRestrictionsText // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -248,7 +269,10 @@ abstract class _$$AppState$ImplCopyWith<$Res>
       List<AddRequest> requests,
       bool isNotifications,
       Set<CuisineFilter> cuisines,
-      String? generatorResponse});
+      String? generatorResponse,
+      String? cuisineText,
+      String? basicIngredientsText,
+      String? dietaryRestrictionsText});
 
   @override
   $AppUserCopyWith<$Res>? get user;
@@ -287,6 +311,9 @@ class __$$AppState$ImplCopyWithImpl<$Res>
     Object? isNotifications = null,
     Object? cuisines = null,
     Object? generatorResponse = freezed,
+    Object? cuisineText = freezed,
+    Object? basicIngredientsText = freezed,
+    Object? dietaryRestrictionsText = freezed,
   }) {
     return _then(_$AppState$Impl(
       user: freezed == user
@@ -361,6 +388,18 @@ class __$$AppState$ImplCopyWithImpl<$Res>
           ? _value.generatorResponse
           : generatorResponse // ignore: cast_nullable_to_non_nullable
               as String?,
+      cuisineText: freezed == cuisineText
+          ? _value.cuisineText
+          : cuisineText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      basicIngredientsText: freezed == basicIngredientsText
+          ? _value.basicIngredientsText
+          : basicIngredientsText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dietaryRestrictionsText: freezed == dietaryRestrictionsText
+          ? _value.dietaryRestrictionsText
+          : dietaryRestrictionsText // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -386,7 +425,10 @@ class _$AppState$Impl implements AppState$ {
       final List<AddRequest> requests = const <AddRequest>[],
       this.isNotifications = false,
       final Set<CuisineFilter> cuisines = const <CuisineFilter>{},
-      this.generatorResponse})
+      this.generatorResponse,
+      this.cuisineText,
+      this.basicIngredientsText,
+      this.dietaryRestrictionsText})
       : _supermarketProducts = supermarketProducts,
         _productsGroceryList = productsGroceryList,
         _relatedProducts = relatedProducts,
@@ -510,10 +552,16 @@ class _$AppState$Impl implements AppState$ {
 
   @override
   final String? generatorResponse;
+  @override
+  final String? cuisineText;
+  @override
+  final String? basicIngredientsText;
+  @override
+  final String? dietaryRestrictionsText;
 
   @override
   String toString() {
-    return 'AppState(user: $user, supermarketProducts: $supermarketProducts, productsGroceryList: $productsGroceryList, relatedProducts: $relatedProducts, groceryLists: $groceryLists, selectedGroceryList: $selectedGroceryList, selectedGroceryListName: $selectedGroceryListName, pending: $pending, pageNumber: $pageNumber, contentLoaded: $contentLoaded, cameras: $cameras, takenPicture: $takenPicture, selectedCamera: $selectedCamera, users: $users, requests: $requests, isNotifications: $isNotifications, cuisines: $cuisines, generatorResponse: $generatorResponse)';
+    return 'AppState(user: $user, supermarketProducts: $supermarketProducts, productsGroceryList: $productsGroceryList, relatedProducts: $relatedProducts, groceryLists: $groceryLists, selectedGroceryList: $selectedGroceryList, selectedGroceryListName: $selectedGroceryListName, pending: $pending, pageNumber: $pageNumber, contentLoaded: $contentLoaded, cameras: $cameras, takenPicture: $takenPicture, selectedCamera: $selectedCamera, users: $users, requests: $requests, isNotifications: $isNotifications, cuisines: $cuisines, generatorResponse: $generatorResponse, cuisineText: $cuisineText, basicIngredientsText: $basicIngredientsText, dietaryRestrictionsText: $dietaryRestrictionsText)';
   }
 
   @override
@@ -551,31 +599,42 @@ class _$AppState$Impl implements AppState$ {
                 other.isNotifications == isNotifications) &&
             const DeepCollectionEquality().equals(other._cuisines, _cuisines) &&
             (identical(other.generatorResponse, generatorResponse) ||
-                other.generatorResponse == generatorResponse));
+                other.generatorResponse == generatorResponse) &&
+            (identical(other.cuisineText, cuisineText) ||
+                other.cuisineText == cuisineText) &&
+            (identical(other.basicIngredientsText, basicIngredientsText) ||
+                other.basicIngredientsText == basicIngredientsText) &&
+            (identical(
+                    other.dietaryRestrictionsText, dietaryRestrictionsText) ||
+                other.dietaryRestrictionsText == dietaryRestrictionsText));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      user,
-      const DeepCollectionEquality().hash(_supermarketProducts),
-      const DeepCollectionEquality().hash(_productsGroceryList),
-      const DeepCollectionEquality().hash(_relatedProducts),
-      const DeepCollectionEquality().hash(_groceryLists),
-      selectedGroceryList,
-      selectedGroceryListName,
-      const DeepCollectionEquality().hash(_pending),
-      pageNumber,
-      contentLoaded,
-      const DeepCollectionEquality().hash(_cameras),
-      takenPicture,
-      selectedCamera,
-      const DeepCollectionEquality().hash(_users),
-      const DeepCollectionEquality().hash(_requests),
-      isNotifications,
-      const DeepCollectionEquality().hash(_cuisines),
-      generatorResponse);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        user,
+        const DeepCollectionEquality().hash(_supermarketProducts),
+        const DeepCollectionEquality().hash(_productsGroceryList),
+        const DeepCollectionEquality().hash(_relatedProducts),
+        const DeepCollectionEquality().hash(_groceryLists),
+        selectedGroceryList,
+        selectedGroceryListName,
+        const DeepCollectionEquality().hash(_pending),
+        pageNumber,
+        contentLoaded,
+        const DeepCollectionEquality().hash(_cameras),
+        takenPicture,
+        selectedCamera,
+        const DeepCollectionEquality().hash(_users),
+        const DeepCollectionEquality().hash(_requests),
+        isNotifications,
+        const DeepCollectionEquality().hash(_cuisines),
+        generatorResponse,
+        cuisineText,
+        basicIngredientsText,
+        dietaryRestrictionsText
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -610,7 +669,10 @@ abstract class AppState$ implements AppState {
       final List<AddRequest> requests,
       final bool isNotifications,
       final Set<CuisineFilter> cuisines,
-      final String? generatorResponse}) = _$AppState$Impl;
+      final String? generatorResponse,
+      final String? cuisineText,
+      final String? basicIngredientsText,
+      final String? dietaryRestrictionsText}) = _$AppState$Impl;
 
   factory AppState$.fromJson(Map<String, dynamic> json) =
       _$AppState$Impl.fromJson;
@@ -652,6 +714,12 @@ abstract class AppState$ implements AppState {
   Set<CuisineFilter> get cuisines;
   @override
   String? get generatorResponse;
+  @override
+  String? get cuisineText;
+  @override
+  String? get basicIngredientsText;
+  @override
+  String? get dietaryRestrictionsText;
   @override
   @JsonKey(ignore: true)
   _$$AppState$ImplCopyWith<_$AppState$Impl> get copyWith =>

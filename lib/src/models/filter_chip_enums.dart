@@ -27,7 +27,6 @@ enum DietaryRestrictionsFilter {
   vegan,
   vegetarian,
   lactoseIntolerant,
-  kosher,
   wheatAllergies,
   nutAllergies,
   fishAllergies,
@@ -38,27 +37,39 @@ String dietaryRestrictionReadable(DietaryRestrictionsFilter filter) {
   return switch (filter) {
     DietaryRestrictionsFilter.vegan => 'vegan',
     DietaryRestrictionsFilter.vegetarian => 'vegetarian',
-    DietaryRestrictionsFilter.lactoseIntolerant => 'dairy free',
-    DietaryRestrictionsFilter.kosher => 'kosher',
-    DietaryRestrictionsFilter.wheatAllergies => 'wheat allergy',
-    DietaryRestrictionsFilter.nutAllergies => 'nut allergy',
-    DietaryRestrictionsFilter.fishAllergies => 'fish allergy',
-    DietaryRestrictionsFilter.soyAllergies => 'soy allergy',
+    DietaryRestrictionsFilter.lactoseIntolerant => 'intolerant la lactoza',
+    DietaryRestrictionsFilter.wheatAllergies => 'fara gluten',
+    DietaryRestrictionsFilter.nutAllergies => 'alergie la nuci',
+    DietaryRestrictionsFilter.fishAllergies => 'alergie la peste',
+    DietaryRestrictionsFilter.soyAllergies => 'alergie la soia',
   };
 }
 
 String cuisineReadable(CuisineFilter filter) {
   return switch (filter) {
-    CuisineFilter.italian => 'Italian',
-    CuisineFilter.mexican => 'Mexican',
-    CuisineFilter.american => 'American',
-    CuisineFilter.french => 'French',
-    CuisineFilter.japanese => 'Japanese',
-    CuisineFilter.chinese => 'Chinese',
-    CuisineFilter.indian => 'Indian',
-    CuisineFilter.ethiopian => 'Ethiopian',
-    CuisineFilter.moroccan => 'Moroccan',
-    CuisineFilter.greek => 'Greek',
-    CuisineFilter.southAfrican => 'South African',
+    CuisineFilter.italian => 'italiana',
+    CuisineFilter.mexican => 'mexicana',
+    CuisineFilter.american => 'americana',
+    CuisineFilter.french => 'francez',
+    CuisineFilter.japanese => 'japoneza',
+    CuisineFilter.chinese => 'chineza',
+    CuisineFilter.indian => 'indiana',
+    CuisineFilter.ethiopian => 'ethiopiana',
+    CuisineFilter.moroccan => 'moroccana',
+    CuisineFilter.greek => 'greaca',
+    CuisineFilter.southAfrican => 'africana',
+  };
+}
+
+String basicIngredientsReadable(BasicIngredientsFilter filter) {
+  return switch (filter) {
+  BasicIngredientsFilter.oil => 'ulei',
+  BasicIngredientsFilter.butter => 'unt',
+  BasicIngredientsFilter.flour => 'faina',
+  BasicIngredientsFilter.salt => 'sare',
+  BasicIngredientsFilter.pepper => 'piper',
+  BasicIngredientsFilter.sugar => 'zahar',
+  BasicIngredientsFilter.milk => 'lapte',
+  BasicIngredientsFilter.vinegar => 'otet',
   };
 }

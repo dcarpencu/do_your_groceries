@@ -49,3 +49,19 @@ class SetPromptData with _$SetPromptData implements AppAction {
 class AddPromptDataCuisine with _$AddPromptDataCuisine implements AppAction {
   const factory AddPromptDataCuisine({required CuisineFilter cuisine}) = AddPromptDataCuisine$;
 }
+
+@freezed
+class SetCuisineFilterSelection with _$SetCuisineFilterSelection implements AppAction {
+  const factory SetCuisineFilterSelection({required String selectedItems}) = SetCuisineFilterSelection$;
+}
+
+@freezed
+class SetBasicIngredientsFilterSelection with _$SetBasicIngredientsFilterSelection implements AppAction {
+  const factory SetBasicIngredientsFilterSelection({required String selectedItems}) = SetBasicIngredientsFilterSelection$;
+}
+
+@freezed
+class SetDietaryRestrictionsFilterSelection with _$SetDietaryRestrictionsFilterSelection implements AppAction {
+  const factory SetDietaryRestrictionsFilterSelection({required String selectedItems}) = SetDietaryRestrictionsFilterSelection$;
+}
+

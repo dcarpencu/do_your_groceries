@@ -23,6 +23,9 @@ class AppState with _$AppState {
     //PromptData? promptData,
     @Default(<CuisineFilter>{}) Set<CuisineFilter> cuisines,
     String? generatorResponse,
+    String? cuisineText,
+    String? basicIngredientsText,
+    String? dietaryRestrictionsText,
   }) = AppState$;
 
   factory AppState.fromJson(Map<dynamic, dynamic> json) => _$AppStateFromJson(Map<String, dynamic>.from(json));

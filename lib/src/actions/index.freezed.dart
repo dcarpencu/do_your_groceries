@@ -5826,6 +5826,397 @@ abstract class AddPromptDataCuisine$ implements AddPromptDataCuisine {
 }
 
 /// @nodoc
+mixin _$SetCuisineFilterSelection {
+  String get selectedItems => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $SetCuisineFilterSelectionCopyWith<SetCuisineFilterSelection> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SetCuisineFilterSelectionCopyWith<$Res> {
+  factory $SetCuisineFilterSelectionCopyWith(SetCuisineFilterSelection value,
+          $Res Function(SetCuisineFilterSelection) then) =
+      _$SetCuisineFilterSelectionCopyWithImpl<$Res, SetCuisineFilterSelection>;
+  @useResult
+  $Res call({String selectedItems});
+}
+
+/// @nodoc
+class _$SetCuisineFilterSelectionCopyWithImpl<$Res,
+        $Val extends SetCuisineFilterSelection>
+    implements $SetCuisineFilterSelectionCopyWith<$Res> {
+  _$SetCuisineFilterSelectionCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? selectedItems = null,
+  }) {
+    return _then(_value.copyWith(
+      selectedItems: null == selectedItems
+          ? _value.selectedItems
+          : selectedItems // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$SetCuisineFilterSelection$ImplCopyWith<$Res>
+    implements $SetCuisineFilterSelectionCopyWith<$Res> {
+  factory _$$SetCuisineFilterSelection$ImplCopyWith(
+          _$SetCuisineFilterSelection$Impl value,
+          $Res Function(_$SetCuisineFilterSelection$Impl) then) =
+      __$$SetCuisineFilterSelection$ImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String selectedItems});
+}
+
+/// @nodoc
+class __$$SetCuisineFilterSelection$ImplCopyWithImpl<$Res>
+    extends _$SetCuisineFilterSelectionCopyWithImpl<$Res,
+        _$SetCuisineFilterSelection$Impl>
+    implements _$$SetCuisineFilterSelection$ImplCopyWith<$Res> {
+  __$$SetCuisineFilterSelection$ImplCopyWithImpl(
+      _$SetCuisineFilterSelection$Impl _value,
+      $Res Function(_$SetCuisineFilterSelection$Impl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? selectedItems = null,
+  }) {
+    return _then(_$SetCuisineFilterSelection$Impl(
+      selectedItems: null == selectedItems
+          ? _value.selectedItems
+          : selectedItems // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SetCuisineFilterSelection$Impl implements SetCuisineFilterSelection$ {
+  const _$SetCuisineFilterSelection$Impl({required this.selectedItems});
+
+  @override
+  final String selectedItems;
+
+  @override
+  String toString() {
+    return 'SetCuisineFilterSelection(selectedItems: $selectedItems)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetCuisineFilterSelection$Impl &&
+            (identical(other.selectedItems, selectedItems) ||
+                other.selectedItems == selectedItems));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, selectedItems);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SetCuisineFilterSelection$ImplCopyWith<_$SetCuisineFilterSelection$Impl>
+      get copyWith => __$$SetCuisineFilterSelection$ImplCopyWithImpl<
+          _$SetCuisineFilterSelection$Impl>(this, _$identity);
+}
+
+abstract class SetCuisineFilterSelection$ implements SetCuisineFilterSelection {
+  const factory SetCuisineFilterSelection$(
+      {required final String selectedItems}) = _$SetCuisineFilterSelection$Impl;
+
+  @override
+  String get selectedItems;
+  @override
+  @JsonKey(ignore: true)
+  _$$SetCuisineFilterSelection$ImplCopyWith<_$SetCuisineFilterSelection$Impl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$SetBasicIngredientsFilterSelection {
+  String get selectedItems => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $SetBasicIngredientsFilterSelectionCopyWith<
+          SetBasicIngredientsFilterSelection>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SetBasicIngredientsFilterSelectionCopyWith<$Res> {
+  factory $SetBasicIngredientsFilterSelectionCopyWith(
+          SetBasicIngredientsFilterSelection value,
+          $Res Function(SetBasicIngredientsFilterSelection) then) =
+      _$SetBasicIngredientsFilterSelectionCopyWithImpl<$Res,
+          SetBasicIngredientsFilterSelection>;
+  @useResult
+  $Res call({String selectedItems});
+}
+
+/// @nodoc
+class _$SetBasicIngredientsFilterSelectionCopyWithImpl<$Res,
+        $Val extends SetBasicIngredientsFilterSelection>
+    implements $SetBasicIngredientsFilterSelectionCopyWith<$Res> {
+  _$SetBasicIngredientsFilterSelectionCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? selectedItems = null,
+  }) {
+    return _then(_value.copyWith(
+      selectedItems: null == selectedItems
+          ? _value.selectedItems
+          : selectedItems // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$SetBasicIngredientsFilterSelection$ImplCopyWith<$Res>
+    implements $SetBasicIngredientsFilterSelectionCopyWith<$Res> {
+  factory _$$SetBasicIngredientsFilterSelection$ImplCopyWith(
+          _$SetBasicIngredientsFilterSelection$Impl value,
+          $Res Function(_$SetBasicIngredientsFilterSelection$Impl) then) =
+      __$$SetBasicIngredientsFilterSelection$ImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String selectedItems});
+}
+
+/// @nodoc
+class __$$SetBasicIngredientsFilterSelection$ImplCopyWithImpl<$Res>
+    extends _$SetBasicIngredientsFilterSelectionCopyWithImpl<$Res,
+        _$SetBasicIngredientsFilterSelection$Impl>
+    implements _$$SetBasicIngredientsFilterSelection$ImplCopyWith<$Res> {
+  __$$SetBasicIngredientsFilterSelection$ImplCopyWithImpl(
+      _$SetBasicIngredientsFilterSelection$Impl _value,
+      $Res Function(_$SetBasicIngredientsFilterSelection$Impl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? selectedItems = null,
+  }) {
+    return _then(_$SetBasicIngredientsFilterSelection$Impl(
+      selectedItems: null == selectedItems
+          ? _value.selectedItems
+          : selectedItems // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SetBasicIngredientsFilterSelection$Impl
+    implements SetBasicIngredientsFilterSelection$ {
+  const _$SetBasicIngredientsFilterSelection$Impl(
+      {required this.selectedItems});
+
+  @override
+  final String selectedItems;
+
+  @override
+  String toString() {
+    return 'SetBasicIngredientsFilterSelection(selectedItems: $selectedItems)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetBasicIngredientsFilterSelection$Impl &&
+            (identical(other.selectedItems, selectedItems) ||
+                other.selectedItems == selectedItems));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, selectedItems);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SetBasicIngredientsFilterSelection$ImplCopyWith<
+          _$SetBasicIngredientsFilterSelection$Impl>
+      get copyWith => __$$SetBasicIngredientsFilterSelection$ImplCopyWithImpl<
+          _$SetBasicIngredientsFilterSelection$Impl>(this, _$identity);
+}
+
+abstract class SetBasicIngredientsFilterSelection$
+    implements SetBasicIngredientsFilterSelection {
+  const factory SetBasicIngredientsFilterSelection$(
+          {required final String selectedItems}) =
+      _$SetBasicIngredientsFilterSelection$Impl;
+
+  @override
+  String get selectedItems;
+  @override
+  @JsonKey(ignore: true)
+  _$$SetBasicIngredientsFilterSelection$ImplCopyWith<
+          _$SetBasicIngredientsFilterSelection$Impl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$SetDietaryRestrictionsFilterSelection {
+  String get selectedItems => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $SetDietaryRestrictionsFilterSelectionCopyWith<
+          SetDietaryRestrictionsFilterSelection>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SetDietaryRestrictionsFilterSelectionCopyWith<$Res> {
+  factory $SetDietaryRestrictionsFilterSelectionCopyWith(
+          SetDietaryRestrictionsFilterSelection value,
+          $Res Function(SetDietaryRestrictionsFilterSelection) then) =
+      _$SetDietaryRestrictionsFilterSelectionCopyWithImpl<$Res,
+          SetDietaryRestrictionsFilterSelection>;
+  @useResult
+  $Res call({String selectedItems});
+}
+
+/// @nodoc
+class _$SetDietaryRestrictionsFilterSelectionCopyWithImpl<$Res,
+        $Val extends SetDietaryRestrictionsFilterSelection>
+    implements $SetDietaryRestrictionsFilterSelectionCopyWith<$Res> {
+  _$SetDietaryRestrictionsFilterSelectionCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? selectedItems = null,
+  }) {
+    return _then(_value.copyWith(
+      selectedItems: null == selectedItems
+          ? _value.selectedItems
+          : selectedItems // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$SetDietaryRestrictionsFilterSelection$ImplCopyWith<$Res>
+    implements $SetDietaryRestrictionsFilterSelectionCopyWith<$Res> {
+  factory _$$SetDietaryRestrictionsFilterSelection$ImplCopyWith(
+          _$SetDietaryRestrictionsFilterSelection$Impl value,
+          $Res Function(_$SetDietaryRestrictionsFilterSelection$Impl) then) =
+      __$$SetDietaryRestrictionsFilterSelection$ImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String selectedItems});
+}
+
+/// @nodoc
+class __$$SetDietaryRestrictionsFilterSelection$ImplCopyWithImpl<$Res>
+    extends _$SetDietaryRestrictionsFilterSelectionCopyWithImpl<$Res,
+        _$SetDietaryRestrictionsFilterSelection$Impl>
+    implements _$$SetDietaryRestrictionsFilterSelection$ImplCopyWith<$Res> {
+  __$$SetDietaryRestrictionsFilterSelection$ImplCopyWithImpl(
+      _$SetDietaryRestrictionsFilterSelection$Impl _value,
+      $Res Function(_$SetDietaryRestrictionsFilterSelection$Impl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? selectedItems = null,
+  }) {
+    return _then(_$SetDietaryRestrictionsFilterSelection$Impl(
+      selectedItems: null == selectedItems
+          ? _value.selectedItems
+          : selectedItems // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SetDietaryRestrictionsFilterSelection$Impl
+    implements SetDietaryRestrictionsFilterSelection$ {
+  const _$SetDietaryRestrictionsFilterSelection$Impl(
+      {required this.selectedItems});
+
+  @override
+  final String selectedItems;
+
+  @override
+  String toString() {
+    return 'SetDietaryRestrictionsFilterSelection(selectedItems: $selectedItems)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetDietaryRestrictionsFilterSelection$Impl &&
+            (identical(other.selectedItems, selectedItems) ||
+                other.selectedItems == selectedItems));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, selectedItems);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SetDietaryRestrictionsFilterSelection$ImplCopyWith<
+          _$SetDietaryRestrictionsFilterSelection$Impl>
+      get copyWith =>
+          __$$SetDietaryRestrictionsFilterSelection$ImplCopyWithImpl<
+              _$SetDietaryRestrictionsFilterSelection$Impl>(this, _$identity);
+}
+
+abstract class SetDietaryRestrictionsFilterSelection$
+    implements SetDietaryRestrictionsFilterSelection {
+  const factory SetDietaryRestrictionsFilterSelection$(
+          {required final String selectedItems}) =
+      _$SetDietaryRestrictionsFilterSelection$Impl;
+
+  @override
+  String get selectedItems;
+  @override
+  @JsonKey(ignore: true)
+  _$$SetDietaryRestrictionsFilterSelection$ImplCopyWith<
+          _$SetDietaryRestrictionsFilterSelection$Impl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$CreateProduct {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
@@ -16379,7 +16770,9 @@ mixin _$GenerateRecipeResponse {
   String get pendingId => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GenerativeModel model, String pendingId) start,
+    required TResult Function(
+            GenerativeModel model, String prompt, String pendingId)
+        start,
     required TResult Function(String? response, String pendingId) successful,
     required TResult Function(
             Object error, StackTrace stackTrace, String pendingId)
@@ -16388,7 +16781,8 @@ mixin _$GenerateRecipeResponse {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(GenerativeModel model, String pendingId)? start,
+    TResult? Function(GenerativeModel model, String prompt, String pendingId)?
+        start,
     TResult? Function(String? response, String pendingId)? successful,
     TResult? Function(Object error, StackTrace stackTrace, String pendingId)?
         error,
@@ -16396,7 +16790,8 @@ mixin _$GenerateRecipeResponse {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GenerativeModel model, String pendingId)? start,
+    TResult Function(GenerativeModel model, String prompt, String pendingId)?
+        start,
     TResult Function(String? response, String pendingId)? successful,
     TResult Function(Object error, StackTrace stackTrace, String pendingId)?
         error,
@@ -16475,7 +16870,7 @@ abstract class _$$GenerateRecipeResponseStartImplCopyWith<$Res>
       __$$GenerateRecipeResponseStartImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({GenerativeModel model, String pendingId});
+  $Res call({GenerativeModel model, String prompt, String pendingId});
 }
 
 /// @nodoc
@@ -16492,6 +16887,7 @@ class __$$GenerateRecipeResponseStartImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? model = null,
+    Object? prompt = null,
     Object? pendingId = null,
   }) {
     return _then(_$GenerateRecipeResponseStartImpl(
@@ -16499,6 +16895,10 @@ class __$$GenerateRecipeResponseStartImplCopyWithImpl<$Res>
           ? _value.model
           : model // ignore: cast_nullable_to_non_nullable
               as GenerativeModel,
+      null == prompt
+          ? _value.prompt
+          : prompt // ignore: cast_nullable_to_non_nullable
+              as String,
       pendingId: null == pendingId
           ? _value.pendingId
           : pendingId // ignore: cast_nullable_to_non_nullable
@@ -16510,18 +16910,20 @@ class __$$GenerateRecipeResponseStartImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GenerateRecipeResponseStartImpl implements GenerateRecipeResponseStart {
-  const _$GenerateRecipeResponseStartImpl(this.model,
+  const _$GenerateRecipeResponseStartImpl(this.model, this.prompt,
       {this.pendingId = _kGenerateRecipeResponsePendingId});
 
   @override
   final GenerativeModel model;
+  @override
+  final String prompt;
   @override
   @JsonKey()
   final String pendingId;
 
   @override
   String toString() {
-    return 'GenerateRecipeResponse.start(model: $model, pendingId: $pendingId)';
+    return 'GenerateRecipeResponse.start(model: $model, prompt: $prompt, pendingId: $pendingId)';
   }
 
   @override
@@ -16530,12 +16932,13 @@ class _$GenerateRecipeResponseStartImpl implements GenerateRecipeResponseStart {
         (other.runtimeType == runtimeType &&
             other is _$GenerateRecipeResponseStartImpl &&
             (identical(other.model, model) || other.model == model) &&
+            (identical(other.prompt, prompt) || other.prompt == prompt) &&
             (identical(other.pendingId, pendingId) ||
                 other.pendingId == pendingId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, model, pendingId);
+  int get hashCode => Object.hash(runtimeType, model, prompt, pendingId);
 
   @JsonKey(ignore: true)
   @override
@@ -16547,37 +16950,41 @@ class _$GenerateRecipeResponseStartImpl implements GenerateRecipeResponseStart {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GenerativeModel model, String pendingId) start,
+    required TResult Function(
+            GenerativeModel model, String prompt, String pendingId)
+        start,
     required TResult Function(String? response, String pendingId) successful,
     required TResult Function(
             Object error, StackTrace stackTrace, String pendingId)
         error,
   }) {
-    return start(model, pendingId);
+    return start(model, prompt, pendingId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(GenerativeModel model, String pendingId)? start,
+    TResult? Function(GenerativeModel model, String prompt, String pendingId)?
+        start,
     TResult? Function(String? response, String pendingId)? successful,
     TResult? Function(Object error, StackTrace stackTrace, String pendingId)?
         error,
   }) {
-    return start?.call(model, pendingId);
+    return start?.call(model, prompt, pendingId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GenerativeModel model, String pendingId)? start,
+    TResult Function(GenerativeModel model, String prompt, String pendingId)?
+        start,
     TResult Function(String? response, String pendingId)? successful,
     TResult Function(Object error, StackTrace stackTrace, String pendingId)?
         error,
     required TResult orElse(),
   }) {
     if (start != null) {
-      return start(model, pendingId);
+      return start(model, prompt, pendingId);
     }
     return orElse();
   }
@@ -16620,10 +17027,12 @@ class _$GenerateRecipeResponseStartImpl implements GenerateRecipeResponseStart {
 
 abstract class GenerateRecipeResponseStart
     implements GenerateRecipeResponse, ActionStart {
-  const factory GenerateRecipeResponseStart(final GenerativeModel model,
+  const factory GenerateRecipeResponseStart(
+      final GenerativeModel model, final String prompt,
       {final String pendingId}) = _$GenerateRecipeResponseStartImpl;
 
   GenerativeModel get model;
+  String get prompt;
   @override
   String get pendingId;
   @override
@@ -16716,7 +17125,9 @@ class _$GenerateRecipeResponseSuccessfulImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GenerativeModel model, String pendingId) start,
+    required TResult Function(
+            GenerativeModel model, String prompt, String pendingId)
+        start,
     required TResult Function(String? response, String pendingId) successful,
     required TResult Function(
             Object error, StackTrace stackTrace, String pendingId)
@@ -16728,7 +17139,8 @@ class _$GenerateRecipeResponseSuccessfulImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(GenerativeModel model, String pendingId)? start,
+    TResult? Function(GenerativeModel model, String prompt, String pendingId)?
+        start,
     TResult? Function(String? response, String pendingId)? successful,
     TResult? Function(Object error, StackTrace stackTrace, String pendingId)?
         error,
@@ -16739,7 +17151,8 @@ class _$GenerateRecipeResponseSuccessfulImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GenerativeModel model, String pendingId)? start,
+    TResult Function(GenerativeModel model, String prompt, String pendingId)?
+        start,
     TResult Function(String? response, String pendingId)? successful,
     TResult Function(Object error, StackTrace stackTrace, String pendingId)?
         error,
@@ -16890,7 +17303,9 @@ class _$GenerateRecipeResponseErrorImpl implements GenerateRecipeResponseError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(GenerativeModel model, String pendingId) start,
+    required TResult Function(
+            GenerativeModel model, String prompt, String pendingId)
+        start,
     required TResult Function(String? response, String pendingId) successful,
     required TResult Function(
             Object error, StackTrace stackTrace, String pendingId)
@@ -16902,7 +17317,8 @@ class _$GenerateRecipeResponseErrorImpl implements GenerateRecipeResponseError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(GenerativeModel model, String pendingId)? start,
+    TResult? Function(GenerativeModel model, String prompt, String pendingId)?
+        start,
     TResult? Function(String? response, String pendingId)? successful,
     TResult? Function(Object error, StackTrace stackTrace, String pendingId)?
         error,
@@ -16913,7 +17329,8 @@ class _$GenerateRecipeResponseErrorImpl implements GenerateRecipeResponseError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GenerativeModel model, String pendingId)? start,
+    TResult Function(GenerativeModel model, String prompt, String pendingId)?
+        start,
     TResult Function(String? response, String pendingId)? successful,
     TResult Function(Object error, StackTrace stackTrace, String pendingId)?
         error,

@@ -1,15 +1,16 @@
 import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/models/filter_chip_enums.dart';
 import 'package:do_you_groceries/src/models/index.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
-class FilterChipSelection<T> extends StatefulWidget {
+class FilterChipSelection<T extends Enum> extends StatefulWidget {
   const FilterChipSelection({
     required this.enumValues,
-    required this.label, this.toReadableString,
+    required this.label,
+    this.toReadableString,
     super.key,
   });
 
@@ -17,12 +18,11 @@ class FilterChipSelection<T> extends StatefulWidget {
   final String Function(T)? toReadableString;
   final String label;
 
-
   @override
   State<FilterChipSelection<T>> createState() => _FilterChipSelectionState<T>();
 }
 
-class _FilterChipSelectionState<T> extends State<FilterChipSelection<T>> {
+class _FilterChipSelectionState<T extends Enum> extends State<FilterChipSelection<T>> {
   Set<T> filters = <T>{};
   late Store<AppState> store;
 
@@ -32,12 +32,23 @@ class _FilterChipSelectionState<T> extends State<FilterChipSelection<T>> {
     super.initState();
   }
 
+  void _dispatchAction(T enumItem, bool selected) {
+    final String selectedItems = filters.map((T e) => e.name).join(', ');
+
+    if (enumItem is CuisineFilter) {
+      store.dispatch(SetCuisineFilterSelection(selectedItems: selectedItems));
+    } else if (enumItem is BasicIngredientsFilter) {
+      store.dispatch(SetBasicIngredientsFilterSelection(selectedItems: selectedItems));
+    } else if (enumItem is DietaryRestrictionsFilter) {
+      store.dispatch(SetDietaryRestrictionsFilterSelection(selectedItems: selectedItems));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
 
-    // Use the provided toReadableString function or default to describeEnum
-    final String Function(T p1) toReadableString = widget.toReadableString ?? (T value) => describeEnum(value as Enum);
+    final String Function(T p1) toReadableString = widget.toReadableString ?? (T value) => value.name;
 
     return Center(
       child: Column(
@@ -58,16 +69,13 @@ class _FilterChipSelectionState<T> extends State<FilterChipSelection<T>> {
                     } else {
                       filters.remove(enumItem);
                     }
+                    _dispatchAction(enumItem, selected);
                   });
                 },
               );
             }).toList(),
           ),
           const SizedBox(height: 10),
-          Text(
-            'Looking for: ${filters.map(toReadableString).join(', ')}',
-            style: textTheme.labelLarge,
-          ),
         ],
       ),
     );

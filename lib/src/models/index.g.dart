@@ -59,6 +59,9 @@ _$AppState$Impl _$$AppState$ImplFromJson(Map<String, dynamic> json) =>
               .toSet() ??
           const <CuisineFilter>{},
       generatorResponse: json['generatorResponse'] as String?,
+      cuisineText: json['cuisineText'] as String?,
+      basicIngredientsText: json['basicIngredientsText'] as String?,
+      dietaryRestrictionsText: json['dietaryRestrictionsText'] as String?,
     );
 
 Map<String, dynamic> _$$AppState$ImplToJson(_$AppState$Impl instance) =>
@@ -82,6 +85,9 @@ Map<String, dynamic> _$$AppState$ImplToJson(_$AppState$Impl instance) =>
       'cuisines':
           instance.cuisines.map((e) => _$CuisineFilterEnumMap[e]!).toList(),
       'generatorResponse': instance.generatorResponse,
+      'cuisineText': instance.cuisineText,
+      'basicIngredientsText': instance.basicIngredientsText,
+      'dietaryRestrictionsText': instance.dietaryRestrictionsText,
     };
 
 const _$CuisineFilterEnumMap = {
@@ -289,7 +295,6 @@ const _$DietaryRestrictionsFilterEnumMap = {
   DietaryRestrictionsFilter.vegan: 'vegan',
   DietaryRestrictionsFilter.vegetarian: 'vegetarian',
   DietaryRestrictionsFilter.lactoseIntolerant: 'lactoseIntolerant',
-  DietaryRestrictionsFilter.kosher: 'kosher',
   DietaryRestrictionsFilter.wheatAllergies: 'wheatAllergies',
   DietaryRestrictionsFilter.nutAllergies: 'nutAllergies',
   DietaryRestrictionsFilter.fishAllergies: 'fishAllergies',

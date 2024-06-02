@@ -59,6 +59,9 @@ Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   TypedReducer<AppState, AcceptRequestSuccessful>(_acceptRequestSuccessful).call,
   //TypedReducer<AppState, SetPromptData>(_setPromptData).call,
   //TypedReducer<AppState, AddPromptDataCuisine>(_addPromptDataCuisine).call,
+  TypedReducer<AppState, SetCuisineFilterSelection>(_setCuisineFilterSelection).call,
+  TypedReducer<AppState, SetBasicIngredientsFilterSelection>(_setBasicIngredientsFilterSelection).call,
+  TypedReducer<AppState, SetDietaryRestrictionsFilterSelection>(_setDietaryRestrictionsFilterSelection).call,
 ]);
 
 AppState _setMarketProductsToEmpty(AppState state, SetMarketProductsToEmpty action) {
@@ -215,5 +218,17 @@ AppState _acceptRequestSuccessful(AppState state, AcceptRequestSuccessful action
 
 
 AppState _generateRecipeResponseSuccessful(AppState state, GenerateRecipeResponseSuccessful action) {
-  return state.copyWith(generatorResponse: action.response!);
+  return state.copyWith(generatorResponse: action.response);
+}
+
+AppState _setCuisineFilterSelection(AppState state, SetCuisineFilterSelection action) {
+  return state.copyWith(cuisineText: action.selectedItems);
+}
+
+AppState _setBasicIngredientsFilterSelection(AppState state, SetBasicIngredientsFilterSelection action) {
+  return state.copyWith(basicIngredientsText: action.selectedItems);
+}
+
+AppState _setDietaryRestrictionsFilterSelection(AppState state, SetDietaryRestrictionsFilterSelection action) {
+  return state.copyWith(dietaryRestrictionsText: action.selectedItems);
 }
