@@ -118,22 +118,13 @@ class _SignInFormState extends State<SignInForm> {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      const Text(
-                        'Email',
-                        style: TextStyle(color: Colors.black54),
-                      ),
                       Padding(
                         padding: const EdgeInsets.only(top: 8, bottom: 16),
                         child: TextFormField(
                           controller: _email,
                           keyboardType: TextInputType.emailAddress,
                           textInputAction: TextInputAction.next,
-                          decoration: InputDecoration(
-                            prefixIcon: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 8),
-                              child: SvgPicture.asset('assets/icons/email.svg'),
-                            ),
-                          ),
+                          decoration: const InputDecoration(labelText: 'Email', hintText: 'Enter your email'),
                           validator: (String? value) {
                             if (value == null || value.isEmpty) {
                               return 'please provide an email';
@@ -147,10 +138,6 @@ class _SignInFormState extends State<SignInForm> {
                           },
                         ),
                       ),
-                      const Text(
-                        'Password',
-                        style: TextStyle(color: Colors.black54),
-                      ),
                       Padding(
                         padding: const EdgeInsets.only(top: 8, bottom: 16),
                         child: TextFormField(
@@ -158,12 +145,7 @@ class _SignInFormState extends State<SignInForm> {
                           focusNode: _passwordNode,
                           textInputAction: TextInputAction.done,
                           obscureText: true,
-                          decoration: InputDecoration(
-                            prefixIcon: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 8),
-                              child: SvgPicture.asset('assets/icons/password.svg'),
-                            ),
-                          ),
+                          decoration: const InputDecoration(labelText: 'Password', hintText: 'Enter your password'),
                           validator: (String? value) {
                             if (value == null || value.isEmpty) {
                               return 'please provide a valid password';

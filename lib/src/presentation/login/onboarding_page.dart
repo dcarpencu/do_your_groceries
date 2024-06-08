@@ -16,6 +16,7 @@ class OnboardingScreen extends StatefulWidget {
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
   bool isSignInDialogShown = false;
+
   // ignore: always_specify_types
   late RiveAnimationController<dynamic> _btnAnimationController;
 
@@ -28,7 +29,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.orange,
+      backgroundColor: Colors.lightBlueAccent,
       body: PendingContainer(
         builder: (BuildContext context, Set<String> pending) {
           if (pending.contains(GetCurrentUser.pendingKey)) {
@@ -37,112 +38,102 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           return Stack(
             children: <Widget>[
               Positioned(
-                width: MediaQuery
-                    .of(context)
-                    .size
-                    .width,
-                bottom: 0,
+                width: MediaQuery.of(context).size.width,
+                bottom: 70,
                 left: 0,
-                child: Image.asset('assets/Backgrounds/deadpool.png'),
+                child: Image.asset('assets/Backgrounds/grocery-bag.png'),
               ),
               Positioned.fill(
                 child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 10, sigmaY: 5),
+                  filter: ImageFilter.blur(sigmaX: 15, sigmaY: 5),
                 ),
               ),
-              const RiveAnimation.asset('assets/RiveAssets/shapes.riv'),
+              //const RiveAnimation.asset('assets/RiveAssets/shapes.riv'),
               Positioned.fill(
                 child: BackdropFilter(
                   filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                  child: const SizedBox(),
-                ),
-              ),
-              AnimatedPositioned(
-                duration: const Duration(milliseconds: 240),
-                top: isSignInDialogShown ? -50 : 0,
-                height: MediaQuery
-                    .of(context)
-                    .size
-                    .height,
-                width: MediaQuery
-                    .of(context)
-                    .size
-                    .width,
-                child: SafeArea(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 32),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        const Spacer(),
-                        const SizedBox(
-                          width: 260,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                'Do',
-                                style: TextStyle(
-                                  fontSize: 56,
-                                  fontFamily: 'Poppins',
-                                  height: 1.2,
-                                ),
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.height,
+                    width: MediaQuery.of(context).size.width,
+                    child: SafeArea(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 32),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            const Spacer(),
+                            const SizedBox(
+                              width: 260,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    'Do',
+                                    style: TextStyle(
+                                      fontSize: 56,
+                                      fontFamily: 'Poppins',
+                                      height: 1.2,
+                                    ),
+                                  ),
+                                  Text(
+                                    'Your',
+                                    style: TextStyle(
+                                      fontSize: 56,
+                                      fontFamily: 'Poppins',
+                                      height: 1.2,
+                                    ),
+                                  ),
+                                  Text(
+                                    'Groceries',
+                                    style: TextStyle(
+                                      fontSize: 56,
+                                      fontFamily: 'Poppins',
+                                      height: 1.2,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 16,
+                                  ),
+                                  Text(
+                                    "Let's get you started",
+                                  ),
+                                ],
                               ),
-                              Text(
-                                'Your',
-                                style: TextStyle(
-                                  fontSize: 56,
-                                  fontFamily: 'Poppins',
-                                  height: 1.2,
-                                ),
-                              ),
-                              Text(
-                                'Groceries',
-                                style: TextStyle(
-                                  fontSize: 56,
-                                  fontFamily: 'Poppins',
-                                  height: 1.2,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 16,
-                              ),
-                              Text(
-                                "Let's get you started",
-                              ),
-                            ],
-                          ),
-                        ),
-                        const Spacer(
-                          flex: 2,
-                        ),
-                        AnimatedBtn(
-                          btnAnimationController: _btnAnimationController,
-                          press: () {
-                            _btnAnimationController.isActive = true;
-                            Future<void>.delayed(const Duration(milliseconds: 800), () {
-                              setState(() {
-                                isSignInDialogShown = true;
-                              });
-                              customSigninDialog(
-                                context,
-                                onClosed: (_) {
+                            ),
+                            const Spacer(
+                              flex: 2,
+                            ),
+                            AnimatedBtn(
+                              btnAnimationController: _btnAnimationController,
+                              press: () {
+                                _btnAnimationController.isActive = true;
+                                if (isSignInDialogShown == false) {
                                   setState(() {
-                                    isSignInDialogShown = false;
+                                    isSignInDialogShown = true;
                                   });
-                                },
-                              );
-                            });
-                          },
+                                  Future<void>.delayed(const Duration(milliseconds: 600), () {
+                                    customSigninDialog(
+                                      context,
+                                      onClosed: (_) {
+                                        setState(() {
+                                          isSignInDialogShown = false;
+                                        });
+                                      },
+                                    );
+                                  });
+                                }
+                              },
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.symmetric(vertical: 24),
+                              child: Text(
+                                'Start using the smartest grocery list there is ',
+                                style: TextStyle(color: Colors.white70),
+                              ),
+                            ),
+                          ],
                         ),
-                        const Padding(
-                          padding: EdgeInsets.symmetric(vertical: 24),
-                          child: Text(
-                            'Start using the smartest grocery list there is ',
-                            style: TextStyle(color: Colors.white70),
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
                   ),
                 ),

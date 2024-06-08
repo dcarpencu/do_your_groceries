@@ -1,6 +1,6 @@
 import 'package:do_you_groceries/src/ui_elements/components/sign_in_form.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 Future<Object?> customSigninDialog(BuildContext context, {required ValueChanged<dynamic> onClosed}) {
@@ -9,15 +9,14 @@ Future<Object?> customSigninDialog(BuildContext context, {required ValueChanged<
     barrierLabel: 'Sign up',
     context: context,
     transitionDuration: const Duration(milliseconds: 400),
-    transitionBuilder:
-        (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
+    transitionBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
       final Tween<Offset> tween = Tween<Offset>(begin: const Offset(0, -1), end: Offset.zero);
       return SlideTransition(
         position: tween.animate(CurvedAnimation(parent: animation, curve: Curves.easeInOut)),
         child: child,
       );
     },
-    pageBuilder: (BuildContext context, _, __) => Center(
+    pageBuilder: (BuildContext context, Animation<double> _, Animation<double> __) => Center(
       child: Container(
         height: 620,
         margin: const EdgeInsets.symmetric(horizontal: 16),
@@ -36,7 +35,7 @@ Future<Object?> customSigninDialog(BuildContext context, {required ValueChanged<
                 children: <Widget>[
                   const Text(
                     'Login',
-                    style: TextStyle(fontSize: 28, fontFamily: 'Poppins'),
+                    style: TextStyle(fontSize: 32, fontFamily: 'Poppins'),
                   ),
                   const Padding(
                     padding: EdgeInsets.symmetric(vertical: 16),
@@ -46,6 +45,7 @@ Future<Object?> customSigninDialog(BuildContext context, {required ValueChanged<
                     ),
                   ),
                   const SignInForm(),
+                  const SizedBox(height: 16),
                   const Row(
                     children: <Widget>[
                       Expanded(
@@ -65,7 +65,7 @@ Future<Object?> customSigninDialog(BuildContext context, {required ValueChanged<
                   ),
                   const Padding(
                     padding: EdgeInsets.symmetric(vertical: 20),
-                    child: Text('Sign up with Email, Apple or Google', style: TextStyle(color: Colors.black54)),
+                    child: Text('Sign up with Email, Apple, or Google', style: TextStyle(color: Colors.black54)),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -103,14 +103,19 @@ Future<Object?> customSigninDialog(BuildContext context, {required ValueChanged<
                   ),
                 ],
               ),
-              const Positioned(
+              Positioned(
                 left: 0,
                 right: 0,
                 bottom: -48,
-                child: CircleAvatar(
-                  radius: 16,
-                  backgroundColor: Colors.white,
-                  child: Icon(Icons.close, color: Colors.black),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const CircleAvatar(
+                    radius: 16,
+                    backgroundColor: Colors.white,
+                    child: Icon(Icons.close, color: Colors.black),
+                  ),
                 ),
               ),
             ],
