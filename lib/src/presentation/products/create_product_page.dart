@@ -13,7 +13,7 @@ class CreateProductPage extends StatefulWidget {
 class _CreateProductPageState extends State<CreateProductPage> {
   final TextEditingController _title = TextEditingController();
   final TextEditingController _price = TextEditingController();
-  final FocusScopeNode _priceFocusNode = FocusScopeNode();
+  final FocusNode _priceFocusNode = FocusNode();
 
   void _onNext(BuildContext context) {
     if (!Form.of(context).validate()) {
@@ -27,27 +27,47 @@ class _CreateProductPageState extends State<CreateProductPage> {
   }
 
   @override
+  void dispose() {
+    _title.dispose();
+    _price.dispose();
+    _priceFocusNode.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Create Product'),
+        centerTitle: true,
+      ),
       body: Form(
         child: Builder(
           builder: (BuildContext context) {
             return SafeArea(
               child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(24.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
+                      Text(
+                        'Add a New Product',
+                        style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 16),
                       TextFormField(
                         controller: _title,
                         keyboardType: TextInputType.text,
                         autofocus: true,
-                        decoration: const InputDecoration(hintText: 'title'),
+                        decoration: const InputDecoration(
+                          labelText: 'Title',
+                          hintText: 'Enter product title',
+                        ),
                         textInputAction: TextInputAction.next,
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
-                            return 'please provide a title for your list';
+                            return 'Please provide a title for your product';
                           }
                           return null;
                         },
@@ -55,25 +75,42 @@ class _CreateProductPageState extends State<CreateProductPage> {
                           FocusScope.of(context).requestFocus(_priceFocusNode);
                         },
                       ),
+                      const SizedBox(height: 16),
                       TextFormField(
                         controller: _price,
                         focusNode: _priceFocusNode,
                         keyboardType: TextInputType.number,
+                        decoration: const InputDecoration(
+                          labelText: 'Price',
+                          hintText: 'Enter product price',
+                        ),
                         textInputAction: TextInputAction.done,
-                        decoration: const InputDecoration(hintText: 'price'),
+                        validator: (String? value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please provide a price for your product';
+                          }
+                          return null;
+                        },
                         onFieldSubmitted: (String value) {
                           _onNext(context);
                         },
                       ),
-                      const SizedBox(
-                        height: 16,
+                      const SizedBox(height: 24),
+                      ElevatedButton(
+                        onPressed: () => _onNext(context),
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                        ),
+                        child: const Text('Create Product'),
                       ),
-                      TextButton(onPressed: () => _onNext(context), child: const Text('Create product')),
                       TextButton(
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        child: const Text('Cancel', style: TextStyle(color: Colors.black)),
+                        child: const Text(
+                          'Cancel',
+                          style: TextStyle(color: Colors.black),
+                        ),
                       ),
                     ],
                   ),

@@ -16,9 +16,14 @@ class CreateListPage extends StatefulWidget {
 class _CreateListPageState extends State<CreateListPage> {
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
-  final FocusScopeNode _descriptionFocusNode = FocusScopeNode();
+  final FocusNode _descriptionFocusNode = FocusNode();
   late Store<AppState> _store;
   final List<String> _options = const <String>[
+    'auchan',
+    'carrefour',
+    'kaufland',
+    'penny',
+    'profi',
     'cocktail',
     'milk-tea',
     'sunbathing',
@@ -33,7 +38,7 @@ class _CreateListPageState extends State<CreateListPage> {
     'indicator',
   ];
   int? _selected = 0;
-  String? _selectedValue = 'cocktail';
+  String? _selectedValue = 'auchan';
 
   void _onNext(BuildContext context) {
     if (!Form.of(context).validate()) {
@@ -49,143 +54,182 @@ class _CreateListPageState extends State<CreateListPage> {
       ),
     );
 
-   context.go('/homePage');
+    context.go('/homePage');
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       body: Form(
-        child: SingleChildScrollView(
-          child: Builder(
-            builder: (BuildContext context) {
-              return Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: SafeArea(
-                    child: Column(
-                      //mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        const SizedBox(height: 48),
-                        const Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                            padding: EdgeInsets.all(8),
-                            child: Text(
-                              'Choose your list icon:',
-                              style: TextStyle(
-                                fontSize: 24,
-                              ),
-                              textAlign: TextAlign.left,
+        child: LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
+            return SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minHeight: constraints.maxHeight,
+                ),
+                child: IntrinsicHeight(
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: SafeArea(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Text(
+                              'Add a New Grocery List',
+                              style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
                             ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 120,
-                          width: double.infinity, // Set the width to make it horizontally scrollable
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: _options.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              final String item = _options[index];
-
-                              return SizedBox(
-                                width: 200,
-                                child: Column(
-                                  children: <Widget>[
-                                    SizedBox(
-                                      width: 60,
-                                      height: 60,
-                                      child: SvgPicture.asset('assets/groceryListIcons/$item.svg'),
-                                    ),
-                                    RadioListTile<int>(
-                                      title: Text(item),
-                                      value: index,
-                                      groupValue: _selected,
-                                      onChanged: (int? value) {
-                                        setState(() {
-                                          _selected = value;
-                                          _selectedValue = item;
-                                        });
-                                      },
-                                    ),
-                                  ],
+                            const SizedBox(height: 48),
+                            const Align(
+                              alignment: Alignment.centerLeft,
+                              child: Padding(
+                                padding: EdgeInsets.all(8),
+                                child: Text(
+                                  'Choose your list icon:',
+                                  style: TextStyle(
+                                    fontSize: 24,
+                                  ),
+                                  textAlign: TextAlign.left,
                                 ),
-                              );
-                            },
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 32,
-                        ),
-                        const Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                            padding: EdgeInsets.all(8),
-                            child: Text(
-                              'Choose your list title:',
-                              style: TextStyle(
-                                fontSize: 24,
                               ),
-                              textAlign: TextAlign.left,
                             ),
-                          ),
-                        ),
-                        TextFormField(
-                          controller: _titleController,
-                          keyboardType: TextInputType.text,
-                          decoration: const InputDecoration(hintText: 'title'),
-                          textInputAction: TextInputAction.next,
-                          validator: (String? value) {
-                            if (value == null || value.isEmpty) {
-                              return 'please provide a title for your list';
-                            }
-                            return null;
-                          },
-                          onFieldSubmitted: (String value) {
-                            FocusScope.of(context).requestFocus(_descriptionFocusNode);
-                          },
-                        ),
-                        const SizedBox(
-                          height: 32,
-                        ),
-                        const Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                            padding: EdgeInsets.all(8),
-                            child: Text(
-                              'Choose your list description:',
-                              style: TextStyle(
-                                fontSize: 24,
+                            SizedBox(
+                              height: 120,
+                              width: double.infinity,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: _options.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  final String item = _options[index];
+
+                                  return IconTile(
+                                    item: item,
+                                    isSelected: _selected == index,
+                                    onTap: () {
+                                      setState(() {
+                                        _selected = index;
+                                        _selectedValue = item;
+                                      });
+                                    },
+                                  );
+                                },
                               ),
-                              textAlign: TextAlign.left,
                             ),
-                          ),
+                            const SizedBox(
+                              height: 32,
+                            ),
+                            const Align(
+                              alignment: Alignment.centerLeft,
+                              child: Padding(
+                                padding: EdgeInsets.all(8),
+                                child: Text(
+                                  'Choose your list title:',
+                                  style: TextStyle(
+                                    fontSize: 24,
+                                  ),
+                                  textAlign: TextAlign.left,
+                                ),
+                              ),
+                            ),
+                            TextFormField(
+                              controller: _titleController,
+                              keyboardType: TextInputType.text,
+                              decoration: const InputDecoration(labelText: 'Title', hintText: 'Enter a list title'),
+                              textInputAction: TextInputAction.next,
+                              validator: (String? value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'please provide a title for your list';
+                                }
+                                return null;
+                              },
+                              onFieldSubmitted: (String value) {
+                                FocusScope.of(context).requestFocus(_descriptionFocusNode);
+                              },
+                            ),
+                            const SizedBox(
+                              height: 32,
+                            ),
+                            const Align(
+                              alignment: Alignment.centerLeft,
+                              child: Padding(
+                                padding: EdgeInsets.all(8),
+                                child: Text(
+                                  'Choose your list description:',
+                                  style: TextStyle(
+                                    fontSize: 24,
+                                  ),
+                                  textAlign: TextAlign.left,
+                                ),
+                              ),
+                            ),
+                            TextFormField(
+                              controller: _descriptionController,
+                              focusNode: _descriptionFocusNode,
+                              keyboardType: TextInputType.text,
+                              textInputAction: TextInputAction.done,
+                              decoration:
+                                  const InputDecoration(labelText: 'Description', hintText: 'Enter a list description'),
+                              onFieldSubmitted: (String value) {
+                                _onNext(context);
+                              },
+                            ),
+                            const Spacer(),
+                            TextButton(onPressed: () => _onNext(context), child: const Text('Create list')),
+                            TextButton(
+                              onPressed: () {
+                                context.pop();
+                              },
+                              child: const Text('Cancel', style: TextStyle(color: Colors.black)),
+                            ),
+                          ],
                         ),
-                        TextFormField(
-                          controller: _descriptionController,
-                          focusNode: _descriptionFocusNode,
-                          keyboardType: TextInputType.text,
-                          textInputAction: TextInputAction.done,
-                          decoration: const InputDecoration(hintText: 'description'),
-                          onFieldSubmitted: (String value) {
-                            _onNext(context);
-                          },
-                        ),
-                        const SizedBox(height: 92),
-                        TextButton(onPressed: () => _onNext(context), child: const Text('Create list')),
-                        TextButton(
-                          onPressed: () {
-                            context.pop();
-                          },
-                          child: const Text('Cancel', style: TextStyle(color: Colors.black)),
-                        ),
-                      ],
+                      ),
                     ),
                   ),
                 ),
-              );
-            },
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class IconTile extends StatelessWidget {
+  const IconTile({
+    required this.item,
+    required this.isSelected,
+    required this.onTap,
+    super.key,
+  });
+
+  final String item;
+  final bool isSelected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          margin: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: isSelected ? Colors.blueGrey.withOpacity(0.3) : Colors.transparent,
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Column(
+            children: <Widget>[
+              SizedBox(
+                width: 80,
+                height: 80,
+                child: SvgPicture.asset('assets/groceryListIcons/$item.svg'),
+              ),
+            ],
           ),
         ),
       ),

@@ -122,7 +122,7 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
           floatingActionButton: FloatingActionButton(
-            onPressed: () => context.pushNamed('createList'),
+            onPressed: _createRoute,//context.pushNamed('createList'),
             tooltip: 'Create',
             child: const Icon(Icons.playlist_add),
           ),
@@ -130,7 +130,7 @@ class _HomePageState extends State<HomePage> {
           bottomNavigationBar: BottomAppBar(
             height: 60,
             shape: const CircularNotchedRectangle(),
-            color: Colors.green,
+            color: Colors.orange,
             child: IconTheme(
               data: IconThemeData(color: Theme.of(context).colorScheme.onPrimary),
               child: Row(
@@ -140,7 +140,6 @@ class _HomePageState extends State<HomePage> {
                     icon: const Icon(Icons.notifications),
                     onPressed: () {
                       _store.dispatch(const SetNotificationOn());
-                      print('Notifications Icon pressed!');
                       context.pushNamed('notifications');
                     },
                   ),
@@ -149,8 +148,6 @@ class _HomePageState extends State<HomePage> {
                     icon: const Icon(Icons.person),
                     onPressed: () {
                       context.pushNamed('userProfile');
-
-                      print('\n\n USER PROFILE');
                     },
                   ),
                   const Spacer(),
