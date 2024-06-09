@@ -4,6 +4,7 @@ import 'package:do_you_groceries/src/presentation/camera/image_view_page.dart';
 import 'package:do_you_groceries/src/presentation/home.dart';
 import 'package:do_you_groceries/src/presentation/home_page.dart';
 import 'package:do_you_groceries/src/presentation/login/login_page.dart';
+import 'package:do_you_groceries/src/presentation/login/new_login.dart';
 import 'package:do_you_groceries/src/presentation/login/sign_up_page.dart';
 import 'package:do_you_groceries/src/presentation/products/create_list_page.dart';
 import 'package:do_you_groceries/src/presentation/products/create_product_page.dart';

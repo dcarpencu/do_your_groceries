@@ -1,257 +1,122 @@
 import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/models/index.dart';
-import 'package:do_you_groceries/src/ui_elements/components/sign_in_form.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:go_router/go_router.dart';
-import 'package:rive/rive.dart';
 
 class SignupPage extends StatefulWidget {
-  const SignupPage({super.key});
+  const SignupPage({Key? key}) : super(key: key);
 
   @override
-  State<SignupPage> createState() => _SignupPageState();
+  _SignupPageState createState() => _SignupPageState();
 }
 
 class _SignupPageState extends State<SignupPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
 
-  final TextEditingController _email = TextEditingController();
-  final TextEditingController _password = TextEditingController();
-  final TextEditingController _username = TextEditingController();
-  final FocusNode _passwordNode = FocusNode();
-  final FocusNode _emailNode = FocusNode();
-
-  void _onNext(BuildContext context) {
-    if (!Form.of(context).validate()) {
+  void _submitForm(BuildContext context) {
+    if (!_formKey.currentState!.validate()) {
       return;
     }
-
+    // Dispatch sign-up action
     StoreProvider.of<AppState>(context).dispatch(
-      CreateUser(email: _email.text, password: _password.text, username: _username.text, onResult: _onResult),
+      CreateUser(
+        email: _emailController.text,
+        password: _passwordController.text,
+        username: _usernameController.text,
+        onResult: _onResult,
+      ),
     );
   }
 
   void _onResult(AppAction action) {
+    // Handle sign-up result action
     if (action is ErrorAction) {
       final Object error = action.error;
 
+      // Handle specific error cases
       if (error is FirebaseAuthException) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.message ?? '')));
       } else {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('$error')));
       }
-    } else if (action is CreateUserSuccessful) {
-      context.go('/homePage');
+    } else if (action is LoginSuccessful) {
+      Navigator.pushNamedAndRemoveUntil(context, '/', (_) => false);
     }
-  }
-
-  bool isShowLoading = false;
-  bool isShowConfetti = false;
-
-  late SMITrigger check;
-  late SMITrigger error;
-  late SMITrigger reset;
-
-  late SMITrigger confetti;
-
-  StateMachineController getRiveController(Artboard artboard) {
-    final StateMachineController? controller = StateMachineController.fromArtboard(artboard, 'State Machine 1');
-    artboard.addController(controller!);
-    return controller;
-  }
-
-  void signIn(BuildContext context) {
-    setState(() {
-      isShowLoading = true;
-      isShowConfetti = true;
-    });
-    Future<void>.delayed(const Duration(seconds: 1), () {
-      if (_formKey.currentState!.validate()) {
-        // show success
-        check.fire();
-        Future<void>.delayed(const Duration(seconds: 2), () {
-          setState(() {
-            isShowLoading = false;
-          });
-          confetti.fire();
-        });
-      } else {
-        error.fire();
-        Future<void>.delayed(const Duration(seconds: 2), () {
-          setState(() {
-            isShowLoading = false;
-          });
-        });
-      }
-    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(''),
-      ),
-      body: Stack(
-        children: <Widget>[
-          Form(
-            key: _formKey,
-            child: Builder(
-              builder: (BuildContext context) {
-                return SafeArea(
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          const Text(
-                            'Username',
-                            style: TextStyle(color: Colors.black54),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8, bottom: 16),
-                            child: TextFormField(
-                              controller: _username,
-                              keyboardType: TextInputType.text,
-                              autofocus: true,
-                              decoration: const InputDecoration(hintText: 'username'),
-                              textInputAction: TextInputAction.next,
-                              validator: (String? value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'please provide an username';
-                                }
-                                return null;
-                              },
-                              onFieldSubmitted: (String value) {
-                                FocusScope.of(context).requestFocus(_emailNode);
-                              },
-                            ),
-                          ),
-                          const Text(
-                            'Email',
-                            style: TextStyle(color: Colors.black54),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8, bottom: 16),
-                            child: TextFormField(
-                              controller: _email,
-                              focusNode: _emailNode,
-                              keyboardType: TextInputType.emailAddress,
-                              textInputAction: TextInputAction.next,
-                              decoration: const InputDecoration(hintText: 'email'),
-                              validator: (String? value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'please provide an email';
-                                } else if (!value.contains('@')) {
-                                  return 'please enter a valid email';
-                                }
-                                return null;
-                              },
-                              onFieldSubmitted: (String value) {
-                                FocusScope.of(context).requestFocus(_passwordNode);
-                              },
-                            ),
-                          ),
-                          const Text(
-                            'Password',
-                            style: TextStyle(color: Colors.black54),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8, bottom: 16),
-                            child: TextFormField(
-                              controller: _password,
-                              focusNode: _passwordNode,
-                              keyboardType: TextInputType.visiblePassword,
-                              decoration: const InputDecoration(hintText: 'password'),
-                              textInputAction: TextInputAction.done,
-                              validator: (String? value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'please provide a valid password';
-                                } else if (value.length < 6) {
-                                  return 'Please provide a password longer than 6 characters';
-                                }
-                                return null;
-                              },
-                              onFieldSubmitted: (String value) {
-                                FocusManager.instance.primaryFocus?.unfocus();
-                                _onNext(context);
-                              },
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8, bottom: 24),
-                            child: ElevatedButton.icon(
-                              onPressed: () {
-                                final FocusScopeNode currentFocus = FocusScope.of(context);
-
-                                if (!currentFocus.hasPrimaryFocus) {
-                                  currentFocus.unfocus();
-                                }
-                                signIn(context);
-                                _onNext(context);
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color(0xFFF77D8E),
-                                minimumSize: const Size(double.infinity, 56),
-                                shape: const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(10),
-                                    topRight: Radius.circular(25),
-                                    bottomRight: Radius.circular(25),
-                                    bottomLeft: Radius.circular(25),
-                                  ),
-                                ),
-                              ),
-                              icon: const Icon(
-                                CupertinoIcons.arrow_right,
-                                color: Color(0xFFFE0037),
-                              ),
-                              label: const Text('Sign Up'),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-          if (isShowLoading)
-            CustomPositioned(
-              child: RiveAnimation.asset(
-                'assets/RiveAssets/check.riv',
-                onInit: (Artboard artboard) {
-                  final StateMachineController controller = getRiveController(artboard);
-                  check = controller.findSMI('Check') as SMITrigger;
-                  error = controller.findSMI('Error') as SMITrigger;
-                  reset = controller.findSMI('Reset') as SMITrigger;
+      body: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Text(
+                'Crează un cont',
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 32),
+              TextFormField(
+                controller: _usernameController,
+                keyboardType: TextInputType.text,
+                decoration: const InputDecoration(labelText: 'Nume utilizator', hintText: 'Introdu numele de utilizator'),
+                validator: (String? value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Te rog introdu numele de utilizator';
+                  } else if (value.length < 3) {
+                    return 'Numele de utilizator trebuie să conțină cel puțin 3 caractere';
+                  }
+                  return null;
                 },
               ),
-            )
-          else
-            const SizedBox(),
-          if (isShowConfetti)
-            CustomPositioned(
-              child: Transform.scale(
-                scale: 6,
-                child: RiveAnimation.asset(
-                  'assets/RiveAssets/confetti.riv',
-                  onInit: (Artboard artboard) {
-                    final StateMachineController controller = getRiveController(artboard);
-                    confetti = controller.findSMI('Trigger explosion') as SMITrigger;
-                  },
-                ),
+              const SizedBox(height: 16),
+              TextFormField(
+                controller: _emailController,
+                keyboardType: TextInputType.emailAddress,
+                decoration: const InputDecoration(labelText: 'Email', hintText: 'Introdu adresa de email'),
+                validator: (String? value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Introdu adresa de email';
+                  } else if (!value.contains('@')) {
+                    return 'Te rog introdu o adresă de email validă';
+                  }
+                  return null;
+                },
               ),
-            )
-          else
-            const SizedBox(),
-        ],
+              const SizedBox(height: 16),
+              TextFormField(
+                controller: _passwordController,
+                keyboardType: TextInputType.visiblePassword,
+                obscureText: true,
+                decoration: const InputDecoration(labelText: 'Parola', hintText: 'Introdu parola'),
+                validator: (String? value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Te rog introdu parola';
+                  } else if (value.length < 6) {
+                    return 'Parola trebuie să conțină cel puțin 6 caractere';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 24),
+              ElevatedButton(
+                onPressed: () => _submitForm(context),
+                child: const Text('Înregistrare', style: TextStyle(color: Colors.black,),),
+              ),
+              const SizedBox(height: 8),
+              TextButton(onPressed: () {context.pop();}, child: const Text('Înapoi')),
+            ],
+          ),
+        ),
       ),
     );
   }
