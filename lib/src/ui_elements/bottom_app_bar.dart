@@ -1,3 +1,4 @@
+import 'package:do_you_groceries/src/navigation/transitions.dart';
 import 'package:do_you_groceries/src/presentation/products/create_product_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -16,7 +17,7 @@ class BottomAppBarWidget extends StatelessWidget {
         return BottomAppBar(
           height: 60,
           shape: const CircularNotchedRectangle(),
-          color: Colors.green,
+          color: Colors.lightBlue,
           child: IconTheme(
             data: IconThemeData(color: Theme.of(context).colorScheme.onPrimary),
             child: Row(
@@ -46,9 +47,7 @@ class BottomAppBarWidget extends StatelessWidget {
                 IconButton(
                   tooltip: 'Favorite',
                   icon: const Icon(Icons.create),
-                  onPressed: () {
-                    context.pushNamed('createProduct');
-                  },
+                  onPressed: () => Navigator.of(context).push(createRoute(const CreateProductPage())),
                 ),
               ],
             ),

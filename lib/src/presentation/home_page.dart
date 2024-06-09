@@ -44,42 +44,42 @@ class _HomePageState extends State<HomePage> {
           ),
           body: Column(
             children: <Widget>[
-              Card(
-                elevation: 5,
-                shadowColor: Colors.black,
-                color: Colors.greenAccent,
-                child: SizedBox(
-                  width: width,
-                  height: 200,
-                  child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Column(
-                      children: <Widget>[
-                        CircleAvatar(
-                          backgroundColor: Colors.green[500],
-                          radius: 50,
-                          child: const CircleAvatar(
-                            backgroundImage: NetworkImage(
-                                'https://www.pushengage.com/wp-content/uploads/2022/10/How-to-Add-a-Push-Notification-Icon.png',),
-                            radius: 100,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          'Notification center',
-                          style: TextStyle(
-                            fontSize: 30,
-                            color: Colors.green[900],
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+              // Card(
+              //   elevation: 5,
+              //   shadowColor: Colors.black,
+              //   color: Colors.greenAccent,
+              //   child: SizedBox(
+              //     width: width,
+              //     height: 200,
+              //     child: Padding(
+              //       padding: const EdgeInsets.all(20),
+              //       child: Column(
+              //         children: <Widget>[
+              //           CircleAvatar(
+              //             backgroundColor: Colors.green[500],
+              //             radius: 50,
+              //             child: const CircleAvatar(
+              //               backgroundImage: NetworkImage(
+              //                   'https://www.pushengage.com/wp-content/uploads/2022/10/How-to-Add-a-Push-Notification-Icon.png',),
+              //               radius: 100,
+              //             ),
+              //           ),
+              //           const SizedBox(
+              //             height: 10,
+              //           ),
+              //           Text(
+              //             'Notification center',
+              //             style: TextStyle(
+              //               fontSize: 30,
+              //               color: Colors.green[900],
+              //               fontWeight: FontWeight.w500,
+              //             ),
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //   ),
+              // ),
               PendingContainer(
                 builder: (BuildContext context, Set<String> pending) {
                   if (pending.contains(GetGroceryLists.pendingKey)) {
@@ -123,7 +123,7 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
           floatingActionButton: FloatingActionButton(
-            onPressed: () => Navigator.of(context).push(createRoute(const CreateListPage())),//context.pushNamed('createList'),
+            onPressed: () => Navigator.of(context).push(createRoute(const CreateListPage())),
             tooltip: 'Create',
             child: const Icon(Icons.playlist_add),
           ),
@@ -131,7 +131,7 @@ class _HomePageState extends State<HomePage> {
           bottomNavigationBar: BottomAppBar(
             height: 60,
             shape: const CircularNotchedRectangle(),
-            color: Colors.orange,
+            color: Colors.lightBlue,
             child: IconTheme(
               data: IconThemeData(color: Theme.of(context).colorScheme.onPrimary),
               child: Row(

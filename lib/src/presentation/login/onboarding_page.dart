@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:redux/redux.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -28,11 +29,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> with SingleTickerPr
 
   final FocusNode _passwordNode = FocusNode();
 
+  late Store<AppState> _store;
+
   void _onNext(BuildContext context) {
     if (!Form.of(context).validate()) {
       return;
     }
-    StoreProvider.of<AppState>(context)
+    _store
         .dispatch(Login.start(email: _email.text, password: _password.text, onResult: _onResult));
   }
 
@@ -41,11 +44,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> with SingleTickerPr
       final Object error = action.error;
 
       if (error is FirebaseAuthException) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.message ?? '')));
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Invalid credentials!')));
       } else {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('$error')));
       }
     } else if (action is LoginSuccessful) {
+
       context.go('/homePage');
     }
   }
@@ -53,6 +57,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> with SingleTickerPr
   @override
   void initState() {
     super.initState();
+    _store = StoreProvider.of<AppState>(context, listen: false);
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 1000),
@@ -102,7 +107,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> with SingleTickerPr
               return Center(
                 child: LoadingAnimationWidget.staggeredDotsWave(
                   color: Colors.white,
-                  size: 200,
+                  size: 100,
                 ),
               );
             }
@@ -152,7 +157,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> with SingleTickerPr
                                   height: 16,
                                 ),
                                 Text(
-                                  "Hai să facem cumpărăturile",
+                                  'Hai să facem cumpărăturile smart',
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w400,
