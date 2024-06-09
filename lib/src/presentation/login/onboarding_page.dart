@@ -2,7 +2,9 @@ import 'dart:ui';
 import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/containers/pending_container.dart';
 import 'package:do_you_groceries/src/models/index.dart';
+import 'package:do_you_groceries/src/navigation/transitions.dart';
 import 'package:do_you_groceries/src/presentation/login/animated_button.dart';
+import 'package:do_you_groceries/src/presentation/login/sign_up_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -98,10 +100,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> with SingleTickerPr
           builder: (BuildContext context, Set<String> pending) {
             if ((pending.contains(GetCurrentUser.pendingKey)) || (pending.contains(Login.pendingKey))) {
               return Center(
-                  child: LoadingAnimationWidget.staggeredDotsWave(
-                    color: Colors.white,
-                    size: 200,
-                  ),);
+                child: LoadingAnimationWidget.staggeredDotsWave(
+                  color: Colors.white,
+                  size: 200,
+                ),
+              );
             }
             return SafeArea(
               child: SingleChildScrollView(
@@ -258,7 +261,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> with SingleTickerPr
                                     'Creează cont',
                                     style: TextStyle(color: Colors.white70),
                                   ),
-                                  onPressed: () {context.pushNamed('signUp');},
+                                  onPressed: () {
+                                    Navigator.of(context).push(createRoute(const SignupPage()));
+                                    //context.pushNamed('signUp');
+                                  },
                                 ),
                               ),
                             ],
