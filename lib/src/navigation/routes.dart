@@ -47,7 +47,7 @@ class RouterApp {
         GoRoute(
           name: 'login',
           path: '/login',
-          builder: (BuildContext context, GoRouterState state) => const Login(),
+          builder: (BuildContext context, GoRouterState state) => const LoginPage(),
         ),
         GoRoute(
           name: 'signUp',

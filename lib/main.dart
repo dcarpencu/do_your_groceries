@@ -69,7 +69,7 @@ class _DoYourGroceriesAppState extends State<DoYourGroceriesApp> {
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          colorSchemeSeed: Colors.deepOrangeAccent,
+          colorSchemeSeed: Colors.lightBlue,
           useMaterial3: true,
         ),
         routerConfig: RouterApp(widget.store).router,
