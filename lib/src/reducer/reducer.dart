@@ -1,5 +1,4 @@
 import 'package:do_you_groceries/src/actions/index.dart';
-import 'package:do_you_groceries/src/models/filter_chip_enums.dart';
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:flutter/foundation.dart';
 import 'package:redux/redux.dart';
@@ -62,6 +61,7 @@ Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   TypedReducer<AppState, SetCuisineFilterSelection>(_setCuisineFilterSelection).call,
   TypedReducer<AppState, SetBasicIngredientsFilterSelection>(_setBasicIngredientsFilterSelection).call,
   TypedReducer<AppState, SetDietaryRestrictionsFilterSelection>(_setDietaryRestrictionsFilterSelection).call,
+  TypedReducer<AppState, EditGroceryListSuccessful>(_editGroceryListSuccessful).call,
 ]);
 
 AppState _setMarketProductsToEmpty(AppState state, SetMarketProductsToEmpty action) {
@@ -106,7 +106,9 @@ AppState _getGroceryListsError(AppState state, GetGroceryListsError action) {
 
 AppState _setSelectedList(AppState state, SetSelectedList action) {
   return state.copyWith(
-      selectedGroceryList: action.selectedGroceryList, selectedGroceryListName: action.selectedGroceryListName);
+    selectedGroceryList: action.selectedGroceryList,
+    selectedGroceryListName: action.selectedGroceryListName,
+  );
 }
 
 AppState _setUnselectedList(AppState state, SetUnselectedList action) {
@@ -123,6 +125,11 @@ AppState _onRequestsEvent(AppState state, OnRequestsEvent action) {
 
 AppState _createGroceryListSuccessful(AppState state, CreateGroceryListSuccessful action) {
   return state.copyWith(groceryLists: <GroceryList>{action.groceryList, ...state.groceryLists});
+}
+
+AppState _editGroceryListSuccessful(AppState state, EditGroceryListSuccessful action) {
+  final List<GroceryList> groceryListsRM = <GroceryList>[...state.groceryLists]..remove(action.groceryLists[0]);
+  return state.copyWith(groceryLists: <GroceryList>{action.groceryLists[1], ...groceryListsRM});
 }
 
 AppState _getSuperMarketProductsSuccessful(AppState state, GetSuperMarketProductsSuccessful action) {
@@ -215,7 +222,6 @@ AppState _acceptRequestSuccessful(AppState state, AcceptRequestSuccessful action
 //
 //   return state.copyWith(cuisines: updatedCuisines);
 // }
-
 
 AppState _generateRecipeResponseSuccessful(AppState state, GenerateRecipeResponseSuccessful action) {
   return state.copyWith(generatorResponse: action.response);

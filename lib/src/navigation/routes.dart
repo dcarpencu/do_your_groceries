@@ -9,6 +9,7 @@ import 'package:do_you_groceries/src/presentation/login/sign_up_page.dart';
 import 'package:do_you_groceries/src/presentation/products/create_list_page.dart';
 import 'package:do_you_groceries/src/presentation/products/create_product_page.dart';
 import 'package:do_you_groceries/src/presentation/products/create_recipes_page.dart';
+import 'package:do_you_groceries/src/presentation/products/edit_list_page.dart';
 import 'package:do_you_groceries/src/presentation/products/recipes_test.dart';
 import 'package:do_you_groceries/src/presentation/products/user_products_page.dart';
 import 'package:do_you_groceries/src/presentation/supermarkets/markets_page.dart';
@@ -65,13 +66,14 @@ class RouterApp {
               builder: (BuildContext context, GoRouterState state) => const CreateProductPage(),
             ),
             GoRoute(
-              name: 'cameraApp',
-              path: 'cameraAppPage/:cameras',
-              builder: (BuildContext context, GoRouterState state) {
-                final List<CameraInfo> cameras = state.pathParameters['cameras']! as List<CameraInfo>;
-                return CameraApp(cameras: cameras,);
-              }
-            ),
+                name: 'cameraApp',
+                path: 'cameraAppPage/:cameras',
+                builder: (BuildContext context, GoRouterState state) {
+                  final List<CameraInfo> cameras = state.pathParameters['cameras']! as List<CameraInfo>;
+                  return CameraApp(
+                    cameras: cameras,
+                  );
+                }),
             GoRoute(
               name: 'marketsPage',
               path: 'marketsPage',
@@ -110,9 +112,9 @@ class RouterApp {
           ],
         ),
         GoRoute(
-            name: 'imageView',
-            path: '/imageViewPage',
-            builder: (BuildContext context, GoRouterState state) => const ImageViewPage(),
+          name: 'imageView',
+          path: '/imageViewPage',
+          builder: (BuildContext context, GoRouterState state) => const ImageViewPage(),
         ),
         GoRoute(
           name: 'userProfile',
@@ -132,15 +134,24 @@ class RouterApp {
         GoRoute(
           name: 'createRecipes',
           path: '/createRecipesPage',
-          builder: (BuildContext context, GoRouterState state) => const  CreateRecipesPage(),
+          builder: (BuildContext context, GoRouterState state) => const CreateRecipesPage(),
         ),
         GoRoute(
           name: 'generatedRecipe',
           path: '/generatedRecipePage',
-          builder: (BuildContext context, GoRouterState state) => const  GeneratedRecipePage(),
+          builder: (BuildContext context, GoRouterState state) => const GeneratedRecipePage(),
+        ),
+        GoRoute(
+          name: 'editListPage',
+          path: '/editListPage/:groceryList',
+          builder: (BuildContext context, GoRouterState state) {
+            final GroceryList? groceryList = state.pathParameters['groceryList'] as GroceryList?;
+            return EditListPage(
+              groceryList: groceryList!,
+            );
+          },
         ),
       ],
-
     );
   }
 

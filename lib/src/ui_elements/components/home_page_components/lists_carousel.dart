@@ -1,38 +1,48 @@
 import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/models/index.dart';
+import 'package:do_you_groceries/src/navigation/transitions.dart';
+import 'package:do_you_groceries/src/presentation/products/edit_list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:redux/redux.dart';
 
-class ListsCarousel extends StatelessWidget {
+enum Options { delete, edit, cancel }
+
+class ListsCarousel extends StatefulWidget {
   const ListsCarousel({required this.groceryLists, required this.store, super.key});
 
   final Set<GroceryList> groceryLists;
   final Store<AppState> store;
 
   @override
+  State<ListsCarousel> createState() => _ListsCarouselState();
+}
+
+class _ListsCarouselState extends State<ListsCarousel> {
+
+  @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 280,
       child: ListView.separated(
-        itemCount: groceryLists.length,
+        itemCount: widget.groceryLists.length,
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 20),
         separatorBuilder: (BuildContext context, int index) => const SizedBox(width: 16),
         itemBuilder: (BuildContext context, int index) {
-          final GroceryList groceryList = groceryLists.elementAt(index);
+          final GroceryList groceryList = widget.groceryLists.elementAt(index);
 
           return Container(
             width: 220,
             decoration: BoxDecoration(
               gradient: const LinearGradient(
-                colors: [Colors.lightBlue, Colors.lightBlueAccent],
+                colors: <Color>[Colors.lightBlue, Colors.lightBlueAccent],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
               borderRadius: BorderRadius.circular(20),
-              boxShadow: [
+              boxShadow: <BoxShadow>[
                 BoxShadow(
                   color: Colors.black.withOpacity(0.1),
                   spreadRadius: 5,
@@ -42,15 +52,16 @@ class ListsCarousel extends StatelessWidget {
               ],
             ),
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   SvgPicture.asset(
                     'assets/groceryListIcons/${groceryList.selectedIcon}.svg',
                     width: 100,
                     height: 100,
                   ),
+                  const SizedBox(height: 8),
                   Text(
                     groceryList.title,
                     style: const TextStyle(
@@ -58,41 +69,80 @@ class ListsCarousel extends StatelessWidget {
                       color: Colors.white,
                       fontSize: 18,
                     ),
-                  ),
-                  Text(
-                    groceryList.description,
-                    style: const TextStyle(
-                      color: Colors.white70,
-                      fontSize: 14,
-                    ),
                     textAlign: TextAlign.center,
                   ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: const Color(0xFF56AB2F), backgroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                  const SizedBox(height: 8),
+                  Expanded(
+                    child: Text(
+                      groceryList.description,
+                      style: const TextStyle(
+                        color: Colors.white70,
+                        fontSize: 14,
                       ),
-                    ),
-                    onPressed: () {
-                      store.dispatch(SetSelectedList(groceryList.groceryListId, groceryList.title));
-                      context.pushNamed('groceryList');
-                    },
-                    child: const Text(
-                      'View',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
+                      textAlign: TextAlign.center,
                     ),
                   ),
-                  IconButton(
-                    onPressed: () {
-                      store
-                        ..dispatch(RemoveGroceryListSimple(groceryList: groceryList))
-                        ..dispatch(RemoveGroceryList(groceryList: groceryList));
-                    },
-                    icon: const Icon(Icons.delete, color: Colors.white),
+                  const SizedBox(height: 8),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          foregroundColor: Colors.green,
+                          backgroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        onPressed: () {
+                          widget.store.dispatch(SetSelectedList(groceryList.groceryListId, groceryList.title));
+                          context.pushNamed('groceryList');
+                        },
+                        child: const Text(
+                          'View',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                      PopupMenuButton<Options>(
+                        icon: const Icon(Icons.more_vert, color: Colors.white),
+                        onSelected: (Options item) {
+                          if (item == Options.delete) {
+                            widget.store
+                              ..dispatch(RemoveGroceryListSimple(groceryList: groceryList))
+                              ..dispatch(RemoveGroceryList(groceryList: groceryList));
+                          } else if (item == Options.edit)
+                            {
+                              Navigator.of(context).push(createRoute(EditListPage(groceryList: groceryList,) ));
+                            }
+                        },
+                        itemBuilder: (BuildContext context) => <PopupMenuEntry<Options>>[
+                          const PopupMenuItem<Options>(
+                            value: Options.delete,
+                            child: ListTile(
+                              leading: Icon(Icons.delete_outline),
+                              title: Text('Remove'),
+                            ),
+                          ),
+                          const PopupMenuItem<Options>(
+                            value: Options.edit,
+                            child: ListTile(
+                              leading: Icon(Icons.edit),
+                              title: Text('Edit'),
+                            ),
+                          ),
+                          const PopupMenuItem<Options>(
+                            value: Options.cancel,
+                            child: ListTile(
+                              leading: Icon(Icons.cancel),
+                              title: Text('Cancel'),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ],
               ),

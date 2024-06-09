@@ -19,6 +19,8 @@ class UserProductsPage extends StatefulWidget {
   State<UserProductsPage> createState() => _UserProductsPageState();
 }
 
+enum Options { delete, edit }
+
 class _UserProductsPageState extends State<UserProductsPage> {
   late Store<AppState> _store;
 
@@ -46,6 +48,8 @@ class _UserProductsPageState extends State<UserProductsPage> {
         return Scaffold(
           appBar: AppBar(
             title: Text(groceryList.title),
+            actions: const <Widget>[
+            ],
           ),
           body: PendingContainer(
             builder: (BuildContext context, Set<String> pending) {

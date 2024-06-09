@@ -78,12 +78,39 @@ class AuthApi {
     return groceryList;
   }
 
+  Future<List<GroceryList>> updateGroceryList({
+    required String title,
+    required String description,
+    required String selectedIcon,
+    required GroceryList groceryList,
+  }) async {
+    final List<GroceryList> groceryLists = <GroceryList>[groceryList];
+    final DocumentReference<Map<String, dynamic>> ref = _firestore.collection('lists').doc(groceryList.groceryListId);
+
+    final Map<String, dynamic> dataToUpdate = <String, dynamic>{
+      'title': title,
+      'description': description,
+      'selectedIcon': selectedIcon,
+    };
+
+    await ref.update(dataToUpdate);
+
+    groceryLists.add(GroceryList(
+      groceryListId: groceryList.groceryListId,
+      title: title,
+      selectedIcon: selectedIcon,
+      description: description,
+    ),);
+
+    return groceryLists;
+  }
+
   Future<void> removeGroceryList({
     required GroceryList groceryList,
     required String currentUserId,
   }) async {
     final DocumentReference<Map<String, dynamic>> groceryListRef =
-    _firestore.collection('lists').doc(groceryList.groceryListId);
+        _firestore.collection('lists').doc(groceryList.groceryListId);
     final DocumentSnapshot<Map<String, dynamic>> groceryListSnapshot = await groceryListRef.get();
 
     if (groceryListSnapshot.exists) {
@@ -101,7 +128,7 @@ class AuthApi {
             final List<dynamic> parts = productId.toString().split('/');
             if (parts.first == 'products') {
               final DocumentReference<Map<String, dynamic>> productRef =
-              _firestore.collection('products').doc(parts.last as String);
+                  _firestore.collection('products').doc(parts.last as String);
               batch.delete(productRef);
             }
           }
@@ -113,8 +140,7 @@ class AuthApi {
 
         if (userSnapshot.exists) {
           final Map<String, dynamic> userData = userSnapshot.data()!;
-          final List<dynamic>? groceryListIds =
-          (userData['groceryListIds'] as List<dynamic>?)?.cast<String>().toList();
+          final List<dynamic>? groceryListIds = (userData['groceryListIds'] as List<dynamic>?)?.cast<String>().toList();
 
           if (groceryListIds != null) {
             groceryListIds.remove(groceryList.groceryListId);
@@ -250,7 +276,7 @@ class AuthApi {
           ..add(newRequestJson);
         listData!['requests'] = updatedRequestsSet.toList();
       } else {
-        listData!['requests'] = [newRequestJson];
+        listData!['requests'] = <Map<String, dynamic>>[newRequestJson];
       }
 
       await userRef.update(listData);
@@ -345,7 +371,8 @@ class AuthApi {
   }
 
   bool _mapsAreEqual(Map<String, dynamic> map1, Map<String, dynamic> map2) {
-    return map1.length == map2.length && map1.entries.every((entry) => map2[entry.key] == entry.value);
+    return map1.length == map2.length &&
+        map1.entries.every((MapEntry<String, dynamic> entry) => map2[entry.key] == entry.value);
   }
 
   Future<void> updateGroceryLists(String uid, String groceryListId, {required bool remove}) async {

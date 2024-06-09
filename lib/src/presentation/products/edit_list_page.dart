@@ -6,14 +6,16 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:redux/redux.dart';
 
-class CreateListPage extends StatefulWidget {
-  const CreateListPage({super.key});
+class EditListPage extends StatefulWidget {
+  const EditListPage({required this.groceryList, super.key});
+
+  final GroceryList groceryList;
 
   @override
-  State<CreateListPage> createState() => _CreateListPageState();
+  State<EditListPage> createState() => _EditListPageState();
 }
 
-class _CreateListPageState extends State<CreateListPage> {
+class _EditListPageState extends State<EditListPage> {
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
   final FocusNode _descriptionFocusNode = FocusNode();
@@ -47,10 +49,11 @@ class _CreateListPageState extends State<CreateListPage> {
 
     _store = StoreProvider.of<AppState>(context);
     _store.dispatch(
-      CreateGroceryList(
+      EditGroceryListStart(
         title: _titleController.text,
         description: _descriptionController.text,
         selectedIcon: _selectedValue.toString(),
+        groceryList: widget.groceryList,
       ),
     );
 
@@ -79,7 +82,7 @@ class _CreateListPageState extends State<CreateListPage> {
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
                             Text(
-                              'Add a New Grocery List',
+                              'Edit Grocery List',
                               style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
                             ),
                             const SizedBox(height: 48),
@@ -135,9 +138,10 @@ class _CreateListPageState extends State<CreateListPage> {
                               ),
                             ),
                             TextFormField(
+                              //initialValue: widget.groceryList.title,
                               controller: _titleController,
                               keyboardType: TextInputType.text,
-                              decoration: const InputDecoration(labelText: 'Title', hintText: 'Enter a list title'),
+                              decoration: InputDecoration(labelText: 'Title', hintText: widget.groceryList.title),
                               textInputAction: TextInputAction.next,
                               validator: (String? value) {
                                 if (value == null || value.isEmpty) {
@@ -171,7 +175,7 @@ class _CreateListPageState extends State<CreateListPage> {
                               keyboardType: TextInputType.text,
                               textInputAction: TextInputAction.done,
                               decoration:
-                                  const InputDecoration(labelText: 'Description', hintText: 'Enter a list description'),
+                              InputDecoration(labelText: 'Description', hintText: widget.groceryList.description),
                               onFieldSubmitted: (String value) {
                                 _onNext(context);
                               },
