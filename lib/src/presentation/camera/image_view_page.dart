@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/containers/pending_container.dart';
 import 'package:do_you_groceries/src/containers/related_products_container.dart';
@@ -46,9 +45,7 @@ class _ImageViewPageState extends State<ImageViewPage> {
           }
           if (!_productsFetched) {
             final String imageLabel = _store.state.takenPicture!.imageLabel;
-            print('\n\n IMG LABEL: $imageLabel \n\n');
             final List<String> object = parseString(imageLabel);
-            print('\n\n OBJECT: $object \n\n');
 
             if (object.length > 1) {
               _store.dispatch(GetProductsForCameraStart(category: object[1], tag: object[2]));
@@ -172,19 +169,12 @@ class _ImageViewPageState extends State<ImageViewPage> {
 
 
 List<String> parseString(String input) {
-  // Split the string by space to get the individual components
-  List<String> parts = input.split(' ');
+  final List<String> parts = input.split(' ');
+  final String part1 = parts[0];
+  final String part2 = parts[1];
 
-  // Extract the first part which is the number
-  String part1 = parts[0];
+  final String remaining = parts.sublist(2).join(' ');
+  final String part3 = remaining.split(' :')[0];
 
-  // Extract the second part which is the single word after the number
-  String part2 = parts[1];
-
-  // Extract the remaining part before the ':'
-  String remaining = parts.sublist(2).join(' ');
-  String part3 = remaining.split(' :')[0];
-
-  return [part1, part2, part3];
+  return <String>[part1, part2, part3];
 }
-
