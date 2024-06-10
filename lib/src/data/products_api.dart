@@ -54,8 +54,7 @@ class ProductsApi {
     print('\n\n\n\n GET PRODUCTS: \n\n');
     final List<Product> relatedProducts = <Product>[];
 
-    if (product.supermarket.isNotEmpty)
-    {
+    if (product.supermarket.isNotEmpty) {
       final CollectionReference<Map<String, dynamic>> productsRef =
           _firestore.collection('tags/${product.category}/${product.tag}');
 
@@ -83,36 +82,38 @@ class ProductsApi {
     print('\n\n\n\n GET PRODUCTS: \n\n');
     final List<Product> relatedProducts = <Product>[];
 
-      final CollectionReference<Map<String, dynamic>> productsRef =
-      _firestore.collection('tags/$category/$tag');
+    final CollectionReference<Map<String, dynamic>> productsRef = _firestore.collection('tags/$category/$tag');
 
-      final QuerySnapshot<Map<String, dynamic>> querySnapshot = await productsRef.get();
+    final QuerySnapshot<Map<String, dynamic>> querySnapshot = await productsRef.get();
 
-      // Loop through documents and convert them to Product objects
-      for (final QueryDocumentSnapshot<Map<String, dynamic>> doc in querySnapshot.docs) {
-        relatedProducts.add(
-          Product(
-            name: doc['name'] as String,
-            price: doc['price'] as double,
-            productId: doc.id,
-            category: category,
-            supermarket: doc['supermarket'] as String,
-            image: doc['image'] as String,
-          ),
-        );
-      }
+    // Loop through documents and convert them to Product objects
+    for (final QueryDocumentSnapshot<Map<String, dynamic>> doc in querySnapshot.docs) {
+      relatedProducts.add(
+        Product(
+          name: doc['name'] as String,
+          price: doc['price'] as double,
+          productId: doc.id,
+          category: category,
+          supermarket: doc['supermarket'] as String,
+          image: doc['image'] as String,
+        ),
+      );
+    }
 
     return relatedProducts;
   }
 
-  Future<void> createProduct({
+  Future<void> createProduct(
+    bool createdByUser, {
     required String groceryListId,
+    required String image,
     required String name,
     required String uid,
     required double price,
   }) async {
     final DocumentReference<Map<String, dynamic>> ref = _firestore.collection('products').doc();
-    final Product product = Product(productId: ref.id, name: name, price: price, category: '');
+    final Product product =
+        Product(productId: ref.id, name: name, price: price, image: image, createdByUser: createdByUser, category: '');
 
     await ref.set(product.toJson());
 
@@ -156,7 +157,7 @@ class ProductsApi {
     required Product product,
   }) async {
     final DocumentReference<Map<String, dynamic>> listRef = _firestore.collection('lists').doc(groceryListId);
-    final DocumentReference<Map<String, dynamic>> productRef = _firestore.collection('products').doc(product.productId);
+    //final DocumentReference<Map<String, dynamic>> productRef = _firestore.collection('products').doc(product.productId);
 
     final DocumentSnapshot<Map<String, dynamic>> snapshot = await listRef.get();
 
@@ -170,9 +171,8 @@ class ProductsApi {
       throw Exception('Grocery list data is null');
     }
 
-    final List<String> productIds = (listData['productIds'] as List<dynamic>?)
-        ?.map((dynamic id) => id.toString())
-        .toList() ?? <String>[];
+    final List<String> productIds =
+        (listData['productIds'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList() ?? <String>[];
 
     print('\n\n\n\n BEFORE: $productIds \n\n');
 
@@ -187,7 +187,8 @@ class ProductsApi {
     await listRef.update(listData);
 
     if (product.supermarket.isEmpty) {
-      final DocumentReference<Map<String, dynamic>> productRef = _firestore.collection('products').doc(product.productId);
+      final DocumentReference<Map<String, dynamic>> productRef =
+          _firestore.collection('products').doc(product.productId);
       await productRef.delete();
     }
   }

@@ -12,6 +12,7 @@ class Product with _$Product {
     @Default(<String>[]) List<String> keyWords,
     @Default('') String image,
     @Default(1) int page,
+    @Default(false) bool createdByUser,
     // @Default(0) final int quantity,
   }) = Product$;
 

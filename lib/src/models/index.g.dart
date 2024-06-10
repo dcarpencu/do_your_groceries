@@ -156,6 +156,7 @@ _$Product$Impl _$$Product$ImplFromJson(Map<String, dynamic> json) =>
           const <String>[],
       image: json['image'] as String? ?? '',
       page: (json['page'] as num?)?.toInt() ?? 1,
+      createdByUser: json['createdByUser'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$Product$ImplToJson(_$Product$Impl instance) =>
@@ -169,6 +170,7 @@ Map<String, dynamic> _$$Product$ImplToJson(_$Product$Impl instance) =>
       'keyWords': instance.keyWords,
       'image': instance.image,
       'page': instance.page,
+      'createdByUser': instance.createdByUser,
     };
 
 _$GroceryList$Impl _$$GroceryList$ImplFromJson(Map<String, dynamic> json) =>

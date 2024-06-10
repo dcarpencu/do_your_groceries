@@ -56,7 +56,7 @@ class CameraApi {
 
     //print('\n\n\n\n\n INPUT IMAGE: $inputImage \n\n\n IMAGE PATH: ${picture.path} \n\n\n');
 
-    final String modelPath = await getModelPath('assets/ml/latest_metadata_200epch.tflite');
+    final String modelPath = await getModelPath('assets/ml/latest_metadata_200epch_v2.tflite');
     final LocalLabelerOptions options = LocalLabelerOptions(
       confidenceThreshold: 0.75,
       modelPath: modelPath,

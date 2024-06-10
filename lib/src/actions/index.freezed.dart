@@ -6220,21 +6220,27 @@ abstract class SetDietaryRestrictionsFilterSelection$
 mixin _$CreateProduct {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String name, double price) $default, {
+    TResult Function(
+            String image, String name, double price, bool createdByUser)
+        $default, {
     required TResult Function() successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String name, double price)? $default, {
+    TResult? Function(
+            String image, String name, double price, bool createdByUser)?
+        $default, {
     TResult? Function()? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String name, double price)? $default, {
+    TResult Function(
+            String image, String name, double price, bool createdByUser)?
+        $default, {
     TResult Function()? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
@@ -6288,7 +6294,7 @@ abstract class _$$CreateProductStartImplCopyWith<$Res> {
           $Res Function(_$CreateProductStartImpl) then) =
       __$$CreateProductStartImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String name, double price});
+  $Res call({String image, String name, double price, bool createdByUser});
 }
 
 /// @nodoc
@@ -6302,18 +6308,28 @@ class __$$CreateProductStartImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? image = null,
     Object? name = null,
     Object? price = null,
+    Object? createdByUser = null,
   }) {
     return _then(_$CreateProductStartImpl(
-      null == name
+      image: null == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      null == price
+      price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as double,
+      createdByUser: null == createdByUser
+          ? _value.createdByUser
+          : createdByUser // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -6321,16 +6337,24 @@ class __$$CreateProductStartImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$CreateProductStartImpl implements CreateProductStart {
-  const _$CreateProductStartImpl(this.name, this.price);
+  const _$CreateProductStartImpl(
+      {required this.image,
+      required this.name,
+      required this.price,
+      required this.createdByUser});
 
+  @override
+  final String image;
   @override
   final String name;
   @override
   final double price;
+  @override
+  final bool createdByUser;
 
   @override
   String toString() {
-    return 'CreateProduct(name: $name, price: $price)';
+    return 'CreateProduct(image: $image, name: $name, price: $price, createdByUser: $createdByUser)';
   }
 
   @override
@@ -6338,12 +6362,16 @@ class _$CreateProductStartImpl implements CreateProductStart {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CreateProductStartImpl &&
+            (identical(other.image, image) || other.image == image) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.price, price) || other.price == price));
+            (identical(other.price, price) || other.price == price) &&
+            (identical(other.createdByUser, createdByUser) ||
+                other.createdByUser == createdByUser));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name, price);
+  int get hashCode =>
+      Object.hash(runtimeType, image, name, price, createdByUser);
 
   @JsonKey(ignore: true)
   @override
@@ -6355,33 +6383,39 @@ class _$CreateProductStartImpl implements CreateProductStart {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String name, double price) $default, {
+    TResult Function(
+            String image, String name, double price, bool createdByUser)
+        $default, {
     required TResult Function() successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
-    return $default(name, price);
+    return $default(image, name, price, createdByUser);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String name, double price)? $default, {
+    TResult? Function(
+            String image, String name, double price, bool createdByUser)?
+        $default, {
     TResult? Function()? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
-    return $default?.call(name, price);
+    return $default?.call(image, name, price, createdByUser);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String name, double price)? $default, {
+    TResult Function(
+            String image, String name, double price, bool createdByUser)?
+        $default, {
     TResult Function()? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(name, price);
+      return $default(image, name, price, createdByUser);
     }
     return orElse();
   }
@@ -6422,11 +6456,16 @@ class _$CreateProductStartImpl implements CreateProductStart {
 }
 
 abstract class CreateProductStart implements CreateProduct {
-  const factory CreateProductStart(final String name, final double price) =
-      _$CreateProductStartImpl;
+  const factory CreateProductStart(
+      {required final String image,
+      required final String name,
+      required final double price,
+      required final bool createdByUser}) = _$CreateProductStartImpl;
 
+  String get image;
   String get name;
   double get price;
+  bool get createdByUser;
   @JsonKey(ignore: true)
   _$$CreateProductStartImplCopyWith<_$CreateProductStartImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -6473,7 +6512,9 @@ class _$CreateProductSuccessfulImpl implements CreateProductSuccessful {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String name, double price) $default, {
+    TResult Function(
+            String image, String name, double price, bool createdByUser)
+        $default, {
     required TResult Function() successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
@@ -6483,7 +6524,9 @@ class _$CreateProductSuccessfulImpl implements CreateProductSuccessful {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String name, double price)? $default, {
+    TResult? Function(
+            String image, String name, double price, bool createdByUser)?
+        $default, {
     TResult? Function()? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
@@ -6493,7 +6536,9 @@ class _$CreateProductSuccessfulImpl implements CreateProductSuccessful {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String name, double price)? $default, {
+    TResult Function(
+            String image, String name, double price, bool createdByUser)?
+        $default, {
     TResult Function()? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
@@ -6615,7 +6660,9 @@ class _$CreateProductErrorImpl implements CreateProductError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String name, double price) $default, {
+    TResult Function(
+            String image, String name, double price, bool createdByUser)
+        $default, {
     required TResult Function() successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
@@ -6625,7 +6672,9 @@ class _$CreateProductErrorImpl implements CreateProductError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String name, double price)? $default, {
+    TResult? Function(
+            String image, String name, double price, bool createdByUser)?
+        $default, {
     TResult? Function()? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
@@ -6635,7 +6684,9 @@ class _$CreateProductErrorImpl implements CreateProductError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String name, double price)? $default, {
+    TResult Function(
+            String image, String name, double price, bool createdByUser)?
+        $default, {
     TResult Function()? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),

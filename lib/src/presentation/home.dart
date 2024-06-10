@@ -20,7 +20,6 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-
     // _store = StoreProvider.of<AppState>(context, listen: false);
     // _store
     //   ..dispatch(const RequestStoragePermissionStart())

@@ -1,5 +1,6 @@
 import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/models/index.dart';
+import 'package:do_you_groceries/src/ui_elements/components/icon_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
@@ -15,13 +16,41 @@ class _CreateProductPageState extends State<CreateProductPage> {
   final TextEditingController _price = TextEditingController();
   final FocusNode _priceFocusNode = FocusNode();
 
+  final List<String> _options = const <String>[
+    'breakfast-hotcakes-kitchen-svgrepo-com',
+    'beverage-drink-hot-svgrepo-com',
+    'cone-cream-dessert-svgrepo-com',
+    'cupcake-dessert-food-svgrepo-com',
+    'gastronomy-kitchen-restaurant-svgrepo-com',
+    'cone-cream-dessert-2-svgrepo-com',
+    'chicken-food-gastronomy-svgrepo-com',
+    'fast-food-gastronomy-2-svgrepo-com',
+    'boiled-breakfast-egg-svgrepo-com',
+    'food-fruit-gastronomy-svgrepo-com',
+    'cone-cream-dessert-3-svgrepo-com',
+    'food-fruit-healthy-svgrepo-com',
+    'beverage-drink-soda-svgrepo-com',
+    'beverage-coffee-cup-svgrepo-com',
+    'avocado-food-fruit-svgrepo-com',
+    'breakfast-cooking-egg-svgrepo-com',
+    'bowl-breakfast-egg-svgrepo-com',
+    'fast-food-gastronomy-svgrepo-com',
+    'bananas-food-fruit-svgrepo-com',
+    'fast-food-gastronomy-3-svgrepo-com',
+    'bowl-food-health-svgrepo-com',
+    'bakery-dessert-donut-svgrepo-com',
+    'fast-food-french-svgrepo-com',
+  ];
+  int? _selected = 0;
+  String _selectedValue = 'breakfast-hotcakes-kitchen-svgrepo-com';
+
   void _onNext(BuildContext context) {
     if (!Form.of(context).validate()) {
       return;
     }
 
     StoreProvider.of<AppState>(context).dispatch(
-      CreateProduct(_title.text, double.parse(_price.text)),
+      CreateProduct(image: _selectedValue, name: _title.text, price: double.parse(_price.text),  createdByUser: true,),
     );
     Navigator.pop(context);
   }
@@ -37,17 +66,13 @@ class _CreateProductPageState extends State<CreateProductPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Create Product'),
-        centerTitle: true,
-      ),
       body: Form(
         child: Builder(
           builder: (BuildContext context) {
             return SafeArea(
               child: Center(
                 child: SingleChildScrollView(
-                  padding: const EdgeInsets.all(24.0),
+                  padding: const EdgeInsets.all(24),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
@@ -56,6 +81,28 @@ class _CreateProductPageState extends State<CreateProductPage> {
                         style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 16),
+                      SizedBox(
+                        height: 120,
+                        width: double.infinity,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: _options.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            final String item = _options[index];
+
+                            return IconTile(
+                              item: item,
+                              isSelected: _selected == index,
+                              onTap: () {
+                                setState(() {
+                                  _selected = index;
+                                  _selectedValue = item;
+                                });
+                              }, location: 'productsIcons',
+                            );
+                          },
+                        ),
+                      ),
                       TextFormField(
                         controller: _title,
                         keyboardType: TextInputType.text,
@@ -99,9 +146,10 @@ class _CreateProductPageState extends State<CreateProductPage> {
                       ElevatedButton(
                         onPressed: () => _onNext(context),
                         style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.lightBlue,
                           padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
                         ),
-                        child: const Text('Create Product'),
+                        child: const Text('Create Product', style: TextStyle(color: Colors.white),),
                       ),
                       TextButton(
                         onPressed: () {

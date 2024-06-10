@@ -45,10 +45,13 @@ class _ImageViewPageState extends State<ImageViewPage> {
             return const Center(child: CircularProgressIndicator());
           }
           if (!_productsFetched) {
-            final List<String> object = _store.state.takenPicture!.imageLabel.split(' ');
+            final String imageLabel = _store.state.takenPicture!.imageLabel;
+            print('\n\n IMG LABEL: $imageLabel \n\n');
+            final List<String> object = parseString(imageLabel);
+            print('\n\n OBJECT: $object \n\n');
 
             if (object.length > 1) {
-              _store.dispatch(GetProductsForCameraStart(category: object[0], tag: object[1]));
+              _store.dispatch(GetProductsForCameraStart(category: object[1], tag: object[2]));
             }
             _productsFetched = true;
           }
@@ -166,3 +169,22 @@ class _ImageViewPageState extends State<ImageViewPage> {
     );
   }
 }
+
+
+List<String> parseString(String input) {
+  // Split the string by space to get the individual components
+  List<String> parts = input.split(' ');
+
+  // Extract the first part which is the number
+  String part1 = parts[0];
+
+  // Extract the second part which is the single word after the number
+  String part2 = parts[1];
+
+  // Extract the remaining part before the ':'
+  String remaining = parts.sublist(2).join(' ');
+  String part3 = remaining.split(' :')[0];
+
+  return [part1, part2, part3];
+}
+

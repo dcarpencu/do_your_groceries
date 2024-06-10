@@ -4,9 +4,10 @@ import 'package:do_you_groceries/src/containers/pending_container.dart';
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:do_you_groceries/src/navigation/transitions.dart';
 import 'package:do_you_groceries/src/presentation/camera/image_view_page.dart';
+import 'package:do_you_groceries/src/ui_elements/components/background_wave_clipper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:go_router/go_router.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:redux/redux.dart';
 
 class CameraApp extends StatefulWidget {
@@ -49,74 +50,103 @@ class _CameraAppState extends State<CameraApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: BackButton(
-          color: Colors.black,
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        centerTitle: true,
-        title: const Text(
-          'Take a picture',
-          style: TextStyle(color: Colors.black),
-        ),
-      ),
-      body: PendingContainer(
-        builder: (BuildContext context, Set<String> pending) {
-          if (pending.contains(InitializeController.pendingKey)) {
-            return const LinearProgressIndicator();
-          }
-
-          return Column(
+      body: Column(
+        children: <Widget>[
+          Stack(
             children: <Widget>[
-              GestureDetector(
-                onTapUp: _onTap,
+              ClipPath(
+                clipper: BackgroundWaveClipper(),
                 child: Container(
-                  padding: const EdgeInsets.all(8),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(16),
-                    child: Stack(
-                      children: <Widget>[
-                        CameraPreview(controller),
-                        if (showFocusCircle)
-                          Positioned(
-                            top: y - 20,
-                            left: x - 20,
-                            child: Container(
-                              height: 40,
-                              width: 40,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(color: Colors.white, width: 1.5),
-                              ),
-                            ),
-                          ),
-                      ],
+                  width: MediaQuery.of(context).size.width,
+                  height: 200,
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: <Color>[Colors.lightBlueAccent, Colors.lightBlue],
                     ),
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 64,
+              const Positioned(
+                top: 80,
+                left: 20,
+                child: Text(
+                  'Take a picture',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 32,
+                    fontFamily: 'Poppins',
+                    height: 1.2,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
-              FloatingActionButton(
-                onPressed: () async {
-                  await _store.dispatch(TakePictureStart(controller: controller));
-
-                  if (!context.mounted) {
-                    return;
-                  }
-                  await Navigator.of(context).push(createRoute(const ImageViewPage()));
-                },
-                backgroundColor: Colors.white70,
-                foregroundColor: Colors.black,
-                child: const Icon(Icons.camera),
-              ),
+              // Positioned(
+              //   top: 48,
+              //   left: 256,
+              //   child: SizedBox(height: 124, child: Image.asset('assets/Backgrounds/grocery-bag.png')),
+              // )
             ],
-          );
-        },
+          ),
+          PendingContainer(
+            builder: (BuildContext context, Set<String> pending) {
+              if (pending.contains(InitializeController.pendingKey)) {
+                return Center(
+                  child: LoadingAnimationWidget.fourRotatingDots(
+                    color: Colors.black,
+                    size: 100,
+                  ),
+                );
+              }
+              return Column(
+                children: <Widget>[
+                  GestureDetector(
+                    onTapUp: _onTap,
+                    child: Container(
+                      padding: const EdgeInsets.all(8),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(16),
+                        child: Stack(
+                          children: <Widget>[
+                            CameraPreview(controller),
+                            if (showFocusCircle)
+                              Positioned(
+                                top: y - 20,
+                                left: x - 20,
+                                child: Container(
+                                  height: 40,
+                                  width: 40,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: Border.all(color: Colors.white, width: 1.5),
+                                  ),
+                                ),
+                              ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  FloatingActionButton(
+                    onPressed: () async {
+                      await _store.dispatch(TakePictureStart(controller: controller));
+
+                      if (!context.mounted) {
+                        return;
+                      }
+                      await Navigator.of(context).push(createRoute(const ImageViewPage()));
+                    },
+                    backgroundColor: Colors.lightBlueAccent,
+                    foregroundColor: Colors.black,
+                    child: const Icon(Icons.camera),
+                  ),
+                ],
+              );
+            },
+          ),
+        ],
       ),
     );
   }

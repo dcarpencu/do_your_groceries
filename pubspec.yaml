@@ -63,5 +63,6 @@ flutter:
     - assets/RiveAssets/
     - assets/base/
     - assets/groceryListIcons/
+    - assets/productsIcons/
     - assets/ml/
     - assets/categoryIcons/

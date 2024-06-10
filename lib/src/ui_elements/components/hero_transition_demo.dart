@@ -5,6 +5,7 @@ import 'package:do_you_groceries/src/models/index.dart';
 import 'package:do_you_groceries/src/ui_elements/components/image_shimmer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:redux/redux.dart';
 
 class HeroPosts extends StatelessWidget {
@@ -34,8 +35,6 @@ class PostCard extends StatefulWidget {
 }
 
 class _PostCardState extends State<PostCard> {
-  late Store<AppState> _store;
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -53,8 +52,12 @@ class _PostCardState extends State<PostCard> {
             ),
             clipBehavior: Clip.antiAliasWithSaveLayer,
             child: ListTile(
-              leading: widget.product.image.isEmpty
-                  ? const FlutterLogo(size: 72)
+              leading: widget.product.createdByUser == true
+                  ? SvgPicture.asset(
+                      'assets/productsIcons/${widget.product.image}.svg',
+                      width: 72,
+                      height: 72,
+                    )
                   : SizedBox(
                       height: 72,
                       child: Image.network(
@@ -73,7 +76,10 @@ class _PostCardState extends State<PostCard> {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       widget.product.supermarket,
-                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500, ),
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ],
@@ -138,16 +144,20 @@ class _PostDetailPageState extends State<PostDetailPage> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     // Displaying detailed post image.
-                    if (widget.product.image.isNotEmpty)
+                    if (widget.product.createdByUser == true)
+                      Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: SvgPicture.asset(
+                          'assets/productsIcons/${widget.product.image}.svg',
+                          width: 216,
+                          height: 216,
+                        ),
+                      )
+                    else
                       Image.network(
                         widget.product.image,
                         fit: BoxFit.cover,
                         height: 300,
-                      )
-                    else
-                      const Padding(
-                        padding: EdgeInsets.all(8),
-                        child: FlutterLogo(size: 216),
                       ),
                     Padding(
                       padding: const EdgeInsets.all(16),
@@ -192,11 +202,12 @@ class _PostDetailPageState extends State<PostDetailPage> {
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: Colors.redAccent),
             child: TextButton(
                 onPressed: () {
-                  _store..dispatch(RemoveProductSimple(product: widget.product))
-                  ..dispatch(
-                    RemoveProductFromGroceryListStart(
-                        groceryListId: _store.state.selectedGroceryList!, product: widget.product),
-                  );
+                  _store
+                    ..dispatch(RemoveProductSimple(product: widget.product))
+                    ..dispatch(
+                      RemoveProductFromGroceryListStart(
+                          groceryListId: _store.state.selectedGroceryList!, product: widget.product),
+                    );
                   Navigator.pop(context);
                 },
                 child: const Text('Remove product from list')),

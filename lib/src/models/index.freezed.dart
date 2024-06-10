@@ -1149,6 +1149,7 @@ mixin _$Product {
   List<String> get keyWords => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
   int get page => throw _privateConstructorUsedError;
+  bool get createdByUser => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1169,7 +1170,8 @@ abstract class $ProductCopyWith<$Res> {
       String tag,
       List<String> keyWords,
       String image,
-      int page});
+      int page,
+      bool createdByUser});
 }
 
 /// @nodoc
@@ -1194,6 +1196,7 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
     Object? keyWords = null,
     Object? image = null,
     Object? page = null,
+    Object? createdByUser = null,
   }) {
     return _then(_value.copyWith(
       productId: null == productId
@@ -1232,6 +1235,10 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
               as int,
+      createdByUser: null == createdByUser
+          ? _value.createdByUser
+          : createdByUser // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -1252,7 +1259,8 @@ abstract class _$$Product$ImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
       String tag,
       List<String> keyWords,
       String image,
-      int page});
+      int page,
+      bool createdByUser});
 }
 
 /// @nodoc
@@ -1275,6 +1283,7 @@ class __$$Product$ImplCopyWithImpl<$Res>
     Object? keyWords = null,
     Object? image = null,
     Object? page = null,
+    Object? createdByUser = null,
   }) {
     return _then(_$Product$Impl(
       productId: null == productId
@@ -1313,6 +1322,10 @@ class __$$Product$ImplCopyWithImpl<$Res>
           ? _value.page
           : page // ignore: cast_nullable_to_non_nullable
               as int,
+      createdByUser: null == createdByUser
+          ? _value.createdByUser
+          : createdByUser // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -1329,7 +1342,8 @@ class _$Product$Impl implements Product$ {
       this.tag = '',
       final List<String> keyWords = const <String>[],
       this.image = '',
-      this.page = 1})
+      this.page = 1,
+      this.createdByUser = false})
       : _keyWords = keyWords;
 
   factory _$Product$Impl.fromJson(Map<String, dynamic> json) =>
@@ -1364,10 +1378,13 @@ class _$Product$Impl implements Product$ {
   @override
   @JsonKey()
   final int page;
+  @override
+  @JsonKey()
+  final bool createdByUser;
 
   @override
   String toString() {
-    return 'Product(productId: $productId, name: $name, price: $price, category: $category, supermarket: $supermarket, tag: $tag, keyWords: $keyWords, image: $image, page: $page)';
+    return 'Product(productId: $productId, name: $name, price: $price, category: $category, supermarket: $supermarket, tag: $tag, keyWords: $keyWords, image: $image, page: $page, createdByUser: $createdByUser)';
   }
 
   @override
@@ -1386,7 +1403,9 @@ class _$Product$Impl implements Product$ {
             (identical(other.tag, tag) || other.tag == tag) &&
             const DeepCollectionEquality().equals(other._keyWords, _keyWords) &&
             (identical(other.image, image) || other.image == image) &&
-            (identical(other.page, page) || other.page == page));
+            (identical(other.page, page) || other.page == page) &&
+            (identical(other.createdByUser, createdByUser) ||
+                other.createdByUser == createdByUser));
   }
 
   @JsonKey(ignore: true)
@@ -1401,7 +1420,8 @@ class _$Product$Impl implements Product$ {
       tag,
       const DeepCollectionEquality().hash(_keyWords),
       image,
-      page);
+      page,
+      createdByUser);
 
   @JsonKey(ignore: true)
   @override
@@ -1427,7 +1447,8 @@ abstract class Product$ implements Product {
       final String tag,
       final List<String> keyWords,
       final String image,
-      final int page}) = _$Product$Impl;
+      final int page,
+      final bool createdByUser}) = _$Product$Impl;
 
   factory Product$.fromJson(Map<String, dynamic> json) =
       _$Product$Impl.fromJson;
@@ -1450,6 +1471,8 @@ abstract class Product$ implements Product {
   String get image;
   @override
   int get page;
+  @override
+  bool get createdByUser;
   @override
   @JsonKey(ignore: true)
   _$$Product$ImplCopyWith<_$Product$Impl> get copyWith =>
