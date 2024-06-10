@@ -174,7 +174,7 @@ class AppEpic {
           .asyncMap(
             (_) => _productsApi.createProduct(
               action.createdByUser,
-              groceryListId: store.state.selectedGroceryList!,
+              groceryListId: store.state.selectedGroceryList!.groceryListId,
               name: action.name,
               image: action.image,
               price: action.price,

@@ -107,12 +107,11 @@ AppState _getGroceryListsError(AppState state, GetGroceryListsError action) {
 AppState _setSelectedList(AppState state, SetSelectedList action) {
   return state.copyWith(
     selectedGroceryList: action.selectedGroceryList,
-    selectedGroceryListName: action.selectedGroceryListName,
   );
 }
 
 AppState _setUnselectedList(AppState state, SetUnselectedList action) {
-  return state.copyWith(selectedGroceryList: '', productsGroceryList: <Product>[]);
+  return state.copyWith(selectedGroceryList: null, productsGroceryList: <Product>[]);
 }
 
 AppState _onProductsEvent(AppState state, OnProductsEvent action) {

@@ -4922,8 +4922,7 @@ abstract class _ListenForProductsError
 
 /// @nodoc
 mixin _$SetSelectedList {
-  String get selectedGroceryList => throw _privateConstructorUsedError;
-  String get selectedGroceryListName => throw _privateConstructorUsedError;
+  GroceryList get selectedGroceryList => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SetSelectedListCopyWith<SetSelectedList> get copyWith =>
@@ -4936,7 +4935,9 @@ abstract class $SetSelectedListCopyWith<$Res> {
           SetSelectedList value, $Res Function(SetSelectedList) then) =
       _$SetSelectedListCopyWithImpl<$Res, SetSelectedList>;
   @useResult
-  $Res call({String selectedGroceryList, String selectedGroceryListName});
+  $Res call({GroceryList selectedGroceryList});
+
+  $GroceryListCopyWith<$Res> get selectedGroceryList;
 }
 
 /// @nodoc
@@ -4953,18 +4954,21 @@ class _$SetSelectedListCopyWithImpl<$Res, $Val extends SetSelectedList>
   @override
   $Res call({
     Object? selectedGroceryList = null,
-    Object? selectedGroceryListName = null,
   }) {
     return _then(_value.copyWith(
       selectedGroceryList: null == selectedGroceryList
           ? _value.selectedGroceryList
           : selectedGroceryList // ignore: cast_nullable_to_non_nullable
-              as String,
-      selectedGroceryListName: null == selectedGroceryListName
-          ? _value.selectedGroceryListName
-          : selectedGroceryListName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as GroceryList,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $GroceryListCopyWith<$Res> get selectedGroceryList {
+    return $GroceryListCopyWith<$Res>(_value.selectedGroceryList, (value) {
+      return _then(_value.copyWith(selectedGroceryList: value) as $Val);
+    });
   }
 }
 
@@ -4976,7 +4980,10 @@ abstract class _$$SetSelectedList$ImplCopyWith<$Res>
       __$$SetSelectedList$ImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String selectedGroceryList, String selectedGroceryListName});
+  $Res call({GroceryList selectedGroceryList});
+
+  @override
+  $GroceryListCopyWith<$Res> get selectedGroceryList;
 }
 
 /// @nodoc
@@ -4991,17 +4998,12 @@ class __$$SetSelectedList$ImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? selectedGroceryList = null,
-    Object? selectedGroceryListName = null,
   }) {
     return _then(_$SetSelectedList$Impl(
       null == selectedGroceryList
           ? _value.selectedGroceryList
           : selectedGroceryList // ignore: cast_nullable_to_non_nullable
-              as String,
-      null == selectedGroceryListName
-          ? _value.selectedGroceryListName
-          : selectedGroceryListName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as GroceryList,
     ));
   }
 }
@@ -5009,17 +5011,14 @@ class __$$SetSelectedList$ImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SetSelectedList$Impl implements SetSelectedList$ {
-  const _$SetSelectedList$Impl(
-      this.selectedGroceryList, this.selectedGroceryListName);
+  const _$SetSelectedList$Impl(this.selectedGroceryList);
 
   @override
-  final String selectedGroceryList;
-  @override
-  final String selectedGroceryListName;
+  final GroceryList selectedGroceryList;
 
   @override
   String toString() {
-    return 'SetSelectedList(selectedGroceryList: $selectedGroceryList, selectedGroceryListName: $selectedGroceryListName)';
+    return 'SetSelectedList(selectedGroceryList: $selectedGroceryList)';
   }
 
   @override
@@ -5028,15 +5027,11 @@ class _$SetSelectedList$Impl implements SetSelectedList$ {
         (other.runtimeType == runtimeType &&
             other is _$SetSelectedList$Impl &&
             (identical(other.selectedGroceryList, selectedGroceryList) ||
-                other.selectedGroceryList == selectedGroceryList) &&
-            (identical(
-                    other.selectedGroceryListName, selectedGroceryListName) ||
-                other.selectedGroceryListName == selectedGroceryListName));
+                other.selectedGroceryList == selectedGroceryList));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, selectedGroceryList, selectedGroceryListName);
+  int get hashCode => Object.hash(runtimeType, selectedGroceryList);
 
   @JsonKey(ignore: true)
   @override
@@ -5047,13 +5042,11 @@ class _$SetSelectedList$Impl implements SetSelectedList$ {
 }
 
 abstract class SetSelectedList$ implements SetSelectedList {
-  const factory SetSelectedList$(final String selectedGroceryList,
-      final String selectedGroceryListName) = _$SetSelectedList$Impl;
+  const factory SetSelectedList$(final GroceryList selectedGroceryList) =
+      _$SetSelectedList$Impl;
 
   @override
-  String get selectedGroceryList;
-  @override
-  String get selectedGroceryListName;
+  GroceryList get selectedGroceryList;
   @override
   @JsonKey(ignore: true)
   _$$SetSelectedList$ImplCopyWith<_$SetSelectedList$Impl> get copyWith =>

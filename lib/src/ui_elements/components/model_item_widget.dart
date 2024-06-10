@@ -41,7 +41,7 @@ class ModelItem extends StatelessWidget {
               store.dispatch(
                 AddProductToGroceryListStart(
                   model,
-                  store.state.selectedGroceryList!,
+                  store.state.selectedGroceryList!.groceryListId,
                   model.page,
                   marketName: marketName,
                   category: category,

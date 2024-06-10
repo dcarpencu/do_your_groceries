@@ -2,27 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ListsCarouselShimmer extends StatefulWidget {
-  const ListsCarouselShimmer({Key? key}) : super(key: key);
+  const ListsCarouselShimmer({super.key});
 
   @override
   State<ListsCarouselShimmer> createState() => _ListsCarouselShimmerState();
 }
 
 class _ListsCarouselShimmerState extends State<ListsCarouselShimmer> {
-  static const LinearGradient _shimmerGradient = LinearGradient(
-    colors: [
-      Color(0xFFEBEBF4),
-      Color(0xFFF4F4F4),
-      Color(0xFFEBEBF4),
-    ],
-    stops: [
-      0.1,
-      0.3,
-      0.4,
-    ],
-    begin: Alignment(-1.0, -0.3),
-    end: Alignment(1.0, 0.3),
-  );
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +45,8 @@ class _ListsCarouselShimmerState extends State<ListsCarouselShimmer> {
 
   Widget _buildShimmerList() {
     return ListView.separated(
-      itemCount: 4,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: 2,
       scrollDirection: Axis.horizontal,
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       separatorBuilder: (BuildContext context, int index) => const SizedBox(width: 16),

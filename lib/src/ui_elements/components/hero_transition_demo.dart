@@ -206,7 +206,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                     ..dispatch(RemoveProductSimple(product: widget.product))
                     ..dispatch(
                       RemoveProductFromGroceryListStart(
-                          groceryListId: _store.state.selectedGroceryList!, product: widget.product),
+                          groceryListId: _store.state.selectedGroceryList!.groceryListId, product: widget.product),
                     );
                   Navigator.pop(context);
                 },

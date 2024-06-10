@@ -25,8 +25,7 @@ mixin _$AppState {
   List<Product> get productsGroceryList => throw _privateConstructorUsedError;
   List<Product> get relatedProducts => throw _privateConstructorUsedError;
   Set<GroceryList> get groceryLists => throw _privateConstructorUsedError;
-  String? get selectedGroceryList => throw _privateConstructorUsedError;
-  String? get selectedGroceryListName => throw _privateConstructorUsedError;
+  GroceryList? get selectedGroceryList => throw _privateConstructorUsedError;
   Set<String> get pending => throw _privateConstructorUsedError;
   int get pageNumber => throw _privateConstructorUsedError;
   bool get contentLoaded => throw _privateConstructorUsedError;
@@ -61,8 +60,7 @@ abstract class $AppStateCopyWith<$Res> {
       List<Product> productsGroceryList,
       List<Product> relatedProducts,
       Set<GroceryList> groceryLists,
-      String? selectedGroceryList,
-      String? selectedGroceryListName,
+      GroceryList? selectedGroceryList,
       Set<String> pending,
       int pageNumber,
       bool contentLoaded,
@@ -79,6 +77,7 @@ abstract class $AppStateCopyWith<$Res> {
       String? dietaryRestrictionsText});
 
   $AppUserCopyWith<$Res>? get user;
+  $GroceryListCopyWith<$Res>? get selectedGroceryList;
   $TakenPictureCopyWith<$Res>? get takenPicture;
   $CameraInfoCopyWith<$Res>? get selectedCamera;
 }
@@ -102,7 +101,6 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
     Object? relatedProducts = null,
     Object? groceryLists = null,
     Object? selectedGroceryList = freezed,
-    Object? selectedGroceryListName = freezed,
     Object? pending = null,
     Object? pageNumber = null,
     Object? contentLoaded = null,
@@ -142,11 +140,7 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
       selectedGroceryList: freezed == selectedGroceryList
           ? _value.selectedGroceryList
           : selectedGroceryList // ignore: cast_nullable_to_non_nullable
-              as String?,
-      selectedGroceryListName: freezed == selectedGroceryListName
-          ? _value.selectedGroceryListName
-          : selectedGroceryListName // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as GroceryList?,
       pending: null == pending
           ? _value.pending
           : pending // ignore: cast_nullable_to_non_nullable
@@ -220,6 +214,18 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
 
   @override
   @pragma('vm:prefer-inline')
+  $GroceryListCopyWith<$Res>? get selectedGroceryList {
+    if (_value.selectedGroceryList == null) {
+      return null;
+    }
+
+    return $GroceryListCopyWith<$Res>(_value.selectedGroceryList!, (value) {
+      return _then(_value.copyWith(selectedGroceryList: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
   $TakenPictureCopyWith<$Res>? get takenPicture {
     if (_value.takenPicture == null) {
       return null;
@@ -257,8 +263,7 @@ abstract class _$$AppState$ImplCopyWith<$Res>
       List<Product> productsGroceryList,
       List<Product> relatedProducts,
       Set<GroceryList> groceryLists,
-      String? selectedGroceryList,
-      String? selectedGroceryListName,
+      GroceryList? selectedGroceryList,
       Set<String> pending,
       int pageNumber,
       bool contentLoaded,
@@ -276,6 +281,8 @@ abstract class _$$AppState$ImplCopyWith<$Res>
 
   @override
   $AppUserCopyWith<$Res>? get user;
+  @override
+  $GroceryListCopyWith<$Res>? get selectedGroceryList;
   @override
   $TakenPictureCopyWith<$Res>? get takenPicture;
   @override
@@ -299,7 +306,6 @@ class __$$AppState$ImplCopyWithImpl<$Res>
     Object? relatedProducts = null,
     Object? groceryLists = null,
     Object? selectedGroceryList = freezed,
-    Object? selectedGroceryListName = freezed,
     Object? pending = null,
     Object? pageNumber = null,
     Object? contentLoaded = null,
@@ -339,11 +345,7 @@ class __$$AppState$ImplCopyWithImpl<$Res>
       selectedGroceryList: freezed == selectedGroceryList
           ? _value.selectedGroceryList
           : selectedGroceryList // ignore: cast_nullable_to_non_nullable
-              as String?,
-      selectedGroceryListName: freezed == selectedGroceryListName
-          ? _value.selectedGroceryListName
-          : selectedGroceryListName // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as GroceryList?,
       pending: null == pending
           ? _value._pending
           : pending // ignore: cast_nullable_to_non_nullable
@@ -414,7 +416,6 @@ class _$AppState$Impl implements AppState$ {
       final List<Product> relatedProducts = const <Product>[],
       final Set<GroceryList> groceryLists = const <GroceryList>{},
       this.selectedGroceryList,
-      this.selectedGroceryListName,
       final Set<String> pending = const <String>{},
       this.pageNumber = 1,
       this.contentLoaded = false,
@@ -483,9 +484,7 @@ class _$AppState$Impl implements AppState$ {
   }
 
   @override
-  final String? selectedGroceryList;
-  @override
-  final String? selectedGroceryListName;
+  final GroceryList? selectedGroceryList;
   final Set<String> _pending;
   @override
   @JsonKey()
@@ -561,7 +560,7 @@ class _$AppState$Impl implements AppState$ {
 
   @override
   String toString() {
-    return 'AppState(user: $user, supermarketProducts: $supermarketProducts, productsGroceryList: $productsGroceryList, relatedProducts: $relatedProducts, groceryLists: $groceryLists, selectedGroceryList: $selectedGroceryList, selectedGroceryListName: $selectedGroceryListName, pending: $pending, pageNumber: $pageNumber, contentLoaded: $contentLoaded, cameras: $cameras, takenPicture: $takenPicture, selectedCamera: $selectedCamera, users: $users, requests: $requests, isNotifications: $isNotifications, cuisines: $cuisines, generatorResponse: $generatorResponse, cuisineText: $cuisineText, basicIngredientsText: $basicIngredientsText, dietaryRestrictionsText: $dietaryRestrictionsText)';
+    return 'AppState(user: $user, supermarketProducts: $supermarketProducts, productsGroceryList: $productsGroceryList, relatedProducts: $relatedProducts, groceryLists: $groceryLists, selectedGroceryList: $selectedGroceryList, pending: $pending, pageNumber: $pageNumber, contentLoaded: $contentLoaded, cameras: $cameras, takenPicture: $takenPicture, selectedCamera: $selectedCamera, users: $users, requests: $requests, isNotifications: $isNotifications, cuisines: $cuisines, generatorResponse: $generatorResponse, cuisineText: $cuisineText, basicIngredientsText: $basicIngredientsText, dietaryRestrictionsText: $dietaryRestrictionsText)';
   }
 
   @override
@@ -580,9 +579,6 @@ class _$AppState$Impl implements AppState$ {
                 .equals(other._groceryLists, _groceryLists) &&
             (identical(other.selectedGroceryList, selectedGroceryList) ||
                 other.selectedGroceryList == selectedGroceryList) &&
-            (identical(
-                    other.selectedGroceryListName, selectedGroceryListName) ||
-                other.selectedGroceryListName == selectedGroceryListName) &&
             const DeepCollectionEquality().equals(other._pending, _pending) &&
             (identical(other.pageNumber, pageNumber) ||
                 other.pageNumber == pageNumber) &&
@@ -619,7 +615,6 @@ class _$AppState$Impl implements AppState$ {
         const DeepCollectionEquality().hash(_relatedProducts),
         const DeepCollectionEquality().hash(_groceryLists),
         selectedGroceryList,
-        selectedGroceryListName,
         const DeepCollectionEquality().hash(_pending),
         pageNumber,
         contentLoaded,
@@ -657,8 +652,7 @@ abstract class AppState$ implements AppState {
       final List<Product> productsGroceryList,
       final List<Product> relatedProducts,
       final Set<GroceryList> groceryLists,
-      final String? selectedGroceryList,
-      final String? selectedGroceryListName,
+      final GroceryList? selectedGroceryList,
       final Set<String> pending,
       final int pageNumber,
       final bool contentLoaded,
@@ -688,9 +682,7 @@ abstract class AppState$ implements AppState {
   @override
   Set<GroceryList> get groceryLists;
   @override
-  String? get selectedGroceryList;
-  @override
-  String? get selectedGroceryListName;
+  GroceryList? get selectedGroceryList;
   @override
   Set<String> get pending;
   @override

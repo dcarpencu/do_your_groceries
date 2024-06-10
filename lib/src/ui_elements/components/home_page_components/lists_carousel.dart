@@ -95,7 +95,7 @@ class _ListsCarouselState extends State<ListsCarousel> {
                           ),
                         ),
                         onPressed: () {
-                          widget.store.dispatch(SetSelectedList(groceryList.groceryListId, groceryList.title));
+                          widget.store.dispatch(SetSelectedList(groceryList));
                           context.pushNamed('groceryList');
                         },
                         child: const Text(

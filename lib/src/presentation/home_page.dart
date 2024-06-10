@@ -36,15 +36,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return HomePageContainer(
       builder: (BuildContext context, AppState state) {
-        final double width = MediaQuery.of(context).size.width * 0.9;
         return Scaffold(
-          // appBar: AppBar(
-          //   title: const Text(
-          //     'DoYourGroceries',
-          //     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          //   ),
-          //   actions: const <Widget>[],
-          // ),
           body: Column(
             children: <Widget>[
               Stack(
