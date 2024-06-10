@@ -7,9 +7,11 @@ import 'package:do_you_groceries/src/navigation/transitions.dart';
 import 'package:do_you_groceries/src/presentation/products/create_list_page.dart';
 import 'package:do_you_groceries/src/presentation/user/notifications_page.dart';
 import 'package:do_you_groceries/src/presentation/user/user_profile_page.dart';
+import 'package:do_you_groceries/src/ui_elements/components/background_wave_clipper.dart';
 import 'package:do_you_groceries/src/ui_elements/components/home_page_components/lists_carousel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:redux/redux.dart';
 
 class HomePage extends StatefulWidget {
@@ -36,50 +38,111 @@ class _HomePageState extends State<HomePage> {
       builder: (BuildContext context, AppState state) {
         final double width = MediaQuery.of(context).size.width * 0.9;
         return Scaffold(
-          appBar: AppBar(
-            title: const Text(
-              'DoYourGroceries',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            actions: const <Widget>[],
-          ),
+          // appBar: AppBar(
+          //   title: const Text(
+          //     'DoYourGroceries',
+          //     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          //   ),
+          //   actions: const <Widget>[],
+          // ),
           body: Column(
             children: <Widget>[
+              Stack(
+                children: <Widget>[
+                  ClipPath(
+                    clipper: BackgroundWaveClipper(),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 280,
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: <Color>[Colors.lightBlueAccent, Colors.lightBlue],
+                        ),
+                      ),
+                    ),
+                  ),
+                  const Positioned(
+                    top: 100,
+                    left: 20,
+                    child: Text(
+                      'DoYourGroceries',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 32,
+                        fontFamily: 'Poppins',
+                        height: 1.2,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    top: 88,
+                    left: 256,
+                    child: SizedBox(height: 124, child: Image.asset('assets/Backgrounds/grocery-bag.png')),
+                  )
+                ],
+              ),
               PendingContainer(
                 builder: (BuildContext context, Set<String> pending) {
                   if (pending.contains(GetGroceryLists.pendingKey)) {
-                    return const LinearProgressIndicator();
+                    return Center(
+                      child: LoadingAnimationWidget.horizontalRotatingDots(
+                        color: Colors.black,
+                        size: 100,
+                      ),
+                    );
                   }
                   return GroceryListsContainer(
                     builder: (BuildContext context, Set<GroceryList> groceryLists) {
-                      return SafeArea(
-                        child: Column(
-                          children: <Widget>[
-                            const SizedBox(
-                              height: 16,
-                            ),
-                            const Align(
-                              alignment: Alignment.centerLeft,
-                              child: Padding(
-                                padding: EdgeInsets.all(8),
-                                child: Text(
-                                  'Your lists. Here.',
-                                  style: TextStyle(
-                                    fontSize: 16,
+                      return Column(
+                        children: <Widget>[
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Padding(
+                              padding: const EdgeInsets.all(16),
+                              child: RichText(
+                                text: TextSpan(
+                                  style: const TextStyle(
+                                    fontSize: 24,
+                                    fontFamily: 'Poppins',
+                                    height: 1.2,
+                                    color: Colors.black,
+                                    // You can adjust the color as needed
+                                    fontWeight: FontWeight.normal, // Salut is regular
                                   ),
-                                  textAlign: TextAlign.left,
+                                  children: [
+                                    const TextSpan(
+                                      text: 'Salut, ',
+                                    ),
+                                    TextSpan(
+                                      text: _store.state.user?.username ?? '', // Username is bolded
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    const TextSpan(
+                                      text: '!', // exclamation mark remains regular
+                                    ),
+                                  ],
                                 ),
+                                textAlign: TextAlign.left,
                               ),
                             ),
-                            if (groceryLists.isNotEmpty)
-                              ListsCarousel(groceryLists: groceryLists, store: _store,)
-                            else
-                              const Center(child: Text('No lists.')),
-                            const SizedBox(
-                              height: 30,
-                            ),
-                          ],
-                        ),
+                          ),
+                          const SizedBox(
+                            height: 32,
+                          ),
+                          if (groceryLists.isNotEmpty)
+                            ListsCarousel(
+                              groceryLists: groceryLists,
+                              store: _store,
+                            )
+                          else
+                            const Center(child: Text('No lists.')),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                        ],
                       );
                     },
                   );
