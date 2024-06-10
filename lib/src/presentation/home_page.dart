@@ -5,10 +5,11 @@ import 'package:do_you_groceries/src/containers/pending_container.dart';
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:do_you_groceries/src/navigation/transitions.dart';
 import 'package:do_you_groceries/src/presentation/products/create_list_page.dart';
+import 'package:do_you_groceries/src/presentation/user/notifications_page.dart';
+import 'package:do_you_groceries/src/presentation/user/user_profile_page.dart';
 import 'package:do_you_groceries/src/ui_elements/components/home_page_components/lists_carousel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:go_router/go_router.dart';
 import 'package:redux/redux.dart';
 
 class HomePage extends StatefulWidget {
@@ -44,42 +45,6 @@ class _HomePageState extends State<HomePage> {
           ),
           body: Column(
             children: <Widget>[
-              // Card(
-              //   elevation: 5,
-              //   shadowColor: Colors.black,
-              //   color: Colors.greenAccent,
-              //   child: SizedBox(
-              //     width: width,
-              //     height: 200,
-              //     child: Padding(
-              //       padding: const EdgeInsets.all(20),
-              //       child: Column(
-              //         children: <Widget>[
-              //           CircleAvatar(
-              //             backgroundColor: Colors.green[500],
-              //             radius: 50,
-              //             child: const CircleAvatar(
-              //               backgroundImage: NetworkImage(
-              //                   'https://www.pushengage.com/wp-content/uploads/2022/10/How-to-Add-a-Push-Notification-Icon.png',),
-              //               radius: 100,
-              //             ),
-              //           ),
-              //           const SizedBox(
-              //             height: 10,
-              //           ),
-              //           Text(
-              //             'Notification center',
-              //             style: TextStyle(
-              //               fontSize: 30,
-              //               color: Colors.green[900],
-              //               fontWeight: FontWeight.w500,
-              //             ),
-              //           ),
-              //         ],
-              //       ),
-              //     ),
-              //   ),
-              // ),
               PendingContainer(
                 builder: (BuildContext context, Set<String> pending) {
                   if (pending.contains(GetGroceryLists.pendingKey)) {
@@ -141,15 +106,13 @@ class _HomePageState extends State<HomePage> {
                     icon: const Icon(Icons.notifications),
                     onPressed: () {
                       _store.dispatch(const SetNotificationOn());
-                      context.pushNamed('notifications');
+                      Navigator.of(context).push(createRoute(const NotificationsPage()));
                     },
                   ),
                   IconButton(
                     tooltip: 'Open navigation menu',
                     icon: const Icon(Icons.person),
-                    onPressed: () {
-                      context.pushNamed('userProfile');
-                    },
+                    onPressed: () => Navigator.of(context).push(createRoute(const UserProfilePage())),
                   ),
                   const Spacer(),
                 ],

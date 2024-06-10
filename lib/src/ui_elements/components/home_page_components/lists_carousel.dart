@@ -3,7 +3,7 @@ import 'package:do_you_groceries/src/models/index.dart';
 import 'package:do_you_groceries/src/navigation/transitions.dart';
 import 'package:do_you_groceries/src/presentation/products/edit_list_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:redux/redux.dart';
 
@@ -20,21 +20,20 @@ class ListsCarousel extends StatefulWidget {
 }
 
 class _ListsCarouselState extends State<ListsCarousel> {
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 280,
+      height: 320,
       child: ListView.separated(
         itemCount: widget.groceryLists.length,
         scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         separatorBuilder: (BuildContext context, int index) => const SizedBox(width: 16),
         itemBuilder: (BuildContext context, int index) {
           final GroceryList groceryList = widget.groceryLists.elementAt(index);
 
           return Container(
-            width: 220,
+            width: 240,
             decoration: BoxDecoration(
               gradient: const LinearGradient(
                 colors: <Color>[Colors.lightBlue, Colors.lightBlueAccent],
@@ -45,8 +44,8 @@ class _ListsCarouselState extends State<ListsCarousel> {
               boxShadow: <BoxShadow>[
                 BoxShadow(
                   color: Colors.black.withOpacity(0.1),
-                  spreadRadius: 5,
-                  blurRadius: 7,
+                  spreadRadius: 2,
+                  blurRadius: 5,
                   offset: const Offset(0, 3),
                 ),
               ],
@@ -67,7 +66,7 @@ class _ListsCarouselState extends State<ListsCarousel> {
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
-                      fontSize: 18,
+                      fontSize: 20,
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -84,8 +83,9 @@ class _ListsCarouselState extends State<ListsCarousel> {
                   ),
                   const SizedBox(height: 8),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
+                      const IconButton(onPressed: null, icon: Icon(Icons.more_vert, color: Colors.transparent)),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           foregroundColor: Colors.green,
@@ -113,10 +113,9 @@ class _ListsCarouselState extends State<ListsCarousel> {
                             widget.store
                               ..dispatch(RemoveGroceryListSimple(groceryList: groceryList))
                               ..dispatch(RemoveGroceryList(groceryList: groceryList));
-                          } else if (item == Options.edit)
-                            {
-                              Navigator.of(context).push(createRoute(EditListPage(groceryList: groceryList,) ));
-                            }
+                          } else if (item == Options.edit) {
+                            Navigator.of(context).push(createRoute(EditListPage(groceryList: groceryList)));
+                          }
                         },
                         itemBuilder: (BuildContext context) => <PopupMenuEntry<Options>>[
                           const PopupMenuItem<Options>(
