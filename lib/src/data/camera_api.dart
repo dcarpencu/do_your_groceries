@@ -56,7 +56,7 @@ class CameraApi {
 
     //print('\n\n\n\n\n INPUT IMAGE: $inputImage \n\n\n IMAGE PATH: ${picture.path} \n\n\n');
 
-    final String modelPath = await getModelPath('assets/ml/metadata_latest.tflite');
+    final String modelPath = await getModelPath('assets/ml/latest_metadata_200epch.tflite');
     final LocalLabelerOptions options = LocalLabelerOptions(
       confidenceThreshold: 0.75,
       modelPath: modelPath,
@@ -81,14 +81,24 @@ class CameraApi {
     return takenPicture;
   }
 
+
+
+
+
+
+
+
+
+
+
+
   Future<String> getModelPath(String asset) async {
     final String path = '${(await getApplicationSupportDirectory()).path}/$asset';
     await Directory(dirname(path)).create(recursive: true);
     final File file = File(path);
     if (!await file.exists()) {
       final ByteData byteData = await rootBundle.load(asset);
-      await file.writeAsBytes(byteData.buffer
-          .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
+      await file.writeAsBytes(byteData.buffer.asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
     }
     return file.path;
   }
@@ -96,54 +106,60 @@ class CameraApi {
   Future<String> getImageLabels({required String imagePath}) async {
     print('\n\n\n GetIMAGELABELS \n\n');
 
-    final InputImage inputImage = InputImage.fromFilePath(imagePath);
+    try {
+      final InputImage inputImage = InputImage.fromFilePath(imagePath);
 
-    print('\n\n\n input Image: $inputImage \n\n\n');
+      print('\n\n\n input Image: $inputImage \n\n\n');
 
-    //final String modelPath = await getModelPath('assets/ml/popular_us_products.tflite');
+      final String modelPath = await _loadModel('assets/ml/latest_metadata_200epch.tflite');
 
+      final LocalLabelerOptions options = LocalLabelerOptions(
+        confidenceThreshold: 0.75,
+        modelPath: modelPath,
+      );
 
-    final String path = '${(await getApplicationSupportDirectory()).path}/assets/ml/model_unquant.tflite';
+      print('\n\n\n OPTIONS: $options \n\n\n');
 
-    print('\n\n\n PATH: $path \n\n\n');
-    await Directory(dirname(path)).create(recursive: true);
-    final File file = File(path);
+      final ImageLabeler imageLabeler = ImageLabeler(options: options);
 
-    print('\n\n\n FILE: $file \n\n\n');
+      final List<ImageLabel> labels = await imageLabeler.processImage(inputImage);
+      final StringBuffer sb = StringBuffer();
 
-    if (!await file.exists()) {
-      print('\n\n\n BYTEDATA \n\n\n');
+      for (final ImageLabel imgLabel in labels) {
+        final String lblText = imgLabel.label;
+        final double confidence = imgLabel.confidence;
+        sb
+          ..write(lblText)
+          ..write(' : ')
+          ..write((confidence * 100).toStringAsFixed(2))
+          ..write('%\n');
+      }
 
-      final ByteData byteData = await rootBundle.load('assets/ml/model_unquant.tflite');
-      await file.writeAsBytes(byteData.buffer
-          .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
+      await imageLabeler.close();
+      return sb.toString();
+    } catch (e) {
+      print('Error in getImageLabels: $e');
+      return 'Error: $e';
     }
+  }
 
-    print('\n\n\n FILE PATH: ${file.path} \n\n\n');
+  Future<String> _loadModel(String assetPath) async {
+    try {
+      final String modelPath = '${(await getApplicationSupportDirectory()).path}/$assetPath';
+      final File modelFile = File(modelPath);
 
-    final LocalLabelerOptions options = LocalLabelerOptions(
-      confidenceThreshold: 0.75,
-      modelPath: file.path,
-    );
+      if (!await modelFile.exists()) {
+        final ByteData byteData = await rootBundle.load(assetPath);
+        await modelFile.writeAsBytes(
+          byteData.buffer.asUint8List(byteData.offsetInBytes, byteData.lengthInBytes),
+          flush: true,
+        );
+      }
 
-    print('\n\n\n OPTIONS: $options \n\n\n');
-
-    final ImageLabeler imageLabeler = ImageLabeler(options: options);
-
-    //final ImageLabeler imageLabeler = ImageLabeler(options: ImageLabelerOptions(confidenceThreshold: 0.75));
-
-    final List<ImageLabel> labels = await imageLabeler.processImage(inputImage);
-    final StringBuffer sb = StringBuffer();
-    for (final ImageLabel imgLabel in labels) {
-      final String lblText = imgLabel.label;
-      final double confidence = imgLabel.confidence;
-      sb
-        ..write(lblText)
-        ..write(' : ')
-        ..write((confidence * 100).toStringAsFixed(2))
-        ..write('%\n');
+      return modelFile.path;
+    } catch (e) {
+      print('Error loading model: $e');
+      rethrow;
     }
-    await imageLabeler.close();
-    return sb.toString();
   }
 }

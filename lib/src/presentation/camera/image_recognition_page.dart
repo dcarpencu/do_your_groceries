@@ -1,9 +1,8 @@
-import 'dart:io';
-
 import 'package:camera/camera.dart';
 import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/containers/pending_container.dart';
 import 'package:do_you_groceries/src/models/index.dart';
+import 'package:do_you_groceries/src/navigation/transitions.dart';
 import 'package:do_you_groceries/src/presentation/camera/image_view_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -22,16 +21,23 @@ class CameraApp extends StatefulWidget {
 class _CameraAppState extends State<CameraApp> {
   late CameraController controller;
   late Store<AppState> _store;
+  bool showFocusCircle = false;
+  double x = 0;
+  double y = 0;
 
   @override
   void initState() {
     super.initState();
     _store = StoreProvider.of<AppState>(context, listen: false);
-    _store
-      .dispatch(SetSelectedCamera(widget.cameras[0]));
+    _store.dispatch(SetSelectedCamera(widget.cameras[0]));
 
     controller = CameraController(CameraInfo.toCameraDescription(_store.state.selectedCamera!), ResolutionPreset.max);
     _store.dispatch(InitializeControllerStart(controller: controller));
+    controller.addListener(() {
+      if (mounted) {
+        setState(() {});
+      }
+    });
   }
 
   @override
@@ -65,11 +71,31 @@ class _CameraAppState extends State<CameraApp> {
 
           return Column(
             children: <Widget>[
-              Container(
-                padding: const EdgeInsets.all(8),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(16),
-                  child: CameraPreview(controller),
+              GestureDetector(
+                onTapUp: _onTap,
+                child: Container(
+                  padding: const EdgeInsets.all(8),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(16),
+                    child: Stack(
+                      children: <Widget>[
+                        CameraPreview(controller),
+                        if (showFocusCircle)
+                          Positioned(
+                            top: y - 20,
+                            left: x - 20,
+                            child: Container(
+                              height: 40,
+                              width: 40,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(color: Colors.white, width: 1.5),
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
               const SizedBox(
@@ -78,42 +104,16 @@ class _CameraAppState extends State<CameraApp> {
               FloatingActionButton(
                 onPressed: () async {
                   await _store.dispatch(TakePictureStart(controller: controller));
-                  print('\n\n\n TAKE PICTURE \n\n\n');
 
-                  // if (pending.contains(TakePicture.pendingKey)) {
-                  //   print('\n\n\n\n\n\n\n ISLOADING \n\n\n\n');
-                  //   _showModalBottomSheetLoading;
-                  //   _showModalBottomSheet(context);
-                  // }
                   if (!context.mounted) {
                     return;
                   }
-                  await context.pushNamed('imageView');
-                  // Navigator.of(context).push(
-                  //   MaterialPageRoute<Widget>(
-                  //     builder: (BuildContext context) => ImageViewPage(store: _store),
-                  //   ),
-                  // );
+                  await Navigator.of(context).push(createRoute(const ImageViewPage()));
                 },
                 backgroundColor: Colors.white70,
                 foregroundColor: Colors.black,
                 child: const Icon(Icons.camera),
               ),
-
-              //_showModalBottomSheet(context),
-              //_showModalBottomSheet(context),
-              // Show the modal bottom sheet based on the future
-              // FutureBuilder<void>(
-              //   future: _store.state.takenPicture != null ? Future<void>.value() : Future<void>.delayed(const Duration(seconds: 1)),
-              //   builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
-              //     if (snapshot.connectionState == ConnectionState.done) {
-              //       return _showModalBottomSheet(context);
-              //     } else {
-              //       // You can return a loading indicator or just return an empty container
-              //       return Container();
-              //     }
-              //   },
-              // ),
             ],
           );
         },
@@ -121,64 +121,32 @@ class _CameraAppState extends State<CameraApp> {
     );
   }
 
-  void _showModalBottomSheet(BuildContext context) {
-    showModalBottomSheet<void>(
-      context: context,
-      isScrollControlled: true,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-      ),
-      builder: (BuildContext bc) {
-        return Container(
-          height: MediaQuery.of(context).size.height * 0.75,
-          padding: const EdgeInsets.only(top: 10, left: 5, right: 5),
-          child: Column(
-            children: <Widget>[
-              ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: Image.file(
-                  File(_store.state.takenPicture!.picture!.path),
-                ),
-              ),
-              const Expanded(
-                child: Text('CEVA'),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
+  Future<void> _onTap(TapUpDetails details) async {
+    if (controller.value.isInitialized) {
+      setState(() {
+        showFocusCircle = true;
+        x = details.localPosition.dx;
+        y = details.localPosition.dy;
+      });
 
-  Widget _showModalBottomSheetLoading(BuildContext context) {
-    showModalBottomSheet<void>(
-      context: context,
-      isScrollControlled: true,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-      ),
-      builder: (BuildContext bc) {
-        return const CircularProgressIndicator();
-      },
-    );
-    return const Text('pula');
-  }
+      final double fullWidth = MediaQuery.of(context).size.width;
+      final double cameraHeight = fullWidth * controller.value.aspectRatio;
 
-  Route<dynamic> _createRoute() {
-    return PageRouteBuilder<dynamic>(
-      pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) => const ImageViewPage(),
-      transitionsBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
-        const Offset begin = Offset(0.0, 1.0);
-        const Offset end = Offset.zero;
-        const Cubic curve = Curves.ease;
+      final double xp = x / fullWidth;
+      final double yp = y / cameraHeight;
 
-        final Animatable<Offset> tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+      final Offset point = Offset(xp, yp);
 
-        return SlideTransition(
-          position: animation.drive(tween),
-          child: child,
-        );
-      },
-    );
+      await controller.setFocusPoint(point);
+      await controller.setExposurePoint(point);
+
+      setState(() {
+        Future<void>.delayed(const Duration(seconds: 2)).whenComplete(() {
+          setState(() {
+            showFocusCircle = false;
+          });
+        });
+      });
+    }
   }
 }

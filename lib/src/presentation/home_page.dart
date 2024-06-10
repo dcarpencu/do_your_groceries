@@ -9,9 +9,9 @@ import 'package:do_you_groceries/src/presentation/user/notifications_page.dart';
 import 'package:do_you_groceries/src/presentation/user/user_profile_page.dart';
 import 'package:do_you_groceries/src/ui_elements/components/background_wave_clipper.dart';
 import 'package:do_you_groceries/src/ui_elements/components/home_page_components/lists_carousel.dart';
+import 'package:do_you_groceries/src/ui_elements/components/shimmer/shimmer_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:redux/redux.dart';
 
 class HomePage extends StatefulWidget {
@@ -85,11 +85,12 @@ class _HomePageState extends State<HomePage> {
               PendingContainer(
                 builder: (BuildContext context, Set<String> pending) {
                   if (pending.contains(GetGroceryLists.pendingKey)) {
-                    return Center(
-                      child: LoadingAnimationWidget.horizontalRotatingDots(
-                        color: Colors.black,
-                        size: 100,
-                      ),
+                    return const Center(
+                        child: ListsCarouselShimmer(),
+                      // child: LoadingAnimationWidget.horizontalRotatingDots(
+                      //   color: Colors.black,
+                      //   size: 100,
+                      // ),
                     );
                   }
                   return GroceryListsContainer(
