@@ -41,18 +41,7 @@ class _HomePageState extends State<HomePage> {
             children: <Widget>[
               Stack(
                 children: <Widget>[
-                  ClipPath(
-                    clipper: BackgroundWaveClipper(),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 280,
-                      decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: <Color>[Colors.lightBlueAccent, Colors.lightBlue],
-                        ),
-                      ),
-                    ),
-                  ),
+                  const BackgroundWave(height: 280,),
                   const Positioned(
                     top: 100,
                     left: 20,

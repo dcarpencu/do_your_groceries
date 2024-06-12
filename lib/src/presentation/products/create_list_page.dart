@@ -15,9 +15,9 @@ class CreateListPage extends StatefulWidget {
 }
 
 class _CreateListPageState extends State<CreateListPage> {
-  final TextEditingController _titleController = TextEditingController();
-  final TextEditingController _descriptionController = TextEditingController();
-  final FocusNode _descriptionFocusNode = FocusNode();
+  late TextEditingController _titleController;
+  late TextEditingController _descriptionController;
+  late FocusNode _descriptionFocusNode;
   late Store<AppState> _store;
   final List<String> _options = const <String>[
     'auchan',
@@ -41,6 +41,14 @@ class _CreateListPageState extends State<CreateListPage> {
   int? _selected = 0;
   String? _selectedValue = 'auchan';
 
+  @override
+  void initState() {
+    super.initState();
+    _titleController = TextEditingController();
+    _descriptionController = TextEditingController();
+    _descriptionFocusNode = FocusNode();
+  }
+
   void _onNext(BuildContext context) {
     if (!Form.of(context).validate()) {
       return;
@@ -54,9 +62,15 @@ class _CreateListPageState extends State<CreateListPage> {
         selectedIcon: _selectedValue.toString(),
       ),
     );
-
-    print('\n\nGO HOMEPAGE\n\n');
     context.pop();
+  }
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    _descriptionController.dispose();
+    _descriptionFocusNode.dispose();
+    super.dispose();
   }
 
   @override
@@ -114,7 +128,8 @@ class _CreateListPageState extends State<CreateListPage> {
                                         _selected = index;
                                         _selectedValue = item;
                                       });
-                                    }, location: 'groceryListIcons',
+                                    },
+                                    location: 'groceryListIcons',
                                   );
                                 },
                               ),

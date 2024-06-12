@@ -35,10 +35,10 @@ class BackgroundWaveClipper extends CustomClipper<Path> {
     final Offset controlPoint = Offset(size.width * 0.4, size.height);
     final Offset endPoint = Offset(size.width, minSize);
 
-    path.quadraticBezierTo(controlPoint.dx, controlPoint.dy, endPoint.dx, endPoint.dy);
+    path..quadraticBezierTo(controlPoint.dx, controlPoint.dy, endPoint.dx, endPoint.dy)
 
-    path.lineTo(size.width, 0);
-    path.close();
+    ..lineTo(size.width, 0)
+    ..close();
 
     return path;
   }

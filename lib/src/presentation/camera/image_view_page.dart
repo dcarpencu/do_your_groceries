@@ -45,9 +45,9 @@ class _ImageViewPageState extends State<ImageViewPage> {
           }
           if (!_productsFetched) {
             final String imageLabel = _store.state.takenPicture!.imageLabel;
-            final List<String> object = parseString(imageLabel);
 
-            if (object.length > 1) {
+            if (imageLabel.isNotEmpty) {
+              final List<String> object = parseString(imageLabel);
               _store.dispatch(GetProductsForCameraStart(category: object[1], tag: object[2]));
             }
             _productsFetched = true;

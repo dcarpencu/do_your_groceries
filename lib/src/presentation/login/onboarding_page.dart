@@ -26,7 +26,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> with SingleTickerPr
   Animation<double>? _animationSize;
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
-
   final FocusNode _passwordNode = FocusNode();
 
   late Store<AppState> _store;
@@ -35,21 +34,18 @@ class _OnboardingScreenState extends State<OnboardingScreen> with SingleTickerPr
     if (!Form.of(context).validate()) {
       return;
     }
-    _store
-        .dispatch(Login.start(email: _email.text, password: _password.text, onResult: _onResult));
+    _store.dispatch(Login.start(email: _email.text, password: _password.text, onResult: _onResult));
   }
 
   void _onResult(AppAction action) {
     if (action is ErrorAction) {
       final Object error = action.error;
-
       if (error is FirebaseAuthException) {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Invalid credentials!')));
       } else {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('$error')));
       }
     } else if (action is LoginSuccessful) {
-
       context.go('/homePage');
     }
   }
@@ -268,7 +264,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> with SingleTickerPr
                                   ),
                                   onPressed: () {
                                     Navigator.of(context).push(createRoute(const SignupPage()));
-                                    //context.pushNamed('signUp');
                                   },
                                 ),
                               ),

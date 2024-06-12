@@ -22,7 +22,7 @@ class SliverAppBarProducts extends SliverPersistentHeaderDelegate {
         ),
         Positioned(
           top: topPadding + offset,
-          left: 20,
+          left: 40,
           child: Text(
             title,
             style: const TextStyle(
@@ -35,17 +35,18 @@ class SliverAppBarProducts extends SliverPersistentHeaderDelegate {
           ),
         ),
         Positioned(
-            top: topPadding + offset - 30,
-            left: 256,
-            child: SizedBox(
+          top: topPadding + offset - 30,
+          left: 256,
+          child: SizedBox(
+            height: 100,
+            child: SvgPicture.asset(
+              'assets/groceryListIcons/$image.svg',
+              width: 100,
               height: 100,
-              child: SvgPicture.asset(
-                'assets/groceryListIcons/$image.svg',
-                width: 100,
-                height: 100,
-              ),
-            ))
-       ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 

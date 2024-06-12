@@ -60,6 +60,14 @@ class _EditListPageState extends State<EditListPage> {
     print('\n\nGO HOMEPAGE\n\n');
     context.pop();
   }
+  @override
+  void dispose() {
+    _titleController.dispose();
+    _descriptionController.dispose();
+    _descriptionFocusNode.dispose();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

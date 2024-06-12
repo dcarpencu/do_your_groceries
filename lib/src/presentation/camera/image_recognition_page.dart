@@ -80,11 +80,6 @@ class _CameraAppState extends State<CameraApp> {
                   ),
                 ),
               ),
-              // Positioned(
-              //   top: 48,
-              //   left: 256,
-              //   child: SizedBox(height: 124, child: Image.asset('assets/Backgrounds/grocery-bag.png')),
-              // )
             ],
           ),
           PendingContainer(
@@ -167,15 +162,19 @@ class _CameraAppState extends State<CameraApp> {
 
       final Offset point = Offset(xp, yp);
 
-      await controller.setFocusPoint(point);
-      await controller.setExposurePoint(point);
+      try {
+        await controller.setFocusPoint(point);
+        await controller.setExposurePoint(point);
+      } catch (e) {
+        print('Error setting focus and exposure point: $e');
+      }
 
-      setState(() {
-        Future<void>.delayed(const Duration(seconds: 2)).whenComplete(() {
+      await Future<void>.delayed(const Duration(seconds: 2)).then((_) {
+        if (mounted) {
           setState(() {
             showFocusCircle = false;
           });
-        });
+        }
       });
     }
   }

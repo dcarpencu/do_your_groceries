@@ -5,17 +5,17 @@ import 'package:do_you_groceries/src/models/index.dart';
 import 'package:do_you_groceries/src/presentation/camera/image_recognition_page.dart';
 import 'package:do_you_groceries/src/ui_elements/bottom_app_bar.dart';
 import 'package:do_you_groceries/src/ui_elements/components/background_wave_clipper.dart';
-import 'package:do_you_groceries/src/ui_elements/components/hero_transition_demo.dart';
+import 'package:do_you_groceries/src/ui_elements/components/hero_posts_widget.dart';
 import 'package:do_you_groceries/src/ui_elements/components/shimmer/shimmer_products.dart';
 import 'package:do_you_groceries/src/ui_elements/components/sliver_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:redux/redux.dart';
 
 class UserProductsPage extends StatefulWidget {
-  const UserProductsPage({Key? key}) : super(key: key);
+  const UserProductsPage({super.key});
 
   @override
   State<UserProductsPage> createState() => _UserProductsPageState();
@@ -51,40 +51,36 @@ class _UserProductsPageState extends State<UserProductsPage> {
               if (pending.contains(ListenForProducts.pendingKey)) {
                 return Column(
                   children: <Widget>[
-                    SizedBox(
-                      height: 280,
-                      child: Stack(children: [
-                        ClipPath(
-                            clipper: BackgroundWaveClipper(),
-                            child: Container(
-                              width: MediaQuery.of(context).size.width,
-                              height: 280,
-                              decoration: const BoxDecoration(
-                                  gradient: LinearGradient(
-                                colors: <Color>[Colors.lightBlueAccent, Colors.lightBlue],
-                              )),
-                            )),
-                        const Positioned(
-                          top: 100,
-                          left: 20,
-                          child: Text(
-                            'DoYourGroceries',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 32,
-                              fontFamily: 'Poppins',
-                              height: 1.2,
-                              fontWeight: FontWeight.bold,
-                            ),
+                    Stack(children: <Widget>[
+                      const BackgroundWave(
+                        height: 280,
+                      ),
+                      Positioned(
+                        top: 145,
+                        left: 40,
+                        child: Text(
+                          _store.state.selectedGroceryList!.title,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 32,
+                            fontFamily: 'Poppins',
+                            height: 1.2,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Positioned(
-                          top: 88,
+                      ),
+                      Positioned(
+                          top: 103,
                           left: 256,
-                          child: SizedBox(height: 124, child: Image.asset('assets/Backgrounds/grocery-bag.png')),
-                        )
-                      ]),
-                    ),
+                          child: SizedBox(
+                            height: 124,
+                            child: SvgPicture.asset(
+                              'assets/groceryListIcons/${_store.state.selectedGroceryList!.selectedIcon}.svg',
+                              width: 100,
+                              height: 100,
+                            ),
+                          ),),
+                    ],),
                     const ShimmerProducts(),
                   ],
                 );
@@ -93,7 +89,10 @@ class _UserProductsPageState extends State<UserProductsPage> {
               return CustomScrollView(
                 slivers: <Widget>[
                   SliverPersistentHeader(
-                    delegate: SliverAppBarProducts(_store.state.selectedGroceryList!.selectedIcon, _store.state.selectedGroceryList!.title, ),
+                    delegate: SliverAppBarProducts(
+                      _store.state.selectedGroceryList!.selectedIcon,
+                      _store.state.selectedGroceryList!.title,
+                    ),
                     pinned: true,
                   ),
                   if (_store.state.productsGroceryList.isNotEmpty)
@@ -115,7 +114,7 @@ class _UserProductsPageState extends State<UserProductsPage> {
                           return const Center(child: Text('No products YET.\nPlease add some!'));
                         },
                       ),
-                    )
+                    ),
                 ],
               );
             },
