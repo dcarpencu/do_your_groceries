@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:do_you_groceries/src/ui_elements/components/image_shimmer_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:redux/redux.dart';
 
 class ModelItem extends StatelessWidget {
@@ -12,6 +14,7 @@ class ModelItem extends StatelessWidget {
     required this.category,
     super.key,
   });
+
   final Product model;
   final Store<AppState> store;
   final String marketName;
@@ -22,15 +25,15 @@ class ModelItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8),
       child: Material(
-        borderRadius: BorderRadius.circular(24),
-        elevation: 4,
+        borderRadius: BorderRadius.circular(16),
+        elevation: 1,
         child: SizedBox(
           //padding: const EdgeInsets.all(8),
           height: 100,
           width: 120,
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.transparent,
+              backgroundColor: Colors.white,
               shadowColor: Colors.transparent,
               elevation: 0,
               shape: RoundedRectangleBorder(
@@ -53,11 +56,16 @@ class ModelItem extends StatelessWidget {
             },
             child: Row(
               children: <Widget>[
-                ImageShimmer(
-                  url: model.image,
-                  height: 100,
-                  width: 130,
-                ),
+                SizedBox(
+                    height: 100,
+                    width: 130,
+                    child: FadeInImage(
+                      image: NetworkImage(model.image),
+                      placeholder: const AssetImage('assets/placeholders/cooking.png'),
+                      imageErrorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
+                        return SvgPicture.asset('assets/categoryIcons/${model.category}.svg');
+                      },
+                    )),
                 const SizedBox(
                   width: 12,
                 ),

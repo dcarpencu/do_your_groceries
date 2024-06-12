@@ -3,7 +3,6 @@ import 'package:do_you_groceries/src/containers/pending_container.dart';
 import 'package:do_you_groceries/src/containers/related_products_container.dart';
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:do_you_groceries/src/navigation/transitions.dart';
-import 'package:do_you_groceries/src/presentation/products/edit_list_page.dart';
 import 'package:do_you_groceries/src/presentation/products/edit_product_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -42,6 +41,7 @@ class _PostDetailPageState extends State<ProductDetailsPage> {
             const SizedBox(
               height: 48,
             ),
+            const BackButton(),
             Hero(
               tag: 'post_card_${widget.product.productId}',
               child: Card(
@@ -57,8 +57,7 @@ class _PostDetailPageState extends State<ProductDetailsPage> {
                         padding: const EdgeInsets.all(8),
                         child: SvgPicture.asset(
                           'assets/productsIcons/${widget.product.image}.svg',
-                          height: 216,
-                          width: 216,
+                          height: 192,
                         ),
                       )
                     else
@@ -67,10 +66,15 @@ class _PostDetailPageState extends State<ProductDetailsPage> {
                           topLeft: Radius.circular(16),
                           topRight: Radius.circular(16),
                         ),
-                        child: Image.network(
-                          widget.product.image,
-                          fit: BoxFit.cover,
-                          height: 300,
+                        child: SizedBox(
+                          height: 192,
+                          child: FadeInImage(
+                            image: NetworkImage(widget.product.image),
+                            placeholder: const AssetImage('assets/placeholders/cooking.png'),
+                            imageErrorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
+                              return Image.asset('assets/placeholders/grocery.png');
+                            },
+                          ),
                         ),
                       ),
                     Padding(
@@ -158,88 +162,108 @@ class _PostDetailPageState extends State<ProductDetailsPage> {
                   ),
             ),
             const SizedBox(height: 8),
-            Expanded(
-              child: PendingContainer(
-                builder: (BuildContext context, Set<String> pending) {
-                  if (pending.contains(GetProducts.pendingKey)) {
-                    return const Center(child: CircularProgressIndicator());
-                  }
-                  return RelatedProductsContainer(
-                    builder: (BuildContext context, List<Product> relatedProducts) {
-                      return ClipRRect(
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(24),
-                          topRight: Radius.circular(24),
-                        ),
-                        child: GridView.builder(
-                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            mainAxisSpacing: 16,
-                            crossAxisSpacing: 16,
-                            childAspectRatio: 3 / 4,
+            if (widget.product.createdByUser == true)
+              const Center(
+                child: Text('No related products'),
+              )
+            else
+              Expanded(
+                child: PendingContainer(
+                  builder: (BuildContext context, Set<String> pending) {
+                    if (pending.contains(GetProducts.pendingKey)) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                    return RelatedProductsContainer(
+                      builder: (BuildContext context, List<Product> relatedProducts) {
+                        return ClipRRect(
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(24),
+                            topRight: Radius.circular(24),
                           ),
-                          itemCount: relatedProducts.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            final Product relatedProduct = relatedProducts[index];
-                            return Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                              elevation: 2,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: <Widget>[
-                                  ClipRRect(
-                                    borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-                                    child: Image.network(
-                                      relatedProduct.image,
-                                      fit: BoxFit.cover,
-                                      height: 120,
+                          child: GridView.builder(
+                            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              mainAxisSpacing: 16,
+                              crossAxisSpacing: 16,
+                              childAspectRatio: 3 / 4,
+                            ),
+                            itemCount: relatedProducts.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              final Product relatedProduct = relatedProducts[index];
+                              return Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                elevation: 2,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                                  children: <Widget>[
+                                    ClipRRect(
+                                      borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+                                      child: SizedBox(
+                                        height: 120,
+                                        child: FadeInImage(
+                                          image: NetworkImage(relatedProduct.image),
+                                          placeholder: const AssetImage('assets/placeholders/cooking.png'),
+                                          imageErrorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
+                                            return Image.asset(
+                                              'assets/placeholders/grocery.png',
+                                              fit: BoxFit.contain,
+                                            );
+                                          },
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+
+                                      // child: Image.network(
+                                      //   relatedProduct.image,
+                                      //   fit: BoxFit.cover,
+                                      //   height: 120,
+                                      // ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Text(
-                                          relatedProduct.name,
-                                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                          maxLines: 2,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                        const SizedBox(height: 4),
-                                        Text(
-                                          relatedProduct.supermarket,
-                                          style: Theme.of(context).textTheme.bodySmall,
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                        const SizedBox(height: 4),
-                                        Text(
-                                          '${relatedProduct.price} RON',
-                                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                                color: Colors.grey[700],
-                                              ),
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ],
+                                    Padding(
+                                      padding: const EdgeInsets.all(8),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Text(
+                                            relatedProduct.name,
+                                            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                            maxLines: 2,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                          const SizedBox(height: 4),
+                                          Text(
+                                            relatedProduct.supermarket,
+                                            style: Theme.of(context).textTheme.bodySmall,
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                          const SizedBox(height: 4),
+                                          Text(
+                                            '${relatedProduct.price} RON',
+                                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                                  color: Colors.grey[700],
+                                                ),
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
-                        ),
-                      );
-                    },
-                  );
-                },
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
+                        );
+                      },
+                    );
+                  },
+                ),
               ),
-            ),
           ],
         ),
       ),

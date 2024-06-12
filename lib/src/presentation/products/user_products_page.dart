@@ -137,9 +137,7 @@ class _UserProductsPageState extends State<UserProductsPage> {
             child: const Icon(Icons.camera_alt),
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-          bottomNavigationBar: const BottomAppBarWidget(
-            route: 'marketsPage',
-          ),
+          bottomNavigationBar: BottomAppBarWidget(store: _store,),
         );
       },
     );

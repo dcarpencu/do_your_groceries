@@ -33,11 +33,18 @@ class HeroPosts extends StatelessWidget {
                     )
                   : SizedBox(
                       height: 72,
-                      child: Image.network(
-                        product.image,
-                        fit: BoxFit.cover,
-                        width: 64,
-                      ),
+                      child: FadeInImage(
+                        image: NetworkImage(product.image),
+                        placeholder: const AssetImage('assets/placeholders/cooking.png'),
+                        imageErrorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
+                          return Image.asset('assets/placeholders/grocery.png');
+                        },
+                      )
+                      // Image.network(
+                      //   product.image,
+                      //   fit: BoxFit.cover,
+                      //   width: 64,
+                      // ),
                     ),
               title: Column(
                 children: <Widget>[

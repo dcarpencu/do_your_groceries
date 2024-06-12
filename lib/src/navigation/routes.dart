@@ -74,11 +74,11 @@ class RouterApp {
                     cameras: cameras,
                   );
                 }),
-            GoRoute(
-              name: 'marketsPage',
-              path: 'marketsPage',
-              builder: (BuildContext context, GoRouterState state) => const MarketsPage(),
-              routes: <RouteBase>[
+            // GoRoute(
+            //   name: 'marketsPage',
+            //   path: 'marketsPage',
+            //   builder: (BuildContext context, GoRouterState state) => const MarketsPage(),
+            //   routes: <RouteBase>[
                 GoRoute(
                   name: 'supermarketCategories',
                   path: 'supermarketCategoriesPage/:supermarketName',
@@ -109,8 +109,8 @@ class RouterApp {
                 ),
               ],
             ),
-          ],
-        ),
+        //   ],
+        // ),
         GoRoute(
           name: 'imageView',
           path: '/imageViewPage',

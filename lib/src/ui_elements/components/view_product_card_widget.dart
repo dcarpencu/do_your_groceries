@@ -1,4 +1,3 @@
-import 'package:do_you_groceries/src/presentation/supermarkets/supermarket_categories_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -11,61 +10,68 @@ class ViewProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      // Set the shape of the card using a rounded rectangle border with a 8 pixel radius
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(12),
       ),
-      // Set the clip behavior of the card
-      clipBehavior: Clip.antiAliasWithSaveLayer,
-      // Define the child widgets of the card
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          // Display an image at the top of the card that fills the width of the card and has a height of 160 pixels
-          Image.network(
-            marketImage,
-            height: 160,
-            width: double.infinity,
-            fit: BoxFit.cover,
-          ),
-          // Add a container with padding that contains the card's title, text, and buttons
-          Container(
-            padding: const EdgeInsets.fromLTRB(15, 15, 15, 0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  marketName,
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.grey[800],
-                  ),
-                ),
-                Container(height: 10),
-                Row(
-                  children: <Widget>[
-                    const Spacer(),
-                    TextButton(
-                      style: TextButton.styleFrom(
-                        foregroundColor: Colors.transparent,
-                      ),
-                      child: const Text(
-                        'EXPLORE',
-                        style: TextStyle(color: Colors.deepOrange),
-                      ),
-                      onPressed: () {
-                        context.pushNamed('supermarketCategories',
-                            pathParameters: <String, String>{'supermarketName': marketName});
-                      },
-                    ),
-                  ],
-                ),
-              ],
+      elevation: 4,
+      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+      child: InkWell(
+        onTap: () {
+          context.pushNamed('supermarketCategories',
+              pathParameters: <String, String>{'supermarketName': marketName});
+        },
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            ClipRRect(
+              borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
+              child: Image.network(
+                marketImage,
+                height: 160,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          // Add a small space between the card and the next widget
-          Container(height: 5),
-        ],
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    marketName,
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey[800],
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      TextButton(
+                        style: TextButton.styleFrom(
+                          foregroundColor: Colors.lightBlue,
+                        ),
+                        child: const Text(
+                          'EXPLORE',
+                          style: TextStyle(
+                            color: Colors.lightBlue,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        onPressed: () {
+                          context.pushNamed('supermarketCategories',
+                              pathParameters: <String, String>{'supermarketName': marketName});
+                        },
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

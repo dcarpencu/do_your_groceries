@@ -84,12 +84,12 @@ const List<String> supermarketCategoryLabels = <String>[
 ];
 
 const List<String> supermarketCategroyIcons = <String>[
-  'apple-svgrepo-com.svg',
-  'chicken-svgrepo-com.svg',
-  'sausage-svgrepo-com.svg',
-  'cake-svgrepo-com.svg',
-  'water-cup-svgrepo-com.svg',
-  'beer-svgrepo-com.svg',
+  'legume.svg',
+  'carne.svg',
+  'mezeluri.svg',
+  'lactate.svg',
+  'bauturiNonAlcoolice.svg',
+  'bauturiAlcoolice.svg',
 ];
 
 Map<String, Map<String, String>> allSupermarkets = <String, Map<String, String>>{

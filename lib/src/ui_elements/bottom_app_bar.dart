@@ -1,14 +1,17 @@
+import 'package:do_you_groceries/src/models/index.dart';
 import 'package:do_you_groceries/src/navigation/transitions.dart';
 import 'package:do_you_groceries/src/presentation/products/create_product_page.dart';
+import 'package:do_you_groceries/src/presentation/supermarkets/markets_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:redux/redux.dart';
 
 class BottomAppBarWidget extends StatelessWidget {
   const BottomAppBarWidget({
-    required this.route,
-    super.key,
+    required this.store, super.key,
   });
-  final String route;
+
+  final Store<AppState> store;
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +36,7 @@ class BottomAppBarWidget extends StatelessWidget {
                 IconButton(
                   tooltip: 'Search',
                   icon: const Icon(Icons.search),
-                  onPressed: () {
-                      context.pushNamed(route);
-                  },
+                  onPressed: () => Navigator.of(context).push(createRoute( MarketsPage(store: store))),
                 ),
                 IconButton(
                   tooltip: 'Generate',
