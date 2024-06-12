@@ -153,7 +153,9 @@ class _EditListPageState extends State<EditListPage> {
                               textInputAction: TextInputAction.next,
                               validator: (String? value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'please provide a title for your list';
+                                  return 'Please provide a title for your product';
+                                } else if (value.length > 12) {
+                                  return 'Introduceti un titlu mai scurt de 12 caracter';
                                 }
                                 return null;
                               },

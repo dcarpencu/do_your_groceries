@@ -115,6 +115,8 @@ class _CreateProductPageState extends State<CreateProductPage> {
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
                             return 'Please provide a title for your product';
+                          } else if (value.length > 12) {
+                            return 'Introduceti un titlu mai scurt de 12 caracter';
                           }
                           return null;
                         },

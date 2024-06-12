@@ -259,7 +259,7 @@ class _PostDetailPageState extends State<ProductDetailsPage> {
                             },
                           ),
                         );
-                      },
+                      }, currentProduct: widget.product,
                     );
                   },
                 ),

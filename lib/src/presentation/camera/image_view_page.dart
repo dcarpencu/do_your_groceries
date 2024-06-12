@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/containers/pending_container.dart';
+import 'package:do_you_groceries/src/containers/related_products_camera_container.dart';
 import 'package:do_you_groceries/src/containers/related_products_container.dart';
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:do_you_groceries/src/ui_elements/components/image_shimmer_widget.dart';
@@ -75,7 +76,7 @@ class _ImageViewPageState extends State<ImageViewPage> {
                   if (pending.contains(GetProductsForCamera.pendingKey)) {
                     return const CircularProgressIndicator();
                   }
-                  return RelatedProductsContainer(
+                  return RelatedProductsCameraContainer(
                     builder: (BuildContext context, List<Product> relatedProducts) {
                       if (relatedProducts.isEmpty) {
                         return const Text('No match for your product.');

@@ -5115,6 +5115,204 @@ abstract class SetUnselectedList$ implements SetUnselectedList {
 }
 
 /// @nodoc
+mixin _$SetSelectedProduct {
+  Product get selectedProduct => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $SetSelectedProductCopyWith<SetSelectedProduct> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SetSelectedProductCopyWith<$Res> {
+  factory $SetSelectedProductCopyWith(
+          SetSelectedProduct value, $Res Function(SetSelectedProduct) then) =
+      _$SetSelectedProductCopyWithImpl<$Res, SetSelectedProduct>;
+  @useResult
+  $Res call({Product selectedProduct});
+
+  $ProductCopyWith<$Res> get selectedProduct;
+}
+
+/// @nodoc
+class _$SetSelectedProductCopyWithImpl<$Res, $Val extends SetSelectedProduct>
+    implements $SetSelectedProductCopyWith<$Res> {
+  _$SetSelectedProductCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? selectedProduct = null,
+  }) {
+    return _then(_value.copyWith(
+      selectedProduct: null == selectedProduct
+          ? _value.selectedProduct
+          : selectedProduct // ignore: cast_nullable_to_non_nullable
+              as Product,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProductCopyWith<$Res> get selectedProduct {
+    return $ProductCopyWith<$Res>(_value.selectedProduct, (value) {
+      return _then(_value.copyWith(selectedProduct: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$SetSelectedProduct$ImplCopyWith<$Res>
+    implements $SetSelectedProductCopyWith<$Res> {
+  factory _$$SetSelectedProduct$ImplCopyWith(_$SetSelectedProduct$Impl value,
+          $Res Function(_$SetSelectedProduct$Impl) then) =
+      __$$SetSelectedProduct$ImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({Product selectedProduct});
+
+  @override
+  $ProductCopyWith<$Res> get selectedProduct;
+}
+
+/// @nodoc
+class __$$SetSelectedProduct$ImplCopyWithImpl<$Res>
+    extends _$SetSelectedProductCopyWithImpl<$Res, _$SetSelectedProduct$Impl>
+    implements _$$SetSelectedProduct$ImplCopyWith<$Res> {
+  __$$SetSelectedProduct$ImplCopyWithImpl(_$SetSelectedProduct$Impl _value,
+      $Res Function(_$SetSelectedProduct$Impl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? selectedProduct = null,
+  }) {
+    return _then(_$SetSelectedProduct$Impl(
+      null == selectedProduct
+          ? _value.selectedProduct
+          : selectedProduct // ignore: cast_nullable_to_non_nullable
+              as Product,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SetSelectedProduct$Impl implements SetSelectedProduct$ {
+  const _$SetSelectedProduct$Impl(this.selectedProduct);
+
+  @override
+  final Product selectedProduct;
+
+  @override
+  String toString() {
+    return 'SetSelectedProduct(selectedProduct: $selectedProduct)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetSelectedProduct$Impl &&
+            (identical(other.selectedProduct, selectedProduct) ||
+                other.selectedProduct == selectedProduct));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, selectedProduct);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SetSelectedProduct$ImplCopyWith<_$SetSelectedProduct$Impl> get copyWith =>
+      __$$SetSelectedProduct$ImplCopyWithImpl<_$SetSelectedProduct$Impl>(
+          this, _$identity);
+}
+
+abstract class SetSelectedProduct$ implements SetSelectedProduct {
+  const factory SetSelectedProduct$(final Product selectedProduct) =
+      _$SetSelectedProduct$Impl;
+
+  @override
+  Product get selectedProduct;
+  @override
+  @JsonKey(ignore: true)
+  _$$SetSelectedProduct$ImplCopyWith<_$SetSelectedProduct$Impl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$SetUnselectedProduct {}
+
+/// @nodoc
+abstract class $SetUnselectedProductCopyWith<$Res> {
+  factory $SetUnselectedProductCopyWith(SetUnselectedProduct value,
+          $Res Function(SetUnselectedProduct) then) =
+      _$SetUnselectedProductCopyWithImpl<$Res, SetUnselectedProduct>;
+}
+
+/// @nodoc
+class _$SetUnselectedProductCopyWithImpl<$Res,
+        $Val extends SetUnselectedProduct>
+    implements $SetUnselectedProductCopyWith<$Res> {
+  _$SetUnselectedProductCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$SetUnselectedProduct$ImplCopyWith<$Res> {
+  factory _$$SetUnselectedProduct$ImplCopyWith(
+          _$SetUnselectedProduct$Impl value,
+          $Res Function(_$SetUnselectedProduct$Impl) then) =
+      __$$SetUnselectedProduct$ImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$SetUnselectedProduct$ImplCopyWithImpl<$Res>
+    extends _$SetUnselectedProductCopyWithImpl<$Res,
+        _$SetUnselectedProduct$Impl>
+    implements _$$SetUnselectedProduct$ImplCopyWith<$Res> {
+  __$$SetUnselectedProduct$ImplCopyWithImpl(_$SetUnselectedProduct$Impl _value,
+      $Res Function(_$SetUnselectedProduct$Impl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$SetUnselectedProduct$Impl implements SetUnselectedProduct$ {
+  const _$SetUnselectedProduct$Impl();
+
+  @override
+  String toString() {
+    return 'SetUnselectedProduct()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetUnselectedProduct$Impl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+}
+
+abstract class SetUnselectedProduct$ implements SetUnselectedProduct {
+  const factory SetUnselectedProduct$() = _$SetUnselectedProduct$Impl;
+}
+
+/// @nodoc
 mixin _$SetUserProductsToEmpty {}
 
 /// @nodoc

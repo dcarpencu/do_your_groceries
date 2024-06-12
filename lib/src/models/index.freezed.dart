@@ -26,6 +26,7 @@ mixin _$AppState {
   List<Product> get relatedProducts => throw _privateConstructorUsedError;
   Set<GroceryList> get groceryLists => throw _privateConstructorUsedError;
   GroceryList? get selectedGroceryList => throw _privateConstructorUsedError;
+  Product? get selectedProduct => throw _privateConstructorUsedError;
   Set<String> get pending => throw _privateConstructorUsedError;
   int get pageNumber => throw _privateConstructorUsedError;
   bool get contentLoaded => throw _privateConstructorUsedError;
@@ -34,9 +35,7 @@ mixin _$AppState {
   CameraInfo? get selectedCamera => throw _privateConstructorUsedError;
   Set<AppUser> get users => throw _privateConstructorUsedError;
   List<AddRequest> get requests => throw _privateConstructorUsedError;
-  bool get isNotifications =>
-      throw _privateConstructorUsedError; //GenerateContentResponse? response,
-//PromptData? promptData,
+  bool get isNotifications => throw _privateConstructorUsedError;
   Set<CuisineFilter> get cuisines => throw _privateConstructorUsedError;
   String? get generatorResponse => throw _privateConstructorUsedError;
   String? get cuisineText => throw _privateConstructorUsedError;
@@ -61,6 +60,7 @@ abstract class $AppStateCopyWith<$Res> {
       List<Product> relatedProducts,
       Set<GroceryList> groceryLists,
       GroceryList? selectedGroceryList,
+      Product? selectedProduct,
       Set<String> pending,
       int pageNumber,
       bool contentLoaded,
@@ -78,6 +78,7 @@ abstract class $AppStateCopyWith<$Res> {
 
   $AppUserCopyWith<$Res>? get user;
   $GroceryListCopyWith<$Res>? get selectedGroceryList;
+  $ProductCopyWith<$Res>? get selectedProduct;
   $TakenPictureCopyWith<$Res>? get takenPicture;
   $CameraInfoCopyWith<$Res>? get selectedCamera;
 }
@@ -101,6 +102,7 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
     Object? relatedProducts = null,
     Object? groceryLists = null,
     Object? selectedGroceryList = freezed,
+    Object? selectedProduct = freezed,
     Object? pending = null,
     Object? pageNumber = null,
     Object? contentLoaded = null,
@@ -141,6 +143,10 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.selectedGroceryList
           : selectedGroceryList // ignore: cast_nullable_to_non_nullable
               as GroceryList?,
+      selectedProduct: freezed == selectedProduct
+          ? _value.selectedProduct
+          : selectedProduct // ignore: cast_nullable_to_non_nullable
+              as Product?,
       pending: null == pending
           ? _value.pending
           : pending // ignore: cast_nullable_to_non_nullable
@@ -226,6 +232,18 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
 
   @override
   @pragma('vm:prefer-inline')
+  $ProductCopyWith<$Res>? get selectedProduct {
+    if (_value.selectedProduct == null) {
+      return null;
+    }
+
+    return $ProductCopyWith<$Res>(_value.selectedProduct!, (value) {
+      return _then(_value.copyWith(selectedProduct: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
   $TakenPictureCopyWith<$Res>? get takenPicture {
     if (_value.takenPicture == null) {
       return null;
@@ -264,6 +282,7 @@ abstract class _$$AppState$ImplCopyWith<$Res>
       List<Product> relatedProducts,
       Set<GroceryList> groceryLists,
       GroceryList? selectedGroceryList,
+      Product? selectedProduct,
       Set<String> pending,
       int pageNumber,
       bool contentLoaded,
@@ -283,6 +302,8 @@ abstract class _$$AppState$ImplCopyWith<$Res>
   $AppUserCopyWith<$Res>? get user;
   @override
   $GroceryListCopyWith<$Res>? get selectedGroceryList;
+  @override
+  $ProductCopyWith<$Res>? get selectedProduct;
   @override
   $TakenPictureCopyWith<$Res>? get takenPicture;
   @override
@@ -306,6 +327,7 @@ class __$$AppState$ImplCopyWithImpl<$Res>
     Object? relatedProducts = null,
     Object? groceryLists = null,
     Object? selectedGroceryList = freezed,
+    Object? selectedProduct = freezed,
     Object? pending = null,
     Object? pageNumber = null,
     Object? contentLoaded = null,
@@ -346,6 +368,10 @@ class __$$AppState$ImplCopyWithImpl<$Res>
           ? _value.selectedGroceryList
           : selectedGroceryList // ignore: cast_nullable_to_non_nullable
               as GroceryList?,
+      selectedProduct: freezed == selectedProduct
+          ? _value.selectedProduct
+          : selectedProduct // ignore: cast_nullable_to_non_nullable
+              as Product?,
       pending: null == pending
           ? _value._pending
           : pending // ignore: cast_nullable_to_non_nullable
@@ -416,6 +442,7 @@ class _$AppState$Impl implements AppState$ {
       final List<Product> relatedProducts = const <Product>[],
       final Set<GroceryList> groceryLists = const <GroceryList>{},
       this.selectedGroceryList,
+      this.selectedProduct,
       final Set<String> pending = const <String>{},
       this.pageNumber = 1,
       this.contentLoaded = false,
@@ -485,6 +512,8 @@ class _$AppState$Impl implements AppState$ {
 
   @override
   final GroceryList? selectedGroceryList;
+  @override
+  final Product? selectedProduct;
   final Set<String> _pending;
   @override
   @JsonKey()
@@ -536,11 +565,7 @@ class _$AppState$Impl implements AppState$ {
   @override
   @JsonKey()
   final bool isNotifications;
-//GenerateContentResponse? response,
-//PromptData? promptData,
   final Set<CuisineFilter> _cuisines;
-//GenerateContentResponse? response,
-//PromptData? promptData,
   @override
   @JsonKey()
   Set<CuisineFilter> get cuisines {
@@ -560,7 +585,7 @@ class _$AppState$Impl implements AppState$ {
 
   @override
   String toString() {
-    return 'AppState(user: $user, supermarketProducts: $supermarketProducts, productsGroceryList: $productsGroceryList, relatedProducts: $relatedProducts, groceryLists: $groceryLists, selectedGroceryList: $selectedGroceryList, pending: $pending, pageNumber: $pageNumber, contentLoaded: $contentLoaded, cameras: $cameras, takenPicture: $takenPicture, selectedCamera: $selectedCamera, users: $users, requests: $requests, isNotifications: $isNotifications, cuisines: $cuisines, generatorResponse: $generatorResponse, cuisineText: $cuisineText, basicIngredientsText: $basicIngredientsText, dietaryRestrictionsText: $dietaryRestrictionsText)';
+    return 'AppState(user: $user, supermarketProducts: $supermarketProducts, productsGroceryList: $productsGroceryList, relatedProducts: $relatedProducts, groceryLists: $groceryLists, selectedGroceryList: $selectedGroceryList, selectedProduct: $selectedProduct, pending: $pending, pageNumber: $pageNumber, contentLoaded: $contentLoaded, cameras: $cameras, takenPicture: $takenPicture, selectedCamera: $selectedCamera, users: $users, requests: $requests, isNotifications: $isNotifications, cuisines: $cuisines, generatorResponse: $generatorResponse, cuisineText: $cuisineText, basicIngredientsText: $basicIngredientsText, dietaryRestrictionsText: $dietaryRestrictionsText)';
   }
 
   @override
@@ -579,6 +604,8 @@ class _$AppState$Impl implements AppState$ {
                 .equals(other._groceryLists, _groceryLists) &&
             (identical(other.selectedGroceryList, selectedGroceryList) ||
                 other.selectedGroceryList == selectedGroceryList) &&
+            (identical(other.selectedProduct, selectedProduct) ||
+                other.selectedProduct == selectedProduct) &&
             const DeepCollectionEquality().equals(other._pending, _pending) &&
             (identical(other.pageNumber, pageNumber) ||
                 other.pageNumber == pageNumber) &&
@@ -615,6 +642,7 @@ class _$AppState$Impl implements AppState$ {
         const DeepCollectionEquality().hash(_relatedProducts),
         const DeepCollectionEquality().hash(_groceryLists),
         selectedGroceryList,
+        selectedProduct,
         const DeepCollectionEquality().hash(_pending),
         pageNumber,
         contentLoaded,
@@ -653,6 +681,7 @@ abstract class AppState$ implements AppState {
       final List<Product> relatedProducts,
       final Set<GroceryList> groceryLists,
       final GroceryList? selectedGroceryList,
+      final Product? selectedProduct,
       final Set<String> pending,
       final int pageNumber,
       final bool contentLoaded,
@@ -684,6 +713,8 @@ abstract class AppState$ implements AppState {
   @override
   GroceryList? get selectedGroceryList;
   @override
+  Product? get selectedProduct;
+  @override
   Set<String> get pending;
   @override
   int get pageNumber;
@@ -701,8 +732,7 @@ abstract class AppState$ implements AppState {
   List<AddRequest> get requests;
   @override
   bool get isNotifications;
-  @override //GenerateContentResponse? response,
-//PromptData? promptData,
+  @override
   Set<CuisineFilter> get cuisines;
   @override
   String? get generatorResponse;

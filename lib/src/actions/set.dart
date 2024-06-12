@@ -11,6 +11,16 @@ class SetUnselectedList with _$SetUnselectedList implements AppAction {
 }
 
 @freezed
+class SetSelectedProduct with _$SetSelectedProduct implements AppAction {
+  const factory SetSelectedProduct(Product selectedProduct) = SetSelectedProduct$;
+}
+
+@freezed
+class SetUnselectedProduct with _$SetUnselectedProduct implements AppAction {
+  const factory SetUnselectedProduct() = SetUnselectedProduct$;
+}
+
+@freezed
 class SetUserProductsToEmpty with _$SetUserProductsToEmpty implements AppAction {
   const factory SetUserProductsToEmpty() = SetUserProductsToEmpty$;
 }

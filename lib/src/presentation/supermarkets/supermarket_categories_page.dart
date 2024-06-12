@@ -74,7 +74,7 @@ class SupermarketCategoriesPage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Container(
-                                padding: const EdgeInsets.all(16.0),
+                                padding: const EdgeInsets.all(16),
                                 decoration: BoxDecoration(
                                   color: Colors.lightBlue.withOpacity(0.1),
                                   borderRadius: BorderRadius.circular(12),
@@ -83,7 +83,10 @@ class SupermarketCategoriesPage extends StatelessWidget {
                                   'assets/categoryIcons/$item',
                                   width: 64,
                                   height: 64,
-                                  color: Colors.lightBlue,
+                                  colorFilter: const ColorFilter.mode(
+                                    Colors.lightBlue,
+                                    BlendMode.srcIn,
+                                  ),
                                 ),
                               ),
                               const SizedBox(height: 16),
