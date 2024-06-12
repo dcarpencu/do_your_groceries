@@ -13,7 +13,6 @@ class Product with _$Product {
     @Default('') String image,
     @Default(1) int page,
     @Default(false) bool createdByUser,
-    // @Default(0) final int quantity,
   }) = Product$;
 
   factory Product.fromJson(Map<dynamic, dynamic> json) => _$ProductFromJson(Map<String, dynamic>.from(json));

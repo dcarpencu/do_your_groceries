@@ -49,6 +49,7 @@ class AppEpic {
       TypedEpic<AppState, AcceptRequestStart>(_acceptRequestStart).call,
       TypedEpic<AppState, UpdateGroceryListsStart>(_updateGroceryListsStart).call,
       TypedEpic<AppState, EditGroceryListStart>(_editGroceryListStart).call,
+      TypedEpic<AppState, EditProductStart>(_editProductStart).call,
     ]);
   }
 
@@ -173,12 +174,12 @@ class AppEpic {
       return Stream<void>.value(null)
           .asyncMap(
             (_) => _productsApi.createProduct(
-              action.createdByUser,
               groceryListId: store.state.selectedGroceryList!.groceryListId,
               name: action.name,
               image: action.image,
               price: action.price,
               uid: store.state.user!.uid,
+              createdByUser: action.createdByUser,
             ),
           )
           .mapTo(const CreateProduct.successful())
@@ -406,6 +407,18 @@ class AppEpic {
           )
           .map<EditGroceryList>(EditGroceryList.successful)
           .onErrorReturnWith(EditGroceryList.error);
+    });
+  }
+
+  Stream<AppAction> _editProductStart(Stream<EditProductStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((EditProductStart action) {
+      return Stream<void>.value(null)
+          .asyncMap(
+            (_) => _productsApi.updateProduct(
+                name: action.name, price: action.price, image: action.image, product: action.product,),
+          )
+          .map<EditProduct>(EditProduct.successful)
+          .onErrorReturnWith(EditProduct.error);
     });
   }
 }

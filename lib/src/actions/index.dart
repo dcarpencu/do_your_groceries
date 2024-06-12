@@ -35,6 +35,7 @@ part 'accept_request.dart';
 part 'update_grocery_lists.dart';
 part 'generate_recipe_response.dart';
 part 'edit_grocery_list.dart';
+part 'edit_product.dart';
 
 abstract class AppAction {}
 

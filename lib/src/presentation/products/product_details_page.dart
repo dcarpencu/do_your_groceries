@@ -4,7 +4,7 @@ import 'package:do_you_groceries/src/containers/related_products_container.dart'
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:do_you_groceries/src/navigation/transitions.dart';
 import 'package:do_you_groceries/src/presentation/products/edit_list_page.dart';
-import 'package:do_you_groceries/src/ui_elements/components/image_shimmer_widget.dart';
+import 'package:do_you_groceries/src/presentation/products/edit_product_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -73,7 +73,6 @@ class _PostDetailPageState extends State<ProductDetailsPage> {
                           height: 300,
                         ),
                       ),
-
                     Padding(
                       padding: const EdgeInsets.all(16),
                       child: Column(
@@ -105,8 +104,16 @@ class _PostDetailPageState extends State<ProductDetailsPage> {
                                 icon: const Icon(Icons.more_vert, color: Colors.black),
                                 onSelected: (Options item) {
                                   if (item == Options.delete) {
+                                    _store
+                                      ..dispatch(RemoveProductSimple(product: widget.product))
+                                      ..dispatch(
+                                        RemoveProductFromGroceryListStart(
+                                            groceryListId: _store.state.selectedGroceryList!.groceryListId,
+                                            product: widget.product),
+                                      );
+                                    Navigator.pop(context);
                                   } else if (item == Options.edit) {
-                                    //Navigator.of(context).push(createRoute(EditListPage(groceryList: groceryList)));
+                                    Navigator.of(context).push(createRoute(EditProductPage(product: widget.product)));
                                   }
                                 },
                                 itemBuilder: (BuildContext context) => <PopupMenuEntry<Options>>[
@@ -159,68 +166,74 @@ class _PostDetailPageState extends State<ProductDetailsPage> {
                   }
                   return RelatedProductsContainer(
                     builder: (BuildContext context, List<Product> relatedProducts) {
-                      return GridView.builder(
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          mainAxisSpacing: 16,
-                          crossAxisSpacing: 16,
-                          childAspectRatio: 3 / 4,
+                      return ClipRRect(
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(24),
+                          topRight: Radius.circular(24),
                         ),
-                        itemCount: relatedProducts.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          final Product relatedProduct = relatedProducts[index];
-                          return Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            elevation: 2,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: <Widget>[
-                                ClipRRect(
-                                  borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-                                  child: Image.network(
-                                    relatedProduct.image,
-                                    fit: BoxFit.cover,
-                                    height: 120,
+                        child: GridView.builder(
+                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            mainAxisSpacing: 16,
+                            crossAxisSpacing: 16,
+                            childAspectRatio: 3 / 4,
+                          ),
+                          itemCount: relatedProducts.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            final Product relatedProduct = relatedProducts[index];
+                            return Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              elevation: 2,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: <Widget>[
+                                  ClipRRect(
+                                    borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+                                    child: Image.network(
+                                      relatedProduct.image,
+                                      fit: BoxFit.cover,
+                                      height: 120,
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Text(
-                                        relatedProduct.name,
-                                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                          fontWeight: FontWeight.bold,
+                                  Padding(
+                                    padding: const EdgeInsets.all(8),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Text(
+                                          relatedProduct.name,
+                                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
                                         ),
-                                        maxLines: 2,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                      const SizedBox(height: 4),
-                                      Text(
-                                        relatedProduct.supermarket,
-                                        style: Theme.of(context).textTheme.bodySmall,
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                      const SizedBox(height: 4),
-                                      Text(
-                                        '${relatedProduct.price} RON',
-                                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                          color: Colors.grey[700],
+                                        const SizedBox(height: 4),
+                                        Text(
+                                          relatedProduct.supermarket,
+                                          style: Theme.of(context).textTheme.bodySmall,
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
                                         ),
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ],
+                                        const SizedBox(height: 4),
+                                        Text(
+                                          '${relatedProduct.price} RON',
+                                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                                color: Colors.grey[700],
+                                              ),
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          );
-                        },
+                                ],
+                              ),
+                            );
+                          },
+                        ),
                       );
                     },
                   );

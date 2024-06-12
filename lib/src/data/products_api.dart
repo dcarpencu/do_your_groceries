@@ -104,7 +104,7 @@ class ProductsApi {
   }
 
   Future<void> createProduct(
-    bool createdByUser, {
+      {required bool createdByUser,
     required String groceryListId,
     required String image,
     required String name,
@@ -191,5 +191,29 @@ class ProductsApi {
           _firestore.collection('products').doc(product.productId);
       await productRef.delete();
     }
+  }
+
+  Future<List<Product>> updateProduct({
+    required String name,
+    required double price,
+    required String image,
+    required Product product,
+  }) async {
+    final List<Product> productsList = <Product>[product];
+    final DocumentReference<Map<String, dynamic>> ref = _firestore.collection('products').doc(product.productId);
+
+    final Map<String, dynamic> dataToUpdate = <String, dynamic>{
+      'name': name,
+      'price': price,
+      'image': image,
+    };
+
+    await ref.update(dataToUpdate);
+
+    productsList.add(Product(
+      productId: product.productId, name: name, image: image, price: price, category: '',
+    ),);
+
+    return productsList;
   }
 }

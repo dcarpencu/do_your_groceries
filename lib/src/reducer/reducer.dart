@@ -56,12 +56,11 @@ Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   TypedReducer<AppState, UpdateGroceryListsStart>(_updateGroceryListsStart).call,
   TypedReducer<AppState, UpdateGroceryListsError>(_updateGroceryListsError).call,
   TypedReducer<AppState, AcceptRequestSuccessful>(_acceptRequestSuccessful).call,
-  //TypedReducer<AppState, SetPromptData>(_setPromptData).call,
-  //TypedReducer<AppState, AddPromptDataCuisine>(_addPromptDataCuisine).call,
   TypedReducer<AppState, SetCuisineFilterSelection>(_setCuisineFilterSelection).call,
   TypedReducer<AppState, SetBasicIngredientsFilterSelection>(_setBasicIngredientsFilterSelection).call,
   TypedReducer<AppState, SetDietaryRestrictionsFilterSelection>(_setDietaryRestrictionsFilterSelection).call,
   TypedReducer<AppState, EditGroceryListSuccessful>(_editGroceryListSuccessful).call,
+  TypedReducer<AppState, EditProductSuccessful>(_editProductSuccessful).call,
 ]);
 
 AppState _setMarketProductsToEmpty(AppState state, SetMarketProductsToEmpty action) {
@@ -131,6 +130,13 @@ AppState _editGroceryListSuccessful(AppState state, EditGroceryListSuccessful ac
   return state.copyWith(groceryLists: <GroceryList>{action.groceryLists[1], ...groceryListsRM});
 }
 
+AppState _editProductSuccessful(AppState state, EditProductSuccessful action) {
+  print('\n\n PRODUCT BF: ${state.productsGroceryList} \n\n');
+  final List<Product> productsRM = <Product>[...state.productsGroceryList]..remove(action.products[0]);
+  print('\n\n PRODUCT AFTER: $productsRM\n\n');
+  return state.copyWith(productsGroceryList: <Product>{action.products[1], ...productsRM}.toList());
+}
+
 AppState _getSuperMarketProductsSuccessful(AppState state, GetSuperMarketProductsSuccessful action) {
   if (action.supermarketProducts.isNotEmpty) {
     return state.copyWith(
@@ -170,10 +176,6 @@ AppState _setPictureToNull(AppState state, SetPictureToNull action) {
   return state.copyWith(takenPicture: null);
 }
 
-// AppState _getImageLabelsSuccessful(AppState state, GetImageLabelsSuccessful action) {
-//   return state.copyWith(imageLabel: action.imageLabel);
-// }
-
 AppState _removeProductSimple(AppState state, RemoveProductSimple action) {
   return state.copyWith(productsGroceryList: <Product>[...state.productsGroceryList]..remove(action.product));
 }
@@ -211,16 +213,6 @@ AppState _updateGroceryListsStart(AppState state, UpdateGroceryListsStart action
 AppState _acceptRequestSuccessful(AppState state, AcceptRequestSuccessful action) {
   return state.copyWith(requests: <AddRequest>[...state.requests]..remove(action.requestToRemove));
 }
-
-// AppState _setPromptData(AppState state, SetPromptData action) {
-//   return state.copyWith(promptData: action.promptData);
-// }
-
-// AppState _addPromptDataCuisine(AppState state, AddPromptDataCuisine action) {
-//   final Set<CuisineFilter> updatedCuisines = state.cuisines.toSet()..add(action.cuisine);
-//
-//   return state.copyWith(cuisines: updatedCuisines);
-// }
 
 AppState _generateRecipeResponseSuccessful(AppState state, GenerateRecipeResponseSuccessful action) {
   return state.copyWith(generatorResponse: action.response);

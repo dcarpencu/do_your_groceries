@@ -1,13 +1,7 @@
-import 'package:do_you_groceries/src/actions/index.dart';
-import 'package:do_you_groceries/src/containers/pending_container.dart';
-import 'package:do_you_groceries/src/containers/related_products_container.dart';
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:do_you_groceries/src/presentation/products/product_details_page.dart';
-import 'package:do_you_groceries/src/ui_elements/components/image_shimmer_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:redux/redux.dart';
 
 class HeroPosts extends StatelessWidget {
   const HeroPosts({required this.product, super.key});
@@ -47,20 +41,27 @@ class HeroPosts extends StatelessWidget {
                     ),
               title: Column(
                 children: <Widget>[
-                  Text(
-                    product.name,
-                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-                  ),
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      product.supermarket,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
+                      product.name,
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
+                  if (product.supermarket.isNotEmpty)
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        product.supermarket,
+                        style: Theme.of(context).textTheme.bodyLarge,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
                 ],
               ),
               subtitle: Text('${product.price} RON'),
