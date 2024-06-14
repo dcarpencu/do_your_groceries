@@ -304,6 +304,7 @@ class ProductsApi {
 
   Future<void> smartUpdateList({
     required List<Product> groceryListProducts,
+    required GroceryList groceryList,
   }) async {
     List<Product> productsRelated = <Product>[];
     List<Product> productsSorted = <Product>[];
@@ -315,20 +316,48 @@ class ProductsApi {
       'Profi' : 0,
     };
 
-    for(final Product product in groceryListProducts) {
-
+    for (final Product product in groceryListProducts) {
       productsRelated = await getProducts(product: product);
       if (productsRelated.isNotEmpty) {
-      productsSorted = _sortProductsByPrice(productsRelated);
-      frequencyMarkets[productsSorted[0].supermarket] = frequencyMarkets[productsSorted[0].supermarket]! + 1;
+        productsSorted = _sortProductsByPrice(productsRelated);
+        frequencyMarkets[productsSorted[0].supermarket] = frequencyMarkets[productsSorted[0].supermarket]! + 1;
       }
     }
+
     print('\n\n $frequencyMarkets \n\n');
+
+    String highestSupermarket = '';
+    int highestFrequency = 0;
+
+    frequencyMarkets.forEach((supermarket, frequency) {
+      if (frequency > highestFrequency) {
+        highestSupermarket = supermarket;
+        highestFrequency = frequency;
+      }
+    });
+
+    print('Supermarket with highest frequency: $highestSupermarket ($highestFrequency)');
+
     print('\n\n SMART \n\n');
+
+    for (final Product product in groceryListProducts) {
+      productsRelated = await getProducts(product: product);
+      if (productsRelated.isNotEmpty) {
+        productsSorted = _sortProductsByPrice(productsRelated);
+        for(final Product productToSwitch in productsSorted) {
+          print('\n\n\n PRODUCT TO SWITCH: $productToSwitch \n\n');
+          if (productToSwitch.supermarket == highestSupermarket) {
+            print('\n\n\n PRODUCT TO SWITCH: $productToSwitch \n\n');
+            await switchProduct(selectedProduct: productToSwitch, oldProduct: product, groceryList: groceryList);
+          }
+        }
+      }
+    }
   }
 
   List<Product> _sortProductsByPrice(List<Product> products) {
-    final List<Product> sortedProducts = List<Product>.from(products)..sort((Product a, Product b) => a.price.compareTo(b.price));
+    final List<Product> sortedProducts = List<Product>.from(products)
+      ..sort((Product a, Product b) => a.price.compareTo(b.price));
     return sortedProducts;
   }
 }
