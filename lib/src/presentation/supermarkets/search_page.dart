@@ -60,8 +60,8 @@ class _SearchProductsPageState extends State<SearchProductsPage> {
   @override
   void dispose() {
     _controller.dispose();
-    super.dispose();
     _store.dispatch(const SetMarketProductsToEmpty());
+    super.dispose();
   }
 
   void _onResult(AppAction action) {
@@ -78,61 +78,43 @@ class _SearchProductsPageState extends State<SearchProductsPage> {
       builder: (BuildContext context, AppState state) {
         return Scaffold(
           body: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 8, right: 8, top: 24, bottom: 8),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    '${widget.supermarketCategoryLabel} ${widget.marketName}',
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
-                  ),
-                  const SizedBox(height: 8),
-                  PendingContainer(
-                    builder: (BuildContext context, Set<String> pending) {
-                      return SearchProductsContainer(
-                        builder: (BuildContext context, List<Product> products) {
-                          final bool isLoading = state.pending.contains(GetSuperMarketProducts.pendingKey);
-                          final bool isLoadingMore = state.pending.contains(GetSuperMarketProducts.pendingKeyMore);
+            child: PendingContainer(
+              builder: (BuildContext context, Set<String> pending) {
+                return SearchProductsContainer(
+                  builder: (BuildContext context, List<Product> products) {
+                    final bool isLoading = state.pending.contains(GetSuperMarketProducts.pendingKey);
+                    final bool isLoadingMore = state.pending.contains(GetSuperMarketProducts.pendingKeyMore);
 
-                          if (isLoading && products.isEmpty) {
-                            return ListView.builder(
-                              itemBuilder: (BuildContext context, int i) {
-                                return const ShimmerItem();
-                              },
-                              itemCount: 7,
-                            );
-                          }
-
-                          return Expanded(
-                            child: ListView.builder(
-                              controller: _controller,
-                              padding: const EdgeInsets.all(8),
-                              itemCount: products.length + (isLoadingMore ? 1 : 0),
-                              itemBuilder: (BuildContext context, int index) {
-                                if (index == products.length) {
-                                  return const Center(child: LinearProgressIndicator());
-                                }
-                                final Product product = products[index];
-
-                                return ModelItem(
-                                  store: _store,
-                                  model: product,
-                                  marketName: widget.marketName,
-                                  category: widget.supermarketCategory,
-                                );
-                              },
-                            ),
-                          );
+                    if (isLoading && products.isEmpty) {
+                      return ListView.builder(
+                        itemBuilder: (BuildContext context, int i) {
+                          return const ShimmerItem();
                         },
+                        itemCount: 7,
                       );
-                    },
-                  ),
-                ],
-              ),
+                    }
+
+                    return ListView.builder(
+                      controller: _controller,
+                      padding: const EdgeInsets.all(8),
+                      itemCount: products.length + (isLoadingMore ? 1 : 0),
+                      itemBuilder: (BuildContext context, int index) {
+                        if (index == products.length) {
+                          return const Center(child: LinearProgressIndicator());
+                        }
+                        final Product product = products[index];
+
+                        return ModelItem(
+                          store: _store,
+                          model: product,
+                          marketName: widget.marketName,
+                          category: widget.supermarketCategory,
+                        );
+                      },
+                    );
+                  },
+                );
+              },
             ),
           ),
         );

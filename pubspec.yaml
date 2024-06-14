@@ -10,7 +10,6 @@ environment:
 
 dependencies:
 
-  cached_network_image: ^3.3.1
   camera: ^0.10.5+9
   carousel_slider: ^4.2.1
   cloud_firestore: ^4.17.0
@@ -58,10 +57,7 @@ flutter:
 
   uses-material-design: true
   assets:
-    - assets/avaters/
     - assets/Backgrounds/
-    - assets/icons/
-    - assets/RiveAssets/
     - assets/base/
     - assets/groceryListIcons/
     - assets/productsIcons/
