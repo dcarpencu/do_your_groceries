@@ -50,8 +50,49 @@ class ProductsApi {
     });
   }
 
-  Future<List<Product>> getProducts({required Product product}) async {
-    print('\n\n\n\n GET PRODUCTS: \n\n');
+  Future<List<Product>> getProductsAfterEdit({required String groceryListId}) async {
+      return _firestore
+          .collection('lists')
+          .doc(groceryListId)
+          .snapshots()
+          .asyncMap((DocumentSnapshot<Map<String, dynamic>> snapshot) async {
+        if (snapshot.exists) {
+          final List<dynamic>? productIds =
+          (snapshot.data()?['productIds'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
+
+          if (productIds == null || productIds.isEmpty) {
+            return <Product>[];
+          }
+
+          final List<Future<DocumentSnapshot<Map<String, dynamic>>>> readOperations =
+          <Future<DocumentSnapshot<Map<String, dynamic>>>>[];
+
+          for (final dynamic productId in productIds) {
+            final int lastIndex = productId.toString().lastIndexOf('/');
+            final String collectionPath = productId.toString().substring(0, lastIndex);
+            final String documentId = productId.toString().substring(lastIndex + 1);
+
+            final DocumentReference<Map<String, dynamic>> docRef = _firestore.collection(collectionPath).doc(documentId);
+            readOperations.add(docRef.get());
+          }
+
+          final List<DocumentSnapshot<Map<String, dynamic>>> productSnapshots = await Future.wait(readOperations);
+
+          final List<Product> products = productSnapshots
+              .where((DocumentSnapshot<Map<String, dynamic>> snapshot) => snapshot.exists)
+              .map((DocumentSnapshot<Map<String, dynamic>> snapshot) => Product.fromJson(snapshot.data()!))
+              .toList();
+
+          return products;
+        } else {
+          return <Product>[];
+        }
+      }).first;
+    }
+
+
+    Future<List<Product>> getProducts({required Product product}) async {
+    print('\n\n\n\n GET RELATED PRODUCTS: \n\n');
     final List<Product> relatedProducts = <Product>[];
 
     if (product.supermarket.isNotEmpty) {
@@ -193,7 +234,7 @@ class ProductsApi {
     }
   }
 
-  Future<List<Product>> updateProduct({
+  Future<void> updateProduct({
     required String name,
     required double price,
     required String image,
@@ -213,7 +254,5 @@ class ProductsApi {
     productsList.add(Product(
       productId: product.productId, name: name, image: image, price: price, category: '',
     ),);
-
-    return productsList;
   }
 }

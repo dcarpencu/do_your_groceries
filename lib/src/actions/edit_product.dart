@@ -9,7 +9,7 @@ class EditProduct with _$EditProduct implements AppAction {
     required Product product,
   }) = EditProductStart;
 
-  const factory EditProduct.successful(List<Product> products) = EditProductSuccessful;
+  const factory EditProduct.successful() = EditProductSuccessful;
 
   @Implements<ErrorAction>()
   const factory EditProduct.error(Object error, StackTrace stackTrace) = EditProductError;

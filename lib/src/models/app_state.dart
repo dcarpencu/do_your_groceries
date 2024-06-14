@@ -4,15 +4,12 @@ part of 'index.dart';
 class AppState with _$AppState {
   const factory AppState({
     AppUser? user,
-    @Default(<Product>[]) List<Product> supermarketProducts,
     @Default(<Product>[]) List<Product> productsGroceryList,
     @Default(<Product>[]) List<Product> relatedProducts,
     @Default(<GroceryList>{}) Set<GroceryList> groceryLists,
     GroceryList? selectedGroceryList,
     Product? selectedProduct,
     @Default(<String>{}) Set<String> pending,
-    @Default(1) int pageNumber,
-    @Default(false) bool contentLoaded,
     @Default(<CameraInfo>[]) List<CameraInfo> cameras,
     @Default(null) TakenPicture? takenPicture,
     @Default(null) CameraInfo? selectedCamera,
@@ -24,6 +21,9 @@ class AppState with _$AppState {
     String? cuisineText,
     String? basicIngredientsText,
     String? dietaryRestrictionsText,
+    @Default(<Product>[]) List<Product> supermarketProducts,
+    @Default(1) int pageNumber,
+    @Default(false) bool productsFinished,
   }) = AppState$;
 
   factory AppState.fromJson(Map<dynamic, dynamic> json) => _$AppStateFromJson(Map<String, dynamic>.from(json));

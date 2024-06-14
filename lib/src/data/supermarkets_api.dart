@@ -25,6 +25,10 @@ class SuperMarketsApi {
         .collection('page_$pageNumber')
         .get();
 
+    if (querySnapshot.docs.isEmpty) {
+      return <Product>[];
+    }
+
     final List<Product> products = <Product>[];
 
     for (final DocumentSnapshot<Map<String, dynamic>> docSnapshot in querySnapshot.docs) {

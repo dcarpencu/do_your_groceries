@@ -4,6 +4,7 @@ import 'package:do_you_groceries/src/ui_elements/components/icon_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:go_router/go_router.dart';
+import 'package:redux/redux.dart';
 
 class EditProductPage extends StatefulWidget {
   const EditProductPage({super.key, required this.product});
@@ -18,6 +19,7 @@ class _EditProductPageState extends State<EditProductPage> {
   final TextEditingController _title = TextEditingController();
   final TextEditingController _price = TextEditingController();
   final FocusNode _priceFocusNode = FocusNode();
+  late Store<AppState> _store;
 
   final List<String> _options = const <String>[
     'breakfast-hotcakes-kitchen-svgrepo-com',
@@ -47,15 +49,25 @@ class _EditProductPageState extends State<EditProductPage> {
   int? _selected = 0;
   String _selectedValue = 'breakfast-hotcakes-kitchen-svgrepo-com';
 
+  @override
+  void initState() {
+    _store = StoreProvider.of<AppState>(context, listen: false);
+    super.initState();
+  }
+
   void _onNext(BuildContext context) {
     if (!Form.of(context).validate()) {
       return;
     }
 
-    StoreProvider.of<AppState>(context).dispatch(
+
+    _store..dispatch(
       EditProductStart(image: _selectedValue, name: _title.text, price: double.parse( _price.text), product: widget.product,),
-    );
-    //context.goNamed('groceryList');
+    )
+      ..dispatch(GetProductsAfterEditStart(groceryListId: _store.state.selectedGroceryList!.groceryListId));
+    context..pop()
+    ..pop();
+    print('\n\nGO HOMEPAGE\n\n');
   }
 
   @override

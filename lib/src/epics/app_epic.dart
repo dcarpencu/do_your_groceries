@@ -50,6 +50,8 @@ class AppEpic {
       TypedEpic<AppState, UpdateGroceryListsStart>(_updateGroceryListsStart).call,
       TypedEpic<AppState, EditGroceryListStart>(_editGroceryListStart).call,
       TypedEpic<AppState, EditProductStart>(_editProductStart).call,
+      TypedEpic<AppState, GetSupermarketProductsNewStart>(_getSupermarketProductsNewStart).call,
+      TypedEpic<AppState, GetProductsAfterEditStart>(_getProductsAfterEditStart).call,
     ]);
   }
 
@@ -415,10 +417,41 @@ class AppEpic {
       return Stream<void>.value(null)
           .asyncMap(
             (_) => _productsApi.updateProduct(
-                name: action.name, price: action.price, image: action.image, product: action.product,),
+              name: action.name,
+              price: action.price,
+              image: action.image,
+              product: action.product,
+            ),
           )
-          .map<EditProduct>(EditProduct.successful)
+          .mapTo(EditProduct.successful())
           .onErrorReturnWith(EditProduct.error);
+    });
+  }
+
+  Stream<AppAction> _getSupermarketProductsNewStart(
+      Stream<GetSupermarketProductsNewStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((GetSupermarketProductsNewStart action) {
+      return Stream<void>.value(null)
+          .asyncMap(
+            (_) => _superMarketsApi.getSuperMarketProducts(
+              supermarketName: action.supermarketName,
+              category: action.category,
+              pageNumber: store.state.pageNumber,
+            ),
+          )
+          .map<GetSupermarketProductsNew>(GetSupermarketProductsNew.successful)
+          .onErrorReturnWith(GetSupermarketProductsNew.error);
+    });
+  }
+
+  Stream<AppAction> _getProductsAfterEditStart(Stream<GetProductsAfterEditStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((GetProductsAfterEditStart action) {
+      return Stream<void>.value(null)
+          .asyncMap(
+            (_) => _productsApi.getProductsAfterEdit(groceryListId: action.groceryListId),
+          )
+          .map<GetProductsAfterEdit>(GetProductsAfterEdit.successful)
+          .onErrorReturnWith(GetProductsAfterEdit.error);
     });
   }
 }

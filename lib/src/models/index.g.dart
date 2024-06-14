@@ -11,10 +11,6 @@ _$AppState$Impl _$$AppState$ImplFromJson(Map<String, dynamic> json) =>
       user: json['user'] == null
           ? null
           : AppUser.fromJson(json['user'] as Map<String, dynamic>),
-      supermarketProducts: (json['supermarketProducts'] as List<dynamic>?)
-              ?.map((e) => Product.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const <Product>[],
       productsGroceryList: (json['productsGroceryList'] as List<dynamic>?)
               ?.map((e) => Product.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -38,8 +34,6 @@ _$AppState$Impl _$$AppState$ImplFromJson(Map<String, dynamic> json) =>
               ?.map((e) => e as String)
               .toSet() ??
           const <String>{},
-      pageNumber: (json['pageNumber'] as num?)?.toInt() ?? 1,
-      contentLoaded: json['contentLoaded'] as bool? ?? false,
       cameras: (json['cameras'] as List<dynamic>?)
               ?.map((e) => CameraInfo.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -67,20 +61,23 @@ _$AppState$Impl _$$AppState$ImplFromJson(Map<String, dynamic> json) =>
       cuisineText: json['cuisineText'] as String?,
       basicIngredientsText: json['basicIngredientsText'] as String?,
       dietaryRestrictionsText: json['dietaryRestrictionsText'] as String?,
+      supermarketProducts: (json['supermarketProducts'] as List<dynamic>?)
+              ?.map((e) => Product.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const <Product>[],
+      pageNumber: (json['pageNumber'] as num?)?.toInt() ?? 1,
+      productsFinished: json['productsFinished'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$AppState$ImplToJson(_$AppState$Impl instance) =>
     <String, dynamic>{
       'user': instance.user,
-      'supermarketProducts': instance.supermarketProducts,
       'productsGroceryList': instance.productsGroceryList,
       'relatedProducts': instance.relatedProducts,
       'groceryLists': instance.groceryLists.toList(),
       'selectedGroceryList': instance.selectedGroceryList,
       'selectedProduct': instance.selectedProduct,
       'pending': instance.pending.toList(),
-      'pageNumber': instance.pageNumber,
-      'contentLoaded': instance.contentLoaded,
       'cameras': instance.cameras,
       'takenPicture': instance.takenPicture,
       'selectedCamera': instance.selectedCamera,
@@ -93,6 +90,9 @@ Map<String, dynamic> _$$AppState$ImplToJson(_$AppState$Impl instance) =>
       'cuisineText': instance.cuisineText,
       'basicIngredientsText': instance.basicIngredientsText,
       'dietaryRestrictionsText': instance.dietaryRestrictionsText,
+      'supermarketProducts': instance.supermarketProducts,
+      'pageNumber': instance.pageNumber,
+      'productsFinished': instance.productsFinished,
     };
 
 const _$CuisineFilterEnumMap = {

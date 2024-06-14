@@ -21,15 +21,12 @@ AppState _$AppStateFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$AppState {
   AppUser? get user => throw _privateConstructorUsedError;
-  List<Product> get supermarketProducts => throw _privateConstructorUsedError;
   List<Product> get productsGroceryList => throw _privateConstructorUsedError;
   List<Product> get relatedProducts => throw _privateConstructorUsedError;
   Set<GroceryList> get groceryLists => throw _privateConstructorUsedError;
   GroceryList? get selectedGroceryList => throw _privateConstructorUsedError;
   Product? get selectedProduct => throw _privateConstructorUsedError;
   Set<String> get pending => throw _privateConstructorUsedError;
-  int get pageNumber => throw _privateConstructorUsedError;
-  bool get contentLoaded => throw _privateConstructorUsedError;
   List<CameraInfo> get cameras => throw _privateConstructorUsedError;
   TakenPicture? get takenPicture => throw _privateConstructorUsedError;
   CameraInfo? get selectedCamera => throw _privateConstructorUsedError;
@@ -41,6 +38,9 @@ mixin _$AppState {
   String? get cuisineText => throw _privateConstructorUsedError;
   String? get basicIngredientsText => throw _privateConstructorUsedError;
   String? get dietaryRestrictionsText => throw _privateConstructorUsedError;
+  List<Product> get supermarketProducts => throw _privateConstructorUsedError;
+  int get pageNumber => throw _privateConstructorUsedError;
+  bool get productsFinished => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,15 +55,12 @@ abstract class $AppStateCopyWith<$Res> {
   @useResult
   $Res call(
       {AppUser? user,
-      List<Product> supermarketProducts,
       List<Product> productsGroceryList,
       List<Product> relatedProducts,
       Set<GroceryList> groceryLists,
       GroceryList? selectedGroceryList,
       Product? selectedProduct,
       Set<String> pending,
-      int pageNumber,
-      bool contentLoaded,
       List<CameraInfo> cameras,
       TakenPicture? takenPicture,
       CameraInfo? selectedCamera,
@@ -74,7 +71,10 @@ abstract class $AppStateCopyWith<$Res> {
       String? generatorResponse,
       String? cuisineText,
       String? basicIngredientsText,
-      String? dietaryRestrictionsText});
+      String? dietaryRestrictionsText,
+      List<Product> supermarketProducts,
+      int pageNumber,
+      bool productsFinished});
 
   $AppUserCopyWith<$Res>? get user;
   $GroceryListCopyWith<$Res>? get selectedGroceryList;
@@ -97,15 +97,12 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
   @override
   $Res call({
     Object? user = freezed,
-    Object? supermarketProducts = null,
     Object? productsGroceryList = null,
     Object? relatedProducts = null,
     Object? groceryLists = null,
     Object? selectedGroceryList = freezed,
     Object? selectedProduct = freezed,
     Object? pending = null,
-    Object? pageNumber = null,
-    Object? contentLoaded = null,
     Object? cameras = null,
     Object? takenPicture = freezed,
     Object? selectedCamera = freezed,
@@ -117,16 +114,15 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
     Object? cuisineText = freezed,
     Object? basicIngredientsText = freezed,
     Object? dietaryRestrictionsText = freezed,
+    Object? supermarketProducts = null,
+    Object? pageNumber = null,
+    Object? productsFinished = null,
   }) {
     return _then(_value.copyWith(
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as AppUser?,
-      supermarketProducts: null == supermarketProducts
-          ? _value.supermarketProducts
-          : supermarketProducts // ignore: cast_nullable_to_non_nullable
-              as List<Product>,
       productsGroceryList: null == productsGroceryList
           ? _value.productsGroceryList
           : productsGroceryList // ignore: cast_nullable_to_non_nullable
@@ -151,14 +147,6 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.pending
           : pending // ignore: cast_nullable_to_non_nullable
               as Set<String>,
-      pageNumber: null == pageNumber
-          ? _value.pageNumber
-          : pageNumber // ignore: cast_nullable_to_non_nullable
-              as int,
-      contentLoaded: null == contentLoaded
-          ? _value.contentLoaded
-          : contentLoaded // ignore: cast_nullable_to_non_nullable
-              as bool,
       cameras: null == cameras
           ? _value.cameras
           : cameras // ignore: cast_nullable_to_non_nullable
@@ -203,6 +191,18 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.dietaryRestrictionsText
           : dietaryRestrictionsText // ignore: cast_nullable_to_non_nullable
               as String?,
+      supermarketProducts: null == supermarketProducts
+          ? _value.supermarketProducts
+          : supermarketProducts // ignore: cast_nullable_to_non_nullable
+              as List<Product>,
+      pageNumber: null == pageNumber
+          ? _value.pageNumber
+          : pageNumber // ignore: cast_nullable_to_non_nullable
+              as int,
+      productsFinished: null == productsFinished
+          ? _value.productsFinished
+          : productsFinished // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -277,15 +277,12 @@ abstract class _$$AppState$ImplCopyWith<$Res>
   @useResult
   $Res call(
       {AppUser? user,
-      List<Product> supermarketProducts,
       List<Product> productsGroceryList,
       List<Product> relatedProducts,
       Set<GroceryList> groceryLists,
       GroceryList? selectedGroceryList,
       Product? selectedProduct,
       Set<String> pending,
-      int pageNumber,
-      bool contentLoaded,
       List<CameraInfo> cameras,
       TakenPicture? takenPicture,
       CameraInfo? selectedCamera,
@@ -296,7 +293,10 @@ abstract class _$$AppState$ImplCopyWith<$Res>
       String? generatorResponse,
       String? cuisineText,
       String? basicIngredientsText,
-      String? dietaryRestrictionsText});
+      String? dietaryRestrictionsText,
+      List<Product> supermarketProducts,
+      int pageNumber,
+      bool productsFinished});
 
   @override
   $AppUserCopyWith<$Res>? get user;
@@ -322,15 +322,12 @@ class __$$AppState$ImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? user = freezed,
-    Object? supermarketProducts = null,
     Object? productsGroceryList = null,
     Object? relatedProducts = null,
     Object? groceryLists = null,
     Object? selectedGroceryList = freezed,
     Object? selectedProduct = freezed,
     Object? pending = null,
-    Object? pageNumber = null,
-    Object? contentLoaded = null,
     Object? cameras = null,
     Object? takenPicture = freezed,
     Object? selectedCamera = freezed,
@@ -342,16 +339,15 @@ class __$$AppState$ImplCopyWithImpl<$Res>
     Object? cuisineText = freezed,
     Object? basicIngredientsText = freezed,
     Object? dietaryRestrictionsText = freezed,
+    Object? supermarketProducts = null,
+    Object? pageNumber = null,
+    Object? productsFinished = null,
   }) {
     return _then(_$AppState$Impl(
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as AppUser?,
-      supermarketProducts: null == supermarketProducts
-          ? _value._supermarketProducts
-          : supermarketProducts // ignore: cast_nullable_to_non_nullable
-              as List<Product>,
       productsGroceryList: null == productsGroceryList
           ? _value._productsGroceryList
           : productsGroceryList // ignore: cast_nullable_to_non_nullable
@@ -376,14 +372,6 @@ class __$$AppState$ImplCopyWithImpl<$Res>
           ? _value._pending
           : pending // ignore: cast_nullable_to_non_nullable
               as Set<String>,
-      pageNumber: null == pageNumber
-          ? _value.pageNumber
-          : pageNumber // ignore: cast_nullable_to_non_nullable
-              as int,
-      contentLoaded: null == contentLoaded
-          ? _value.contentLoaded
-          : contentLoaded // ignore: cast_nullable_to_non_nullable
-              as bool,
       cameras: null == cameras
           ? _value._cameras
           : cameras // ignore: cast_nullable_to_non_nullable
@@ -428,6 +416,18 @@ class __$$AppState$ImplCopyWithImpl<$Res>
           ? _value.dietaryRestrictionsText
           : dietaryRestrictionsText // ignore: cast_nullable_to_non_nullable
               as String?,
+      supermarketProducts: null == supermarketProducts
+          ? _value._supermarketProducts
+          : supermarketProducts // ignore: cast_nullable_to_non_nullable
+              as List<Product>,
+      pageNumber: null == pageNumber
+          ? _value.pageNumber
+          : pageNumber // ignore: cast_nullable_to_non_nullable
+              as int,
+      productsFinished: null == productsFinished
+          ? _value.productsFinished
+          : productsFinished // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -437,15 +437,12 @@ class __$$AppState$ImplCopyWithImpl<$Res>
 class _$AppState$Impl implements AppState$ {
   const _$AppState$Impl(
       {this.user,
-      final List<Product> supermarketProducts = const <Product>[],
       final List<Product> productsGroceryList = const <Product>[],
       final List<Product> relatedProducts = const <Product>[],
       final Set<GroceryList> groceryLists = const <GroceryList>{},
       this.selectedGroceryList,
       this.selectedProduct,
       final Set<String> pending = const <String>{},
-      this.pageNumber = 1,
-      this.contentLoaded = false,
       final List<CameraInfo> cameras = const <CameraInfo>[],
       this.takenPicture = null,
       this.selectedCamera = null,
@@ -456,32 +453,25 @@ class _$AppState$Impl implements AppState$ {
       this.generatorResponse,
       this.cuisineText,
       this.basicIngredientsText,
-      this.dietaryRestrictionsText})
-      : _supermarketProducts = supermarketProducts,
-        _productsGroceryList = productsGroceryList,
+      this.dietaryRestrictionsText,
+      final List<Product> supermarketProducts = const <Product>[],
+      this.pageNumber = 1,
+      this.productsFinished = false})
+      : _productsGroceryList = productsGroceryList,
         _relatedProducts = relatedProducts,
         _groceryLists = groceryLists,
         _pending = pending,
         _cameras = cameras,
         _users = users,
         _requests = requests,
-        _cuisines = cuisines;
+        _cuisines = cuisines,
+        _supermarketProducts = supermarketProducts;
 
   factory _$AppState$Impl.fromJson(Map<String, dynamic> json) =>
       _$$AppState$ImplFromJson(json);
 
   @override
   final AppUser? user;
-  final List<Product> _supermarketProducts;
-  @override
-  @JsonKey()
-  List<Product> get supermarketProducts {
-    if (_supermarketProducts is EqualUnmodifiableListView)
-      return _supermarketProducts;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_supermarketProducts);
-  }
-
   final List<Product> _productsGroceryList;
   @override
   @JsonKey()
@@ -523,12 +513,6 @@ class _$AppState$Impl implements AppState$ {
     return EqualUnmodifiableSetView(_pending);
   }
 
-  @override
-  @JsonKey()
-  final int pageNumber;
-  @override
-  @JsonKey()
-  final bool contentLoaded;
   final List<CameraInfo> _cameras;
   @override
   @JsonKey()
@@ -582,10 +566,26 @@ class _$AppState$Impl implements AppState$ {
   final String? basicIngredientsText;
   @override
   final String? dietaryRestrictionsText;
+  final List<Product> _supermarketProducts;
+  @override
+  @JsonKey()
+  List<Product> get supermarketProducts {
+    if (_supermarketProducts is EqualUnmodifiableListView)
+      return _supermarketProducts;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_supermarketProducts);
+  }
+
+  @override
+  @JsonKey()
+  final int pageNumber;
+  @override
+  @JsonKey()
+  final bool productsFinished;
 
   @override
   String toString() {
-    return 'AppState(user: $user, supermarketProducts: $supermarketProducts, productsGroceryList: $productsGroceryList, relatedProducts: $relatedProducts, groceryLists: $groceryLists, selectedGroceryList: $selectedGroceryList, selectedProduct: $selectedProduct, pending: $pending, pageNumber: $pageNumber, contentLoaded: $contentLoaded, cameras: $cameras, takenPicture: $takenPicture, selectedCamera: $selectedCamera, users: $users, requests: $requests, isNotifications: $isNotifications, cuisines: $cuisines, generatorResponse: $generatorResponse, cuisineText: $cuisineText, basicIngredientsText: $basicIngredientsText, dietaryRestrictionsText: $dietaryRestrictionsText)';
+    return 'AppState(user: $user, productsGroceryList: $productsGroceryList, relatedProducts: $relatedProducts, groceryLists: $groceryLists, selectedGroceryList: $selectedGroceryList, selectedProduct: $selectedProduct, pending: $pending, cameras: $cameras, takenPicture: $takenPicture, selectedCamera: $selectedCamera, users: $users, requests: $requests, isNotifications: $isNotifications, cuisines: $cuisines, generatorResponse: $generatorResponse, cuisineText: $cuisineText, basicIngredientsText: $basicIngredientsText, dietaryRestrictionsText: $dietaryRestrictionsText, supermarketProducts: $supermarketProducts, pageNumber: $pageNumber, productsFinished: $productsFinished)';
   }
 
   @override
@@ -594,8 +594,6 @@ class _$AppState$Impl implements AppState$ {
         (other.runtimeType == runtimeType &&
             other is _$AppState$Impl &&
             (identical(other.user, user) || other.user == user) &&
-            const DeepCollectionEquality()
-                .equals(other._supermarketProducts, _supermarketProducts) &&
             const DeepCollectionEquality()
                 .equals(other._productsGroceryList, _productsGroceryList) &&
             const DeepCollectionEquality()
@@ -607,10 +605,6 @@ class _$AppState$Impl implements AppState$ {
             (identical(other.selectedProduct, selectedProduct) ||
                 other.selectedProduct == selectedProduct) &&
             const DeepCollectionEquality().equals(other._pending, _pending) &&
-            (identical(other.pageNumber, pageNumber) ||
-                other.pageNumber == pageNumber) &&
-            (identical(other.contentLoaded, contentLoaded) ||
-                other.contentLoaded == contentLoaded) &&
             const DeepCollectionEquality().equals(other._cameras, _cameras) &&
             (identical(other.takenPicture, takenPicture) ||
                 other.takenPicture == takenPicture) &&
@@ -629,7 +623,13 @@ class _$AppState$Impl implements AppState$ {
                 other.basicIngredientsText == basicIngredientsText) &&
             (identical(
                     other.dietaryRestrictionsText, dietaryRestrictionsText) ||
-                other.dietaryRestrictionsText == dietaryRestrictionsText));
+                other.dietaryRestrictionsText == dietaryRestrictionsText) &&
+            const DeepCollectionEquality()
+                .equals(other._supermarketProducts, _supermarketProducts) &&
+            (identical(other.pageNumber, pageNumber) ||
+                other.pageNumber == pageNumber) &&
+            (identical(other.productsFinished, productsFinished) ||
+                other.productsFinished == productsFinished));
   }
 
   @JsonKey(ignore: true)
@@ -637,15 +637,12 @@ class _$AppState$Impl implements AppState$ {
   int get hashCode => Object.hashAll([
         runtimeType,
         user,
-        const DeepCollectionEquality().hash(_supermarketProducts),
         const DeepCollectionEquality().hash(_productsGroceryList),
         const DeepCollectionEquality().hash(_relatedProducts),
         const DeepCollectionEquality().hash(_groceryLists),
         selectedGroceryList,
         selectedProduct,
         const DeepCollectionEquality().hash(_pending),
-        pageNumber,
-        contentLoaded,
         const DeepCollectionEquality().hash(_cameras),
         takenPicture,
         selectedCamera,
@@ -656,7 +653,10 @@ class _$AppState$Impl implements AppState$ {
         generatorResponse,
         cuisineText,
         basicIngredientsText,
-        dietaryRestrictionsText
+        dietaryRestrictionsText,
+        const DeepCollectionEquality().hash(_supermarketProducts),
+        pageNumber,
+        productsFinished
       ]);
 
   @JsonKey(ignore: true)
@@ -676,15 +676,12 @@ class _$AppState$Impl implements AppState$ {
 abstract class AppState$ implements AppState {
   const factory AppState$(
       {final AppUser? user,
-      final List<Product> supermarketProducts,
       final List<Product> productsGroceryList,
       final List<Product> relatedProducts,
       final Set<GroceryList> groceryLists,
       final GroceryList? selectedGroceryList,
       final Product? selectedProduct,
       final Set<String> pending,
-      final int pageNumber,
-      final bool contentLoaded,
       final List<CameraInfo> cameras,
       final TakenPicture? takenPicture,
       final CameraInfo? selectedCamera,
@@ -695,15 +692,16 @@ abstract class AppState$ implements AppState {
       final String? generatorResponse,
       final String? cuisineText,
       final String? basicIngredientsText,
-      final String? dietaryRestrictionsText}) = _$AppState$Impl;
+      final String? dietaryRestrictionsText,
+      final List<Product> supermarketProducts,
+      final int pageNumber,
+      final bool productsFinished}) = _$AppState$Impl;
 
   factory AppState$.fromJson(Map<String, dynamic> json) =
       _$AppState$Impl.fromJson;
 
   @override
   AppUser? get user;
-  @override
-  List<Product> get supermarketProducts;
   @override
   List<Product> get productsGroceryList;
   @override
@@ -716,10 +714,6 @@ abstract class AppState$ implements AppState {
   Product? get selectedProduct;
   @override
   Set<String> get pending;
-  @override
-  int get pageNumber;
-  @override
-  bool get contentLoaded;
   @override
   List<CameraInfo> get cameras;
   @override
@@ -742,6 +736,12 @@ abstract class AppState$ implements AppState {
   String? get basicIngredientsText;
   @override
   String? get dietaryRestrictionsText;
+  @override
+  List<Product> get supermarketProducts;
+  @override
+  int get pageNumber;
+  @override
+  bool get productsFinished;
   @override
   @JsonKey(ignore: true)
   _$$AppState$ImplCopyWith<_$AppState$Impl> get copyWith =>

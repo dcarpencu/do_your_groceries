@@ -60,11 +60,13 @@ Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   TypedReducer<AppState, SetBasicIngredientsFilterSelection>(_setBasicIngredientsFilterSelection).call,
   TypedReducer<AppState, SetDietaryRestrictionsFilterSelection>(_setDietaryRestrictionsFilterSelection).call,
   TypedReducer<AppState, EditGroceryListSuccessful>(_editGroceryListSuccessful).call,
-  TypedReducer<AppState, EditProductSuccessful>(_editProductSuccessful).call,
+  //TypedReducer<AppState, EditProductSuccessful>(_editProductSuccessful).call,
+  TypedReducer<AppState, GetSupermarketProductsNewSuccessful>(_getSupermarketProductsNewSuccessful).call,
+  TypedReducer<AppState, GetProductsAfterEditSuccessful>(_getProductsAfterEditSuccessful).call,
 ]);
 
 AppState _setMarketProductsToEmpty(AppState state, SetMarketProductsToEmpty action) {
-  return state.copyWith(supermarketProducts: <Product>[], pageNumber: 1, contentLoaded: false);
+  return state.copyWith(supermarketProducts: <Product>[], pageNumber: 1, productsFinished: false);
 }
 
 AppState _setNotificationOn(AppState state, SetNotificationOn action) {
@@ -130,25 +132,21 @@ AppState _editGroceryListSuccessful(AppState state, EditGroceryListSuccessful ac
   return state.copyWith(groceryLists: <GroceryList>{action.groceryLists[1], ...groceryListsRM});
 }
 
-AppState _editProductSuccessful(AppState state, EditProductSuccessful action) {
-  print('\n\n PRODUCT BF: ${state.productsGroceryList} \n\n');
-  final List<Product> productsRM = <Product>[...state.productsGroceryList]..remove(action.products[0]);
-  print('\n\n PRODUCT AFTER: $productsRM\n\n');
-  return state.copyWith(productsGroceryList: <Product>{action.products[1], ...productsRM}.toList());
-}
 
 AppState _getSuperMarketProductsSuccessful(AppState state, GetSuperMarketProductsSuccessful action) {
+  // if (state.pageNumber == 1) {
+  //   return state.copyWith(
+  //     supermarketProducts: <Product>[...action.supermarketProducts],
+  //   );
+  // } else {
+
   if (action.supermarketProducts.isNotEmpty) {
     return state.copyWith(
       pageNumber: state.pageNumber + 1,
       supermarketProducts: <Product>[...state.supermarketProducts, ...action.supermarketProducts],
     );
   } else {
-    return state.copyWith(
-      pageNumber: state.pageNumber + 1,
-      supermarketProducts: <Product>[...state.supermarketProducts, ...action.supermarketProducts],
-      contentLoaded: true,
-    );
+    return state.copyWith(productsFinished: true);
   }
 }
 
@@ -228,4 +226,15 @@ AppState _setBasicIngredientsFilterSelection(AppState state, SetBasicIngredients
 
 AppState _setDietaryRestrictionsFilterSelection(AppState state, SetDietaryRestrictionsFilterSelection action) {
   return state.copyWith(dietaryRestrictionsText: action.selectedItems);
+}
+
+AppState _getSupermarketProductsNewSuccessful(AppState state, GetSupermarketProductsNewSuccessful action) {
+  return state.copyWith(
+    pageNumber: state.pageNumber + 1,
+    supermarketProducts: <Product>[...state.supermarketProducts, ...action.groceryListProducts],
+  );
+}
+
+AppState _getProductsAfterEditSuccessful(AppState state, GetProductsAfterEditSuccessful action) {
+  return state.copyWith(productsGroceryList: action.productsAfterEdit);
 }

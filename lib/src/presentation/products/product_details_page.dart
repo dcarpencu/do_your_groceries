@@ -128,6 +128,7 @@ class _PostDetailPageState extends State<ProductDetailsPage> {
                                       title: Text('Remove'),
                                     ),
                                   ),
+                                  if(widget.product.createdByUser)
                                   const PopupMenuItem<Options>(
                                     value: Options.edit,
                                     child: ListTile(
