@@ -7,7 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:redux/redux.dart';
 
-enum Options { delete, edit, cancel }
+enum Options { delete, edit, invite }
 
 class ListsCarousel extends StatefulWidget {
   const ListsCarousel({required this.groceryLists, required this.store, super.key});
@@ -111,6 +111,8 @@ class _ListsCarouselState extends State<ListsCarousel> {
                               ..dispatch(RemoveGroceryList(groceryList: groceryList));
                           } else if (item == Options.edit) {
                             Navigator.of(context).push(createRoute(EditListPage(groceryList: groceryList)));
+                          } else if (item == Options.invite) {
+                            context.pushNamed('addPeople');
                           }
                         },
                         itemBuilder: (BuildContext context) => <PopupMenuEntry<Options>>[
@@ -129,10 +131,10 @@ class _ListsCarouselState extends State<ListsCarousel> {
                             ),
                           ),
                           const PopupMenuItem<Options>(
-                            value: Options.cancel,
+                            value: Options.invite,
                             child: ListTile(
-                              leading: Icon(Icons.cancel),
-                              title: Text('Cancel'),
+                              leading: Icon(Icons.person_add),
+                              title: Text('Invite'),
                             ),
                           ),
                         ],

@@ -1,3 +1,4 @@
+import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:do_you_groceries/src/navigation/transitions.dart';
 import 'package:do_you_groceries/src/presentation/products/create_product_page.dart';
@@ -28,9 +29,11 @@ class BottomAppBarWidget extends StatelessWidget {
               children: <Widget>[
                 IconButton(
                   tooltip: 'Open navigation menu',
-                  icon: const Icon(Icons.person_add),
+                  icon: const Icon(Icons.smart_toy),
                   onPressed: () {
-                    context.pushNamed('addPeople');
+                    print('\n\n\n\n');
+                    store.dispatch(SmartUpdateListStart(groceryListProducts: store.state.productsGroceryList));
+                    print('\n\n\n\n');
                   },
                 ),
                 IconButton(

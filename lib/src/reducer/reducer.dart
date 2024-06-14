@@ -241,6 +241,5 @@ AppState _getProductsAfterEditSuccessful(AppState state, GetProductsAfterEditSuc
 }
 
 AppState _switchProductSuccessful(AppState state, SwitchProductSuccessful action) {
-  final List<Product> productRM = <Product>[...state.productsGroceryList]..remove(action.productsToSwitch[1]);
-  return state.copyWith(productsGroceryList: <Product>[action.productsToSwitch[0], ...productRM]);
+  return state.copyWith(productsGroceryList: <Product>[...state.productsGroceryList]..remove(action.productToSwitch));
 }

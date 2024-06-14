@@ -53,6 +53,7 @@ class AppEpic {
       TypedEpic<AppState, GetSupermarketProductsNewStart>(_getSupermarketProductsNewStart).call,
       TypedEpic<AppState, GetProductsAfterEditStart>(_getProductsAfterEditStart).call,
       TypedEpic<AppState, SwitchProductStart>(_switchProductStart).call,
+      TypedEpic<AppState, SmartUpdateListStart>(_smartUpdateListStart).call,
     ]);
   }
 
@@ -420,7 +421,7 @@ class AppEpic {
               product: action.product,
             ),
           )
-          .mapTo(EditProduct.successful())
+          .mapTo(const EditProduct.successful())
           .onErrorReturnWith(EditProduct.error);
     });
   }
@@ -456,10 +457,21 @@ class AppEpic {
     return actions.flatMap((SwitchProductStart action) {
       return Stream<void>.value(null)
           .asyncMap(
-            (_) => _productsApi.switchProduct(selectedProduct: action.selectedProduct, oldProduct: action.oldProduct),
-      )
+            (_) => _productsApi.switchProduct(selectedProduct: action.selectedProduct, oldProduct: action.oldProduct, groceryList: store.state.selectedGroceryList!),
+          )
           .map<SwitchProduct>(SwitchProduct.successful)
           .onErrorReturnWith(SwitchProduct.error);
+    });
+  }
+
+  Stream<AppAction> _smartUpdateListStart(Stream<SmartUpdateListStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((SmartUpdateListStart action) {
+      return Stream<void>.value(null)
+          .asyncMap(
+            (_) => _productsApi.smartUpdateList(groceryListProducts: store.state.productsGroceryList),
+          )
+          .mapTo(const SmartUpdateList.successful())
+          .onErrorReturnWith(SmartUpdateList.error);
     });
   }
 }

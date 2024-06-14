@@ -111,6 +111,7 @@ class ProductsApi {
             category: product.category,
             supermarket: doc['supermarket'] as String,
             image: doc['image'] as String,
+            page: doc['page'] as int,
           ),
         );
       }
@@ -253,10 +254,81 @@ class ProductsApi {
     ),);
   }
 
-  Future<List<Product>> switchProduct({
+  Future<Product> switchProduct({
     required Product selectedProduct,
     required Product oldProduct,
+    required GroceryList groceryList,
   }) async {
-    return <Product>[selectedProduct, oldProduct];
+    final DocumentReference<Map<String, dynamic>> ref = _firestore.collection('lists').doc(groceryList.groceryListId);
+
+    final DocumentSnapshot<Map<String, dynamic>> snapshot = await ref.get();
+
+    if (!snapshot.exists) {
+      throw Exception('Grocery list does not exist');
+    }
+
+    final Map<String, dynamic>? listData = snapshot.data();
+
+    if (listData == null) {
+      throw Exception('Grocery list data is null');
+    }
+
+    final List<dynamic> productIdsDynamic = listData['productIds'] as List<dynamic>? ?? <dynamic>[];
+    final List<String> productIds = productIdsDynamic.map((dynamic id) => id.toString()).toList();
+
+    print('\n\n\n\n BEFORE: $productIds \n\n');
+    print('\n\n\n\n PRODUCT TO BE RM: ${oldProduct.productId} \n\n');
+
+    if (productIds.contains('/${oldProduct.supermarket}/categories/${oldProduct.category}/pages/page_${oldProduct.page}/${oldProduct.productId}')) {
+
+      await ref.update(<Object, Object?>{
+        'productIds': FieldValue.arrayRemove(<String>['/${oldProduct.supermarket}/categories/${oldProduct.category}/pages/page_${oldProduct.page}/${oldProduct.productId}']),
+      });
+    }
+
+    if (!productIds.contains('/${selectedProduct.supermarket}/categories/${selectedProduct.category}/pages/page_${selectedProduct.page}/${selectedProduct.productId}')) {
+      await ref.update(<Object, Object?>{
+        'productIds': FieldValue.arrayUnion(<String>['/${selectedProduct.supermarket}/categories/${selectedProduct.category}/pages/page_${selectedProduct.page}/${selectedProduct.productId}']),
+      });
+    }
+
+    // Fetch updated state for logging purposes, not typically required in production
+    final DocumentSnapshot<Map<String, dynamic>> updatedSnapshot = await ref.get();
+    final List<dynamic> updatedProductIdsDynamic = updatedSnapshot.data()?['productIds'] as List<dynamic>? ?? <dynamic>[];
+    final List<String> updatedProductIds = updatedProductIdsDynamic.map((dynamic id) => id.toString()).toList();
+
+    print('\n\n\n\n AFTER: $updatedProductIds \n\n');
+
+    return oldProduct;
+  }
+
+  Future<void> smartUpdateList({
+    required List<Product> groceryListProducts,
+  }) async {
+    List<Product> productsRelated = <Product>[];
+    List<Product> productsSorted = <Product>[];
+    final Map<String, int> frequencyMarkets = <String, int>{
+      'Auchan' : 0,
+      'Kaufland' : 0,
+      'Carrefour' : 0,
+      'Penny' : 0,
+      'Profi' : 0,
+    };
+
+    for(final Product product in groceryListProducts) {
+
+      productsRelated = await getProducts(product: product);
+      if (productsRelated.isNotEmpty) {
+      productsSorted = _sortProductsByPrice(productsRelated);
+      frequencyMarkets[productsSorted[0].supermarket] = frequencyMarkets[productsSorted[0].supermarket]! + 1;
+      }
+    }
+    print('\n\n $frequencyMarkets \n\n');
+    print('\n\n SMART \n\n');
+  }
+
+  List<Product> _sortProductsByPrice(List<Product> products) {
+    final List<Product> sortedProducts = List<Product>.from(products)..sort((Product a, Product b) => a.price.compareTo(b.price));
+    return sortedProducts;
   }
 }

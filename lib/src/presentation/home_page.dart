@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
                     top: 88,
                     left: 256,
                     child: SizedBox(height: 124, child: Image.asset('assets/Backgrounds/grocery-bag.png')),
-                  )
+                  ),
                 ],
               ),
               PendingContainer(
@@ -92,7 +92,7 @@ class _HomePageState extends State<HomePage> {
                                     // You can adjust the color as needed
                                     fontWeight: FontWeight.normal, // Salut is regular
                                   ),
-                                  children: [
+                                  children: <InlineSpan>[
                                     const TextSpan(
                                       text: 'Salut, ',
                                     ),
