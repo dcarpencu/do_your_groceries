@@ -10,9 +10,15 @@ class BackButtonCustom extends StatelessWidget {
       alignment: Alignment.centerLeft,
       child: Padding(
         padding: const EdgeInsets.only(left: 8),
-        child: IconButton(onPressed: () {
-          context.pop();
-        }, icon: const Icon(Icons.arrow_back_ios, color: Colors.black,),),
+        child: IconButton(
+          onPressed: () {
+            context.pop();
+          },
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black,
+          ),
+        ),
       ),
     );
   }

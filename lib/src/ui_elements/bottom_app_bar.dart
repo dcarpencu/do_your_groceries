@@ -9,7 +9,8 @@ import 'package:redux/redux.dart';
 
 class BottomAppBarWidget extends StatelessWidget {
   const BottomAppBarWidget({
-    required this.store, super.key,
+    required this.store,
+    super.key,
   });
 
   final Store<AppState> store;
@@ -39,7 +40,7 @@ class BottomAppBarWidget extends StatelessWidget {
                 IconButton(
                   tooltip: 'Search',
                   icon: const Icon(Icons.search),
-                  onPressed: () => Navigator.of(context).push(createRoute( MarketsPage(store: store))),
+                  onPressed: () => Navigator.of(context).push(createRoute(MarketsPage(store: store))),
                 ),
                 IconButton(
                   tooltip: 'Generate',

@@ -28,7 +28,7 @@ class RecipeScreenState extends State<RecipeScreen> {
       ),
       body: StreamBuilder<String?>(
         stream: recipeStream,
-        builder: (context, snapshot) {
+        builder: (BuildContext context, AsyncSnapshot<String?> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {

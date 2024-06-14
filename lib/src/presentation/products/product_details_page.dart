@@ -113,8 +113,9 @@ class _PostDetailPageState extends State<ProductDetailsPage> {
                                       ..dispatch(RemoveProductSimple(product: widget.product))
                                       ..dispatch(
                                         RemoveProductFromGroceryListStart(
-                                            groceryListId: _store.state.selectedGroceryList!.groceryListId,
-                                            product: widget.product),
+                                          groceryListId: _store.state.selectedGroceryList!.groceryListId,
+                                          product: widget.product,
+                                        ),
                                       );
                                     Navigator.pop(context);
                                   } else if (item == Options.edit) {
@@ -129,14 +130,14 @@ class _PostDetailPageState extends State<ProductDetailsPage> {
                                       title: Text('Remove'),
                                     ),
                                   ),
-                                  if(widget.product.createdByUser)
-                                  const PopupMenuItem<Options>(
-                                    value: Options.edit,
-                                    child: ListTile(
-                                      leading: Icon(Icons.edit),
-                                      title: Text('Edit'),
+                                  if (widget.product.createdByUser)
+                                    const PopupMenuItem<Options>(
+                                      value: Options.edit,
+                                      child: ListTile(
+                                        leading: Icon(Icons.edit),
+                                        title: Text('Edit'),
+                                      ),
                                     ),
-                                  ),
                                   const PopupMenuItem<Options>(
                                     value: Options.cancel,
                                     child: ListTile(
@@ -187,7 +188,7 @@ class _PostDetailPageState extends State<ProductDetailsPage> {
                               crossAxisCount: 2,
                               mainAxisSpacing: 16,
                               crossAxisSpacing: 16,
-                              childAspectRatio: 3/5,
+                              childAspectRatio: 3 / 5,
                             ),
                             itemCount: relatedProducts.length,
                             itemBuilder: (BuildContext context, int index) {
@@ -207,7 +208,8 @@ class _PostDetailPageState extends State<ProductDetailsPage> {
                                         child: FadeInImage(
                                           image: NetworkImage(relatedProduct.image),
                                           placeholder: const AssetImage('assets/placeholders/cooking.png'),
-                                          imageErrorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
+                                          imageErrorBuilder:
+                                              (BuildContext context, Object error, StackTrace? stackTrace) {
                                             return Image.asset(
                                               'assets/placeholders/grocery.png',
                                               fit: BoxFit.contain,
@@ -246,10 +248,18 @@ class _PostDetailPageState extends State<ProductDetailsPage> {
                                                 overflow: TextOverflow.ellipsis,
                                               ),
                                               const Spacer(),
-                                              IconButton(onPressed: (){
-                                                _store.dispatch(SwitchProductStart(selectedProduct: relatedProduct, oldProduct: widget.product));
-                                                context.pop();
-                                              }, icon: const Icon(Icons.swap_horizontal_circle))
+                                              IconButton(
+                                                onPressed: () {
+                                                  _store.dispatch(
+                                                    SwitchProductStart(
+                                                      selectedProduct: relatedProduct,
+                                                      oldProduct: widget.product,
+                                                    ),
+                                                  );
+                                                  context.pop();
+                                                },
+                                                icon: const Icon(Icons.swap_horizontal_circle),
+                                              ),
                                             ],
                                           ),
                                           const SizedBox(height: 4),
@@ -270,7 +280,8 @@ class _PostDetailPageState extends State<ProductDetailsPage> {
                             },
                           ),
                         );
-                      }, currentProduct: widget.product,
+                      },
+                      currentProduct: widget.product,
                     );
                   },
                 ),

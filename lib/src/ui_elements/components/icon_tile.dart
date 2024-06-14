@@ -20,7 +20,7 @@ class IconTile extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8),
         child: Container(
           margin: const EdgeInsets.all(8),
           decoration: BoxDecoration(

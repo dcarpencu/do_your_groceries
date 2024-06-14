@@ -133,7 +133,6 @@ AppState _editGroceryListSuccessful(AppState state, EditGroceryListSuccessful ac
   return state.copyWith(groceryLists: <GroceryList>{action.groceryLists[1], ...groceryListsRM});
 }
 
-
 AppState _getSuperMarketProductsSuccessful(AppState state, GetSuperMarketProductsSuccessful action) {
   // if (state.pageNumber == 1) {
   //   return state.copyWith(

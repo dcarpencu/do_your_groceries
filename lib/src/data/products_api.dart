@@ -51,47 +51,46 @@ class ProductsApi {
   }
 
   Future<List<Product>> getProductsAfterEdit({required String groceryListId}) async {
-      return _firestore
-          .collection('lists')
-          .doc(groceryListId)
-          .snapshots()
-          .asyncMap((DocumentSnapshot<Map<String, dynamic>> snapshot) async {
-        if (snapshot.exists) {
-          final List<dynamic>? productIds =
-          (snapshot.data()?['productIds'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
+    return _firestore
+        .collection('lists')
+        .doc(groceryListId)
+        .snapshots()
+        .asyncMap((DocumentSnapshot<Map<String, dynamic>> snapshot) async {
+      if (snapshot.exists) {
+        final List<dynamic>? productIds =
+            (snapshot.data()?['productIds'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
 
-          if (productIds == null || productIds.isEmpty) {
-            return <Product>[];
-          }
-
-          final List<Future<DocumentSnapshot<Map<String, dynamic>>>> readOperations =
-          <Future<DocumentSnapshot<Map<String, dynamic>>>>[];
-
-          for (final dynamic productId in productIds) {
-            final int lastIndex = productId.toString().lastIndexOf('/');
-            final String collectionPath = productId.toString().substring(0, lastIndex);
-            final String documentId = productId.toString().substring(lastIndex + 1);
-
-            final DocumentReference<Map<String, dynamic>> docRef = _firestore.collection(collectionPath).doc(documentId);
-            readOperations.add(docRef.get());
-          }
-
-          final List<DocumentSnapshot<Map<String, dynamic>>> productSnapshots = await Future.wait(readOperations);
-
-          final List<Product> products = productSnapshots
-              .where((DocumentSnapshot<Map<String, dynamic>> snapshot) => snapshot.exists)
-              .map((DocumentSnapshot<Map<String, dynamic>> snapshot) => Product.fromJson(snapshot.data()!))
-              .toList();
-
-          return products;
-        } else {
+        if (productIds == null || productIds.isEmpty) {
           return <Product>[];
         }
-      }).first;
-    }
 
+        final List<Future<DocumentSnapshot<Map<String, dynamic>>>> readOperations =
+            <Future<DocumentSnapshot<Map<String, dynamic>>>>[];
 
-    Future<List<Product>> getProducts({required Product product}) async {
+        for (final dynamic productId in productIds) {
+          final int lastIndex = productId.toString().lastIndexOf('/');
+          final String collectionPath = productId.toString().substring(0, lastIndex);
+          final String documentId = productId.toString().substring(lastIndex + 1);
+
+          final DocumentReference<Map<String, dynamic>> docRef = _firestore.collection(collectionPath).doc(documentId);
+          readOperations.add(docRef.get());
+        }
+
+        final List<DocumentSnapshot<Map<String, dynamic>>> productSnapshots = await Future.wait(readOperations);
+
+        final List<Product> products = productSnapshots
+            .where((DocumentSnapshot<Map<String, dynamic>> snapshot) => snapshot.exists)
+            .map((DocumentSnapshot<Map<String, dynamic>> snapshot) => Product.fromJson(snapshot.data()!))
+            .toList();
+
+        return products;
+      } else {
+        return <Product>[];
+      }
+    }).first;
+  }
+
+  Future<List<Product>> getProducts({required Product product}) async {
     print('\n\n\n\n GET RELATED PRODUCTS: \n\n');
     final List<Product> relatedProducts = <Product>[];
 
@@ -146,8 +145,8 @@ class ProductsApi {
     return relatedProducts;
   }
 
-  Future<void> createProduct(
-      {required bool createdByUser,
+  Future<void> createProduct({
+    required bool createdByUser,
     required String groceryListId,
     required String image,
     required String name,
@@ -176,7 +175,8 @@ class ProductsApi {
 
   Future<void> addProductToGroceryList(
     Product product,
-    String groceryListId,) async {
+    String groceryListId,
+  ) async {
     final DocumentReference<Map<String, dynamic>> listRef = _firestore.collection('lists').doc(groceryListId);
     final DocumentSnapshot<Map<String, dynamic>> snapshot = await listRef.get();
 
@@ -185,7 +185,8 @@ class ProductsApi {
     final List<dynamic>? productIds =
         (snapshot.data()?['productIds'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
 
-    productIds?.add('/${product.supermarket}/categories/${product.category}/pages/page_${product.page}/${product.productId}');
+    productIds
+        ?.add('/${product.supermarket}/categories/${product.category}/pages/page_${product.page}/${product.productId}');
     listData['productIds'] = productIds;
 
     await listRef.update(listData);
@@ -249,9 +250,15 @@ class ProductsApi {
 
     await ref.update(dataToUpdate);
 
-    productsList.add(Product(
-      productId: product.productId, name: name, image: image, price: price, category: '',
-    ),);
+    productsList.add(
+      Product(
+        productId: product.productId,
+        name: name,
+        image: image,
+        price: price,
+        category: '',
+      ),
+    );
   }
 
   Future<Product> switchProduct({
@@ -279,22 +286,30 @@ class ProductsApi {
     print('\n\n\n\n BEFORE: $productIds \n\n');
     print('\n\n\n\n PRODUCT TO BE RM: ${oldProduct.productId} \n\n');
 
-    if (productIds.contains('/${oldProduct.supermarket}/categories/${oldProduct.category}/pages/page_${oldProduct.page}/${oldProduct.productId}')) {
-
+    if (productIds.contains(
+      '/${oldProduct.supermarket}/categories/${oldProduct.category}/pages/page_${oldProduct.page}/${oldProduct.productId}',
+    )) {
       await ref.update(<Object, Object?>{
-        'productIds': FieldValue.arrayRemove(<String>['/${oldProduct.supermarket}/categories/${oldProduct.category}/pages/page_${oldProduct.page}/${oldProduct.productId}']),
+        'productIds': FieldValue.arrayRemove(<String>[
+          '/${oldProduct.supermarket}/categories/${oldProduct.category}/pages/page_${oldProduct.page}/${oldProduct.productId}',
+        ]),
       });
     }
 
-    if (!productIds.contains('/${selectedProduct.supermarket}/categories/${selectedProduct.category}/pages/page_${selectedProduct.page}/${selectedProduct.productId}')) {
+    if (!productIds.contains(
+      '/${selectedProduct.supermarket}/categories/${selectedProduct.category}/pages/page_${selectedProduct.page}/${selectedProduct.productId}',
+    )) {
       await ref.update(<Object, Object?>{
-        'productIds': FieldValue.arrayUnion(<String>['/${selectedProduct.supermarket}/categories/${selectedProduct.category}/pages/page_${selectedProduct.page}/${selectedProduct.productId}']),
+        'productIds': FieldValue.arrayUnion(<String>[
+          '/${selectedProduct.supermarket}/categories/${selectedProduct.category}/pages/page_${selectedProduct.page}/${selectedProduct.productId}',
+        ]),
       });
     }
 
     // Fetch updated state for logging purposes, not typically required in production
     final DocumentSnapshot<Map<String, dynamic>> updatedSnapshot = await ref.get();
-    final List<dynamic> updatedProductIdsDynamic = updatedSnapshot.data()?['productIds'] as List<dynamic>? ?? <dynamic>[];
+    final List<dynamic> updatedProductIdsDynamic =
+        updatedSnapshot.data()?['productIds'] as List<dynamic>? ?? <dynamic>[];
     final List<String> updatedProductIds = updatedProductIdsDynamic.map((dynamic id) => id.toString()).toList();
 
     print('\n\n\n\n AFTER: $updatedProductIds \n\n');
@@ -309,11 +324,11 @@ class ProductsApi {
     List<Product> productsRelated = <Product>[];
     List<Product> productsSorted = <Product>[];
     final Map<String, int> frequencyMarkets = <String, int>{
-      'Auchan' : 0,
-      'Kaufland' : 0,
-      'Carrefour' : 0,
-      'Penny' : 0,
-      'Profi' : 0,
+      'Auchan': 0,
+      'Kaufland': 0,
+      'Carrefour': 0,
+      'Penny': 0,
+      'Profi': 0,
     };
 
     for (final Product product in groceryListProducts) {
@@ -329,7 +344,7 @@ class ProductsApi {
     String highestSupermarket = '';
     int highestFrequency = 0;
 
-    frequencyMarkets.forEach((supermarket, frequency) {
+    frequencyMarkets.forEach((String supermarket, int frequency) {
       if (frequency > highestFrequency) {
         highestSupermarket = supermarket;
         highestFrequency = frequency;
@@ -344,7 +359,7 @@ class ProductsApi {
       productsRelated = await getProducts(product: product);
       if (productsRelated.isNotEmpty) {
         productsSorted = _sortProductsByPrice(productsRelated);
-        for(final Product productToSwitch in productsSorted) {
+        for (final Product productToSwitch in productsSorted) {
           print('\n\n\n PRODUCT TO SWITCH: $productToSwitch \n\n');
           if (productToSwitch.supermarket == highestSupermarket) {
             print('\n\n\n PRODUCT TO SWITCH: $productToSwitch \n\n');

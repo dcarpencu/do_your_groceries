@@ -15,18 +15,18 @@ class CameraEpic {
       TypedEpic<AppState, GetImageLabelsStart>(_getImageLabelsStart).call,
       TypedEpic<AppState, RequestStoragePermissionStart>(_requestStoragePermissionStart).call,
       TypedEpic<AppState, GetCamerasStart>(_getCamerasStart).call,
-      ]);
+    ]);
   }
 
   Stream<AppAction> _requestStoragePermissionStart(
-      Stream<RequestStoragePermissionStart> actions,
-      EpicStore<AppState> store,
-      ) {
+    Stream<RequestStoragePermissionStart> actions,
+    EpicStore<AppState> store,
+  ) {
     return actions.flatMap((RequestStoragePermissionStart action) {
       return Stream<void>.value(null)
           .asyncMap(
             (_) => _cameraApi.requestStoragePermission(),
-      )
+          )
           .mapTo(const RequestStoragePermission.successful())
           .onErrorReturnWith(RequestStoragePermission.error);
     });
@@ -46,7 +46,7 @@ class CameraEpic {
       return Stream<void>.value(null)
           .asyncMap(
             (_) => _cameraApi.getCameras(),
-      )
+          )
           .map<GetCameras>(GetCameras.successful)
           .onErrorReturnWith(GetCameras.error);
     });
@@ -57,9 +57,9 @@ class CameraEpic {
       return Stream<void>.value(null)
           .asyncMap(
             (_) => _cameraApi.takePicture(
-          controller: action.controller,
-        ),
-      )
+              controller: action.controller,
+            ),
+          )
           .map<TakePicture>(TakePicture.successful)
           .onErrorReturnWith(TakePicture.error);
     });
@@ -70,9 +70,9 @@ class CameraEpic {
       return Stream<void>.value(null)
           .asyncMap(
             (_) => _cameraApi.getImageLabels(
-          imagePath: action.imagePath,
-        ),
-      )
+              imagePath: action.imagePath,
+            ),
+          )
           .map<GetImageLabels>(GetImageLabels.successful)
           .onErrorReturnWith(GetImageLabels.error);
     });

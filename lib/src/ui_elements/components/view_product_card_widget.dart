@@ -17,8 +17,10 @@ class ViewProductCard extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
       child: InkWell(
         onTap: () {
-          context.pushNamed('supermarketCategories',
-              pathParameters: <String, String>{'supermarketName': marketName});
+          context.pushNamed(
+            'supermarketCategories',
+            pathParameters: <String, String>{'supermarketName': marketName},
+          );
         },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,7 +35,7 @@ class ViewProductCard extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -61,8 +63,10 @@ class ViewProductCard extends StatelessWidget {
                           ),
                         ),
                         onPressed: () {
-                          context.pushNamed('supermarketCategories',
-                              pathParameters: <String, String>{'supermarketName': marketName});
+                          context.pushNamed(
+                            'supermarketCategories',
+                            pathParameters: <String, String>{'supermarketName': marketName},
+                          );
                         },
                       ),
                     ],

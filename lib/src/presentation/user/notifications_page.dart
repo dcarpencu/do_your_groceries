@@ -1,6 +1,5 @@
 import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/containers/requests_container.dart';
-import 'package:do_you_groceries/src/containers/user_container.dart';
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -89,7 +88,9 @@ class _AddPeoplePageState extends State<NotificationsPage> {
                                     onPressed: () {
                                       store.dispatch(
                                         AcceptRequestStart(
-                                            groceryListId: request.groceryListId, requestToRemove: request),
+                                          groceryListId: request.groceryListId,
+                                          requestToRemove: request,
+                                        ),
                                       );
                                       isAccepted = true;
                                       context.pop();

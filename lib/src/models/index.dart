@@ -2,7 +2,6 @@ import 'package:camera/camera.dart';
 import 'package:do_you_groceries/src/models/filter_chip_enums.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-
 part 'index.g.dart';
 part 'index.freezed.dart';
 

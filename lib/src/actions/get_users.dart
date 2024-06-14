@@ -10,14 +10,16 @@ class GetUsers with _$GetUsers implements AppAction {
   }) = GetUsersStart;
 
   @Implements<ActionDone>()
-  const factory GetUsers.successful(Set<AppUser> users, [
+  const factory GetUsers.successful(
+    Set<AppUser> users, [
     @Default(_kGetUsersPendingId) String pendingId,
   ]) = GetUsersSuccessful;
 
   @Implements<ActionDone>()
   @Implements<ErrorAction>()
   const factory GetUsers.error(
-    Object error, StackTrace stackTrace, [
+    Object error,
+    StackTrace stackTrace, [
     @Default(_kGetUsersPendingId) String pendingId,
   ]) = GetUsersError;
 

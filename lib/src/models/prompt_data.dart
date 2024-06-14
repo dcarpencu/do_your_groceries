@@ -8,7 +8,7 @@ class PromptData with _$PromptData {
     @Default(<CuisineFilter>{}) Set<CuisineFilter> cuisines,
     @Default(<DietaryRestrictionsFilter>{}) Set<DietaryRestrictionsFilter> dietaryRestrictions,
     @Default(<String>[]) List<String> additionalTextInput,
-}) = PromptData$;
+  }) = PromptData$;
 
   factory PromptData.fromJson(Map<dynamic, dynamic> json) => _$PromptDataFromJson(Map<String, dynamic>.from(json));
 }

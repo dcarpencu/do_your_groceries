@@ -9,7 +9,6 @@ class ListsCarouselShimmer extends StatefulWidget {
 }
 
 class _ListsCarouselShimmerState extends State<ListsCarouselShimmer> {
-
   @override
   Widget build(BuildContext context) {
     return Column(

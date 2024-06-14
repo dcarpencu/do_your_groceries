@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 class AnimatedButton extends StatefulWidget {
-  AnimatedButton({required this.controller, required this.onPress, Key? key})
+  AnimatedButton({required this.controller, required this.onPress, super.key})
       : _width = Tween<double>(
-    begin: 0,
-    end: 500,
-  ).animate(
-    CurvedAnimation(
-      parent: controller,
-      curve: const Interval(0, 0.5),
-    ),
-  ),
+          begin: 0,
+          end: 500,
+        ).animate(
+          CurvedAnimation(
+            parent: controller,
+            curve: const Interval(0, 0.5),
+          ),
+        ),
         _height = Tween<double>(
           begin: 0,
           end: 50,
@@ -37,8 +37,7 @@ class AnimatedButton extends StatefulWidget {
             parent: controller,
             curve: const Interval(0.6, 0.8),
           ),
-        ),
-        super(key: key);
+        );
 
   final AnimationController controller;
   final VoidCallback onPress;
@@ -98,9 +97,7 @@ class AnimatedButtonState extends State<AnimatedButton> with SingleTickerProvide
             _resetScaleAnimation();
             widget.onPress();
           },
-          onTapCancel: () {
-            _resetScaleAnimation();
-          },
+          onTapCancel: _resetScaleAnimation,
           child: ScaleTransition(
             scale: _scaleAnimation,
             child: Container(

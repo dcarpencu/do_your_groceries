@@ -1,7 +1,6 @@
 import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/models/filter_chip_enums.dart';
 import 'package:do_you_groceries/src/models/index.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';

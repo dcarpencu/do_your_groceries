@@ -50,7 +50,12 @@ class _CreateProductPageState extends State<CreateProductPage> {
     }
 
     StoreProvider.of<AppState>(context).dispatch(
-      CreateProduct(image: _selectedValue, name: _title.text, price: double.parse(_price.text),  createdByUser: true,),
+      CreateProduct(
+        image: _selectedValue,
+        name: _title.text,
+        price: double.parse(_price.text),
+        createdByUser: true,
+      ),
     );
     Navigator.pop(context);
   }
@@ -98,7 +103,8 @@ class _CreateProductPageState extends State<CreateProductPage> {
                                   _selected = index;
                                   _selectedValue = item;
                                 });
-                              }, location: 'productsIcons',
+                              },
+                              location: 'productsIcons',
                             );
                           },
                         ),
@@ -151,7 +157,10 @@ class _CreateProductPageState extends State<CreateProductPage> {
                           backgroundColor: Colors.lightBlue,
                           padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
                         ),
-                        child: const Text('Create Product', style: TextStyle(color: Colors.white),),
+                        child: const Text(
+                          'Create Product',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                       TextButton(
                         onPressed: () {

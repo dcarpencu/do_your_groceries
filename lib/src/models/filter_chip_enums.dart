@@ -63,13 +63,13 @@ String cuisineReadable(CuisineFilter filter) {
 
 String basicIngredientsReadable(BasicIngredientsFilter filter) {
   return switch (filter) {
-  BasicIngredientsFilter.oil => 'ulei',
-  BasicIngredientsFilter.butter => 'unt',
-  BasicIngredientsFilter.flour => 'faina',
-  BasicIngredientsFilter.salt => 'sare',
-  BasicIngredientsFilter.pepper => 'piper',
-  BasicIngredientsFilter.sugar => 'zahar',
-  BasicIngredientsFilter.milk => 'lapte',
-  BasicIngredientsFilter.vinegar => 'otet',
+    BasicIngredientsFilter.oil => 'ulei',
+    BasicIngredientsFilter.butter => 'unt',
+    BasicIngredientsFilter.flour => 'faina',
+    BasicIngredientsFilter.salt => 'sare',
+    BasicIngredientsFilter.pepper => 'piper',
+    BasicIngredientsFilter.sugar => 'zahar',
+    BasicIngredientsFilter.milk => 'lapte',
+    BasicIngredientsFilter.vinegar => 'otet',
   };
 }

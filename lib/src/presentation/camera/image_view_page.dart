@@ -2,9 +2,7 @@ import 'dart:io';
 import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/containers/pending_container.dart';
 import 'package:do_you_groceries/src/containers/related_products_camera_container.dart';
-import 'package:do_you_groceries/src/containers/related_products_container.dart';
 import 'package:do_you_groceries/src/models/index.dart';
-import 'package:do_you_groceries/src/ui_elements/components/image_shimmer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:go_router/go_router.dart';
@@ -112,16 +110,19 @@ class _ImageViewPageState extends State<ImageViewPage> {
                                 return InkWell(
                                   onTap: () {
                                     print('\n\n\n RELATED PRODUCT: $relatedProduct\n\n\n');
-                                    print('\n\n\n selected grocery: ${ _store.state.selectedGroceryList!.groceryListId}\n\n\n');
+                                    print(
+                                      '\n\n\n selected grocery: ${_store.state.selectedGroceryList!.groceryListId}\n\n\n',
+                                    );
 
                                     _store.dispatch(
                                       AddProductToGroceryListStart(
                                         relatedProduct,
                                         _store.state.selectedGroceryList!.groceryListId,
                                       ),
-                                    );//..dispatch(GetProductsAfterEditStart(groceryListId: _store.state.selectedGroceryList!.groceryListId));
-                                    context..pop()
-                                    ..pop();
+                                    ); //..dispatch(GetProductsAfterEditStart(groceryListId: _store.state.selectedGroceryList!.groceryListId));
+                                    context
+                                      ..pop()
+                                      ..pop();
                                   },
                                   borderRadius: BorderRadius.circular(15),
                                   splashColor: Theme.of(context).primaryColor.withOpacity(0.3),

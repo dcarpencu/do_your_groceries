@@ -87,9 +87,9 @@ class _SearchProductsPageState extends State<SearchProductsPage> {
                   Text(
                     'Products in ${widget.marketName}',
                     style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
                   ),
                   const SizedBox(height: 16),
                   Expanded(
@@ -129,9 +129,7 @@ class _SearchProductsPageState extends State<SearchProductsPage> {
                       },
                     ),
                   ),
-                if (_store.state.productsFinished)
-                const Align(child: Text('Toate produsele au fost incarcate')),
-
+                  if (_store.state.productsFinished) const Align(child: Text('Toate produsele au fost incarcate')),
                 ],
               ),
             ),

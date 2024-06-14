@@ -25,7 +25,6 @@ class AppEpic {
       SupermarketEpic(_superMarketsApi).getEpics(),
       ProductEpic(_productsApi).getEpics(),
       CameraEpic(_cameraApi).getEpics(),
-
     ]);
   }
 
@@ -37,30 +36,4 @@ class AppEpic {
   //         .onErrorReturnWith(GenerateRecipeResponse.error);
   //   });
   // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

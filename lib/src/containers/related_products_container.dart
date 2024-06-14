@@ -10,7 +10,8 @@ class RelatedProductsContainer extends StatelessWidget {
   final ViewModelBuilder<List<Product>> builder;
 
   List<Product> _sortProductsByPrice(List<Product> products) {
-    final List<Product> sortedProducts = List<Product>.from(products)..sort((Product a, Product b) => a.price.compareTo(b.price));
+    final List<Product> sortedProducts = List<Product>.from(products)
+      ..sort((Product a, Product b) => a.price.compareTo(b.price));
     return sortedProducts;
   }
 

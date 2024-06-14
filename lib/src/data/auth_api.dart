@@ -95,12 +95,14 @@ class AuthApi {
 
     await ref.update(dataToUpdate);
 
-    groceryLists.add(GroceryList(
-      groceryListId: groceryList.groceryListId,
-      title: title,
-      selectedIcon: selectedIcon,
-      description: description,
-    ),);
+    groceryLists.add(
+      GroceryList(
+        groceryListId: groceryList.groceryListId,
+        title: title,
+        selectedIcon: selectedIcon,
+        description: description,
+      ),
+    );
 
     return groceryLists;
   }

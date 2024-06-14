@@ -6,7 +6,6 @@ class AiGeneratedApi {
 
   final FirebaseFirestore _firestore;
   Stream<String?> generateRecipeResponse(GenerativeModel model, String prompt) async* {
-
     final DocumentReference<Map<String, dynamic>> ref = _firestore.collection('recipes').doc();
 
     final List<Content> content = <Content>[Content.text(prompt)];

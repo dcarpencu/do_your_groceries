@@ -9,15 +9,17 @@ class BackgroundWave extends StatelessWidget {
     return SizedBox(
       height: height,
       child: ClipPath(
-          clipper: BackgroundWaveClipper(),
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            height: height,
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(
+        clipper: BackgroundWaveClipper(),
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: height,
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
               colors: <Color>[Colors.lightBlueAccent, Colors.lightBlue],
-            )),
-          )),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
@@ -35,10 +37,10 @@ class BackgroundWaveClipper extends CustomClipper<Path> {
     final Offset controlPoint = Offset(size.width * 0.4, size.height);
     final Offset endPoint = Offset(size.width, minSize);
 
-    path..quadraticBezierTo(controlPoint.dx, controlPoint.dy, endPoint.dx, endPoint.dy)
-
-    ..lineTo(size.width, 0)
-    ..close();
+    path
+      ..quadraticBezierTo(controlPoint.dx, controlPoint.dy, endPoint.dx, endPoint.dy)
+      ..lineTo(size.width, 0)
+      ..close();
 
     return path;
   }

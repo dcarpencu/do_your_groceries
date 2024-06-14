@@ -6,7 +6,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:go_router/go_router.dart';
 
 class SignupPage extends StatefulWidget {
-  const SignupPage({Key? key}) : super(key: key);
+  const SignupPage({super.key});
 
   @override
   _SignupPageState createState() => _SignupPageState();
@@ -68,7 +68,8 @@ class _SignupPageState extends State<SignupPage> {
               TextFormField(
                 controller: _usernameController,
                 keyboardType: TextInputType.text,
-                decoration: const InputDecoration(labelText: 'Nume utilizator', hintText: 'Introdu numele de utilizator'),
+                decoration:
+                    const InputDecoration(labelText: 'Nume utilizator', hintText: 'Introdu numele de utilizator'),
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
                     return 'Te rog introdu numele de utilizator';
@@ -110,10 +111,20 @@ class _SignupPageState extends State<SignupPage> {
               const SizedBox(height: 24),
               ElevatedButton(
                 onPressed: () => _submitForm(context),
-                child: const Text('Înregistrare', style: TextStyle(color: Colors.black,),),
+                child: const Text(
+                  'Înregistrare',
+                  style: TextStyle(
+                    color: Colors.black,
+                  ),
+                ),
               ),
               const SizedBox(height: 8),
-              TextButton(onPressed: () {context.pop();}, child: const Text('Înapoi')),
+              TextButton(
+                onPressed: () {
+                  context.pop();
+                },
+                child: const Text('Înapoi'),
+              ),
             ],
           ),
         ),

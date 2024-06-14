@@ -9,4 +9,3 @@ class SmartUpdateList with _$SmartUpdateList implements AppAction {
   @Implements<ErrorAction>()
   const factory SmartUpdateList.error(Object error, StackTrace stackTrace) = SmartUpdateListError;
 }
-

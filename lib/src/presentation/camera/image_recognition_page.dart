@@ -13,7 +13,6 @@ import 'package:redux/redux.dart';
 class CameraApp extends StatefulWidget {
   const CameraApp({super.key});
 
-
   @override
   State<CameraApp> createState() => _CameraAppState();
 }

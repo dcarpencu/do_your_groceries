@@ -41,7 +41,9 @@ class _HomePageState extends State<HomePage> {
             children: <Widget>[
               Stack(
                 children: <Widget>[
-                  const BackgroundWave(height: 280,),
+                  const BackgroundWave(
+                    height: 280,
+                  ),
                   const Positioned(
                     top: 100,
                     left: 20,
@@ -67,7 +69,7 @@ class _HomePageState extends State<HomePage> {
                 builder: (BuildContext context, Set<String> pending) {
                   if (pending.contains(GetGroceryLists.pendingKey)) {
                     return const Center(
-                        child: ListsCarouselShimmer(),
+                      child: ListsCarouselShimmer(),
                       // child: LoadingAnimationWidget.horizontalRotatingDots(
                       //   color: Colors.black,
                       //   size: 100,

@@ -67,11 +67,12 @@ class SetCuisineFilterSelection with _$SetCuisineFilterSelection implements AppA
 
 @freezed
 class SetBasicIngredientsFilterSelection with _$SetBasicIngredientsFilterSelection implements AppAction {
-  const factory SetBasicIngredientsFilterSelection({required String selectedItems}) = SetBasicIngredientsFilterSelection$;
+  const factory SetBasicIngredientsFilterSelection({required String selectedItems}) =
+      SetBasicIngredientsFilterSelection$;
 }
 
 @freezed
 class SetDietaryRestrictionsFilterSelection with _$SetDietaryRestrictionsFilterSelection implements AppAction {
-  const factory SetDietaryRestrictionsFilterSelection({required String selectedItems}) = SetDietaryRestrictionsFilterSelection$;
+  const factory SetDietaryRestrictionsFilterSelection({required String selectedItems}) =
+      SetDietaryRestrictionsFilterSelection$;
 }
-

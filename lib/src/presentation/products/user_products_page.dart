@@ -2,7 +2,6 @@ import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/containers/pending_container.dart';
 import 'package:do_you_groceries/src/containers/selected_list_container.dart';
 import 'package:do_you_groceries/src/models/index.dart';
-import 'package:do_you_groceries/src/presentation/camera/image_recognition_page.dart';
 import 'package:do_you_groceries/src/ui_elements/bottom_app_bar.dart';
 import 'package:do_you_groceries/src/ui_elements/components/background_wave_clipper.dart';
 import 'package:do_you_groceries/src/ui_elements/components/hero_posts_widget.dart';
@@ -52,25 +51,26 @@ class _UserProductsPageState extends State<UserProductsPage> {
               if ((pending.contains(ListenForProducts.pendingKey)) || (pending.contains(SwitchProduct.pendingKey))) {
                 return Column(
                   children: <Widget>[
-                    Stack(children: <Widget>[
-                      const BackgroundWave(
-                        height: 280,
-                      ),
-                      Positioned(
-                        top: 145,
-                        left: 40,
-                        child: Text(
-                          _store.state.selectedGroceryList!.title,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 32,
-                            fontFamily: 'Poppins',
-                            height: 1.2,
-                            fontWeight: FontWeight.bold,
+                    Stack(
+                      children: <Widget>[
+                        const BackgroundWave(
+                          height: 280,
+                        ),
+                        Positioned(
+                          top: 145,
+                          left: 40,
+                          child: Text(
+                            _store.state.selectedGroceryList!.title,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 32,
+                              fontFamily: 'Poppins',
+                              height: 1.2,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                      ),
-                      Positioned(
+                        Positioned(
                           top: 103,
                           left: 256,
                           child: SizedBox(
@@ -80,8 +80,10 @@ class _UserProductsPageState extends State<UserProductsPage> {
                               width: 100,
                               height: 100,
                             ),
-                          ),),
-                    ],),
+                          ),
+                        ),
+                      ],
+                    ),
                     const ShimmerProducts(),
                   ],
                 );
@@ -136,7 +138,9 @@ class _UserProductsPageState extends State<UserProductsPage> {
             child: const Icon(Icons.camera_alt),
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-          bottomNavigationBar: BottomAppBarWidget(store: _store,),
+          bottomNavigationBar: BottomAppBarWidget(
+            store: _store,
+          ),
         );
       },
     );

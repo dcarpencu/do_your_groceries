@@ -1,4 +1,3 @@
-import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/containers/pending_container.dart';
 import 'package:do_you_groceries/src/models/filter_chip_enums.dart';
 import 'package:do_you_groceries/src/models/index.dart';
@@ -6,7 +5,6 @@ import 'package:do_you_groceries/src/presentation/user/generated_recipe_page.dar
 import 'package:do_you_groceries/src/ui_elements/components/filterChipSelection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:go_router/go_router.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:redux/redux.dart';
 
@@ -38,7 +36,7 @@ class _CreateRecipesPageState extends State<CreateRecipesPage> {
 
     _model = GenerativeModel(
       model: 'gemini-1.5-pro',
-      apiKey: 'AIzaSyBVuj79tA0VZPGZTPcpZD3Ljc-6Fxi5ptI',//const String.fromEnvironment(apiKey),
+      apiKey: 'AIzaSyBVuj79tA0VZPGZTPcpZD3Ljc-6Fxi5ptI', //const String.fromEnvironment(apiKey),
     );
 
     super.initState();
@@ -100,7 +98,8 @@ class _CreateRecipesPageState extends State<CreateRecipesPage> {
                 ),
                 TextButton(
                   onPressed: () {
-                    final String prompt = 'Imi doresc o reteta culinara care sa cuprinda contina: ${_store.state.basicIngredientsText}; sa tina cont de urmatoarele restrictii alimentare: ${_store.state.dietaryRestrictionsText}; si sa aiba legatura cu bucataria: ${_store.state.cuisineText}';
+                    final String prompt =
+                        'Imi doresc o reteta culinara care sa cuprinda contina: ${_store.state.basicIngredientsText}; sa tina cont de urmatoarele restrictii alimentare: ${_store.state.dietaryRestrictionsText}; si sa aiba legatura cu bucataria: ${_store.state.cuisineText}';
                     // _store.dispatch(GenerateRecipeResponseStart(_model, prompt));
                     // context.pushNamed('generatedRecipe');
                     //print(_store.state.generatorResponse);
@@ -113,9 +112,11 @@ class _CreateRecipesPageState extends State<CreateRecipesPage> {
                         ),
                       ),
                     );
-
                   },
-                  child: const Icon(Icons.generating_tokens, size: 48,),
+                  child: const Icon(
+                    Icons.generating_tokens,
+                    size: 48,
+                  ),
                 ),
               ],
             );

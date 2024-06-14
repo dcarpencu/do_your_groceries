@@ -7,7 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:redux/redux.dart';
 
 class EditProductPage extends StatefulWidget {
-  const EditProductPage({super.key, required this.product});
+  const EditProductPage({required this.product, super.key});
 
   final Product product;
 
@@ -60,13 +60,19 @@ class _EditProductPageState extends State<EditProductPage> {
       return;
     }
 
-
-    _store..dispatch(
-      EditProductStart(image: _selectedValue, name: _title.text, price: double.parse( _price.text), product: widget.product,),
-    )
+    _store
+      ..dispatch(
+        EditProductStart(
+          image: _selectedValue,
+          name: _title.text,
+          price: double.parse(_price.text),
+          product: widget.product,
+        ),
+      )
       ..dispatch(GetProductsAfterEditStart(groceryListId: _store.state.selectedGroceryList!.groceryListId));
-    context..pop()
-    ..pop();
+    context
+      ..pop()
+      ..pop();
     print('\n\nGO HOMEPAGE\n\n');
   }
 
@@ -113,7 +119,8 @@ class _EditProductPageState extends State<EditProductPage> {
                                   _selected = index;
                                   _selectedValue = item;
                                 });
-                              }, location: 'productsIcons',
+                              },
+                              location: 'productsIcons',
                             );
                           },
                         ),
@@ -164,7 +171,10 @@ class _EditProductPageState extends State<EditProductPage> {
                           backgroundColor: Colors.lightBlue,
                           padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
                         ),
-                        child: const Text('Create Product', style: TextStyle(color: Colors.white),),
+                        child: const Text(
+                          'Create Product',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                       TextButton(
                         onPressed: () {

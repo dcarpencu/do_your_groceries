@@ -40,8 +40,6 @@ class ProductEpic {
           .onErrorReturnWith(AddProductToGroceryList.error);
     });
   }
-  
-  
 
   Stream<AppAction> _getProductsStart(Stream<GetProductsStart> actions, EpicStore<AppState> store) {
     return actions.flatMap((GetProductsStart action) {
@@ -152,14 +150,14 @@ class ProductEpic {
       return Stream<void>.value(null)
           .asyncMap(
             (_) => _productsApi.createProduct(
-          groceryListId: store.state.selectedGroceryList!.groceryListId,
-          name: action.name,
-          image: action.image,
-          price: action.price,
-          uid: store.state.user!.uid,
-          createdByUser: action.createdByUser,
-        ),
-      )
+              groceryListId: store.state.selectedGroceryList!.groceryListId,
+              name: action.name,
+              image: action.image,
+              price: action.price,
+              uid: store.state.user!.uid,
+              createdByUser: action.createdByUser,
+            ),
+          )
           .mapTo(const CreateProduct.successful())
           .onErrorReturnWith(CreateProduct.error);
     });

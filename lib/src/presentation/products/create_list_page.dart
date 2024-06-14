@@ -3,7 +3,6 @@ import 'package:do_you_groceries/src/models/index.dart';
 import 'package:do_you_groceries/src/ui_elements/components/icon_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:redux/redux.dart';
 

@@ -11,8 +11,9 @@ class SelectedListContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, GroceryList>(
-      converter: (Store<AppState> store) => store.state.groceryLists
-          .firstWhere((GroceryList groceryList) => groceryList.groceryListId == store.state.selectedGroceryList!.groceryListId),
+      converter: (Store<AppState> store) => store.state.groceryLists.firstWhere(
+        (GroceryList groceryList) => groceryList.groceryListId == store.state.selectedGroceryList!.groceryListId,
+      ),
       builder: builder,
     );
   }

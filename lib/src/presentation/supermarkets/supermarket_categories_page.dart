@@ -14,16 +14,16 @@ class SupermarketCategoriesPage extends StatelessWidget {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
                 'Categories in $supermarketName',
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
               ),
               const SizedBox(height: 16),
               Expanded(
@@ -94,9 +94,9 @@ class SupermarketCategoriesPage extends StatelessWidget {
                                 supermarketCategoryLabels[index],
                                 textAlign: TextAlign.center,
                                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black87,
-                                ),
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.black87,
+                                    ),
                               ),
                             ],
                           ),

@@ -4,7 +4,8 @@ part of 'index.dart';
 class AddProductToGroceryList with _$AddProductToGroceryList implements AppAction {
   const factory AddProductToGroceryList(
     Product product,
-    String groceryListId,) = AddProductToGroceryListStart;
+    String groceryListId,
+  ) = AddProductToGroceryListStart;
 
   const factory AddProductToGroceryList.successful() = AddProductToGroceryListSuccessful;
 

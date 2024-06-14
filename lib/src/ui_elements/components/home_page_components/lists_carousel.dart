@@ -63,7 +63,10 @@ class _ListsCarouselState extends State<ListsCarousel> {
                   const SizedBox(height: 24),
                   Text(
                     groceryList.title,
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold, color: Colors.white),
+                    style: Theme.of(context)
+                        .textTheme
+                        .headlineSmall
+                        ?.copyWith(fontWeight: FontWeight.bold, color: Colors.white),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 8),

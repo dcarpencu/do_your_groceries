@@ -81,17 +81,6 @@ class CameraApi {
     return takenPicture;
   }
 
-
-
-
-
-
-
-
-
-
-
-
   Future<String> getModelPath(String asset) async {
     final String path = '${(await getApplicationSupportDirectory()).path}/$asset';
     await Directory(dirname(path)).create(recursive: true);

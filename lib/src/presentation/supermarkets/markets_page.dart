@@ -1,12 +1,8 @@
 import 'package:do_you_groceries/src/data/market_links.dart';
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:do_you_groceries/src/ui_elements/components/back_button.dart';
-import 'package:do_you_groceries/src/ui_elements/components/background_wave_clipper.dart';
-import 'package:do_you_groceries/src/ui_elements/components/parrlax_page.dart';
 import 'package:do_you_groceries/src/ui_elements/components/view_product_card_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
 import 'package:redux/redux.dart';
 
 class MarketsPage extends StatelessWidget {
@@ -50,7 +46,9 @@ class MarketsPage extends StatelessWidget {
           //       ),
           //     ),),
           // ],),
-          const SizedBox(height: 56,),
+          const SizedBox(
+            height: 56,
+          ),
           const BackButtonCustom(),
           Expanded(
             child: ClipRRect(

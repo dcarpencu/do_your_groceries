@@ -1,8 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:do_you_groceries/src/data/market_links.dart';
 import 'package:do_you_groceries/src/models/index.dart';
-import 'package:html/dom.dart';
-import 'package:html/parser.dart';
 import 'package:http/http.dart';
 
 class SuperMarketsApi {

@@ -7,29 +7,28 @@ import 'package:rxdart/transformers.dart';
 class SupermarketEpic {
   SupermarketEpic(this._superMarketsApi);
 
-
   final SuperMarketsApi _superMarketsApi;
 
   Epic<AppState> getEpics() {
-    return combineEpics(
-        <Epic<AppState>>[
-          TypedEpic<AppState, GetSupermarketProductsNewStart>(_getSupermarketProductsNewStart).call,
-          _getSuperMarketProducts,
-        ]);
+    return combineEpics(<Epic<AppState>>[
+      TypedEpic<AppState, GetSupermarketProductsNewStart>(_getSupermarketProductsNewStart).call,
+      _getSuperMarketProducts,
+    ]);
   }
 
-  Stream<AppAction> _getSupermarketProductsNewStart(Stream<GetSupermarketProductsNewStart> actions,
-      EpicStore<AppState> store,) {
+  Stream<AppAction> _getSupermarketProductsNewStart(
+    Stream<GetSupermarketProductsNewStart> actions,
+    EpicStore<AppState> store,
+  ) {
     return actions.flatMap((GetSupermarketProductsNewStart action) {
       return Stream<void>.value(null)
           .asyncMap(
-            (_) =>
-            _superMarketsApi.getSuperMarketProducts(
+            (_) => _superMarketsApi.getSuperMarketProducts(
               supermarketName: action.supermarketName,
               category: action.category,
               pageNumber: store.state.pageNumber,
             ),
-      )
+          )
           .map<GetSupermarketProductsNew>(GetSupermarketProductsNew.successful)
           .onErrorReturnWith(GetSupermarketProductsNew.error);
     });
@@ -58,19 +57,18 @@ class SupermarketEpic {
       return Stream<void>.value(null)
           .asyncMap(
             (_) => _superMarketsApi.getSuperMarketProducts(
-          supermarketName: superMarketName,
-          category: category,
-          pageNumber: store.state.pageNumber,
-        ),
-      )
+              supermarketName: superMarketName,
+              category: category,
+              pageNumber: store.state.pageNumber,
+            ),
+          )
           .map<GetSuperMarketProducts>((List<Product> products) {
-        return GetSuperMarketProducts.successful(products, pendingId);
-      })
+            return GetSuperMarketProducts.successful(products, pendingId);
+          })
           .onErrorReturnWith(
             (Object error, StackTrace stackTrace) => GetSuperMarketProducts.error(error, stackTrace, pendingId),
-      )
+          )
           .doOnData(onResult);
     });
   }
-
 }

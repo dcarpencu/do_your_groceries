@@ -39,7 +39,7 @@ class HeroPosts extends StatelessWidget {
                         imageErrorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
                           return Image.asset('assets/placeholders/grocery.png');
                         },
-                      )
+                      ),
                       // Image.network(
                       //   product.image,
                       //   fit: BoxFit.cover,

@@ -52,15 +52,16 @@ class ModelItem extends StatelessWidget {
             child: Row(
               children: <Widget>[
                 SizedBox(
-                    height: 100,
-                    width: 130,
-                    child: FadeInImage(
-                      image: NetworkImage(model.image),
-                      placeholder: const AssetImage('assets/placeholders/cooking.png'),
-                      imageErrorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
-                        return SvgPicture.asset('assets/categoryIcons/${model.category}.svg');
-                      },
-                    )),
+                  height: 100,
+                  width: 130,
+                  child: FadeInImage(
+                    image: NetworkImage(model.image),
+                    placeholder: const AssetImage('assets/placeholders/cooking.png'),
+                    imageErrorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
+                      return SvgPicture.asset('assets/categoryIcons/${model.category}.svg');
+                    },
+                  ),
+                ),
                 const SizedBox(
                   width: 12,
                 ),

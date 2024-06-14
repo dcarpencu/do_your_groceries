@@ -8,9 +8,9 @@ class UpdateGroceryLists with _$UpdateGroceryLists implements AppAction {
 
   @Implements<ErrorAction>()
   const factory UpdateGroceryLists.error(
-      Object error,
-      StackTrace stackTrace,
-      String groceryListId, {
-        required bool remove,
-      }) = UpdateGroceryListsError;
+    Object error,
+    StackTrace stackTrace,
+    String groceryListId, {
+    required bool remove,
+  }) = UpdateGroceryListsError;
 }

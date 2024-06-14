@@ -60,6 +60,7 @@ class _EditListPageState extends State<EditListPage> {
     print('\n\nGO HOMEPAGE\n\n');
     context.pop();
   }
+
   @override
   void dispose() {
     _titleController.dispose();
@@ -185,7 +186,7 @@ class _EditListPageState extends State<EditListPage> {
                               keyboardType: TextInputType.text,
                               textInputAction: TextInputAction.done,
                               decoration:
-                              InputDecoration(labelText: 'Description', hintText: widget.groceryList.description),
+                                  InputDecoration(labelText: 'Description', hintText: widget.groceryList.description),
                               onFieldSubmitted: (String value) {
                                 _onNext(context);
                               },
@@ -230,7 +231,7 @@ class IconTile extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8),
         child: Container(
           margin: const EdgeInsets.all(8),
           decoration: BoxDecoration(
