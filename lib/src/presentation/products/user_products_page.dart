@@ -11,6 +11,7 @@ import 'package:do_you_groceries/src/ui_elements/components/sliver_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:redux/redux.dart';
 
@@ -123,15 +124,13 @@ class _UserProductsPageState extends State<UserProductsPage> {
             onPressed: () {
               _store.dispatch(const GetCamerasStart());
 
-              //context.goNamed('cameraApp', pathParameters: <String, String>{'cameras': _store.state.cameras});
+              context.pushNamed('cameraApp');
 
-              Navigator.of(context).push(
-                MaterialPageRoute<Widget>(
-                  builder: (BuildContext context) => CameraApp(
-                    cameras: _store.state.cameras,
-                  ),
-                ),
-              );
+              // Navigator.of(context).push(
+              //   MaterialPageRoute<Widget>(
+              //     builder: (BuildContext context) => const CameraApp(),
+              //   ),
+              // );
             },
             tooltip: 'Camera',
             child: const Icon(Icons.camera_alt),

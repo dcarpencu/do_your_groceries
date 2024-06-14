@@ -46,7 +46,7 @@ Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   TypedReducer<AppState, GetCamerasSuccessful>(_getCamerasSuccessful).call,
   TypedReducer<AppState, TakePictureSuccessful>(_takePictureSuccessful).call,
   TypedReducer<AppState, GetProductsSuccessful>(_getProductsSuccessful).call,
-  TypedReducer<AppState, GenerateRecipeResponseSuccessful>(_generateRecipeResponseSuccessful).call,
+  //TypedReducer<AppState, GenerateRecipeResponseSuccessful>(_generateRecipeResponseSuccessful).call,
   TypedReducer<AppState, GetProductsForCameraSuccessful>(_getProductsForCameraSuccessful).call,
   TypedReducer<AppState, RemoveProductSimple>(_removeProductSimple).call,
   TypedReducer<AppState, RemoveGroceryListSimple>(_removeGroceryListSimple).call,
@@ -63,6 +63,7 @@ Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   //TypedReducer<AppState, EditProductSuccessful>(_editProductSuccessful).call,
   TypedReducer<AppState, GetSupermarketProductsNewSuccessful>(_getSupermarketProductsNewSuccessful).call,
   TypedReducer<AppState, GetProductsAfterEditSuccessful>(_getProductsAfterEditSuccessful).call,
+  TypedReducer<AppState, SwitchProductSuccessful>(_switchProductSuccessful).call,
 ]);
 
 AppState _setMarketProductsToEmpty(AppState state, SetMarketProductsToEmpty action) {
@@ -212,9 +213,9 @@ AppState _acceptRequestSuccessful(AppState state, AcceptRequestSuccessful action
   return state.copyWith(requests: <AddRequest>[...state.requests]..remove(action.requestToRemove));
 }
 
-AppState _generateRecipeResponseSuccessful(AppState state, GenerateRecipeResponseSuccessful action) {
-  return state.copyWith(generatorResponse: action.response);
-}
+// AppState _generateRecipeResponseSuccessful(AppState state, GenerateRecipeResponseSuccessful action) {
+//   return state.copyWith(generatorResponse: action.response);
+// }
 
 AppState _setCuisineFilterSelection(AppState state, SetCuisineFilterSelection action) {
   return state.copyWith(cuisineText: action.selectedItems);
@@ -237,4 +238,9 @@ AppState _getSupermarketProductsNewSuccessful(AppState state, GetSupermarketProd
 
 AppState _getProductsAfterEditSuccessful(AppState state, GetProductsAfterEditSuccessful action) {
   return state.copyWith(productsGroceryList: action.productsAfterEdit);
+}
+
+AppState _switchProductSuccessful(AppState state, SwitchProductSuccessful action) {
+  final List<Product> productRM = <Product>[...state.productsGroceryList]..remove(action.productsToSwitch[1]);
+  return state.copyWith(productsGroceryList: <Product>[action.productsToSwitch[0], ...productRM]);
 }

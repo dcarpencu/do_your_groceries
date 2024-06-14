@@ -24,7 +24,7 @@ class AppEpic {
       TypedEpic<AppState, CreateUserStart>(_createUserStart).call,
       TypedEpic<AppState, LogoutStart>(_logoutStart).call,
       TypedEpic<AppState, GetGroceryListsStart>(_getGroceryListsStart).call,
-      TypedEpic<AppState, GenerateRecipeResponseStart>(_generateRecipeResponseStart).call,
+      //TypedEpic<AppState, GenerateRecipeResponseStart>(_generateRecipeResponseStart).call,
       _getSuperMarketProducts,
       TypedEpic<AppState, CreateGroceryListStart>(_createGroceryListStart).call,
       _listenForProducts,
@@ -52,6 +52,7 @@ class AppEpic {
       TypedEpic<AppState, EditProductStart>(_editProductStart).call,
       TypedEpic<AppState, GetSupermarketProductsNewStart>(_getSupermarketProductsNewStart).call,
       TypedEpic<AppState, GetProductsAfterEditStart>(_getProductsAfterEditStart).call,
+      TypedEpic<AppState, SwitchProductStart>(_switchProductStart).call,
     ]);
   }
 
@@ -65,15 +66,14 @@ class AppEpic {
     });
   }
 
-  Stream<AppAction> _generateRecipeResponseStart(
-      Stream<GenerateRecipeResponseStart> actions, EpicStore<AppState> store) {
-    return actions.flatMap((GenerateRecipeResponseStart action) {
-      return Stream<void>.value(null)
-          .asyncMap((_) => _aiGeneratedApi.generateRecipeResponse(action.model, action.prompt))
-          .map<GenerateRecipeResponse>(GenerateRecipeResponse.successful)
-          .onErrorReturnWith(GenerateRecipeResponse.error);
-    });
-  }
+  // Stream<AppAction> _generateRecipeResponseStart(Stream<GenerateRecipeResponseStart> actions, EpicStore<AppState> store) {
+  //   return actions.flatMap((GenerateRecipeResponseStart action) {
+  //     return Stream<void>.value(null)
+  //         .asyncMap((_) => _aiGeneratedApi.generateRecipeResponse(action.model, action.prompt))
+  //         .mapTo(const GenerateRecipeResponse.successful())
+  //         .onErrorReturnWith(GenerateRecipeResponse.error);
+  //   });
+  // }
 
   Stream<AppAction> _getCurrentUserStart(Stream<GetCurrentUserStart> actions, EpicStore<AppState> store) {
     return actions.flatMap((GetCurrentUserStart action) {
@@ -261,9 +261,6 @@ class AppEpic {
             (_) => _productsApi.addProductToGroceryList(
               action.product,
               action.groceryListId,
-              marketName: action.marketName,
-              category: action.category,
-              action.page,
             ),
           )
           .mapTo(const AddProductToGroceryList.successful())
@@ -452,6 +449,17 @@ class AppEpic {
           )
           .map<GetProductsAfterEdit>(GetProductsAfterEdit.successful)
           .onErrorReturnWith(GetProductsAfterEdit.error);
+    });
+  }
+
+  Stream<AppAction> _switchProductStart(Stream<SwitchProductStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((SwitchProductStart action) {
+      return Stream<void>.value(null)
+          .asyncMap(
+            (_) => _productsApi.switchProduct(selectedProduct: action.selectedProduct, oldProduct: action.oldProduct),
+      )
+          .map<SwitchProduct>(SwitchProduct.successful)
+          .onErrorReturnWith(SwitchProduct.error);
     });
   }
 }

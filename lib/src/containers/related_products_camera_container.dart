@@ -8,10 +8,18 @@ class RelatedProductsCameraContainer extends StatelessWidget {
 
   final ViewModelBuilder<List<Product>> builder;
 
+  List<Product> _sortProductsByPrice(List<Product> products) {
+    final List<Product> sortedProducts = List<Product>.from(products)
+      ..sort((Product a, Product b) => a.price.compareTo(b.price));
+    return sortedProducts;
+  }
+
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, List<Product>>(
-      converter: (Store<AppState> store) => store.state.relatedProducts,
+      converter: (Store<AppState> store) {
+        return _sortProductsByPrice(store.state.relatedProducts);
+      },
       builder: builder,
     );
   }

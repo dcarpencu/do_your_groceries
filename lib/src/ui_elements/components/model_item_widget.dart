@@ -43,9 +43,6 @@ class ModelItem extends StatelessWidget {
                 AddProductToGroceryListStart(
                   model,
                   store.state.selectedGroceryList!.groceryListId,
-                  model.page,
-                  marketName: marketName,
-                  category: category,
                 ),
               );
               Navigator.pop(context);

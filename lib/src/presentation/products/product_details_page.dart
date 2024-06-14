@@ -7,6 +7,7 @@ import 'package:do_you_groceries/src/presentation/products/edit_product_page.dar
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:redux/redux.dart';
 
 enum Options { delete, edit, cancel }
@@ -96,7 +97,7 @@ class _PostDetailPageState extends State<ProductDetailsPage> {
                                 ),
                           ),
                           Row(
-                            children: [
+                            children: <Widget>[
                               Text(
                                 '${widget.product.price} RON',
                                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
@@ -186,7 +187,7 @@ class _PostDetailPageState extends State<ProductDetailsPage> {
                               crossAxisCount: 2,
                               mainAxisSpacing: 16,
                               crossAxisSpacing: 16,
-                              childAspectRatio: 3 / 4,
+                              childAspectRatio: 3/5,
                             ),
                             itemCount: relatedProducts.length,
                             itemBuilder: (BuildContext context, int index) {
@@ -236,11 +237,20 @@ class _PostDetailPageState extends State<ProductDetailsPage> {
                                             overflow: TextOverflow.ellipsis,
                                           ),
                                           const SizedBox(height: 4),
-                                          Text(
-                                            relatedProduct.supermarket,
-                                            style: Theme.of(context).textTheme.bodySmall,
-                                            maxLines: 1,
-                                            overflow: TextOverflow.ellipsis,
+                                          Row(
+                                            children: <Widget>[
+                                              Text(
+                                                relatedProduct.supermarket,
+                                                style: Theme.of(context).textTheme.bodySmall,
+                                                maxLines: 1,
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                              const Spacer(),
+                                              IconButton(onPressed: (){
+                                                _store.dispatch(SwitchProductStart(selectedProduct: relatedProduct, oldProduct: widget.product));
+                                                context.pop();
+                                              }, icon: const Icon(Icons.swap_horizontal_circle))
+                                            ],
                                           ),
                                           const SizedBox(height: 4),
                                           Text(

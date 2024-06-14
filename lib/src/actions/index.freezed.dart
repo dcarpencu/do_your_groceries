@@ -8326,27 +8326,21 @@ abstract class GenerateProductsError implements GenerateProducts, ErrorAction {
 mixin _$AddProductToGroceryList {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(Product product, String groceryListId, int page,
-            String marketName, String category)
-        $default, {
+    TResult Function(Product product, String groceryListId) $default, {
     required TResult Function() successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(Product product, String groceryListId, int page,
-            String marketName, String category)?
-        $default, {
+    TResult? Function(Product product, String groceryListId)? $default, {
     TResult? Function()? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Product product, String groceryListId, int page,
-            String marketName, String category)?
-        $default, {
+    TResult Function(Product product, String groceryListId)? $default, {
     TResult Function()? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
@@ -8403,12 +8397,7 @@ abstract class _$$AddProductToGroceryListStartImplCopyWith<$Res> {
           $Res Function(_$AddProductToGroceryListStartImpl) then) =
       __$$AddProductToGroceryListStartImplCopyWithImpl<$Res>;
   @useResult
-  $Res call(
-      {Product product,
-      String groceryListId,
-      int page,
-      String marketName,
-      String category});
+  $Res call({Product product, String groceryListId});
 
   $ProductCopyWith<$Res> get product;
 }
@@ -8428,9 +8417,6 @@ class __$$AddProductToGroceryListStartImplCopyWithImpl<$Res>
   $Res call({
     Object? product = null,
     Object? groceryListId = null,
-    Object? page = null,
-    Object? marketName = null,
-    Object? category = null,
   }) {
     return _then(_$AddProductToGroceryListStartImpl(
       null == product
@@ -8440,18 +8426,6 @@ class __$$AddProductToGroceryListStartImplCopyWithImpl<$Res>
       null == groceryListId
           ? _value.groceryListId
           : groceryListId // ignore: cast_nullable_to_non_nullable
-              as String,
-      null == page
-          ? _value.page
-          : page // ignore: cast_nullable_to_non_nullable
-              as int,
-      marketName: null == marketName
-          ? _value.marketName
-          : marketName // ignore: cast_nullable_to_non_nullable
-              as String,
-      category: null == category
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -8469,24 +8443,16 @@ class __$$AddProductToGroceryListStartImplCopyWithImpl<$Res>
 
 class _$AddProductToGroceryListStartImpl
     implements AddProductToGroceryListStart {
-  const _$AddProductToGroceryListStartImpl(
-      this.product, this.groceryListId, this.page,
-      {required this.marketName, required this.category});
+  const _$AddProductToGroceryListStartImpl(this.product, this.groceryListId);
 
   @override
   final Product product;
   @override
   final String groceryListId;
-  @override
-  final int page;
-  @override
-  final String marketName;
-  @override
-  final String category;
 
   @override
   String toString() {
-    return 'AddProductToGroceryList(product: $product, groceryListId: $groceryListId, page: $page, marketName: $marketName, category: $category)';
+    return 'AddProductToGroceryList(product: $product, groceryListId: $groceryListId)';
   }
 
   @override
@@ -8496,17 +8462,11 @@ class _$AddProductToGroceryListStartImpl
             other is _$AddProductToGroceryListStartImpl &&
             (identical(other.product, product) || other.product == product) &&
             (identical(other.groceryListId, groceryListId) ||
-                other.groceryListId == groceryListId) &&
-            (identical(other.page, page) || other.page == page) &&
-            (identical(other.marketName, marketName) ||
-                other.marketName == marketName) &&
-            (identical(other.category, category) ||
-                other.category == category));
+                other.groceryListId == groceryListId));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, product, groceryListId, page, marketName, category);
+  int get hashCode => Object.hash(runtimeType, product, groceryListId);
 
   @JsonKey(ignore: true)
   @override
@@ -8519,39 +8479,33 @@ class _$AddProductToGroceryListStartImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(Product product, String groceryListId, int page,
-            String marketName, String category)
-        $default, {
+    TResult Function(Product product, String groceryListId) $default, {
     required TResult Function() successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
-    return $default(product, groceryListId, page, marketName, category);
+    return $default(product, groceryListId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(Product product, String groceryListId, int page,
-            String marketName, String category)?
-        $default, {
+    TResult? Function(Product product, String groceryListId)? $default, {
     TResult? Function()? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
-    return $default?.call(product, groceryListId, page, marketName, category);
+    return $default?.call(product, groceryListId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Product product, String groceryListId, int page,
-            String marketName, String category)?
-        $default, {
+    TResult Function(Product product, String groceryListId)? $default, {
     TResult Function()? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(product, groceryListId, page, marketName, category);
+      return $default(product, groceryListId);
     }
     return orElse();
   }
@@ -8594,15 +8548,11 @@ class _$AddProductToGroceryListStartImpl
 
 abstract class AddProductToGroceryListStart implements AddProductToGroceryList {
   const factory AddProductToGroceryListStart(
-      final Product product, final String groceryListId, final int page,
-      {required final String marketName,
-      required final String category}) = _$AddProductToGroceryListStartImpl;
+          final Product product, final String groceryListId) =
+      _$AddProductToGroceryListStartImpl;
 
   Product get product;
   String get groceryListId;
-  int get page;
-  String get marketName;
-  String get category;
   @JsonKey(ignore: true)
   _$$AddProductToGroceryListStartImplCopyWith<
           _$AddProductToGroceryListStartImpl>
@@ -8652,9 +8602,7 @@ class _$AddProductToGroceryListSuccessfulImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(Product product, String groceryListId, int page,
-            String marketName, String category)
-        $default, {
+    TResult Function(Product product, String groceryListId) $default, {
     required TResult Function() successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
@@ -8664,9 +8612,7 @@ class _$AddProductToGroceryListSuccessfulImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(Product product, String groceryListId, int page,
-            String marketName, String category)?
-        $default, {
+    TResult? Function(Product product, String groceryListId)? $default, {
     TResult? Function()? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
@@ -8676,9 +8622,7 @@ class _$AddProductToGroceryListSuccessfulImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Product product, String groceryListId, int page,
-            String marketName, String category)?
-        $default, {
+    TResult Function(Product product, String groceryListId)? $default, {
     TResult Function()? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
@@ -8808,9 +8752,7 @@ class _$AddProductToGroceryListErrorImpl
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(Product product, String groceryListId, int page,
-            String marketName, String category)
-        $default, {
+    TResult Function(Product product, String groceryListId) $default, {
     required TResult Function() successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
@@ -8820,9 +8762,7 @@ class _$AddProductToGroceryListErrorImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(Product product, String groceryListId, int page,
-            String marketName, String category)?
-        $default, {
+    TResult? Function(Product product, String groceryListId)? $default, {
     TResult? Function()? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
@@ -8832,9 +8772,7 @@ class _$AddProductToGroceryListErrorImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(Product product, String groceryListId, int page,
-            String marketName, String category)?
-        $default, {
+    TResult Function(Product product, String groceryListId)? $default, {
     TResult Function()? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
@@ -17008,121 +16946,106 @@ abstract class UpdateGroceryListsError
 }
 
 /// @nodoc
-mixin _$GenerateRecipeResponse {
-  String get pendingId => throw _privateConstructorUsedError;
+mixin _$ListenForGeneratedRecipeResponse {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            GenerativeModel model, String prompt, String pendingId)
+            GenerativeModel model, String prompt, bool isGeneratingRecipe)
         start,
-    required TResult Function(String? response, String pendingId) successful,
-    required TResult Function(
-            Object error, StackTrace stackTrace, String pendingId)
-        error,
+    required TResult Function(bool isGeneratingRecipe) done,
+    required TResult Function(String? generatedResponse) event,
+    required TResult Function(Object error, StackTrace stackTrace) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(GenerativeModel model, String prompt, String pendingId)?
+    TResult? Function(
+            GenerativeModel model, String prompt, bool isGeneratingRecipe)?
         start,
-    TResult? Function(String? response, String pendingId)? successful,
-    TResult? Function(Object error, StackTrace stackTrace, String pendingId)?
-        error,
+    TResult? Function(bool isGeneratingRecipe)? done,
+    TResult? Function(String? generatedResponse)? event,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GenerativeModel model, String prompt, String pendingId)?
+    TResult Function(
+            GenerativeModel model, String prompt, bool isGeneratingRecipe)?
         start,
-    TResult Function(String? response, String pendingId)? successful,
-    TResult Function(Object error, StackTrace stackTrace, String pendingId)?
-        error,
+    TResult Function(bool isGeneratingRecipe)? done,
+    TResult Function(String? generatedResponse)? event,
+    TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(GenerateRecipeResponseStart value) start,
-    required TResult Function(GenerateRecipeResponseSuccessful value)
-        successful,
-    required TResult Function(GenerateRecipeResponseError value) error,
+    required TResult Function(ListenForGeneratedRecipeResponseStart value)
+        start,
+    required TResult Function(ListenForGeneratedRecipeResponseDone value) done,
+    required TResult Function(OnGeneratedRecipeResonseEvent value) event,
+    required TResult Function(_ListenForGeneratedRecipeResponseError value)
+        error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(GenerateRecipeResponseStart value)? start,
-    TResult? Function(GenerateRecipeResponseSuccessful value)? successful,
-    TResult? Function(GenerateRecipeResponseError value)? error,
+    TResult? Function(ListenForGeneratedRecipeResponseStart value)? start,
+    TResult? Function(ListenForGeneratedRecipeResponseDone value)? done,
+    TResult? Function(OnGeneratedRecipeResonseEvent value)? event,
+    TResult? Function(_ListenForGeneratedRecipeResponseError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(GenerateRecipeResponseStart value)? start,
-    TResult Function(GenerateRecipeResponseSuccessful value)? successful,
-    TResult Function(GenerateRecipeResponseError value)? error,
+    TResult Function(ListenForGeneratedRecipeResponseStart value)? start,
+    TResult Function(ListenForGeneratedRecipeResponseDone value)? done,
+    TResult Function(OnGeneratedRecipeResonseEvent value)? event,
+    TResult Function(_ListenForGeneratedRecipeResponseError value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $GenerateRecipeResponseCopyWith<GenerateRecipeResponse> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GenerateRecipeResponseCopyWith<$Res> {
-  factory $GenerateRecipeResponseCopyWith(GenerateRecipeResponse value,
-          $Res Function(GenerateRecipeResponse) then) =
-      _$GenerateRecipeResponseCopyWithImpl<$Res, GenerateRecipeResponse>;
-  @useResult
-  $Res call({String pendingId});
+abstract class $ListenForGeneratedRecipeResponseCopyWith<$Res> {
+  factory $ListenForGeneratedRecipeResponseCopyWith(
+          ListenForGeneratedRecipeResponse value,
+          $Res Function(ListenForGeneratedRecipeResponse) then) =
+      _$ListenForGeneratedRecipeResponseCopyWithImpl<$Res,
+          ListenForGeneratedRecipeResponse>;
 }
 
 /// @nodoc
-class _$GenerateRecipeResponseCopyWithImpl<$Res,
-        $Val extends GenerateRecipeResponse>
-    implements $GenerateRecipeResponseCopyWith<$Res> {
-  _$GenerateRecipeResponseCopyWithImpl(this._value, this._then);
+class _$ListenForGeneratedRecipeResponseCopyWithImpl<$Res,
+        $Val extends ListenForGeneratedRecipeResponse>
+    implements $ListenForGeneratedRecipeResponseCopyWith<$Res> {
+  _$ListenForGeneratedRecipeResponseCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? pendingId = null,
-  }) {
-    return _then(_value.copyWith(
-      pendingId: null == pendingId
-          ? _value.pendingId
-          : pendingId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$GenerateRecipeResponseStartImplCopyWith<$Res>
-    implements $GenerateRecipeResponseCopyWith<$Res> {
-  factory _$$GenerateRecipeResponseStartImplCopyWith(
-          _$GenerateRecipeResponseStartImpl value,
-          $Res Function(_$GenerateRecipeResponseStartImpl) then) =
-      __$$GenerateRecipeResponseStartImplCopyWithImpl<$Res>;
-  @override
+abstract class _$$ListenForGeneratedRecipeResponseStartImplCopyWith<$Res> {
+  factory _$$ListenForGeneratedRecipeResponseStartImplCopyWith(
+          _$ListenForGeneratedRecipeResponseStartImpl value,
+          $Res Function(_$ListenForGeneratedRecipeResponseStartImpl) then) =
+      __$$ListenForGeneratedRecipeResponseStartImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({GenerativeModel model, String prompt, String pendingId});
+  $Res call({GenerativeModel model, String prompt, bool isGeneratingRecipe});
 }
 
 /// @nodoc
-class __$$GenerateRecipeResponseStartImplCopyWithImpl<$Res>
-    extends _$GenerateRecipeResponseCopyWithImpl<$Res,
-        _$GenerateRecipeResponseStartImpl>
-    implements _$$GenerateRecipeResponseStartImplCopyWith<$Res> {
-  __$$GenerateRecipeResponseStartImplCopyWithImpl(
-      _$GenerateRecipeResponseStartImpl _value,
-      $Res Function(_$GenerateRecipeResponseStartImpl) _then)
+class __$$ListenForGeneratedRecipeResponseStartImplCopyWithImpl<$Res>
+    extends _$ListenForGeneratedRecipeResponseCopyWithImpl<$Res,
+        _$ListenForGeneratedRecipeResponseStartImpl>
+    implements _$$ListenForGeneratedRecipeResponseStartImplCopyWith<$Res> {
+  __$$ListenForGeneratedRecipeResponseStartImplCopyWithImpl(
+      _$ListenForGeneratedRecipeResponseStartImpl _value,
+      $Res Function(_$ListenForGeneratedRecipeResponseStartImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -17130,9 +17053,9 @@ class __$$GenerateRecipeResponseStartImplCopyWithImpl<$Res>
   $Res call({
     Object? model = null,
     Object? prompt = null,
-    Object? pendingId = null,
+    Object? isGeneratingRecipe = null,
   }) {
-    return _then(_$GenerateRecipeResponseStartImpl(
+    return _then(_$ListenForGeneratedRecipeResponseStartImpl(
       null == model
           ? _value.model
           : model // ignore: cast_nullable_to_non_nullable
@@ -17141,92 +17064,95 @@ class __$$GenerateRecipeResponseStartImplCopyWithImpl<$Res>
           ? _value.prompt
           : prompt // ignore: cast_nullable_to_non_nullable
               as String,
-      pendingId: null == pendingId
-          ? _value.pendingId
-          : pendingId // ignore: cast_nullable_to_non_nullable
-              as String,
+      isGeneratingRecipe: null == isGeneratingRecipe
+          ? _value.isGeneratingRecipe
+          : isGeneratingRecipe // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
 
-class _$GenerateRecipeResponseStartImpl implements GenerateRecipeResponseStart {
-  const _$GenerateRecipeResponseStartImpl(this.model, this.prompt,
-      {this.pendingId = _kGenerateRecipeResponsePendingId});
+class _$ListenForGeneratedRecipeResponseStartImpl
+    implements ListenForGeneratedRecipeResponseStart {
+  const _$ListenForGeneratedRecipeResponseStartImpl(this.model, this.prompt,
+      {required this.isGeneratingRecipe});
 
   @override
   final GenerativeModel model;
   @override
   final String prompt;
   @override
-  @JsonKey()
-  final String pendingId;
+  final bool isGeneratingRecipe;
 
   @override
   String toString() {
-    return 'GenerateRecipeResponse.start(model: $model, prompt: $prompt, pendingId: $pendingId)';
+    return 'ListenForGeneratedRecipeResponse.start(model: $model, prompt: $prompt, isGeneratingRecipe: $isGeneratingRecipe)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GenerateRecipeResponseStartImpl &&
+            other is _$ListenForGeneratedRecipeResponseStartImpl &&
             (identical(other.model, model) || other.model == model) &&
             (identical(other.prompt, prompt) || other.prompt == prompt) &&
-            (identical(other.pendingId, pendingId) ||
-                other.pendingId == pendingId));
+            (identical(other.isGeneratingRecipe, isGeneratingRecipe) ||
+                other.isGeneratingRecipe == isGeneratingRecipe));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, model, prompt, pendingId);
+  int get hashCode =>
+      Object.hash(runtimeType, model, prompt, isGeneratingRecipe);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$GenerateRecipeResponseStartImplCopyWith<_$GenerateRecipeResponseStartImpl>
-      get copyWith => __$$GenerateRecipeResponseStartImplCopyWithImpl<
-          _$GenerateRecipeResponseStartImpl>(this, _$identity);
+  _$$ListenForGeneratedRecipeResponseStartImplCopyWith<
+          _$ListenForGeneratedRecipeResponseStartImpl>
+      get copyWith => __$$ListenForGeneratedRecipeResponseStartImplCopyWithImpl<
+          _$ListenForGeneratedRecipeResponseStartImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            GenerativeModel model, String prompt, String pendingId)
+            GenerativeModel model, String prompt, bool isGeneratingRecipe)
         start,
-    required TResult Function(String? response, String pendingId) successful,
-    required TResult Function(
-            Object error, StackTrace stackTrace, String pendingId)
-        error,
+    required TResult Function(bool isGeneratingRecipe) done,
+    required TResult Function(String? generatedResponse) event,
+    required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
-    return start(model, prompt, pendingId);
+    return start(model, prompt, isGeneratingRecipe);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(GenerativeModel model, String prompt, String pendingId)?
+    TResult? Function(
+            GenerativeModel model, String prompt, bool isGeneratingRecipe)?
         start,
-    TResult? Function(String? response, String pendingId)? successful,
-    TResult? Function(Object error, StackTrace stackTrace, String pendingId)?
-        error,
+    TResult? Function(bool isGeneratingRecipe)? done,
+    TResult? Function(String? generatedResponse)? event,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
-    return start?.call(model, prompt, pendingId);
+    return start?.call(model, prompt, isGeneratingRecipe);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GenerativeModel model, String prompt, String pendingId)?
+    TResult Function(
+            GenerativeModel model, String prompt, bool isGeneratingRecipe)?
         start,
-    TResult Function(String? response, String pendingId)? successful,
-    TResult Function(Object error, StackTrace stackTrace, String pendingId)?
-        error,
+    TResult Function(bool isGeneratingRecipe)? done,
+    TResult Function(String? generatedResponse)? event,
+    TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
     if (start != null) {
-      return start(model, prompt, pendingId);
+      return start(model, prompt, isGeneratingRecipe);
     }
     return orElse();
   }
@@ -17234,10 +17160,12 @@ class _$GenerateRecipeResponseStartImpl implements GenerateRecipeResponseStart {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(GenerateRecipeResponseStart value) start,
-    required TResult Function(GenerateRecipeResponseSuccessful value)
-        successful,
-    required TResult Function(GenerateRecipeResponseError value) error,
+    required TResult Function(ListenForGeneratedRecipeResponseStart value)
+        start,
+    required TResult Function(ListenForGeneratedRecipeResponseDone value) done,
+    required TResult Function(OnGeneratedRecipeResonseEvent value) event,
+    required TResult Function(_ListenForGeneratedRecipeResponseError value)
+        error,
   }) {
     return start(this);
   }
@@ -17245,9 +17173,10 @@ class _$GenerateRecipeResponseStartImpl implements GenerateRecipeResponseStart {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(GenerateRecipeResponseStart value)? start,
-    TResult? Function(GenerateRecipeResponseSuccessful value)? successful,
-    TResult? Function(GenerateRecipeResponseError value)? error,
+    TResult? Function(ListenForGeneratedRecipeResponseStart value)? start,
+    TResult? Function(ListenForGeneratedRecipeResponseDone value)? done,
+    TResult? Function(OnGeneratedRecipeResonseEvent value)? event,
+    TResult? Function(_ListenForGeneratedRecipeResponseError value)? error,
   }) {
     return start?.call(this);
   }
@@ -17255,9 +17184,10 @@ class _$GenerateRecipeResponseStartImpl implements GenerateRecipeResponseStart {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(GenerateRecipeResponseStart value)? start,
-    TResult Function(GenerateRecipeResponseSuccessful value)? successful,
-    TResult Function(GenerateRecipeResponseError value)? error,
+    TResult Function(ListenForGeneratedRecipeResponseStart value)? start,
+    TResult Function(ListenForGeneratedRecipeResponseDone value)? done,
+    TResult Function(OnGeneratedRecipeResonseEvent value)? event,
+    TResult Function(_ListenForGeneratedRecipeResponseError value)? error,
     required TResult orElse(),
   }) {
     if (start != null) {
@@ -17267,141 +17197,130 @@ class _$GenerateRecipeResponseStartImpl implements GenerateRecipeResponseStart {
   }
 }
 
-abstract class GenerateRecipeResponseStart
-    implements GenerateRecipeResponse, ActionStart {
-  const factory GenerateRecipeResponseStart(
-      final GenerativeModel model, final String prompt,
-      {final String pendingId}) = _$GenerateRecipeResponseStartImpl;
+abstract class ListenForGeneratedRecipeResponseStart
+    implements ListenForGeneratedRecipeResponse {
+  const factory ListenForGeneratedRecipeResponseStart(
+          final GenerativeModel model, final String prompt,
+          {required final bool isGeneratingRecipe}) =
+      _$ListenForGeneratedRecipeResponseStartImpl;
 
   GenerativeModel get model;
   String get prompt;
-  @override
-  String get pendingId;
-  @override
+  bool get isGeneratingRecipe;
   @JsonKey(ignore: true)
-  _$$GenerateRecipeResponseStartImplCopyWith<_$GenerateRecipeResponseStartImpl>
+  _$$ListenForGeneratedRecipeResponseStartImplCopyWith<
+          _$ListenForGeneratedRecipeResponseStartImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$GenerateRecipeResponseSuccessfulImplCopyWith<$Res>
-    implements $GenerateRecipeResponseCopyWith<$Res> {
-  factory _$$GenerateRecipeResponseSuccessfulImplCopyWith(
-          _$GenerateRecipeResponseSuccessfulImpl value,
-          $Res Function(_$GenerateRecipeResponseSuccessfulImpl) then) =
-      __$$GenerateRecipeResponseSuccessfulImplCopyWithImpl<$Res>;
-  @override
+abstract class _$$ListenForGeneratedRecipeResponseDoneImplCopyWith<$Res> {
+  factory _$$ListenForGeneratedRecipeResponseDoneImplCopyWith(
+          _$ListenForGeneratedRecipeResponseDoneImpl value,
+          $Res Function(_$ListenForGeneratedRecipeResponseDoneImpl) then) =
+      __$$ListenForGeneratedRecipeResponseDoneImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String? response, String pendingId});
+  $Res call({bool isGeneratingRecipe});
 }
 
 /// @nodoc
-class __$$GenerateRecipeResponseSuccessfulImplCopyWithImpl<$Res>
-    extends _$GenerateRecipeResponseCopyWithImpl<$Res,
-        _$GenerateRecipeResponseSuccessfulImpl>
-    implements _$$GenerateRecipeResponseSuccessfulImplCopyWith<$Res> {
-  __$$GenerateRecipeResponseSuccessfulImplCopyWithImpl(
-      _$GenerateRecipeResponseSuccessfulImpl _value,
-      $Res Function(_$GenerateRecipeResponseSuccessfulImpl) _then)
+class __$$ListenForGeneratedRecipeResponseDoneImplCopyWithImpl<$Res>
+    extends _$ListenForGeneratedRecipeResponseCopyWithImpl<$Res,
+        _$ListenForGeneratedRecipeResponseDoneImpl>
+    implements _$$ListenForGeneratedRecipeResponseDoneImplCopyWith<$Res> {
+  __$$ListenForGeneratedRecipeResponseDoneImplCopyWithImpl(
+      _$ListenForGeneratedRecipeResponseDoneImpl _value,
+      $Res Function(_$ListenForGeneratedRecipeResponseDoneImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? response = freezed,
-    Object? pendingId = null,
+    Object? isGeneratingRecipe = null,
   }) {
-    return _then(_$GenerateRecipeResponseSuccessfulImpl(
-      freezed == response
-          ? _value.response
-          : response // ignore: cast_nullable_to_non_nullable
-              as String?,
-      null == pendingId
-          ? _value.pendingId
-          : pendingId // ignore: cast_nullable_to_non_nullable
-              as String,
+    return _then(_$ListenForGeneratedRecipeResponseDoneImpl(
+      isGeneratingRecipe: null == isGeneratingRecipe
+          ? _value.isGeneratingRecipe
+          : isGeneratingRecipe // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
 
-class _$GenerateRecipeResponseSuccessfulImpl
-    implements GenerateRecipeResponseSuccessful {
-  const _$GenerateRecipeResponseSuccessfulImpl(this.response,
-      [this.pendingId = _kGenerateRecipeResponsePendingId]);
+class _$ListenForGeneratedRecipeResponseDoneImpl
+    implements ListenForGeneratedRecipeResponseDone {
+  const _$ListenForGeneratedRecipeResponseDoneImpl(
+      {required this.isGeneratingRecipe});
 
   @override
-  final String? response;
-  @override
-  @JsonKey()
-  final String pendingId;
+  final bool isGeneratingRecipe;
 
   @override
   String toString() {
-    return 'GenerateRecipeResponse.successful(response: $response, pendingId: $pendingId)';
+    return 'ListenForGeneratedRecipeResponse.done(isGeneratingRecipe: $isGeneratingRecipe)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GenerateRecipeResponseSuccessfulImpl &&
-            (identical(other.response, response) ||
-                other.response == response) &&
-            (identical(other.pendingId, pendingId) ||
-                other.pendingId == pendingId));
+            other is _$ListenForGeneratedRecipeResponseDoneImpl &&
+            (identical(other.isGeneratingRecipe, isGeneratingRecipe) ||
+                other.isGeneratingRecipe == isGeneratingRecipe));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, response, pendingId);
+  int get hashCode => Object.hash(runtimeType, isGeneratingRecipe);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$GenerateRecipeResponseSuccessfulImplCopyWith<
-          _$GenerateRecipeResponseSuccessfulImpl>
-      get copyWith => __$$GenerateRecipeResponseSuccessfulImplCopyWithImpl<
-          _$GenerateRecipeResponseSuccessfulImpl>(this, _$identity);
+  _$$ListenForGeneratedRecipeResponseDoneImplCopyWith<
+          _$ListenForGeneratedRecipeResponseDoneImpl>
+      get copyWith => __$$ListenForGeneratedRecipeResponseDoneImplCopyWithImpl<
+          _$ListenForGeneratedRecipeResponseDoneImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            GenerativeModel model, String prompt, String pendingId)
+            GenerativeModel model, String prompt, bool isGeneratingRecipe)
         start,
-    required TResult Function(String? response, String pendingId) successful,
-    required TResult Function(
-            Object error, StackTrace stackTrace, String pendingId)
-        error,
+    required TResult Function(bool isGeneratingRecipe) done,
+    required TResult Function(String? generatedResponse) event,
+    required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
-    return successful(response, pendingId);
+    return done(isGeneratingRecipe);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(GenerativeModel model, String prompt, String pendingId)?
+    TResult? Function(
+            GenerativeModel model, String prompt, bool isGeneratingRecipe)?
         start,
-    TResult? Function(String? response, String pendingId)? successful,
-    TResult? Function(Object error, StackTrace stackTrace, String pendingId)?
-        error,
+    TResult? Function(bool isGeneratingRecipe)? done,
+    TResult? Function(String? generatedResponse)? event,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
-    return successful?.call(response, pendingId);
+    return done?.call(isGeneratingRecipe);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GenerativeModel model, String prompt, String pendingId)?
+    TResult Function(
+            GenerativeModel model, String prompt, bool isGeneratingRecipe)?
         start,
-    TResult Function(String? response, String pendingId)? successful,
-    TResult Function(Object error, StackTrace stackTrace, String pendingId)?
-        error,
+    TResult Function(bool isGeneratingRecipe)? done,
+    TResult Function(String? generatedResponse)? event,
+    TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
-    if (successful != null) {
-      return successful(response, pendingId);
+    if (done != null) {
+      return done(isGeneratingRecipe);
     }
     return orElse();
   }
@@ -17409,74 +17328,237 @@ class _$GenerateRecipeResponseSuccessfulImpl
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(GenerateRecipeResponseStart value) start,
-    required TResult Function(GenerateRecipeResponseSuccessful value)
-        successful,
-    required TResult Function(GenerateRecipeResponseError value) error,
+    required TResult Function(ListenForGeneratedRecipeResponseStart value)
+        start,
+    required TResult Function(ListenForGeneratedRecipeResponseDone value) done,
+    required TResult Function(OnGeneratedRecipeResonseEvent value) event,
+    required TResult Function(_ListenForGeneratedRecipeResponseError value)
+        error,
   }) {
-    return successful(this);
+    return done(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(GenerateRecipeResponseStart value)? start,
-    TResult? Function(GenerateRecipeResponseSuccessful value)? successful,
-    TResult? Function(GenerateRecipeResponseError value)? error,
+    TResult? Function(ListenForGeneratedRecipeResponseStart value)? start,
+    TResult? Function(ListenForGeneratedRecipeResponseDone value)? done,
+    TResult? Function(OnGeneratedRecipeResonseEvent value)? event,
+    TResult? Function(_ListenForGeneratedRecipeResponseError value)? error,
   }) {
-    return successful?.call(this);
+    return done?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(GenerateRecipeResponseStart value)? start,
-    TResult Function(GenerateRecipeResponseSuccessful value)? successful,
-    TResult Function(GenerateRecipeResponseError value)? error,
+    TResult Function(ListenForGeneratedRecipeResponseStart value)? start,
+    TResult Function(ListenForGeneratedRecipeResponseDone value)? done,
+    TResult Function(OnGeneratedRecipeResonseEvent value)? event,
+    TResult Function(_ListenForGeneratedRecipeResponseError value)? error,
     required TResult orElse(),
   }) {
-    if (successful != null) {
-      return successful(this);
+    if (done != null) {
+      return done(this);
     }
     return orElse();
   }
 }
 
-abstract class GenerateRecipeResponseSuccessful
-    implements GenerateRecipeResponse, ActionDone {
-  const factory GenerateRecipeResponseSuccessful(final String? response,
-      [final String pendingId]) = _$GenerateRecipeResponseSuccessfulImpl;
+abstract class ListenForGeneratedRecipeResponseDone
+    implements ListenForGeneratedRecipeResponse {
+  const factory ListenForGeneratedRecipeResponseDone(
+          {required final bool isGeneratingRecipe}) =
+      _$ListenForGeneratedRecipeResponseDoneImpl;
 
-  String? get response;
-  @override
-  String get pendingId;
-  @override
+  bool get isGeneratingRecipe;
   @JsonKey(ignore: true)
-  _$$GenerateRecipeResponseSuccessfulImplCopyWith<
-          _$GenerateRecipeResponseSuccessfulImpl>
+  _$$ListenForGeneratedRecipeResponseDoneImplCopyWith<
+          _$ListenForGeneratedRecipeResponseDoneImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$GenerateRecipeResponseErrorImplCopyWith<$Res>
-    implements $GenerateRecipeResponseCopyWith<$Res> {
-  factory _$$GenerateRecipeResponseErrorImplCopyWith(
-          _$GenerateRecipeResponseErrorImpl value,
-          $Res Function(_$GenerateRecipeResponseErrorImpl) then) =
-      __$$GenerateRecipeResponseErrorImplCopyWithImpl<$Res>;
-  @override
+abstract class _$$OnGeneratedRecipeResonseEventImplCopyWith<$Res> {
+  factory _$$OnGeneratedRecipeResonseEventImplCopyWith(
+          _$OnGeneratedRecipeResonseEventImpl value,
+          $Res Function(_$OnGeneratedRecipeResonseEventImpl) then) =
+      __$$OnGeneratedRecipeResonseEventImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Object error, StackTrace stackTrace, String pendingId});
+  $Res call({String? generatedResponse});
 }
 
 /// @nodoc
-class __$$GenerateRecipeResponseErrorImplCopyWithImpl<$Res>
-    extends _$GenerateRecipeResponseCopyWithImpl<$Res,
-        _$GenerateRecipeResponseErrorImpl>
-    implements _$$GenerateRecipeResponseErrorImplCopyWith<$Res> {
-  __$$GenerateRecipeResponseErrorImplCopyWithImpl(
-      _$GenerateRecipeResponseErrorImpl _value,
-      $Res Function(_$GenerateRecipeResponseErrorImpl) _then)
+class __$$OnGeneratedRecipeResonseEventImplCopyWithImpl<$Res>
+    extends _$ListenForGeneratedRecipeResponseCopyWithImpl<$Res,
+        _$OnGeneratedRecipeResonseEventImpl>
+    implements _$$OnGeneratedRecipeResonseEventImplCopyWith<$Res> {
+  __$$OnGeneratedRecipeResonseEventImplCopyWithImpl(
+      _$OnGeneratedRecipeResonseEventImpl _value,
+      $Res Function(_$OnGeneratedRecipeResonseEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? generatedResponse = freezed,
+  }) {
+    return _then(_$OnGeneratedRecipeResonseEventImpl(
+      freezed == generatedResponse
+          ? _value.generatedResponse
+          : generatedResponse // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$OnGeneratedRecipeResonseEventImpl
+    implements OnGeneratedRecipeResonseEvent {
+  const _$OnGeneratedRecipeResonseEventImpl(this.generatedResponse);
+
+  @override
+  final String? generatedResponse;
+
+  @override
+  String toString() {
+    return 'ListenForGeneratedRecipeResponse.event(generatedResponse: $generatedResponse)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OnGeneratedRecipeResonseEventImpl &&
+            (identical(other.generatedResponse, generatedResponse) ||
+                other.generatedResponse == generatedResponse));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, generatedResponse);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OnGeneratedRecipeResonseEventImplCopyWith<
+          _$OnGeneratedRecipeResonseEventImpl>
+      get copyWith => __$$OnGeneratedRecipeResonseEventImplCopyWithImpl<
+          _$OnGeneratedRecipeResonseEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            GenerativeModel model, String prompt, bool isGeneratingRecipe)
+        start,
+    required TResult Function(bool isGeneratingRecipe) done,
+    required TResult Function(String? generatedResponse) event,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return event(generatedResponse);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            GenerativeModel model, String prompt, bool isGeneratingRecipe)?
+        start,
+    TResult? Function(bool isGeneratingRecipe)? done,
+    TResult? Function(String? generatedResponse)? event,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return event?.call(generatedResponse);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            GenerativeModel model, String prompt, bool isGeneratingRecipe)?
+        start,
+    TResult Function(bool isGeneratingRecipe)? done,
+    TResult Function(String? generatedResponse)? event,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (event != null) {
+      return event(generatedResponse);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ListenForGeneratedRecipeResponseStart value)
+        start,
+    required TResult Function(ListenForGeneratedRecipeResponseDone value) done,
+    required TResult Function(OnGeneratedRecipeResonseEvent value) event,
+    required TResult Function(_ListenForGeneratedRecipeResponseError value)
+        error,
+  }) {
+    return event(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ListenForGeneratedRecipeResponseStart value)? start,
+    TResult? Function(ListenForGeneratedRecipeResponseDone value)? done,
+    TResult? Function(OnGeneratedRecipeResonseEvent value)? event,
+    TResult? Function(_ListenForGeneratedRecipeResponseError value)? error,
+  }) {
+    return event?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ListenForGeneratedRecipeResponseStart value)? start,
+    TResult Function(ListenForGeneratedRecipeResponseDone value)? done,
+    TResult Function(OnGeneratedRecipeResonseEvent value)? event,
+    TResult Function(_ListenForGeneratedRecipeResponseError value)? error,
+    required TResult orElse(),
+  }) {
+    if (event != null) {
+      return event(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class OnGeneratedRecipeResonseEvent
+    implements ListenForGeneratedRecipeResponse {
+  const factory OnGeneratedRecipeResonseEvent(final String? generatedResponse) =
+      _$OnGeneratedRecipeResonseEventImpl;
+
+  String? get generatedResponse;
+  @JsonKey(ignore: true)
+  _$$OnGeneratedRecipeResonseEventImplCopyWith<
+          _$OnGeneratedRecipeResonseEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ListenForGeneratedRecipeResponseErrorImplCopyWith<$Res> {
+  factory _$$ListenForGeneratedRecipeResponseErrorImplCopyWith(
+          _$ListenForGeneratedRecipeResponseErrorImpl value,
+          $Res Function(_$ListenForGeneratedRecipeResponseErrorImpl) then) =
+      __$$ListenForGeneratedRecipeResponseErrorImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Object error, StackTrace stackTrace});
+}
+
+/// @nodoc
+class __$$ListenForGeneratedRecipeResponseErrorImplCopyWithImpl<$Res>
+    extends _$ListenForGeneratedRecipeResponseCopyWithImpl<$Res,
+        _$ListenForGeneratedRecipeResponseErrorImpl>
+    implements _$$ListenForGeneratedRecipeResponseErrorImplCopyWith<$Res> {
+  __$$ListenForGeneratedRecipeResponseErrorImplCopyWithImpl(
+      _$ListenForGeneratedRecipeResponseErrorImpl _value,
+      $Res Function(_$ListenForGeneratedRecipeResponseErrorImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -17484,102 +17566,95 @@ class __$$GenerateRecipeResponseErrorImplCopyWithImpl<$Res>
   $Res call({
     Object? error = null,
     Object? stackTrace = null,
-    Object? pendingId = null,
   }) {
-    return _then(_$GenerateRecipeResponseErrorImpl(
+    return _then(_$ListenForGeneratedRecipeResponseErrorImpl(
       null == error ? _value.error : error,
       null == stackTrace
           ? _value.stackTrace
           : stackTrace // ignore: cast_nullable_to_non_nullable
               as StackTrace,
-      null == pendingId
-          ? _value.pendingId
-          : pendingId // ignore: cast_nullable_to_non_nullable
-              as String,
     ));
   }
 }
 
 /// @nodoc
 
-class _$GenerateRecipeResponseErrorImpl implements GenerateRecipeResponseError {
-  const _$GenerateRecipeResponseErrorImpl(this.error, this.stackTrace,
-      [this.pendingId = _kGenerateRecipeResponsePendingId]);
+class _$ListenForGeneratedRecipeResponseErrorImpl
+    implements _ListenForGeneratedRecipeResponseError {
+  const _$ListenForGeneratedRecipeResponseErrorImpl(
+      this.error, this.stackTrace);
 
   @override
   final Object error;
   @override
   final StackTrace stackTrace;
-  @override
-  @JsonKey()
-  final String pendingId;
 
   @override
   String toString() {
-    return 'GenerateRecipeResponse.error(error: $error, stackTrace: $stackTrace, pendingId: $pendingId)';
+    return 'ListenForGeneratedRecipeResponse.error(error: $error, stackTrace: $stackTrace)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GenerateRecipeResponseErrorImpl &&
+            other is _$ListenForGeneratedRecipeResponseErrorImpl &&
             const DeepCollectionEquality().equals(other.error, error) &&
             (identical(other.stackTrace, stackTrace) ||
-                other.stackTrace == stackTrace) &&
-            (identical(other.pendingId, pendingId) ||
-                other.pendingId == pendingId));
+                other.stackTrace == stackTrace));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(error), stackTrace, pendingId);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$GenerateRecipeResponseErrorImplCopyWith<_$GenerateRecipeResponseErrorImpl>
-      get copyWith => __$$GenerateRecipeResponseErrorImplCopyWithImpl<
-          _$GenerateRecipeResponseErrorImpl>(this, _$identity);
+  _$$ListenForGeneratedRecipeResponseErrorImplCopyWith<
+          _$ListenForGeneratedRecipeResponseErrorImpl>
+      get copyWith => __$$ListenForGeneratedRecipeResponseErrorImplCopyWithImpl<
+          _$ListenForGeneratedRecipeResponseErrorImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            GenerativeModel model, String prompt, String pendingId)
+            GenerativeModel model, String prompt, bool isGeneratingRecipe)
         start,
-    required TResult Function(String? response, String pendingId) successful,
-    required TResult Function(
-            Object error, StackTrace stackTrace, String pendingId)
-        error,
+    required TResult Function(bool isGeneratingRecipe) done,
+    required TResult Function(String? generatedResponse) event,
+    required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
-    return error(this.error, stackTrace, pendingId);
+    return error(this.error, stackTrace);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(GenerativeModel model, String prompt, String pendingId)?
+    TResult? Function(
+            GenerativeModel model, String prompt, bool isGeneratingRecipe)?
         start,
-    TResult? Function(String? response, String pendingId)? successful,
-    TResult? Function(Object error, StackTrace stackTrace, String pendingId)?
-        error,
+    TResult? Function(bool isGeneratingRecipe)? done,
+    TResult? Function(String? generatedResponse)? event,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
-    return error?.call(this.error, stackTrace, pendingId);
+    return error?.call(this.error, stackTrace);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GenerativeModel model, String prompt, String pendingId)?
+    TResult Function(
+            GenerativeModel model, String prompt, bool isGeneratingRecipe)?
         start,
-    TResult Function(String? response, String pendingId)? successful,
-    TResult Function(Object error, StackTrace stackTrace, String pendingId)?
-        error,
+    TResult Function(bool isGeneratingRecipe)? done,
+    TResult Function(String? generatedResponse)? event,
+    TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(this.error, stackTrace, pendingId);
+      return error(this.error, stackTrace);
     }
     return orElse();
   }
@@ -17587,10 +17662,12 @@ class _$GenerateRecipeResponseErrorImpl implements GenerateRecipeResponseError {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(GenerateRecipeResponseStart value) start,
-    required TResult Function(GenerateRecipeResponseSuccessful value)
-        successful,
-    required TResult Function(GenerateRecipeResponseError value) error,
+    required TResult Function(ListenForGeneratedRecipeResponseStart value)
+        start,
+    required TResult Function(ListenForGeneratedRecipeResponseDone value) done,
+    required TResult Function(OnGeneratedRecipeResonseEvent value) event,
+    required TResult Function(_ListenForGeneratedRecipeResponseError value)
+        error,
   }) {
     return error(this);
   }
@@ -17598,9 +17675,10 @@ class _$GenerateRecipeResponseErrorImpl implements GenerateRecipeResponseError {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(GenerateRecipeResponseStart value)? start,
-    TResult? Function(GenerateRecipeResponseSuccessful value)? successful,
-    TResult? Function(GenerateRecipeResponseError value)? error,
+    TResult? Function(ListenForGeneratedRecipeResponseStart value)? start,
+    TResult? Function(ListenForGeneratedRecipeResponseDone value)? done,
+    TResult? Function(OnGeneratedRecipeResonseEvent value)? event,
+    TResult? Function(_ListenForGeneratedRecipeResponseError value)? error,
   }) {
     return error?.call(this);
   }
@@ -17608,9 +17686,10 @@ class _$GenerateRecipeResponseErrorImpl implements GenerateRecipeResponseError {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(GenerateRecipeResponseStart value)? start,
-    TResult Function(GenerateRecipeResponseSuccessful value)? successful,
-    TResult Function(GenerateRecipeResponseError value)? error,
+    TResult Function(ListenForGeneratedRecipeResponseStart value)? start,
+    TResult Function(ListenForGeneratedRecipeResponseDone value)? done,
+    TResult Function(OnGeneratedRecipeResonseEvent value)? event,
+    TResult Function(_ListenForGeneratedRecipeResponseError value)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -17620,19 +17699,17 @@ class _$GenerateRecipeResponseErrorImpl implements GenerateRecipeResponseError {
   }
 }
 
-abstract class GenerateRecipeResponseError
-    implements GenerateRecipeResponse, ActionDone, ErrorAction {
-  const factory GenerateRecipeResponseError(
-      final Object error, final StackTrace stackTrace,
-      [final String pendingId]) = _$GenerateRecipeResponseErrorImpl;
+abstract class _ListenForGeneratedRecipeResponseError
+    implements ListenForGeneratedRecipeResponse, ErrorAction {
+  const factory _ListenForGeneratedRecipeResponseError(
+          final Object error, final StackTrace stackTrace) =
+      _$ListenForGeneratedRecipeResponseErrorImpl;
 
   Object get error;
   StackTrace get stackTrace;
-  @override
-  String get pendingId;
-  @override
   @JsonKey(ignore: true)
-  _$$GenerateRecipeResponseErrorImplCopyWith<_$GenerateRecipeResponseErrorImpl>
+  _$$ListenForGeneratedRecipeResponseErrorImplCopyWith<
+          _$ListenForGeneratedRecipeResponseErrorImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -19941,4 +20018,545 @@ abstract class GetProductsAfterEditError
   @JsonKey(ignore: true)
   _$$GetProductsAfterEditErrorImplCopyWith<_$GetProductsAfterEditErrorImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$SwitchProduct {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(Product selectedProduct, Product oldProduct) $default, {
+    required TResult Function(List<Product> productsToSwitch) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(Product selectedProduct, Product oldProduct)? $default, {
+    TResult? Function(List<Product> productsToSwitch)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(Product selectedProduct, Product oldProduct)? $default, {
+    TResult Function(List<Product> productsToSwitch)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(SwitchProductStart value) $default, {
+    required TResult Function(SwitchProductSuccessful value) successful,
+    required TResult Function(SwitchProductError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(SwitchProductStart value)? $default, {
+    TResult? Function(SwitchProductSuccessful value)? successful,
+    TResult? Function(SwitchProductError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(SwitchProductStart value)? $default, {
+    TResult Function(SwitchProductSuccessful value)? successful,
+    TResult Function(SwitchProductError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SwitchProductCopyWith<$Res> {
+  factory $SwitchProductCopyWith(
+          SwitchProduct value, $Res Function(SwitchProduct) then) =
+      _$SwitchProductCopyWithImpl<$Res, SwitchProduct>;
+}
+
+/// @nodoc
+class _$SwitchProductCopyWithImpl<$Res, $Val extends SwitchProduct>
+    implements $SwitchProductCopyWith<$Res> {
+  _$SwitchProductCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$SwitchProductStartImplCopyWith<$Res> {
+  factory _$$SwitchProductStartImplCopyWith(_$SwitchProductStartImpl value,
+          $Res Function(_$SwitchProductStartImpl) then) =
+      __$$SwitchProductStartImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Product selectedProduct, Product oldProduct});
+
+  $ProductCopyWith<$Res> get selectedProduct;
+  $ProductCopyWith<$Res> get oldProduct;
+}
+
+/// @nodoc
+class __$$SwitchProductStartImplCopyWithImpl<$Res>
+    extends _$SwitchProductCopyWithImpl<$Res, _$SwitchProductStartImpl>
+    implements _$$SwitchProductStartImplCopyWith<$Res> {
+  __$$SwitchProductStartImplCopyWithImpl(_$SwitchProductStartImpl _value,
+      $Res Function(_$SwitchProductStartImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? selectedProduct = null,
+    Object? oldProduct = null,
+  }) {
+    return _then(_$SwitchProductStartImpl(
+      selectedProduct: null == selectedProduct
+          ? _value.selectedProduct
+          : selectedProduct // ignore: cast_nullable_to_non_nullable
+              as Product,
+      oldProduct: null == oldProduct
+          ? _value.oldProduct
+          : oldProduct // ignore: cast_nullable_to_non_nullable
+              as Product,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProductCopyWith<$Res> get selectedProduct {
+    return $ProductCopyWith<$Res>(_value.selectedProduct, (value) {
+      return _then(_value.copyWith(selectedProduct: value));
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ProductCopyWith<$Res> get oldProduct {
+    return $ProductCopyWith<$Res>(_value.oldProduct, (value) {
+      return _then(_value.copyWith(oldProduct: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$SwitchProductStartImpl implements SwitchProductStart {
+  const _$SwitchProductStartImpl(
+      {required this.selectedProduct, required this.oldProduct});
+
+  @override
+  final Product selectedProduct;
+  @override
+  final Product oldProduct;
+
+  @override
+  String toString() {
+    return 'SwitchProduct(selectedProduct: $selectedProduct, oldProduct: $oldProduct)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SwitchProductStartImpl &&
+            (identical(other.selectedProduct, selectedProduct) ||
+                other.selectedProduct == selectedProduct) &&
+            (identical(other.oldProduct, oldProduct) ||
+                other.oldProduct == oldProduct));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, selectedProduct, oldProduct);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SwitchProductStartImplCopyWith<_$SwitchProductStartImpl> get copyWith =>
+      __$$SwitchProductStartImplCopyWithImpl<_$SwitchProductStartImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(Product selectedProduct, Product oldProduct) $default, {
+    required TResult Function(List<Product> productsToSwitch) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return $default(selectedProduct, oldProduct);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(Product selectedProduct, Product oldProduct)? $default, {
+    TResult? Function(List<Product> productsToSwitch)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return $default?.call(selectedProduct, oldProduct);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(Product selectedProduct, Product oldProduct)? $default, {
+    TResult Function(List<Product> productsToSwitch)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(selectedProduct, oldProduct);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(SwitchProductStart value) $default, {
+    required TResult Function(SwitchProductSuccessful value) successful,
+    required TResult Function(SwitchProductError value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(SwitchProductStart value)? $default, {
+    TResult? Function(SwitchProductSuccessful value)? successful,
+    TResult? Function(SwitchProductError value)? error,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(SwitchProductStart value)? $default, {
+    TResult Function(SwitchProductSuccessful value)? successful,
+    TResult Function(SwitchProductError value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SwitchProductStart implements SwitchProduct {
+  const factory SwitchProductStart(
+      {required final Product selectedProduct,
+      required final Product oldProduct}) = _$SwitchProductStartImpl;
+
+  Product get selectedProduct;
+  Product get oldProduct;
+  @JsonKey(ignore: true)
+  _$$SwitchProductStartImplCopyWith<_$SwitchProductStartImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SwitchProductSuccessfulImplCopyWith<$Res> {
+  factory _$$SwitchProductSuccessfulImplCopyWith(
+          _$SwitchProductSuccessfulImpl value,
+          $Res Function(_$SwitchProductSuccessfulImpl) then) =
+      __$$SwitchProductSuccessfulImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<Product> productsToSwitch});
+}
+
+/// @nodoc
+class __$$SwitchProductSuccessfulImplCopyWithImpl<$Res>
+    extends _$SwitchProductCopyWithImpl<$Res, _$SwitchProductSuccessfulImpl>
+    implements _$$SwitchProductSuccessfulImplCopyWith<$Res> {
+  __$$SwitchProductSuccessfulImplCopyWithImpl(
+      _$SwitchProductSuccessfulImpl _value,
+      $Res Function(_$SwitchProductSuccessfulImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? productsToSwitch = null,
+  }) {
+    return _then(_$SwitchProductSuccessfulImpl(
+      null == productsToSwitch
+          ? _value._productsToSwitch
+          : productsToSwitch // ignore: cast_nullable_to_non_nullable
+              as List<Product>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SwitchProductSuccessfulImpl implements SwitchProductSuccessful {
+  const _$SwitchProductSuccessfulImpl(final List<Product> productsToSwitch)
+      : _productsToSwitch = productsToSwitch;
+
+  final List<Product> _productsToSwitch;
+  @override
+  List<Product> get productsToSwitch {
+    if (_productsToSwitch is EqualUnmodifiableListView)
+      return _productsToSwitch;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_productsToSwitch);
+  }
+
+  @override
+  String toString() {
+    return 'SwitchProduct.successful(productsToSwitch: $productsToSwitch)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SwitchProductSuccessfulImpl &&
+            const DeepCollectionEquality()
+                .equals(other._productsToSwitch, _productsToSwitch));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_productsToSwitch));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SwitchProductSuccessfulImplCopyWith<_$SwitchProductSuccessfulImpl>
+      get copyWith => __$$SwitchProductSuccessfulImplCopyWithImpl<
+          _$SwitchProductSuccessfulImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(Product selectedProduct, Product oldProduct) $default, {
+    required TResult Function(List<Product> productsToSwitch) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return successful(productsToSwitch);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(Product selectedProduct, Product oldProduct)? $default, {
+    TResult? Function(List<Product> productsToSwitch)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return successful?.call(productsToSwitch);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(Product selectedProduct, Product oldProduct)? $default, {
+    TResult Function(List<Product> productsToSwitch)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(productsToSwitch);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(SwitchProductStart value) $default, {
+    required TResult Function(SwitchProductSuccessful value) successful,
+    required TResult Function(SwitchProductError value) error,
+  }) {
+    return successful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(SwitchProductStart value)? $default, {
+    TResult? Function(SwitchProductSuccessful value)? successful,
+    TResult? Function(SwitchProductError value)? error,
+  }) {
+    return successful?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(SwitchProductStart value)? $default, {
+    TResult Function(SwitchProductSuccessful value)? successful,
+    TResult Function(SwitchProductError value)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SwitchProductSuccessful implements SwitchProduct {
+  const factory SwitchProductSuccessful(final List<Product> productsToSwitch) =
+      _$SwitchProductSuccessfulImpl;
+
+  List<Product> get productsToSwitch;
+  @JsonKey(ignore: true)
+  _$$SwitchProductSuccessfulImplCopyWith<_$SwitchProductSuccessfulImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SwitchProductErrorImplCopyWith<$Res> {
+  factory _$$SwitchProductErrorImplCopyWith(_$SwitchProductErrorImpl value,
+          $Res Function(_$SwitchProductErrorImpl) then) =
+      __$$SwitchProductErrorImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Object error, StackTrace stackTrace});
+}
+
+/// @nodoc
+class __$$SwitchProductErrorImplCopyWithImpl<$Res>
+    extends _$SwitchProductCopyWithImpl<$Res, _$SwitchProductErrorImpl>
+    implements _$$SwitchProductErrorImplCopyWith<$Res> {
+  __$$SwitchProductErrorImplCopyWithImpl(_$SwitchProductErrorImpl _value,
+      $Res Function(_$SwitchProductErrorImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+    Object? stackTrace = null,
+  }) {
+    return _then(_$SwitchProductErrorImpl(
+      null == error ? _value.error : error,
+      null == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SwitchProductErrorImpl implements SwitchProductError {
+  const _$SwitchProductErrorImpl(this.error, this.stackTrace);
+
+  @override
+  final Object error;
+  @override
+  final StackTrace stackTrace;
+
+  @override
+  String toString() {
+    return 'SwitchProduct.error(error: $error, stackTrace: $stackTrace)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SwitchProductErrorImpl &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SwitchProductErrorImplCopyWith<_$SwitchProductErrorImpl> get copyWith =>
+      __$$SwitchProductErrorImplCopyWithImpl<_$SwitchProductErrorImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(Product selectedProduct, Product oldProduct) $default, {
+    required TResult Function(List<Product> productsToSwitch) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return error(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(Product selectedProduct, Product oldProduct)? $default, {
+    TResult? Function(List<Product> productsToSwitch)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return error?.call(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(Product selectedProduct, Product oldProduct)? $default, {
+    TResult Function(List<Product> productsToSwitch)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error, stackTrace);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(SwitchProductStart value) $default, {
+    required TResult Function(SwitchProductSuccessful value) successful,
+    required TResult Function(SwitchProductError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(SwitchProductStart value)? $default, {
+    TResult? Function(SwitchProductSuccessful value)? successful,
+    TResult? Function(SwitchProductError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(SwitchProductStart value)? $default, {
+    TResult Function(SwitchProductSuccessful value)? successful,
+    TResult Function(SwitchProductError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SwitchProductError implements SwitchProduct, ErrorAction {
+  const factory SwitchProductError(
+          final Object error, final StackTrace stackTrace) =
+      _$SwitchProductErrorImpl;
+
+  Object get error;
+  StackTrace get stackTrace;
+  @JsonKey(ignore: true)
+  _$$SwitchProductErrorImplCopyWith<_$SwitchProductErrorImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

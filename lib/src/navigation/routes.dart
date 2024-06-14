@@ -67,12 +67,9 @@ class RouterApp {
             ),
             GoRoute(
                 name: 'cameraApp',
-                path: 'cameraAppPage/:cameras',
+                path: 'cameraAppPage',
                 builder: (BuildContext context, GoRouterState state) {
-                  final List<CameraInfo> cameras = state.pathParameters['cameras']! as List<CameraInfo>;
-                  return CameraApp(
-                    cameras: cameras,
-                  );
+                  return const CameraApp();
                 }),
             // GoRoute(
             //   name: 'marketsPage',
@@ -136,11 +133,11 @@ class RouterApp {
           path: '/createRecipesPage',
           builder: (BuildContext context, GoRouterState state) => const CreateRecipesPage(),
         ),
-        GoRoute(
-          name: 'generatedRecipe',
-          path: '/generatedRecipePage',
-          builder: (BuildContext context, GoRouterState state) => const GeneratedRecipePage(),
-        ),
+        // GoRoute(
+        //   name: 'generatedRecipe',
+        //   path: '/generatedRecipePage',
+        //   builder: (BuildContext context, GoRouterState state) => const GeneratedRecipePage(),
+        // ),
         GoRoute(
           name: 'editListPage',
           path: '/editListPage/:groceryList',

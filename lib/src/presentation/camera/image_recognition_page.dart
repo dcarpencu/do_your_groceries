@@ -11,9 +11,8 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:redux/redux.dart';
 
 class CameraApp extends StatefulWidget {
-  const CameraApp({required this.cameras, super.key});
+  const CameraApp({super.key});
 
-  final List<CameraInfo> cameras;
 
   @override
   State<CameraApp> createState() => _CameraAppState();
@@ -30,7 +29,7 @@ class _CameraAppState extends State<CameraApp> {
   void initState() {
     super.initState();
     _store = StoreProvider.of<AppState>(context, listen: false);
-    _store.dispatch(SetSelectedCamera(widget.cameras[0]));
+    _store.dispatch(SetSelectedCamera(_store.state.cameras[0]));
 
     controller = CameraController(CameraInfo.toCameraDescription(_store.state.selectedCamera!), ResolutionPreset.max);
     _store.dispatch(InitializeControllerStart(controller: controller));

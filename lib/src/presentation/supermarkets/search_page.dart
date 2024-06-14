@@ -114,9 +114,6 @@ class _SearchProductsPageState extends State<SearchProductsPage> {
                               padding: const EdgeInsets.all(8),
                               itemCount: products.length + (isLoadingMore ? 1 : 0),
                               itemBuilder: (BuildContext context, int index) {
-                                print('\n\n\n LENGTH ${products.length} \n\n\n');
-                                print('\n\n\n INDEX: $index \n\n\n');
-
                                 final Product product = products[index];
 
                                 return ModelItem(

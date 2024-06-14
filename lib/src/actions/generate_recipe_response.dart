@@ -1,25 +1,13 @@
 part of 'index.dart';
 
-const String _kGenerateRecipeResponsePendingId = 'GenerateRecipeResponse';
-
 @freezed
-class GenerateRecipeResponse with _$GenerateRecipeResponse implements AppAction {
-  @Implements<ActionStart>()
-  const factory GenerateRecipeResponse.start(GenerativeModel model, String prompt, {
-    @Default(_kGenerateRecipeResponsePendingId) String pendingId,
-  }) = GenerateRecipeResponseStart;
+abstract class ListenForGeneratedRecipeResponse with _$ListenForGeneratedRecipeResponse implements AppAction {
+  const factory ListenForGeneratedRecipeResponse.start(GenerativeModel model, String prompt, {required bool isGeneratingRecipe}) = ListenForGeneratedRecipeResponseStart;
 
-  @Implements<ActionDone>()
-  const factory GenerateRecipeResponse.successful(String? response, [
-    @Default(_kGenerateRecipeResponsePendingId) String pendingId,
-  ]) = GenerateRecipeResponseSuccessful;
+  const factory ListenForGeneratedRecipeResponse.done({required bool isGeneratingRecipe}) = ListenForGeneratedRecipeResponseDone;
 
-  @Implements<ActionDone>()
+  const factory ListenForGeneratedRecipeResponse.event(String? generatedResponse) = OnGeneratedRecipeResonseEvent;
+
   @Implements<ErrorAction>()
-  const factory GenerateRecipeResponse.error(
-    Object error, StackTrace stackTrace, [
-    @Default(_kGenerateRecipeResponsePendingId) String pendingId,
-  ]) = GenerateRecipeResponseError;
-
-  static String get pendingKey => _kGenerateRecipeResponsePendingId;
+  const factory ListenForGeneratedRecipeResponse.error(Object error, StackTrace stackTrace) = _ListenForGeneratedRecipeResponseError;
 }

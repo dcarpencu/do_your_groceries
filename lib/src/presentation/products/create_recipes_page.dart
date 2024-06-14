@@ -2,6 +2,7 @@ import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/containers/pending_container.dart';
 import 'package:do_you_groceries/src/models/filter_chip_enums.dart';
 import 'package:do_you_groceries/src/models/index.dart';
+import 'package:do_you_groceries/src/presentation/user/generated_recipe_page.dart';
 import 'package:do_you_groceries/src/ui_elements/components/filterChipSelection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -100,9 +101,19 @@ class _CreateRecipesPageState extends State<CreateRecipesPage> {
                 TextButton(
                   onPressed: () {
                     final String prompt = 'Imi doresc o reteta culinara care sa cuprinda contina: ${_store.state.basicIngredientsText}; sa tina cont de urmatoarele restrictii alimentare: ${_store.state.dietaryRestrictionsText}; si sa aiba legatura cu bucataria: ${_store.state.cuisineText}';
-                    _store.dispatch(GenerateRecipeResponseStart(_model, prompt));
-                    context.pushNamed('generatedRecipe');
-                    print(_store.state.generatorResponse);
+                    // _store.dispatch(GenerateRecipeResponseStart(_model, prompt));
+                    // context.pushNamed('generatedRecipe');
+                    //print(_store.state.generatorResponse);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute<void>(
+                        builder: (BuildContext context) => RecipeScreen(
+                          model: _model,
+                          prompt: prompt,
+                        ),
+                      ),
+                    );
+
                   },
                   child: const Icon(Icons.generating_tokens, size: 48,),
                 ),

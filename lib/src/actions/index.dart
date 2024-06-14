@@ -38,6 +38,7 @@ part 'edit_grocery_list.dart';
 part 'edit_product.dart';
 part 'get_supermarket_products_new.dart';
 part 'get_products_after_edit.dart';
+part 'switch_product.dart';
 
 abstract class AppAction {}
 

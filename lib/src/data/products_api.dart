@@ -137,6 +137,7 @@ class ProductsApi {
           category: category,
           supermarket: doc['supermarket'] as String,
           image: doc['image'] as String,
+          page: doc['page'] as int,
         ),
       );
     }
@@ -174,11 +175,7 @@ class ProductsApi {
 
   Future<void> addProductToGroceryList(
     Product product,
-    String groceryListId,
-    int page, {
-    required String marketName,
-    required String category,
-  }) async {
+    String groceryListId,) async {
     final DocumentReference<Map<String, dynamic>> listRef = _firestore.collection('lists').doc(groceryListId);
     final DocumentSnapshot<Map<String, dynamic>> snapshot = await listRef.get();
 
@@ -187,7 +184,7 @@ class ProductsApi {
     final List<dynamic>? productIds =
         (snapshot.data()?['productIds'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
 
-    productIds?.add('/$marketName/categories/$category/pages/page_$page/${product.productId}');
+    productIds?.add('/${product.supermarket}/categories/${product.category}/pages/page_${product.page}/${product.productId}');
     listData['productIds'] = productIds;
 
     await listRef.update(listData);
@@ -254,5 +251,12 @@ class ProductsApi {
     productsList.add(Product(
       productId: product.productId, name: name, image: image, price: price, category: '',
     ),);
+  }
+
+  Future<List<Product>> switchProduct({
+    required Product selectedProduct,
+    required Product oldProduct,
+  }) async {
+    return <Product>[selectedProduct, oldProduct];
   }
 }

@@ -1,41 +1,57 @@
-import 'package:do_you_groceries/src/actions/index.dart';
-import 'package:do_you_groceries/src/containers/pending_container.dart';
-import 'package:do_you_groceries/src/models/index.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
-import 'package:redux/redux.dart';
+import 'package:google_generative_ai/google_generative_ai.dart';
 
-class GeneratedRecipePage extends StatefulWidget {
-  const GeneratedRecipePage({super.key});
+class RecipeScreen extends StatefulWidget {
+  const RecipeScreen({required this.model, required this.prompt, super.key});
+
+  final GenerativeModel model;
+  final String prompt;
 
   @override
-  State<GeneratedRecipePage> createState() => _GeneratedRecipePageState();
+  RecipeScreenState createState() => RecipeScreenState();
 }
 
-class _GeneratedRecipePageState extends State<GeneratedRecipePage> {
-  late Store<AppState> store;
+class RecipeScreenState extends State<RecipeScreen> {
+  late Stream<String?> recipeStream;
 
   @override
   void initState() {
-    store = StoreProvider.of<AppState>(context,listen: false);
     super.initState();
+    recipeStream = generateRecipeResponse(widget.model, widget.prompt);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Reteta'),),
-      body: PendingContainer(builder: (BuildContext context, Set<String> pending) {
-        if (pending.contains(GenerateRecipeResponse.pendingKey)) {
-          return const Center(child: CircularProgressIndicator(),);
-        }
-        return SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Text(store.state.generatorResponse!),
-          ),
-        );
-      },),
+      appBar: AppBar(
+        title: const Text('Generated Recipe'),
+      ),
+      body: StreamBuilder<String?>(
+        stream: recipeStream,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else if (!snapshot.hasData) {
+            return const Center(child: Text('No data received'));
+          } else {
+            return Padding(
+              padding: const EdgeInsets.all(16),
+              child: Text(snapshot.data!),
+            );
+          }
+        },
+      ),
     );
+  }
+
+  Stream<String?> generateRecipeResponse(GenerativeModel model, String prompt) async* {
+    final List<Content> content = <Content>[Content.text(prompt)];
+    final Stream<GenerateContentResponse> response = model.generateContentStream(content);
+
+    await for (final GenerateContentResponse chunk in response) {
+      yield chunk.text;
+    }
   }
 }
