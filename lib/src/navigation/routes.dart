@@ -115,11 +115,11 @@ class RouterApp {
           path: '/userProfilePage',
           builder: (BuildContext context, GoRouterState state) => const UserProfilePage(),
         ),
-        GoRoute(
-          name: 'addPeople',
-          path: '/addPeoplePage',
-          builder: (BuildContext context, GoRouterState state) => const AddPeoplePage(),
-        ),
+        // GoRoute(
+        //   name: 'addPeople',
+        //   path: '/addPeoplePage',
+        //   builder: (BuildContext context, GoRouterState state) => const AddPeoplePage(),
+        // ),
         GoRoute(
           name: 'notifications',
           path: '/notificationsPage',

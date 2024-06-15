@@ -2,6 +2,7 @@ import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:do_you_groceries/src/navigation/transitions.dart';
 import 'package:do_you_groceries/src/presentation/products/edit_list_page.dart';
+import 'package:do_you_groceries/src/presentation/user/add_people_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
@@ -115,7 +116,12 @@ class _ListsCarouselState extends State<ListsCarousel> {
                           } else if (item == Options.edit) {
                             Navigator.of(context).push(createRoute(EditListPage(groceryList: groceryList)));
                           } else if (item == Options.invite) {
-                            context.pushNamed('addPeople');
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute<void>(
+                                builder: (BuildContext context) => AddPeoplePage(groceryList: groceryList),
+                              ),
+                            );
                           }
                         },
                         itemBuilder: (BuildContext context) => <PopupMenuEntry<Options>>[

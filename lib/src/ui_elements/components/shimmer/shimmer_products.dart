@@ -1,33 +1,59 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
-class ShimmerProducts extends StatefulWidget {
+class ShimmerProducts extends StatelessWidget {
   const ShimmerProducts({super.key});
 
   @override
-  State<ShimmerProducts> createState() => _ShimmerProductsState();
-}
-
-class _ShimmerProductsState extends State<ShimmerProducts> {
-  @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.55, // Set a specific height for the Shimmer
+    return Expanded(
       child: Shimmer.fromColors(
         baseColor: Colors.grey[300]!,
         highlightColor: Colors.grey[100]!,
-        child: ListView.separated(
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: 4,
-          separatorBuilder: (BuildContext context, int index) => const SizedBox(width: 16),
+        child: ListView.builder(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          itemCount: 5,
           itemBuilder: (BuildContext context, int index) {
             return Container(
-              margin: const EdgeInsets.all(8),
-              height: 80,
-              width: MediaQuery.of(context).size.width * 0.9,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(8),
+              margin: const EdgeInsets.symmetric(vertical: 4),
+              child: Card(
+                elevation: 1,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                child: ListTile(
+                  leading: Container(
+                    width: 72,
+                    height: 72,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(36),
+                    ),
+                  ),
+                  title: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Container(
+                        height: 20,
+                        width: MediaQuery.of(context).size.width * 0.6,
+                        color: Colors.white,
+                      ),
+                      const SizedBox(height: 8),
+                      Container(
+                        height: 16,
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        color: Colors.white,
+                      ),
+                    ],
+                  ),
+                  subtitle: Container(
+                    margin: const EdgeInsets.only(top: 4),
+                    height: 16,
+                    width: MediaQuery.of(context).size.width * 0.2,
+                    color: Colors.white,
+                  ),
+                ),
               ),
             );
           },
