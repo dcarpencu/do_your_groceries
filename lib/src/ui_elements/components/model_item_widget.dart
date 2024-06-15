@@ -26,7 +26,6 @@ class ModelItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         elevation: 1,
         child: SizedBox(
-          //padding: const EdgeInsets.all(8),
           height: 100,
           width: 120,
           child: ElevatedButton(
@@ -66,29 +65,38 @@ class ModelItem extends StatelessWidget {
                   width: 12,
                 ),
                 Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        model.name,
-                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                      ),
-                      Row(
-                        children: <Widget>[
-                          const Icon(
-                            Icons.monetization_on,
-                            size: 12,
+                  child: Align(
+                    child: Column(
+                      //crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            model.name,
+                            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
                           ),
-                          const SizedBox(
-                            width: 8,
-                          ),
-                          Text(
-                            '${model.price} RON',
-                            style: const TextStyle(fontSize: 16),
-                          ),
-                        ],
-                      ),
-                    ],
+                        ),
+                        Row(
+                          children: <Widget>[
+                            const Icon(
+                              Icons.monetization_on,
+                              size: 12,
+                            ),
+                            const SizedBox(
+                              width: 8,
+                            ),
+                            Text(
+                              '${model.price} RON',
+                              style: const TextStyle(fontSize: 16),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],

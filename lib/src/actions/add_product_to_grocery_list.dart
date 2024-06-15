@@ -1,14 +1,26 @@
 part of 'index.dart';
 
+const String _kAddProductToGroceryListPendingId = 'AddProductToGroceryList';
+
 @freezed
 class AddProductToGroceryList with _$AddProductToGroceryList implements AppAction {
-  const factory AddProductToGroceryList(
-    Product product,
-    String groceryListId,
-  ) = AddProductToGroceryListStart;
+  @Implements<ActionStart>()
+  const factory AddProductToGroceryList.start(Product product,
+      String groceryListId, {
+    @Default(_kAddProductToGroceryListPendingId) String pendingId,
+  }) = AddProductToGroceryListStart;
 
-  const factory AddProductToGroceryList.successful() = AddProductToGroceryListSuccessful;
+  @Implements<ActionDone>()
+  const factory AddProductToGroceryList.successful([
+    @Default(_kAddProductToGroceryListPendingId) String pendingId,
+  ]) = AddProductToGroceryListSuccessful;
 
+  @Implements<ActionDone>()
   @Implements<ErrorAction>()
-  const factory AddProductToGroceryList.error(Object error, StackTrace stackTrace) = AddProductToGroceryListError;
+  const factory AddProductToGroceryList.error(
+    Object error, StackTrace stackTrace, [
+    @Default(_kAddProductToGroceryListPendingId) String pendingId,
+  ]) = AddProductToGroceryListError;
+
+  static String get pendingKey => _kAddProductToGroceryListPendingId;
 }

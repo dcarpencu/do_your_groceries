@@ -55,7 +55,7 @@ class _CreateListPageState extends State<CreateListPage> {
 
     _store = StoreProvider.of<AppState>(context);
     _store.dispatch(
-      CreateGroceryList(
+      CreateGroceryListStart(
         title: _titleController.text,
         description: _descriptionController.text,
         selectedIcon: _selectedValue.toString(),

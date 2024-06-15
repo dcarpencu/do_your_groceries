@@ -50,7 +50,7 @@ class _CreateProductPageState extends State<CreateProductPage> {
     }
 
     StoreProvider.of<AppState>(context).dispatch(
-      CreateProduct(
+      CreateProductStart(
         image: _selectedValue,
         name: _title.text,
         price: double.parse(_price.text),

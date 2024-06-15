@@ -67,7 +67,7 @@ class _HomePageState extends State<HomePage> {
               ),
               PendingContainer(
                 builder: (BuildContext context, Set<String> pending) {
-                  if (pending.contains(GetGroceryLists.pendingKey)) {
+                  if ((pending.contains(GetGroceryLists.pendingKey)) || (pending.contains(CreateGroceryList.pendingKey))) {
                     return const Center(
                       child: ListsCarouselShimmer(),
                       // child: LoadingAnimationWidget.horizontalRotatingDots(
