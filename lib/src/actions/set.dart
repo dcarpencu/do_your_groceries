@@ -76,3 +76,9 @@ class SetDietaryRestrictionsFilterSelection with _$SetDietaryRestrictionsFilterS
   const factory SetDietaryRestrictionsFilterSelection({required String selectedItems}) =
       SetDietaryRestrictionsFilterSelection$;
 }
+
+@freezed
+class ClearRequests with _$ClearRequests implements AppAction {
+  const factory ClearRequests() = ClearRequests$;
+}
+

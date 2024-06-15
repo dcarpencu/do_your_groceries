@@ -125,14 +125,7 @@ class _UserProductsPageState extends State<UserProductsPage> {
           floatingActionButton: FloatingActionButton(
             onPressed: () {
               _store.dispatch(const GetCamerasStart());
-
               context.pushNamed('cameraApp');
-
-              // Navigator.of(context).push(
-              //   MaterialPageRoute<Widget>(
-              //     builder: (BuildContext context) => const CameraApp(),
-              //   ),
-              // );
             },
             tooltip: 'Camera',
             child: const Icon(Icons.camera_alt),

@@ -10,7 +10,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:redux/redux.dart';
 
 class AddPeoplePage extends StatefulWidget {
-  const AddPeoplePage({super.key, required this.groceryList});
+  const AddPeoplePage({required this.groceryList, super.key});
 
   final GroceryList groceryList;
 
@@ -138,7 +138,7 @@ class _AddPeoplePageState extends State<AddPeoplePage> {
                               clipBehavior: Clip.antiAliasWithSaveLayer,
                               child: ListTile(
                                 leading: Image.asset(
-                                  'assets/placeholders/friend.png',
+                                  'assets/placeholders/buddy.png',
                                   width: 72,
                                   height: 72,
                                 ),

@@ -1,69 +1,12 @@
-const List<String> marketsNames = <String>['Auchan', 'Carrefour', 'Kaufland', 'Penny', 'Profi'];
+const List<String> marketsNames = <String>['Auchan', 'Carrefour', 'Kaufland', 'Penny', 'Profi', 'Mega Image'];
+
+// TODO(dcarpencu): Add to assets
 const List<String> marketsPictures = <String>[
   'https://www.hellopark.ro/pictures/original/318255e7cfa2c1093c-auchan.jpg',
   'https://logowik.com/content/uploads/images/210_carrefour.jpg',
   'https://kaufland.media.schwarz/is/image/schwarz/t-kaufland-magazin%20%282%29?JGstbGVnYWN5LW9uc2l0ZS00JA==',
   'https://assets-eu-01.kc-usercontent.com/b50b8cce-450a-0138-7b43-de6bc2f3ad32/dfa9eff8-af7e-4d76-941f-226973049f2c/otopeni.jpg?w=1500&fm=webp&lossless=0&q=80',
   'https://storage0.dms.mpinteractiv.ro/media/1/1481/21335/22104753/1/profi.jpg',
-];
-
-const List<String> blacklist = <String>[
-  'g',
-  'de',
-  'din',
-  '+/-',
-  'la',
-  'un',
-  'kg',
-  'G',
-  '%',
-  'cu',
-  ',',
-  'l',
-  'punga',
-  'to',
-  'auchan',
-  'cuburi',
-  'ready',
-  'eat',
-  'fresh',
-  'pe',
-  'bucata',
-  'pret',
-  'bucati',
-  'netratate',
-  'dupa',
-  'recoltare',
-  'dupa',
-  'si',
-  'eco',
-  'red',
-  'delicious',
-  'golden',
-  'idared',
-  'jonaprince',
-  'caserola',
-  'plasa',
-  'agriro',
-  'drink',
-  'grasime',
-  'ml',
-  'gr',
-  'vrac',
-  'buc',
-  'pls',
-  'ptr',
-  'fiert',
-  'nrg',
-  'x',
-  'dz',
-  'pet',
-  'trk',
-  't',
-  'mg',
-  'doza',
-  'nrgb',
-  'per',
 ];
 
 const List<String> supermarketCategories = <String>[
@@ -98,6 +41,7 @@ Map<String, Map<String, String>> allSupermarkets = <String, Map<String, String>>
   'Kaufland': Kaufland,
   'Penny': Penny,
   'Profi': Profi,
+  'Mega Image': Mega,
 };
 
 Map<String, String> Auchan = <String, String>{
@@ -148,4 +92,17 @@ Map<String, String> Profi = <String, String>{
   supermarketCategories[3]: 'https://tazz.ro/timisoara/profi/lactate-si-oua/19615/2094146/dpt',
   supermarketCategories[4]: 'https://tazz.ro/timisoara/profi/bauturi-non-alcoolice/19615/2094149/dpt',
   supermarketCategories[5]: 'https://tazz.ro/timisoara/profi/bauturi-alcoolice/19615/2094150/dpt',
+};
+
+Map<String, String> Mega = <String, String>{
+  supermarketCategories[0]: 'https://tazz.ro/timisoara/auchan-hypermarket-timisoara/legume-si-fructe/9063/2355527/dpt',
+  supermarketCategories[1]:
+  'https://tazz.ro/timisoara/auchan-hypermarket-timisoara/macelarie-si-peste/9063/2355685/dpt',
+  supermarketCategories[2]:
+  'https://tazz.ro/timisoara/auchan-hypermarket-timisoara/mezeluri-si-specialitati/9063/2356037/dpt',
+  supermarketCategories[3]:
+  'https://tazz.ro/timisoara/auchan-hypermarket-timisoara/lactate-branzeturi-si-oua/9063/2355796/dpt',
+  supermarketCategories[4]:
+  'https://tazz.ro/timisoara/auchan-hypermarket-timisoara/bauturi-non-alcoolice/9063/2356141/dpt',
+  supermarketCategories[5]: 'https://tazz.ro/timisoara/auchan-hypermarket-timisoara/bauturi-alcoolice/9063/2356655/dpt',
 };

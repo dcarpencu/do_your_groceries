@@ -64,6 +64,7 @@ Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   TypedReducer<AppState, GetSupermarketProductsNewSuccessful>(_getSupermarketProductsNewSuccessful).call,
   TypedReducer<AppState, GetProductsAfterEditSuccessful>(_getProductsAfterEditSuccessful).call,
   TypedReducer<AppState, SwitchProductSuccessful>(_switchProductSuccessful).call,
+  TypedReducer<AppState, ClearRequests>(_clearRequests).call,
 ]);
 
 AppState _setMarketProductsToEmpty(AppState state, SetMarketProductsToEmpty action) {
@@ -121,7 +122,7 @@ AppState _onProductsEvent(AppState state, OnProductsEvent action) {
 }
 
 AppState _onRequestsEvent(AppState state, OnRequestsEvent action) {
-  return state.copyWith(requests: <AddRequest>{...state.requests, ...action.requests}.toList());
+  return state.copyWith(requests: <AddRequest>{...action.requests}.toList());
 }
 
 AppState _createGroceryListSuccessful(AppState state, CreateGroceryListSuccessful action) {
@@ -241,4 +242,8 @@ AppState _getProductsAfterEditSuccessful(AppState state, GetProductsAfterEditSuc
 
 AppState _switchProductSuccessful(AppState state, SwitchProductSuccessful action) {
   return state.copyWith(productsGroceryList: <Product>[...state.productsGroceryList]..remove(action.productToSwitch));
+}
+
+AppState _clearRequests(AppState state, ClearRequests action) {
+  return state.copyWith(requests: <AddRequest>[]);
 }

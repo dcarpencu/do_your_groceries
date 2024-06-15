@@ -1,19 +1,20 @@
 import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/containers/requests_container.dart';
 import 'package:do_you_groceries/src/models/index.dart';
+import 'package:do_you_groceries/src/ui_elements/components/background_wave_clipper.dart';
+import 'package:do_you_groceries/src/ui_elements/components/sliver_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:go_router/go_router.dart';
 import 'package:redux/redux.dart';
 
 class NotificationsPage extends StatefulWidget {
   const NotificationsPage({super.key});
 
   @override
-  State<NotificationsPage> createState() => _AddPeoplePageState();
+  State<NotificationsPage> createState() => _NotificationsPageState();
 }
 
-class _AddPeoplePageState extends State<NotificationsPage> {
+class _NotificationsPageState extends State<NotificationsPage> {
   late Store<AppState> store;
   bool isAccepted = false;
 
@@ -32,93 +33,150 @@ class _AddPeoplePageState extends State<NotificationsPage> {
 
     store
       ..dispatch(const SetNotificationOff())
-      ..dispatch(ListenForRequestsDone(isNotifications: store.state.isNotifications));
+      ..dispatch(ListenForRequestsDone(isNotifications: store.state.isNotifications))
+      ..dispatch(const ClearRequests());
     super.dispose();
+  }
+
+  void _confirmAcceptRequest(AddRequest request) {
+    showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Accept Request'),
+          content: Text('Do you want to accept the request from ${request.senderName}?'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                store.dispatch(
+                  AcceptRequestStart(
+                    groceryListId: request.groceryListId,
+                    requestToRemove: request,
+                  ),
+                );
+                isAccepted = true;
+                Navigator.of(context).pop();
+              },
+              child: const Text('Accept'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _confirmRejectRequest(AddRequest request) {
+    showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Reject Request'),
+          content: Text('Do you want to reject the request from ${request.senderName}?'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                store
+                  ..dispatch(RemoveRequestSimple(request: request))
+                  ..dispatch(RemoveRequestStart(requestToRemove: request));
+                Navigator.of(context).pop();
+              },
+              child: const Text('Reject'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Notifications'),
-      ),
       body: RequestsContainer(
         builder: (BuildContext context, List<AddRequest> requests) {
-          return ListView.builder(
-            itemCount: requests.length,
-            itemBuilder: (BuildContext context, int index) {
-              final AddRequest request = requests.elementAt(index);
-              return Padding(
-                padding: const EdgeInsets.all(8),
-                child: Material(
-                  borderRadius: BorderRadius.circular(24),
-                  elevation: 4,
-                  child: SizedBox(
-                    height: 100,
-                    width: 120,
-                    child: Row(
-                      children: <Widget>[
-                        Column(
-                          children: <Widget>[
-                            Text(
-                              request.senderName,
+          return CustomScrollView(
+            slivers: <Widget>[
+              SliverPersistentHeader(
+                delegate: SliverAppBarProducts(
+                  'notifications', // Assume this is the icon for notifications
+                  'Notifications',
+                ),
+                pinned: true,
+              ),
+              if (requests.isNotEmpty)
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    childCount: requests.length,
+                    (BuildContext context, int index) {
+                      final AddRequest request = requests.elementAt(index);
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                        child: Card(
+                          elevation: 4,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          child: ListTile(
+                            leading: const Icon(
+                              Icons.notifications,
+                              size: 40,
+                              color: Colors.lightBlue,
                             ),
-                          ],
-                        ),
-                        const SizedBox(
-                          width: 12,
-                        ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                request.listName,
-                                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                              ),
-                              Text(
-                                request.senderEmail,
-                                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                              ),
-                              Row(
-                                children: <Widget>[
-                                  IconButton(
-                                    iconSize: 36,
-                                    icon: const Icon(Icons.check_circle),
-                                    onPressed: () {
-                                      store.dispatch(
-                                        AcceptRequestStart(
-                                          groceryListId: request.groceryListId,
-                                          requestToRemove: request,
-                                        ),
-                                      );
-                                      isAccepted = true;
-                                      context.pop();
-                                    },
+                            title: Text(
+                              request.senderName,
+                              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                  IconButton(
-                                    iconSize: 36,
-                                    icon: const Icon(Icons.cancel),
-                                    onPressed: () {
-                                      store
-                                        ..dispatch(RemoveRequestSimple(request: request))
-                                        ..dispatch(RemoveRequestStart(requestToRemove: request));
-                                    },
-                                  ),
-                                  const SizedBox(
-                                    width: 8,
-                                  ),
-                                ],
-                              ),
-                            ],
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            subtitle: Text(
+                              request.listName,
+                              style: Theme.of(context).textTheme.bodyLarge,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            trailing: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                IconButton(
+                                  icon: const Icon(Icons.check_circle, color: Colors.green),
+                                  onPressed: () => _confirmAcceptRequest(request),
+                                ),
+                                IconButton(
+                                  icon: const Icon(Icons.cancel, color: Colors.red),
+                                  onPressed: () => _confirmRejectRequest(request),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ],
-                    ),
+                      );
+                    },
+                  ),
+                )
+              else
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    childCount: 1,
+                    (BuildContext context, int index) {
+                      return const Center(child: Text('No notifications yet.'));
+                    },
                   ),
                 ),
-              );
-            },
+            ],
           );
         },
       ),

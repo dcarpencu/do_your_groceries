@@ -12,6 +12,7 @@ import 'package:do_you_groceries/src/ui_elements/components/home_page_components
 import 'package:do_you_groceries/src/ui_elements/components/shimmer/shimmer_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:go_router/go_router.dart';
 import 'package:redux/redux.dart';
 
 class HomePage extends StatefulWidget {
@@ -153,7 +154,8 @@ class _HomePageState extends State<HomePage> {
                     icon: const Icon(Icons.notifications),
                     onPressed: () {
                       _store.dispatch(const SetNotificationOn());
-                      Navigator.of(context).push(createRoute(const NotificationsPage()));
+                      context.pushNamed('notifications');
+                      //Navigator.of(context).push(createRoute(const NotificationsPage()));
                     },
                   ),
                   IconButton(

@@ -6,6 +6,7 @@ class GroceryList with _$GroceryList {
     required String groceryListId,
     required String title,
     required String selectedIcon,
+    @Default(<String>{}) Set<String> pendingRequests,
     @Default('') String description,
     @Default(<String>[]) List<String> productIds,
     @Default(1) int usersCount,

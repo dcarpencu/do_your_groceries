@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 
 class AuthApi {
   AuthApi(this._auth, this._firestore);
@@ -118,8 +119,17 @@ class AuthApi {
     if (groceryListSnapshot.exists) {
       final Map<String, dynamic> groceryListData = groceryListSnapshot.data()!;
       final int currentUsersCount = groceryListData['usersCount'] as int? ?? 0;
+      final List<dynamic> pendingRequests = groceryListData['pendingRequests'] as List<dynamic>;
+
+
 
       if (currentUsersCount == 1) {
+
+        // Delete pending requests
+        // if(pendingRequests.isNotEmpty){
+        //   for
+        // }
+
         // Delete products from the grocery list
         final List<dynamic>? productIds = groceryListData['productIds'] as List<dynamic>?;
 
@@ -157,12 +167,12 @@ class AuthApi {
         try {
           await batch.commit();
         } catch (e) {
-          print('Failed to remove grocery list: $e');
-          // Handle errors accordingly, possibly rethrowing the error or returning a failure result
+          if (kDebugMode) {
+            print('Failed to remove grocery list: $e');
+          }
           rethrow;
         }
       } else {
-        // Decrement usersCount and update grocery list document
         groceryListData['usersCount'] = currentUsersCount - 1;
         await groceryListRef.update(groceryListData);
       }
@@ -194,8 +204,6 @@ class AuthApi {
         }
       }
     }
-
-    print('\n\n\n GROCERY LISTS: $result');
     return result;
   }
 
@@ -264,7 +272,6 @@ class AuthApi {
       }
     }
 
-    // Check if the groceryListId already exists in the user's groceryListIds list
     bool groceryListIdExists = false;
     if (groceryListIds != null) {
       groceryListIdExists = groceryListIds.contains(groceryListId);
@@ -400,7 +407,6 @@ class AuthApi {
         .doc(currentUser.uid)
         .snapshots()
         .asyncMap((DocumentSnapshot<Map<String, dynamic>> snapshot) async {
-      print('/n/n SUNTEM AICIA IN LISTEN REQ');
       if (snapshot.exists) {
         final List<dynamic>? requests = snapshot.data()?['requests'] as List<dynamic>?;
 
@@ -409,9 +415,8 @@ class AuthApi {
         }
 
         final List<AddRequest> userRequests =
-            requests.map((dynamic request) => AddRequest.fromJson(request as Map<String, dynamic>)).toList();
+        requests.map((dynamic request) => AddRequest.fromJson(request as Map<String, dynamic>)).toList();
 
-        print('/n/nUSER REQ: $userRequests/n/n');
         return userRequests;
       } else {
         return <AddRequest>[];
