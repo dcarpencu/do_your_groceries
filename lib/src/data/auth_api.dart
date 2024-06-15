@@ -121,15 +121,7 @@ class AuthApi {
       final int currentUsersCount = groceryListData['usersCount'] as int? ?? 0;
       final List<dynamic> pendingRequests = groceryListData['pendingRequests'] as List<dynamic>;
 
-
-
       if (currentUsersCount == 1) {
-
-        // Delete pending requests
-        // if(pendingRequests.isNotEmpty){
-        //   for
-        // }
-
         // Delete products from the grocery list
         final List<dynamic>? productIds = groceryListData['productIds'] as List<dynamic>?;
 
@@ -402,25 +394,46 @@ class AuthApi {
 
   Stream<List<AddRequest>> listenForRequests({required bool isNotifications}) {
     final User currentUser = _auth.currentUser!;
-    return _firestore
-        .collection('users')
-        .doc(currentUser.uid)
-        .snapshots()
-        .asyncMap((DocumentSnapshot<Map<String, dynamic>> snapshot) async {
-      if (snapshot.exists) {
-        final List<dynamic>? requests = snapshot.data()?['requests'] as List<dynamic>?;
+    final DocumentReference<Map<String, dynamic>> userRef = _firestore.collection('users').doc(currentUser.uid);
 
-        if (requests == null || requests.isEmpty) {
-          return <AddRequest>[];
-        }
-
-        final List<AddRequest> userRequests =
-        requests.map((dynamic request) => AddRequest.fromJson(request as Map<String, dynamic>)).toList();
-
-        return userRequests;
-      } else {
+    return userRef.snapshots().asyncMap((DocumentSnapshot<Map<String, dynamic>> snapshot) async {
+      if (!snapshot.exists) {
         return <AddRequest>[];
       }
+
+      final List<dynamic>? requests = snapshot.data()?['requests'] as List<dynamic>?;
+
+      if (requests == null || requests.isEmpty) {
+        return <AddRequest>[];
+      }
+
+      final List<AddRequest> validRequests = [];
+      final List<AddRequest> invalidRequests = [];
+
+      for (final dynamic request in requests) {
+        final AddRequest addRequest = AddRequest.fromJson(request as Map<String, dynamic>);
+        final DocumentReference<Map<String, dynamic>> groceryListRef =
+            _firestore.collection('lists').doc(addRequest.groceryListId);
+        final DocumentSnapshot<Map<String, dynamic>> groceryListSnapshot = await groceryListRef.get();
+
+        if (groceryListSnapshot.exists) {
+          validRequests.add(addRequest);
+        } else {
+          invalidRequests.add(addRequest);
+        }
+      }
+
+      if (invalidRequests.isNotEmpty) {
+        requests.removeWhere((dynamic request) {
+          final AddRequest addRequest = AddRequest.fromJson(request as Map<String, dynamic>);
+          return invalidRequests
+              .any((AddRequest invalidRequest) => invalidRequest.groceryListId == addRequest.groceryListId);
+        });
+
+        await userRef.update(<String, dynamic>{'requests': requests});
+      }
+
+      return validRequests;
     });
   }
 }
