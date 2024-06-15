@@ -5,7 +5,6 @@ import 'package:do_you_groceries/src/containers/pending_container.dart';
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:do_you_groceries/src/navigation/transitions.dart';
 import 'package:do_you_groceries/src/presentation/products/create_list_page.dart';
-import 'package:do_you_groceries/src/presentation/user/notifications_page.dart';
 import 'package:do_you_groceries/src/presentation/user/user_profile_page.dart';
 import 'package:do_you_groceries/src/ui_elements/components/background_wave_clipper.dart';
 import 'package:do_you_groceries/src/ui_elements/components/home_page_components/lists_carousel.dart';
@@ -68,7 +67,8 @@ class _HomePageState extends State<HomePage> {
               ),
               PendingContainer(
                 builder: (BuildContext context, Set<String> pending) {
-                  if ((pending.contains(GetGroceryLists.pendingKey)) || (pending.contains(CreateGroceryList.pendingKey))) {
+                  if ((pending.contains(GetGroceryLists.pendingKey)) ||
+                      (pending.contains(CreateGroceryList.pendingKey))) {
                     return const Center(
                       child: ListsCarouselShimmer(),
                       // child: LoadingAnimationWidget.horizontalRotatingDots(

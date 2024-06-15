@@ -87,7 +87,7 @@ class AuthEpic {
               groceryListName: action.groceryListName,
             ),
           )
-          .mapTo(const SendRequest.successful())
+          .map<SendRequest>(SendRequest.successful)
           .onErrorReturnWith(SendRequest.error);
     });
   }
@@ -119,7 +119,7 @@ class AuthEpic {
   Stream<AppAction> _getUsersStart(Stream<GetUsersStart> actions, EpicStore<AppState> store) {
     return actions.flatMap((GetUsersStart action) {
       return Stream<void>.value(null)
-          .asyncMap((_) => _authApi.getUsers())
+          .asyncMap((_) => _authApi.getUsers(groceryList: action.groceryList))
           .map<GetUsers>(GetUsers.successful)
           .onErrorReturnWith(GetUsers.error);
     });

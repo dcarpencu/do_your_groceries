@@ -127,7 +127,7 @@ class ProductEpic {
               groceryList: store.state.selectedGroceryList!,
             ),
           )
-          .mapTo(const SmartUpdateList.successful())
+          .map<SmartUpdateList>( SmartUpdateList.successful)
           .onErrorReturnWith(SmartUpdateList.error);
     });
   }

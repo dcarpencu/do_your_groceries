@@ -4,7 +4,9 @@ UPT final project
 
 ## Getting Started
 
-for generating: flutter pub run build_runner watch --delete-conflicting-outputs
+for generating: dart run build_runner watch --delete-conflicting-outputs
+flutter run --dart-define=API_KEY=AIzaSyBVuj79tA0VZPGZTPcpZD3Ljc-6Fxi5ptI
+
 
 This project is a starting point for a Flutter application.
 

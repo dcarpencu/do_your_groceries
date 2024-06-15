@@ -24,7 +24,7 @@ class _AddPeoplePageState extends State<AddPeoplePage> {
   @override
   void initState() {
     store = StoreProvider.of<AppState>(context, listen: false);
-    store.dispatch(const GetUsersStart());
+    store.dispatch(GetUsersStart(groceryList: widget.groceryList));
     super.initState();
   }
 
@@ -65,12 +65,9 @@ class _AddPeoplePageState extends State<AddPeoplePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text('Add someone!'),
-      // ),
       body: PendingContainer(
         builder: (BuildContext context, Set<String> pending) {
-          if (pending.contains(GetUsers.pendingKey)) {
+          if ((pending.contains(GetUsers.pendingKey)) || (pending.contains(SendRequest.pendingKey))) {
             return Column(
               children: <Widget>[
                 Stack(

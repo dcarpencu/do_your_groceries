@@ -74,8 +74,8 @@ class ModelItem extends StatelessWidget {
                           child: Text(
                             model.name,
                             style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                              fontWeight: FontWeight.bold,
-                            ),
+                                  fontWeight: FontWeight.bold,
+                                ),
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                           ),

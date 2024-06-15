@@ -12,7 +12,6 @@ import 'package:do_you_groceries/src/presentation/products/edit_list_page.dart';
 import 'package:do_you_groceries/src/presentation/products/user_products_page.dart';
 import 'package:do_you_groceries/src/presentation/supermarkets/search_page.dart';
 import 'package:do_you_groceries/src/presentation/supermarkets/supermarket_categories_page.dart';
-import 'package:do_you_groceries/src/presentation/user/add_people_page.dart';
 import 'package:do_you_groceries/src/presentation/user/notifications_page.dart';
 import 'package:do_you_groceries/src/presentation/user/user_profile_page.dart';
 import 'package:flutter/material.dart';
