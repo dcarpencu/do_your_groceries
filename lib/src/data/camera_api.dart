@@ -13,15 +13,13 @@ class CameraApi {
   CameraApi();
 
   Future<void> requestStoragePermission() async {
-    // Check if the platform is not web, as web has no permissions
     if (!kIsWeb) {
-      // Request storage permission
+
       final PermissionStatus status = await Permission.storage.status;
       if (!status.isGranted) {
         await Permission.storage.request();
       }
 
-      // Request camera permission
       final PermissionStatus cameraStatus = await Permission.camera.status;
       if (!cameraStatus.isGranted) {
         await Permission.camera.request();
