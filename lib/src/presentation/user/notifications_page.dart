@@ -1,7 +1,6 @@
 import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/containers/requests_container.dart';
 import 'package:do_you_groceries/src/models/index.dart';
-import 'package:do_you_groceries/src/ui_elements/components/background_wave_clipper.dart';
 import 'package:do_you_groceries/src/ui_elements/components/sliver_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';

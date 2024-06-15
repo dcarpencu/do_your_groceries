@@ -6,6 +6,7 @@ const String _kGetUsersPendingId = 'GetUsers';
 class GetUsers with _$GetUsers implements AppAction {
   @Implements<ActionStart>()
   const factory GetUsers.start({
+    required GroceryList groceryList,
     @Default(_kGetUsersPendingId) String pendingId,
   }) = GetUsersStart;
 

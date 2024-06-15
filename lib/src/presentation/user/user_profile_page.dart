@@ -33,31 +33,35 @@ class _UserProfilePageState extends State<UserProfilePage> {
               child: CircularProgressIndicator(),
             );
           }
-          return SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                Stack(
-                  children: <Widget>[
-                    const BackgroundWave(
-                      height: 280,
-                    ),
-                    Positioned(
-                      top: 145,
-                      left: 40,
-                      child: Text(
-                        'Hello, ${user.username}!',
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 32,
-                          fontFamily: 'Poppins',
-                          height: 1.2,
-                          fontWeight: FontWeight.bold,
-                        ),
+
+          return Column(
+            children: <Widget>[
+              const Stack(
+                children: <Widget>[
+                  BackgroundWave(height: 280),
+                  Positioned(
+                    top: 48,
+                    left: 16,
+                    child: BackButton(color: Colors.white),
+                  ),
+                  Positioned(
+                    top: 145,
+                    left: 40,
+                    child: Text(
+                      'Detalii cont',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 32,
+                        fontFamily: 'Poppins',
+                        height: 1.2,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ],
-                ),
-                Padding(
+                  ),
+                ],
+              ),
+              Expanded(
+                child: Padding(
                   padding: const EdgeInsets.all(16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,53 +71,42 @@ class _UserProfilePageState extends State<UserProfilePage> {
                         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 16),
-                      Card(
-                        elevation: 4,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(16),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                'Username: ${user.username}',
-                                style: const TextStyle(fontSize: 18, height: 1.5),
-                              ),
-                              const SizedBox(height: 8),
-                              Text(
-                                'Email: ${user.email}',
-                                style: const TextStyle(fontSize: 18, height: 1.5),
-                              ),
-                            ],
+                      Text(
+                        'Username: ${user.username}',
+                        style: const TextStyle(fontSize: 18, height: 1.5),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        'Email: ${user.email}',
+                        style: const TextStyle(fontSize: 18, height: 1.5),
+                      ),
+                      const Spacer(),
+                      Center(
+                        child: ElevatedButton.icon(
+                          onPressed: () async {
+                            StoreProvider.of<AppState>(context).dispatch(const LogoutStart());
+                            context.go('/login');
+                          },
+                          icon: const Icon(Icons.logout, color: Colors.white),
+                          label: const Text(
+                            'Logout',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.red,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                           ),
                         ),
                       ),
-                      const SizedBox(height: 16),
-                      ElevatedButton.icon(
-                        onPressed: () async {
-                          StoreProvider.of<AppState>(context).dispatch(const LogoutStart());
-                          context.go('/login');
-                        },
-                        icon: const Icon(Icons.logout, color: Colors.white),
-                        label: const Text(
-                          'Logout',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.red,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                        ),
-                      ),
+                      const SizedBox(height: 32),
                     ],
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           );
         },
       ),

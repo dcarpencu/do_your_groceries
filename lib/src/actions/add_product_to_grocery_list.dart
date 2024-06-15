@@ -5,8 +5,9 @@ const String _kAddProductToGroceryListPendingId = 'AddProductToGroceryList';
 @freezed
 class AddProductToGroceryList with _$AddProductToGroceryList implements AppAction {
   @Implements<ActionStart>()
-  const factory AddProductToGroceryList.start(Product product,
-      String groceryListId, {
+  const factory AddProductToGroceryList.start(
+    Product product,
+    String groceryListId, {
     @Default(_kAddProductToGroceryListPendingId) String pendingId,
   }) = AddProductToGroceryListStart;
 
@@ -18,7 +19,8 @@ class AddProductToGroceryList with _$AddProductToGroceryList implements AppActio
   @Implements<ActionDone>()
   @Implements<ErrorAction>()
   const factory AddProductToGroceryList.error(
-    Object error, StackTrace stackTrace, [
+    Object error,
+    StackTrace stackTrace, [
     @Default(_kAddProductToGroceryListPendingId) String pendingId,
   ]) = AddProductToGroceryListError;
 

@@ -82,3 +82,7 @@ class ClearRequests with _$ClearRequests implements AppAction {
   const factory ClearRequests() = ClearRequests$;
 }
 
+@freezed
+class ClearProductsFromList with _$ClearProductsFromList implements AppAction {
+  const factory ClearProductsFromList() = ClearProductsFromList$;
+}

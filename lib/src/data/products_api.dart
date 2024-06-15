@@ -17,14 +17,12 @@ class ProductsApi {
             (snapshot.data()?['productIds'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
 
         if (productIds == null || productIds.isEmpty) {
-          return <Product>[]; // Return empty list if there are no products
+          return <Product>[];
         }
 
-        // Create a list to hold all the batched reads
         final List<Future<DocumentSnapshot<Map<String, dynamic>>>> readOperations =
             <Future<DocumentSnapshot<Map<String, dynamic>>>>[];
 
-        // Iterate through productIds to add batched reads to readOperations list
         for (final dynamic productId in productIds) {
           final int lastIndex = productId.toString().lastIndexOf('/');
           final String collectionPath = productId.toString().substring(0, lastIndex);
@@ -34,10 +32,8 @@ class ProductsApi {
           readOperations.add(docRef.get());
         }
 
-        // Execute all batched reads concurrently
         final List<DocumentSnapshot<Map<String, dynamic>>> productSnapshots = await Future.wait(readOperations);
 
-        // Filter out snapshots that do not exist and map remaining snapshots to Product objects
         final List<Product> products = productSnapshots
             .where((DocumentSnapshot<Map<String, dynamic>> snapshot) => snapshot.exists)
             .map((DocumentSnapshot<Map<String, dynamic>> snapshot) => Product.fromJson(snapshot.data()!))
@@ -317,25 +313,49 @@ class ProductsApi {
     return oldProduct;
   }
 
-  Future<void> smartUpdateList({
+  Future<List<Product>> smartUpdateList({
     required List<Product> groceryListProducts,
     required GroceryList groceryList,
   }) async {
     List<Product> productsRelated = <Product>[];
     List<Product> productsSorted = <Product>[];
+    List<Product> generatedProducts = <Product>[];
     final Map<String, int> frequencyMarkets = <String, int>{
       'Auchan': 0,
       'Kaufland': 0,
       'Carrefour': 0,
       'Penny': 0,
       'Profi': 0,
+      'Mega Image': 0,
     };
+
+    // Handle the case with only one product in the basket
+    if (groceryListProducts.length == 1) {
+      generatedProducts = <Product>[groceryListProducts[0]];
+      productsRelated = await getProducts(product: groceryListProducts[0]);
+      if (productsRelated.isNotEmpty) {
+        productsSorted = _sortProductsByPrice(productsRelated);
+        final String bestSupermarket = productsSorted[0].supermarket;
+        print('Supermarket with the lowest price for the single product: $bestSupermarket');
+        // Assuming we need to switch to the product with the lowest price
+        if(groceryListProducts[0].price != productsSorted[0].price) {
+          generatedProducts = <Product>[groceryListProducts[0]];
+          await switchProduct(
+            selectedProduct: productsSorted[0],
+            oldProduct: groceryListProducts[0],
+            groceryList: groceryList,
+          );
+        }
+      }
+      return generatedProducts;
+    }
 
     for (final Product product in groceryListProducts) {
       productsRelated = await getProducts(product: product);
       if (productsRelated.isNotEmpty) {
         productsSorted = _sortProductsByPrice(productsRelated);
-        frequencyMarkets[productsSorted[0].supermarket] = frequencyMarkets[productsSorted[0].supermarket]! + 1;
+        frequencyMarkets[productsSorted[0].supermarket] =
+            frequencyMarkets[productsSorted[0].supermarket]! + 1;
       }
     }
 
@@ -361,13 +381,24 @@ class ProductsApi {
         productsSorted = _sortProductsByPrice(productsRelated);
         for (final Product productToSwitch in productsSorted) {
           print('\n\n\n PRODUCT TO SWITCH: $productToSwitch \n\n');
-          if (productToSwitch.supermarket == highestSupermarket) {
+          if (productToSwitch.supermarket == highestSupermarket && product != productsSorted[0]) {
+            generatedProducts.add(productToSwitch);
             print('\n\n\n PRODUCT TO SWITCH: $productToSwitch \n\n');
-            await switchProduct(selectedProduct: productToSwitch, oldProduct: product, groceryList: groceryList);
+            await switchProduct(
+              selectedProduct: productToSwitch,
+              oldProduct: product,
+              groceryList: groceryList,
+            );
+            break;
+          } else {
+            generatedProducts.add(product);
+            break;
           }
         }
       }
     }
+    print('\n\n\n GENERATED PRODUCTS LATEST: $generatedProducts');
+    return generatedProducts;
   }
 
   List<Product> _sortProductsByPrice(List<Product> products) {

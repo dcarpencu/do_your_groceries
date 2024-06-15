@@ -119,7 +119,6 @@ class AuthApi {
     if (groceryListSnapshot.exists) {
       final Map<String, dynamic> groceryListData = groceryListSnapshot.data()!;
       final int currentUsersCount = groceryListData['usersCount'] as int? ?? 0;
-      final List<dynamic> pendingRequests = groceryListData['pendingRequests'] as List<dynamic>;
 
       if (currentUsersCount == 1) {
         // Delete products from the grocery list
@@ -199,26 +198,47 @@ class AuthApi {
     return result;
   }
 
-  Future<Set<AppUser>> getUsers() async {
+  Future<Set<AppUser>> getUsers({required GroceryList groceryList}) async {
     final Set<AppUser> users = <AppUser>{};
 
     final CollectionReference<Map<String, dynamic>> usersRef = _firestore.collection('users');
     final QuerySnapshot<Map<String, dynamic>> querySnapshot = await usersRef.get();
 
     for (final QueryDocumentSnapshot<Map<String, dynamic>> doc in querySnapshot.docs) {
-      users.add(
-        AppUser(
-          uid: doc['uid'] as String,
-          email: doc['email'] as String,
-          username: doc['username'] as String,
-        ),
-      );
+      final List<dynamic>? requests = doc['requests'] as List<dynamic>?;
+      final List<dynamic>? groceryListIds = doc['groceryListIds'] as List<dynamic>?;
+
+      bool hasRequestFromGroceryList = false;
+      bool hasGroceryListId = false;
+
+      if (requests != null) {
+        for (final dynamic request in requests) {
+          if (request is Map<String, dynamic> && request['groceryListId'] == groceryList.groceryListId) {
+            hasRequestFromGroceryList = true;
+            break;
+          }
+        }
+      }
+
+      if (groceryListIds != null) {
+        hasGroceryListId = groceryListIds.contains(groceryList.groceryListId);
+      }
+
+      if (!hasRequestFromGroceryList && !hasGroceryListId) {
+        users.add(
+          AppUser(
+            uid: doc['uid'] as String,
+            email: doc['email'] as String,
+            username: doc['username'] as String,
+          ),
+        );
+      }
     }
 
     return users;
   }
 
-  Future<void> sendRequest({
+  Future<AppUser> sendRequest({
     required String senderUsername,
     required String receiverId,
     required String groceryListId,
@@ -282,6 +302,11 @@ class AuthApi {
 
       await userRef.update(listData);
     }
+
+    final String email = listData?['email'] as String;
+    final String username = listData?['username'] as String;
+
+    return AppUser(uid: receiverId, email: email, username: username);
   }
 
   Future<AddRequest> acceptRequest({required String groceryListId, required AddRequest requestToRemove}) async {
@@ -332,7 +357,7 @@ class AuthApi {
 
     // Remove the request from the user's requests
     final List<Map<String, dynamic>>? requests =
-        (userData['requests'] as List?)?.map((item) => item as Map<String, dynamic>).toList();
+        (userData['requests'] as List<dynamic>?)?.map((item) => item as Map<String, dynamic>).toList();
 
     final Map<String, dynamic> requestJsonToRemove = requestToRemove.toJson();
 
@@ -407,8 +432,8 @@ class AuthApi {
         return <AddRequest>[];
       }
 
-      final List<AddRequest> validRequests = [];
-      final List<AddRequest> invalidRequests = [];
+      final List<AddRequest> validRequests = <AddRequest>[];
+      final List<AddRequest> invalidRequests = <AddRequest>[];
 
       for (final dynamic request in requests) {
         final AddRequest addRequest = AddRequest.fromJson(request as Map<String, dynamic>);

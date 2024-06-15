@@ -27,9 +27,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>Explanation on why the camera access is needed.</string>
+	<string>Camera is needed in order to label live pictures</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Explanation on why the microphone access is needed.</string>
+	<string>Microphone is needed for live footage.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

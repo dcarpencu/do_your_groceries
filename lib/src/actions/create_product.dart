@@ -21,10 +21,10 @@ class CreateProduct with _$CreateProduct implements AppAction {
   @Implements<ActionDone>()
   @Implements<ErrorAction>()
   const factory CreateProduct.error(
-    Object error, StackTrace stackTrace, [
+    Object error,
+    StackTrace stackTrace, [
     @Default(_kCreateProductPendingId) String pendingId,
   ]) = CreateProductError;
 
   static String get pendingKey => _kCreateProductPendingId;
 }
-

@@ -48,7 +48,11 @@ class _UserProductsPageState extends State<UserProductsPage> {
         return Scaffold(
           body: PendingContainer(
             builder: (BuildContext context, Set<String> pending) {
-              if ((pending.contains(ListenForProducts.pendingKey)) || (pending.contains(SwitchProduct.pendingKey)) || (pending.contains(CreateProduct.pendingKey)) || (pending.contains(AddProductToGroceryList.pendingKey))) {
+              if ((pending.contains(ListenForProducts.pendingKey)) ||
+                  (pending.contains(SwitchProduct.pendingKey)) ||
+                  (pending.contains(CreateProduct.pendingKey)) ||
+                  (pending.contains(AddProductToGroceryList.pendingKey)) ||
+                  (pending.contains(SmartUpdateList.pendingKey))) {
                 return Column(
                   children: <Widget>[
                     Stack(

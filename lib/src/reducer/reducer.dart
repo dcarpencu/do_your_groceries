@@ -65,6 +65,10 @@ Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   TypedReducer<AppState, GetProductsAfterEditSuccessful>(_getProductsAfterEditSuccessful).call,
   TypedReducer<AppState, SwitchProductSuccessful>(_switchProductSuccessful).call,
   TypedReducer<AppState, ClearRequests>(_clearRequests).call,
+  TypedReducer<AppState, ClearProductsFromList>(_clearProductsFromList).call,
+  TypedReducer<AppState, SendRequestSuccessful>(_sendRequestSuccessful).call,
+  TypedReducer<AppState, SmartUpdateListSuccessful>(_smartUpdateListSuccessful).call,
+
 ]);
 
 AppState _setMarketProductsToEmpty(AppState state, SetMarketProductsToEmpty action) {
@@ -246,4 +250,16 @@ AppState _switchProductSuccessful(AppState state, SwitchProductSuccessful action
 
 AppState _clearRequests(AppState state, ClearRequests action) {
   return state.copyWith(requests: <AddRequest>[]);
+}
+
+AppState _sendRequestSuccessful(AppState state, SendRequestSuccessful action) {
+  return state.copyWith(users: <AppUser>{...state.users}..remove(action.user));
+}
+
+AppState _clearProductsFromList(AppState state, ClearProductsFromList action) {
+  return state.copyWith(productsGroceryList: <Product>[]);
+}
+
+AppState _smartUpdateListSuccessful(AppState state, SmartUpdateListSuccessful action) {
+  return state.copyWith(productsGroceryList: action.generatedProducts);
 }
