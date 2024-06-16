@@ -286,12 +286,6 @@ class ProductsApi {
         ]),
       });
     }
-
-    final DocumentSnapshot<Map<String, dynamic>> updatedSnapshot = await ref.get();
-    final List<dynamic> updatedProductIdsDynamic =
-        updatedSnapshot.data()?['productIds'] as List<dynamic>? ?? <dynamic>[];
-    final List<String> updatedProductIds = updatedProductIdsDynamic.map((dynamic id) => id.toString()).toList();
-
     return oldProduct;
   }
 

@@ -42,14 +42,14 @@ class _NotificationsPageState extends State<NotificationsPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Accept Request'),
-          content: Text('Do you want to accept the request from ${request.senderName}?'),
+          title: const Text('Acceptă cererea'),
+          content: Text('Dorești să accepți cererea din partea lui ${request.senderName}?'),
           actions: <Widget>[
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text('Cancel'),
+              child: const Text('Renunță'),
             ),
             TextButton(
               onPressed: () {
@@ -62,7 +62,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                 isAccepted = true;
                 Navigator.of(context).pop();
               },
-              child: const Text('Accept'),
+              child: const Text('Acceptă'),
             ),
           ],
         );
@@ -75,8 +75,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Reject Request'),
-          content: Text('Do you want to reject the request from ${request.senderName}?'),
+          title: const Text('Respinge cererea'),
+          content: Text('Dorești să respingi cererea din partea lui ${request.senderName}?'),
           actions: <Widget>[
             TextButton(
               onPressed: () {
@@ -108,8 +108,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
             slivers: <Widget>[
               SliverPersistentHeader(
                 delegate: SliverAppBarProducts(
-                  'notifications', // Assume this is the icon for notifications
-                  'Notifications',
+                  'notification',
+                  'Notificări',
                 ),
                 pinned: true,
               ),
@@ -171,7 +171,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                   delegate: SliverChildBuilderDelegate(
                     childCount: 1,
                     (BuildContext context, int index) {
-                      return const Center(child: Text('No notifications yet.'));
+                      return const Center(child: Text('Nu aveți nicio notificare în acest moment.'));
                     },
                   ),
                 ),

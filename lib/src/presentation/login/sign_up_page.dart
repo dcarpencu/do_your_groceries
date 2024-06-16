@@ -79,10 +79,10 @@ class SignupPageState extends State<SignupPage> {
                     keyboardType: TextInputType.text,
                     textInputAction: TextInputAction.next,
                     decoration:
-                        const InputDecoration(labelText: 'Nume utilizator', hintText: 'Introdu numele de utilizator'),
+                        const InputDecoration(labelText: 'Nume utilizator', hintText: 'Introduceți numele de utilizator'),
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
-                        return 'Te rog introdu numele de utilizator';
+                        return 'Introduceți vă rog numele de utilizator';
                       } else if (value.length < 3) {
                         return 'Numele de utilizator trebuie să conțină cel puțin 3 caractere';
                       }
@@ -94,12 +94,12 @@ class SignupPageState extends State<SignupPage> {
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
                     textInputAction: TextInputAction.next,
-                    decoration: const InputDecoration(labelText: 'Email', hintText: 'Introdu adresa de email'),
+                    decoration: const InputDecoration(labelText: 'Email', hintText: 'Introduceți adresa de email'),
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
-                        return 'Introdu adresa de email';
+                        return 'Introduceți vă rog adresa de email';
                       } else if (!value.contains('@')) {
-                        return 'Te rog introdu o adresă de email validă';
+                        return 'Introduceți vă rog o adresă de email validă';
                       }
                       return null;
                     },
@@ -109,10 +109,10 @@ class SignupPageState extends State<SignupPage> {
                     controller: _passwordController,
                     keyboardType: TextInputType.visiblePassword,
                     obscureText: true,
-                    decoration: const InputDecoration(labelText: 'Parola', hintText: 'Introdu parola'),
+                    decoration: const InputDecoration(labelText: 'Parola', hintText: 'Introduceți parola'),
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
-                        return 'Te rog introdu parola';
+                        return 'Introduceți vă rog o parolă';
                       } else if (value.length < 6) {
                         return 'Parola trebuie să conțină cel puțin 6 caractere';
                       }

@@ -91,7 +91,7 @@ class _UserProductsPageState extends State<UserProductsPage> {
                       delegate: SliverChildBuilderDelegate(
                         childCount: 1,
                         (BuildContext context, int index) {
-                          return const Center(child: Text('No products YET.\nPlease add some!'));
+                          return const Center(child: Text('Nu ai produse momentan.\nTe rog adaugă câteva!'));
                         },
                       ),
                     ),

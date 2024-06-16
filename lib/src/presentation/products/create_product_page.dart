@@ -82,7 +82,7 @@ class _CreateProductPageState extends State<CreateProductPage> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Text(
-                        'Add a New Product',
+                        'Adaugă un nou produs',
                         style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 16),
@@ -114,15 +114,13 @@ class _CreateProductPageState extends State<CreateProductPage> {
                         keyboardType: TextInputType.text,
                         autofocus: true,
                         decoration: const InputDecoration(
-                          labelText: 'Title',
-                          hintText: 'Enter product title',
+                          labelText: 'Nume produs',
+                          hintText: 'Introduceți un nume pentru noul produs',
                         ),
                         textInputAction: TextInputAction.next,
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please provide a title for your product';
-                          } else if (value.length > 12) {
-                            return 'Introduceti un titlu mai scurt de 12 caracter';
+                            return 'Introduceți vă rog un nume pentru noul produs';
                           }
                           return null;
                         },
@@ -136,13 +134,13 @@ class _CreateProductPageState extends State<CreateProductPage> {
                         focusNode: _priceFocusNode,
                         keyboardType: TextInputType.number,
                         decoration: const InputDecoration(
-                          labelText: 'Price',
-                          hintText: 'Enter product price',
+                          labelText: 'Preț',
+                          hintText: 'Introduceți prețul noului produs',
                         ),
                         textInputAction: TextInputAction.done,
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please provide a price for your product';
+                            return 'Introduceți vă rog prețul noului produs';
                           }
                           return null;
                         },

@@ -96,6 +96,9 @@ Map<String, dynamic> _$$AppState$ImplToJson(_$AppState$Impl instance) =>
     };
 
 const _$CuisineFilterEnumMap = {
+  CuisineFilter.romanian: 'romanian',
+  CuisineFilter.serbian: 'serbian',
+  CuisineFilter.hungarian: 'hungarian',
   CuisineFilter.italian: 'italian',
   CuisineFilter.mexican: 'mexican',
   CuisineFilter.american: 'american',
@@ -104,8 +107,6 @@ const _$CuisineFilterEnumMap = {
   CuisineFilter.chinese: 'chinese',
   CuisineFilter.indian: 'indian',
   CuisineFilter.greek: 'greek',
-  CuisineFilter.moroccan: 'moroccan',
-  CuisineFilter.ethiopian: 'ethiopian',
   CuisineFilter.southAfrican: 'southAfrican',
 };
 
@@ -296,6 +297,12 @@ const _$BasicIngredientsFilterEnumMap = {
   BasicIngredientsFilter.sugar: 'sugar',
   BasicIngredientsFilter.milk: 'milk',
   BasicIngredientsFilter.vinegar: 'vinegar',
+  BasicIngredientsFilter.broth: 'broth',
+  BasicIngredientsFilter.biscuit: 'biscuit',
+  BasicIngredientsFilter.honey: 'honey',
+  BasicIngredientsFilter.basil: 'basil',
+  BasicIngredientsFilter.paprika: 'paprika',
+  BasicIngredientsFilter.chilly: 'chilly',
 };
 
 const _$DietaryRestrictionsFilterEnumMap = {

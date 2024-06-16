@@ -18,15 +18,6 @@ class _ShoppingListState extends State<ShoppingList> {
     // StoreProvider.of<AppState>(context, listen: false).dispatch(const GetUserProducts());
   }
 
-  // void _onResult(AppAction action) {
-  //   if (action is GetCurrentUserSuccessful) {
-  //     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Page loaded.')));
-  //   } else if (action is GetProductsError) {
-  //     final Object error = action.error;
-  //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('An error has occurred $error')));
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, AppState>(

@@ -99,7 +99,7 @@ class _ListsCarouselState extends State<ListsCarousel> {
                           context.pushNamed('groceryList');
                         },
                         child: const Text(
-                          'View',
+                          'Vezi',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
@@ -129,21 +129,21 @@ class _ListsCarouselState extends State<ListsCarousel> {
                             value: Options.delete,
                             child: ListTile(
                               leading: Icon(Icons.delete_outline),
-                              title: Text('Remove'),
+                              title: Text('Șterge'),
                             ),
                           ),
                           const PopupMenuItem<Options>(
                             value: Options.edit,
                             child: ListTile(
                               leading: Icon(Icons.edit),
-                              title: Text('Edit'),
+                              title: Text('Modifică'),
                             ),
                           ),
                           const PopupMenuItem<Options>(
                             value: Options.invite,
                             child: ListTile(
                               leading: Icon(Icons.person_add),
-                              title: Text('Invite'),
+                              title: Text('Invită'),
                             ),
                           ),
                         ],

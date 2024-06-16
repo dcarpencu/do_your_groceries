@@ -14,7 +14,6 @@ class SliverAppBarProducts extends SliverPersistentHeaderDelegate {
 
     final double offset = (minExtent - adjustedShrinkOffset) * 0.5;
     final double topPadding = MediaQuery.of(context).padding.top + 16;
-    print('\n\n\n ${topPadding + offset - 40}\n\n');
 
     return Stack(
       children: <Widget>[

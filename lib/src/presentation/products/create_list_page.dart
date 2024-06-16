@@ -94,7 +94,7 @@ class _CreateListPageState extends State<CreateListPage> {
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
                             Text(
-                              'Add a New Grocery List',
+                              'Noua ta listă de cumpărături',
                               style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
                             ),
                             const SizedBox(height: 48),
@@ -103,7 +103,7 @@ class _CreateListPageState extends State<CreateListPage> {
                               child: Padding(
                                 padding: EdgeInsets.all(8),
                                 child: Text(
-                                  'Choose your list icon:',
+                                  'Alege o iconiță:',
                                   style: TextStyle(
                                     fontSize: 24,
                                   ),
@@ -142,7 +142,7 @@ class _CreateListPageState extends State<CreateListPage> {
                               child: Padding(
                                 padding: EdgeInsets.all(8),
                                 child: Text(
-                                  'Choose your list title:',
+                                  'Alege numele listei tale de cumpărături:',
                                   style: TextStyle(
                                     fontSize: 24,
                                   ),
@@ -153,12 +153,14 @@ class _CreateListPageState extends State<CreateListPage> {
                             TextFormField(
                               controller: _titleController,
                               keyboardType: TextInputType.text,
-                              decoration: const InputDecoration(labelText: 'Title', hintText: 'Enter a list title'),
+                              decoration: const InputDecoration(labelText: 'Nume listă', hintText: 'Numele listei de cumpărături:'),
                               textInputAction: TextInputAction.next,
 
                               validator: (String? value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'please provide a title for your list';
+                                  return 'Introduceți un nume pentru lista de cumpărături';
+                                } else if (value.length > 12) {
+                                  return 'Introduceti un titlu mai scurt de 12 caracter';
                                 }
                                 return null;
                               },
@@ -174,7 +176,7 @@ class _CreateListPageState extends State<CreateListPage> {
                               child: Padding(
                                 padding: EdgeInsets.all(8),
                                 child: Text(
-                                  'Choose your list description:',
+                                  'Alege o descriere pentru noua listă:',
                                   style: TextStyle(
                                     fontSize: 24,
                                   ),
@@ -188,18 +190,18 @@ class _CreateListPageState extends State<CreateListPage> {
                               keyboardType: TextInputType.text,
                               textInputAction: TextInputAction.done,
                               decoration:
-                                  const InputDecoration(labelText: 'Description', hintText: 'Enter a list description'),
+                                  const InputDecoration(labelText: 'Descriere', hintText: 'Introduceți o descriere'),
                               onFieldSubmitted: (String value) {
                                 _onNext(context);
                               },
                             ),
                             const Spacer(),
-                            TextButton(onPressed: () => _onNext(context), child: const Text('Create list')),
+                            TextButton(onPressed: () => _onNext(context), child: const Text('Creare listă')),
                             TextButton(
                               onPressed: () {
                                 context.pop();
                               },
-                              child: const Text('Cancel', style: TextStyle(color: Colors.black)),
+                              child: const Text('Renunță', style: TextStyle(color: Colors.black)),
                             ),
                           ],
                         ),

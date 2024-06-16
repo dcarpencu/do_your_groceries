@@ -17,7 +17,7 @@ class MarketsPage extends StatelessWidget {
       body: Column(
         children: <Widget>[
           const SizedBox(
-            height: 56,
+            height: 40,
           ),
           const BackButtonCustom(),
           Expanded(

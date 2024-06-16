@@ -127,7 +127,7 @@ class _PostDetailPageState extends State<ProductDetailsPage> {
                                     value: Options.delete,
                                     child: ListTile(
                                       leading: Icon(Icons.delete_outline),
-                                      title: Text('Remove'),
+                                      title: Text('Șterge'),
                                     ),
                                   ),
                                   if (widget.product.createdByUser)
@@ -135,14 +135,14 @@ class _PostDetailPageState extends State<ProductDetailsPage> {
                                       value: Options.edit,
                                       child: ListTile(
                                         leading: Icon(Icons.edit),
-                                        title: Text('Edit'),
+                                        title: Text('Modifică'),
                                       ),
                                     ),
                                   const PopupMenuItem<Options>(
                                     value: Options.cancel,
                                     child: ListTile(
                                       leading: Icon(Icons.cancel),
-                                      title: Text('Cancel'),
+                                      title: Text('Renunță'),
                                     ),
                                   ),
                                 ],
@@ -158,7 +158,7 @@ class _PostDetailPageState extends State<ProductDetailsPage> {
             ),
             const SizedBox(height: 16),
             Text(
-              'Related Products',
+              'Produse asemănătoare',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     color: Colors.lightBlue,
                     fontWeight: FontWeight.bold,
@@ -167,7 +167,7 @@ class _PostDetailPageState extends State<ProductDetailsPage> {
             const SizedBox(height: 8),
             if (widget.product.createdByUser == true)
               const Center(
-                child: Text('No related products'),
+                child: Text('Nu există.'),
               )
             else
               Expanded(

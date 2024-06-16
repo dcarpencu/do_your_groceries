@@ -91,7 +91,7 @@ class _EditListPageState extends State<EditListPage> {
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
                             Text(
-                              'Edit Grocery List',
+                              'Editează lista de cumpărături',
                               style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
                             ),
                             const SizedBox(height: 48),
@@ -100,7 +100,7 @@ class _EditListPageState extends State<EditListPage> {
                               child: Padding(
                                 padding: EdgeInsets.all(8),
                                 child: Text(
-                                  'Choose your list icon:',
+                                  'Alege o nouă iconiță:',
                                   style: TextStyle(
                                     fontSize: 24,
                                   ),
@@ -138,7 +138,7 @@ class _EditListPageState extends State<EditListPage> {
                               child: Padding(
                                 padding: EdgeInsets.all(8),
                                 child: Text(
-                                  'Choose your list title:',
+                                  'Alege un nume pentru listă:',
                                   style: TextStyle(
                                     fontSize: 24,
                                   ),
@@ -147,14 +147,13 @@ class _EditListPageState extends State<EditListPage> {
                               ),
                             ),
                             TextFormField(
-                              //initialValue: widget.groceryList.title,
                               controller: _titleController,
                               keyboardType: TextInputType.text,
-                              decoration: InputDecoration(labelText: 'Title', hintText: widget.groceryList.title),
+                              decoration: InputDecoration(labelText: 'Nume listă', hintText: widget.groceryList.title),
                               textInputAction: TextInputAction.next,
                               validator: (String? value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'Please provide a title for your product';
+                                  return 'Introduceți un nume pentru lista de cumpărături';
                                 } else if (value.length > 12) {
                                   return 'Introduceti un titlu mai scurt de 12 caracter';
                                 }
@@ -172,7 +171,7 @@ class _EditListPageState extends State<EditListPage> {
                               child: Padding(
                                 padding: EdgeInsets.all(8),
                                 child: Text(
-                                  'Choose your list description:',
+                                  'Alege o descriere:',
                                   style: TextStyle(
                                     fontSize: 24,
                                   ),
@@ -186,18 +185,18 @@ class _EditListPageState extends State<EditListPage> {
                               keyboardType: TextInputType.text,
                               textInputAction: TextInputAction.done,
                               decoration:
-                                  InputDecoration(labelText: 'Description', hintText: widget.groceryList.description),
+                                  InputDecoration(labelText: 'Descriere', hintText: widget.groceryList.description),
                               onFieldSubmitted: (String value) {
                                 _onNext(context);
                               },
                             ),
                             const Spacer(),
-                            TextButton(onPressed: () => _onNext(context), child: const Text('Create list')),
+                            TextButton(onPressed: () => _onNext(context), child: const Text('Salvează modificări')),
                             TextButton(
                               onPressed: () {
                                 context.pop();
                               },
-                              child: const Text('Cancel', style: TextStyle(color: Colors.black)),
+                              child: const Text('Renunță', style: TextStyle(color: Colors.black)),
                             ),
                           ],
                         ),

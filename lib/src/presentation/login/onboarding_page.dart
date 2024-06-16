@@ -153,7 +153,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> with SingleTickerPr
                                   height: 16,
                                 ),
                                 Text(
-                                  'Hai să facem cumpărăturile smart',
+                                  'Haide să facem cumpărăturile smart',
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w400,
@@ -193,7 +193,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> with SingleTickerPr
                                             decoration: const InputDecoration(
                                               border: InputBorder.none,
                                               labelText: 'Email',
-                                              hintText: 'Introdu adresa de email',
+                                              hintText: 'Introduceți adresa de email',
                                               hintStyle: TextStyle(
                                                 color: Colors.grey,
                                                 fontSize: 14,
@@ -201,9 +201,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> with SingleTickerPr
                                             ),
                                             validator: (String? value) {
                                               if (value == null || value.isEmpty) {
-                                                return 'Te rog introdu un email';
+                                                return 'Introduceți adresa email';
                                               } else if (!value.contains('@')) {
-                                                return 'Te rog introdu un email valid';
+                                                return 'Introduceți vă rog un email valid';
                                               }
                                               return null;
                                             },
@@ -223,7 +223,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> with SingleTickerPr
                                             decoration: const InputDecoration(
                                               border: InputBorder.none,
                                               labelText: 'Parola',
-                                              hintText: 'Introdu parola',
+                                              hintText: 'Introduceți parola',
                                               hintStyle: TextStyle(
                                                 color: Colors.grey,
                                                 fontSize: 14,
@@ -231,9 +231,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> with SingleTickerPr
                                             ),
                                             validator: (String? value) {
                                               if (value == null || value.isEmpty) {
-                                                return 'Please provide a valid password';
+                                                return 'Introduceți vă rog o parolă validă';
                                               } else if (value.length < 6) {
-                                                return 'Please provide a password longer than 6 characters';
+                                                return 'Introduceți vă rog o parolă mai lungă de 6 caractere';
                                               }
                                               return null;
                                             },

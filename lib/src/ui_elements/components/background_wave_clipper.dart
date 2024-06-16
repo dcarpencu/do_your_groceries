@@ -3,10 +3,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class BackgroundWave extends StatelessWidget {
   const BackgroundWave(
-      {required this.pageName, this.backButtonOption = true, super.key, this.height = 280, this.iconWidget, this.isHome = false,});
+      {required this.pageName, super.key, this.height = 280, this.iconWidget, this.isHome = false,});
 
   final String pageName;
-  final bool backButtonOption;
   final double height;
   final Widget? iconWidget;
   final bool isHome;
@@ -30,15 +29,15 @@ class BackgroundWave extends StatelessWidget {
             ),
           ),
         ),
-        if (backButtonOption)
+        if (!isHome)
           const Positioned(
             top: 48,
             left: 8,
             child: BackButton(color: Colors.white),
           ),
         Positioned(
-          top: 100,
-          left: 20,
+          top: 104,
+          left: 24,
           child: Text(
             pageName,
             style: const TextStyle(
@@ -52,9 +51,9 @@ class BackgroundWave extends StatelessWidget {
         ),
           Positioned(
             top: 105,
-            left: 256,
+            left: isHome ? 232 : 256,
             child: SizedBox(
-              height: isHome? 124 : 100,
+              height: isHome? 156 : 100,
               child: iconWidget,
             ),
           ),

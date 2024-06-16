@@ -1,8 +1,8 @@
-import 'package:do_you_groceries/src/containers/pending_container.dart';
 import 'package:do_you_groceries/src/models/filter_chip_enums.dart';
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:do_you_groceries/src/presentation/user/generated_recipe_page.dart';
 import 'package:do_you_groceries/src/ui_elements/components/filterChipSelection.dart';
+import 'package:do_you_groceries/src/ui_elements/components/sliver_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
@@ -19,109 +19,116 @@ class _CreateRecipesPageState extends State<CreateRecipesPage> {
   late Store<AppState> _store;
   late final GenerativeModel _model;
 
-  final ScrollController _scrollController = ScrollController();
-  final TextEditingController _textController = TextEditingController();
-  final FocusNode _textFieldFocus = FocusNode();
-
   @override
   void initState() {
     _store = StoreProvider.of<AppState>(context, listen: false);
 
     const String apiKey = String.fromEnvironment('API_KEY', defaultValue: 'key not found');
-    if (apiKey == 'key not found') {
+    if (apiKey == 'cheia nu a fost găsită') {
       throw InvalidApiKey(
-        'Key not found in environment. Please add an API key.',
+        'Cheia nu a fost găsită în environment. Adagă te rog cheia API.',
       );
     }
 
     _model = GenerativeModel(
       model: 'gemini-1.5-pro',
-      apiKey: 'AIzaSyBVuj79tA0VZPGZTPcpZD3Ljc-6Fxi5ptI', //const String.fromEnvironment(apiKey),
+      apiKey: 'AIzaSyBVuj79tA0VZPGZTPcpZD3Ljc-6Fxi5ptI',
     );
 
     super.initState();
   }
 
-  // void _scrollDown() {
-  //   WidgetsBinding.instance.addPostFrameCallback(
-  //         (_) => _scrollController.animateTo(
-  //       _scrollController.position.maxScrollExtent,
-  //       duration: const Duration(
-  //         milliseconds: 750,
-  //       ),
-  //       curve: Curves.easeOutCirc,
-  //     ),
-  //   );
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Recipes generator'),
-      ),
-      body: SingleChildScrollView(
-        child: PendingContainer(
-          builder: (BuildContext context, Set<String> pending) {
-            // if (pending.contains(GenerateRecipeResponse.pendingKey)) {
-            //   return const Center(child: CircularProgressIndicator());
-            // }
-            return Column(
-              children: <Widget>[
-                const Text('Welcome!'),
-                const SizedBox(
-                  height: 16,
-                ),
-                const FilterChipSelection<BasicIngredientsFilter>(
-                  enumValues: BasicIngredientsFilter.values,
-                  toReadableString: basicIngredientsReadable,
-                  label: 'Choose some basic ingredients from your household:',
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                const FilterChipSelection<DietaryRestrictionsFilter>(
-                  enumValues: DietaryRestrictionsFilter.values,
-                  toReadableString: dietaryRestrictionReadable,
-                  label: 'Choose your dietary restrictions:',
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                const FilterChipSelection<CuisineFilter>(
-                  enumValues: CuisineFilter.values,
-                  toReadableString: cuisineReadable,
-                  label: 'Choose your favorite type of food:',
-                ),
-                const SizedBox(
-                  height: 32,
-                ),
-                TextButton(
-                  onPressed: () {
-                    final String prompt =
-                        'Imi doresc o reteta culinara care sa cuprinda contina: ${_store.state.basicIngredientsText}; sa tina cont de urmatoarele restrictii alimentare: ${_store.state.dietaryRestrictionsText}; si sa aiba legatura cu bucataria: ${_store.state.cuisineText}';
-                    // _store.dispatch(GenerateRecipeResponseStart(_model, prompt));
-                    // context.pushNamed('generatedRecipe');
-                    //print(_store.state.generatorResponse);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute<void>(
-                        builder: (BuildContext context) => RecipeScreen(
-                          model: _model,
-                          prompt: prompt,
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverPersistentHeader(
+            delegate: SliverAppBarProducts(
+              _store.state.selectedGroceryList!.selectedIcon,
+              'Generator \nde rețete',
+            ),
+            pinned: true,
+          ),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (BuildContext context, int index) {
+                return Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      const SizedBox(height: 16),
+                      const FilterChipSelection<BasicIngredientsFilter>(
+                        enumValues: BasicIngredientsFilter.values,
+                        toReadableString: basicIngredientsReadable,
+                        label: 'Alege ingredientele pe care le ai prin bucătărie:',
+                      ),
+                      const SizedBox(height: 16),
+                      const FilterChipSelection<DietaryRestrictionsFilter>(
+                        enumValues: DietaryRestrictionsFilter.values,
+                        toReadableString: dietaryRestrictionReadable,
+                        label: 'Restricții alimentare?',
+                      ),
+                      const SizedBox(height: 16),
+                      const FilterChipSelection<CuisineFilter>(
+                        enumValues: CuisineFilter.values,
+                        toReadableString: cuisineReadable,
+                        label: 'Bucătăria preferată:',
+                      ),
+                      const SizedBox(height: 32),
+                      Center(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            final String prompt =
+                                'Imi doresc o reteta culinara care sa cuprinda contina: ${_store.state.basicIngredientsText}; sa tina cont de urmatoarele restrictii alimentare: ${_store.state.dietaryRestrictionsText}; si sa aiba legatura cu bucataria: ${_store.state.cuisineText}';
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute<void>(
+                                builder: (BuildContext context) => RecipeScreen(
+                                  model: _model,
+                                  prompt: prompt,
+                                ),
+                              ),
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.lightBlueAccent,
+                            shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.circular(16),
+                            ),
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 14,
+                              horizontal: 32,
+                            ),
+                            elevation: 4,
+
+                            shadowColor:
+                                Colors.lightBlueAccent.withOpacity(0.5),
+                          ),
+                          child: const Text(
+                            'Generează rețeta',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              letterSpacing: 0.5,
+                            ),
+                          ),
                         ),
                       ),
-                    );
-                  },
-                  child: const Icon(
-                    Icons.generating_tokens,
-                    size: 48,
+                      const SizedBox(
+                        height: 32,
+                      ),
+                    ],
                   ),
-                ),
-              ],
-            );
-          },
-        ),
+                );
+              },
+              childCount: 1,
+            ),
+          ),
+        ],
       ),
     );
   }

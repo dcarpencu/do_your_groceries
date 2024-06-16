@@ -56,7 +56,7 @@ class ViewProductCard extends StatelessWidget {
                           foregroundColor: Colors.lightBlue,
                         ),
                         child: const Text(
-                          'EXPLORE',
+                          'Explorează',
                           style: TextStyle(
                             color: Colors.lightBlue,
                             fontWeight: FontWeight.bold,

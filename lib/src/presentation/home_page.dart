@@ -5,13 +5,14 @@ import 'package:do_you_groceries/src/containers/pending_container.dart';
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:do_you_groceries/src/navigation/transitions.dart';
 import 'package:do_you_groceries/src/presentation/products/create_list_page.dart';
+import 'package:do_you_groceries/src/presentation/user/notifications_page.dart';
 import 'package:do_you_groceries/src/presentation/user/user_profile_page.dart';
 import 'package:do_you_groceries/src/ui_elements/components/background_wave_clipper.dart';
 import 'package:do_you_groceries/src/ui_elements/components/home_page_components/lists_carousel.dart';
+import 'package:do_you_groceries/src/ui_elements/components/home_page_components/no_lists_placeholder.dart';
 import 'package:do_you_groceries/src/ui_elements/components/shimmer/shimmer_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:go_router/go_router.dart';
 import 'package:redux/redux.dart';
 
 class HomePage extends StatefulWidget {
@@ -40,7 +41,7 @@ class _HomePageState extends State<HomePage> {
           body: Column(
             children: <Widget>[
               BackgroundWave(
-                pageName: 'DoYourGroceries', backButtonOption: false,
+                pageName: 'DoYourGroceries',
                 iconWidget: Image.asset('assets/Backgrounds/grocery-bag.png'),
                 isHome: true,
               ),
@@ -50,10 +51,6 @@ class _HomePageState extends State<HomePage> {
                       (pending.contains(CreateGroceryList.pendingKey))) {
                     return const Center(
                       child: ListsCarouselShimmer(),
-                      // child: LoadingAnimationWidget.horizontalRotatingDots(
-                      //   color: Colors.black,
-                      //   size: 100,
-                      // ),
                     );
                   }
                   return GroceryListsContainer(
@@ -71,21 +68,20 @@ class _HomePageState extends State<HomePage> {
                                     fontFamily: 'Poppins',
                                     height: 1.2,
                                     color: Colors.black,
-                                    // You can adjust the color as needed
-                                    fontWeight: FontWeight.normal, // Salut is regular
+                                    fontWeight: FontWeight.normal,
                                   ),
                                   children: <InlineSpan>[
                                     const TextSpan(
                                       text: 'Salut, ',
                                     ),
                                     TextSpan(
-                                      text: _store.state.user?.username ?? '', // Username is bolded
+                                      text: _store.state.user?.username ?? '',
                                       style: const TextStyle(
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                     const TextSpan(
-                                      text: '!', // exclamation mark remains regular
+                                      text: '!',
                                     ),
                                   ],
                                 ),
@@ -102,7 +98,7 @@ class _HomePageState extends State<HomePage> {
                               store: _store,
                             )
                           else
-                            const Center(child: Text('No lists.')),
+                            const NoListsPlaceholder(),
                           const SizedBox(
                             height: 30,
                           ),
@@ -117,12 +113,12 @@ class _HomePageState extends State<HomePage> {
           floatingActionButton: FloatingActionButton(
             onPressed: () => Navigator.of(context).push(createRoute(const CreateListPage())),
             tooltip: 'Create',
-            child: Icon(Icons.playlist_add),
+            child: const Icon(Icons.playlist_add),
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
           bottomNavigationBar: BottomAppBar(
             height: 60,
-            shape: CircularNotchedRectangle(),
+            shape: const CircularNotchedRectangle(),
             color: Colors.lightBlue,
             child: IconTheme(
               data: IconThemeData(color: Theme.of(context).colorScheme.onPrimary),
@@ -130,19 +126,18 @@ class _HomePageState extends State<HomePage> {
                 children: <Widget>[
                   IconButton(
                     tooltip: 'Notifications',
-                    icon: Icon(Icons.notifications),
+                    icon: const Icon(Icons.notifications),
                     onPressed: () {
                       _store.dispatch(const SetNotificationOn());
-                      context.pushNamed('notifications');
-                      //Navigator.of(context).push(createRoute(const NotificationsPage()));
+                      Navigator.of(context).push(createRoute(const NotificationsPage()));
                     },
                   ),
                   IconButton(
                     tooltip: 'Open navigation menu',
-                    icon: Icon(Icons.person),
+                    icon: const Icon(Icons.person),
                     onPressed: () => Navigator.of(context).push(createRoute(const UserProfilePage())),
                   ),
-                  Spacer(),
+                  const Spacer(),
                 ],
               ),
             ),

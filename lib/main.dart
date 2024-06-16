@@ -29,7 +29,7 @@ Future<void> main() async {
 
   final CameraApi cameraApi = CameraApi();
 
-  final AiGeneratedApi aiGeneratedApi = AiGeneratedApi(firestore);
+  final AiGeneratedApi aiGeneratedApi = AiGeneratedApi();
 
   final AuthApi authApi = AuthApi(auth, firestore);
   final AppEpic epic = AppEpic(authApi, superMarketsApi, productApi, cameraApi, aiGeneratedApi);

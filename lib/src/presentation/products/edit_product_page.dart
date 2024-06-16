@@ -98,7 +98,7 @@ class _EditProductPageState extends State<EditProductPage> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Text(
-                        'Edit Product',
+                        'Editează produsul',
                         style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 16),
@@ -129,14 +129,14 @@ class _EditProductPageState extends State<EditProductPage> {
                         controller: _title,
                         keyboardType: TextInputType.text,
                         autofocus: true,
-                        decoration: const InputDecoration(
-                          labelText: 'Title',
-                          hintText: 'Enter product title',
+                        decoration: InputDecoration(
+                          labelText: 'Nume produs',
+                          hintText: widget.product.name,
                         ),
                         textInputAction: TextInputAction.next,
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please provide a title for your product';
+                            return 'Introduceți vă rog un nume pentru noul produs';
                           }
                           return null;
                         },
@@ -149,14 +149,14 @@ class _EditProductPageState extends State<EditProductPage> {
                         controller: _price,
                         focusNode: _priceFocusNode,
                         keyboardType: TextInputType.number,
-                        decoration: const InputDecoration(
-                          labelText: 'Price',
-                          hintText: 'Enter product price',
+                        decoration: InputDecoration(
+                          labelText: 'Preț',
+                          hintText: '${widget.product.price}',
                         ),
                         textInputAction: TextInputAction.done,
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please provide a price for your product';
+                            return 'Introduceți vă rog prețul pentru produs';
                           }
                           return null;
                         },
@@ -172,7 +172,7 @@ class _EditProductPageState extends State<EditProductPage> {
                           padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
                         ),
                         child: const Text(
-                          'Create Product',
+                          'Salvează modificări',
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
@@ -181,7 +181,7 @@ class _EditProductPageState extends State<EditProductPage> {
                           Navigator.pop(context);
                         },
                         child: const Text(
-                          'Cancel',
+                          'Renunță',
                           style: TextStyle(color: Colors.black),
                         ),
                       ),

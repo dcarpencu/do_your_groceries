@@ -2,6 +2,7 @@ import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:do_you_groceries/src/navigation/transitions.dart';
 import 'package:do_you_groceries/src/presentation/products/create_product_page.dart';
+import 'package:do_you_groceries/src/presentation/products/create_recipes_page.dart';
 import 'package:do_you_groceries/src/presentation/supermarkets/markets_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -46,7 +47,8 @@ class BottomAppBarWidget extends StatelessWidget {
                   tooltip: 'Generate',
                   icon: const Icon(Icons.generating_tokens),
                   onPressed: () {
-                    context.pushNamed('createRecipes');
+                    Navigator.of(context).push(createRoute(const CreateRecipesPage()));
+                    //context.pushNamed('createRecipes');
                   },
                 ),
                 IconButton(

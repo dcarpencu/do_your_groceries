@@ -46,37 +46,38 @@ class _FilterChipSelectionState<T extends Enum> extends State<FilterChipSelectio
   @override
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
-
     final String Function(T p1) toReadableString = widget.toReadableString ?? (T value) => value.name;
 
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text(widget.label, style: textTheme.labelLarge),
-          const SizedBox(height: 5),
-          Wrap(
-            spacing: 5,
-            children: widget.enumValues.map((T enumItem) {
-              return FilterChip(
-                label: Text(toReadableString(enumItem)),
-                selected: filters.contains(enumItem),
-                onSelected: (bool selected) {
-                  setState(() {
-                    if (selected) {
-                      filters.add(enumItem);
-                    } else {
-                      filters.remove(enumItem);
-                    }
-                    _dispatchAction(enumItem, selected);
-                  });
-                },
-              );
-            }).toList(),
-          ),
-          const SizedBox(height: 10),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(widget.label, style: textTheme.titleMedium?.copyWith(color: Colors.black87)),
+        const SizedBox(height: 8),
+        Wrap(
+          spacing: 8,
+          runSpacing: 4,
+          children: widget.enumValues.map((T enumItem) {
+            return FilterChip(
+              label: Text(toReadableString(enumItem)),
+              selected: filters.contains(enumItem),
+              selectedColor: Colors.lightBlueAccent,
+              onSelected: (bool selected) {
+                setState(() {
+                  if (selected) {
+                    filters.add(enumItem);
+                  } else {
+                    filters.remove(enumItem);
+                  }
+                  _dispatchAction(enumItem, selected);
+                });
+              },
+              backgroundColor: Colors.grey[200],
+              labelStyle: TextStyle(color: Colors.black87),
+            );
+          }).toList(),
+        ),
+        const SizedBox(height: 16),
+      ],
     );
   }
 }

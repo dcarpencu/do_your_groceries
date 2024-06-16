@@ -1,4 +1,7 @@
 enum CuisineFilter {
+  romanian,
+  serbian,
+  hungarian,
   italian,
   mexican,
   american,
@@ -7,8 +10,6 @@ enum CuisineFilter {
   chinese,
   indian,
   greek,
-  moroccan,
-  ethiopian,
   southAfrican,
 }
 
@@ -21,6 +22,12 @@ enum BasicIngredientsFilter {
   sugar,
   milk,
   vinegar,
+  broth,
+  biscuit,
+  honey,
+  basil,
+  paprika,
+  chilly,
 }
 
 enum DietaryRestrictionsFilter {
@@ -37,27 +44,28 @@ String dietaryRestrictionReadable(DietaryRestrictionsFilter filter) {
   return switch (filter) {
     DietaryRestrictionsFilter.vegan => 'vegan',
     DietaryRestrictionsFilter.vegetarian => 'vegetarian',
-    DietaryRestrictionsFilter.lactoseIntolerant => 'intolerant la lactoza',
-    DietaryRestrictionsFilter.wheatAllergies => 'fara gluten',
+    DietaryRestrictionsFilter.lactoseIntolerant => 'intolerant la lactoză',
+    DietaryRestrictionsFilter.wheatAllergies => 'fără gluten',
     DietaryRestrictionsFilter.nutAllergies => 'alergie la nuci',
-    DietaryRestrictionsFilter.fishAllergies => 'alergie la peste',
+    DietaryRestrictionsFilter.fishAllergies => 'alergie la pește',
     DietaryRestrictionsFilter.soyAllergies => 'alergie la soia',
   };
 }
 
 String cuisineReadable(CuisineFilter filter) {
   return switch (filter) {
-    CuisineFilter.italian => 'italiana',
-    CuisineFilter.mexican => 'mexicana',
-    CuisineFilter.american => 'americana',
-    CuisineFilter.french => 'francez',
-    CuisineFilter.japanese => 'japoneza',
-    CuisineFilter.chinese => 'chineza',
-    CuisineFilter.indian => 'indiana',
-    CuisineFilter.ethiopian => 'ethiopiana',
-    CuisineFilter.moroccan => 'moroccana',
-    CuisineFilter.greek => 'greaca',
-    CuisineFilter.southAfrican => 'africana',
+    CuisineFilter.romanian => 'românească',
+    CuisineFilter.serbian => 'sârbească',
+    CuisineFilter.hungarian => 'ungurească',
+    CuisineFilter.italian => 'italiană',
+    CuisineFilter.mexican => 'mexicană',
+    CuisineFilter.american => 'americană',
+    CuisineFilter.french => 'franceză',
+    CuisineFilter.japanese => 'japoneză',
+    CuisineFilter.chinese => 'chinezească',
+    CuisineFilter.indian => 'indiană',
+    CuisineFilter.greek => 'grecească',
+    CuisineFilter.southAfrican => 'africană',
   };
 }
 
@@ -71,5 +79,11 @@ String basicIngredientsReadable(BasicIngredientsFilter filter) {
     BasicIngredientsFilter.sugar => 'zahar',
     BasicIngredientsFilter.milk => 'lapte',
     BasicIngredientsFilter.vinegar => 'otet',
+    BasicIngredientsFilter.broth => 'bulion',
+    BasicIngredientsFilter.biscuit => 'pesmet',
+    BasicIngredientsFilter.honey => 'miere',
+    BasicIngredientsFilter.basil => 'busuioc',
+    BasicIngredientsFilter.paprika => 'paprika',
+    BasicIngredientsFilter.chilly => 'chilly',
   };
 }
