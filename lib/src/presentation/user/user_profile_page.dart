@@ -36,7 +36,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
 
           return Column(
             children: <Widget>[
-              const BackgroundWave(pageName: 'Detalii cont', icon: '',),
+              const BackgroundWave(pageName: 'Detalii cont',),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(16),

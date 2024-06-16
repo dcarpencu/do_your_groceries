@@ -50,7 +50,11 @@ class _CameraAppState extends State<CameraApp> {
     return Scaffold(
       body: Column(
         children: <Widget>[
-       const BackgroundWave(pageName: 'Take a picture', icon: 'assets/Backgrounds/grocery-bag.png',height: 200, isSvg: false),
+          BackgroundWave(
+            pageName: 'Take a picture',
+            iconWidget: Image.asset('assets/Backgrounds/grocery-bag.png'),
+            height: 200,
+          ),
           PendingContainer(
             builder: (BuildContext context, Set<String> pending) {
               if (pending.contains(InitializeController.pendingKey)) {

@@ -57,7 +57,7 @@ class _UserProductsPageState extends State<UserProductsPage> {
                   children: <Widget>[
                     Stack(
                       children: <Widget>[
-                        BackgroundWave(pageName: _store.state.selectedGroceryList!.title, icon: 'assets/groceryListIcons/${_store.state.selectedGroceryList!.selectedIcon}.svg', backButtonOption: true,
+                        BackgroundWave(pageName: _store.state.selectedGroceryList!.title, iconWidget: SvgPicture.asset('assets/groceryListIcons/${_store.state.selectedGroceryList!.selectedIcon}.svg', height: 100, width: 100,),
                         ),
                       ],
                     ),

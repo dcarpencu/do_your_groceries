@@ -3,13 +3,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class BackgroundWave extends StatelessWidget {
   const BackgroundWave(
-      {required this.pageName, required this.icon, this.backButtonOption = true, super.key, this.height = 280, this.isSvg = true,});
+      {required this.pageName, this.backButtonOption = true, super.key, this.height = 280, this.iconWidget, this.isHome = false,});
 
   final String pageName;
-  final String icon;
   final bool backButtonOption;
-  final bool isSvg;
   final double height;
+  final Widget? iconWidget;
+  final bool isHome;
 
   @override
   Widget build(BuildContext context) {
@@ -50,24 +50,12 @@ class BackgroundWave extends StatelessWidget {
             ),
           ),
         ),
-        if(isSvg)
-        Positioned(
-          top: 88,
-          left: 256,
-          child: SizedBox(
-            height: 124,
-            child: SvgPicture.asset(icon,
-            width: 100,
-            height: 100,),
-          ),
-        ),
-        if(!isSvg)
           Positioned(
-            top: 88,
+            top: 105,
             left: 256,
             child: SizedBox(
-              height: 124,
-              child: Image.asset(icon),
+              height: isHome? 124 : 100,
+              child: iconWidget,
             ),
           ),
       ],

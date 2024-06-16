@@ -39,10 +39,10 @@ class _HomePageState extends State<HomePage> {
         return Scaffold(
           body: Column(
             children: <Widget>[
-              const BackgroundWave(
+              BackgroundWave(
                 pageName: 'DoYourGroceries', backButtonOption: false,
-                icon: 'assets/Backgrounds/grocery-bag.png',
-                isSvg: false,
+                iconWidget: Image.asset('assets/Backgrounds/grocery-bag.png'),
+                isHome: true,
               ),
               PendingContainer(
                 builder: (BuildContext context, Set<String> pending) {
