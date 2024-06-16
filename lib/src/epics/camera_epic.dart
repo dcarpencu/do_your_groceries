@@ -15,6 +15,7 @@ class CameraEpic {
       TypedEpic<AppState, GetImageLabelsStart>(_getImageLabelsStart).call,
       TypedEpic<AppState, RequestStoragePermissionStart>(_requestStoragePermissionStart).call,
       TypedEpic<AppState, GetCamerasStart>(_getCamerasStart).call,
+      TypedEpic<AppState, InitializeControllerStart>(_initializeControllerStart).call,
     ]);
   }
 
