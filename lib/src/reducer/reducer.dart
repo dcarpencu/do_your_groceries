@@ -68,7 +68,6 @@ Reducer<AppState> _reducer = combineReducers<AppState>(<Reducer<AppState>>[
   TypedReducer<AppState, ClearProductsFromList>(_clearProductsFromList).call,
   TypedReducer<AppState, SendRequestSuccessful>(_sendRequestSuccessful).call,
   TypedReducer<AppState, SmartUpdateListSuccessful>(_smartUpdateListSuccessful).call,
-
 ]);
 
 AppState _setMarketProductsToEmpty(AppState state, SetMarketProductsToEmpty action) {

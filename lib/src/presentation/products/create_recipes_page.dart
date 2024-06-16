@@ -1,7 +1,7 @@
 import 'package:do_you_groceries/src/models/filter_chip_enums.dart';
 import 'package:do_you_groceries/src/models/index.dart';
 import 'package:do_you_groceries/src/presentation/user/generated_recipe_page.dart';
-import 'package:do_you_groceries/src/ui_elements/components/filterChipSelection.dart';
+import 'package:do_you_groceries/src/ui_elements/components/filter_chip_selection.dart';
 import 'package:do_you_groceries/src/ui_elements/components/sliver_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -95,17 +95,14 @@ class _CreateRecipesPageState extends State<CreateRecipesPage> {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.lightBlueAccent,
                             shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.circular(16),
+                              borderRadius: BorderRadius.circular(16),
                             ),
                             padding: const EdgeInsets.symmetric(
                               vertical: 14,
                               horizontal: 32,
                             ),
                             elevation: 4,
-
-                            shadowColor:
-                                Colors.lightBlueAccent.withOpacity(0.5),
+                            shadowColor: Colors.lightBlueAccent.withOpacity(0.5),
                           ),
                           child: const Text(
                             'Generează rețeta',

@@ -331,7 +331,6 @@ class AuthApi {
 
     userData['groceryListIds'] = updatedGroceryListIds.toList();
 
-    print('Accept Request: Updated groceryListIds = ${userData['groceryListIds']}');
     await userRef.update(userData);
 
     // Fetch and update the grocery list document
@@ -352,12 +351,12 @@ class AuthApi {
     final int currentUsersCount = groceryListData['usersCount'] as int? ?? 0;
     groceryListData['usersCount'] = currentUsersCount + 1;
 
-    print('Accept Request: Updated usersCount = ${groceryListData['usersCount']}');
     await groceryListRef.update(groceryListData);
 
     // Remove the request from the user's requests
-    final List<Map<String, dynamic>>? requests =
-        (userData['requests'] as List<dynamic>?)?.map((item) => item as Map<String, dynamic>).toList();
+    final List<Map<String, dynamic>>? requests = (userData['requests'] as List<dynamic>?)?.map((dynamic item) {
+      return item as Map<String, dynamic>;
+    }).toList();
 
     final Map<String, dynamic> requestJsonToRemove = requestToRemove.toJson();
 
@@ -365,7 +364,6 @@ class AuthApi {
       requests.removeWhere((Map<String, dynamic> element) => _mapsAreEqual(element, requestJsonToRemove));
       userData['requests'] = requests;
 
-      print('Remove Request: Updated requests = ${userData['requests']}');
       await userRef.update(userData);
     }
 
@@ -383,7 +381,7 @@ class AuthApi {
 
     final Map<String, dynamic>? listData = snapshot.data();
     final List<Map<String, dynamic>>? requests =
-        (listData?['requests'] as List?)?.map((item) => item as Map<String, dynamic>).toList();
+        (listData?['requests'] as List<dynamic>?)?.map((dynamic item) => item as Map<String, dynamic>).toList();
 
     final Map<String, dynamic> requestJsonToRemove = requestToRemove.toJson();
 
@@ -391,7 +389,6 @@ class AuthApi {
       requests.removeWhere((Map<String, dynamic> element) => _mapsAreEqual(element, requestJsonToRemove));
       listData!['requests'] = requests;
 
-      print('Remove Request: Updated requests = ${listData['requests']}');
       await userRef.update(listData);
     }
   }

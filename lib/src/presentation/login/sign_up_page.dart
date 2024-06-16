@@ -78,8 +78,10 @@ class SignupPageState extends State<SignupPage> {
                     controller: _usernameController,
                     keyboardType: TextInputType.text,
                     textInputAction: TextInputAction.next,
-                    decoration:
-                        const InputDecoration(labelText: 'Nume utilizator', hintText: 'Introduceți numele de utilizator'),
+                    decoration: const InputDecoration(
+                      labelText: 'Nume utilizator',
+                      hintText: 'Introduceți numele de utilizator',
+                    ),
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
                         return 'Introduceți vă rog numele de utilizator';

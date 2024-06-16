@@ -13,7 +13,9 @@ class MockFirebaseAuth with Mock implements FirebaseAuth {}
 // ignore: avoid_implementing_value_types
 class MockFirebaseFireStore with Mock implements FirebaseFirestore {}
 
+// ignore: subtype_of_sealed_class
 class MockDocumentReference with Mock implements DocumentReference<Map<String, dynamic>> {}
+// ignore: subtype_of_sealed_class
 class MockDocumentSnapshot with Mock implements DocumentSnapshot<Map<String, dynamic>> {}
 
 final Map<String, dynamic> userData =
@@ -49,7 +51,6 @@ Future<void> main() async {
     when(() => ref.get()).thenAnswer((_) async => snapshot);
     when(snapshot.data).thenReturn(userData);
 
-    const String uid = 'uid';
     final AppUser? expected = await authApi.getCurrentUser();
 
     expect(expected, AppUser.fromJson(userData));

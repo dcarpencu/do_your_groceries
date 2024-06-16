@@ -25,9 +25,11 @@ class SliverAppBarProducts extends SliverPersistentHeaderDelegate {
           left: 256,
           child: SizedBox(
             height: 100,
-            child: SvgPicture.asset('assets/groceryListIcons/$image.svg',
+            child: SvgPicture.asset(
+              'assets/groceryListIcons/$image.svg',
               width: 100,
-              height: 100,),
+              height: 100,
+            ),
           ),
         ),
       ],

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class BackgroundWave extends StatelessWidget {
-  const BackgroundWave(
-      {required this.pageName, super.key, this.height = 280, this.iconWidget, this.isHome = false,});
+  const BackgroundWave({
+    required this.pageName,
+    super.key,
+    this.height = 280,
+    this.iconWidget,
+    this.isHome = false,
+  });
 
   final String pageName;
   final double height;
@@ -49,14 +53,14 @@ class BackgroundWave extends StatelessWidget {
             ),
           ),
         ),
-          Positioned(
-            top: 105,
-            left: isHome ? 232 : 256,
-            child: SizedBox(
-              height: isHome? 156 : 100,
-              child: iconWidget,
-            ),
+        Positioned(
+          top: 105,
+          left: isHome ? 232 : 256,
+          child: SizedBox(
+            height: isHome ? 156 : 100,
+            child: iconWidget,
           ),
+        ),
       ],
     );
   }

@@ -153,9 +153,11 @@ class _CreateListPageState extends State<CreateListPage> {
                             TextFormField(
                               controller: _titleController,
                               keyboardType: TextInputType.text,
-                              decoration: const InputDecoration(labelText: 'Nume listă', hintText: 'Numele listei de cumpărături:'),
+                              decoration: const InputDecoration(
+                                labelText: 'Nume listă',
+                                hintText: 'Numele listei de cumpărături:',
+                              ),
                               textInputAction: TextInputAction.next,
-
                               validator: (String? value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Introduceți un nume pentru lista de cumpărături';

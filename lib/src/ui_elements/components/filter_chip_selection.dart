@@ -72,7 +72,7 @@ class _FilterChipSelectionState<T extends Enum> extends State<FilterChipSelectio
                 });
               },
               backgroundColor: Colors.grey[200],
-              labelStyle: TextStyle(color: Colors.black87),
+              labelStyle: const TextStyle(color: Colors.black87),
             );
           }).toList(),
         ),

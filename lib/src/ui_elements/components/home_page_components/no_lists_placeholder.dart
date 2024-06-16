@@ -19,7 +19,7 @@ class NoListsPlaceholder extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             separatorBuilder: (BuildContext context, int index) => const SizedBox(width: 16),
             itemBuilder: (BuildContext context, int index) {
-              if(index == 0) {
+              if (index == 0) {
                 return SizedBox(
                   width: 240,
                   child: Container(
@@ -49,7 +49,6 @@ class NoListsPlaceholder extends StatelessWidget {
                           textAlign: TextAlign.center,
                         ),
                         const SizedBox(height: 32),
-
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             foregroundColor: Colors.lightBlue,

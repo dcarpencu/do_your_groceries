@@ -1,11 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:do_you_groceries/src/models/index.dart';
-import 'package:http/http.dart';
 
 class SuperMarketsApi {
-  SuperMarketsApi(this._client, this._firestore);
+  SuperMarketsApi(this._firestore);
 
-  final Client _client;
   final FirebaseFirestore _firestore;
 
   Future<List<Product>> getSuperMarketProducts({

@@ -109,17 +109,12 @@ class _ImageViewPageState extends State<ImageViewPage> {
                                 final Product relatedProduct = relatedProducts[index];
                                 return InkWell(
                                   onTap: () {
-                                    print('\n\n\n RELATED PRODUCT: $relatedProduct\n\n\n');
-                                    print(
-                                      '\n\n\n selected grocery: ${_store.state.selectedGroceryList!.groceryListId}\n\n\n',
-                                    );
-
                                     _store.dispatch(
                                       AddProductToGroceryListStart(
                                         relatedProduct,
                                         _store.state.selectedGroceryList!.groceryListId,
                                       ),
-                                    ); //..dispatch(GetProductsAfterEditStart(groceryListId: _store.state.selectedGroceryList!.groceryListId));
+                                    );
                                     context
                                       ..pop()
                                       ..pop();

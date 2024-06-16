@@ -73,7 +73,6 @@ class _EditProductPageState extends State<EditProductPage> {
     context
       ..pop()
       ..pop();
-    print('\n\nGO HOMEPAGE\n\n');
   }
 
   @override

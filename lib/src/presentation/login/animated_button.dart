@@ -80,8 +80,9 @@ class AnimatedButtonState extends State<AnimatedButton> with SingleTickerProvide
   }
 
   void _resetScaleAnimation() {
-    _pressController.reverse();
-    _pressController.reset();
+    _pressController
+      ..reverse()
+      ..reset();
   }
 
   @override

@@ -57,7 +57,6 @@ class _EditListPageState extends State<EditListPage> {
       ),
     );
 
-    print('\n\nGO HOMEPAGE\n\n');
     context.pop();
   }
 

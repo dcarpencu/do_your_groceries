@@ -1,3 +1,4 @@
+// ignore_for_file: avoid_slow_async_io
 import 'dart:io';
 
 import 'package:camera/camera.dart';
@@ -14,7 +15,6 @@ class CameraApi {
 
   Future<void> requestStoragePermission() async {
     if (!kIsWeb) {
-
       final PermissionStatus status = await Permission.storage.status;
       if (!status.isGranted) {
         await Permission.storage.request();
@@ -91,12 +91,8 @@ class CameraApi {
   }
 
   Future<String> getImageLabels({required String imagePath}) async {
-    print('\n\n\n GetIMAGELABELS \n\n');
-
     try {
       final InputImage inputImage = InputImage.fromFilePath(imagePath);
-
-      print('\n\n\n input Image: $inputImage \n\n\n');
 
       final String modelPath = await _loadModel('assets/ml/latest_metadata_200epch.tflite');
 
@@ -104,8 +100,6 @@ class CameraApi {
         confidenceThreshold: 0.75,
         modelPath: modelPath,
       );
-
-      print('\n\n\n OPTIONS: $options \n\n\n');
 
       final ImageLabeler imageLabeler = ImageLabeler(options: options);
 
@@ -125,7 +119,9 @@ class CameraApi {
       await imageLabeler.close();
       return sb.toString();
     } catch (e) {
-      print('Error in getImageLabels: $e');
+      if (kDebugMode) {
+        print('Error in getImageLabels: $e');
+      }
       return 'Error: $e';
     }
   }
@@ -145,7 +141,9 @@ class CameraApi {
 
       return modelFile.path;
     } catch (e) {
-      print('Error loading model: $e');
+      if (kDebugMode) {
+        print('Error loading model: $e');
+      }
       rethrow;
     }
   }

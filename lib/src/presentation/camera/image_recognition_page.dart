@@ -5,6 +5,7 @@ import 'package:do_you_groceries/src/models/index.dart';
 import 'package:do_you_groceries/src/navigation/transitions.dart';
 import 'package:do_you_groceries/src/presentation/camera/image_view_page.dart';
 import 'package:do_you_groceries/src/ui_elements/components/background_wave_clipper.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -139,7 +140,9 @@ class _CameraAppState extends State<CameraApp> {
         await controller.setFocusPoint(point);
         await controller.setExposurePoint(point);
       } catch (e) {
-        print('Error setting focus and exposure point: $e');
+        if (kDebugMode) {
+          print('Error setting focus and exposure point: $e');
+        }
       }
 
       await Future<void>.delayed(const Duration(seconds: 2)).then((_) {

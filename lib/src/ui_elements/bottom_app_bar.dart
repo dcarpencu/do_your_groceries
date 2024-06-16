@@ -5,7 +5,6 @@ import 'package:do_you_groceries/src/presentation/products/create_product_page.d
 import 'package:do_you_groceries/src/presentation/products/create_recipes_page.dart';
 import 'package:do_you_groceries/src/presentation/supermarkets/markets_page.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:redux/redux.dart';
 
 class BottomAppBarWidget extends StatelessWidget {
@@ -33,9 +32,7 @@ class BottomAppBarWidget extends StatelessWidget {
                   tooltip: 'Open navigation menu',
                   icon: const Icon(Icons.smart_toy),
                   onPressed: () {
-                    print('\n\n\n\n');
                     store.dispatch(SmartUpdateListStart(groceryListProducts: store.state.productsGroceryList));
-                    print('\n\n\n\n');
                   },
                 ),
                 IconButton(

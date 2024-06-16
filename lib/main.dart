@@ -13,7 +13,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:http/http.dart';
 import 'package:redux/redux.dart';
 import 'package:redux_epics/redux_epics.dart';
 
@@ -23,8 +22,7 @@ Future<void> main() async {
   final FirebaseAuth auth = FirebaseAuth.instanceFor(app: app);
   final FirebaseFirestore firestore = FirebaseFirestore.instanceFor(app: app);
 
-  final Client client = Client();
-  final SuperMarketsApi superMarketsApi = SuperMarketsApi(client, firestore);
+  final SuperMarketsApi superMarketsApi = SuperMarketsApi(firestore);
   final ProductsApi productApi = ProductsApi(firestore);
 
   final CameraApi cameraApi = CameraApi();

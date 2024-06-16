@@ -6,6 +6,7 @@ UPT final project
 
 for generating: dart run build_runner watch --delete-conflicting-outputs
 flutter run --dart-define=API_KEY=AIzaSyBVuj79tA0VZPGZTPcpZD3Ljc-6Fxi5ptI
+dart format --line-length 120 --set-exit-if-changed ./lib
 
 
 This project is a starting point for a Flutter application.

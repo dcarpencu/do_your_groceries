@@ -31,7 +31,10 @@ class AppEpic {
     ]);
   }
 
-  Stream<AppAction> _generateRecipeResponseStart(Stream<GenerateRecipeResponseStart> actions, EpicStore<AppState> store) {
+  Stream<AppAction> _generateRecipeResponseStart(
+    Stream<GenerateRecipeResponseStart> actions,
+    EpicStore<AppState> store,
+  ) {
     return actions.flatMap((GenerateRecipeResponseStart action) {
       return Stream<void>.value(null)
           .asyncMap((_) => _aiGeneratedApi.generateRecipeResponse(action.model, action.prompt))
