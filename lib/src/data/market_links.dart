@@ -2,11 +2,12 @@ const List<String> marketsNames = <String>['Auchan', 'Carrefour', 'Kaufland', 'P
 
 // TODO(dcarpencu): Add to assets
 const List<String> marketsPictures = <String>[
-  'https://www.hellopark.ro/pictures/original/318255e7cfa2c1093c-auchan.jpg',
-  'https://logowik.com/content/uploads/images/210_carrefour.jpg',
-  'https://kaufland.media.schwarz/is/image/schwarz/t-kaufland-magazin%20%282%29?JGstbGVnYWN5LW9uc2l0ZS00JA==',
-  'https://assets-eu-01.kc-usercontent.com/b50b8cce-450a-0138-7b43-de6bc2f3ad32/dfa9eff8-af7e-4d76-941f-226973049f2c/otopeni.jpg?w=1500&fm=webp&lossless=0&q=80',
-  'https://storage0.dms.mpinteractiv.ro/media/1/1481/21335/22104753/1/profi.jpg',
+  'assets/markets/auchan.png',
+  'assets/markets/Carrefour.jpg',
+  'assets/markets/kaufland.png',
+  'assets/markets/penny.png',
+  'assets/markets/profi.png',
+  'assets/markets/mega_image.jpg',
 ];
 
 const List<String> supermarketCategories = <String>[

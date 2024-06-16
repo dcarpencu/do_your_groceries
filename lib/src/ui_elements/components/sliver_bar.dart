@@ -17,34 +17,8 @@ class SliverAppBarProducts extends SliverPersistentHeaderDelegate {
 
     return Stack(
       children: <Widget>[
-        const BackgroundWave(
-          height: 280,
-        ),
-        Positioned(
-          top: topPadding + offset,
-          left: 40,
-          child: Text(
-            title,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 32,
-              fontFamily: 'Poppins',
-              height: 1.2,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        Positioned(
-          top: topPadding + offset - 30,
-          left: 256,
-          child: SizedBox(
-            height: 100,
-            child: SvgPicture.asset(
-              'assets/groceryListIcons/$image.svg',
-              width: 100,
-              height: 100,
-            ),
-          ),
+        BackgroundWave(
+          pageName: title, icon: 'assets/groceryListIcons/$image.svg',
         ),
       ],
     );

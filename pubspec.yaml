@@ -63,5 +63,6 @@ flutter:
     - assets/groceryListIcons/
     - assets/productsIcons/
     - assets/ml/
+    - assets/markets/
     - assets/categoryIcons/
     - assets/placeholders/

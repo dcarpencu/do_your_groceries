@@ -1,25 +1,76 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class BackgroundWave extends StatelessWidget {
-  const BackgroundWave({required this.height, super.key});
+  const BackgroundWave(
+      {required this.pageName, required this.icon, this.backButtonOption = true, super.key, this.height = 280, this.isSvg = true,});
+
+  final String pageName;
+  final String icon;
+  final bool backButtonOption;
+  final bool isSvg;
   final double height;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: height,
-      child: ClipPath(
-        clipper: BackgroundWaveClipper(),
-        child: Container(
-          width: MediaQuery.of(context).size.width,
+    return Stack(
+      children: <Widget>[
+        SizedBox(
           height: height,
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: <Color>[Colors.lightBlueAccent, Colors.lightBlue],
+          child: ClipPath(
+            clipper: BackgroundWaveClipper(),
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              height: height,
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  colors: <Color>[Colors.lightBlueAccent, Colors.lightBlue],
+                ),
+              ),
             ),
           ),
         ),
-      ),
+        if (backButtonOption)
+          const Positioned(
+            top: 48,
+            left: 8,
+            child: BackButton(color: Colors.white),
+          ),
+        Positioned(
+          top: 100,
+          left: 20,
+          child: Text(
+            pageName,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 32,
+              fontFamily: 'Poppins',
+              height: 1.2,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        if(isSvg)
+        Positioned(
+          top: 88,
+          left: 256,
+          child: SizedBox(
+            height: 124,
+            child: SvgPicture.asset(icon,
+            width: 100,
+            height: 100,),
+          ),
+        ),
+        if(!isSvg)
+          Positioned(
+            top: 88,
+            left: 256,
+            child: SizedBox(
+              height: 124,
+              child: Image.asset(icon),
+            ),
+          ),
+      ],
     );
   }
 }

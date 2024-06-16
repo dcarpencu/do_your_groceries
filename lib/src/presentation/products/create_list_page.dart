@@ -24,6 +24,7 @@ class _CreateListPageState extends State<CreateListPage> {
     'kaufland',
     'penny',
     'profi',
+    'Logo_Mega_Image',
     'cocktail',
     'milk-tea',
     'sunbathing',

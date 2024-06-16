@@ -36,30 +36,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
 
           return Column(
             children: <Widget>[
-              const Stack(
-                children: <Widget>[
-                  BackgroundWave(height: 280),
-                  Positioned(
-                    top: 48,
-                    left: 16,
-                    child: BackButton(color: Colors.white),
-                  ),
-                  Positioned(
-                    top: 145,
-                    left: 40,
-                    child: Text(
-                      'Detalii cont',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 32,
-                        fontFamily: 'Poppins',
-                        height: 1.2,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              const BackgroundWave(pageName: 'Detalii cont', icon: '',),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(16),

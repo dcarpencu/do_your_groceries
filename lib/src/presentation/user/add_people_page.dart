@@ -72,9 +72,9 @@ class _AddPeoplePageState extends State<AddPeoplePage> {
               children: <Widget>[
                 Stack(
                   children: <Widget>[
-                    const BackgroundWave(
-                      height: 280,
-                    ),
+                    // const BackgroundWave(
+                    //   height: 280,
+                    // ),
                     Positioned(
                       top: 145,
                       left: 40,

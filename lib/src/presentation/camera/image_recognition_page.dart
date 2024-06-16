@@ -50,36 +50,7 @@ class _CameraAppState extends State<CameraApp> {
     return Scaffold(
       body: Column(
         children: <Widget>[
-          Stack(
-            children: <Widget>[
-              ClipPath(
-                clipper: BackgroundWaveClipper(),
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 200,
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: <Color>[Colors.lightBlueAccent, Colors.lightBlue],
-                    ),
-                  ),
-                ),
-              ),
-              const Positioned(
-                top: 80,
-                left: 20,
-                child: Text(
-                  'Take a picture',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 32,
-                    fontFamily: 'Poppins',
-                    height: 1.2,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ],
-          ),
+       const BackgroundWave(pageName: 'Take a picture', icon: 'assets/Backgrounds/grocery-bag.png',height: 200, isSvg: false),
           PendingContainer(
             builder: (BuildContext context, Set<String> pending) {
               if (pending.contains(InitializeController.pendingKey)) {

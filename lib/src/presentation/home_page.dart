@@ -39,31 +39,10 @@ class _HomePageState extends State<HomePage> {
         return Scaffold(
           body: Column(
             children: <Widget>[
-              Stack(
-                children: <Widget>[
-                  const BackgroundWave(
-                    height: 280,
-                  ),
-                  const Positioned(
-                    top: 100,
-                    left: 20,
-                    child: Text(
-                      'DoYourGroceries',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 32,
-                        fontFamily: 'Poppins',
-                        height: 1.2,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    top: 88,
-                    left: 256,
-                    child: SizedBox(height: 124, child: Image.asset('assets/Backgrounds/grocery-bag.png')),
-                  ),
-                ],
+              const BackgroundWave(
+                pageName: 'DoYourGroceries', backButtonOption: false,
+                icon: 'assets/Backgrounds/grocery-bag.png',
+                isSvg: false,
               ),
               PendingContainer(
                 builder: (BuildContext context, Set<String> pending) {
@@ -138,12 +117,12 @@ class _HomePageState extends State<HomePage> {
           floatingActionButton: FloatingActionButton(
             onPressed: () => Navigator.of(context).push(createRoute(const CreateListPage())),
             tooltip: 'Create',
-            child: const Icon(Icons.playlist_add),
+            child: Icon(Icons.playlist_add),
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
           bottomNavigationBar: BottomAppBar(
             height: 60,
-            shape: const CircularNotchedRectangle(),
+            shape: CircularNotchedRectangle(),
             color: Colors.lightBlue,
             child: IconTheme(
               data: IconThemeData(color: Theme.of(context).colorScheme.onPrimary),
@@ -151,7 +130,7 @@ class _HomePageState extends State<HomePage> {
                 children: <Widget>[
                   IconButton(
                     tooltip: 'Notifications',
-                    icon: const Icon(Icons.notifications),
+                    icon: Icon(Icons.notifications),
                     onPressed: () {
                       _store.dispatch(const SetNotificationOn());
                       context.pushNamed('notifications');
@@ -160,10 +139,10 @@ class _HomePageState extends State<HomePage> {
                   ),
                   IconButton(
                     tooltip: 'Open navigation menu',
-                    icon: const Icon(Icons.person),
+                    icon: Icon(Icons.person),
                     onPressed: () => Navigator.of(context).push(createRoute(const UserProfilePage())),
                   ),
-                  const Spacer(),
+                  Spacer(),
                 ],
               ),
             ),
