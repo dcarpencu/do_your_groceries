@@ -14,14 +14,14 @@ class ProductsApi {
         .asyncMap((DocumentSnapshot<Map<String, dynamic>> snapshot) async {
       if (snapshot.exists) {
         final List<dynamic>? productIds =
-            (snapshot.data()?['productIds'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
+        (snapshot.data()?['productIds'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
 
         if (productIds == null || productIds.isEmpty) {
           return <Product>[];
         }
 
         final List<Future<DocumentSnapshot<Map<String, dynamic>>>> readOperations =
-            <Future<DocumentSnapshot<Map<String, dynamic>>>>[];
+        <Future<DocumentSnapshot<Map<String, dynamic>>>>[];
 
         for (final dynamic productId in productIds) {
           final int lastIndex = productId.toString().lastIndexOf('/');
@@ -54,14 +54,14 @@ class ProductsApi {
         .asyncMap((DocumentSnapshot<Map<String, dynamic>> snapshot) async {
       if (snapshot.exists) {
         final List<dynamic>? productIds =
-            (snapshot.data()?['productIds'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
+        (snapshot.data()?['productIds'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
 
         if (productIds == null || productIds.isEmpty) {
           return <Product>[];
         }
 
         final List<Future<DocumentSnapshot<Map<String, dynamic>>>> readOperations =
-            <Future<DocumentSnapshot<Map<String, dynamic>>>>[];
+        <Future<DocumentSnapshot<Map<String, dynamic>>>>[];
 
         for (final dynamic productId in productIds) {
           final int lastIndex = productId.toString().lastIndexOf('/');
@@ -92,7 +92,7 @@ class ProductsApi {
 
     if (product.supermarket.isNotEmpty) {
       final CollectionReference<Map<String, dynamic>> productsRef =
-          _firestore.collection('tags/${product.category}/${product.tag}');
+      _firestore.collection('tags/${product.category}/${product.tag}');
 
       final QuerySnapshot<Map<String, dynamic>> querySnapshot = await productsRef.get();
 
@@ -151,7 +151,12 @@ class ProductsApi {
   }) async {
     final DocumentReference<Map<String, dynamic>> ref = _firestore.collection('products').doc();
     final Product product =
-        Product(productId: ref.id, name: name, price: price, image: image, createdByUser: createdByUser, category: '');
+    Product(productId: ref.id,
+        name: name,
+        price: price,
+        image: image,
+        createdByUser: createdByUser,
+        category: '');
 
     await ref.set(product.toJson());
 
@@ -161,7 +166,7 @@ class ProductsApi {
     final Map<String, dynamic> listData = snapshot.data()!;
 
     final List<dynamic>? productIds =
-        (snapshot.data()?['productIds'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
+    (snapshot.data()?['productIds'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
 
     productIds?.add('products/${ref.id}');
     listData['productIds'] = productIds;
@@ -169,17 +174,15 @@ class ProductsApi {
     await listRef.update(listData);
   }
 
-  Future<void> addProductToGroceryList(
-    Product product,
-    String groceryListId,
-  ) async {
+  Future<void> addProductToGroceryList(Product product,
+      String groceryListId,) async {
     final DocumentReference<Map<String, dynamic>> listRef = _firestore.collection('lists').doc(groceryListId);
     final DocumentSnapshot<Map<String, dynamic>> snapshot = await listRef.get();
 
     final Map<String, dynamic> listData = snapshot.data()!;
 
     final List<dynamic>? productIds =
-        (snapshot.data()?['productIds'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
+    (snapshot.data()?['productIds'] as List<dynamic>?)?.map((dynamic id) => id.toString()).toList();
 
     productIds
         ?.add('/${product.supermarket}/categories/${product.category}/pages/page_${product.page}/${product.productId}');
@@ -224,7 +227,7 @@ class ProductsApi {
 
     if (product.supermarket.isEmpty) {
       final DocumentReference<Map<String, dynamic>> productRef =
-          _firestore.collection('products').doc(product.productId);
+      _firestore.collection('products').doc(product.productId);
       await productRef.delete();
     }
   }
@@ -283,21 +286,25 @@ class ProductsApi {
     print('\n\n\n\n PRODUCT TO BE RM: ${oldProduct.productId} \n\n');
 
     if (productIds.contains(
-      '/${oldProduct.supermarket}/categories/${oldProduct.category}/pages/page_${oldProduct.page}/${oldProduct.productId}',
+      '/${oldProduct.supermarket}/categories/${oldProduct.category}/pages/page_${oldProduct.page}/${oldProduct
+          .productId}',
     )) {
       await ref.update(<Object, Object?>{
         'productIds': FieldValue.arrayRemove(<String>[
-          '/${oldProduct.supermarket}/categories/${oldProduct.category}/pages/page_${oldProduct.page}/${oldProduct.productId}',
+          '/${oldProduct.supermarket}/categories/${oldProduct.category}/pages/page_${oldProduct.page}/${oldProduct
+              .productId}',
         ]),
       });
     }
 
     if (!productIds.contains(
-      '/${selectedProduct.supermarket}/categories/${selectedProduct.category}/pages/page_${selectedProduct.page}/${selectedProduct.productId}',
+      '/${selectedProduct.supermarket}/categories/${selectedProduct.category}/pages/page_${selectedProduct
+          .page}/${selectedProduct.productId}',
     )) {
       await ref.update(<Object, Object?>{
         'productIds': FieldValue.arrayUnion(<String>[
-          '/${selectedProduct.supermarket}/categories/${selectedProduct.category}/pages/page_${selectedProduct.page}/${selectedProduct.productId}',
+          '/${selectedProduct.supermarket}/categories/${selectedProduct.category}/pages/page_${selectedProduct
+              .page}/${selectedProduct.productId}',
         ]),
       });
     }
@@ -317,8 +324,6 @@ class ProductsApi {
     required List<Product> groceryListProducts,
     required GroceryList groceryList,
   }) async {
-    List<Product> productsRelated = <Product>[];
-    List<Product> productsSorted = <Product>[];
     List<Product> generatedProducts = <Product>[];
     final Map<String, int> frequencyMarkets = <String, int>{
       'Auchan': 0,
@@ -331,79 +336,97 @@ class ProductsApi {
 
     // Handle the case with only one product in the basket
     if (groceryListProducts.length == 1) {
-      generatedProducts = <Product>[groceryListProducts[0]];
-      productsRelated = await getProducts(product: groceryListProducts[0]);
+      final Product product = groceryListProducts[0];
+      final List<Product> productsRelated = await getProducts(product: product);
+
       if (productsRelated.isNotEmpty) {
-        productsSorted = _sortProductsByPrice(productsRelated);
-        final String bestSupermarket = productsSorted[0].supermarket;
-        print('Supermarket with the lowest price for the single product: $bestSupermarket');
-        // Assuming we need to switch to the product with the lowest price
-        if(groceryListProducts[0].price != productsSorted[0].price) {
-          generatedProducts = <Product>[groceryListProducts[0]];
+        final List<Product> productsSorted = _sortProductsByPrice(productsRelated);
+        final Product bestProduct = productsSorted[0];
+
+        if (product.price != bestProduct.price) {
+          generatedProducts = <Product>[bestProduct];
           await switchProduct(
-            selectedProduct: productsSorted[0],
-            oldProduct: groceryListProducts[0],
+            selectedProduct: bestProduct,
+            oldProduct: product,
             groceryList: groceryList,
           );
+        } else {
+          generatedProducts = <Product>[product];
         }
+      } else {
+        generatedProducts = <Product>[product];
       }
+
       return generatedProducts;
     }
 
-    for (final Product product in groceryListProducts) {
-      productsRelated = await getProducts(product: product);
+    // Count frequency of best prices across supermarkets
+    for (Product product in groceryListProducts) {
+      final List<Product> productsRelated = await getProducts(product: product);
       if (productsRelated.isNotEmpty) {
-        productsSorted = _sortProductsByPrice(productsRelated);
+        final List<Product> productsSorted = _sortProductsByPrice(productsRelated);
         frequencyMarkets[productsSorted[0].supermarket] =
             frequencyMarkets[productsSorted[0].supermarket]! + 1;
       }
     }
 
-    print('\n\n $frequencyMarkets \n\n');
+    final String highestSupermarket = frequencyMarkets.entries
+        .reduce((MapEntry<String, int> a, MapEntry<String, int> b) => a.value > b.value ? a : b)
+        .key;
 
-    String highestSupermarket = '';
-    int highestFrequency = 0;
-
-    frequencyMarkets.forEach((String supermarket, int frequency) {
-      if (frequency > highestFrequency) {
-        highestSupermarket = supermarket;
-        highestFrequency = frequency;
-      }
-    });
-
-    print('Supermarket with highest frequency: $highestSupermarket ($highestFrequency)');
-
-    print('\n\n SMART \n\n');
-
-    for (final Product product in groceryListProducts) {
-      productsRelated = await getProducts(product: product);
+    for (Product product in groceryListProducts) {
+      final List<Product> productsRelated = await getProducts(product: product);
       if (productsRelated.isNotEmpty) {
-        productsSorted = _sortProductsByPrice(productsRelated);
-        for (final Product productToSwitch in productsSorted) {
-          print('\n\n\n PRODUCT TO SWITCH: $productToSwitch \n\n');
-          if (productToSwitch.supermarket == highestSupermarket && product != productsSorted[0]) {
-            generatedProducts.add(productToSwitch);
-            print('\n\n\n PRODUCT TO SWITCH: $productToSwitch \n\n');
+        final List<Product> productsSorted = _sortProductsByPrice(productsRelated);
+
+        // Check if there is a product from the highest frequency supermarket
+        Product? bestProductInSupermarket;
+        try {
+          bestProductInSupermarket = productsSorted.firstWhere(
+                (Product p) => p.supermarket == highestSupermarket,
+          );
+        } catch (e) {
+          bestProductInSupermarket = null;
+        }
+
+        if (bestProductInSupermarket != null && bestProductInSupermarket.price < product.price) {
+          generatedProducts.add(bestProductInSupermarket);
+          await switchProduct(
+            selectedProduct: bestProductInSupermarket,
+            oldProduct: product,
+            groceryList: groceryList,
+          );
+        } else {
+          Product? bestProductInCurrentSupermarket;
+          try {
+            bestProductInCurrentSupermarket = productsSorted.firstWhere(
+                  (Product p) => p.supermarket == product.supermarket && p.price < product.price,
+            );
+          } catch (e) {
+            bestProductInCurrentSupermarket = null;
+          }
+
+          if (bestProductInCurrentSupermarket != null) {
+            generatedProducts.add(bestProductInCurrentSupermarket);
             await switchProduct(
-              selectedProduct: productToSwitch,
+              selectedProduct: bestProductInCurrentSupermarket,
               oldProduct: product,
               groceryList: groceryList,
             );
-            break;
           } else {
             generatedProducts.add(product);
-            break;
           }
         }
+      } else {
+        generatedProducts.add(product);
       }
     }
-    print('\n\n\n GENERATED PRODUCTS LATEST: $generatedProducts');
+
     return generatedProducts;
   }
 
   List<Product> _sortProductsByPrice(List<Product> products) {
-    final List<Product> sortedProducts = List<Product>.from(products)
+    return List<Product>.from(products)
       ..sort((Product a, Product b) => a.price.compareTo(b.price));
-    return sortedProducts;
   }
 }
