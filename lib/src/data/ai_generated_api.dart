@@ -5,14 +5,13 @@ class AiGeneratedApi {
   AiGeneratedApi(this._firestore);
 
   final FirebaseFirestore _firestore;
-  Stream<String?> generateRecipeResponse(GenerativeModel model, String prompt) async* {
-    final DocumentReference<Map<String, dynamic>> ref = _firestore.collection('recipes').doc();
+  Stream<void> generateRecipeResponse(GenerativeModel model, String prompt) async* {
 
     final List<Content> content = <Content>[Content.text(prompt)];
     final Stream<GenerateContentResponse> response = model.generateContentStream(content);
 
     await for (final GenerateContentResponse chunk in response) {
-      await ref.set(chunk.text! as Map<String, dynamic>);
+      print(chunk.text);
       yield chunk.text;
     }
   }

@@ -1,16 +1,11 @@
 part of 'index.dart';
 
 @freezed
-abstract class ListenForGeneratedRecipeResponse with _$ListenForGeneratedRecipeResponse implements AppAction {
-  const factory ListenForGeneratedRecipeResponse.start(GenerativeModel model, String prompt,
-      {required bool isGeneratingRecipe}) = ListenForGeneratedRecipeResponseStart;
+class GenerateRecipeResponse with _$GenerateRecipeResponse implements AppAction {
+  const factory GenerateRecipeResponse(GenerativeModel model, String prompt,) = GenerateRecipeResponseStart;
 
-  const factory ListenForGeneratedRecipeResponse.done({required bool isGeneratingRecipe}) =
-      ListenForGeneratedRecipeResponseDone;
-
-  const factory ListenForGeneratedRecipeResponse.event(String? generatedResponse) = OnGeneratedRecipeResonseEvent;
+  const factory GenerateRecipeResponse.successful() = GenerateRecipeResponseSuccessful;
 
   @Implements<ErrorAction>()
-  const factory ListenForGeneratedRecipeResponse.error(Object error, StackTrace stackTrace) =
-      _ListenForGeneratedRecipeResponseError;
+  const factory GenerateRecipeResponse.error(Object error, StackTrace stackTrace) = GenerateRecipeResponseError;
 }

@@ -154,6 +154,7 @@ class _CreateListPageState extends State<CreateListPage> {
                               keyboardType: TextInputType.text,
                               decoration: const InputDecoration(labelText: 'Title', hintText: 'Enter a list title'),
                               textInputAction: TextInputAction.next,
+
                               validator: (String? value) {
                                 if (value == null || value.isEmpty) {
                                   return 'please provide a title for your list';
