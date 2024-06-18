@@ -98,7 +98,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                           Icon(Icons.phone, color: Colors.green),
                           SizedBox(width: 8),
                           Text(
-                            'Phone: +4074528118',
+                            'Telefon: +4074528118',
                             style: TextStyle(fontSize: 16, height: 1.5),
                           ),
                         ],
@@ -109,7 +109,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                           Icon(Icons.location_on, color: Colors.red),
                           SizedBox(width: 8),
                           Text(
-                            'Location: Timișoara, România',
+                            'Locație: Timișoara, România',
                             style: TextStyle(fontSize: 16, height: 1.5),
                           ),
                         ],
