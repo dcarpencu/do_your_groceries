@@ -2,6 +2,7 @@ import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/containers/db_users_container.dart';
 import 'package:do_you_groceries/src/containers/pending_container.dart';
 import 'package:do_you_groceries/src/models/index.dart';
+import 'package:do_you_groceries/src/ui_elements/components/background_wave_clipper.dart';
 import 'package:do_you_groceries/src/ui_elements/components/sliver_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -69,38 +70,13 @@ class _AddPeoplePageState extends State<AddPeoplePage> {
           if ((pending.contains(GetUsers.pendingKey)) || (pending.contains(SendRequest.pendingKey))) {
             return Column(
               children: <Widget>[
-                Stack(
-                  children: <Widget>[
-                    // const BackgroundWave(
-                    //   height: 280,
-                    // ),
-                    Positioned(
-                      top: 145,
-                      left: 40,
-                      child: Text(
-                        widget.groceryList.title,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 32,
-                          fontFamily: 'Poppins',
-                          height: 1.2,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      top: 103,
-                      left: 256,
-                      child: SizedBox(
-                        height: 124,
-                        child: SvgPicture.asset(
-                          'assets/groceryListIcons/${widget.groceryList.selectedIcon}.svg',
-                          width: 100,
-                          height: 100,
-                        ),
-                      ),
-                    ),
-                  ],
+                BackgroundWave(
+                  pageName: 'Adaugă în\n${widget.groceryList.title}',
+                  iconWidget: SvgPicture.asset(
+                    'assets/groceryListIcons/${widget.groceryList.selectedIcon}.svg',
+                    height: 100,
+                    width: 100,
+                  ),
                 ),
                 const Center(child: CircularProgressIndicator()),
               ],
@@ -114,7 +90,7 @@ class _AddPeoplePageState extends State<AddPeoplePage> {
                   SliverPersistentHeader(
                     delegate: SliverAppBarProducts(
                       widget.groceryList.selectedIcon,
-                      widget.groceryList.title,
+                      'Adaugă în\n${widget.groceryList.title}',
                     ),
                     pinned: true,
                   ),
@@ -167,7 +143,7 @@ class _AddPeoplePageState extends State<AddPeoplePage> {
                       delegate: SliverChildBuilderDelegate(
                         childCount: 1,
                         (BuildContext context, int index) {
-                          return const Center(child: Text('No products YET.\nPlease add some!'));
+                          return const Center(child: Text('Nu există alți utilizatori!'));
                         },
                       ),
                     ),

@@ -121,7 +121,6 @@ class AuthApi {
       final int currentUsersCount = groceryListData['usersCount'] as int? ?? 0;
 
       if (currentUsersCount == 1) {
-        // Delete products from the grocery list
         final List<dynamic>? productIds = groceryListData['productIds'] as List<dynamic>?;
 
         final WriteBatch batch = _firestore.batch();
@@ -137,7 +136,6 @@ class AuthApi {
           }
         }
 
-        // Remove grocery list ID from user's groceryListIds
         final DocumentReference<Map<String, dynamic>> userRef = _firestore.doc('users/$currentUserId');
         final DocumentSnapshot<Map<String, dynamic>> userSnapshot = await userRef.get();
 
@@ -152,7 +150,6 @@ class AuthApi {
           }
         }
 
-        // Delete the grocery list itself
         batch.delete(groceryListRef);
 
         try {
@@ -396,22 +393,6 @@ class AuthApi {
   bool _mapsAreEqual(Map<String, dynamic> map1, Map<String, dynamic> map2) {
     return map1.length == map2.length &&
         map1.entries.every((MapEntry<String, dynamic> entry) => map2[entry.key] == entry.value);
-  }
-
-  Future<void> updateGroceryLists(String uid, String groceryListId, {required bool remove}) async {
-    await _firestore.runTransaction<void>((Transaction transaction) async {
-      final DocumentSnapshot<Map<String, dynamic>> snapshot = await transaction.get(_firestore.doc('users/$uid'));
-
-      AppUser user = AppUser.fromJson(snapshot.data()!);
-
-      if (remove) {
-        user = user.copyWith(groceryListIds: <String>[...user.groceryListIds]..remove(groceryListId));
-      } else {
-        user = user.copyWith(groceryListIds: <String>[...user.groceryListIds, groceryListId]);
-      }
-
-      transaction.set(_firestore.doc('users/$uid'), user.toJson());
-    });
   }
 
   Stream<List<AddRequest>> listenForRequests({required bool isNotifications}) {

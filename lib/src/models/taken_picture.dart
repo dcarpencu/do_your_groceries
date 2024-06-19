@@ -12,7 +12,6 @@ class TakenPicture with _$TakenPicture {
 
 XFile? _xFileFromJson(dynamic json) {
   if (json is String) {
-    // Convert string to XFile
     return XFile(json);
   }
   return null;

@@ -51,11 +51,6 @@ class SetNotificationOff with _$SetNotificationOff implements AppAction {
 }
 
 @freezed
-class SetPromptData with _$SetPromptData implements AppAction {
-  const factory SetPromptData({required PromptData promptData}) = SetPromptData$;
-}
-
-@freezed
 class AddPromptDataCuisine with _$AddPromptDataCuisine implements AppAction {
   const factory AddPromptDataCuisine({required CuisineFilter cuisine}) = AddPromptDataCuisine$;
 }

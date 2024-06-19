@@ -29,7 +29,6 @@ class _CameraAppState extends State<CameraApp> {
   void initState() {
     super.initState();
     _store = StoreProvider.of<AppState>(context, listen: false);
-    _store.dispatch(SetSelectedCamera(_store.state.cameras[0]));
 
     controller = CameraController(CameraInfo.toCameraDescription(_store.state.cameras[0]), ResolutionPreset.max);
     _store.dispatch(InitializeControllerStart(controller: controller));

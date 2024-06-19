@@ -29,7 +29,6 @@ class SuperMarketsApi {
       final Product product = Product.fromJson(docSnapshot.data()!);
       products.add(product);
     }
-    //print('\n\n\n\n\n\n\n\n $products \n\n\n\n\n\n\n');
     return products;
   }
 }

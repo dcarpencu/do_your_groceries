@@ -23,7 +23,6 @@ class AuthEpic {
       TypedEpic<AppState, SendRequestStart>(_sendRequestStart).call,
       TypedEpic<AppState, RemoveRequestStart>(_removeRequestStart).call,
       TypedEpic<AppState, AcceptRequestStart>(_acceptRequestStart).call,
-      TypedEpic<AppState, UpdateGroceryListsStart>(_updateGroceryListsStart).call,
       TypedEpic<AppState, EditGroceryListStart>(_editGroceryListStart).call,
       _listenForRequests,
     ]);
@@ -162,19 +161,6 @@ class AuthEpic {
           )
           .map<CreateGroceryList>(CreateGroceryList.successful)
           .onErrorReturnWith(CreateGroceryList.error);
-    });
-  }
-
-  Stream<AppAction> _updateGroceryListsStart(Stream<UpdateGroceryListsStart> actions, EpicStore<AppState> store) {
-    return actions.flatMap((UpdateGroceryListsStart action) {
-      return Stream<void>.value(null)
-          .asyncMap(
-            (_) => _authApi.updateGroceryLists(store.state.user!.uid, action.groceryListId, remove: action.remove),
-          )
-          .mapTo(const UpdateGroceryLists.successful())
-          .onErrorReturnWith((Object error, StackTrace stackTrace) {
-        return UpdateGroceryLists.error(error, stackTrace, action.groceryListId, remove: action.remove);
-      });
     });
   }
 

@@ -7,10 +7,8 @@ part 'index.freezed.dart';
 
 part 'app_state.dart';
 part 'app_user.dart';
-part 'auchan.dart';
 part 'product.dart';
 part 'grocery_list.dart';
 part 'camera_info.dart';
 part 'taken_picture.dart';
 part 'add_request.dart';
-part 'prompt_data.dart';
