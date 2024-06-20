@@ -103,8 +103,15 @@ class SignupPageState extends State<SignupPage> {
                       keyboardType: TextInputType.text,
                       textInputAction: TextInputAction.next,
                       decoration: const InputDecoration(
+                        labelStyle: TextStyle(color: Colors.white),
                         labelText: 'Nume utilizator',
                         hintText: 'Introduceți numele de utilizator',
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white), // Change the underline color here
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white), // Change the underline color here
+                        ),
                       ),
                       validator: (String? value) {
                         if (value == null || value.isEmpty) {
@@ -120,7 +127,12 @@ class SignupPageState extends State<SignupPage> {
                       controller: _emailController,
                       keyboardType: TextInputType.emailAddress,
                       textInputAction: TextInputAction.next,
-                      decoration: const InputDecoration(labelText: 'Email', hintText: 'Introduceți adresa de email'),
+                      decoration: const InputDecoration(labelStyle: TextStyle(color: Colors.white),labelText: 'Email', hintText: 'Introduceți adresa de email', enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white), // Change the underline color here
+                      ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white), // Change the underline color here
+                        ),),
                       validator: (String? value) {
                         if (value == null || value.isEmpty) {
                           return 'Introduceți vă rog adresa de email';
@@ -135,7 +147,12 @@ class SignupPageState extends State<SignupPage> {
                       controller: _passwordController,
                       keyboardType: TextInputType.visiblePassword,
                       obscureText: true,
-                      decoration: const InputDecoration(labelText: 'Parola', hintText: 'Introduceți parola'),
+                      decoration: const InputDecoration(labelStyle: TextStyle(color: Colors.white),labelText: 'Parola', hintText: 'Introduceți parola', enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white), // Change the underline color here
+                      ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white), // Change the underline color here
+                        ),),
                       validator: (String? value) {
                         if (value == null || value.isEmpty) {
                           return 'Introduceți vă rog o parolă';
@@ -160,7 +177,7 @@ class SignupPageState extends State<SignupPage> {
                       onPressed: () {
                         context.pop();
                       },
-                      child: const Text('Înapoi'),
+                      child: const Text('Înapoi', style: TextStyle(color: Colors.white),),
                     ),
                   ],
                 );
