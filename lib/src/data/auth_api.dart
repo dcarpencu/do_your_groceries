@@ -267,7 +267,7 @@ class AuthApi {
 
     bool requestExists = false;
 
-    // Check if the request already exists in the requests list
+    // check if the request already exists in the requests list
     if (requests != null) {
       for (final dynamic request in requests) {
         if (request is Map<String, dynamic>) {
@@ -321,7 +321,7 @@ class AuthApi {
       throw Exception('User data is null!');
     }
 
-    // Update user's groceryListIds
+    // update groceryListIds
     final List<dynamic>? groceryListIds = userData['groceryListIds'] as List<dynamic>?;
     final Set<String> updatedGroceryListIds = (groceryListIds ?? <String>[]).map((dynamic id) => id as String).toSet()
       ..add(groceryListId);
@@ -330,7 +330,7 @@ class AuthApi {
 
     await userRef.update(userData);
 
-    // Fetch and update the grocery list document
+    // fetch and update the grocery list doc
     final DocumentReference<Map<String, dynamic>> groceryListRef = _firestore.doc('lists/$groceryListId');
     final DocumentSnapshot<Map<String, dynamic>> groceryListSnapshot = await groceryListRef.get();
 
@@ -344,13 +344,13 @@ class AuthApi {
       throw Exception('Grocery list data is null!');
     }
 
-    // Increment usersCount
+    // increment usersCount
     final int currentUsersCount = groceryListData['usersCount'] as int? ?? 0;
     groceryListData['usersCount'] = currentUsersCount + 1;
 
     await groceryListRef.update(groceryListData);
 
-    // Remove the request from the user's requests
+    // remove the request
     final List<Map<String, dynamic>>? requests = (userData['requests'] as List<dynamic>?)?.map((dynamic item) {
       return item as Map<String, dynamic>;
     }).toList();

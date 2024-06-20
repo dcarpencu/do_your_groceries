@@ -113,7 +113,6 @@ class _SearchProductsPageState extends State<SearchProductsPage> {
                             itemCount: 7,
                           );
                         }
-
                         return ListView.builder(
                           controller: _controller,
                           padding: const EdgeInsets.only(right: 8, left: 8),

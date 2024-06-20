@@ -68,19 +68,6 @@ class _DoYourGroceriesAppState extends State<DoYourGroceriesApp> {
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          // colorScheme: const ColorScheme(
-          //   brightness: Brightness.dark,
-          //   surface: Colors.yellow,
-          //   primary: Colors.blueGrey,
-          //   onPrimary: Colors.grey,
-          //   secondary: Colors.white,
-          //   onSecondary: Colors.blueGrey,
-          //   error: Colors.blueGrey,
-          //   onError: Colors.blueGrey,
-          //   onSurface: Colors.blueGrey,
-          // ),
-          //scaffoldBackgroundColor: Colors.lightBlue,
-          //primaryColor: Colors.blueGrey,
           colorSchemeSeed: Colors.lightBlue,
           useMaterial3: true,
         ),

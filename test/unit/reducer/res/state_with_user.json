@@ -7,16 +7,26 @@
       "a",
       "b",
       "c"
-    ]},
-  "supermarketProducts": [],
+    ],
+    "requests": []
+  },
   "productsGroceryList": [],
   "relatedProducts": [],
+  "supermarketProducts": [],
   "groceryLists": [],
-  "selectedGroceryList": null,
-  "pending": {},
-  "pageNumber": 1,
-  "contentLoaded": false,
+  "pending": [],
+  "requests": [],
   "cameras": [],
   "takenPicture": null,
-  "selectedCamera": null
+  "selectedCamera": null,
+  "users": [],
+  "isNotifications": false,
+  "cuisines": [],
+  "selectedGroceryList": null,
+  "generatorResponse": null,
+  "cuisineText": null,
+  "basicIngredientsText": null,
+  "dietaryRestrictionsText": null,
+  "pageNumber": 1,
+  "productsFinished": false
 }

@@ -28,6 +28,8 @@ enum BasicIngredientsFilter {
   basil,
   paprika,
   chilly,
+  pasta,
+  rice,
 }
 
 enum DietaryRestrictionsFilter {
@@ -85,5 +87,7 @@ String basicIngredientsReadable(BasicIngredientsFilter filter) {
     BasicIngredientsFilter.basil => 'busuioc',
     BasicIngredientsFilter.paprika => 'paprika',
     BasicIngredientsFilter.chilly => 'chilly',
+    BasicIngredientsFilter.pasta => 'paste',
+    BasicIngredientsFilter.rice => 'orez',
   };
 }

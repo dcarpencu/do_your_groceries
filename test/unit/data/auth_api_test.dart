@@ -9,6 +9,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockFirebaseAuth with Mock implements FirebaseAuth {}
+class MockUser with Mock implements User {}
 
 // ignore: avoid_implementing_value_types
 class MockFirebaseFireStore with Mock implements FirebaseFirestore {}
@@ -21,20 +22,27 @@ class MockDocumentSnapshot with Mock implements DocumentSnapshot<Map<String, dyn
 final Map<String, dynamic> userData =
 jsonDecode(File('./test/unit/reducer/res/user.json').readAsStringSync()) as Map<String, dynamic>;
 
-Future<void> main() async {
-
+void main() {
   late FirebaseAuth auth;
   late AuthApi authApi;
   late FirebaseFirestore firestore;
   late MockDocumentReference ref;
   late MockDocumentSnapshot snapshot;
+  late MockUser mockUser;
 
   setUp(() {
     auth = MockFirebaseAuth();
     firestore = MockFirebaseFireStore();
     ref = MockDocumentReference();
     snapshot = MockDocumentSnapshot();
+    mockUser = MockUser();
     authApi = AuthApi(auth, firestore);
+
+    // Mock the currentUser
+    when(() => auth.currentUser).thenReturn(mockUser);
+    when(() => mockUser.uid).thenReturn('uid');
+    when(() => mockUser.email).thenReturn('email');
+    when(() => mockUser.displayName).thenReturn('username');
   });
 
   test('logOut', () async {
@@ -46,10 +54,11 @@ Future<void> main() async {
     expect(result.callCount, 1);
   });
 
-  test('getUser', () async {
+  test('getCurrentUser', () async {
     when(() => firestore.doc(captureAny())).thenReturn(ref);
     when(() => ref.get()).thenAnswer((_) async => snapshot);
-    when(snapshot.data).thenReturn(userData);
+    when(() => snapshot.exists).thenReturn(true);
+    when(() => snapshot.data()).thenReturn(userData);
 
     final AppUser? expected = await authApi.getCurrentUser();
 

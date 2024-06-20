@@ -219,11 +219,6 @@ class _PostDetailPageState extends State<ProductDetailsPage> {
                                         ),
                                       ),
 
-                                      // child: Image.network(
-                                      //   relatedProduct.image,
-                                      //   fit: BoxFit.cover,
-                                      //   height: 120,
-                                      // ),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.all(8),

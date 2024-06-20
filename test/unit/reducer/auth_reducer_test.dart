@@ -28,22 +28,4 @@ Future<void> main() async {
 
     expect(result.user, user);
   });
-
-  // group('updateFavouritesStart', () {
-  //   final AppState initial = AppState.fromJson(stateData);
-  //
-  //   test('add', () {
-  //     const UpdateFavorite action = UpdateFavorite(4, add: true);
-  //     final AppState result = reducer(initial, action);
-  //
-  //     expect(result.user!.favoriteMovies, <int>[1, 2, 3, 4]);
-  //   });
-  //
-  //   test('remove', () {
-  //     const UpdateFavorite action = UpdateFavorite(3, add: false);
-  //     final AppState result = reducer(initial, action);
-  //
-  //     expect(result.user!.favoriteMovies, <int>[1, 2]);
-  //   });
-  // });
 }

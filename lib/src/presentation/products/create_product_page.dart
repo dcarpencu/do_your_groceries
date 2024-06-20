@@ -156,7 +156,7 @@ class _CreateProductPageState extends State<CreateProductPage> {
                           padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
                         ),
                         child: const Text(
-                          'Create Product',
+                          'Creare produs',
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
@@ -165,7 +165,7 @@ class _CreateProductPageState extends State<CreateProductPage> {
                           Navigator.pop(context);
                         },
                         child: const Text(
-                          'Cancel',
+                          'Renunță',
                           style: TextStyle(color: Colors.black),
                         ),
                       ),

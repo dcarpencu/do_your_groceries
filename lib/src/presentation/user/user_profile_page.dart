@@ -150,7 +150,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                           },
                           icon: const Icon(Icons.logout, color: Colors.white),
                           label: const Text(
-                            'Logout',
+                            'Deconectare',
                             style: TextStyle(color: Colors.white),
                           ),
                           style: ElevatedButton.styleFrom(
