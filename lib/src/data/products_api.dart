@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:do_you_groceries/src/models/index.dart';
+import 'package:do_you_groceries/src/ui_elements/extensions.dart';
 
 class ProductsApi {
   ProductsApi(this._firestore);
@@ -105,6 +106,7 @@ class ProductsApi {
             supermarket: doc['supermarket'] as String,
             image: doc['image'] as String,
             page: doc['page'] as int,
+            tag: doc['tag'] as String,
           ),
         );
       }
@@ -325,11 +327,10 @@ class ProductsApi {
       } else {
         generatedProducts = <Product>[product];
       }
-
       return generatedProducts;
     }
 
-    // frequency of best prices across supermarkets
+    // calculate frequency of best prices across supermarkets
     for (final Product product in groceryListProducts) {
       final List<Product> productsRelated = await getProducts(product: product);
       if (productsRelated.isNotEmpty) {
@@ -342,20 +343,16 @@ class ProductsApi {
         .reduce((MapEntry<String, int> a, MapEntry<String, int> b) => a.value > b.value ? a : b)
         .key;
 
+    // select products based on the highest frequency supermarket or best price
     for (final Product product in groceryListProducts) {
       final List<Product> productsRelated = await getProducts(product: product);
       if (productsRelated.isNotEmpty) {
         final List<Product> productsSorted = _sortProductsByPrice(productsRelated);
 
         // check if there is a product from the highest frequency supermarket
-        Product? bestProductInSupermarket;
-        try {
-          bestProductInSupermarket = productsSorted.firstWhere(
-            (Product p) => p.supermarket == highestSupermarket,
-          );
-        } catch (e) {
-          bestProductInSupermarket = null;
-        }
+        final Product? bestProductInSupermarket = productsSorted.firstWhereOrNull(
+              (Product p) => p.supermarket == highestSupermarket,
+        );
 
         if (bestProductInSupermarket != null && bestProductInSupermarket.price < product.price) {
           generatedProducts.add(bestProductInSupermarket);
@@ -365,14 +362,9 @@ class ProductsApi {
             groceryList: groceryList,
           );
         } else {
-          Product? bestProductInCurrentSupermarket;
-          try {
-            bestProductInCurrentSupermarket = productsSorted.firstWhere(
-              (Product p) => p.supermarket == product.supermarket && p.price < product.price,
-            );
-          } catch (e) {
-            bestProductInCurrentSupermarket = null;
-          }
+          final Product? bestProductInCurrentSupermarket = productsSorted.firstWhereOrNull(
+                (Product p) => p.supermarket == product.supermarket && p.price < product.price,
+          );
 
           if (bestProductInCurrentSupermarket != null) {
             generatedProducts.add(bestProductInCurrentSupermarket);

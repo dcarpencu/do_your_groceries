@@ -107,10 +107,10 @@ class SignupPageState extends State<SignupPage> {
                         labelText: 'Nume utilizator',
                         hintText: 'Introduceți numele de utilizator',
                         enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white), // Change the underline color here
+                          borderSide: BorderSide(color: Colors.white), 
                         ),
                         focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white), // Change the underline color here
+                          borderSide: BorderSide(color: Colors.white), 
                         ),
                       ),
                       validator: (String? value) {
@@ -128,10 +128,10 @@ class SignupPageState extends State<SignupPage> {
                       keyboardType: TextInputType.emailAddress,
                       textInputAction: TextInputAction.next,
                       decoration: const InputDecoration(labelStyle: TextStyle(color: Colors.white),labelText: 'Email', hintText: 'Introduceți adresa de email', enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white), // Change the underline color here
+                        borderSide: BorderSide(color: Colors.white), 
                       ),
                         focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white), // Change the underline color here
+                          borderSide: BorderSide(color: Colors.white), 
                         ),),
                       validator: (String? value) {
                         if (value == null || value.isEmpty) {
@@ -148,10 +148,10 @@ class SignupPageState extends State<SignupPage> {
                       keyboardType: TextInputType.visiblePassword,
                       obscureText: true,
                       decoration: const InputDecoration(labelStyle: TextStyle(color: Colors.white),labelText: 'Parola', hintText: 'Introduceți parola', enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white), // Change the underline color here
+                        borderSide: BorderSide(color: Colors.white), 
                       ),
                         focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white), // Change the underline color here
+                          borderSide: BorderSide(color: Colors.white), 
                         ),),
                       validator: (String? value) {
                         if (value == null || value.isEmpty) {

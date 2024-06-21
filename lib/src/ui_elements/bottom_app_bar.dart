@@ -32,7 +32,9 @@ class BottomAppBarWidget extends StatelessWidget {
                   tooltip: 'Open navigation menu',
                   icon: const Icon(Icons.smart_toy),
                   onPressed: () {
-                    store.dispatch(SmartUpdateListStart(groceryListProducts: store.state.productsGroceryList));
+                    store..dispatch(ListenForProductsDone(store.state.selectedGroceryList!.groceryListId))
+                    ..dispatch(SmartUpdateListStart(groceryListProducts: store.state.productsGroceryList))
+                    ..dispatch(ListenForProductsStart(store.state.selectedGroceryList!.groceryListId));
                   },
                 ),
                 IconButton(
@@ -45,7 +47,6 @@ class BottomAppBarWidget extends StatelessWidget {
                   icon: const Icon(Icons.generating_tokens),
                   onPressed: () {
                     Navigator.of(context).push(createRoute(const CreateRecipesPage()));
-                    //context.pushNamed('createRecipes');
                   },
                 ),
                 IconButton(

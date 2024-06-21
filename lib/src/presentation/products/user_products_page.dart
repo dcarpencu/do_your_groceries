@@ -23,6 +23,7 @@ class UserProductsPage extends StatefulWidget {
 
 class _UserProductsPageState extends State<UserProductsPage> {
   late Store<AppState> _store;
+  final ValueNotifier<double> totalPriceNotifier = ValueNotifier<double>(0);
 
   @override
   void initState() {
@@ -45,61 +46,91 @@ class _UserProductsPageState extends State<UserProductsPage> {
   Widget build(BuildContext context) {
     return SelectedListContainer(
       builder: (BuildContext context, GroceryList groceryList) {
-        return Scaffold(
-          body: PendingContainer(
-            builder: (BuildContext context, Set<String> pending) {
-              if ((pending.contains(ListenForProducts.pendingKey)) ||
-                  (pending.contains(SwitchProduct.pendingKey)) ||
-                  (pending.contains(CreateProduct.pendingKey)) ||
-                  (pending.contains(AddProductToGroceryList.pendingKey)) ||
-                  (pending.contains(SmartUpdateList.pendingKey))) {
-                return Column(
-                  children: <Widget>[
-                    BackgroundWave(
-                      pageName: _store.state.selectedGroceryList!.title,
-                      iconWidget: SvgPicture.asset(
-                        'assets/groceryListIcons/${_store.state.selectedGroceryList!.selectedIcon}.svg',
-                        height: 100,
-                        width: 100,
-                      ),
-                    ),
-                    const ShimmerProducts(),
-                  ],
-                );
-              }
+        double totalPrice = 0;
+        for (final Product product in _store.state.productsGroceryList) {
+          totalPrice += product.price;
+        }
+        totalPriceNotifier.value = totalPrice;
 
-              return CustomScrollView(
-                slivers: <Widget>[
-                  SliverPersistentHeader(
-                    delegate: SliverAppBarProducts(
-                      _store.state.selectedGroceryList!.selectedIcon,
-                      _store.state.selectedGroceryList!.title,
-                    ),
-                    pinned: true,
-                  ),
-                  if (_store.state.productsGroceryList.isNotEmpty)
-                    SliverList(
-                      delegate: SliverChildBuilderDelegate(
-                        childCount: _store.state.productsGroceryList.length,
-                        (BuildContext context, int index) {
-                          return HeroPosts(
-                            product: _store.state.productsGroceryList[index],
-                          );
-                        },
+        return Scaffold(
+          body: Stack(
+            children: <Widget>[
+              PendingContainer(
+                builder: (BuildContext context, Set<String> pending) {
+                  if ((pending.contains(ListenForProducts.pendingKey)) ||
+                      (pending.contains(SwitchProduct.pendingKey)) ||
+                      (pending.contains(CreateProduct.pendingKey)) ||
+                      (pending.contains(AddProductToGroceryList.pendingKey)) ||
+                      (pending.contains(SmartUpdateList.pendingKey))) {
+                    return Column(
+                      children: <Widget>[
+                        BackgroundWave(
+                          pageName: _store.state.selectedGroceryList!.title,
+                          iconWidget: SvgPicture.asset(
+                            'assets/groceryListIcons/${_store.state.selectedGroceryList!.selectedIcon}.svg',
+                            height: 100,
+                            width: 100,
+                          ),
+                        ),
+                        const ShimmerProducts(),
+                      ],
+                    );
+                  }
+
+                  return CustomScrollView(
+                    slivers: <Widget>[
+                      SliverPersistentHeader(
+                        delegate: SliverAppBarProducts(
+                          _store.state.selectedGroceryList!.selectedIcon,
+                          _store.state.selectedGroceryList!.title,
+                        ),
+                        pinned: true,
                       ),
-                    )
-                  else
-                    SliverList(
-                      delegate: SliverChildBuilderDelegate(
-                        childCount: 1,
-                        (BuildContext context, int index) {
-                          return const Center(child: Text('Nu ai produse momentan.\nTe rog adaugă câteva!'));
-                        },
+                      if (_store.state.productsGroceryList.isNotEmpty)
+                        SliverList(
+                          delegate: SliverChildBuilderDelegate(
+                            childCount: _store.state.productsGroceryList.length,
+                                (BuildContext context, int index) {
+                              return HeroPosts(
+                                product: _store.state.productsGroceryList[index],
+                              );
+                            },
+                          ),
+                        )
+                      else
+                        SliverList(
+                          delegate: SliverChildBuilderDelegate(
+                            childCount: 1,
+                                (BuildContext context, int index) {
+                              return const Center(child: Text('Nu ai produse momentan.\nTe rog adaugă câteva!'));
+                            },
+                          ),
+                        ),
+                    ],
+                  );
+                },
+              ),
+              Positioned(
+                bottom: MediaQuery.of(context).size.height* 0.01,
+                right: MediaQuery.of(context).size.width* 0.72,
+                child: ValueListenableBuilder<double>(
+                  valueListenable: totalPriceNotifier,
+                  builder: (BuildContext context, double totalPrice, Widget? child) {
+                    return Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: Colors.lightBlue,
+                        borderRadius: BorderRadius.circular(16),
                       ),
-                    ),
-                ],
-              );
-            },
+                      child: Text(
+                        'Total \$${totalPrice.toStringAsFixed(2)}',
+                        style: const TextStyle(color: Colors.white, fontSize: 16),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
