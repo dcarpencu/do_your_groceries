@@ -330,7 +330,7 @@ class ProductsApi {
       return generatedProducts;
     }
 
-    // calculate frequency of best prices across supermarkets
+    // calculate frequency of best prices
     for (final Product product in groceryListProducts) {
       final List<Product> productsRelated = await getProducts(product: product);
       if (productsRelated.isNotEmpty) {
@@ -338,7 +338,6 @@ class ProductsApi {
         frequencyMarkets[productsSorted[0].supermarket] = frequencyMarkets[productsSorted[0].supermarket]! + 1;
       }
     }
-
     final String highestSupermarket = frequencyMarkets.entries
         .reduce((MapEntry<String, int> a, MapEntry<String, int> b) => a.value > b.value ? a : b)
         .key;
@@ -381,7 +380,6 @@ class ProductsApi {
         generatedProducts.add(product);
       }
     }
-
     return generatedProducts;
   }
 

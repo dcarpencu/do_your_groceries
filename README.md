@@ -1,23 +1,20 @@
-# do_you_groceries
+# ![DoYourGroceries Logo](assets/appLogo/DoYourGroceriesLogo.png) DoYourGroceries
 
-UPT final project
+**DoYourGroceries** este o aplicație mobilă cross-platform dezvoltată cu framework-ul Flutter, destinată planificării cumpărăturilor de produse alimentare.
 
-## Getting Started
+## Precondiții
 
-for generating: dart run build_runner watch --delete-conflicting-outputs
-flutter run --dart-define=API_KEY=AIzaSyBVuj79tA0VZPGZTPcpZD3Ljc-6Fxi5ptI
-dart format --line-length 120 --set-exit-if-changed ./lib
+Pentru a instala Flutter, urmați pașii specifici sistemului dumneavoastră de operare:
+- [Windows](https://docs.flutter.dev/get-started/install/windows/mobile)
+- [macOS](https://docs.flutter.dev/get-started/install/macos/mobile-ios)
+- [Linux](https://docs.flutter.dev/get-started/install/linux/android)
 
+## Utilizare
 
-This project is a starting point for a Flutter application.
+Odată instalat Flutter, utilizatorul trebuie să folosească următoarele comenzi pentru a porni aplicația:
 
-A few resources to get you started if this is your first Flutter project:
+```bash
+flutter pub get
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
-gemini api key: AIzaSyC4N3gyrkGZz-tphKJkKlvdIz0oMxIICuU
+flutter run
+```
