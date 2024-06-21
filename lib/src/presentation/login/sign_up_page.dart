@@ -81,9 +81,9 @@ class SignupPageState extends State<SignupPage> {
                             child: Text(
                               'DoYourGroceries',
                               style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                             ),
                           ),
                         ],
@@ -93,9 +93,9 @@ class SignupPageState extends State<SignupPage> {
                     Text(
                       'Crează un cont',
                       style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
                     ),
                     const SizedBox(height: 32),
                     TextFormField(
@@ -107,10 +107,10 @@ class SignupPageState extends State<SignupPage> {
                         labelText: 'Nume utilizator',
                         hintText: 'Introduceți numele de utilizator',
                         enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white), 
+                          borderSide: BorderSide(color: Colors.white),
                         ),
                         focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white), 
+                          borderSide: BorderSide(color: Colors.white),
                         ),
                       ),
                       validator: (String? value) {
@@ -127,12 +127,17 @@ class SignupPageState extends State<SignupPage> {
                       controller: _emailController,
                       keyboardType: TextInputType.emailAddress,
                       textInputAction: TextInputAction.next,
-                      decoration: const InputDecoration(labelStyle: TextStyle(color: Colors.white),labelText: 'Email', hintText: 'Introduceți adresa de email', enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white), 
-                      ),
+                      decoration: const InputDecoration(
+                        labelStyle: TextStyle(color: Colors.white),
+                        labelText: 'Email',
+                        hintText: 'Introduceți adresa de email',
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
                         focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white), 
-                        ),),
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                      ),
                       validator: (String? value) {
                         if (value == null || value.isEmpty) {
                           return 'Introduceți vă rog adresa de email';
@@ -147,12 +152,17 @@ class SignupPageState extends State<SignupPage> {
                       controller: _passwordController,
                       keyboardType: TextInputType.visiblePassword,
                       obscureText: true,
-                      decoration: const InputDecoration(labelStyle: TextStyle(color: Colors.white),labelText: 'Parola', hintText: 'Introduceți parola', enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white), 
-                      ),
+                      decoration: const InputDecoration(
+                        labelStyle: TextStyle(color: Colors.white),
+                        labelText: 'Parola',
+                        hintText: 'Introduceți parola',
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
                         focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white), 
-                        ),),
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                      ),
                       validator: (String? value) {
                         if (value == null || value.isEmpty) {
                           return 'Introduceți vă rog o parolă';
@@ -177,7 +187,10 @@ class SignupPageState extends State<SignupPage> {
                       onPressed: () {
                         context.pop();
                       },
-                      child: const Text('Înapoi', style: TextStyle(color: Colors.white),),
+                      child: const Text(
+                        'Înapoi',
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
                   ],
                 );

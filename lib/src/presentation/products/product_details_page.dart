@@ -218,7 +218,6 @@ class _PostDetailPageState extends State<ProductDetailsPage> {
                                           fit: BoxFit.cover,
                                         ),
                                       ),
-
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.all(8),

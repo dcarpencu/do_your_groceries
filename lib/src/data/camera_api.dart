@@ -50,7 +50,6 @@ class CameraApi {
 
     final InputImage inputImage = InputImage.fromFilePath(picture.path);
 
-
     final String modelPath = await getModelPath('assets/ml/latest_metadata_200epch_v2.tflite');
     final LocalLabelerOptions options = LocalLabelerOptions(
       confidenceThreshold: 0.75,

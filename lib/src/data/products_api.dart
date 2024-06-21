@@ -351,7 +351,7 @@ class ProductsApi {
 
         // check if there is a product from the highest frequency supermarket
         final Product? bestProductInSupermarket = productsSorted.firstWhereOrNull(
-              (Product p) => p.supermarket == highestSupermarket,
+          (Product p) => p.supermarket == highestSupermarket,
         );
 
         if (bestProductInSupermarket != null && bestProductInSupermarket.price < product.price) {
@@ -363,7 +363,7 @@ class ProductsApi {
           );
         } else {
           final Product? bestProductInCurrentSupermarket = productsSorted.firstWhereOrNull(
-                (Product p) => p.supermarket == product.supermarket && p.price < product.price,
+            (Product p) => p.supermarket == product.supermarket && p.price < product.price,
           );
 
           if (bestProductInCurrentSupermarket != null) {

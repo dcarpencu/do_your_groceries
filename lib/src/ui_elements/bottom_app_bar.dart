@@ -32,9 +32,10 @@ class BottomAppBarWidget extends StatelessWidget {
                   tooltip: 'Open navigation menu',
                   icon: const Icon(Icons.smart_toy),
                   onPressed: () {
-                    store..dispatch(ListenForProductsDone(store.state.selectedGroceryList!.groceryListId))
-                    ..dispatch(SmartUpdateListStart(groceryListProducts: store.state.productsGroceryList))
-                    ..dispatch(ListenForProductsStart(store.state.selectedGroceryList!.groceryListId));
+                    store
+                      ..dispatch(ListenForProductsDone(store.state.selectedGroceryList!.groceryListId))
+                      ..dispatch(SmartUpdateListStart(groceryListProducts: store.state.productsGroceryList))
+                      ..dispatch(ListenForProductsStart(store.state.selectedGroceryList!.groceryListId));
                   },
                 ),
                 IconButton(

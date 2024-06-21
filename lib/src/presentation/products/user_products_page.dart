@@ -24,6 +24,7 @@ class UserProductsPage extends StatefulWidget {
 class _UserProductsPageState extends State<UserProductsPage> {
   late Store<AppState> _store;
   final ValueNotifier<double> totalPriceNotifier = ValueNotifier<double>(0);
+  int totalPriceLength = 0;
 
   @override
   void initState() {
@@ -51,7 +52,6 @@ class _UserProductsPageState extends State<UserProductsPage> {
           totalPrice += product.price;
         }
         totalPriceNotifier.value = totalPrice;
-
         return Scaffold(
           body: Stack(
             children: <Widget>[
@@ -90,7 +90,7 @@ class _UserProductsPageState extends State<UserProductsPage> {
                         SliverList(
                           delegate: SliverChildBuilderDelegate(
                             childCount: _store.state.productsGroceryList.length,
-                                (BuildContext context, int index) {
+                            (BuildContext context, int index) {
                               return HeroPosts(
                                 product: _store.state.productsGroceryList[index],
                               );
@@ -101,7 +101,7 @@ class _UserProductsPageState extends State<UserProductsPage> {
                         SliverList(
                           delegate: SliverChildBuilderDelegate(
                             childCount: 1,
-                                (BuildContext context, int index) {
+                            (BuildContext context, int index) {
                               return const Center(child: Text('Nu ai produse momentan.\nTe rog adaugă câteva!'));
                             },
                           ),
@@ -111,8 +111,8 @@ class _UserProductsPageState extends State<UserProductsPage> {
                 },
               ),
               Positioned(
-                bottom: MediaQuery.of(context).size.height* 0.01,
-                right: MediaQuery.of(context).size.width* 0.72,
+                bottom: MediaQuery.of(context).size.height * 0.01,
+                right: MediaQuery.of(context).size.width * 0.74 - totalPrice.toStringAsFixed(2).length * 2,
                 child: ValueListenableBuilder<double>(
                   valueListenable: totalPriceNotifier,
                   builder: (BuildContext context, double totalPrice, Widget? child) {
