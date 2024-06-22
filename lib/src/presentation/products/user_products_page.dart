@@ -2,16 +2,15 @@ import 'package:do_you_groceries/src/actions/index.dart';
 import 'package:do_you_groceries/src/containers/pending_container.dart';
 import 'package:do_you_groceries/src/containers/selected_list_container.dart';
 import 'package:do_you_groceries/src/models/index.dart';
-import 'package:do_you_groceries/src/ui_elements/bottom_app_bar.dart';
 import 'package:do_you_groceries/src/ui_elements/components/background_wave_clipper.dart';
 import 'package:do_you_groceries/src/ui_elements/components/hero_posts_widget.dart';
+import 'package:do_you_groceries/src/ui_elements/components/home_page_components/bottom_app_bar.dart';
 import 'package:do_you_groceries/src/ui_elements/components/shimmer/shimmer_products.dart';
 import 'package:do_you_groceries/src/ui_elements/components/sliver_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-
 import 'package:redux/redux.dart';
 
 class UserProductsPage extends StatefulWidget {
