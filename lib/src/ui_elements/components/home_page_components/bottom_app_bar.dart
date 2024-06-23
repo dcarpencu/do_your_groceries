@@ -38,7 +38,7 @@ class _BottomAppBarWidgetState extends State<BottomAppBarWidget> {
                   icon: const Icon(Icons.smart_toy),
                   onPressed: () {
                     widget.store
-                      .dispatch(SmartUpdateListStart(groceryListProducts: widget.store.state.productsGroceryList));
+                        .dispatch(SmartUpdateListStart(groceryListProducts: widget.store.state.productsGroceryList));
                   },
                 ),
                 IconButton(
