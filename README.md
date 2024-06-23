@@ -9,12 +9,24 @@ Pentru a instala Flutter, urmați pașii specifici sistemului dumneavoastră de 
 - [macOS](https://docs.flutter.dev/get-started/install/macos/mobile-ios)
 - [Linux](https://docs.flutter.dev/get-started/install/linux/android)
 
-## Utilizare
+## Instalare și Rulare
+Utilizatorul trebuie să folosească următoarele comenzi pentru a porni aplicația:
 
-Odată instalat Flutter, utilizatorul trebuie să folosească următoarele comenzi pentru a porni aplicația:
+1. Clonați acest repository:
 
-```bash
-flutter pub get
+    ```bash
+    git clone https://github.com/utilizator/do_your_groceries.git
+    cd do_your_groceries
+    ```
 
-flutter run
-```
+2. Instalați pachetele necesare:
+
+    ```bash
+    flutter pub get
+    ```
+
+3. Porniți aplicația pe un emulator sau dispozitiv fizic:
+
+    ```bash
+    flutter run
+    ```
