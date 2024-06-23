@@ -7,7 +7,7 @@ import 'package:do_you_groceries/src/presentation/supermarkets/markets_page.dart
 import 'package:flutter/material.dart';
 import 'package:redux/redux.dart';
 
-class BottomAppBarWidget extends StatelessWidget {
+class BottomAppBarWidget extends StatefulWidget {
   const BottomAppBarWidget({
     required this.store,
     super.key,
@@ -15,6 +15,11 @@ class BottomAppBarWidget extends StatelessWidget {
 
   final Store<AppState> store;
 
+  @override
+  State<BottomAppBarWidget> createState() => _BottomAppBarWidgetState();
+}
+
+class _BottomAppBarWidgetState extends State<BottomAppBarWidget> {
   @override
   Widget build(BuildContext context) {
     return Builder(
@@ -32,16 +37,14 @@ class BottomAppBarWidget extends StatelessWidget {
                   tooltip: 'Open navigation menu',
                   icon: const Icon(Icons.smart_toy),
                   onPressed: () {
-                    store
-                      ..dispatch(ListenForProductsDone(store.state.selectedGroceryList!.groceryListId))
-                      ..dispatch(SmartUpdateListStart(groceryListProducts: store.state.productsGroceryList))
-                      ..dispatch(ListenForProductsStart(store.state.selectedGroceryList!.groceryListId));
+                    widget.store
+                      .dispatch(SmartUpdateListStart(groceryListProducts: widget.store.state.productsGroceryList));
                   },
                 ),
                 IconButton(
                   tooltip: 'Search',
                   icon: const Icon(Icons.search),
-                  onPressed: () => Navigator.of(context).push(createRoute(MarketsPage(store: store))),
+                  onPressed: () => Navigator.of(context).push(createRoute(MarketsPage(store: widget.store))),
                 ),
                 IconButton(
                   tooltip: 'Generate',

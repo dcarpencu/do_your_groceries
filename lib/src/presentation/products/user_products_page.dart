@@ -75,7 +75,6 @@ class _UserProductsPageState extends State<UserProductsPage> {
                       ],
                     );
                   }
-
                   return CustomScrollView(
                     slivers: <Widget>[
                       SliverPersistentHeader(

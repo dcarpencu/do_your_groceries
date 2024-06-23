@@ -295,7 +295,7 @@ class ProductsApi {
     required List<Product> groceryListProducts,
     required GroceryList groceryList,
   }) async {
-    List<Product> generatedProducts = <Product>[];
+    List<Product> modifiedProducts = <Product>[];
     final Map<String, int> frequencyMarkets = <String, int>{
       'Auchan': 0,
       'Kaufland': 0,
@@ -315,19 +315,15 @@ class ProductsApi {
         final Product bestProduct = productsSorted[0];
 
         if (product.price != bestProduct.price) {
-          generatedProducts = <Product>[bestProduct];
+          modifiedProducts = <Product>[product];
           await switchProduct(
             selectedProduct: bestProduct,
             oldProduct: product,
             groceryList: groceryList,
           );
-        } else {
-          generatedProducts = <Product>[product];
         }
-      } else {
-        generatedProducts = <Product>[product];
       }
-      return generatedProducts;
+      return modifiedProducts;
     }
 
     // calculate frequency of best prices
@@ -354,7 +350,7 @@ class ProductsApi {
         );
 
         if (bestProductInSupermarket != null && bestProductInSupermarket.price < product.price) {
-          generatedProducts.add(bestProductInSupermarket);
+          modifiedProducts.add(product);
           await switchProduct(
             selectedProduct: bestProductInSupermarket,
             oldProduct: product,
@@ -366,21 +362,17 @@ class ProductsApi {
           );
 
           if (bestProductInCurrentSupermarket != null) {
-            generatedProducts.add(bestProductInCurrentSupermarket);
+            modifiedProducts.add(product);
             await switchProduct(
               selectedProduct: bestProductInCurrentSupermarket,
               oldProduct: product,
               groceryList: groceryList,
             );
-          } else {
-            generatedProducts.add(product);
           }
         }
-      } else {
-        generatedProducts.add(product);
       }
     }
-    return generatedProducts;
+    return modifiedProducts;
   }
 
   List<Product> _sortProductsByPrice(List<Product> products) {

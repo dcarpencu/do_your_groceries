@@ -260,5 +260,7 @@ AppState _clearProductsFromList(AppState state, ClearProductsFromList action) {
 }
 
 AppState _smartUpdateListSuccessful(AppState state, SmartUpdateListSuccessful action) {
-  return state.copyWith(productsGroceryList: action.generatedProducts);
+  final List<Product> listAfterSmartUpdate = List<Product>.from(state.productsGroceryList);
+  action.generatedProducts.forEach(listAfterSmartUpdate.remove);
+  return state.copyWith(productsGroceryList: <Product>[...listAfterSmartUpdate]);
 }
