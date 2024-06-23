@@ -113,21 +113,28 @@ class _SearchProductsPageState extends State<SearchProductsPage> {
                             itemCount: 7,
                           );
                         }
-                        return ListView.builder(
-                          controller: _controller,
-                          padding: const EdgeInsets.only(right: 8, left: 8),
-                          itemCount: products.length + (isLoadingMore ? 1 : 0),
-                          itemBuilder: (BuildContext context, int index) {
-                            final Product product = products[index];
 
-                            return ModelItem(
-                              store: _store,
-                              model: product,
-                              marketName: widget.marketName,
-                              category: widget.supermarketCategory,
-                            );
-                          },
-                        );
+                        if (products.isNotEmpty) {
+                          return ListView.builder(
+                            controller: _controller,
+                            padding: const EdgeInsets.only(right: 8, left: 8),
+                            itemCount: products.length + (isLoadingMore ? 1 : 0),
+                            itemBuilder: (BuildContext context, int index) {
+                              final Product product = products[index];
+
+                              return ModelItem(
+                                store: _store,
+                                model: product,
+                                marketName: widget.marketName,
+                                category: widget.supermarketCategory,
+                              );
+                            },
+                          );
+                        } else {
+                          return Center(
+                            child: Text('Nu există date disponibile despre ${widget.supermarketCategoryLabel}'),
+                          );
+                        }
                       },
                     );
                   },

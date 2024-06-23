@@ -110,7 +110,7 @@ class _UserProductsPageState extends State<UserProductsPage> {
               ),
               Positioned(
                 bottom: MediaQuery.of(context).size.height * 0.01,
-                right: MediaQuery.of(context).size.width * 0.74 - totalPrice.toStringAsFixed(2).length * 2,
+                right: MediaQuery.of(context).size.width * 0.67 - totalPrice.toStringAsFixed(2).length * 2,
                 child: ValueListenableBuilder<double>(
                   valueListenable: totalPriceNotifier,
                   builder: (BuildContext context, double totalPrice, Widget? child) {
@@ -121,7 +121,7 @@ class _UserProductsPageState extends State<UserProductsPage> {
                         borderRadius: BorderRadius.circular(16),
                       ),
                       child: Text(
-                        'Total \$${totalPrice.toStringAsFixed(2)}',
+                        'Total ${totalPrice.toStringAsFixed(2)} RON',
                         style: const TextStyle(color: Colors.white, fontSize: 16),
                       ),
                     );
